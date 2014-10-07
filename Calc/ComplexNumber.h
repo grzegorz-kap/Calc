@@ -145,11 +145,4 @@ namespace PR
 			return std::to_string(re) + " " + std::to_string(im) + "i";
 		}
 	};
-
-
-
 }
-
-template class  PR::ComplexNumber < float >;
-//template class PR::ComplexNumber < double > ;
-

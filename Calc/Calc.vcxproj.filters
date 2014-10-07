@@ -37,6 +37,9 @@
     <Filter Include="Operator">
       <UniqueIdentifier>{2e803747-2368-4461-aa13-43719e73bf56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Numeric">
+      <UniqueIdentifier>{08c27927-4a7e-402e-a2a6-cf186cc75e68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,12 +87,6 @@
     <ClInclude Include="CodeExecutor.h">
       <Filter>Execution</Filter>
     </ClInclude>
-    <ClInclude Include="ComplexNumber.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -125,6 +122,21 @@
     </ClInclude>
     <ClInclude Include="OperatorException.h">
       <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Numeric.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexNumber.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="Value.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,12 +182,6 @@
     <ClCompile Include="CodeExecutorMatrix.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="ComplexNumber.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixBuilder.cpp">
       <Filter>Model</Filter>
     </ClCompile>
@@ -214,6 +220,21 @@
     </ClCompile>
     <ClCompile Include="OperatorException.cpp">
       <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Numeric.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexNumber.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="Value.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

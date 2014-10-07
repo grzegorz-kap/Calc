@@ -86,6 +86,7 @@
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
     <ClInclude Include="ComplexNumber.h" />
+    <ClInclude Include="Data.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="FunctionFactory.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="MatrixTransposer.h" />
     <ClInclude Include="NumberReader.h" />
+    <ClInclude Include="Numeric.h" />
     <ClInclude Include="Operator.h" />
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
@@ -109,6 +111,7 @@
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TokenizerHelper.h" />
     <ClInclude Include="TokensTypes.h" />
+    <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Calc.cpp" />
@@ -119,6 +122,7 @@
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -136,6 +140,7 @@
     <ClCompile Include="MatrixBuilder.cpp" />
     <ClCompile Include="MatrixTransposer.cpp" />
     <ClCompile Include="NumberReader.cpp" />
+    <ClCompile Include="Numeric.cpp" />
     <ClCompile Include="Operator.cpp" />
     <ClCompile Include="OperatorException.cpp" />
     <ClCompile Include="OperatorsFactory.cpp" />
@@ -150,6 +155,7 @@
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />
+    <ClCompile Include="Value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

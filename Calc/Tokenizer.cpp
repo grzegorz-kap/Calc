@@ -120,6 +120,8 @@ namespace PR
 		case '\r':
 			prev = TOKEN_CLASS::SPACE;
 			return Token(" ", TOKEN_CLASS::SPACE, i++);
+		default:
+			throw CalcException("d");
 		}
 	}
 

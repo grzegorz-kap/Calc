@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Interpreter.h"
 
-#include "CodeGenerator.h"
-#include "ComplexNumber.h"
+#include "Value.h"
+#include "Numeric.h"
+
 
 namespace PR
 {
@@ -20,6 +21,9 @@ namespace PR
 		string temp="";
 		string temp2 = "";
 
+		unique_ptr<Data> a = make_unique<Value<double>>(3.4);
+		unique_ptr<Data> b = make_unique<Value<double>>(3.4);
+		auto temp12 = *a + b;
 
 		std::chrono::time_point<std::chrono::system_clock> start, end;
 		start = std::chrono::system_clock::now();
