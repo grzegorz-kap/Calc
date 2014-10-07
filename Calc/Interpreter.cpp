@@ -23,7 +23,14 @@ namespace PR
 
 		unique_ptr<Data> a = make_unique<Value<double>>(3.4);
 		unique_ptr<Data> b = make_unique<Value<double>>(3.4);
+		unique_ptr<Data> c = make_unique<Matrix<double>>(4.3);
+		unique_ptr<Data> d = make_unique<Matrix<int>>(4.3);
+
+		auto temp21 = *d*c;
 		auto temp12 = *a + b;
+		auto temp13 = *a / b;
+		auto temp14 = *a * b;
+		auto temp15 = *a - b;
 
 		std::chrono::time_point<std::chrono::system_clock> start, end;
 		start = std::chrono::system_clock::now();

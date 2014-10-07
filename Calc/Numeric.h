@@ -9,8 +9,8 @@ using std::make_unique;
 
 namespace PR
 {
-	template <class U>
-	class Value;
+	template <class A>
+	class Matrix;
 
 	template <class T>
 	class Numeric
@@ -34,18 +34,48 @@ namespace PR
 
 		virtual unique_ptr<Data> operator + (const unique_ptr<Data> &b) const override
 		{
-			return *this + (b->cast_numeric<T>());
+			return *this + b->cast_numeric<T>();
 		}
 
+		template <class U>
+		unique_ptr<T>  operator - (const Numeric<U> *b) const
+		{
+			return make_unique<T>(*get_derived() - *(b->get_derived()));
+		}
+
+		virtual unique_ptr<Data> operator - (const unique_ptr<Data> &b) const override
+		{
+			return *this - (b->cast_numeric<T>());
+		}
+
+		template <class U>
+		unique_ptr<T>  operator * (const Numeric<U> *b) const
+		{
+			const U * p = static_cast<const U *>(b);
+			return make_unique<T>(*get_derived() * *(b->get_derived()));
+		}
+
+		virtual unique_ptr<Data> operator * (const unique_ptr<Data> &b) const override
+		{
+			return *this * (b->cast_numeric<T>());
+		}
+
+		template <class U>
+		unique_ptr<T>  operator / (const Numeric<U> *b) const
+		{
+			return make_unique<T>(*get_derived() / *(b->get_derived()));
+		}
+
+		virtual unique_ptr<Data> operator / (const unique_ptr<Data> &b) const override
+		{
+			return *this / (b->cast_numeric<T>());
+		}
 		
 	private:
 
-		/*
-		Get const pointer to derived class object
-		*/
 		const T * get_derived() const
 		{
-			return static_cast<const T *>(this);
+			return dynamic_cast<const T *>(this);
 		}
 
 		template <class U>

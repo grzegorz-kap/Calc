@@ -135,6 +135,9 @@
     <ClInclude Include="Value.h">
       <Filter>Numeric</Filter>
     </ClInclude>
+    <ClInclude Include="UnimplementedException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Data.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Data.cpp">
       <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="UnimplementedException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -111,6 +111,7 @@
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TokenizerHelper.h" />
     <ClInclude Include="TokensTypes.h" />
+    <ClInclude Include="UnimplementedException.h" />
     <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />
+    <ClCompile Include="UnimplementedException.cpp" />
     <ClCompile Include="Value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

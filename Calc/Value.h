@@ -4,6 +4,9 @@
 
 namespace PR
 {
+	template<class Z>
+	class Matrix;
+
 	/*
 	Class wrapper for standard C++ numeric types
 	*/
@@ -40,6 +43,32 @@ namespace PR
 			-> Value< decltype(T()+U()) >
 		{
 			return Value<decltype(T()+U())>(value + b.value);
+		}
+
+		template <class U>
+		auto operator - (const Value<U> &b) const
+			-> Value< decltype(T() - U()) >
+		{
+			return Value<decltype(T() - U())>(value - b.value);
+		}
+
+		template <class U>
+		auto operator * (const Value<U> &b) const
+			-> Value< decltype(T() * U()) >
+		{
+			return Value<decltype(T() * U())>(value * b.value);
+		}
+
+		template <class U>
+		auto operator / (const Value<U> &b) const
+			-> Value< decltype(T() / U()) >
+		{
+			return Value<decltype(T() / U())>(value / b.value);
+		}
+
+		operator Matrix<T>()
+		{
+			return Matrix<T>(1, 1, value);
 		}
 		
 		template <class U>
