@@ -15,7 +15,7 @@ using std::queue;
 
 namespace PR
 {
-	class CALC_API LexicalAnalyzer
+	class LexicalAnalyzer
 	{
 
 	public:

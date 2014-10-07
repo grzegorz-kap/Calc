@@ -11,7 +11,6 @@ using std::cout;
 
 #include "export.h"
 #include "LexicalAnalyzer.h"
-#include "InterpreterContext.h"
 #include "Parser.h"
 #include "CalcException.h"
 

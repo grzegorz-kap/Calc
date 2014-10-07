@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "Token.h"
-#include "InterpreterContext.h"
 #include "export.h"
 #include "functions.h"
 #include "Operator.h"
@@ -16,7 +15,7 @@ namespace PR
 	using std::string;
 	using std::vector;
 
-	class CALC_API Tokenizer
+	class Tokenizer
 	{
 
 	public:
@@ -35,7 +34,7 @@ namespace PR
 		
 		void setInput(const string &command);
 		bool setInputFileName(const string &fileName);
-		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
+ 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
 	private:
 		string command;
 		int i;

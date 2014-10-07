@@ -64,7 +64,7 @@ namespace PR
 			else
 				ref = &re;
 
-			*ref = atof(temp.c_str());
+			*ref = (T)atof(temp.c_str());
 		}
 
 		~ComplexNumber(){};

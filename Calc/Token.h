@@ -15,7 +15,7 @@ namespace PR
 {
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
-	class CALC_API Token
+	class Token
 	{
 		string lexeme;
 		TOKEN_CLASS type;
