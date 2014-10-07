@@ -1,18 +1,9 @@
 #pragma once
 
-#include <memory>
-using std::shared_ptr;
-
-#include "Data.h"
-#include "IMatrix.h"
-#include "TokensTypes.h"
-#include "Token.h"
-
-
 
 namespace PR
 {
-	class MatrixBuilder
+	/*class MatrixBuilder
 	{
 	public:
 		MatrixBuilder();
@@ -39,6 +30,6 @@ namespace PR
 		void prepareRows();
 		void changeIdxToEnd();
 		
-	};
+	};*/
 }
 

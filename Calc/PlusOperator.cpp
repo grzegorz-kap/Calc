@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	PlusOperator::PlusOperator()
+	/*PlusOperator::PlusOperator()
 		:Operator("+",50,2,EVAULATED::RIGHT)
 	{
 	}
@@ -21,6 +21,6 @@ namespace PR
 
 		*stack.rbegin()[0] + stack.rbegin()[1];
 
-	}
+	}*/
 
 }

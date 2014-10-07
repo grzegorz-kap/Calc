@@ -44,7 +44,6 @@ namespace PR
 
 	protected:
 
-		void check_args_count(STACK &stack) const;
 	};
 
 }

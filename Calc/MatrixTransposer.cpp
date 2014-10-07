@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	shared_ptr<Data> MatrixTransposer::transpose(const shared_ptr<Data> &data)
+	/*shared_ptr<Data> MatrixTransposer::transpose(const shared_ptr<Data> &data)
 	{
 		switch (data->get_ty())
 		{
@@ -33,5 +33,5 @@ namespace PR
 			for (int j = 0; j < N; j++)
 				ref.mx[j][i] = data.mx[i][j];
 		return result;
-	}
+	}*/
 }

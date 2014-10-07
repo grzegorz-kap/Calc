@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Matrix.h"
-#include "IMatrix.h"
-#include "Data.h"
+
 
 namespace PR
 {
-	class MatrixTransposer
+	/*class MatrixTransposer
 	{
 
 	private:
@@ -20,7 +19,7 @@ namespace PR
 
 		template <typename T>
 		static shared_ptr<Data> transpose(const IMatrix<T> &data);
-	};
+	};*/
 
 
 }

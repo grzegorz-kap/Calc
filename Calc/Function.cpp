@@ -3,7 +3,7 @@
 
 
 namespace PR
-{
+{/*
 	Function::Function()
 	{
 	}
@@ -27,6 +27,6 @@ namespace PR
 	{
 		if (i<min_args_count || i>max_args_count)
 			throw CalcException("Wrong number of parameters");
-	}
+	}*/
 
 }

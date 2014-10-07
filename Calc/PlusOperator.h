@@ -4,14 +4,14 @@
 
 namespace PR
 {
-	class PlusOperator :
+	/*class PlusOperator :
 		public Operator 
 	{
 	public:
-		PlusOperator();
-		~PlusOperator();
+		PlusOperator(){};
+		~PlusOperator(){};
 
-		virtual shared_ptr<Data> evaluate(vector<shared_ptr<Data>> &stack);
-	};
+		
+	};*/
 }
 

@@ -9,12 +9,11 @@ using std::vector;
 using std::shared_ptr;
 
 #include "CalcException.h"
-#include "Data.h"
 #include "Matrix.h"
 
 
 namespace PR
-{
+{/*
 	class Function
 	{
 	protected:
@@ -35,5 +34,5 @@ namespace PR
 	protected:
 
 		void checkArgsCount(int i);
-	};
+	};*/
 }

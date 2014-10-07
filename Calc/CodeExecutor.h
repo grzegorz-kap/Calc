@@ -6,11 +6,8 @@
 using std::shared_ptr;
 using std::vector;
 
-#include "declarations.h"
-#include "Data.h"
 #include "Token.h"
 #include "CalcException.h"
-#include "IMatrix.h"
 #include "Operator.h"
 #include "MatrixBuilder.h"
 #include "MatrixTransposer.h"
@@ -22,10 +19,10 @@ namespace PR
 {
 	class CodeExecutor
 	{
-
 	public:
 		CodeExecutor();
 		~CodeExecutor();
+	/*
 
 		shared_ptr<Data> run(const INSTRUCTION &tokens);
 
@@ -44,7 +41,7 @@ namespace PR
 
 
 		shared_ptr<Data> pop();
-		void pushToken(TOKEN_CLASS t);
+		void pushToken(TOKEN_CLASS t);*/
 	};
 }
 

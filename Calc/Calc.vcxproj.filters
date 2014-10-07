@@ -96,26 +96,14 @@
     <ClInclude Include="Matrix.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="IMatrix.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.h">
       <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="Function.h">
       <Filter>Function</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionArgument.h">
-      <Filter>Function</Filter>
-    </ClInclude>
     <ClInclude Include="SizeFunction.h">
       <Filter>Function</Filter>
-    </ClInclude>
-    <ClInclude Include="Output.h">
-      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="FunctionFactory.h">
       <Filter>Function</Filter>
@@ -141,17 +129,8 @@
     <ClInclude Include="Operator.h">
       <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="declarations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OperatorException.h">
       <Filter>Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Numeric.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Value.h">
-      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,29 +185,17 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="IMatrix.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="ComplexNumber.cpp">
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="MatrixBuilder.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="Data.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="Function.cpp">
-      <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="FunctionArgument.cpp">
       <Filter>Function</Filter>
     </ClCompile>
     <ClCompile Include="SizeFunction.cpp">
       <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="Output.cpp">
-      <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="CodeExecutorFunction.cpp">
       <Filter>Execution</Filter>
@@ -259,12 +226,6 @@
     </ClCompile>
     <ClCompile Include="OperatorException.cpp">
       <Filter>Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="Numeric.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Value.cpp">
-      <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

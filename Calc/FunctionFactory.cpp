@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	FunctionFactory * FunctionFactory::instance = nullptr;
+	/*FunctionFactory * FunctionFactory::instance = nullptr;
 
 	FunctionFactory::FunctionFactory()
 	{
@@ -25,5 +25,5 @@ namespace PR
 	{
 		if (instance == nullptr)
 			instance = new FunctionFactory();
-	}
+	}*/
 }

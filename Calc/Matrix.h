@@ -6,7 +6,6 @@
 #include <memory>
 
 #include "ComplexNumber.h"
-#include "Data.h"
 
 using std::vector;
 using std::shared_ptr;

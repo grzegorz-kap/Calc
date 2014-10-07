@@ -4,9 +4,9 @@
 #include <memory>
 
 #include "export.h"
-#include "declarations.h"
 #include "TokensTypes.h"
-#include "Data.h"
+#include "CalcException.h"
+
 
 using std::string;
 using std::shared_ptr;
@@ -15,24 +15,22 @@ namespace PR
 {
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
-	class CALC_API Token : public Data
+	class CALC_API Token
 	{
 		string lexeme;
 		TOKEN_CLASS type;
 		PARSE_MODE mode;
-		DATA_TYPE evalType;
 		int position;
 		int param;
 	public:
 		Token();
 
 		Token(string lexemeArg, TOKEN_CLASS typeArg, int position = 0,
-			int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL, DATA_TYPE evalType = DATA_TYPE::DOUBLE);
+			int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL);
 
 		Token(TOKEN_CLASS arg);
 		~Token();
 
-		virtual shared_ptr<Data> evaluate(STACK &stack);
 
 		bool operator == (const Token &b)const;
 
@@ -48,7 +46,6 @@ namespace PR
 		void setMode(PARSE_MODE mode){ this->mode = mode; }
 
 		string toString() const;
-		static shared_ptr<Token> cast(const shared_ptr<Data> &b,bool ex=true);
 		
 	};
 }

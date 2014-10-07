@@ -14,7 +14,7 @@ using std::cout;
 #include "InterpreterContext.h"
 #include "Parser.h"
 #include "CalcException.h"
-#include "Data.h"
+
 #include "Matrix.h"
 #include "CodeExecutor.h"
 

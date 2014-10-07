@@ -5,19 +5,16 @@ namespace PR
 {
 	Token::Token()
 	{
-		_ty = DATA_TYPE::TOKEN;
 	}
 
-	Token::Token(string tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode,DATA_TYPE evalType)
-		:lexeme(tokenArg), type(typeArg), position(position), param(param), mode(mode), evalType(evalType)
+	Token::Token(string tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
+		:lexeme(tokenArg), type(typeArg), position(position), param(param), mode(mode)
 	{
-		_ty = DATA_TYPE::TOKEN;
 	}
 
 	Token::Token(TOKEN_CLASS arg)
 		: Token()
 	{
-		_ty = DATA_TYPE::TOKEN;
 		type = arg;
 	}
 
@@ -25,20 +22,6 @@ namespace PR
 	{
 	}
 
-	shared_ptr<Data> Token::evaluate(STACK &)
-	{
-		throw CalcException("Can not evaluate this symbol", position);
-	}
-
-	shared_ptr<Token> Token::cast(const shared_ptr<Data> &b,bool exs)
-	{
-		auto temp = std::dynamic_pointer_cast<Token>(b);
-
-		if (exs&& temp == nullptr)
-			throw CalcException("Cannot cast to 'Token' type");
-
-		return temp;
-	}
 
 	bool Token::operator==(const Token &b) const
 	{

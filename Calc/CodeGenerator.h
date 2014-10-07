@@ -8,7 +8,6 @@ using std::vector;
 using std::string;
 using std::shared_ptr;
 
-#include "declarations.h"
 #include "Token.h"
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
@@ -19,23 +18,25 @@ namespace PR
 	class CodeGenerator
 	{
 		
-	private:
+	/*private:
 		CODE code;
 		CODE::iterator ip;
+		
+		bool end;*/
+
 		LexicalAnalyzer lexicalAnalyzer;
-		bool end;
 	public:
 		CodeGenerator(const string &code_str);
 		~CodeGenerator();
 		
-		bool eof(void);
+	/*	bool eof(void);
 		auto getInstruction() ->decltype(ip);
 
 		void inc();
 		void dec();
 		
 	private:
-		void load(void);
+		void load(void);*/
 	};
 
 

@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	MatrixBuilder::MatrixBuilder()
+	/*MatrixBuilder::MatrixBuilder()
 	{
 		matrix_ptr = std::make_shared<IMatrix<mytype>>(0, 0);
 		mx = matrix_ptr->getVector();
@@ -93,5 +93,5 @@ namespace PR
 		mx_s = matrix_s_ptr->getVector();
 		m_s = matrix_s_ptr->rows();
 		n_s = matrix_s_ptr->cols();
-	}
+	}*/
 }

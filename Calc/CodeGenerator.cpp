@@ -7,8 +7,8 @@ namespace PR
 	CodeGenerator::CodeGenerator(const string &code_str)
 		:lexicalAnalyzer(code_str)
 	{
-		load();
-		ip = code.begin();
+		/*load();
+		ip = code.begin();*/
 	}
 
 
@@ -16,7 +16,7 @@ namespace PR
 	{
 	}
 
-	auto CodeGenerator::getInstruction()
+	/*auto CodeGenerator::getInstruction()
 		-> decltype(ip)
 	{
 		if (eof())
@@ -57,5 +57,5 @@ namespace PR
 		end = !parser.parse();
 		ip = code.insert(code.end(), parser.getInstruction());
 	}
-
+*/
 }

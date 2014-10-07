@@ -8,7 +8,7 @@ namespace PR
 
 	OperatorsFactory::OperatorsFactory()
 	{
-		operators["+"] = [](){return shared_ptr<Token>(new PlusOperator()); };
+		//operators["+"] = [](){return shared_ptr<Token>(new PlusOperator()); };
 
 	}
 

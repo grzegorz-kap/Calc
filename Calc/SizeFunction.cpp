@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	SizeFunction::SizeFunction()
+	/*SizeFunction::SizeFunction()
 	{
 		max_args_count = min_args_count = 1;
 	}
@@ -28,5 +28,5 @@ namespace PR
 	{
 		checkArgsCount(args.size());
 		arg1 = IMatrix<mytype>::cast_i(args[0]);
-	}
+	}*/
 }

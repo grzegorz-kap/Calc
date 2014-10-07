@@ -3,13 +3,11 @@
 #include <vector>
 #include <algorithm>
 
-#include "declarations.h"
 
 using std::vector;
 
 namespace PR
 {
-	class Data;
 
 	template <typename T>
 	bool find(const vector<T> &search, const vector<T> &match)
