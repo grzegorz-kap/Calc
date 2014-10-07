@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="LexicalAnalyze">
+      <UniqueIdentifier>{ff9382b4-bee8-429a-9d09-f66f2aa5b02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LexicalAnalyze\Helpers">
+      <UniqueIdentifier>{373b35e9-7575-4d8e-9ab0-ce70a1551742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parsing">
+      <UniqueIdentifier>{9cccb345-99e9-45b2-b266-2604e09fdb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Execution">
+      <UniqueIdentifier>{a89bed4c-f08c-4e8d-837a-03acb9f0f29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parsing\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{2149f7b6-1278-49dc-bf7d-a67772931e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Function">
+      <UniqueIdentifier>{efd3144f-5167-42d5-b931-fb73890fe1a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{98036f3a-61c3-4b68-8326-7610eb7de76d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Operator">
+      <UniqueIdentifier>{2e803747-2368-4461-aa13-43719e73bf56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterpreterContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LexicalAnalyzer.h">
+      <Filter>LexicalAnalyze</Filter>
+    </ClInclude>
+    <ClInclude Include="Tokenizer.h">
+      <Filter>LexicalAnalyze</Filter>
+    </ClInclude>
+    <ClInclude Include="TokensTypes.h">
+      <Filter>LexicalAnalyze</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>LexicalAnalyze</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenizerHelper.h">
+      <Filter>LexicalAnalyze\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberReader.h">
+      <Filter>LexicalAnalyze\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="LexicalBalanceHelper.h">
+      <Filter>LexicalAnalyze</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Parsing</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeExecutor.h">
+      <Filter>Execution</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexNumber.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="IMatrix.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixBuilder.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionArgument.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="SizeFunction.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionFactory.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixTransposer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CalcException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGeneratorException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorsFactory.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="PlusOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="Operator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="declarations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Numeric.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Value.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Calc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interpreter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InterpreterContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LexicalAnalyzer.cpp">
+      <Filter>LexicalAnalyze</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>LexicalAnalyze</Filter>
+    </ClCompile>
+    <ClCompile Include="Tokenizer.cpp">
+      <Filter>LexicalAnalyze</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenizerHelper.cpp">
+      <Filter>LexicalAnalyze\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberReader.cpp">
+      <Filter>LexicalAnalyze\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="LexicalBalanceHelper.cpp">
+      <Filter>LexicalAnalyze</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutor.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorOperators.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorMatrix.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="IMatrix.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexNumber.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixBuilder.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionArgument.cpp">
+      <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="SizeFunction.cpp">
+      <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorFunction.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionFactory.cpp">
+      <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixTransposer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CalcException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGeneratorException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorsFactory.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="PlusOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="Operator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Numeric.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Value.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

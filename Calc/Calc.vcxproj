@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6E6D4955-D81B-4270-8B58-7CCCB0263787}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Calc</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CALC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CALC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CalcException.h" />
+    <ClInclude Include="CodeExecutor.h" />
+    <ClInclude Include="CodeGenerator.h" />
+    <ClInclude Include="CodeGeneratorException.h" />
+    <ClInclude Include="ComplexNumber.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="DebugHelper.h" />
+    <ClInclude Include="declarations.h" />
+    <ClInclude Include="export.h" />
+    <ClInclude Include="Function.h" />
+    <ClInclude Include="FunctionArgument.h" />
+    <ClInclude Include="FunctionFactory.h" />
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="IMatrix.h" />
+    <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="InterpreterContext.h" />
+    <ClInclude Include="LexicalAnalyzer.h" />
+    <ClInclude Include="LexicalBalanceHelper.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MatrixBuilder.h" />
+    <ClInclude Include="MatrixTransposer.h" />
+    <ClInclude Include="NumberReader.h" />
+    <ClInclude Include="Numeric.h" />
+    <ClInclude Include="Operator.h" />
+    <ClInclude Include="OperatorException.h" />
+    <ClInclude Include="OperatorsFactory.h" />
+    <ClInclude Include="Output.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="PlusOperator.h" />
+    <ClInclude Include="SizeFunction.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Token.h" />
+    <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="TokenizerHelper.h" />
+    <ClInclude Include="TokensTypes.h" />
+    <ClInclude Include="Value.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Calc.cpp" />
+    <ClCompile Include="CalcException.cpp" />
+    <ClCompile Include="CodeExecutor.cpp" />
+    <ClCompile Include="CodeExecutorFunction.cpp" />
+    <ClCompile Include="CodeExecutorOperators.cpp" />
+    <ClCompile Include="CodeGenerator.cpp" />
+    <ClCompile Include="CodeGeneratorException.cpp" />
+    <ClCompile Include="ComplexNumber.cpp" />
+    <ClCompile Include="Data.cpp" />
+    <ClCompile Include="DebugHelper.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Function.cpp" />
+    <ClCompile Include="FunctionArgument.cpp" />
+    <ClCompile Include="FunctionFactory.cpp" />
+    <ClCompile Include="IMatrix.cpp" />
+    <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="InterpreterContext.cpp" />
+    <ClCompile Include="LexicalAnalyzer.cpp" />
+    <ClCompile Include="LexicalBalanceHelper.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="MatrixBuilder.cpp" />
+    <ClCompile Include="MatrixTransposer.cpp" />
+    <ClCompile Include="NumberReader.cpp" />
+    <ClCompile Include="Numeric.cpp" />
+    <ClCompile Include="Operator.cpp" />
+    <ClCompile Include="OperatorException.cpp" />
+    <ClCompile Include="OperatorsFactory.cpp" />
+    <ClCompile Include="Output.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="CodeExecutorMatrix.cpp" />
+    <ClCompile Include="PlusOperator.cpp" />
+    <ClCompile Include="SizeFunction.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Token.cpp" />
+    <ClCompile Include="Tokenizer.cpp" />
+    <ClCompile Include="TokenizerHelper.cpp" />
+    <ClCompile Include="Value.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
