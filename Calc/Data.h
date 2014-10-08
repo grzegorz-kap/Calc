@@ -1,8 +1,12 @@
-#pragma once
+ #pragma once
 
 #include <memory>
+#include <typeindex>
+#include <typeinfo>
+#include <unordered_map>
 
 using std::unique_ptr;
+using std::make_unique;
 
 #include "UnimplementedException.h"
 
@@ -11,11 +15,23 @@ namespace PR
 	template <class T>
 	class Numeric;
 
+	enum class TYPE : char
+	{
+		M_INT,
+		M_FLOAT,
+		M_DOUBLE
+	};
+
 	class Data
 	{
+	protected:
+		TYPE _type;
 	public:
 		Data();
 		~Data();
+
+		static std::unordered_map<std::type_index, TYPE> TYPE_MAP;
+		static bool TYPE_MAP_BUILDED;
 
 		virtual unique_ptr<Data> operator + (const unique_ptr<Data> &b) const
 		{
@@ -48,14 +64,23 @@ namespace PR
 		}
 
 		template<class T>
-		Numeric<T> * cast_numeric()
+		unique_ptr<Numeric<T>>  cast_numeric()
 		{
-			auto temp = dynamic_cast<Numeric<T> *>(this);
+			auto pointer = dynamic_cast<Numeric<T> *> (this);
+			
+			if (pointer)
+				return unique_ptr<Numeric<T>>(pointer);
 
-			if (temp)
-				return temp;
-
-			Numeric<T> val = *this;
+			switch (this->_type)
+			{
+				case TYPE::M_DOUBLE:
+				{
+					auto pointer = dynamic_cast<Matrix<double> *>(this);
+					//T *converted_pointer = new T(*pointer);
+					return make_unique<T>(*pointer);
+				}
+					break;
+			}
 		}
 	};
 

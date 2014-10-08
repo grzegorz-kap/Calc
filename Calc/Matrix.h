@@ -11,6 +11,9 @@ using std::shared_ptr;
 namespace PR
 {
 
+	template<class VAL>
+	class Value;
+
 	template<class T> class  Matrix
 		: public Numeric<Matrix<T>>
 	{
@@ -21,21 +24,17 @@ namespace PR
 		int N;
 	public:
 		friend class MatrixTransposer;
-
-		template<class U>
-		operator Matrix<U>()
-		{
-			return *this;
-		}
 		
 		Matrix()
 			:M(0),N(0)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		};
 
 		Matrix(const T &b)
 			:Matrix(1,1,b)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 		
 		Matrix(Matrix<T> &&other)
@@ -45,8 +44,9 @@ namespace PR
 		}
 
 		Matrix(const Matrix<T> &b)
-			:mx(b), M(b.M), N(b.N)
+			:mx(b.mx), M(b.M), N(b.N)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
 		Matrix<T> & operator = (const Matrix<T> &b)
@@ -80,6 +80,7 @@ namespace PR
 			mx.push_back(vector<T>(1));
 			mx[0][0] = T(scalar);
 			M = N = 1;
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
 		Matrix(int m, int n)
@@ -94,10 +95,11 @@ namespace PR
 		{ 
 			M = m;
 			N = n;
+			_type = Data::TYPE_MAP[typeid(*this)];
 			mx.assign(m, vector<T>(n, value)); 
 		}
 
-		~Matrix()
+		virtual ~Matrix()
 		{
 		};
 
@@ -313,6 +315,23 @@ namespace PR
 					temp.append("\t" + mx[i][j].toString());
 			}
 			return temp;
+		}
+
+
+		/*
+		Cast operators
+		*/
+
+		template<class X>
+		operator Value<X>()
+		{
+			return Value<X>(mx[0][0]);
+		}
+
+		
+		operator int ()
+		{
+			return int(mx[0][0]);
 		}
 	};
 }

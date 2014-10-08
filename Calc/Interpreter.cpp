@@ -9,6 +9,13 @@ namespace PR
 {
 	Interpreter::Interpreter()
 	{		
+		if (Data::TYPE_MAP_BUILDED == false)
+		{
+			Data::TYPE_MAP_BUILDED = true;
+			Data::TYPE_MAP[typeid(Matrix<int>)] = TYPE::M_INT;
+			Data::TYPE_MAP[typeid(Matrix<float>)] = TYPE::M_FLOAT;
+			Data::TYPE_MAP[typeid(Matrix<double>)] = TYPE::M_DOUBLE;
+		}
 	}
 
 	Interpreter::~Interpreter()
