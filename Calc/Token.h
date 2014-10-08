@@ -6,6 +6,7 @@
 #include "export.h"
 #include "TokensTypes.h"
 #include "CalcException.h"
+#include "Data.h"
 
 
 using std::string;
@@ -16,9 +17,10 @@ namespace PR
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
 	class Token
+		:public Data
 	{
 		string lexeme;
-		TOKEN_CLASS type;
+		TOKEN_CLASS _class;
 		PARSE_MODE mode;
 		int position;
 		int param;
@@ -37,8 +39,8 @@ namespace PR
 		string getLexeme()const{ return lexeme; }
 		const string & getLexemeR()const{ return lexeme; }
 		void setLexeme(const string &lexemeArg){ lexeme = lexemeArg; }
-		TOKEN_CLASS getType() const { return type; }
-		void setType(const TOKEN_CLASS &typeArg){ type = typeArg; }
+		TOKEN_CLASS getClass() const { return _class; }
+		void set_class(const TOKEN_CLASS &typeArg){ _class = typeArg; }
 		int getPosition()const{ return position; }
 		int getParam() const { return param; }
 		void setParam(int p){ param = p; }
@@ -47,5 +49,9 @@ namespace PR
 
 		string toString() const;
 		
+		virtual Data* eveluate()
+		{
+			throw 3.2;
+		}
 	};
 }

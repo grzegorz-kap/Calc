@@ -27,7 +27,7 @@ namespace PR
 			bool flag = false;
 			for (int i = stack.size()-1; i >= 0; i--)
 			{
-				if (stack[i]->getType() == type)
+				if (stack[i]->getClass() == type)
 				{
 					flag = true;
 					break;
@@ -52,7 +52,7 @@ namespace PR
 		if (lexAnalyzer.whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
 		{
 			Token token = i;
-			token.setType(TOKEN_CLASS::FUNCTION);
+			token.set_class(TOKEN_CLASS::FUNCTION);
 			stack.push_back(make_shared<Token>(token));
 			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		}
@@ -78,7 +78,7 @@ namespace PR
 		bool flag = true;
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getType() == type)
+			if (stack[i]->getClass() == type)
 			{
 				flag = false;
 				if (remove)
@@ -164,7 +164,7 @@ namespace PR
 		while (!stop&&lexAnalyzer.hasNext())
 		{
 			i = lexAnalyzer.getNext();
-			switch (i.getType())
+			switch (i.getClass())
 			{
 			case TOKEN_CLASS::NUMBER: 
 				onNumber(); 
@@ -225,7 +225,7 @@ namespace PR
 	TOKEN_CLASS Parser::stackBack() const
 	{
 		if (stack.size() != 0)
-			return stack.back()->getType();
+			return stack.back()->getClass();
 		else
 			return TOKEN_CLASS::NONE;
 	}
@@ -233,7 +233,7 @@ namespace PR
 	TOKEN_CLASS Parser::onpBack() const
 	{
 		if (onp.size() != 0)
-			return onp.back()->getType();
+			return onp.back()->getClass();
 		else
 			return TOKEN_CLASS::NONE;
 	}
@@ -242,7 +242,7 @@ namespace PR
 	{
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getType() != TOKEN_CLASS::OPERATOR)
+			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
 				throw CalcException("Unexpected symbol!", stack[i]->getPosition());
 			onp.push_back(std::move(stack[i]));
 		}

@@ -144,6 +144,12 @@
     <ClInclude Include="CastException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="SNumber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EvalException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -246,6 +252,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CastException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="SNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EvalException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>

@@ -39,7 +39,7 @@ namespace PR
 		ev(ev)
 	{
 		setLexeme(name);
-		setType(TOKEN_CLASS::OPERATOR);
+		set_class(TOKEN_CLASS::OPERATOR);
 	}
 
 

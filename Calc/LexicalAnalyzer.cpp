@@ -46,7 +46,7 @@ namespace PR
 	{
 		balancer.setMode(token);
 
-		switch (token.getType())
+		switch (token.getClass())
 		{
 		case TOKEN_CLASS::SPACE: 
 			onSpace(token); 
@@ -56,7 +56,7 @@ namespace PR
 			break;
 		}
 
-		prev = token.getType();
+		prev = token.getClass();
 		q.push(token);
 	}
 
@@ -68,7 +68,7 @@ namespace PR
 	void LexicalAnalyzer::onSpace(Token &token)
 	{
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
-			token.setType(TOKEN_CLASS::COMMA);
+			token.set_class(TOKEN_CLASS::COMMA);
 	}
 
 	void LexicalAnalyzer::onOperator(Token &token)
@@ -77,7 +77,7 @@ namespace PR
 		
 		if (name == "+" || name == "-")
 		{
-			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, token.getType()) || 
+			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, token.getClass()) ||
 				(prev==TOKEN_CLASS::OPERATOR&&prev_operator_args_num > 1))
 			{
 				token.setLexeme("$" + name);
@@ -106,10 +106,10 @@ namespace PR
 	void LexicalAnalyzer::read()
 	{
 		Token current = tokenizer.getNext();
-		if (current.getType() == TOKEN_CLASS::SPACE)
+		if (current.getClass() == TOKEN_CLASS::SPACE)
 		{
 			Token next = tokenizer.hasNext() ? tokenizer.getNext() : Token(TOKEN_CLASS::NONE);
-			if (find<TOKEN_CLASS>(Tokenizer::FOR_SPACE_DELETE, next.getType()))
+			if (find<TOKEN_CLASS>(Tokenizer::FOR_SPACE_DELETE, next.getClass()))
 			{
 				push(next);
 			}
@@ -140,7 +140,7 @@ namespace PR
 			if (!what_next_flag)
 				read();
 			what_next_flag = true;
-			return q.front().getType();
+			return q.front().getClass();
 		}
 	}
 }

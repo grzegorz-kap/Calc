@@ -8,14 +8,14 @@ namespace PR
 	}
 
 	Token::Token(string tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
-		:lexeme(tokenArg), type(typeArg), position(position), param(param), mode(mode)
+		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
 	}
 
 	Token::Token(TOKEN_CLASS arg)
 		: Token()
 	{
-		type = arg;
+		_class = arg;
 	}
 
 	Token::~Token()
@@ -27,7 +27,7 @@ namespace PR
 	{
 		if (lexeme != b.lexeme)
 			return false;
-		if (type != b.type)
+		if (_class != b._class)
 			return false;
 		return true;
 	}
@@ -41,16 +41,16 @@ namespace PR
 			out.append("$TABULATOR");
 		else if (lexeme == " ")
 			out.append("$SPACE");
-		else if (type == TOKEN_CLASS::FUNCTON_ARGS_END)
+		else if (_class == TOKEN_CLASS::FUNCTON_ARGS_END)
 			out.append("$FUNC_ARGS_END");
-		else if (type == TOKEN_CLASS::VERSE_END)
+		else if (_class == TOKEN_CLASS::VERSE_END)
 			out.append("$WE");
-		else if (type == TOKEN_CLASS::MATRIX_ALL)
+		else if (_class == TOKEN_CLASS::MATRIX_ALL)
 			out.append("$:");
 		else
 			out.append(lexeme);
 
-		out.append("\t" + std::to_string(type));
+		out.append("\t" + std::to_string(_class));
 		out.append("\t" + std::to_string(position));
 		return out;
 	}

@@ -88,6 +88,7 @@
     <ClInclude Include="CodeGeneratorException.h" />
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="EvalException.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="FunctionFactory.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PlusOperator.h" />
     <ClInclude Include="SizeFunction.h" />
+    <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
@@ -134,6 +136,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="EvalException.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="Interpreter.cpp" />
@@ -151,6 +154,7 @@
     <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="PlusOperator.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
+    <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

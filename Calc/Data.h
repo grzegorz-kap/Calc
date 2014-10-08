@@ -58,6 +58,11 @@ namespace PR
 			throw UnimplementedException("Can not do division on this type!");
 		}
 
+		virtual string toString()
+		{
+			return string("");
+		}
+
 		template<class T>
 		Numeric<T> * cast_numeric()
 		{

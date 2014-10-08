@@ -12,10 +12,8 @@ using std::cout;
 #include "export.h"
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
-#include "CalcException.h"
-
-#include "Matrix.h"
 #include "CodeExecutor.h"
+#include "CodeGenerator.h"
 
 namespace PR
 {

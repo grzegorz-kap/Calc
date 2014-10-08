@@ -1,0 +1,24 @@
+#pragma once
+#include "Token.h"
+#include "Data.h"
+#include "Value.h"
+#include "Matrix.h"
+#include "EvalException.h"
+
+#include <memory>
+
+using std::unique_ptr;
+
+namespace PR
+{
+	class SNumber :
+		public Token
+	{
+		TYPE _type;
+	public:
+		SNumber(TYPE type = TYPE::M_DOUBLE);
+		~SNumber();
+
+		virtual Data * eveluate() override;
+	};
+}

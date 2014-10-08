@@ -7,6 +7,7 @@ using std::shared_ptr;
 using std::vector;
 
 #include "Token.h"
+#include "CodeGenerator.h"
 #include "CalcException.h"
 #include "Operator.h"
 #include "MatrixBuilder.h"
@@ -22,13 +23,13 @@ namespace PR
 	public:
 		CodeExecutor();
 		~CodeExecutor();
-	/*
+	
 
-		shared_ptr<Data> run(const INSTRUCTION &tokens);
+		shared_ptr<Data> run(const Instruction &tokens);
 
 	private:
 		vector<shared_ptr<Data>> stack;
-		INSTRUCTION::const_iterator i;
+		Instruction::const_iterator i;
 
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 
@@ -41,7 +42,7 @@ namespace PR
 
 
 		shared_ptr<Data> pop();
-		void pushToken(TOKEN_CLASS t);*/
+		void pushToken(TOKEN_CLASS t);
 	};
 }
 

@@ -12,31 +12,35 @@ using std::shared_ptr;
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
 #include "CodeGeneratorException.h"
+#include "Data.h"
 
 namespace PR
 {
+	typedef vector<vector<shared_ptr<Token>>> Code;
+	typedef vector<shared_ptr<Token>> Instruction;
+	typedef Code::iterator Ip;
+
 	class CodeGenerator
 	{
 		
-	/*private:
-		CODE code;
-		CODE::iterator ip;
-		
-		bool end;*/
-
+	private:
+		Code code;
+		Ip ip;
+		bool end;
 		LexicalAnalyzer lexicalAnalyzer;
+
 	public:
 		CodeGenerator(const string &code_str);
 		~CodeGenerator();
 		
-	/*	bool eof(void);
+		bool eof(void);
 		auto getInstruction() ->decltype(ip);
 
 		void inc();
 		void dec();
 		
 	private:
-		void load(void);*/
+		void load(void);
 	};
 
 

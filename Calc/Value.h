@@ -1,6 +1,11 @@
 #pragma once
 
+#include <string>
+
+using std::string;
+
 #include "Numeric.h"
+#include "CastException.h"
 
 namespace PR
 {
@@ -35,6 +40,22 @@ namespace PR
 			:value(b)
 		{
 			_type = Data::TYPE_MAP[typeid(*this)];
+		}
+
+		Value(const string &string)
+		{
+			std::size_t pos = 0;
+			
+			try{
+				value = (T)std::stod(string, &pos);
+			}
+			catch (...)
+			{
+				throw CastException("String to numeric - invalid argument or out of range!");
+			}
+
+			if (pos < string.size())
+				throw CastException("Cannot convert std::string to numeric type");
 		}
 
 		virtual ~Value()
@@ -72,13 +93,13 @@ namespace PR
 		template <class X>
 		operator Value<X>()
 		{
-			return Value<X>(value);
+			return Value<X>((X) value);
 		}
 
 		template <class X>
 		operator Matrix<X>()
 		{
-			return Matrix<X>(value);
+			return Matrix<X>((X)value);
 		}
 
 		template <class X>

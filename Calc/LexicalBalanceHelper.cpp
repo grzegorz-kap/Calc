@@ -52,7 +52,7 @@ namespace PR
 	void LexicalBalanceHelper::setMode(Token &token)
 	{
 		pos = token.getPosition();
-		switch (token.getType())
+		switch (token.getClass())
 		{
 		case TOKEN_CLASS::OPEN_PARENTHESIS:
 			changeMode(PARSE_MODE::FUNCTION, 1);

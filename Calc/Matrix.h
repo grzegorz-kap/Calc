@@ -78,7 +78,7 @@ namespace PR
 			:Matrix()
 		{
 			mx.push_back(vector<T>(1));
-			mx[0][0] = T(scalar);
+			mx[0][0] = (T)atof(scalar.c_str());
 			M = N = 1;
 			_type = Data::TYPE_MAP[typeid(*this)];
 		}
@@ -325,7 +325,7 @@ namespace PR
 		template<class X>
 		operator Value<X>()
 		{
-			return Value<X>(mx[0][0]);
+			return Value<X>((X)mx[0][0]);
 		}
 
 		
