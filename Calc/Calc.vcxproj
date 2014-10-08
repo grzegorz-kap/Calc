@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CalcException.h" />
+    <ClInclude Include="CastException.h" />
     <ClInclude Include="CodeExecutor.h" />
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
@@ -117,6 +118,7 @@
   <ItemGroup>
     <ClCompile Include="Calc.cpp" />
     <ClCompile Include="CalcException.cpp" />
+    <ClCompile Include="CastException.cpp" />
     <ClCompile Include="CodeExecutor.cpp" />
     <ClCompile Include="CodeExecutorFunction.cpp" />
     <ClCompile Include="CodeExecutorOperators.cpp" />

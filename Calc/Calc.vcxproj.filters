@@ -141,6 +141,9 @@
     <ClInclude Include="Data.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="CastException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="UnimplementedException.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CastException.cpp">
+      <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

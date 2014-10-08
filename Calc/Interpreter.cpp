@@ -15,6 +15,9 @@ namespace PR
 			Data::TYPE_MAP[typeid(Matrix<int>)] = TYPE::M_INT;
 			Data::TYPE_MAP[typeid(Matrix<float>)] = TYPE::M_FLOAT;
 			Data::TYPE_MAP[typeid(Matrix<double>)] = TYPE::M_DOUBLE;
+			Data::TYPE_MAP[typeid(Value<int>)] = TYPE::INT;
+			Data::TYPE_MAP[typeid(Value<float>)] = TYPE::FLOAT;
+			Data::TYPE_MAP[typeid(Value<double>)] = TYPE::DOUBLE;
 		}
 	}
 
@@ -32,10 +35,11 @@ namespace PR
 		unique_ptr<Data> b = make_unique<Value<double>>(3.4);
 		unique_ptr<Data> c = make_unique<Matrix<double>>(4.3);
 		unique_ptr<Data> d = make_unique<Matrix<int>>(4.3);
+		unique_ptr<Data> e = make_unique<Matrix<float>>(10.3);
 
-		auto temp21 = *d*c;
-		auto temp12 = *a + b;
-		auto temp13 = *a / b;
+		auto temp21 = *a + b;
+		auto temp12 = *a + c;
+		auto temp13 = *c / b;
 		auto temp14 = *a * b;
 		auto temp15 = *a - b;
 

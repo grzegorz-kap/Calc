@@ -22,19 +22,22 @@ namespace PR
 
 		Value()
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
 		Value(const Value<T> &b)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 			value=b.value;
 		}
 
 		Value(const T &b)
 			:value(b)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
-		~Value()
+		virtual ~Value()
 		{
 		}
 
@@ -66,9 +69,22 @@ namespace PR
 			return Value<decltype(T() / U())>(value / b.value);
 		}
 
-		operator Matrix<T>()
+		template <class X>
+		operator Value<X>()
 		{
-			return Matrix<T>(1, 1, value);
+			return Value<X>(value);
+		}
+
+		template <class X>
+		operator Matrix<X>()
+		{
+			return Matrix<X>(value);
+		}
+
+		template <class X>
+		operator X()
+		{
+			return X(value);
 		}
 		
 		template <class U>
