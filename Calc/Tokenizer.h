@@ -2,19 +2,22 @@
 
 #include <string>
 #include <vector>
+#include <memory>
+
+using std::unique_ptr;
+using std::make_unique;
+using std::string;
+using std::vector;
 
 #include "Token.h"
+#include "CalcException.h"
 #include "export.h"
 #include "functions.h"
 #include "Operator.h"
-
 #include "NumberReader.h"
 
 namespace PR
 {
-	using std::string;
-	using std::vector;
-
 	class Tokenizer
 	{
 
@@ -30,26 +33,24 @@ namespace PR
 		/**
 		Return next symbol in input stream
 		*/
-		Token getNext();
+		unique_ptr<Token> getNext();
 		
 		void setInput(const string &command);
 		bool setInputFileName(const string &fileName);
  		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
+
 	private:
 		string command;
 		int i;
 		int N;
 		TOKEN_CLASS prev;
-		
-		
-
-		Token readNumber();
-		Token readWord();
-		Token readWhiteSpace();
+		unique_ptr<Token> readNumber();
+		unique_ptr<Token> readWord();
+		unique_ptr<Token> readWhiteSpace();
+		unique_ptr<Token> readOthers();
 		bool readOperator(Token &t);
 		void skipBlockComment();
 		void skipLineComment();
-		Token readOthers();
 		void readString();
 		void whiteSpacesBegin();
 		void whiteSpacesEnd();

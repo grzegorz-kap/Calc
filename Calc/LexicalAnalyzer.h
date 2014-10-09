@@ -20,7 +20,7 @@ namespace PR
 
 	public:
 		bool hasNext();
-		Token getNext();
+		unique_ptr<Token> getNext();
 		TOKEN_CLASS whatNext();
 
 		void setInput(const string &command);
@@ -31,13 +31,13 @@ namespace PR
 
 	private:
 		Tokenizer tokenizer;
-		queue<Token> q;
+		queue<unique_ptr<Token>> q;
 		bool what_next_flag;
 		unsigned int prev_operator_args_num;
 		const static vector<TOKEN_CLASS> UNARY_OP_PRECURSORS;
 
 		void reset();
-		void push(Token token);
+		void push(unique_ptr<Token> &token);
 		LexicalBalanceHelper balancer;
 		TOKEN_CLASS prev;
 		void read();

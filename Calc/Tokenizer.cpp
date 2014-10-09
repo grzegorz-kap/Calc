@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include "Tokenizer.h"
-#include "CalcException.h"
-
-
 
 namespace PR
 {
@@ -32,10 +29,10 @@ namespace PR
 		whiteSpacesBegin();
 	}
 
-	Token Tokenizer::readOthers()
+	unique_ptr<Token> Tokenizer::readOthers()
 	{
 		TOKEN_CLASS type;
-	//	auto temp2 = command[i];
+		char znak = command[i];
 		switch (command[i])
 		{
 		case '(':
@@ -63,8 +60,9 @@ namespace PR
 			throw CalcException("Unrecognized symbol '\\"+command[i], command, i);
 		}
 		prev = type;
-		string temp = ""; temp += command[i];
-		return Token(temp, type,i++);
+		string temp = ""; 
+		temp += command[i];
+		return make_unique<Token>(temp, type,i++);
 	}
 
 	bool Tokenizer::readOperator(Token &t)
@@ -84,23 +82,23 @@ namespace PR
 		return false;
 	}
 
-	Token Tokenizer::readNumber()
+	unique_ptr<Token> Tokenizer::readNumber()
 	{
 		string out;
 		NumberReader::read(command, out, i);
 		i += out.size();
 		prev = TOKEN_CLASS::NUMBER;
-		return Token(out, TOKEN_CLASS::NUMBER, i);
+		return make_unique<Token>(out, TOKEN_CLASS::NUMBER, i);
 	}
 
-	Token Tokenizer::readWord()
+	unique_ptr<Token> Tokenizer::readWord()
 	{
 		int start = i;
 		string lexame="";
 		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
 			lexame += command[i++];
 		prev = TokenizerHelper::keyWordOrId(lexame);
-		return Token(lexame,prev, start);
+		return make_unique<Token>(lexame,prev, start);
 	}
 
 	void Tokenizer::readString()
@@ -108,18 +106,18 @@ namespace PR
 		
 	}
 
-	Token Tokenizer::readWhiteSpace()
+	unique_ptr<Token> Tokenizer::readWhiteSpace()
 	{
 		switch (command[i])
 		{
 		case '\n':
 			prev = TOKEN_CLASS::NEW_LINE;
-			return Token("\n", TOKEN_CLASS::NEW_LINE, i++);
+			return make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE, i++);
 		case '\t':
 		case ' ':
 		case '\r':
 			prev = TOKEN_CLASS::SPACE;
-			return Token(" ", TOKEN_CLASS::SPACE, i++);
+			return make_unique<Token>(" ", TOKEN_CLASS::SPACE, i++);
 		default:
 			throw CalcException("d");
 		}
@@ -177,7 +175,7 @@ namespace PR
 		
 	}
 
-	Token Tokenizer::getNext()
+	unique_ptr<Token> Tokenizer::getNext()
 	{	
 		if (TokenizerHelper::isDigit(command[i]))
 			return readNumber();
@@ -187,7 +185,7 @@ namespace PR
 			return readWhiteSpace();
 		Token t;
 		if (readOperator(t))
-			return t;
+			return make_unique<Token>(t);
 		else 
 			return readOthers();
 	}

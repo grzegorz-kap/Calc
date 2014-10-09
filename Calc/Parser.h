@@ -25,7 +25,7 @@ namespace PR
 		vector<unique_ptr<Token>> stack;
 		bool stop;
 		LexicalAnalyzer& lexAnalyzer;
-		Token i;
+		unique_ptr<Token> i;
 	public:
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
