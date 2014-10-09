@@ -52,7 +52,7 @@ namespace PR
 			onSpace(*token); 
 			break;
 		case TOKEN_CLASS::OPERATOR: 
-			onOperator(*token); 
+			onOperator(token); 
 			break;
 		}
 		prev = token->getClass();
@@ -70,22 +70,18 @@ namespace PR
 			token.set_class(TOKEN_CLASS::COMMA);
 	}
 
-	void LexicalAnalyzer::onOperator(Token &token)
+	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token)
 	{
-		string name = token.getLexeme();
-		
+		const string & name = token->getLexemeR();
 		if (name == "+" || name == "-")
 		{
-			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, token.getClass()) ||
+			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, token->getClass()) ||
 				(prev==TOKEN_CLASS::OPERATOR&&prev_operator_args_num > 1))
 			{
-				token.setLexeme("$" + name);
-				token.setParam(Operator::find(name));
+				token = OperatorsFactory::simple_get("$" + name);
 			}
 		}
-
-		prev_operator_args_num = Operator::OPERATORS[token.getParam()].getArguments();
-		
+		prev_operator_args_num = token->castToOperator()->getArguments();
 	}
 
 	bool LexicalAnalyzer::hasNext()

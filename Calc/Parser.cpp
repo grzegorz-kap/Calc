@@ -107,7 +107,7 @@ namespace PR
 	void Parser::onOperator()
 	{
 		while (stackBack() == TOKEN_CLASS::OPERATOR &&
-			Operator::OPERATORS[i->getParam()] < Operator::OPERATORS[stack.back()->getParam()])
+			i->castToOperator() < stack.back()->castToOperator())
 			stackToOnp();
 		stack.push_back(make_unique<Token>(*i));
 	}

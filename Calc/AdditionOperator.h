@@ -4,14 +4,12 @@
 
 namespace PR
 {
-	/*class PlusOperator :
+	class AdditionOperator :
 		public Operator 
 	{
 	public:
-		PlusOperator(){};
-		~PlusOperator(){};
-
-		
-	};*/
+		AdditionOperator();
+		~AdditionOperator();
+	};
 }
 

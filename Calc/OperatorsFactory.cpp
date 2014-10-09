@@ -8,16 +8,33 @@ namespace PR
 
 	OperatorsFactory::OperatorsFactory()
 	{
-		//operators["+"] = [](){return shared_ptr<Token>(new PlusOperator()); };
-
+		operators["+"] = [](){return make_unique<AdditionOperator>(); };
+		operators["-"] = [](){return make_unique<SubtractionOperator>(); };
+		operators["*"] = [](){return make_unique<MultiplicationOperator>(); };
+		operators["/"] = [](){return make_unique<DivisionOperator>(); };
 	}
 
-	shared_ptr<Token> OperatorsFactory::get(const string &name)
+	void OperatorsFactory::init()
 	{
 		if (OperatorsFactory::instance == nullptr)
 			instance = new OperatorsFactory();
+	}
 
-		return (instance->operators.at(name))();
+	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx)
+	{
+		init();
+
+		for (auto iter = instance->operators.begin(); iter != instance->operators.end(); iter++)
+		{
+			if (!name.compare(startIdx, iter->first.length(), iter->first))
+				return iter->second();
+		}
+		return nullptr;
+	}
+
+	unique_ptr<Operator> OperatorsFactory::simple_get(const string &name)
+	{
+		return instance->operators[name]();
 	}
 
 	OperatorsFactory::~OperatorsFactory()

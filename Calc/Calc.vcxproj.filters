@@ -111,9 +111,6 @@
     <ClInclude Include="OperatorsFactory.h">
       <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="PlusOperator.h">
-      <Filter>Operator</Filter>
-    </ClInclude>
     <ClInclude Include="Operator.h">
       <Filter>Operator</Filter>
     </ClInclude>
@@ -132,9 +129,6 @@
     <ClInclude Include="Value.h">
       <Filter>Numeric</Filter>
     </ClInclude>
-    <ClInclude Include="UnimplementedException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Data.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -149,6 +143,24 @@
     </ClInclude>
     <ClInclude Include="Token.h">
       <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AdditionOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="SubtractionOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="DivisionOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="UnimplementedException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiplicationOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareLength.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +233,6 @@
     <ClCompile Include="OperatorsFactory.cpp">
       <Filter>Operator</Filter>
     </ClCompile>
-    <ClCompile Include="PlusOperator.cpp">
-      <Filter>Operator</Filter>
-    </ClCompile>
     <ClCompile Include="Operator.cpp">
       <Filter>Operator</Filter>
     </ClCompile>
@@ -245,9 +254,6 @@
     <ClCompile Include="Data.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="UnimplementedException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CastException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
@@ -259,6 +265,21 @@
     </ClCompile>
     <ClCompile Include="Token.cpp">
       <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AdditionOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="SubtractionOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="DivisionOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="UnimplementedException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiplicationOperator.cpp">
+      <Filter>Operator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

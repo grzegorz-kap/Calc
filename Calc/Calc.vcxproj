@@ -86,8 +86,10 @@
     <ClInclude Include="CodeExecutor.h" />
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
+    <ClInclude Include="CompareLength.h" />
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="DivisionOperator.h" />
     <ClInclude Include="EvalException.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Function.h" />
@@ -99,16 +101,18 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="MatrixTransposer.h" />
+    <ClInclude Include="MultiplicationOperator.h" />
     <ClInclude Include="NumberReader.h" />
     <ClInclude Include="Numeric.h" />
     <ClInclude Include="Operator.h" />
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
     <ClInclude Include="Parser.h" />
-    <ClInclude Include="PlusOperator.h" />
+    <ClInclude Include="AdditionOperator.h" />
     <ClInclude Include="SizeFunction.h" />
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SubtractionOperator.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
@@ -128,6 +132,7 @@
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="DivisionOperator.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -145,6 +150,7 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixBuilder.cpp" />
     <ClCompile Include="MatrixTransposer.cpp" />
+    <ClCompile Include="MultiplicationOperator.cpp" />
     <ClCompile Include="NumberReader.cpp" />
     <ClCompile Include="Numeric.cpp" />
     <ClCompile Include="Operator.cpp" />
@@ -152,13 +158,14 @@
     <ClCompile Include="OperatorsFactory.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="CodeExecutorMatrix.cpp" />
-    <ClCompile Include="PlusOperator.cpp" />
+    <ClCompile Include="AdditionOperator.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
     <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SubtractionOperator.cpp" />
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />

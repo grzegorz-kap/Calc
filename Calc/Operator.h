@@ -18,8 +18,6 @@ namespace PR
 		RIGHT
 	};
 
-	
-
 	class  Operator 
 		: public Token
 	{
@@ -29,21 +27,18 @@ namespace PR
 		EVAULATED ev;
 
 	public:
-		static const vector<Operator> OPERATORS;
-
+		//static const vector<Operator> OPERATORS;
 		Operator(const string &name, int priority, int arguments,EVAULATED ev);
 		~Operator();
-
 		bool operator < (const Operator &b) const;
-		static int find(const string &name);
-		static const Operator & get(const string &name);
-
 		int getPriority() const { return priority; }
 		int getArguments() const { return arguments; }
 		EVAULATED getEv() const { return ev; }
 
-	protected:
-
+		virtual Operator * castToOperator()  override
+		{
+			return dynamic_cast<Operator *>(this);
+		}
 	};
 
 }

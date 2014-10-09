@@ -6,6 +6,7 @@
 #include "export.h"
 #include "TokensTypes.h"
 #include "CalcException.h"
+#include "CastException.h"
 #include "Data.h"
 
 
@@ -14,6 +15,8 @@ using std::shared_ptr;
 
 namespace PR
 {
+	class Operator;
+
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
 	class Token
@@ -40,6 +43,7 @@ namespace PR
 		TOKEN_CLASS getClass() const { return _class; }
 		void set_class(const TOKEN_CLASS &typeArg){ _class = typeArg; }
 		int getPosition()const{ return position; }
+		void setPosition(int pos){ position = pos; }
 		int getParam() const { return param; }
 		void setParam(int p){ param = p; }
 		PARSE_MODE getMode()const { return mode; }
@@ -50,6 +54,11 @@ namespace PR
 		virtual Data* eveluate()
 		{
 			throw 3.2;
+		}
+
+		virtual Operator * castToOperator() 
+		{
+			throw CastException("Cannot cast to operator expression");
 		}
 	};
 }

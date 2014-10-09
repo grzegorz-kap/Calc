@@ -15,6 +15,7 @@ using std::vector;
 #include "Token.h"
 #include "SNumber.h"
 #include "Operator.h"
+#include "OperatorsFactory.h"
 #include "NumberReader.h"
 
 namespace PR
@@ -45,11 +46,11 @@ namespace PR
 		int i;
 		int N;
 		TOKEN_CLASS prev;
-		unique_ptr<Token> readNumber();
+		unique_ptr<SNumber> readNumber();
 		unique_ptr<Token> readWord();
 		unique_ptr<Token> readWhiteSpace();
 		unique_ptr<Token> readOthers();
-		bool readOperator(Token &t);
+		unique_ptr<Operator> readOperator();
 		void skipBlockComment();
 		void skipLineComment();
 		void readString();

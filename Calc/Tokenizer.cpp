@@ -65,24 +65,19 @@ namespace PR
 		return make_unique<Token>(temp, type,i++);
 	}
 
-	bool Tokenizer::readOperator(Token &t)
+	unique_ptr<Operator> Tokenizer::readOperator()
 	{
-		int N = Operator::OPERATORS.size();
-		for (int i = 0; i < N;i++)
+		auto result = OperatorsFactory::get(command, i);
+		if (result != nullptr)
 		{
-			if (command.compare(this->i, Operator::OPERATORS[i].getLexemeR().size(), Operator::OPERATORS[i].getLexemeR()) == 0)
-			{
-				Operator op = Operator::OPERATORS[i];
-				t= Token(op.getLexemeR(), TOKEN_CLASS::OPERATOR, this->i,i);
-				this->i += op.getLexemeR().size();
-				prev = TOKEN_CLASS::OPERATOR;
-				return true;
-			}
+			prev = TOKEN_CLASS::OPERATOR;
+			result->setPosition(i);
+			i += result->getLexemeR().size();
 		}
-		return false;
+		return result;
 	}
 
-	unique_ptr<Token> Tokenizer::readNumber()
+	unique_ptr<SNumber> Tokenizer::readNumber()
 	{
 		string out;
 		NumberReader::read(command, out, i);
@@ -183,11 +178,12 @@ namespace PR
 			return readWord();
 		if (TokenizerHelper::isWhiteSpace(command[i]))
 			return readWhiteSpace();
-		Token t;
-		if (readOperator(t))
-			return make_unique<Token>(t);
-		else 
-			return readOthers();
+	
+		auto op = readOperator();
+		if (op != nullptr)
+			return std::move(op);
+		
+		return readOthers();
 	}
 
 	void Tokenizer::whiteSpacesBegin()

@@ -11,6 +11,7 @@ using std::queue;
 #include "functions.h"
 #include "CalcException.h"
 #include "LexicalBalanceHelper.h"
+#include "functions.h"
 
 
 namespace PR
@@ -42,7 +43,7 @@ namespace PR
 		TOKEN_CLASS prev;
 		void read();
 
-		void onOperator(Token &token);
+		void onOperator(unique_ptr<Token> &token);
 		void onComma(Token &token);
 		void onSpace(Token &token);
 	};
