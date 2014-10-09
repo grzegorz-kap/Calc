@@ -53,7 +53,6 @@ namespace PR
 		bool onColon();
 
 		void stackToOnpUntilToken(TOKEN_CLASS type,bool remove=true);
-	
 	};
 }
 

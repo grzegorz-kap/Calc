@@ -70,7 +70,7 @@ namespace PR
 
 	void Parser::onNumber()
 	{
-		onp.push_back(make_unique<Token>(*i));
+		onp.push_back(std::move(i));
 	}
 
 	void Parser::stackToOnpUntilToken(TOKEN_CLASS type,bool remove)
@@ -109,7 +109,7 @@ namespace PR
 		while (stackBack() == TOKEN_CLASS::OPERATOR &&
 			i->castToOperator() < stack.back()->castToOperator())
 			stackToOnp();
-		stack.push_back(make_unique<Token>(*i));
+		stack.push_back(std::move(i));
 	}
 
 	void Parser::onMatrixStart()
