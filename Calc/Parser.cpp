@@ -105,7 +105,7 @@ namespace PR
 	}
 
 	void Parser::onOperator()
-	{
+	{ 
 		while (stackBack() == TOKEN_CLASS::OPERATOR &&
 			i->castToOperator() < stack.back()->castToOperator())
 			stackToOnp();
