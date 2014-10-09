@@ -6,10 +6,11 @@
 
 using std::vector;
 using std::string;
-using std::shared_ptr;
-using std::make_shared;
+using std::unique_ptr;
+using std::make_unique;
 
 #include "Token.h"
+#include "SNumber.h"
 #include "Operator.h"
 #include "functions.h"
 #include "CalcException.h"
@@ -20,8 +21,8 @@ namespace PR
 	class Parser
 	{
 	private:
-		vector<shared_ptr<Token>> onp;
-		vector<shared_ptr<Token>> stack;
+		vector<unique_ptr<Token>> onp;
+		vector<unique_ptr<Token>> stack;
 		bool stop;
 		LexicalAnalyzer& lexAnalyzer;
 		Token i;
@@ -30,7 +31,7 @@ namespace PR
 		~Parser();
 		virtual bool parse();
 
-		vector<shared_ptr<Token>> getInstruction(){ return onp; }
+		vector<unique_ptr<Token>> & getInstruction(){ return onp; }
 	private:
 		
 		TOKEN_CLASS stackBack() const;

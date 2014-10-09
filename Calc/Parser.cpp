@@ -42,8 +42,8 @@ namespace PR
 
 	void Parser::onFunction()
 	{
-		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
-		stack.push_back(make_shared<Token>(i));
+		onp.push_back(make_unique<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+		stack.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::onID()
@@ -53,11 +53,11 @@ namespace PR
 		{
 			Token token = i;
 			token.set_class(TOKEN_CLASS::FUNCTION);
-			stack.push_back(make_shared<Token>(token));
-			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+			stack.push_back(make_unique<Token>(token));
+			onp.push_back(make_unique<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		}
 		else
-			onp.push_back(make_shared<Token>(i));
+			onp.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::onNewLine()
@@ -70,7 +70,7 @@ namespace PR
 
 	void Parser::onNumber()
 	{
-		onp.push_back(make_shared<Token>(i));
+		onp.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::stackToOnpUntilToken(TOKEN_CLASS type,bool remove)
@@ -94,7 +94,7 @@ namespace PR
 
 	void Parser::onOpenParenthesis()
 	{
-		stack.push_back(make_shared<Token>(i));
+		stack.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::onCloseParenthesis()
@@ -109,13 +109,13 @@ namespace PR
 		while (stackBack() == TOKEN_CLASS::OPERATOR &&
 			Operator::OPERATORS[i.getParam()] < Operator::OPERATORS[stack.back()->getParam()])
 			stackToOnp();
-		stack.push_back(make_shared<Token>(i));
+		stack.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::onMatrixStart()
 	{
-		stack.push_back(make_shared<Token>(i));
-		onp.push_back(make_shared<Token>(i));
+		stack.push_back(make_unique<Token>(i));
+		onp.push_back(make_unique<Token>(i));
 	}
 
 	void Parser::onMatrixEnd()
@@ -123,15 +123,15 @@ namespace PR
 	
 		stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START);
 		if (i.getMode()!=PARSE_MODE::MATRIX)
-			onp.push_back(make_shared<Token>(TOKEN_CLASS::VERSE_END));
-		onp.push_back(make_shared<Token>(i));
+			onp.push_back(make_unique<Token>(TOKEN_CLASS::VERSE_END));
+		onp.push_back(make_unique<Token>(i));
 	}
 
 	bool Parser::onColon()
 	{
 		if (lexAnalyzer.whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || lexAnalyzer.whatNext() == TOKEN_CLASS::COMMA)
 		{
-			onp.push_back(make_shared<Token>(":",TOKEN_CLASS::MATRIX_ALL,i.getPosition()));
+			onp.push_back(make_unique<Token>(":",TOKEN_CLASS::MATRIX_ALL,i.getPosition()));
 			return true;
 		}
 		else
@@ -144,13 +144,13 @@ namespace PR
 		{
 		case PARSE_MODE::MATRIX:
 			stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START,false);
-			onp.push_back(make_shared<Token>(TOKEN_CLASS::VERSE_END));
+			onp.push_back(make_unique<Token>(TOKEN_CLASS::VERSE_END));
 			break;
 		case PARSE_MODE::NORMAL:
 		case PARSE_MODE::KEYWORD:
 			stop = true;
 			stackToOnpAll();
-			onp.push_back(make_shared<Token>(";", TOKEN_CLASS::OUTPUT_OFF, i.getPosition()));
+			onp.push_back(make_unique<Token>(";", TOKEN_CLASS::OUTPUT_OFF, i.getPosition()));
 			break;
 		}
 	}
@@ -203,7 +203,7 @@ namespace PR
 				break;
 			case TOKEN_CLASS::KEY_WORD:
 				if (onp.size() == 0 && stack.size() == 0)
-					onp.push_back(make_shared<Token>(i));
+					onp.push_back(make_unique<Token>(i));
 				stop = true;
 				break;
 			default:

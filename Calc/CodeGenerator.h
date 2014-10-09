@@ -16,8 +16,8 @@ using std::shared_ptr;
 
 namespace PR
 {
-	typedef vector<vector<shared_ptr<Token>>> Code;
-	typedef vector<shared_ptr<Token>> Instruction;
+	typedef vector<vector<unique_ptr<Token>>> Code;
+	typedef vector<unique_ptr<Token>> Instruction;
 	typedef Code::iterator Ip;
 
 	class CodeGenerator

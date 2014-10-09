@@ -55,7 +55,7 @@ namespace PR
 	{
 		Parser parser(lexicalAnalyzer);
 		end = !parser.parse();
-		ip = code.insert(code.end(), parser.getInstruction());
+		ip = code.insert(code.end(), std::move(parser.getInstruction()));
 	}
 
 }
