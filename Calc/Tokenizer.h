@@ -9,10 +9,11 @@ using std::make_unique;
 using std::string;
 using std::vector;
 
-#include "Token.h"
 #include "CalcException.h"
 #include "export.h"
 #include "functions.h"
+#include "Token.h"
+#include "SNumber.h"
 #include "Operator.h"
 #include "NumberReader.h"
 

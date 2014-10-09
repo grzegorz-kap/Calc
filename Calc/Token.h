@@ -25,17 +25,15 @@ namespace PR
 		int position;
 		int param;
 	public:
+
 		Token();
-
-		Token(string lexemeArg, TOKEN_CLASS typeArg, int position = 0,
+		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = 0,
 			int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL);
-
 		Token(TOKEN_CLASS arg);
+		Token(Token &&);
 		~Token();
 
-
 		bool operator == (const Token &b)const;
-
 		string getLexeme()const{ return lexeme; }
 		const string & getLexemeR()const{ return lexeme; }
 		void setLexeme(const string &lexemeArg){ lexeme = lexemeArg; }

@@ -69,9 +69,6 @@
     <ClInclude Include="TokensTypes.h">
       <Filter>LexicalAnalyze</Filter>
     </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>LexicalAnalyze</Filter>
-    </ClInclude>
     <ClInclude Include="TokenizerHelper.h">
       <Filter>LexicalAnalyze\Helpers</Filter>
     </ClInclude>
@@ -150,6 +147,9 @@
     <ClInclude Include="SNumber.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -165,9 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LexicalAnalyzer.cpp">
-      <Filter>LexicalAnalyze</Filter>
-    </ClCompile>
-    <ClCompile Include="Token.cpp">
       <Filter>LexicalAnalyze</Filter>
     </ClCompile>
     <ClCompile Include="Tokenizer.cpp">
@@ -258,6 +255,9 @@
       <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="SNumber.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>

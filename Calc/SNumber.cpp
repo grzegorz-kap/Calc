@@ -4,8 +4,13 @@
 
 namespace PR
 {
-	SNumber::SNumber(TYPE type)
-		:_type(type)
+	SNumber::SNumber(Token &&token, TYPE type)
+		:_type(type), Token(std::move(token))
+	{
+	}
+
+	SNumber::SNumber(const Token &token, TYPE type)
+		: _type(type), Token(token)
 	{
 	}
 

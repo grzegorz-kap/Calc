@@ -7,7 +7,7 @@ namespace PR
 	{
 	}
 
-	Token::Token(string tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
+	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
 		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
 	}
@@ -16,6 +16,20 @@ namespace PR
 		: Token()
 	{
 		_class = arg;
+	}
+
+	Token::Token(Token &&b)
+	{
+		lexeme = std::move(b.lexeme);
+		_class = b._class;
+		position = b.position;
+		param = b.param;
+		mode = b.mode;
+
+		b._class = TOKEN_CLASS::NONE;
+		b.position = 0;
+		b.param = 0;
+		b.mode = PARSE_MODE::NORMAL;
 	}
 
 	Token::~Token()

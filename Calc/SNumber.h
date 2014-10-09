@@ -16,7 +16,8 @@ namespace PR
 	{
 		TYPE _type;
 	public:
-		SNumber(TYPE type = TYPE::M_DOUBLE);
+		SNumber(Token &&token, TYPE type = TYPE::M_DOUBLE);
+		SNumber(const Token &token, TYPE type = TYPE::M_DOUBLE);
 		~SNumber();
 
 		virtual Data * eveluate() override;

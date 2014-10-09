@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ #include "stdafx.h"
 #include "Tokenizer.h"
 
 namespace PR
@@ -88,7 +88,7 @@ namespace PR
 		NumberReader::read(command, out, i);
 		i += out.size();
 		prev = TOKEN_CLASS::NUMBER;
-		return make_unique<Token>(out, TOKEN_CLASS::NUMBER, i);
+		return make_unique<SNumber>(Token(out, TOKEN_CLASS::NUMBER, i));
 	}
 
 	unique_ptr<Token> Tokenizer::readWord()
