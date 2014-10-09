@@ -162,6 +162,9 @@
     <ClInclude Include="CompareLength.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="i_order_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -195,9 +198,6 @@
       <Filter>Parsing</Filter>
     </ClCompile>
     <ClCompile Include="CodeExecutor.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorOperators.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="CodeExecutorMatrix.cpp">
@@ -280,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="MultiplicationOperator.cpp">
       <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="i_order_map.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

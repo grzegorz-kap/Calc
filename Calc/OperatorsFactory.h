@@ -2,15 +2,14 @@
 
 #include <memory>
 #include <string>
-#include <map>
 #include <functional>
 
 using std::unique_ptr;
 using std::make_unique;
 using std::string;
-using std::map;
 using std::function;
 
+#include "i_order_map.h"
 #include "Token.h"
 #include "CompareLength.h"
 #include "AdditionOperator.h"
@@ -25,7 +24,7 @@ namespace PR
 	private:
 		OperatorsFactory();
 		static OperatorsFactory * instance;
-		map<string, function<unique_ptr<Operator>(void)>,CompareLength>  operators;
+		i_order_map<string, function<unique_ptr<Operator>(void)>>  operators;
 	
 	public:
 		OperatorsFactory & operator = (const OperatorsFactory &) = delete;

@@ -19,22 +19,22 @@ namespace PR
 	{
 	}
 
-	Data * SNumber::eveluate()
+	unique_ptr<Data> SNumber::evaluate()
 	{
 		switch (_type)
 		{
 		case TYPE::DOUBLE:
-			return new Value<double>(getLexemeR());
+			return make_unique<Value<double>>(getLexemeR());
 		case TYPE::FLOAT:
-			return new Value<float>(getLexemeR());
+			return make_unique<Value<float>>(getLexemeR());
 		case TYPE::INT:
-			return new Value<int>(getLexemeR());
+			return make_unique< Value<int>>(getLexemeR());
 		case TYPE::M_DOUBLE:
-			return new Matrix<double>(getLexemeR());
+			return make_unique< Matrix<double>>(getLexemeR());
 		case TYPE::M_FLOAT:
-			return new Matrix<float>(getLexemeR());
+			return make_unique<Matrix<float>>(getLexemeR());
 		case TYPE::M_INT:
-			return new Matrix<int>(getLexemeR());
+			return make_unique<Matrix<int>>(getLexemeR());
 		default:
 			throw EvalException("Cannot evaluate numeric expression! Unrecognized type");
 		}

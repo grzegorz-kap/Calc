@@ -35,7 +35,7 @@ namespace PR
 	Operator::Operator(const string &name, int priority, int arguments, EVAULATED ev)
 		:
 		priority(priority),
-		arguments(arguments),
+		argumentsNum(arguments),
 		ev(ev)
 	{
 		setLexeme(name);
@@ -53,6 +53,23 @@ namespace PR
 			return true;
 		else
 			return false;
+	}
+
+	void Operator::setArguments(vector<unique_ptr<Data>> &stack)
+	{
+		if (stack.size() < argumentsNum)
+			throw EvalException("Too few arguments for operator: " + getLexemeR());
+
+		arguments.resize(argumentsNum);
+
+		auto iter = stack.rbegin();
+		int k = argumentsNum - 1;
+		for (int i = 0; i < argumentsNum; i++)
+		{
+			arguments[i] = std::move(iter[k--]);
+		}
+
+		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
 	}
 }
 

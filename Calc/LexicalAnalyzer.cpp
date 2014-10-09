@@ -81,7 +81,7 @@ namespace PR
 				token = OperatorsFactory::simple_get("$" + name);
 			}
 		}
-		prev_operator_args_num = token->castToOperator()->getArguments();
+		prev_operator_args_num = token->castToOperator()->getArgumentsNum();
 	}
 
 	bool LexicalAnalyzer::hasNext()

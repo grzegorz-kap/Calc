@@ -96,6 +96,7 @@
     <ClInclude Include="FunctionFactory.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="i_order_map.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
     <ClInclude Include="Matrix.h" />
@@ -127,7 +128,6 @@
     <ClCompile Include="CastException.cpp" />
     <ClCompile Include="CodeExecutor.cpp" />
     <ClCompile Include="CodeExecutorFunction.cpp" />
-    <ClCompile Include="CodeExecutorOperators.cpp" />
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
@@ -145,6 +145,7 @@
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="i_order_map.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
     <ClCompile Include="Matrix.cpp" />

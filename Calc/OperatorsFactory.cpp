@@ -8,10 +8,10 @@ namespace PR
 
 	OperatorsFactory::OperatorsFactory()
 	{
-		operators["+"] = [](){return make_unique<AdditionOperator>(); };
-		operators["-"] = [](){return make_unique<SubtractionOperator>(); };
-		operators["*"] = [](){return make_unique<MultiplicationOperator>(); };
-		operators["/"] = [](){return make_unique<DivisionOperator>(); };
+		operators.insert("+", [](){return make_unique<AdditionOperator>(); });
+		operators.insert("-", [](){return make_unique<SubtractionOperator>(); });
+		operators.insert("*", [](){return make_unique<MultiplicationOperator>(); });
+		operators.insert("/", [](){return make_unique<DivisionOperator>(); });
 	}
 
 	void OperatorsFactory::init()
@@ -23,11 +23,11 @@ namespace PR
 	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx)
 	{
 		init();
-
-		for (auto iter = instance->operators.begin(); iter != instance->operators.end(); iter++)
+		const vector<string> &vec = instance->operators.getVec();
+		for (auto iter = vec.cbegin(); iter != vec.cend(); iter++)
 		{
-			if (!name.compare(startIdx, iter->first.length(), iter->first))
-				return iter->second();
+			if (!name.compare(startIdx, iter->length(), *iter))
+				return instance->operators[*iter]();
 		}
 		return nullptr;
 	}

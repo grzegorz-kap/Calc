@@ -2,11 +2,14 @@
 
 #include "export.h"
 #include "CalcException.h"
+#include "EvalException.h"
+#include "Token.h"
+#include "Data.h"
 
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "Token.h"
+
 
 using std::string;
 using std::vector;
@@ -23,22 +26,23 @@ namespace PR
 	{
 	protected:
 		int priority;
-		int arguments;
+		int argumentsNum;
 		EVAULATED ev;
-
+		vector<unique_ptr<Data>> arguments;
 	public:
-		//static const vector<Operator> OPERATORS;
 		Operator(const string &name, int priority, int arguments,EVAULATED ev);
 		~Operator();
 		bool operator < (const Operator &b) const;
 		int getPriority() const { return priority; }
-		int getArguments() const { return arguments; }
+		int getArgumentsNum() const { return argumentsNum; }
 		EVAULATED getEv() const { return ev; }
 
 		virtual Operator * castToOperator()  override
 		{
 			return dynamic_cast<Operator *>(this);
 		}
+
+		void setArguments(vector<unique_ptr<Data>> &stack);
 	};
 
 }

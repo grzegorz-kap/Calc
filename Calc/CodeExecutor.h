@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-using std::shared_ptr;
+using std::unique_ptr;
 using std::vector;
 
 #include "Token.h"
@@ -25,13 +25,13 @@ namespace PR
 		~CodeExecutor();
 	
 
-		shared_ptr<Data> run(const Instruction &tokens);
+		unique_ptr<Data> run(const Instruction &tokens);
 
 	private:
-		vector<shared_ptr<Data>> stack;
+		vector<unique_ptr<Data>> stack;
 		Instruction::const_iterator i;
 
-		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
+		vector<unique_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 
 		void onOperator();
 		void onMatrixStart();
@@ -41,7 +41,7 @@ namespace PR
 		void onFunction();
 
 
-		shared_ptr<Data> pop();
+		unique_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);
 	};
 }
