@@ -14,4 +14,9 @@ namespace PR
 	{
 	}
 
+	shared_ptr<Data> SubtractionOperator::evaluate()
+	{
+		return *arguments[0] - arguments[1];
+	}
+
 }

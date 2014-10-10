@@ -51,7 +51,7 @@ namespace PR
 
 		string toString() const;
 		
-		virtual unique_ptr<Data> evaluate()
+		virtual shared_ptr<Data> evaluate()
 		{
 			throw 3.2;
 		}

@@ -2,6 +2,7 @@
 
 #include <string>
 
+
 using std::string;
 
 #include "Numeric.h"
@@ -111,5 +112,5 @@ namespace PR
 		template <class U>
 		friend class Value;
 	};
-}
+};
 

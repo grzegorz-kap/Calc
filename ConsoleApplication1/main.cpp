@@ -1,7 +1,8 @@
 #include <iostream>
 
-
 #include "Calc\Interpreter.h"
+
+
 
 void main()
 {
@@ -10,6 +11,4 @@ void main()
 
 	std::cout << std::endl;
 	system("pause");
-	
-	
 }

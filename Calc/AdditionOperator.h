@@ -10,6 +10,11 @@ namespace PR
 	public:
 		AdditionOperator();
 		~AdditionOperator();
+
+		virtual shared_ptr<Data> evaluate() override
+		{
+			return *arguments[0] + arguments[1];
+		}
 	};
 }
 

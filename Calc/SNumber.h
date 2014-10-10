@@ -20,6 +20,6 @@ namespace PR
 		SNumber(const Token &token, TYPE type = TYPE::M_DOUBLE);
 		~SNumber();
 
-		virtual unique_ptr<Data> evaluate() override;
+		virtual shared_ptr<Data> evaluate() override;
 	};
-}
+};

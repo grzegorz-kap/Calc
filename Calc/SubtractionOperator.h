@@ -9,6 +9,8 @@ namespace PR
 	public:
 		SubtractionOperator();
 		~SubtractionOperator();
+
+		virtual shared_ptr<Data> evaluate() override;
 	};
 
 }

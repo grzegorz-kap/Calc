@@ -28,7 +28,7 @@ namespace PR
 		int priority;
 		int argumentsNum;
 		EVAULATED ev;
-		vector<unique_ptr<Data>> arguments;
+		vector<shared_ptr<Data>> arguments;
 	public:
 		Operator(const string &name, int priority, int arguments,EVAULATED ev);
 		~Operator();
@@ -42,7 +42,7 @@ namespace PR
 			return dynamic_cast<Operator *>(this);
 		}
 
-		void setArguments(vector<unique_ptr<Data>> &stack);
+		void setArguments(vector<shared_ptr<Data>> &stack);
 	};
 
 }

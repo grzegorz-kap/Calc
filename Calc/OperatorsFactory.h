@@ -16,6 +16,7 @@ using std::function;
 #include "SubtractionOperator.h"
 #include "MultiplicationOperator.h"
 #include "DivisionOperator.h"
+#include "ExponentiationOperator.h"
 
 namespace PR
 {

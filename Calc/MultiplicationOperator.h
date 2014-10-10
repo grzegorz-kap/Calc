@@ -9,5 +9,10 @@ namespace PR
 	public:
 		MultiplicationOperator();
 		~MultiplicationOperator();
+
+		virtual shared_ptr<Data> evaluate() override
+		{
+			return *arguments[0] * arguments[1];
+		}
 	};
 }

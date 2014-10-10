@@ -2,13 +2,14 @@
 
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
+#include "Value.h"
 
 using std::vector;
 
 namespace PR
 {
-
 	template <typename T>
 	bool find(const vector<T> &search, const vector<T> &match)
 	{

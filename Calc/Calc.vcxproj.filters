@@ -40,6 +40,9 @@
     <Filter Include="Numeric">
       <UniqueIdentifier>{08c27927-4a7e-402e-a2a6-cf186cc75e68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{42df83d6-9d5f-4872-82ce-bc650d0221fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -165,6 +168,12 @@
     <ClInclude Include="i_order_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ExponentiationOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="TypePromotor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -282,6 +291,12 @@
       <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="i_order_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExponentiationOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="TypePromotor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

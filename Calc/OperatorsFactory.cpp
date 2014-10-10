@@ -12,6 +12,7 @@ namespace PR
 		operators.insert("-", [](){return make_unique<SubtractionOperator>(); });
 		operators.insert("*", [](){return make_unique<MultiplicationOperator>(); });
 		operators.insert("/", [](){return make_unique<DivisionOperator>(); });
+		operators.insert("^", [](){return make_unique<ExponentiationOperator>(); });
 	}
 
 	void OperatorsFactory::init()

@@ -13,4 +13,9 @@ namespace PR
 	DivisionOperator::~DivisionOperator()
 	{
 	}
+
+	shared_ptr<Data> DivisionOperator::evaluate()
+	{
+		return *arguments[0] / arguments[1];
+	}
 }

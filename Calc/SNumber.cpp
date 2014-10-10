@@ -19,7 +19,7 @@ namespace PR
 	{
 	}
 
-	unique_ptr<Data> SNumber::evaluate()
+	shared_ptr<Data> SNumber::evaluate()
 	{
 		switch (_type)
 		{

@@ -41,6 +41,7 @@ namespace PR
 			:M(0), N(0)
 		{
 			*this = std::move(other);
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
 		Matrix(const Matrix<T> &b)

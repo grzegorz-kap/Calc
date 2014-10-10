@@ -55,7 +55,7 @@ namespace PR
 			return false;
 	}
 
-	void Operator::setArguments(vector<unique_ptr<Data>> &stack)
+	void Operator::setArguments(vector<shared_ptr<Data>> &stack)
 	{
 		if (stack.size() < argumentsNum)
 			throw EvalException("Too few arguments for operator: " + getLexemeR());
@@ -66,7 +66,7 @@ namespace PR
 		int k = argumentsNum - 1;
 		for (int i = 0; i < argumentsNum; i++)
 		{
-			arguments[i] = std::move(iter[k--]);
+			arguments[i] = iter[k--];
 		}
 
 		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
