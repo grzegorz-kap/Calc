@@ -68,7 +68,7 @@ namespace PR
 		{
 			arguments[i] = iter[k--];
 		}
-
+		TypePromotor::promote(arguments);
 		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
 	}
 }

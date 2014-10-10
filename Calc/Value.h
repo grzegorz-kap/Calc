@@ -46,7 +46,7 @@ namespace PR
 		Value(const string &string)
 		{
 			std::size_t pos = 0;
-			
+			_type = Data::TYPE_MAP[typeid(*this)];
 			try{
 				value = (T)std::stod(string, &pos);
 			}

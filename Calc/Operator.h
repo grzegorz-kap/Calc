@@ -5,6 +5,7 @@
 #include "EvalException.h"
 #include "Token.h"
 #include "Data.h"
+#include "TypePromotor.h"
 
 #include <string>
 #include <vector>

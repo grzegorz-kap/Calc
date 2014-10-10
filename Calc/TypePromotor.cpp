@@ -14,12 +14,24 @@ namespace PR
 
 	void TypePromotor::promote(shared_ptr<Data> &a, shared_ptr<Data> &b)
 	{
-	
+		if (a < b)
+			convertTo(b->_type, a, a);
+		else if (a>b)
+			convertTo(a->_type, b, b);
 	}
 
 	void TypePromotor::promote(vector<shared_ptr<Data>> &vec)
 	{
-		
+		auto max = std::max_element(vec.begin(), vec.end(),
+			[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool{
+			return a->_type < b->_type;
+		})->get()->_type;
+
+		for (auto iter = vec.begin(); iter != vec.end(); iter++)
+		{
+			if ((*iter)->_type != max)
+				convertTo(max, *iter, *iter);
+		}
 	}
 
 	void TypePromotor::convertTo(TYPE type, shared_ptr<Data> &a , shared_ptr<Data> &dest)
