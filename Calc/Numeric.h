@@ -80,6 +80,12 @@ namespace PR
 		{
 			return this->exponentiation(b->cast_numeric<T>());
 		}
+
+		virtual shared_ptr<Data> operator -() const override
+		{
+			return make_shared<T>(get_derived()->neg());
+		}
+
 		
 	private:
 		const T * get_derived() const

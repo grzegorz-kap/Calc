@@ -91,6 +91,12 @@ namespace PR
 			return Value<decltype(T() / U())>(value / b.value);
 		}
 
+		/*Unary minus operator*/
+		Value<T> neg() const
+		{
+			return Value<T>(-value);
+		}
+
 		template <class X>
 		operator Value<X>()
 		{

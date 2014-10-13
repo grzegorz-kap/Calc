@@ -69,6 +69,11 @@ namespace PR
 			throw UnimplementedException("Can not do exponentiation on this type!");
 		}
 
+		virtual shared_ptr<Data> operator - () const
+		{
+			throw UnimplementedException("Cannot do negation on this type!");
+		}
+
 		virtual string toString()
 		{
 			return string("");

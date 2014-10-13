@@ -155,7 +155,7 @@ namespace PR
 				return 0;
 		}
 
-		Matrix<T>  neg()
+		Matrix<T> neg () const
 		{
 			Matrix<T> out(M, N);
 			for (int i = 0; i < M; i++)

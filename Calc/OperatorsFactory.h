@@ -14,6 +14,7 @@ using std::function;
 #include "CompareLength.h"
 #include "AdditionOperator.h"
 #include "SubtractionOperator.h"
+#include "USubtractionOperator.h"
 #include "MultiplicationOperator.h"
 #include "DivisionOperator.h"
 #include "ExponentiationOperator.h"
