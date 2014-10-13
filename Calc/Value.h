@@ -98,6 +98,15 @@ namespace PR
 		{
 			return Value<decltype(T() / U())>(value / b.value);
 		}
+
+		/* Left array division */
+		template <class U>
+		auto ldivide(const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(b.value / value);
+		}
+
 		/*Element wise multiplication*/
 		template <class U>
 		auto times(const Value<U> &b) const

@@ -99,6 +99,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="Interpreter.h" />
     <ClInclude Include="i_order_map.h" />
+    <ClInclude Include="LeftArrayDivision.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
     <ClInclude Include="Matrix.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="i_order_map.cpp" />
+    <ClCompile Include="LeftArrayDivision.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
     <ClCompile Include="Matrix.cpp" />

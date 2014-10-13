@@ -104,6 +104,7 @@ namespace PR
 		{
 		};
 
+		/* Right array division */
 		template <class U>
 		auto rdivide(const Matrix<U> &b) const
 			-> Matrix<decltype(T() + U())>
@@ -111,7 +112,7 @@ namespace PR
 			if (b.M == 1 && b.N == 1)
 				return *this / b.mx[0][0];
 			else if (M == 1 && N == 1)
-				return b.div(mx[0][0]);
+				return b.ldivide(mx[0][0]);
 
 			Matrix<decltype(T() + U())> C(M, N);
 			for (int i = 0; i < M; i++)
@@ -120,6 +121,32 @@ namespace PR
 			return C;
 		}
 
+
+		/* Divide b by matrix */
+		template <class U>
+		auto ldivide(const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = b / mx[i][j];
+			return C;
+		}
+
+		/* Divide matrix by b */
+		template <class U>
+		auto rdivide(const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] / b;
+			return C;
+		}
+
+		/* Element wise multiplication */
 		template <class U>
 		auto times(const Matrix<U> &b) const
 			-> Matrix<decltype(T() + U())>
@@ -179,7 +206,6 @@ namespace PR
 					C.mx[i][j] = mx[i][j] + B.mx[i][j];
 			return C;
 		}
-
 
 		template <class U>
 		auto operator + (const U &b) const
@@ -271,19 +297,10 @@ namespace PR
 			if (B.M == 1 && B.N == 1)
 				return *this / B.mx[0][0];
 			else if (M == 1 && N == 1)
-				return B.div(mx[0][0]);
+				return B.ldivide(mx[0][0]);
 		}
 
-		template <class U>
-		auto div(const U &b) const
-			->Matrix < decltype(T() + U()) >
-		{
-			Matrix<decltype(T() + U())> C(M, N);
-			for (int i = 0; i < M; i++)
-				for (int j = 0; j < N; j++)
-					C.mx[i][j] = b / mx[i][j];
-			return C;
-		}
+		
 
 		template <class U>
 		auto operator / (const U &b) const

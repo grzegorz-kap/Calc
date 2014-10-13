@@ -181,6 +181,9 @@
       <Filter>Operator</Filter>
     </ClInclude>
     <ClInclude Include="RightArrayDivision.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftArrayDivision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -315,6 +318,9 @@
       <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="RightArrayDivision.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftArrayDivision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

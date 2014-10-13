@@ -19,6 +19,7 @@ using std::function;
 #include "ElementWiseMultiplication.h"
 #include "DivisionOperator.h"
 #include "RightArrayDivision.h"
+#include "LeftArrayDivision.h"
 #include "ExponentiationOperator.h"
 
 namespace PR
