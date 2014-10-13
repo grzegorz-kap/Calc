@@ -105,7 +105,7 @@ namespace PR
 		};
 
 		template <class U>
-		auto div_t(const Matrix<U> &b) const
+		auto rdivide(const Matrix<U> &b) const
 			-> Matrix<decltype(T() + U())>
 		{
 			if (b.M == 1 && b.N == 1)

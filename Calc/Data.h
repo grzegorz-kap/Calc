@@ -79,6 +79,11 @@ namespace PR
 			throw UnimplementedException("Cannot do element wise multiplication on this type");
 		}
 
+		virtual shared_ptr<Data> rdivide(shared_ptr<Data> &) const
+		{
+			throw UnimplementedException("Cannot do right array division on this type");
+		}
+
 		virtual string toString()
 		{
 			return string("");

@@ -178,6 +178,9 @@
       <Filter>Operator</Filter>
     </ClInclude>
     <ClInclude Include="ElementWiseMultiplication.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="RightArrayDivision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -309,6 +312,9 @@
       <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="ElementWiseMultiplication.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="RightArrayDivision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

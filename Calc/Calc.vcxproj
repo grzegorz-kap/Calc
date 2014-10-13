@@ -112,6 +112,7 @@
     <ClInclude Include="OperatorsFactory.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
+    <ClInclude Include="RightArrayDivision.h" />
     <ClInclude Include="SizeFunction.h" />
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
+    <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
     <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">

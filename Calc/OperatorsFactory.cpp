@@ -8,10 +8,12 @@ namespace PR
 
 	OperatorsFactory::OperatorsFactory()
 	{
+		/* Order metters! */
 		operators.insert("+", [](){return make_unique<AdditionOperator>(); });
 		operators.insert("-", [](){return make_unique<SubtractionOperator>(); });
 		operators.insert(".*", [](){return make_unique<ElementWiseMultiplication>(); });
 		operators.insert("*", [](){return make_unique<MultiplicationOperator>(); });
+		operators.insert("./", [](){return make_unique<RightArrayDivision>(); });
 		operators.insert("/", [](){return make_unique<DivisionOperator>(); });
 		operators.insert("^", [](){return make_unique<ExponentiationOperator>(); });
 		operators.insert("$-", [](){return make_unique<USubtractionOperator>(); });
