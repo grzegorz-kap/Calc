@@ -86,6 +86,11 @@ namespace PR
 			return make_shared<T>(get_derived()->neg());
 		}
 
+		virtual shared_ptr<Data> times(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(get_derived()->times(*(b->cast_numeric<T>()->get_derived())));
+		}
+
 		
 	private:
 		const T * get_derived() const

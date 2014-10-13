@@ -16,6 +16,7 @@ using std::function;
 #include "SubtractionOperator.h"
 #include "USubtractionOperator.h"
 #include "MultiplicationOperator.h"
+#include "ElementWiseMultiplication.h"
 #include "DivisionOperator.h"
 #include "ExponentiationOperator.h"
 

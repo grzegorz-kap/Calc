@@ -74,6 +74,11 @@ namespace PR
 			throw UnimplementedException("Cannot do negation on this type!");
 		}
 
+		virtual shared_ptr<Data> times(shared_ptr<Data> &) const
+		{
+			throw UnimplementedException("Cannot do element wise multiplication on this type");
+		}
+
 		virtual string toString()
 		{
 			return string("");

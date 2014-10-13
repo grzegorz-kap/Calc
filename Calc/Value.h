@@ -91,6 +91,14 @@ namespace PR
 			return Value<decltype(T() / U())>(value / b.value);
 		}
 
+		/*Element wise multiplication*/
+		template <class U>
+		auto times(const Value<U> &b) const
+			->Value < decltype(T()*U()) >
+		{
+			return Value<decltype(T() * U())>(value * b.value);
+		}
+
 		/*Unary minus operator*/
 		Value<T> neg() const
 		{
