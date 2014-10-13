@@ -27,59 +27,30 @@ namespace PR
 		{
 		}
 
-		template <class U>
-		shared_ptr<T>  operator + (const Numeric<U> *b) const
-		{
-			return make_unique<T>(*get_derived() + *(b->get_derived()));
-		}
-
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const override
 		{
-			return *this + b->cast_numeric<T>();
-		}
-
-		template <class U>
-		shared_ptr<T>  operator - (const Numeric<U> *b) const
-		{
-			return make_unique<T>(*get_derived() - *(b->get_derived()));
+			return make_shared<T>(*get_derived() + *(b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const override
 		{
-			return *this - b->cast_numeric<T>();
-		}
-
-		template <class U>
-		shared_ptr<T>  operator * (const Numeric<U> *b) const
-		{
-			return make_unique<T>(*get_derived() * *(b->get_derived()));
+			return make_shared<T>(*get_derived() - *(b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const override
 		{
-			return *this * b->cast_numeric<T>();
+			return make_shared<T>(*get_derived() * *(b->cast_numeric<T>()->get_derived()));
 		}
 
-		template <class U>
-		shared_ptr<T>  operator / (const Numeric<U> *b) const
-		{
-			return make_unique<T>(*get_derived() / *(b->get_derived()));
-		}
 
 		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const override
 		{
-			return *this / b->cast_numeric<T>();
-		}
-
-		template <class U>
-		shared_ptr<T> exponentiation(const Numeric<U> *b) const
-		{
-			return make_shared<T>(Math::pow(*get_derived(),*b->get_derived()));
+			return make_shared<T>(*get_derived() / *(b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const override
 		{
-			return this->exponentiation(b->cast_numeric<T>());
+			return make_shared<T>(Math::pow(*get_derived(), *b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator -() const override
