@@ -141,6 +141,8 @@ namespace PR
 		
 		template <class U>
 		friend class Value;
+
+		friend class Math;
 	};
 };
 

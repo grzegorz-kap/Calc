@@ -12,7 +12,7 @@ namespace PR
 
 		virtual shared_ptr<Data> evaluate() override
 		{
-			return arguments[1]->rdivide(arguments[0]);
+ 			return arguments[1]->rdivide(arguments[0]);
 		}
 	};
 }

@@ -11,6 +11,7 @@ using std::make_shared;
 #include "UnimplementedException.h"
 #include "CastException.h"
 
+
 namespace PR
 {
 	template <class T>
@@ -119,4 +120,4 @@ namespace PR
 		}
 	};
 
-}
+};

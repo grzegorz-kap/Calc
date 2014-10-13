@@ -6,6 +6,7 @@ using std::shared_ptr;
 using std::make_unique;
 
 #include  "Data.h"
+#include "Math.h"
 
 namespace PR
 {
@@ -73,7 +74,7 @@ namespace PR
 		template <class U>
 		shared_ptr<T> exponentiation(const Numeric<U> *b) const
 		{
-			return shared_ptr<T>();
+			return make_shared<T>(Math::pow(*get_derived(),*b->get_derived()));
 		}
 
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const override
@@ -107,4 +108,4 @@ namespace PR
 		friend class Numeric;
 	};
 
-}
+};

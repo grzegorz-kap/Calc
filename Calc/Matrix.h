@@ -24,6 +24,7 @@ namespace PR
 		int N;
 	public:
 		friend class MatrixTransposer;
+		friend class Math;
 		
 		Matrix()
 			:M(0),N(0)
@@ -335,6 +336,11 @@ namespace PR
 			return temp;
 		}
 
+		bool isScalar() const
+		{
+			return M == 1 && N == 1;
+		}
+
 
 		/*
 		Cast operators
@@ -352,6 +358,6 @@ namespace PR
 			return int(mx[0][0]);
 		}
 	};
-}
+};
 
 //template class PR::Matrix < float > ;
