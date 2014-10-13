@@ -34,10 +34,7 @@ namespace PR
 
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const override
 		{
-			if (_type==b->_type)
-				return *this + b->cast_numeric<T>();
-			else
-				return *this + (b->convert_numeric<T>()).get();
+			return *this + b->cast_numeric<T>();
 		}
 
 		template <class U>
@@ -48,10 +45,7 @@ namespace PR
 
 		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const override
 		{
-			if (_type == b->_type)
-				return *this - b->cast_numeric<T>();
-			else
-				return *this - (b->convert_numeric<T>()).get();
+			return *this - b->cast_numeric<T>();
 		}
 
 		template <class U>
@@ -62,10 +56,7 @@ namespace PR
 
 		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const override
 		{
-			if (_type == b->_type)
-				return *this * b->cast_numeric<T>();
-			else
-				return *this * (b->convert_numeric<T>()).get();
+			return *this * b->cast_numeric<T>();
 		}
 
 		template <class U>
@@ -76,10 +67,7 @@ namespace PR
 
 		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const override
 		{
-			if (_type == b->_type)
-				return *this / b->cast_numeric<T>();
-			else
-				return *this / (b->convert_numeric<T>()).get();
+			return *this / b->cast_numeric<T>();
 		}
 
 		template <class U>
@@ -90,10 +78,7 @@ namespace PR
 
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const override
 		{
-			if (_type == b->_type)
-				return this->exponentiation(b->cast_numeric<T>());
-			else
-				return this->exponentiation((b->convert_numeric<T>()).get());
+			return this->exponentiation(b->cast_numeric<T>());
 		}
 		
 	private:
