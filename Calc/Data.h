@@ -67,7 +67,12 @@ namespace PR
 
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const
 		{
-			throw UnimplementedException("Can not do exponentiation on this type!");
+			throw UnimplementedException("Cannot do exponentiation on this type!");
+		}
+
+		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do matrix exponentiation on this type");
 		}
 
 		virtual shared_ptr<Data> operator - () const

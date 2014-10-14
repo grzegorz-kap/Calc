@@ -16,7 +16,8 @@ namespace PR
 		operators.insert("./", [](){return make_unique<RightArrayDivision>(); });
 		operators.insert(".\\", [](){return make_unique<LeftArrayDivision>(); });
 		operators.insert("/", [](){return make_unique<DivisionOperator>(); });
-		operators.insert("^", [](){return make_unique<ExponentiationOperator>(); });
+		operators.insert(".^", [](){return make_unique<ExponentiationOperator>(); });
+		operators.insert("^", [](){return make_unique<MatrixExponentiationOperator>(); });
 		operators.insert("$-", [](){return make_unique<USubtractionOperator>(); });
 	}
 

@@ -261,10 +261,10 @@ namespace PR
 		auto operator * (const Matrix<U> &B) const
 			-> Matrix<decltype(T() + U())>
 		{
-			/*if (B.M == 1 && B.N == 1)
-				return *dynamic_cast<const Matrix<T>*>(this) * B.mx[0][0];
+			if (B.M == 1 && B.N == 1)
+				*this * B.mx[0][0];
 			else if (M == 1 && N == 1)
-				return B * mx[0][0];*/
+				return B * mx[0][0];
 
 			Matrix<decltype(T() + U())> C(M, B.N);
 			for (int i = 0; i < M; i++)

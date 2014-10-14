@@ -21,6 +21,7 @@ using std::function;
 #include "RightArrayDivision.h"
 #include "LeftArrayDivision.h"
 #include "ExponentiationOperator.h"
+#include "MatrixExponentiationOperator.h"
 
 namespace PR
 {
