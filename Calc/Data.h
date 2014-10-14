@@ -93,6 +93,36 @@ namespace PR
 			throw UnimplementedException("Cannot do right array division on this type");
 		}
 
+		virtual shared_ptr<Data> eq(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
+		virtual shared_ptr<Data> ge(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
+		virtual shared_ptr<Data> gt(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
+		virtual shared_ptr<Data> le(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
+		virtual shared_ptr<Data> lt(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
+		virtual shared_ptr<Data> ne(shared_ptr<Data> &b) const
+		{
+			throw UnimplementedException("Cannot do relational operator on this type");
+		}
+
 		virtual string toString()
 		{
 			return string("");

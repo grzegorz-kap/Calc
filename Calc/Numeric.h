@@ -78,6 +78,36 @@ namespace PR
 			return make_shared<T>(get_derived()->rdivide(*(b->cast_numeric<T>()->get_derived())));
 		}
 
+		virtual shared_ptr<Data> eq(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() == *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> ge(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() >= *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> gt(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() > *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> le(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() <= *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> lt(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() < *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> ne(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() != *b->cast_numeric<T>()->get_derived());
+		}
+
 		
 	private:
 		const T * get_derived() const

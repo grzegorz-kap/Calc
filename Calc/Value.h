@@ -121,6 +121,48 @@ namespace PR
 			return Value<T>(-value);
 		}
 
+		template <class U>
+		auto operator == (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value == b.value);
+		}
+
+		template <class U>
+		auto operator != (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value != b.value);
+		}
+
+		template <class U>
+		auto operator >= (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value >= b.value);
+		}
+
+		template <class U>
+		auto operator > (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value > b.value);
+		}
+
+		template <class U>
+		auto operator <= (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value <= b.value);
+		}
+
+		template <class U>
+		auto operator < (const Value<U> &b) const
+			->Value < decltype(T() + U()) >
+		{
+			return Value<decltype(T() + U())>(value < b.value);
+		}
+
 		template <class X>
 		operator Value<X>()
 		{

@@ -9,6 +9,12 @@ namespace PR
 	OperatorsFactory::OperatorsFactory()
 	{
 		/* Order metters! */
+		operators.insert("==", [](){return make_unique<EqOperator>(); });
+		operators.insert("~=", [](){return make_unique<NeOperator>(); });
+		operators.insert("<=", [](){return make_unique<LeOperator>(); });
+		operators.insert(">=", [](){return make_unique<GeOperator>(); });
+		operators.insert("<", [](){return make_unique<LTOperator>(); });
+		operators.insert(">", [](){return make_unique<Gt>(); });
 		operators.insert("+", [](){return make_unique<AdditionOperator>(); });
 		operators.insert("-", [](){return make_unique<SubtractionOperator>(); });
 		operators.insert(".*", [](){return make_unique<ElementWiseMultiplication>(); });

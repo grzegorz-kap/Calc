@@ -22,6 +22,12 @@ using std::function;
 #include "LeftArrayDivision.h"
 #include "ExponentiationOperator.h"
 #include "MatrixExponentiationOperator.h"
+#include "EqOperator.h"
+#include "GeOperator.h"
+#include "Gt.h"
+#include "LeOperator.h"
+#include "LTOperator.h"
+#include "NeOperator.h"
 
 namespace PR
 {

@@ -319,6 +319,196 @@ namespace PR
 			return mx[i][j]; 
 		}
 
+		/* Eq operator */
+		template<class U>
+		auto operator == (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b == mx[0][0];
+			if (b.isScalar())
+				return *this == b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] == b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator == (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] == b;
+			return C;
+		}
+
+		template<class U>
+		auto operator != (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b != mx[0][0];
+			if (b.isScalar())
+				return *this != b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] != b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator != (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] != b;
+			return C;
+		}
+
+		template<class U>
+		auto operator != (const Matrix<U> &b)
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b != mx[0][0];
+			if (b.isScalar())
+				return *this != b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] != b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator != (const U &b)
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] != b;
+			return C;
+		}
+
+		template<class U>
+		auto operator < (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b > mx[0][0];
+			if (b.isScalar())
+				return *this < b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] < b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator < (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] < b;
+			return C;
+		}
+
+		template<class U>
+		auto operator > (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b < mx[0][0];
+			if (b.isScalar())
+				return *this > b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] > b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator > (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] > b;
+			return C;
+		}
+
+		template<class U>
+		auto operator <= (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b >= mx[0][0];
+			if (b.isScalar())
+				return *this <= b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] == b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator <= (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] <= b;
+			return C;
+		}
+
+		template<class U>
+		auto operator >= (const Matrix<U> &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			if (isScalar())
+				return b <= mx[0][0];
+			if (b.isScalar())
+				return *this >= b.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] >= b.mx[i][j];
+			return C;
+		}
+
+		template <class U>
+		auto operator >= (const U &b) const
+			->Matrix < decltype(T() + U()) >
+		{
+			Matrix<decltype(T() + U())> C(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[i][j] = mx[i][j] >= b;
+			return C;
+		}
+
 		vector<vector<T>>* getVector(){ return &mx; }
 
 		int * getM_P(){ return &M; }
