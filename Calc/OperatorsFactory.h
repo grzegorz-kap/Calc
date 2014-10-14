@@ -11,7 +11,6 @@ using std::function;
 
 #include "i_order_map.h"
 #include "Token.h"
-#include "CompareLength.h"
 #include "AdditionOperator.h"
 #include "SubtractionOperator.h"
 #include "USubtractionOperator.h"

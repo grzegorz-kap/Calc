@@ -87,9 +87,6 @@
     <ClInclude Include="CodeExecutor.h">
       <Filter>Execution</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixBuilder.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="Function.h">
       <Filter>Function</Filter>
     </ClInclude>
@@ -98,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="FunctionFactory.h">
       <Filter>Function</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixTransposer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CodeGenerator.h">
       <Filter>Header Files</Filter>
@@ -162,12 +156,6 @@
     <ClInclude Include="MultiplicationOperator.h">
       <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="CompareLength.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="i_order_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ExponentiationOperator.h">
       <Filter>Operator</Filter>
     </ClInclude>
@@ -183,31 +171,43 @@
     <ClInclude Include="RightArrayDivision.h">
       <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="LeftArrayDivision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="MatrixExponentiationOperator.h">
       <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="EqOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LeOperator.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NeOperator.h">
+      <Filter>Operator</Filter>
     </ClInclude>
     <ClInclude Include="LTOperator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Operator</Filter>
     </ClInclude>
-    <ClInclude Include="NeOperator.h">
+    <ClInclude Include="LeOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="GeOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="Gt.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="EqOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftArrayDivision.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="i_order_map.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixTransposer.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixBuilder.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -248,9 +248,6 @@
     <ClCompile Include="CodeExecutorMatrix.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixBuilder.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="Function.cpp">
       <Filter>Function</Filter>
     </ClCompile>
@@ -262,9 +259,6 @@
     </ClCompile>
     <ClCompile Include="FunctionFactory.cpp">
       <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixTransposer.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CodeGenerator.cpp">
       <Filter>Source Files</Filter>
@@ -326,9 +320,6 @@
     <ClCompile Include="MultiplicationOperator.cpp">
       <Filter>Operator</Filter>
     </ClCompile>
-    <ClCompile Include="i_order_map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ExponentiationOperator.cpp">
       <Filter>Operator</Filter>
     </ClCompile>
@@ -344,9 +335,6 @@
     <ClCompile Include="RightArrayDivision.cpp">
       <Filter>Operator</Filter>
     </ClCompile>
-    <ClCompile Include="LeftArrayDivision.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Math.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -354,21 +342,36 @@
       <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="EqOperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="GeOperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="Gt.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="LeOperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="LTOperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Operator</Filter>
     </ClCompile>
     <ClCompile Include="NeOperator.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftArrayDivision.cpp">
+      <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixTransposer.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="i_order_map.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixBuilder.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

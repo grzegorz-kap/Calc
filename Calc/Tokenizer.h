@@ -38,9 +38,9 @@ namespace PR
 		unique_ptr<Token> getNext();
 		
 		void setInput(const string &command);
-		bool setInputFileName(const string &fileName);
+		void setInput(string &&command);
  		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
-
+		Tokenizer & operator = (Tokenizer &&b);
 	private:
 		string command;
 		int i;
