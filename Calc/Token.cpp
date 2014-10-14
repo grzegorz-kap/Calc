@@ -10,12 +10,14 @@ namespace PR
 	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
 		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
+		_type = TYPE::TOKEN;
 	}
 
 	Token::Token(TOKEN_CLASS arg)
 		: Token()
 	{
 		_class = arg;
+		_type = TYPE::TOKEN;
 	}
 
 	Token::Token(Token &&b)

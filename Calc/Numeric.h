@@ -27,6 +27,11 @@ namespace PR
 		{
 		}
 
+		virtual bool isNumeric() const override
+		{
+			return true;
+		}
+
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const override
 		{
 			return make_shared<T>(*get_derived() + *(b->cast_numeric<T>()->get_derived()));

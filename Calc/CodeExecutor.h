@@ -33,8 +33,6 @@ namespace PR
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 
 		void onOperator();
-		void onMatrixStart();
-		void onMatrixVerseEnd();
 		void onMatrixEnd();
 		void onFunction();
 		shared_ptr<Data> pop();

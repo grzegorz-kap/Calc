@@ -17,8 +17,11 @@ namespace PR
 	template <class T>
 	class Numeric;
 
+	class Token;
+
 	enum class TYPE : int
 	{
+		TOKEN,
 		INT ,
 		FLOAT,
 		DOUBLE,
@@ -99,6 +102,16 @@ namespace PR
 		Numeric<T> * cast_numeric()
 		{
 			return dynamic_cast<Numeric<T> *> (this);
+		}
+
+		virtual Token * cast_token()
+		{
+			throw CastException("Cannot cast to Token");
+		}
+
+		virtual bool isNumeric() const
+		{
+			return false;
 		}
 
 

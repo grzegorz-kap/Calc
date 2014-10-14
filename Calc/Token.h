@@ -60,5 +60,10 @@ namespace PR
 		{
 			throw CastException("Cannot cast to operator expression");
 		}
+
+		virtual Token* cast_token() override
+		{
+			return dynamic_cast<Token *>(this);
+		}
 	};
 }
