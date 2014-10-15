@@ -30,7 +30,10 @@ namespace PR
 		{
 			ip = code.getInstruction();
 			if (isKeyword(TOKEN_CLASS::IF_KEYWORD))
+			{
 				onIF();
+				continue;
+			}
 
 			run();
 			code.inc();
@@ -47,7 +50,7 @@ namespace PR
 		{	
 			next();
 			setIPTo(IF_FIND);
-			next();
+			next(true);
 		}
 	}
 

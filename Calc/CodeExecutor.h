@@ -53,9 +53,13 @@ namespace PR
 		bool isKeyword(TOKEN_CLASS _class);
 		void setIPTo(const vector<TOKEN_CLASS> &set);
 
-		void next()
+		void next(bool check=false)
 		{
 			code.inc();
+
+			if (check && code.eof())
+				return;
+
 			ip = code.getInstruction();
 		}
 
