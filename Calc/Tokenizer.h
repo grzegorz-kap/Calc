@@ -57,6 +57,14 @@ namespace PR
 		void whiteSpacesBegin();
 		void whiteSpacesEnd();
 		void deleteUneccessary();
+		
+		void init()
+		{
+			N = command.size();
+			i = 0;
+			whiteSpacesEnd();
+			whiteSpacesBegin();
+		}
 	
 	};
 

@@ -42,6 +42,16 @@ namespace PR
 		tokenizer.setInput(name);
 	}
 
+	void LexicalAnalyzer::setInput(string &&name)
+	{
+		tokenizer.setInput(std::move(name));
+	}
+
+	void LexicalAnalyzer::setInput(FileLoader &file)
+	{
+		tokenizer.setInput(file.loadAll());
+	}
+
 	void LexicalAnalyzer::push(unique_ptr<Token> & token)
 	{
 		balancer.setMode(*token);

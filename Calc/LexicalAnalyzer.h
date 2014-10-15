@@ -12,6 +12,7 @@ using std::queue;
 #include "CalcException.h"
 #include "LexicalBalanceHelper.h"
 #include "functions.h"
+#include "FileLoader.h"
 
 
 namespace PR
@@ -25,6 +26,8 @@ namespace PR
 		TOKEN_CLASS whatNext();
 
 		void setInput(const string &command);
+		void setInput(string &&in);
+		void setInput(FileLoader &in);
 
 		LexicalAnalyzer();
 		LexicalAnalyzer(const string &command);

@@ -9,6 +9,15 @@ namespace PR
 	{
 	}
 
+	CodeExecutor::CodeExecutor(const string &name)
+		:code(name)
+	{
+	}
+
+	CodeExecutor::CodeExecutor(FileLoader &&file)
+		: code(file)
+	{
+	}
 
 	CodeExecutor::~CodeExecutor()
 	{

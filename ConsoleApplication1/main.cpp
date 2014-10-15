@@ -7,7 +7,7 @@
 void main()
 {
 	PR::Interpreter interpreter;
-	std::cout << interpreter.workFromFile("dane.txt");
+	interpreter.workFromFile("dane.txt");
 
 	std::cout << std::endl;
 	system("pause");

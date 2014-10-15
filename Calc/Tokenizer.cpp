@@ -20,13 +20,16 @@ namespace PR
     Tokenizer::~Tokenizer()
 	{}
 
-	void Tokenizer::setInput(const string &command)
+	void Tokenizer::setInput(const string &in)
 	{
-		this->command = command;
-		N = command.size();
-		i = 0;
-		whiteSpacesEnd();
-		whiteSpacesBegin();
+		command = in;
+		init();
+	}
+
+	void Tokenizer::setInput(string &&in)
+	{
+		command = std::move(in);
+		init();
 	}
 
 	unique_ptr<Token> Tokenizer::readOthers()

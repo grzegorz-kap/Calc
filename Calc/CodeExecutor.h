@@ -21,17 +21,18 @@ namespace PR
 	{
 	public:
 		CodeExecutor();
+		CodeExecutor(const string &name);
+		CodeExecutor(FileLoader &&file);
 		~CodeExecutor();
 	
-
 		shared_ptr<Data> run(const Instruction &tokens);
 
 	private:
 		vector<shared_ptr<Data>> stack;
 		Instruction::const_iterator i;
+		CodeGenerator code;
 
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
-
 		void onOperator();
 		void onMatrixEnd();
 		void onFunction();

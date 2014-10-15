@@ -4,16 +4,42 @@
 
 namespace PR
 {
+	CodeGenerator::CodeGenerator()
+	{
+	}
+
 	CodeGenerator::CodeGenerator(const string &code_str)
 		:lexicalAnalyzer(code_str)
 	{
-		load();
-		ip = code.begin();
+		loadAndSetIp();
 	}
 
+	CodeGenerator::CodeGenerator(FileLoader &file)
+		:lexicalAnalyzer(file.loadAll())
+	{
+		loadAndSetIp();
+	}
 
 	CodeGenerator::~CodeGenerator()
 	{
+	}
+
+	void CodeGenerator::setInput(const string &name)
+	{
+		lexicalAnalyzer.setInput(name);
+		loadAndSetIp();
+	}
+
+	void CodeGenerator::setInput(string &&in)
+	{
+		lexicalAnalyzer.setInput(std::move(in));
+		loadAndSetIp();
+	}
+
+	void CodeGenerator::setInput(FileLoader &in)
+	{
+		lexicalAnalyzer.setInput(in);
+		loadAndSetIp();
 	}
 
 	auto CodeGenerator::getInstruction()

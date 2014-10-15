@@ -19,12 +19,11 @@ namespace PR
 {
 	class CALC_API Interpreter
 	{
-		
 	public:
 		Interpreter();
 		~Interpreter();
-		string work(const string &command);
-		string workFromFile(const string &fileName);
+		void work(const string &command);
+		void workFromFile(const string &fileName);
 	};
 }
 

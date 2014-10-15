@@ -11,6 +11,7 @@ using std::shared_ptr;
 #include "Token.h"
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
+#include "FileLoader.h"
 #include "CodeGeneratorException.h"
 #include "Data.h"
 
@@ -30,8 +31,14 @@ namespace PR
 		LexicalAnalyzer lexicalAnalyzer;
 
 	public:
+		CodeGenerator();
 		CodeGenerator(const string &code_str);
+		CodeGenerator(FileLoader &file);
 		~CodeGenerator();
+
+		void setInput(const string &in);
+		void setInput(string &&in);
+		void setInput(FileLoader &file);
 		
 		bool eof(void);
 		auto getInstruction() ->decltype(ip);
@@ -41,6 +48,7 @@ namespace PR
 		
 	private:
 		void load(void);
+		void loadAndSetIp(){ load(); ip = code.begin(); }
 	};
 
 
