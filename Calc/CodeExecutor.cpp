@@ -4,6 +4,7 @@
 
 namespace PR
 {
+	const vector<TOKEN_CLASS> CodeExecutor::IF_FIND = { TOKEN_CLASS::END_KEYWORD, TOKEN_CLASS::ELSE_KEYWORD };
 
 	CodeExecutor::CodeExecutor()
 	{
@@ -28,13 +29,59 @@ namespace PR
 		while (!code.eof())
 		{
 			ip = code.getInstruction();
+			if (isKeyword(TOKEN_CLASS::IF_KEYWORD))
+				onIF();
+
+			run();
 			code.inc();
 		}
 	}
 
-	shared_ptr<Data> CodeExecutor::run(const Instruction &tokens)
+	void CodeExecutor::onIF()
 	{
-		for (i = tokens.begin(); i != tokens.end(); i++)
+		balance++;
+		next();
+		if (*run() == true)
+			next();
+		else
+		{	
+			next();
+			setIPTo(IF_FIND);
+			next();
+		}
+	}
+
+	void CodeExecutor::setIPTo(const vector<TOKEN_CLASS> &set)
+	{
+		if (set.size() == 0)
+			return;
+		int balance = 0;
+		while (1)
+		{
+			if (ip->size() == 1)
+			{
+				auto _class = ip->at(0)->getClass();
+				if (_class == TOKEN_CLASS::WHILE_KEYWORD || _class == TOKEN_CLASS::FOR_KEYWORD || _class == TOKEN_CLASS::IF_KEYWORD)
+				{
+					balance++;
+					next();
+					continue;
+				}
+
+				if (std::find(set.begin(), set.end(), _class) != set.end() && balance == 0)
+					break;
+				
+				if (_class == TOKEN_CLASS::END_KEYWORD)
+					balance--;	
+			}
+			next();
+		}
+	}
+
+	shared_ptr<Data> CodeExecutor::run()
+	{
+		stack.clear();
+		for (i = ip->begin(); i != ip->end(); i++)
 		{
 			switch ((*i)->getClass())
 			{
@@ -57,7 +104,7 @@ namespace PR
 				throw CalcException("!");
 			}
 		}
-		return shared_ptr<Data>(new Data());
+		return stack.back();
 	}
 
 	void CodeExecutor::onOperator()
@@ -71,5 +118,6 @@ namespace PR
 	{
 		return ip->size() == 1 && ip->at(0)->getClass() == _class;
 	}
+
 	
 }

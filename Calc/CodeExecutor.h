@@ -40,16 +40,34 @@ namespace PR
 		Instruction::const_iterator i;
 		Ip ip;
 		CodeGenerator code;
-		shared_ptr<Data> run(const Instruction &tokens);
+		int balance;
 
+		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 		void onOperator();
 		void onMatrixEnd();
 		void onFunction();
+		void onIF();
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);
-
 		bool isKeyword(TOKEN_CLASS _class);
+		void setIPTo(const vector<TOKEN_CLASS> &set);
+
+		void next()
+		{
+			code.inc();
+			ip = code.getInstruction();
+		}
+
+		void balance_down()
+		{
+			if (--balance < 0)
+				throw CalcException("Unbalanced");
+		}
+
+		void balance_up();
+
+		static const vector<TOKEN_CLASS> IF_FIND;
 	};
 }
 

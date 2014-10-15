@@ -13,7 +13,8 @@ namespace PR
 		{ "while",TOKEN_CLASS::WHILE_KEYWORD },
 		{ "continue",TOKEN_CLASS::CONTINUE_KEYWORD },
 		{ "break",TOKEN_CLASS::BREAK_KEYWORD },
-		{ "end",TOKEN_CLASS::END_KEYWORD }
+		{ "end",TOKEN_CLASS::END_KEYWORD },
+		{ "else",TOKEN_CLASS::ELSE_KEYWORD }
 	};
 
 	bool TokenizerHelper::isKeyWord(const string &word)
