@@ -21,10 +21,6 @@
     <Filter Include="Execution">
       <UniqueIdentifier>{a89bed4c-f08c-4e8d-837a-03acb9f0f29e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Parsing\Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Model">
       <UniqueIdentifier>{2149f7b6-1278-49dc-bf7d-a67772931e6f}</UniqueIdentifier>
     </Filter>
@@ -42,6 +38,10 @@
     </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{42df83d6-9d5f-4872-82ce-bc650d0221fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>

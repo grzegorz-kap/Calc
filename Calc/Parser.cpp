@@ -201,6 +201,9 @@ namespace PR
 				onMatrixEnd();
 				break;
 			case TOKEN_CLASS::KEY_WORD:
+			case TOKEN_CLASS::IF_KEYWORD:
+			case TOKEN_CLASS::ELSE_KEYWORD:
+			case TOKEN_CLASS::END_KEYWORD:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
 				stop = true;
