@@ -31,5 +31,8 @@ namespace PR
 
 	void Interpreter::workFromFile(const string &fileName)
 	{
+		CodeExecutor exec;
+		exec.setInput(FileLoader(fileName));
+		exec.start();
 	}
 }

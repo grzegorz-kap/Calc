@@ -108,6 +108,11 @@ namespace PR
 			return make_shared<T>(*get_derived() != *b->cast_numeric<T>()->get_derived());
 		}
 
+		virtual bool operator == (const bool &b) const override
+		{
+			return false;
+		}
+
 		
 	private:
 		const T * get_derived() const

@@ -23,6 +23,15 @@ namespace PR
 	{
 	}
 
+	void CodeExecutor::start()
+	{
+		while (!code.eof())
+		{
+			ip = code.getInstruction();
+			code.inc();
+		}
+	}
+
 	shared_ptr<Data> CodeExecutor::run(const Instruction &tokens)
 	{
 		for (i = tokens.begin(); i != tokens.end(); i++)
@@ -56,6 +65,11 @@ namespace PR
 		auto p = dynamic_cast<Operator *>(i->get());
 		p->setArguments(stack);
  		stack.push_back(shared_ptr<Data>(p->evaluate()));
+	}
+
+	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)
+	{
+		return ip->size() == 1 && ip->at(0)->getClass() == _class;
 	}
 	
 }

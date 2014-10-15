@@ -63,6 +63,11 @@ namespace PR
 		{
 		}
 
+		virtual bool operator == (const bool &b) const override
+		{
+			return value != 0;
+		}
+
 		template <class U>
 		auto operator + (const Value<U> &b) const
 			-> Value< decltype(T()+U()) >

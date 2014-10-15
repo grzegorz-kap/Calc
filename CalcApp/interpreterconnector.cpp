@@ -13,5 +13,5 @@ InterpreterConnector::~InterpreterConnector()
 
 void InterpreterConnector::commandToInterpreter(std::string command)
 {
-	emit interpreterResponded(QString(interpreter.work(command).c_str()));
+	
 }

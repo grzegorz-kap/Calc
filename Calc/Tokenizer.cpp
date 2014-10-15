@@ -10,6 +10,7 @@ namespace PR
 	};
 
 
+
 	Tokenizer::Tokenizer()
 	{
 		N = 0;

@@ -103,6 +103,7 @@ namespace PR
 				return Math::pow_by_squaring(a*a, n / 2);
 			else if (n % 2 != 0)
 				return a*Math::pow_by_squaring(a*a, (n - 1) / 2);
+			throw CalcException("!");
 		}
 	};
 }

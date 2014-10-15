@@ -531,6 +531,39 @@ namespace PR
 			return M == 1 && N == 1;
 		}
 
+		virtual bool operator == (const bool &b) const override
+		{
+			if (b)
+				return checkIfTrue();
+			else
+				return checkIfFalse();
+
+		}
+
+		private:
+			bool checkIfTrue() const
+			{
+				if (M == 0 || N == 0)
+					return false;
+				for (int i = 0; i < M; i++)
+					for (int j = 0; j < N; j++)
+						if (mx[i][j] == 0)
+							return false;
+				return true;
+			}
+
+			bool checkIfFalse() const
+			{
+				if (M == 0 || N == 0)
+					return true;
+				for (int i = 0; i < M; i++)
+					for (int j = 0; j < N; j++)
+						if (mx[i][j] == 0)
+							return true;
+				return false;
+			}
+		public:
+
 
 		/*
 		Cast operators

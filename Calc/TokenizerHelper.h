@@ -2,9 +2,11 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using std::string;
 using std::vector;
+using std::unordered_map;
 
 #include "TokensTypes.h"
 #include "Token.h"
@@ -14,9 +16,9 @@ namespace PR
 {
 	class TokenizerHelper
 	{
-
+		const static unordered_map<string, TOKEN_CLASS> KEYWORDS;
 	public:
-		const static vector<string> KEYWORDS;
+	//	const static vector<string> KEYWORDS;
 
 		static void toString(const vector<Token> &tokens, string &out);
 		static bool isLetter(char c);

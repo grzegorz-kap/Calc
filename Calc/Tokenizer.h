@@ -3,7 +3,9 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <unordered_map>
 
+using std::unordered_map;
 using std::unique_ptr;
 using std::make_unique;
 using std::string;
@@ -22,7 +24,7 @@ namespace PR
 {
 	class Tokenizer
 	{
-
+		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
 	public:
 		Tokenizer();
 		~Tokenizer();

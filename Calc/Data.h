@@ -123,6 +123,11 @@ namespace PR
 			throw UnimplementedException("Cannot do relational operator on this type");
 		}
 
+		virtual bool operator == (const bool &b) const
+		{
+			throw UnimplementedException("Cannot do bool eq on this type");
+		}
+
 		virtual string toString()
 		{
 			return string("");

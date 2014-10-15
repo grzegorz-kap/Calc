@@ -3,19 +3,29 @@
 
 namespace PR
 {
-	const vector<string> TokenizerHelper::KEYWORDS = {
+	/*const vector<string> TokenizerHelper::KEYWORDS = {
 		"if", "for", "while", "continue", "break"
+	};*/
+	const unordered_map<string,TOKEN_CLASS> TokenizerHelper::KEYWORDS = 
+	{
+		{ "if",TOKEN_CLASS::IF_KEYWORD },
+		{ "for",TOKEN_CLASS::FOR_KEYWORD },
+		{ "while",TOKEN_CLASS::WHILE_KEYWORD },
+		{ "continue",TOKEN_CLASS::CONTINUE_KEYWORD },
+		{ "break",TOKEN_CLASS::BREAK_KEYWORD },
+		{ "end",TOKEN_CLASS::END_KEYWORD }
 	};
 
 	bool TokenizerHelper::isKeyWord(const string &word)
 	{
-		return TokenizerHelper::KEYWORDS.end()!= std::find(TokenizerHelper::KEYWORDS.begin(), TokenizerHelper::KEYWORDS.end(), word);
+		return TokenizerHelper::KEYWORDS.find(word) != TokenizerHelper::KEYWORDS.end();
 	}
 
 	TOKEN_CLASS TokenizerHelper::keyWordOrId(const string &word)
 	{
-		if (TokenizerHelper::isKeyWord(word))
-			return TOKEN_CLASS::KEY_WORD;
+		auto result = TokenizerHelper::KEYWORDS.find(word);
+		if (result != TokenizerHelper::KEYWORDS.end())
+			return result->second;
 		else
 			return TOKEN_CLASS::ID;
 	}
