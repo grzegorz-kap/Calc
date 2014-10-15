@@ -7,13 +7,14 @@
 *.sln.docstates
 
 # Build results
-
+CalcApp/GeneratedFiles/
 [Dd]ebug/
 [Rr]elease/
 x64/
 build/
 [Bb]in/
 [Oo]bj/
+ConsoleApp/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
