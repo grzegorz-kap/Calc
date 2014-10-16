@@ -27,9 +27,14 @@ namespace PR
 		vector<int> balance;
 		vector<PARSE_MODE> mode;
 		int pos;
+		vector<TOKEN_CLASS> key_word_mode;
+		int key_word_balance;
 
 		void changeMode(PARSE_MODE mode, bool start);
 		void onParenthesis(bool start);
+		void onInstructionKeyWord(Token &token);
+		void onEndKeyword(Token &token);
+		void onContBreakKeyWords();
 	};
 
 }

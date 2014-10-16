@@ -40,7 +40,6 @@ namespace PR
 		Instruction::const_iterator i;
 		Ip ip;
 		CodeGenerator code;
-		int balance;
 
 		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
@@ -51,27 +50,22 @@ namespace PR
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);
 		bool isKeyword(TOKEN_CLASS _class);
-		void setIPTo(const vector<TOKEN_CLASS> &set);
+		void setIPTo(const vector<TOKEN_CLASS> &set,int balance);
 
-		void next(bool check=false)
+		void next()
 		{
 			code.inc();
-
-			if (check && code.eof())
-				return;
-
 			ip = code.getInstruction();
 		}
 
-		void balance_down()
+		void prev()
 		{
-			if (--balance < 0)
-				throw CalcException("Unbalanced");
+			code.dec();
+			ip = code.getInstruction();
 		}
 
-		void balance_up();
-
 		static const vector<TOKEN_CLASS> IF_FIND;
+		static const vector<TOKEN_CLASS> ELSE_FIND;
 	};
 }
 

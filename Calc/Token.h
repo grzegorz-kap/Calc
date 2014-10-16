@@ -27,6 +27,7 @@ namespace PR
 		PARSE_MODE mode;
 		int position;
 		int param;
+		int keyword_balance;
 	public:
 
 		Token();
@@ -48,6 +49,8 @@ namespace PR
 		void setParam(int p){ param = p; }
 		PARSE_MODE getMode()const { return mode; }
 		void setMode(PARSE_MODE mode){ this->mode = mode; }
+		void setKeywordBalance(int b){ keyword_balance = b; }
+		int getKeywordBalance() const { return keyword_balance; }
 
 		string toString() const;
 		

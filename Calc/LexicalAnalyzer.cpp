@@ -64,7 +64,12 @@ namespace PR
 		case TOKEN_CLASS::OPERATOR: 
 			onOperator(token); 
 			break;
+		case TOKEN_CLASS::FOR_KEYWORD:
+		case TOKEN_CLASS::IF_KEYWORD:
+		case TOKEN_CLASS::WHILE_KEYWORD:
+			break;
 		}
+
 		prev = token->getClass();
 		q.push(std::move(token));
 	}

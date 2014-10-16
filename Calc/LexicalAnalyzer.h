@@ -38,6 +38,7 @@ namespace PR
 		queue<unique_ptr<Token>> q;
 		bool what_next_flag;
 		unsigned int prev_operator_args_num;
+
 		const static vector<TOKEN_CLASS> UNARY_OP_PRECURSORS;
 
 		void reset();

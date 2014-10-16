@@ -4,7 +4,8 @@
 
 namespace PR
 {
-	const vector<TOKEN_CLASS> CodeExecutor::IF_FIND = { TOKEN_CLASS::END_KEYWORD, TOKEN_CLASS::ELSE_KEYWORD };
+	const vector<TOKEN_CLASS> CodeExecutor::IF_FIND = { TOKEN_CLASS::END_IF, TOKEN_CLASS::ELSE_KEYWORD };
+	const vector<TOKEN_CLASS> CodeExecutor::ELSE_FIND = { TOKEN_CLASS::END_IF };
 
 	CodeExecutor::CodeExecutor()
 	{
@@ -34,6 +35,17 @@ namespace PR
 				onIF();
 				continue;
 			}
+			if (isKeyword(TOKEN_CLASS::END_IF))
+			{
+				code.inc();
+				continue;
+			}
+			if (isKeyword(TOKEN_CLASS::ELSE_KEYWORD))
+			{
+				setIPTo(ELSE_FIND,ip->at(0)->getKeywordBalance());
+				code.inc();
+				continue;
+			}
 
 			run();
 			code.inc();
@@ -42,41 +54,25 @@ namespace PR
 
 	void CodeExecutor::onIF()
 	{
-		balance++;
+		int balance = ip->at(0)->getKeywordBalance();
 		next();
-		if (*run() == true)
+		if (*run() == false)
+		{
 			next();
-		else
-		{	
-			next();
-			setIPTo(IF_FIND);
-			next(true);
+			setIPTo(IF_FIND,balance);
 		}
+		code.inc();
 	}
 
-	void CodeExecutor::setIPTo(const vector<TOKEN_CLASS> &set)
+	void CodeExecutor::setIPTo(const vector<TOKEN_CLASS> &set,int balance)
 	{
 		if (set.size() == 0)
 			return;
-		int balance = 0;
 		while (1)
 		{
-			if (ip->size() == 1)
-			{
-				auto _class = ip->at(0)->getClass();
-				if (_class == TOKEN_CLASS::WHILE_KEYWORD || _class == TOKEN_CLASS::FOR_KEYWORD || _class == TOKEN_CLASS::IF_KEYWORD)
-				{
-					balance++;
-					next();
-					continue;
-				}
-
-				if (std::find(set.begin(), set.end(), _class) != set.end() && balance == 0)
-					break;
-				
-				if (_class == TOKEN_CLASS::END_KEYWORD)
-					balance--;	
-			}
+			if ( ip->size()==1 && balance == ip->at(0)->getKeywordBalance() &&
+				std::find(set.begin(), set.end(), ip->at(0)->getClass()) != set.end())
+				return;
 			next();
 		}
 	}

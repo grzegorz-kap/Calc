@@ -18,6 +18,7 @@ namespace PR
 	{
 		balance.push_back(0);
 		mode.push_back(PARSE_MODE::NORMAL);
+		key_word_balance = 0;
 	}
 
 	void LexicalBalanceHelper::changeMode(PARSE_MODE modeA,bool start)
@@ -66,14 +67,55 @@ namespace PR
 		case TOKEN_CLASS::MATRIX_END:
 			changeMode(PARSE_MODE::MATRIX, 0);
 			break;
-		case TOKEN_CLASS::KEY_WORD:
-			string temp = token.getLexeme();
-			if (temp == "end")
-				changeMode(PARSE_MODE::KEYWORD, 0);
-			else if (temp != "continue"&&temp != "break")
-				changeMode(PARSE_MODE::KEYWORD, 1);
+		case TOKEN_CLASS::END_KEYWORD:
+			onEndKeyword(token);
+			break;
+		case TOKEN_CLASS::ELSE_KEYWORD:
+			token.setKeywordBalance(key_word_balance);
+			break;
+		case TOKEN_CLASS::IF_KEYWORD:
+		case TOKEN_CLASS::FOR_KEYWORD:
+		case TOKEN_CLASS::WHILE_KEYWORD:
+			onInstructionKeyWord(token);
+			break;
+		case TOKEN_CLASS::BREAK_KEYWORD:
+		case TOKEN_CLASS::CONTINUE_KEYWORD:
+			onContBreakKeyWords();
 			break;
 		}
 		token.setMode(mode.back());
+	}
+
+	void LexicalBalanceHelper::onInstructionKeyWord(Token &token)
+	{
+		token.setKeywordBalance(++key_word_balance);
+		key_word_mode.push_back(token.getClass());
+	}
+
+	void LexicalBalanceHelper::onEndKeyword(Token &token)
+	{
+		if (key_word_balance == 0)
+			throw CalcException("Unexpected end keyword!");
+		token.setKeywordBalance(key_word_balance--);
+		
+		switch (key_word_mode.back())
+		{
+		case TOKEN_CLASS::FOR_KEYWORD:
+			token.set_class(TOKEN_CLASS::END_FOR);
+			break;
+		case TOKEN_CLASS::IF_KEYWORD:
+			token.set_class(END_IF);
+			break;
+		case TOKEN_CLASS::WHILE_KEYWORD:
+			token.set_class(END_WHILE);
+			break;
+		}
+		key_word_mode.pop_back();
+	}
+
+	void LexicalBalanceHelper::onContBreakKeyWords()
+	{
+		if (key_word_balance == 0 || key_word_mode.back() != TOKEN_CLASS::FOR_KEYWORD && key_word_mode.back() != TOKEN_CLASS::WHILE_KEYWORD)
+			throw CalcException("Cannot use break or continue outside loop");
 	}
 }
