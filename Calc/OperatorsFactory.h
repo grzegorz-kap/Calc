@@ -27,6 +27,7 @@ using std::function;
 #include "LeOperator.h"
 #include "LTOperator.h"
 #include "NeOperator.h"
+#include "AssignmentOperator.h"
 
 namespace PR
 {

@@ -41,6 +41,7 @@ namespace PR
 		END_WHILE,
 		END_FOR,
 		END_KEYWORD,
-		ELSE_KEYWORD
+		ELSE_KEYWORD,
+		ASSIGNMENT
 	};
 }

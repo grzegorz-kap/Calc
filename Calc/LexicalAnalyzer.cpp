@@ -107,7 +107,7 @@ namespace PR
 		if (tokenizer.hasNext())
 		{
 			read();
-			return true;
+			return hasNext();
 		}
 		else
 			return false;

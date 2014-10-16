@@ -17,6 +17,7 @@ namespace PR
 		N = 0;
 		i = 0;
 		prev = TOKEN_CLASS::NONE;
+		check = false;
 	}
 
     Tokenizer::~Tokenizer()
@@ -67,7 +68,7 @@ namespace PR
 		prev = type;
 		string temp = ""; 
 		temp += command[i];
-		return make_unique<Token>(temp, type,i++);
+		return make_unique<Token>(std::move(temp), type,i++);
 	}
 
 	unique_ptr<Operator> Tokenizer::readOperator()
@@ -141,8 +142,10 @@ namespace PR
 
 	bool Tokenizer::hasNext()
 	{
+		check = true;
 		if (i < N)
 		{
+			char z = command[i];
 			if (i < N - 1 && command[i] == '/' && command[i + 1] == '*')
 			{
 				skipBlockComment();
@@ -177,6 +180,11 @@ namespace PR
 
 	unique_ptr<Token> Tokenizer::getNext()
 	{	
+		if (check)
+			check = false;
+		else
+			hasNext();
+
 		if (TokenizerHelper::isDigit(command[i]))
 			return readNumber();
 		if (TokenizerHelper::isLetter(command[i]))

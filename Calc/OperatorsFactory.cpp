@@ -25,6 +25,7 @@ namespace PR
 		operators.insert(".^", [](){return make_unique<ExponentiationOperator>(); });
 		operators.insert("^", [](){return make_unique<MatrixExponentiationOperator>(); });
 		operators.insert("$-", [](){return make_unique<USubtractionOperator>(); });
+		operators.insert("=", [](){return make_unique<AssignmentOperator>(); });
 	}
 
 	void OperatorsFactory::init()

@@ -48,6 +48,8 @@ namespace PR
 		int i;
 		int N;
 		TOKEN_CLASS prev;
+		bool check;
+
 		unique_ptr<SNumber> readNumber();
 		unique_ptr<Token> readWord();
 		unique_ptr<Token> readWhiteSpace();
@@ -67,7 +69,6 @@ namespace PR
 			whiteSpacesEnd();
 			whiteSpacesBegin();
 		}
-	
 	};
 
 }

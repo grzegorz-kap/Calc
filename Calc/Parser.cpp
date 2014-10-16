@@ -149,7 +149,6 @@ namespace PR
 		case PARSE_MODE::KEYWORD:
 			stop = true;
 			stackToOnpAll();
-			onp.push_back(make_unique<Token>(";", TOKEN_CLASS::OUTPUT_OFF, i->getPosition()));
 			break;
 		}
 	}

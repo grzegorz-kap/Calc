@@ -81,6 +81,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssignmentOperator.h" />
     <ClInclude Include="CalcException.h" />
     <ClInclude Include="CastException.h" />
     <ClInclude Include="CodeExecutor.h" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssignmentOperator.cpp" />
     <ClCompile Include="Calc.cpp" />
     <ClCompile Include="CalcException.cpp" />
     <ClCompile Include="CastException.cpp" />

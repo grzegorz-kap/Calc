@@ -24,9 +24,6 @@
     <Filter Include="Model">
       <UniqueIdentifier>{2149f7b6-1278-49dc-bf7d-a67772931e6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Function">
-      <UniqueIdentifier>{efd3144f-5167-42d5-b931-fb73890fe1a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Exceptions">
       <UniqueIdentifier>{98036f3a-61c3-4b68-8326-7610eb7de76d}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,9 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Function">
+      <UniqueIdentifier>{efd3144f-5167-42d5-b931-fb73890fe1a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +210,9 @@
     <ClInclude Include="FileLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AssignmentOperator.h">
+      <Filter>Operator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -373,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="FileLoader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentOperator.cpp">
+      <Filter>Operator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
