@@ -2,10 +2,12 @@
 #define CALCAPP_H
 
 #include <QtWidgets/QMainWindow>
+#include <qthread.h>
 
 
 #include "ui_calcapp.h"
 #include "interpreterconnector.h"
+
 
 class CalcApp : public QMainWindow
 {
@@ -17,7 +19,8 @@ public:
 
 private:
 	Ui::CalcAppClass ui;
-	InterpreterConnector interpreterConnector;
+	InterpreterConnector *interpreterConnector;
+	
 
 };
 

@@ -4,15 +4,17 @@
 #include <string>
 #include <QObject>
 #include "Calc\Interpreter.h"
+#include <qthread.h>
 
 class InterpreterConnector : public QObject
 {
 	Q_OBJECT
 
 private:
+	static int a;
 	PR::Interpreter interpreter;
 public:
-	InterpreterConnector(QObject *parent);
+	InterpreterConnector();
 	~InterpreterConnector();
 
 private slots:
