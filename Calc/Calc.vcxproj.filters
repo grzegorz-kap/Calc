@@ -213,6 +213,9 @@
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Operator</Filter>
     </ClInclude>
+    <ClInclude Include="Assignment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -379,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="AssignmentOperator.cpp">
       <Filter>Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserAssignment.cpp">
+      <Filter>Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="Assignment.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -215,7 +215,7 @@ namespace PR
 		}
 
 		stackToOnpAll();
-		
+		changeIfAssignment();
 		if (lexAnalyzer.hasNext())
 			return true;
 		else

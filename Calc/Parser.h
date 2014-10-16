@@ -11,6 +11,7 @@ using std::make_unique;
 
 #include "Token.h"
 #include "SNumber.h"
+#include "Assignment.h"
 #include "Operator.h"
 #include "functions.h"
 #include "CalcException.h"
@@ -51,6 +52,7 @@ namespace PR
 		void onComma();
 		void onSemicolon();
 		bool onColon();
+		void changeIfAssignment();
 
 		void stackToOnpUntilToken(TOKEN_CLASS type,bool remove=true);
 	};
