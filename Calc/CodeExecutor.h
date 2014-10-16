@@ -46,11 +46,15 @@ namespace PR
 		void onOperator();
 		void onMatrixEnd();
 		void onFunction();
-		void onIF();
+		
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);
 		bool isKeyword(TOKEN_CLASS _class);
 		void setIPTo(const vector<TOKEN_CLASS> &set,int balance);
+
+		void onIF();
+		bool checkIF();
+		bool checkWhile();
 
 		void next()
 		{
@@ -66,6 +70,7 @@ namespace PR
 
 		static const vector<TOKEN_CLASS> IF_FIND;
 		static const vector<TOKEN_CLASS> ELSE_FIND;
+		static const vector<TOKEN_CLASS> WHILE_FIND;
 	};
 }
 

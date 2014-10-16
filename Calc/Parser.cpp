@@ -204,6 +204,7 @@ namespace PR
 			case TOKEN_CLASS::IF_KEYWORD:
 			case TOKEN_CLASS::ELSE_KEYWORD:
 			case TOKEN_CLASS::END_IF:
+			case TOKEN_CLASS::END_WHILE:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
 				stop = true;
