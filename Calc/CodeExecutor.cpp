@@ -128,6 +128,9 @@ namespace PR
 			case TOKEN_CLASS::MATRIX_END:
 				onMatrixEnd();
 				break;
+			case TOKEN_CLASS::ASSIGNMENT_TARGET:
+				stack.push_back(shared_ptr<Token>(i->get()));
+				break;
 			default:
 				throw CalcException("!");
 			}

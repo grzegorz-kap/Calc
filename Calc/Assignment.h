@@ -19,6 +19,7 @@ namespace PR
 		~Assignment();
 
 		void loadTarget(vector<unique_ptr<Token>> &vec);
+		vector<unique_ptr<Token>>& get() { return target; }
 	};
 
 }
