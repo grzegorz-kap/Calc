@@ -44,7 +44,10 @@ namespace PR
 		Instruction::const_iterator i;
 		Ip ip;
 		CodeGenerator code;
+		
+		/* Should not be used directly! */
 		variables internal_vars;
+		variables &vars_ref;
 
 		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);

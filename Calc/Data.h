@@ -149,6 +149,11 @@ namespace PR
 			return false;
 		}
 
+		virtual bool isOutput() const
+		{
+			return false;
+		}
+
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()

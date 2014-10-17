@@ -9,16 +9,19 @@ namespace PR
 	const vector<TOKEN_CLASS> CodeExecutor::WHILE_FIND = { TOKEN_CLASS::END_WHILE };
 
 	CodeExecutor::CodeExecutor()
+		:vars_ref(internal_vars)
 	{
 	}
 
 	CodeExecutor::CodeExecutor(const string &name)
-		:code(name)
+		:code(name),
+		vars_ref(internal_vars)
 	{
 	}
 
 	CodeExecutor::CodeExecutor(FileLoader &&file)
-		: code(file)
+		: code(file),
+		vars_ref(internal_vars)
 	{
 	}
 
@@ -135,26 +138,32 @@ namespace PR
 				onAssignment();
 				break;
 			case TOKEN_CLASS::ID:
-				stack.push_back(internal_vars[(*i)->getLexemeR()]);
+				stack.push_back(vars_ref[(*i)->getLexemeR()]);
 				break;
 			default:
 				throw CalcException("!");
 			}
 		}
-		return stack.back();
+		
+		if (stack.size())
+			return stack.back();
+		else
+			return make_shared<Data>();
 	}
 
 	void CodeExecutor::onAssignment()
 	{
 		auto &target = std::dynamic_pointer_cast<Assignment>(*stack.begin())->getTarget();
 		auto data = std::next(stack.begin());
-		for (auto ii = target.begin(); ii != target.end(); ii++)
+		
+		if ((*data)->isOutput())
 		{
-			if (data == stack.end())
-				throw CalcException("!");
 
-			internal_vars[(*ii)->getLexemeR()] = *data;
-			data++;
+		}
+		else
+		{
+			vars_ref[target[0]->getLexemeR()] = *data;
+			stack.erase(stack.begin(),stack.begin()+2);
 		}
 	}
 
