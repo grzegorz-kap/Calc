@@ -63,6 +63,16 @@ namespace PR
 		{
 		}
 
+		Value<T> rows() const
+		{
+			return Value<T>(1);
+		}
+
+		Value<T> cols() const
+		{
+			return Value<T>(1);
+		}
+
 		virtual bool operator == (const bool &b) const override
 		{
 			return value != 0;

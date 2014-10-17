@@ -121,6 +121,7 @@
     <ClInclude Include="Operator.h" />
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
+    <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
     <ClInclude Include="RightArrayDivision.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Operator.cpp" />
     <ClCompile Include="OperatorException.cpp" />
     <ClCompile Include="OperatorsFactory.cpp" />
+    <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />

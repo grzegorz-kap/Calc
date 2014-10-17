@@ -170,12 +170,12 @@ namespace PR
 
 		void cols(int arg){ N = arg; }
 
-		int rows() const 
+		Value<T> rows() const 
 		{ 
 			return mx.size(); 
 		}
 
-		int cols() const
+		Value<T> cols() const
 		{
 			if (mx.size() > 0)
 				return (int)mx[0].size();

@@ -214,6 +214,9 @@
       <Filter>Operator</Filter>
     </ClInclude>
     <ClInclude Include="Assignment.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -387,6 +390,9 @@
       <Filter>Parsing</Filter>
     </ClCompile>
     <ClCompile Include="Assignment.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

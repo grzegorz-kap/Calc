@@ -113,6 +113,16 @@ namespace PR
 			return false;
 		}
 
+		virtual shared_ptr<Data> get_rows() const override
+		{
+			return make_shared<T>(get_derived()->rows());
+		}
+
+		virtual shared_ptr<Data> get_cols() const override
+		{
+			return make_shared<T>(get_derived()->cols());
+		}
+
 		
 	private:
 		const T * get_derived() const

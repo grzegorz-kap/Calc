@@ -3,7 +3,7 @@
 
 
 namespace PR
-{/*
+{
 	Function::Function()
 	{
 	}
@@ -20,13 +20,13 @@ namespace PR
 
 	void Function::set(const vector<shared_ptr<Data>> &args)
 	{
-		throw CalcException("Uniplemented arguments assigment!");
+		arguments = args;
 	}
 
 	void Function::checkArgsCount(int i)
 	{
 		if (i<min_args_count || i>max_args_count)
 			throw CalcException("Wrong number of parameters");
-	}*/
+	}
 
 }

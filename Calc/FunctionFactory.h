@@ -11,7 +11,7 @@ using std::string;
 
 namespace PR
 {
-	/*class FunctionFactory
+	class FunctionFactory
 	{
 	public:
 		static unique_ptr<Function> load_in(const string &name);
@@ -25,6 +25,6 @@ namespace PR
 
 		FunctionFactory & operator = (const FunctionFactory &b) = delete;
 		FunctionFactory(const FunctionFactory &b) = delete;
-	};*/
+	};
 }
 

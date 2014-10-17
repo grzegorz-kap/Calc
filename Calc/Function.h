@@ -10,17 +10,18 @@ using std::shared_ptr;
 
 #include "CalcException.h"
 #include "Matrix.h"
+#include "Output.h"
 
 
 namespace PR
-{/*
+{
 	class Function
 	{
 	protected:
 		string name;
 		int max_args_count;
 		int min_args_count;
-
+		vector<shared_ptr<Data>> arguments;
 	public:
 		Function();
 		~Function();
@@ -34,5 +35,5 @@ namespace PR
 	protected:
 
 		void checkArgsCount(int i);
-	};*/
+	};
 }

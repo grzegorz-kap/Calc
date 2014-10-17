@@ -5,7 +5,7 @@ namespace PR
 {
 	void CodeExecutor::onFunction()
 	{
-		/*string name = (*i)->getLexeme();
+		string name = (*i)->getLexeme();
 		auto ii = find(TOKEN_CLASS::FUNCTON_ARGS_END, true);
 		vector<shared_ptr<Data>> args(std::next(ii), stack.end());
 		stack.erase(ii, stack.end());
@@ -16,6 +16,6 @@ namespace PR
 			function->set(args);
 			stack.push_back(function->run());
 			return;
-		}*/
+		}
 	}
 }

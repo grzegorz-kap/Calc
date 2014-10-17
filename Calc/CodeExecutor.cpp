@@ -131,6 +131,12 @@ namespace PR
 			case TOKEN_CLASS::MATRIX_END:
 				onMatrixEnd();
 				break;
+			case TOKEN_CLASS::FUNCTON_ARGS_END:
+				stack.push_back(make_shared<Token>(FUNCTON_ARGS_END));
+				break;
+			case TOKEN_CLASS::FUNCTION:
+				onFunction();
+				break;
 			case TOKEN_CLASS::ASSIGNMENT_TARGET:
 				stack.push_back(make_shared<Assignment>(*(*i)->castToAssignment()));
 				break;
@@ -158,13 +164,21 @@ namespace PR
 		
 		if ((*data)->isOutput())
 		{
-
+			auto source = std::dynamic_pointer_cast<Output>(*data)->getOutput();
+			auto oo = source.begin();
+			for (auto ii = target.begin(); ii != target.end(); ii++)
+			{
+				if (oo == source.end())
+					throw CalcException("!");
+				vars_ref[(*ii)->getLexemeR()] = *oo;
+				oo++;
+			}
 		}
 		else
 		{
 			vars_ref[target[0]->getLexemeR()] = *data;
-			stack.erase(stack.begin(),stack.begin()+2);
 		}
+		stack.erase(stack.begin(), stack.begin() + 2);
 	}
 
 	void CodeExecutor::onOperator()
@@ -179,5 +193,17 @@ namespace PR
 		return ip->size() == 1 && ip->at(0)->getClass() == _class;
 	}
 
-	
+	vector<shared_ptr<Data>>::iterator CodeExecutor::find(TOKEN_CLASS _class, bool ex)
+	{
+		for (auto ii = stack.end() - 1; ii >= stack.begin(); ii--)
+		{
+			if ((*ii)->_type == TYPE::TOKEN && dynamic_cast<Token *>(ii->get())->getClass() == _class)
+				return ii;
+		}
+
+		if (ex)
+			throw CalcException("Expected token not found!");
+		else
+			return stack.end();
+	}
 }

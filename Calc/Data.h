@@ -17,6 +17,9 @@ namespace PR
 	template <class T>
 	class Numeric;
 
+	template <class T>
+	class Value;
+
 	class Token;
 
 	enum class TYPE : int
@@ -33,7 +36,8 @@ namespace PR
 		M_DOUBLE,
 		CM_INT,
 		CM_FLOAT,
-		CM_DOUBLE
+		CM_DOUBLE,
+		OUTPUT
 	};
 
 	class Data
@@ -131,6 +135,16 @@ namespace PR
 		virtual string toString()
 		{
 			return string("");
+		}
+
+		virtual shared_ptr<Data> get_rows() const
+		{
+			throw UnimplementedException("Cannot do this on virtual type");
+		}
+
+		virtual shared_ptr<Data> get_cols() const
+		{
+			throw UnimplementedException("Cannot do this on virtual type");
 		}
 
 		template<class T>
