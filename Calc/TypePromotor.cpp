@@ -36,6 +36,12 @@ namespace PR
 
 	void TypePromotor::convertTo(TYPE type, shared_ptr<Data> &a , shared_ptr<Data> &dest)
 	{
+		if (a->isOutput())
+		{
+			convertOutputTo(type, a, dest);
+			return;
+		}
+
 		switch (type)
 		{
 		case TYPE::M_INT:
@@ -45,7 +51,7 @@ namespace PR
 			dest = a->convert_numeric<Matrix<float>>();
 			break;
 		case TYPE::M_DOUBLE:
-			dest = a->convert_numeric<Matrix<float>>();
+			dest = a->convert_numeric<Matrix<double>>();
 			break;
 		case TYPE::INT:
 			dest = a->convert_numeric<Value<int>>();
@@ -56,5 +62,18 @@ namespace PR
 		case TYPE::DOUBLE:
 			dest = a->convert_numeric<Value<double>>();
 		}
+	}
+
+	void TypePromotor::convertOutputTo(TYPE type,shared_ptr<Data> &a, shared_ptr<Data> &dest)
+	{
+		auto vec = std::dynamic_pointer_cast<Output>(a)->getOutput();
+		MatrixBuilder<double> builder;
+		for (auto iter = vec.begin(); iter != vec.end(); iter++)
+		{
+			convertTo(type, *iter, *iter);
+			builder.add(*iter);
+		}
+		builder.setAndCheckSize();
+		dest = builder.getPtr();
 	}
 }

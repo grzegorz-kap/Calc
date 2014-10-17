@@ -262,7 +262,7 @@ namespace PR
 			-> Matrix<decltype(T() + U())>
 		{
 			if (B.M == 1 && B.N == 1)
-				*this * B.mx[0][0];
+				return *this * B.mx[0][0];
 			else if (M == 1 && N == 1)
 				return B * mx[0][0];
 

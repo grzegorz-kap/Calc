@@ -13,6 +13,7 @@ namespace PR
 	template<class Z>
 	class Matrix;
 
+	class Output;
 	/*
 	Class wrapper for standard C++ numeric types
 	*/

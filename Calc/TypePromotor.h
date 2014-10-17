@@ -10,6 +10,8 @@ using std::vector;
 #include "Value.h"
 #include "Matrix.h"
 #include "ComplexNumber.h"
+#include "Output.h"
+#include "MatrixBuilder.h"
 
 namespace PR
 {
@@ -24,5 +26,6 @@ namespace PR
 		
 	private:
 		static void convertTo(TYPE type, shared_ptr<Data> &a, shared_ptr<Data> &dest);
+		static void convertOutputTo(TYPE type, shared_ptr<Data> &a, shared_ptr<Data> &dest);
 	};
 }

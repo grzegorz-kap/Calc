@@ -21,10 +21,12 @@ namespace PR
 	class Value;
 
 	class Token;
+	class Output;
 
 	enum class TYPE : int
 	{
 		TOKEN,
+		OUTPUT,
 		INT ,
 		FLOAT,
 		DOUBLE,
@@ -36,8 +38,7 @@ namespace PR
 		M_DOUBLE,
 		CM_INT,
 		CM_FLOAT,
-		CM_DOUBLE,
-		OUTPUT
+		CM_DOUBLE
 	};
 
 	class Data
@@ -168,6 +169,11 @@ namespace PR
 			return false;
 		}
 
+		virtual Output * cast_output()
+		{
+			throw CastException("Cannot cast to Output");
+		}
+
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()
@@ -186,6 +192,7 @@ namespace PR
 					return make_shared<T>(*dynamic_cast<Value<float> *>(this));
 				case TYPE::INT:
 					return make_shared<T>(*dynamic_cast<Value<int> *> (this));
+
 				default:
 					throw CastException("Cannot cast to different numeric type! Probably not numeric type");
 			}

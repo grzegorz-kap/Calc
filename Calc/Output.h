@@ -9,6 +9,9 @@ using std::shared_ptr;
 
 namespace PR
 {
+	template<class V>
+	class Value;
+
 	class Output :
 		public Data
 	{
@@ -32,6 +35,12 @@ namespace PR
 		{
 			return true;
 		}
+
+		virtual Output * cast_output() override
+		{
+			return dynamic_cast<Output *>(this);
+		}
+
 	};
 }
 
