@@ -5,8 +5,8 @@
 namespace PR
 {
 	Assignment::Assignment()
-		:Token(TOKEN_CLASS::ASSIGNMENT_TARGET)
 	{
+		set_class(TOKEN_CLASS::ASSIGNMENT_TARGET);
 	}
 
 

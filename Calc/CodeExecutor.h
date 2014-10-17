@@ -2,7 +2,9 @@
 
 #include <memory>
 #include <vector>
+#include <map>
 
+using std::map;
 using std::unique_ptr;
 using std::vector;
 
@@ -17,6 +19,8 @@ using std::vector;
 
 namespace PR
 {
+	typedef map<string, shared_ptr<Data>> variables;
+
 	class CodeExecutor
 	{
 	public:
@@ -40,12 +44,14 @@ namespace PR
 		Instruction::const_iterator i;
 		Ip ip;
 		CodeGenerator code;
+		variables internal_vars;
 
 		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 		void onOperator();
 		void onMatrixEnd();
 		void onFunction();
+		void onAssignment();
 		
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);

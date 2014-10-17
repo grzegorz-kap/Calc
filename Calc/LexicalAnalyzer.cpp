@@ -143,12 +143,11 @@ namespace PR
 
 	TOKEN_CLASS LexicalAnalyzer::whatNext()
 	{
+		
 		if (!hasNext())
 			return TOKEN_CLASS::NONE;
 		else
 		{
-			if (!what_next_flag)
-				read();
 			what_next_flag = true;
 			return q.front()->getClass();
 		}

@@ -13,13 +13,18 @@ namespace PR
 	class Assignment :
 		public Token
 	{
-		vector<unique_ptr<Token>> target;
+		vector<shared_ptr<Token>> target;
 	public:
 		Assignment();
 		~Assignment();
 
 		void loadTarget(vector<unique_ptr<Token>> &vec);
-		vector<unique_ptr<Token>>& get() { return target; }
+		vector<shared_ptr<Token>>& getTarget() { return target; }
+
+		virtual Assignment * castToAssignment() override
+		{
+			return dynamic_cast<Assignment *>(this);
+		}
 	};
 
 }

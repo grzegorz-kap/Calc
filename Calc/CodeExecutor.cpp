@@ -129,13 +129,33 @@ namespace PR
 				onMatrixEnd();
 				break;
 			case TOKEN_CLASS::ASSIGNMENT_TARGET:
-				stack.push_back(shared_ptr<Token>(i->get()));
+				stack.push_back(make_shared<Assignment>(*(*i)->castToAssignment()));
+				break;
+			case TOKEN_CLASS::ASSIGNMENT:
+				onAssignment();
+				break;
+			case TOKEN_CLASS::ID:
+				stack.push_back(internal_vars[(*i)->getLexemeR()]);
 				break;
 			default:
 				throw CalcException("!");
 			}
 		}
 		return stack.back();
+	}
+
+	void CodeExecutor::onAssignment()
+	{
+		auto &target = std::dynamic_pointer_cast<Assignment>(*stack.begin())->getTarget();
+		auto data = std::next(stack.begin());
+		for (auto ii = target.begin(); ii != target.end(); ii++)
+		{
+			if (data == stack.end())
+				throw CalcException("!");
+
+			internal_vars[(*ii)->getLexemeR()] = *data;
+			data++;
+		}
 	}
 
 	void CodeExecutor::onOperator()
