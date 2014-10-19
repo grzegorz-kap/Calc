@@ -148,7 +148,10 @@
     <ClCompile Include="CalcException.cpp" />
     <ClCompile Include="CastException.cpp" />
     <ClCompile Include="CodeExecutor.cpp" />
+    <ClCompile Include="CodeExecutorDefinitions.cpp" />
     <ClCompile Include="CodeExecutorFunction.cpp" />
+    <ClCompile Include="CodeExecutorIF.cpp" />
+    <ClCompile Include="CodeExecutorWHILE.cpp" />
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />

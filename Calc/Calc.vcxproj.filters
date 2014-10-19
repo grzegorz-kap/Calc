@@ -416,5 +416,14 @@
     <ClCompile Include="TranspositionOperator.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
+    <ClCompile Include="CodeExecutorDefinitions.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorIF.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorWHILE.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
