@@ -179,6 +179,11 @@ namespace PR
 			return Value<decltype(T() + U())>(value < b.value);
 		}
 
+		Value<T> transpose() const
+		{
+			return Value<T>(value);
+		}
+
 		template <class X>
 		operator Value<X>()
 		{

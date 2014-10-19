@@ -128,6 +128,11 @@ namespace PR
 			throw UnimplementedException("Cannot do relational operator on this type");
 		}
 
+		virtual shared_ptr<Data> transposition() const 
+		{
+			throw UnimplementedException("Cannot do transposition operator on this type");
+		}
+
 		virtual bool operator == (const bool &b) const
 		{
 			throw UnimplementedException("Cannot do bool eq on this type");

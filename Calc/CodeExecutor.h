@@ -13,7 +13,6 @@ using std::vector;
 #include "CalcException.h"
 #include "Operator.h"
 #include "MatrixBuilder.h"
-#include "MatrixTransposer.h"
 #include "TokensTypes.h"
 #include "FunctionFactory.h"
 #include "MatrixBuilderFactory.h"

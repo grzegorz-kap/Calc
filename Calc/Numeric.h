@@ -123,6 +123,11 @@ namespace PR
 			return make_shared<T>(get_derived()->cols());
 		}
 
+		virtual shared_ptr<Data> transposition() const override
+		{
+			return make_shared<T>(get_derived()->transpose());
+		}
+
 		
 	private:
 		const T * get_derived() const

@@ -28,6 +28,7 @@ using std::function;
 #include "LTOperator.h"
 #include "NeOperator.h"
 #include "AssignmentOperator.h"
+#include "TranspositionOperator.h"
 
 namespace PR
 {

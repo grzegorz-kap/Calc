@@ -540,6 +540,27 @@ namespace PR
 
 		}
 
+		Matrix<T> transpose() const
+		{
+			Matrix<T> C(N, M);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					C.mx[j][i] = mx[i][j];
+			return std::move(C);
+		}
+
+		template<class X>
+		operator Value<X>()
+		{
+			return Value<X>((X)mx[0][0]);
+		}
+
+		
+		operator int ()
+		{
+			return int(mx[0][0]);
+		}
+
 		private:
 			bool checkIfTrue() const
 			{
@@ -562,24 +583,6 @@ namespace PR
 							return true;
 				return false;
 			}
-		public:
-
-
-		/*
-		Cast operators
-		*/
-
-		template<class X>
-		operator Value<X>()
-		{
-			return Value<X>((X)mx[0][0]);
-		}
-
-		
-		operator int ()
-		{
-			return int(mx[0][0]);
-		}
 	};
 };
 

@@ -115,7 +115,6 @@
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="MatrixBuilderFactory.h" />
     <ClInclude Include="MatrixExponentiationOperator.h" />
-    <ClInclude Include="MatrixTransposer.h" />
     <ClInclude Include="MultiplicationOperator.h" />
     <ClInclude Include="NeOperator.h" />
     <ClInclude Include="NumberReader.h" />
@@ -136,6 +135,7 @@
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TokenizerHelper.h" />
     <ClInclude Include="TokensTypes.h" />
+    <ClInclude Include="TranspositionOperator.h" />
     <ClInclude Include="TypePromotor.h" />
     <ClInclude Include="UnimplementedException.h" />
     <ClInclude Include="USubtractionOperator.h" />
@@ -184,7 +184,6 @@
     <ClCompile Include="MatrixBuilder.cpp" />
     <ClCompile Include="MatrixBuilderFactory.cpp" />
     <ClCompile Include="MatrixExponentiationOperator.cpp" />
-    <ClCompile Include="MatrixTransposer.cpp" />
     <ClCompile Include="MultiplicationOperator.cpp" />
     <ClCompile Include="NeOperator.cpp" />
     <ClCompile Include="NumberReader.cpp" />
@@ -208,6 +207,7 @@
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />
+    <ClCompile Include="TranspositionOperator.cpp" />
     <ClCompile Include="TypePromotor.cpp" />
     <ClCompile Include="UnimplementedException.cpp" />
     <ClCompile Include="USubtractionOperator.cpp" />
