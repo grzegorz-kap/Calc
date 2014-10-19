@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Matrix.h"
+#include "IMatrixBuilder.h"
+#include "TypePromotor.h"
 #include "Data.h"
 #include "Token.h"
 
@@ -8,6 +10,7 @@ namespace PR
 {
 	template<class T>
 	class MatrixBuilder
+		: public IMatrixBuilder
 	{
 	private:
 		shared_ptr<Matrix<T>> matrix_ptr;
@@ -21,6 +24,7 @@ namespace PR
 		TYPE type;
 		unsigned int idx;
 		bool new_row_flag;
+		TYPE d_type;
 
 	public:
 		
@@ -33,14 +37,18 @@ namespace PR
 			new_row_flag(true)
 		{
 			mx = matrix_ptr->getVector();
+			d_type = matrix_ptr->_type;
 		};
 
 		~MatrixBuilder()
 		{
 		}
 
-		void add(shared_ptr<Data> &data)
+		virtual void add(shared_ptr<Data> &data) override
 		{
+			if (data->isNumeric()&&data->_type != d_type)
+				TypePromotor::convertTo(d_type, data, data);
+
 			init_source(data);
 			if (data->isNumeric())
 			{
@@ -53,12 +61,12 @@ namespace PR
 			}
 		}
 
-		shared_ptr<Data> getPtr() 
+		virtual shared_ptr<Data> getPtr()  const override
 		{ 
 			return matrix_ptr; 
 		}
 
-		void setAndCheckSize(bool f = true)
+		virtual void setAndCheckSize(bool f = true) override
 		{
 			m = mx->size();
 			n = m ? mx->at(0).size() : 0;

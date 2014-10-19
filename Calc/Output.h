@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 using std::vector;
 using std::shared_ptr;
@@ -39,6 +40,22 @@ namespace PR
 		virtual Output * cast_output() override
 		{
 			return dynamic_cast<Output *>(this);
+		}
+
+		virtual TYPE max_type() const override
+		{
+			return (*std::max_element(out.begin(), out.end(),
+				[](const shared_ptr<Data> &a, const shared_ptr<Data> &b){return a->_type < b->_type; }))->_type;
+		}
+
+		virtual bool isNumeric() const override
+		{
+			for (auto iter = out.begin(); iter != out.end(); ++iter)
+			{
+				if (!(*iter)->isNumeric())
+					return false;
+			}
+			return true;
 		}
 
 	};

@@ -148,6 +148,11 @@ namespace PR
 			throw UnimplementedException("Cannot do this on virtual type");
 		}
 
+		virtual TYPE max_type() const
+		{
+			return _type;
+		}
+
 		template<class T>
 		Numeric<T> * cast_numeric()
 		{

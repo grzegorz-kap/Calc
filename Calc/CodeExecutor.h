@@ -16,6 +16,7 @@ using std::vector;
 #include "MatrixTransposer.h"
 #include "TokensTypes.h"
 #include "FunctionFactory.h"
+#include "MatrixBuilderFactory.h"
 
 namespace PR
 {

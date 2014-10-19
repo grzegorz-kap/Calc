@@ -219,6 +219,12 @@
     <ClInclude Include="Output.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IMatrixBuilder.h">
+      <Filter>Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixBuilderFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -393,6 +399,12 @@
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="Output.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IMatrixBuilder.cpp">
+      <Filter>Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixBuilderFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
