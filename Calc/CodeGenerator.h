@@ -45,6 +45,7 @@ namespace PR
 		Ip get();
 		Ip get(int n);
 		int getLP(){ return lp; }
+		void setIp(int lpA){ ip = code.begin() + lpA; lp = lpA; }
 
 		void inc();
 		void dec();

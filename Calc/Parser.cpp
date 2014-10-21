@@ -107,7 +107,7 @@ namespace PR
 	void Parser::onOperator()
 	{ 
 		while (stackBack() == TOKEN_CLASS::OPERATOR &&
-			i->castToOperator() < stack.back()->castToOperator())
+			*(i->castToOperator()) < *(stack.back()->castToOperator()))
 			stackToOnp();
 		stack.push_back(std::move(i));
 	}
@@ -204,6 +204,7 @@ namespace PR
 			case TOKEN_CLASS::ELSE_KEYWORD:
 			case TOKEN_CLASS::END_IF:
 			case TOKEN_CLASS::END_WHILE:
+			case TOKEN_CLASS::WHILE_KEYWORD:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
 				stop = true;

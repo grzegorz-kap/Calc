@@ -5,7 +5,7 @@
 namespace PR
 {
 	AssignmentOperator::AssignmentOperator()
-		:Operator("=",10,2,EVAULATED::LEFT)
+		:Operator("=",100,2,EVAULATED::LEFT)
 	{
 	}
 

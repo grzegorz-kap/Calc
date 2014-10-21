@@ -42,6 +42,8 @@ namespace PR
 	private:
 		vector<shared_ptr<Data>> stack;
 		Instruction::const_iterator i;
+		vector<int> conditions;
+		vector<int> jumbs;
 		Ip ip;
 		CodeGenerator code;
 		
@@ -63,6 +65,9 @@ namespace PR
 
 		void onIF();
 		bool checkIF();
+
+		void onWHILE();
+		void onWhileEnd();
 		bool checkWhile();
 
 		void next()
