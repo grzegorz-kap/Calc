@@ -138,7 +138,7 @@ namespace PR
 		unique_ptr<Token> t = std::move(q.front());
 		q.pop();
 		what_next_flag = false;
-		return t;
+		return std::move(t);
 	}
 
 	TOKEN_CLASS LexicalAnalyzer::whatNext()

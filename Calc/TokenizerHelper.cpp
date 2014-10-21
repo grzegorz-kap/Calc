@@ -14,7 +14,8 @@ namespace PR
 		{ "continue",TOKEN_CLASS::CONTINUE_KEYWORD },
 		{ "break",TOKEN_CLASS::BREAK_KEYWORD },
 		{ "end",TOKEN_CLASS::END_KEYWORD },
-		{ "else",TOKEN_CLASS::ELSE_KEYWORD }
+		{ "else",TOKEN_CLASS::ELSE_KEYWORD },
+		{ "function",TOKEN_CLASS::FUNCTION_KEYWORD }
 	};
 
 	bool TokenizerHelper::isKeyWord(const string &word)

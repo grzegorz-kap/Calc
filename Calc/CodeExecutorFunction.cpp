@@ -17,5 +17,7 @@ namespace PR
 			stack.push_back(function->run());
 			return;
 		}
+		
+		auto functione = FunctionFactory::load_external(name);
 	}
 }

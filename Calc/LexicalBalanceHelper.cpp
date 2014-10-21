@@ -76,6 +76,7 @@ namespace PR
 		case TOKEN_CLASS::IF_KEYWORD:
 		case TOKEN_CLASS::FOR_KEYWORD:
 		case TOKEN_CLASS::WHILE_KEYWORD:
+		case TOKEN_CLASS::FUNCTION_KEYWORD:
 			onInstructionKeyWord(token);
 			break;
 		case TOKEN_CLASS::BREAK_KEYWORD:
@@ -108,6 +109,9 @@ namespace PR
 			break;
 		case TOKEN_CLASS::WHILE_KEYWORD:
 			token.set_class(END_WHILE);
+			break;
+		case TOKEN_CLASS::FUNCTION_KEYWORD:
+			token.set_class(TOKEN_CLASS::END_FUNCTION);
 			break;
 		}
 		key_word_mode.pop_back();

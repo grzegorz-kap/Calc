@@ -102,9 +102,6 @@
     <ClInclude Include="SizeFunction.h">
       <Filter>Function</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionFactory.h">
-      <Filter>Function</Filter>
-    </ClInclude>
     <ClInclude Include="CodeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,6 +231,15 @@
     <ClInclude Include="TranspositionOperator.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
+    <ClInclude Include="FunctionFactory.h">
+      <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalFunction.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalFunctionLoader.h">
+      <Filter>Function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -280,9 +286,6 @@
     </ClCompile>
     <ClCompile Include="CodeExecutorFunction.cpp">
       <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="FunctionFactory.cpp">
-      <Filter>Function</Filter>
     </ClCompile>
     <ClCompile Include="CodeGenerator.cpp">
       <Filter>Source Files</Filter>
@@ -424,6 +427,15 @@
     </ClCompile>
     <ClCompile Include="CodeExecutorWHILE.cpp">
       <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionFactory.cpp">
+      <Filter>Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalFunction.cpp">
+      <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalFunctionLoader.cpp">
+      <Filter>Function</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

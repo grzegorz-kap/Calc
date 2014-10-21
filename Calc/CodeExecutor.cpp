@@ -108,6 +108,9 @@ namespace PR
 
 	void CodeExecutor::onAssignment()
 	{
+		if (stack.size() < 2)
+			throw CalcException("!");
+
 		auto &target = std::dynamic_pointer_cast<Assignment>(*stack.begin())->getTarget();
 		auto data = std::next(stack.begin());
 		

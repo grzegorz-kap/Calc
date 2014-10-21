@@ -1,12 +1,1 @@
-if 10<2*2
-	a=3
-else
-	a=2
-end
-
-i = 100
-a=0
-while i>0
-	a = a+i
-	i = i-1
-end
+x=pows(3)

@@ -8,6 +8,7 @@ namespace PR
 
 	FunctionFactory::FunctionFactory()
 	{
+		builded_in.insert({ "size", [](){return make_unique<SizeFunction>(); } });
 	}
 
 
@@ -17,8 +18,29 @@ namespace PR
 
 	unique_ptr<Function> FunctionFactory::load_in(const string &name)
 	{
-		if (name == "size")
-			return unique_ptr<Function>(new SizeFunction());
+		loadInstance();
+		auto result = instance->builded_in.find(name);
+		if (result == instance->builded_in.end())
+			return nullptr;
+		else
+			return result->second();
+	}
+
+	ExternalFunction& FunctionFactory::load_external(const string &name)
+	{
+		loadInstance();
+		auto result = instance->externals.find(name);
+		if (result == instance->externals.end() || result->second.getUpdated() )
+		{
+			instance->readExternal(name);
+		}
+		return ExternalFunction();
+	}
+
+	bool FunctionFactory::readExternal(const string &name)
+	{
+		ExternalFunctionLoader fun(name);
+		return true;
 	}
 
 	void FunctionFactory::loadInstance()
