@@ -42,19 +42,26 @@ namespace PR
 		loadAndSetIp();
 	}
 
-	auto CodeGenerator::getInstruction()
-		-> decltype(ip)
+	Ip CodeGenerator::get()
 	{
 		if (eof())
 			throw CodeGeneratorException("No instrunction to load");
 		return ip;
 	}
 
+	Ip CodeGenerator::get(int a)
+	{
+		if (eof())
+			throw CodeGeneratorException("No instrunction to load");
+		return code.begin() + a;
+	}
+
+
 	void CodeGenerator::dec()
 	{
 		if (ip == code.begin())
 			throw CodeGeneratorException("Begin of code reached!");
-
+		lp--;
 		ip--;
 	}
 
@@ -62,8 +69,8 @@ namespace PR
 	{
 		if (eof())
 			throw CodeGeneratorException("End of code reached!");
-
 		ip++;
+		lp++;
 	}
 
 	bool CodeGenerator::eof()
@@ -82,6 +89,7 @@ namespace PR
 		Parser parser(lexicalAnalyzer);
 		end = !parser.parse();
 		ip = code.insert(code.end(), std::move(parser.getInstruction()));
+		lp = code.size() - 1;
 	}
 
 }

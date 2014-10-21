@@ -27,6 +27,7 @@ namespace PR
 	private:
 		Code code;
 		Ip ip;
+		int lp;
 		bool end;
 		LexicalAnalyzer lexicalAnalyzer;
 
@@ -41,14 +42,16 @@ namespace PR
 		void setInput(FileLoader &file);
 		
 		bool eof(void);
-		auto getInstruction() ->decltype(ip);
+		Ip get();
+		Ip get(int n);
+		int getLP(){ return lp; }
 
 		void inc();
 		void dec();
 		
 	private:
 		void load(void);
-		void loadAndSetIp(){ load(); ip = code.begin(); }
+		void loadAndSetIp(){ lp = 0; load(); ip = code.begin(); }
 	};
 
 

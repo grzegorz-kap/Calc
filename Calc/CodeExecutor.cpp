@@ -31,7 +31,7 @@ namespace PR
 	{
 		while (!code.eof())
 		{
-			ip = code.getInstruction();
+			ip = code.get();
 			
 			if (checkIF())
 				continue;

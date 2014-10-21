@@ -68,13 +68,13 @@ namespace PR
 		void next()
 		{
 			code.inc();
-			ip = code.getInstruction();
+			ip = code.get();
 		}
 
 		void prev()
 		{
 			code.dec();
-			ip = code.getInstruction();
+			ip = code.get();
 		}
 
 		static const vector<TOKEN_CLASS> IF_FIND;
