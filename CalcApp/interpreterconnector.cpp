@@ -9,19 +9,13 @@ InterpreterConnector::~InterpreterConnector()
 {
 }
 
-void InterpreterConnector::commandToInterpreter(std::string command)
+void InterpreterConnector::commandToInterpreter(const std::string &command)
 {
 	interpreter.work(command);	
 }
 
+/* Boost signals2 */
 void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data) 
 {
-	int a = 2;
-	a = 3 * 3;
-}
-
-void InterpreterConnector::interpreterOutput(const std::string &name, const shared_ptr<PR::Data> &data)
-{
-	int a = 2 + 2;
-	return;
+	emit interpreterResponded(QString(str) + "=\n" + data->toString().c_str());
 }

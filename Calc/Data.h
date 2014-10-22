@@ -139,7 +139,7 @@ namespace PR
 			throw UnimplementedException("Cannot do bool eq on this type");
 		}
 
-		virtual string toString()
+		virtual string toString() const
 		{
 			return string("");
 		}

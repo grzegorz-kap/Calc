@@ -21,6 +21,8 @@ namespace PR
 	void CodeExecutor::onWhileEnd()
 	{
 		ip = code.get(conditions.back());
+		assignment_flag = true;
+		output_off_flag = true;
 		if (*run() == false)
 		{
 			conditions.pop_back();
@@ -37,6 +39,8 @@ namespace PR
 		int balance = ip->at(0)->getKeywordBalance();
 		next();
 		conditions.push_back(code.getLP());
+		assignment_flag = true;
+		output_off_flag = true;
 		if (*run() == false)
 		{
 			next();

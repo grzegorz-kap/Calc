@@ -17,8 +17,10 @@ public:
 	~InterpreterConnector();
 
 private slots:
-	void commandToInterpreter(std::string command);
-	void interpreterOutput(const std::string &name, const shared_ptr<PR::Data> &data);
+	void commandToInterpreter(const std::string &command);
+
+signals:
+	void interpreterResponded(const QString&);
 };
 
 #endif // INTERPRETERCONNECTOR_H

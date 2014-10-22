@@ -514,14 +514,14 @@ namespace PR
 		int * getM_P(){ return &M; }
 		int * getN_P(){ return &N; }
 
-		string toString() const
+		virtual string toString() const override
 		{
 			string temp = "";
 			for (int i = 0; i < M; i++)
 			{
 				temp.append("\n");
 				for (int j = 0; j < N; j++)
-					temp.append("\t" + mx[i][j].toString());
+					temp.append("\t" + std::to_string(mx[i][j]));
 			}
 			return temp;
 		}

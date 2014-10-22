@@ -19,26 +19,41 @@
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QSplitter" name="splitter">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Command line</string>
+          <string>Console</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="CommandLine" name="commandLine"/>
+           <widget class="Console" name="console"/>
           </item>
          </layout>
         </widget>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>Console</string>
+          <string>Command line</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
           <item>
-           <widget class="QTextEdit" name="console"/>
+           <widget class="CommandLine" name="commandLine"/>
           </item>
          </layout>
         </widget>
@@ -79,7 +94,12 @@
   <customwidget>
    <class>CommandLine</class>
    <extends>QPlainTextEdit</extends>
-   <header>commandline.h</header>
+   <header location="global">commandline.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Console</class>
+   <extends>QTextEdit</extends>
+   <header>console.h</header>
   </customwidget>
  </customwidgets>
  <resources>

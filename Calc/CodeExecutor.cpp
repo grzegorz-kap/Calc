@@ -152,12 +152,16 @@ namespace PR
 				if (oo == source.end())
 					throw CalcException("!");
 				assignment.push_back(vars_ref.insert({ (*ii)->getLexemeR(), *oo }));
+				if (assignment.back().second == false)
+					assignment.back().first->second = *oo;
 				oo++;
 			}
 		}
 		else
 		{
 			assignment.push_back(vars_ref.insert({ target[0]->getLexemeR(), *data }));
+			if (assignment.back().second == false)
+				assignment.back().first->second = *data;
 		}
 		stack.erase(stack.begin(), stack.begin() + 2);
 		assignment_flag = true;
