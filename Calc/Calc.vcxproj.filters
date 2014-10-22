@@ -443,5 +443,11 @@
     <ClCompile Include="SignalEmitter.cpp">
       <Filter>Service</Filter>
     </ClCompile>
+    <ClCompile Include="CodeExecutorAssignment.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorId.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

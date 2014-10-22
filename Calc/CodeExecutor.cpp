@@ -88,7 +88,7 @@ namespace PR
 				onAssignment();
 				break;
 			case TOKEN_CLASS::ID:
-				stack.push_back(vars_ref[(*i)->getLexemeR()]);
+				onID();
 				break;
 			case TOKEN_CLASS::OUTPUT_OFF:
 				output_off_flag = true;

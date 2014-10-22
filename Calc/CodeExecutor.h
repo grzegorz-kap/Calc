@@ -53,44 +53,34 @@ namespace PR
 		
 		/* Should not be used directly! */
 		variables internal_vars;
+		/* ============================ */
+
 		variables &vars_ref;
 		static variables globals;
 
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
 		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
+		
 		void onOperator();
 		void onMatrixEnd();
-		
 		void onFunction();
 		void onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name);
-		
 		void onAssignment();
 		void defaultAssignment();
-		
-		shared_ptr<Data> pop();
-		void pushToken(TOKEN_CLASS t);
-		bool isKeyword(TOKEN_CLASS _class);
-		void setIPTo(const vector<TOKEN_CLASS> &set,int balance);
-
 		void onIF();
 		bool checkIF();
-
 		void onWHILE();
 		void onWhileEnd();
 		bool checkWhile();
+		void onID();
 
-		void next()
-		{
-			code.inc();
-			ip = code.get();
-		}
-
-		void prev()
-		{
-			code.dec();
-			ip = code.get();
-		}
+		shared_ptr<Data> pop();
+		void pushToken(TOKEN_CLASS t);
+		bool isKeyword(TOKEN_CLASS _class);
+		void setIPTo(const vector<TOKEN_CLASS> &set, int balance);
+		void next(){ code.inc();	ip = code.get(); }
+		void prev(){ code.dec();	ip = code.get(); }
 
 		static const vector<TOKEN_CLASS> IF_FIND;
 		static const vector<TOKEN_CLASS> ELSE_FIND;
