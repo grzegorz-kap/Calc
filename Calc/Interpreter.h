@@ -1,5 +1,5 @@
   #pragma once
-
+#include "export.h"
 #include <string>
 #include <chrono>
 #include <iostream>
@@ -9,7 +9,7 @@
 using std::string;
 using std::cout;
 
-#include "export.h"
+
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
 #include "CodeExecutor.h"
@@ -19,6 +19,7 @@ namespace PR
 {
 	class CALC_API Interpreter
 	{
+		static variables main_vars;
 	public:
 		Interpreter();
 		~Interpreter();

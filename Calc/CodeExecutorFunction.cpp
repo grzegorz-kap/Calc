@@ -15,9 +15,28 @@ namespace PR
 		{
 			function->set(args);
 			stack.push_back(function->run());
-			return;
 		}
+		else
+			onExternalFunction(args,name);
 		
-		auto functione = FunctionFactory::load_external(name);
+	}
+
+	void CodeExecutor::onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name)
+	{
+		auto function = FunctionFactory::load_external(name);
+		CodeExecutor exec(function,args);
+		exec.start();
+
+		const vector<string>& output = function.getOutput();
+		shared_ptr<Output> results = make_shared<Output>();
+		for (const string &str : output)
+		{
+			auto result = exec.vars_ref.find(str);
+			if (result == exec.vars_ref.end())
+				break;
+			results->add(result->second);
+		}
+		stack.push_back(results);
+		
 	}
 }

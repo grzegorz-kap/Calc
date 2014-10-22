@@ -11,16 +11,27 @@ namespace PR
 	{
 	}
 
-	CodeExecutor::CodeExecutor(const string &name)
-		:code(name),
-		vars_ref(internal_vars)
+	CodeExecutor::CodeExecutor(variables &ref)
+		:
+		vars_ref(ref)
 	{
 	}
 
-	CodeExecutor::CodeExecutor(FileLoader &&file)
-		: code(file),
-		vars_ref(internal_vars)
+
+	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
+		:
+		vars_ref(internal_vars),
+		code(fun.getCode())
 	{
+		auto input = fun.getInput();
+		int i = 0;
+		int N = input.size();
+		for (const shared_ptr<Data> &data : args)
+		{
+			if (i >= N)
+				throw CalcException("Too many input parameters in function call (" + fun.getName() + ")");
+			vars_ref[input[i++]] = data;
+		}
 	}
 
 	CodeExecutor::~CodeExecutor()
@@ -29,21 +40,18 @@ namespace PR
 
 	void CodeExecutor::start()
 	{
+		output_off_flag = false;
 		while (!code.eof())
 		{
 			ip = code.get();
-			
 			if (checkIF())
 				continue;
 			if (checkWhile())
 				continue;
-			
 			run();
 			code.inc();
 		}
 	}
-
-	
 
 	void CodeExecutor::setIPTo(const vector<TOKEN_CLASS> &set,int balance)
 	{
@@ -61,6 +69,8 @@ namespace PR
 	shared_ptr<Data> CodeExecutor::run()
 	{
 		stack.clear();
+		assignment_flag = false;
+		assignment.clear();
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
 			switch ((*i)->getClass())
@@ -95,15 +105,27 @@ namespace PR
 			case TOKEN_CLASS::ID:
 				stack.push_back(vars_ref[(*i)->getLexemeR()]);
 				break;
+			case TOKEN_CLASS::OUTPUT_OFF:
+				output_off_flag = true;
+				break;
 			default:
 				throw CalcException("!");
 			}
 		}
-		
+
+		if (assignment_flag == false)
+			defaultAssignment();
+
+		output_off_flag = false;
 		if (stack.size())
 			return stack.back();
 		else
 			return make_shared<Data>();
+	}
+
+	void CodeExecutor::defaultAssignment()
+	{
+
 	}
 
 	void CodeExecutor::onAssignment()
@@ -122,15 +144,16 @@ namespace PR
 			{
 				if (oo == source.end())
 					throw CalcException("!");
-				vars_ref[(*ii)->getLexemeR()] = *oo;
+				assignment.push_back(vars_ref.insert({ (*ii)->getLexemeR(), *oo }));
 				oo++;
 			}
 		}
 		else
 		{
-			vars_ref[target[0]->getLexemeR()] = *data;
+			assignment.push_back(vars_ref.insert({ target[0]->getLexemeR(), *data }));
 		}
 		stack.erase(stack.begin(), stack.begin() + 2);
+		assignment_flag = true;
 	}
 
 	void CodeExecutor::onOperator()

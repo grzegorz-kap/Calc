@@ -12,6 +12,7 @@ using std::vector;
 #include "ComplexNumber.h"
 #include "Output.h"
 #include "MatrixBuilder.h"
+#include "MatrixBuilderFactory.h"
 
 namespace PR
 {

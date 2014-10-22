@@ -18,7 +18,7 @@ namespace PR
 		Assignment();
 		~Assignment();
 
-		void loadTarget(vector<unique_ptr<Token>> &vec);
+		void loadTarget(vector<shared_ptr<Token>> &vec);
 		vector<shared_ptr<Token>>& getTarget() { return target; }
 
 		virtual Assignment * castToAssignment() override

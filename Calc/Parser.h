@@ -22,8 +22,8 @@ namespace PR
 	class Parser
 	{
 	private:
-		vector<unique_ptr<Token>> onp;
-		vector<unique_ptr<Token>> stack;
+		vector<shared_ptr<Token>> onp;
+		vector<shared_ptr<Token>> stack;
 		bool stop;
 		LexicalAnalyzer& lexAnalyzer;
 		unique_ptr<Token> i;
@@ -32,7 +32,7 @@ namespace PR
 		~Parser();
 		virtual bool parse();
 
-		vector<unique_ptr<Token>> & getInstruction(){ return onp; }
+		vector<shared_ptr<Token>> & getInstruction(){ return onp; }
 	private:
 		
 		TOKEN_CLASS stackBack() const;

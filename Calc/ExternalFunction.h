@@ -27,8 +27,13 @@ namespace PR
 		void addInput(const string &name){ input.push_back(name); }
 		void setName(string &&nameA){ name = std::move(nameA); }
 		void setName(const string &nameA){ name = nameA; }
+		const string & getName() const{ return name; }
 
-		void addInstruction(Instruction &&in);
+		const vector<string>& getInput()const { return input; }
+		const vector<string>& getOutput() const{ return output; }
+		const Code & getCode()const{ return body; }
+
+		void addInstruction(Instruction &&in){ body.push_back(std::move(in)); }
 	
 
 		ExternalFunction();

@@ -42,8 +42,8 @@ namespace PR
 
 	void Parser::onFunction()
 	{
-		onp.push_back(make_unique<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
-		stack.push_back(make_unique<Token>(*i));
+		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+		stack.push_back(make_shared<Token>(*i));
 	}
 
 	void Parser::onID()
@@ -53,11 +53,11 @@ namespace PR
 		{
 			Token token = *i;
 			token.set_class(TOKEN_CLASS::FUNCTION);
-			stack.push_back(make_unique<Token>(token));
-			onp.push_back(make_unique<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+			stack.push_back(make_shared<Token>(token));
+			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		}
 		else
-			onp.push_back(make_unique<Token>(*i));
+			onp.push_back(make_shared<Token>(*i));
 	}
 
 	void Parser::onNewLine()
@@ -149,6 +149,7 @@ namespace PR
 		case PARSE_MODE::KEYWORD:
 			stop = true;
 			stackToOnpAll();
+			onp.push_back(make_shared<Token>(TOKEN_CLASS::OUTPUT_OFF));
 			break;
 		}
 	}

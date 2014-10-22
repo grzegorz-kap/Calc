@@ -16,6 +16,7 @@ using std::vector;
 #include "TokensTypes.h"
 #include "FunctionFactory.h"
 #include "MatrixBuilderFactory.h"
+#include "ExternalFunction.h"
 
 namespace PR
 {
@@ -25,8 +26,7 @@ namespace PR
 	{
 	public:
 		CodeExecutor();
-		CodeExecutor(const string &name);
-		CodeExecutor(FileLoader &&file);
+		CodeExecutor(variables &ref);
 		~CodeExecutor();
 		void setInput(const string &in)
 		{
@@ -46,17 +46,25 @@ namespace PR
 		vector<int> jumbs;
 		Ip ip;
 		CodeGenerator code;
+		bool output_off_flag;
+		bool assignment_flag;
+		vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> assignment;
 		
 		/* Should not be used directly! */
 		variables internal_vars;
 		variables &vars_ref;
 
+		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
 		shared_ptr<Data> run();
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class,bool ex=false);
 		void onOperator();
 		void onMatrixEnd();
+		
 		void onFunction();
+		void onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name);
+		
 		void onAssignment();
+		void defaultAssignment();
 		
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);

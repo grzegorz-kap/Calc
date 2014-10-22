@@ -20,6 +20,14 @@ namespace PR
 		loadAndSetIp();
 	}
 
+	CodeGenerator::CodeGenerator(const Code &codeA)
+		: code(codeA)
+	{
+		ip = code.begin();
+		lp = 0;
+		end = true;
+	}
+
 	CodeGenerator::~CodeGenerator()
 	{
 	}

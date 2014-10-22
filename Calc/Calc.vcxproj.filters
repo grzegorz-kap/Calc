@@ -213,9 +213,6 @@
     <ClInclude Include="Assignment.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Output.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
       <Filter>Service\Matrix</Filter>
     </ClInclude>
@@ -239,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="ExternalFunctionLoader.h">
       <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputEmitter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="ExternalFunctionLoader.cpp">
       <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputEmitter.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

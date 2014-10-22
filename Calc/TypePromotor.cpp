@@ -24,8 +24,8 @@ namespace PR
 	{
 		auto max = std::max_element(vec.begin(), vec.end(),
 			[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool{
-			return a->_type < b->_type;
-		})->get()->_type;
+			return a->max_type() < b->max_type();
+		})->get()->max_type();
 
 		for (auto iter = vec.begin(); iter != vec.end(); iter++)
 		{
@@ -67,13 +67,13 @@ namespace PR
 	void TypePromotor::convertOutputTo(TYPE type,shared_ptr<Data> &a, shared_ptr<Data> &dest)
 	{
 		auto vec = std::dynamic_pointer_cast<Output>(a)->getOutput();
-		MatrixBuilder<double> builder;
+		auto builder =  MatrixBuilderFactory::get(type);
 		for (auto iter = vec.begin(); iter != vec.end(); iter++)
 		{
 			convertTo(type, *iter, *iter);
-			builder.add(*iter);
+			builder->add(*iter);
 		}
-		builder.setAndCheckSize();
-		dest = builder.getPtr();
+		builder->setAndCheckSize();
+		dest = builder->getPtr();
 	}
 }

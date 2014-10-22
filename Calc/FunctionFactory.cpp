@@ -28,19 +28,17 @@ namespace PR
 
 	ExternalFunction& FunctionFactory::load_external(const string &name)
 	{
-		loadInstance();
-		auto result = instance->externals.find(name);
-		if (result == instance->externals.end() || result->second.getUpdated() )
-		{
+	
+		
 			instance->readExternal(name);
-		}
-		return ExternalFunction();
+		return instance->externals[name];
 	}
 
 	bool FunctionFactory::readExternal(const string &name)
 	{
-		ExternalFunctionLoader fun(name);
-		return true;
+			ExternalFunctionLoader fun(name);
+			instance->externals[name] = fun.get();
+			return false;
 	}
 
 	void FunctionFactory::loadInstance()

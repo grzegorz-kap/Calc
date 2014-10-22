@@ -48,7 +48,7 @@ namespace PR
 			code.inc();
 		}
 
-		if (loadSymbol() != TOKEN_CLASS::FUNCTION_KEYWORD)
+		if (loadSymbol() != TOKEN_CLASS::END_FUNCTION)
 			throw CalcException("Function end not found!");
 	}
 

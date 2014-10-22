@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Interpreter.h"
 
-#include "SNumber.h"
-
 namespace PR
 {
+	variables Interpreter::main_vars = {};
+
 	Interpreter::Interpreter()
 	{		
 		if (Data::TYPE_MAP_BUILDED == false)
@@ -26,12 +26,14 @@ namespace PR
 
 	void Interpreter::work(const string &command)
 	{
-		
+		CodeExecutor exec(Interpreter::main_vars);
+		exec.setInput(command);
+		exec.start();
 	}
 
 	void Interpreter::workFromFile(const string &fileName)
 	{
-		CodeExecutor exec;
+		CodeExecutor exec(Interpreter::main_vars);
 		exec.setInput(FileLoader(fileName));
 		exec.start();
 	}

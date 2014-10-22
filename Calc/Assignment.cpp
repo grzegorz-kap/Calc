@@ -14,7 +14,7 @@ namespace PR
 	{
 	}
 
-	void Assignment::loadTarget(vector<unique_ptr<Token>> &vec)
+	void Assignment::loadTarget(vector<shared_ptr<Token>> &vec)
 	{
 		bool multi = vec.front()->getClass() == TOKEN_CLASS::MATRIX_START ? true : false;
 		decltype(vec.begin()) i;
