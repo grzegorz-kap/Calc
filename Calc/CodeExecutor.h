@@ -54,6 +54,7 @@ namespace PR
 		/* Should not be used directly! */
 		variables internal_vars;
 		variables &vars_ref;
+		static variables globals;
 
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
 		shared_ptr<Data> run();
