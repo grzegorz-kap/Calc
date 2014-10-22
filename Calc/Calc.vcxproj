@@ -41,11 +41,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Boost\include\boost-1_56\;C:\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Boost\include\boost-1_56\;C:\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,6 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CALC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -69,6 +70,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CALC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,10 +127,10 @@
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
     <ClInclude Include="Output.h" />
-    <ClInclude Include="OutputEmitter.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
     <ClInclude Include="RightArrayDivision.h" />
+    <ClInclude Include="SignalEmitter.h" />
     <ClInclude Include="SizeFunction.h" />
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
@@ -200,12 +202,12 @@
     <ClCompile Include="OperatorException.cpp" />
     <ClCompile Include="OperatorsFactory.cpp" />
     <ClCompile Include="Output.cpp" />
-    <ClCompile Include="OutputEmitter.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
     <ClCompile Include="ParserAssignment.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
+    <ClCompile Include="SignalEmitter.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
     <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">

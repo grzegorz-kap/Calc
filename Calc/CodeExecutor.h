@@ -17,6 +17,7 @@ using std::vector;
 #include "FunctionFactory.h"
 #include "MatrixBuilderFactory.h"
 #include "ExternalFunction.h"
+#include "SignalEmitter.h"
 
 namespace PR
 {

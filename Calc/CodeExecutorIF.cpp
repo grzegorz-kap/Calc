@@ -31,6 +31,8 @@ namespace PR
 	{
 		int balance = ip->at(0)->getKeywordBalance();
 		next();
+		assignment_flag = true;
+		output_off_flag = true;
 		if (*run() == false)
 		{
 			next();

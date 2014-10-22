@@ -240,8 +240,8 @@
     <ClInclude Include="Output.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="OutputEmitter.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SignalEmitter.h">
+      <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -440,8 +440,8 @@
     <ClCompile Include="ExternalFunctionLoader.cpp">
       <Filter>Function</Filter>
     </ClCompile>
-    <ClCompile Include="OutputEmitter.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SignalEmitter.cpp">
+      <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

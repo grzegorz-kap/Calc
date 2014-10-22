@@ -4,8 +4,6 @@
 
 namespace PR
 {
-	
-
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
 	{
@@ -16,7 +14,6 @@ namespace PR
 		vars_ref(ref)
 	{
 	}
-
 
 	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
 		:
@@ -69,7 +66,6 @@ namespace PR
 	shared_ptr<Data> CodeExecutor::run()
 	{
 		stack.clear();
-		assignment_flag = false;
 		assignment.clear();
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
@@ -115,8 +111,16 @@ namespace PR
 
 		if (assignment_flag == false)
 			defaultAssignment();
+		if (!output_off_flag)
+		{
+			for (const auto & i : assignment)
+			{
+				SignalEmitter::get()->call(i.first->first, i.first->second);
+			}
+		}
 
 		output_off_flag = false;
+		assignment_flag = false;
 		if (stack.size())
 			return stack.back();
 		else
@@ -125,7 +129,10 @@ namespace PR
 
 	void CodeExecutor::defaultAssignment()
 	{
-
+		auto target = make_shared<Assignment>();
+		target->getTarget().push_back(make_shared<Token>("ans", TOKEN_CLASS::ID));
+		stack.insert(stack.begin(), std::move(target));
+		onAssignment();
 	}
 
 	void CodeExecutor::onAssignment()

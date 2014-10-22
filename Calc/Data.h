@@ -1,4 +1,5 @@
  #pragma once
+#include "export.h"
 
 #include <memory>
 #include <typeindex>
@@ -41,7 +42,7 @@ namespace PR
 		CM_DOUBLE
 	};
 
-	class Data
+	class CALC_API  Data
 	{
 	protected:
 		
