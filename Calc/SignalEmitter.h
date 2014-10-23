@@ -14,6 +14,8 @@
 namespace PR
 {
 	class CodeExecutor;
+	class Interpreter;
+
 	class CALC_API SignalEmitter
 	{
 		typedef boost::signals2::signal < void(const char *, const Data *) > DataPointerSender;
@@ -39,6 +41,7 @@ namespace PR
 		auto connect_errors(const ExceptionSenderSlot &slot)->boost::signals2::connection;
 		
 		friend class CodeExecutor;
+		friend class Interpreter;
 	};
 
 }

@@ -2,6 +2,7 @@
 #define CONSOLE_H
 
 #include <qtextbrowser.h>
+#include "Sync.h"
 
 class Console : public QTextBrowser
 {
@@ -13,7 +14,9 @@ public:
 
 public slots:
 	void append(const QString &);
-
+	void insertHtml(const QString &);
+private:
+	void cursorToEnd();
 };
 
 #endif // CONSOLE_H

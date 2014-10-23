@@ -23,6 +23,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -114,6 +115,7 @@
     </ClCompile>
     <ClCompile Include="interpreterconnector.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sync.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="calcapp.h">
@@ -140,6 +142,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sync.h" />
     <CustomBuild Include="interpreterconnector.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing interpreterconnector.h...</Message>

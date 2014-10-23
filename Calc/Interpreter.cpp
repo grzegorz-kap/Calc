@@ -33,8 +33,7 @@ namespace PR
 		}
 		catch (CalcException ex)
 		{
-			int  a = 2;
-			a = 2 * 2;
+			SignalEmitter::get()->call(ex);
 		}
 	}
 

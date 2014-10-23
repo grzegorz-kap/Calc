@@ -77,6 +77,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_console.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Sync.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="calcapp.h">
@@ -101,6 +104,9 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_calcapp.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sync.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
