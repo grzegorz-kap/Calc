@@ -28,7 +28,14 @@ namespace PR
 	{
 		CodeExecutor exec(Interpreter::main_vars);
 		exec.setInput(command);
-		exec.start();
+		try{
+			exec.start();
+		}
+		catch (CalcException ex)
+		{
+			int  a = 2;
+			a = 2 * 2;
+		}
 	}
 
 	void Interpreter::workFromFile(const string &fileName)

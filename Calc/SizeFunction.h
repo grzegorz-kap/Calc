@@ -11,7 +11,7 @@ namespace PR
 		SizeFunction();
 		~SizeFunction();
 
-		virtual shared_ptr<Data> run();
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

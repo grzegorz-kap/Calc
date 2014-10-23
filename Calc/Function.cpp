@@ -20,13 +20,14 @@ namespace PR
 
 	void Function::set(const vector<shared_ptr<Data>> &args)
 	{
+		checkArgsCount(args.size());
 		arguments = args;
 	}
 
 	void Function::checkArgsCount(int i)
 	{
 		if (i<min_args_count || i>max_args_count)
-			throw CalcException("Wrong number of parameters");
+			throw CalcException("Wrong number of parameters in function call '"+name+"'.");
 	}
 
 }
