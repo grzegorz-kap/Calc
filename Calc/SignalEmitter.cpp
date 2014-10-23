@@ -21,14 +21,25 @@ namespace PR
 		return instance;
 	}
 
-	auto SignalEmitter::connect(const DataPointerSenderSlot &slot)
+	auto SignalEmitter::connect_output(const DataPointerSenderSlot &slot)
 		-> boost::signals2::connection
 	{
-		return sig.connect(slot);
+		return sig_data_pointer.connect(slot);
+	}
+
+	auto SignalEmitter::connect_errors(const ExceptionSenderSlot &slot)
+		-> boost::signals2::connection
+	{
+		return sig_exception.connect(slot);
+	}
+
+	void SignalEmitter::call(const CalcException &exception)
+	{
+		sig_exception(exception.getMessageR().c_str(), exception.getPosition());
 	}
 
 	void SignalEmitter::call(const string &name, const shared_ptr<Data> &data)
 	{
-		sig(name.c_str(), data.get());
+		sig_data_pointer(name.c_str(), data.get());
 	}
 }

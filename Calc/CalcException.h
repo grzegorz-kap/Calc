@@ -19,9 +19,10 @@ namespace PR
 		CalcException(const string &messageA, int positionA);
 		~CalcException();
 
-		string getMessage(){ return message; }
-		string getCommand(){ return command; }
-		int getPosition(){ return position; }
+		string getMessage()const{ return message; }
+		const string& getMessageR()const{ return message; }
+		string getCommand()const{ return command; }
+		int getPosition()const{ return position; }
 	};
 
 }

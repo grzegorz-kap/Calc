@@ -12,6 +12,7 @@ class InterpreterConnector : public QObject
 private:
 	PR::Interpreter interpreter;
 	void signal_receiver(const char *, const PR::Data *);
+	void errors_receiver(const char *, int);
 public:
 	InterpreterConnector();
 	~InterpreterConnector();

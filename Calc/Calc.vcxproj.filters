@@ -102,9 +102,6 @@
     <ClInclude Include="SizeFunction.h">
       <Filter>Function</Filter>
     </ClInclude>
-    <ClInclude Include="CodeGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CalcException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
@@ -204,9 +201,6 @@
     <ClInclude Include="i_order_map.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="FileLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
@@ -244,7 +238,13 @@
       <Filter>Service</Filter>
     </ClInclude>
     <ClInclude Include="FileLoaderException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGenerator.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLoader.h">
+      <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,9 +292,6 @@
     </ClCompile>
     <ClCompile Include="CodeExecutorFunction.cpp">
       <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeGenerator.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CalcException.cpp">
       <Filter>Exceptions</Filter>
@@ -395,9 +392,6 @@
     <ClCompile Include="i_order_map.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="FileLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AssignmentOperator.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
@@ -453,7 +447,13 @@
       <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="FileLoaderException.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGenerator.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoader.cpp">
+      <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

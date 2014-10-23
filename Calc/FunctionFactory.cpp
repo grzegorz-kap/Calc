@@ -11,7 +11,6 @@ namespace PR
 		builded_in.insert({ "size", [](){return make_unique<SizeFunction>(); } });
 	}
 
-
 	FunctionFactory::~FunctionFactory()
 	{
 	}
