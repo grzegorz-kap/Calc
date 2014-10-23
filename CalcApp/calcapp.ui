@@ -6,60 +6,63 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>568</height>
+    <width>665</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CalcApp</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QSplitter" name="splitter">
-        <property name="mouseTracking">
-         <bool>true</bool>
+     <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>30</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QGroupBox" name="console_box">
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Console</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
         </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>Console</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="Console" name="console"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Command line</string>
-         </property>
-         <layout class="QHBoxLayout" name="_2">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetNoConstraint</enum>
+        <item>
+         <widget class="Console" name="console"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="commandLine_box">
+       <property name="title">
+        <string>Command</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="CommandLine" name="commandLine">
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>200</height>
+           </size>
           </property>
-          <item>
-           <widget class="CommandLine" name="commandLine"/>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </item>
-     </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -68,7 +71,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>735</width>
+     <width>665</width>
      <height>21</height>
     </rect>
    </property>
@@ -98,8 +101,8 @@
   </customwidget>
   <customwidget>
    <class>Console</class>
-   <extends>QTextEdit</extends>
-   <header>console.h</header>
+   <extends>QTextBrowser</extends>
+   <header location="global">console.h</header>
   </customwidget>
  </customwidgets>
  <resources>

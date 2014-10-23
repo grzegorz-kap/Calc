@@ -213,7 +213,7 @@ namespace PR
 				stop = true;
 				break;
 			default:
-				throw "Exception parsing!";
+				throw CalcException("Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
 				break;
 			}
 		}

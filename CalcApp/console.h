@@ -1,9 +1,9 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include <QTextEdit>
+#include <qtextbrowser.h>
 
-class Console : public QTextEdit
+class Console : public QTextBrowser
 {
 	Q_OBJECT
 
