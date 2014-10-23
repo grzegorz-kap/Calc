@@ -101,6 +101,7 @@
     <ClInclude Include="ExternalFunction.h" />
     <ClInclude Include="ExternalFunctionLoader.h" />
     <ClInclude Include="FileLoader.h" />
+    <ClInclude Include="FileLoaderException.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="FunctionFactory.h" />
     <ClInclude Include="functions.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="ExternalFunction.cpp" />
     <ClCompile Include="ExternalFunctionLoader.cpp" />
     <ClCompile Include="FileLoader.cpp" />
+    <ClCompile Include="FileLoaderException.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="GeOperator.cpp" />

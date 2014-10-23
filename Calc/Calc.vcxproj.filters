@@ -243,6 +243,9 @@
     <ClInclude Include="SignalEmitter.h">
       <Filter>Service</Filter>
     </ClInclude>
+    <ClInclude Include="FileLoaderException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -448,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="CodeExecutorId.cpp">
       <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoaderException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

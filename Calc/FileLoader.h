@@ -5,6 +5,8 @@
 #include <fstream>
 #include <memory>
 
+#include "FileLoaderException.h"
+
 using std::unique_ptr;
 using std::string;
 
@@ -13,8 +15,8 @@ namespace PR
 	class FileLoader
 	{
 		std::ifstream file;
+		std::string name;
 	public:
-		FileLoader();
 		FileLoader(const string &name);
 		~FileLoader();
 
@@ -23,6 +25,12 @@ namespace PR
 		string loadAll();
 		bool eof() const { return file.eof(); }
 	
+	private:
+		void onReadAttempt()
+		{
+			if (!file.is_open())
+				throw FileLoaderException("File: '" + name + "' is not opened or does not exist. ");
+		}
 	};
 }
 

@@ -28,9 +28,7 @@ namespace PR
 
 	ExternalFunction& FunctionFactory::load_external(const string &name)
 	{
-	
-		
-			instance->readExternal(name);
+		instance->readExternal(name);
 		return instance->externals[name];
 	}
 
