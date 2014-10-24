@@ -17,6 +17,8 @@ namespace PR
 				break;
 		}
 
+		max_type = IMatrixBuilder::TYPES.at(max_type);
+
 		if (ii < stack.begin())
 			throw CalcException("Matrix start not found");
 
