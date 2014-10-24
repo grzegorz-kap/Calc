@@ -66,9 +66,14 @@ namespace PR
 		int k = argumentsNum - 1;
 		for (int i = 0; i < argumentsNum; i++)
 		{
-			arguments[i] = iter[k--];
+			arguments[i] = std::move(iter[k--]);
 		}
-		TypePromotor::promote(arguments);
+
+		if (argumentsNum == 2)
+			TypePromotor::promote(arguments[0], arguments[1]);
+		else if (argumentsNum > 2)
+			TypePromotor::promote(arguments);
+
 		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
 	}
 }

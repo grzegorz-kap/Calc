@@ -18,6 +18,7 @@ namespace PR
 {
 	class TypePromotor
 	{
+		static bool(*ptr_max_lambda)(const shared_ptr<Data>&, const shared_ptr<Data>&);
 	public:
 		TypePromotor();
 		~TypePromotor();

@@ -3,6 +3,12 @@
 
 namespace PR
 {
+	decltype(TypePromotor::ptr_max_lambda) TypePromotor::ptr_max_lambda = 
+		[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool
+	{
+		return a->max_type() < b->max_type();
+	};
+
 	TypePromotor::TypePromotor()
 	{
 	}
@@ -14,18 +20,15 @@ namespace PR
 
 	void TypePromotor::promote(shared_ptr<Data> &a, shared_ptr<Data> &b)
 	{
-		if (a < b)
-			convertTo(b->_type, a, a);
-		else if (a>b)
-			convertTo(a->_type, b, b);
+		if (a->max_type() < b->max_type())
+			convertTo(b->max_type(), a, a);
+		else if (a->max_type()>b->max_type())
+			convertTo(a->max_type(), b, b);
 	}
 
 	void TypePromotor::promote(vector<shared_ptr<Data>> &vec)
 	{
-		auto max = std::max_element(vec.begin(), vec.end(),
-			[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool{
-			return a->max_type() < b->max_type();
-		})->get()->max_type();
+		auto max = std::max_element(vec.begin(), vec.end(),ptr_max_lambda)->get()->max_type();
 
 		for (auto iter = vec.begin(); iter != vec.end(); iter++)
 		{
