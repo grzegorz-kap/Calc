@@ -76,7 +76,7 @@ namespace PR
 
 		virtual bool operator == (const bool &b) const override
 		{
-			return value != 0;
+			return value ==b;
 		}
 
 		template <class U>
@@ -182,6 +182,11 @@ namespace PR
 		Value<T> transpose() const
 		{
 			return Value<T>(value);
+		}
+
+		virtual string toString() const override
+		{
+			return "\n\t"+std::to_string(value);
 		}
 
 		template <class X>
