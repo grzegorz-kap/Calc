@@ -6,15 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
-    <height>458</height>
+    <width>775</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CalcApp</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QGroupBox" name="files_box">
+      <property name="title">
+       <string>Current Folder</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="FileList" name="fileList">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item>
      <widget class="QSplitter" name="splitter">
       <property name="sizePolicy">
@@ -64,6 +86,48 @@
       </widget>
      </widget>
     </item>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Workspace</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QTableWidget" name="tableWidget"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Command Histry</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QTreeWidget" name="treeWidget">
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -71,7 +135,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>665</width>
+     <width>775</width>
      <height>21</height>
     </rect>
    </property>
@@ -103,6 +167,11 @@
    <class>Console</class>
    <extends>QTextBrowser</extends>
    <header location="global">console.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileList</class>
+   <extends>QListWidget</extends>
+   <header location="global">filelist.h</header>
   </customwidget>
  </customwidgets>
  <resources>

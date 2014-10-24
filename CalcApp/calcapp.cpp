@@ -1,11 +1,12 @@
 #include "calcapp.h"
 
-#include <qmetatype.h>
+
 
 
 CalcApp::CalcApp(QWidget *parent)
 	: QMainWindow(parent),
-	interpreterConnector(new InterpreterConnector())
+	interpreterConnector(new InterpreterConnector()),
+	fileWatcher(QDir::currentPath(),this)
 {
 	ui.setupUi(this);
 	interpreterConnector = new InterpreterConnector();
@@ -15,6 +16,9 @@ CalcApp::CalcApp(QWidget *parent)
 	t->start();
 	interpreterConnector->moveToThread(t);
 	
+	QString temp = QDir::currentPath();
+
+	fileWatcher.addPath(QDir::currentPath());
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
 	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, interpreterConnector, _1, _2));
@@ -29,7 +33,10 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.console, SLOT(appendWithoutRealase(const QString &)));
 	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.console, SLOT(append(const QString&)));
 	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.console, SLOT(insertHtml(const QString&)));
+	connect(&fileWatcher, SIGNAL(directoryChanged(const QString&)), &fileWatcher, SLOT(changed(const QString &)));
+	connect(&fileWatcher, SIGNAL(sendFileList(const QStringList &)), ui.fileList, SLOT(set(const QStringList &)));
 
+	fileWatcher.changed(QDir::currentPath());
 }
 
 CalcApp::~CalcApp()

@@ -28,6 +28,7 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 	if (e->key() == Qt::Key_C && e->modifiers()&Qt::ControlModifier)
 	{
 		PR::SignalEmitter::get()->call_stop();
+		emit commandEntered(QString("Canceled."));
 	}
 	
 

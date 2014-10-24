@@ -65,6 +65,9 @@ namespace PR
 		assignment.clear();
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
+			if (CodeExecutor::stop_computing)
+				return nullptr;
+
 			switch ((*i)->getClass())
 			{
 			case TOKEN_CLASS::NUMBER:

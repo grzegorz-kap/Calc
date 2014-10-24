@@ -3,10 +3,12 @@
 
 #include <QtWidgets/QMainWindow>
 #include <qthread.h>
-
+#include <qmetatype.h>
+#include <qdir.h>
 
 #include "ui_calcapp.h"
 #include "interpreterconnector.h"
+#include "FileWatcher.h"
 
 
 class CalcApp : public QMainWindow
@@ -20,7 +22,7 @@ public:
 private:
 	Ui::CalcAppClass ui;
 	InterpreterConnector *interpreterConnector;
-	
+	FileWatcher fileWatcher;
 
 };
 
