@@ -21,7 +21,9 @@ CalcApp::CalcApp(QWidget *parent)
 	
 	ui.commandLine->setFocus();
 	ui.splitter->setStretchFactor(1, 300);
+	
 	connect(ui.commandLine, SIGNAL(commandEntered(const std::string &)), interpreterConnector, SLOT(commandToInterpreter(const std::string &)));
+	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.console, SLOT(appendWithoutRealase(const QString &)));
 	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.console, SLOT(append(const QString&)));
 	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.console, SLOT(insertHtml(const QString&)));
 

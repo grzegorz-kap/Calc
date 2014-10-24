@@ -18,6 +18,12 @@ void Console::append(const QString &s)
 	Sync::get()->console_sem.release();
 }
 
+void Console::appendWithoutRealase(const QString &s)
+{
+	QTextBrowser::append(s + "\n");
+	cursorToEnd();
+}
+
 void Console::insertHtml(const QString &html)
 {
 	QTextBrowser::insertHtml(html);

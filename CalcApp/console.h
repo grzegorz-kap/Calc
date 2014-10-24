@@ -14,6 +14,7 @@ public:
 
 public slots:
 	void append(const QString &);
+	void appendWithoutRealase(const QString &);
 	void insertHtml(const QString &);
 private:
 	void cursorToEnd();

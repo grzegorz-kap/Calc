@@ -26,6 +26,7 @@ private:
 	void onKeyUpOrDown(int key);
 signals:
 	void commandEntered(const std::string &command);
+	void commandEntered(const QString &);
 };
 
 #endif // COMMANDLINE_H

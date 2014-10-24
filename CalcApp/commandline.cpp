@@ -32,6 +32,7 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 		commandIdx = commandHistory.size() - 1;
 
 		QString command = toPlainText();
+		emit commandEntered(command);
 		command.remove(0, 3);
 		emit commandEntered(command.toStdString());
 
