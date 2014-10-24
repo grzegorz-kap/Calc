@@ -234,9 +234,6 @@
     <ClInclude Include="Output.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="SignalEmitter.h">
-      <Filter>Service</Filter>
-    </ClInclude>
     <ClInclude Include="FileLoaderException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
@@ -244,6 +241,9 @@
       <Filter>Service</Filter>
     </ClInclude>
     <ClInclude Include="FileLoader.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalEmitter.h">
       <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>

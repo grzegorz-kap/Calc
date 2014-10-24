@@ -1,5 +1,5 @@
 #pragma once
-
+#include "export.h"
 #define _SCL_SECURE_NO_WARNINGS
 
 #include <boost\signals2\signal.hpp>

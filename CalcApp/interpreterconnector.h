@@ -6,6 +6,7 @@
 #include "Calc\Interpreter.h"
 #include "Calc\SignalEmitter.h"
 
+
 #include "Sync.h"
 
 class InterpreterConnector : public QObject
