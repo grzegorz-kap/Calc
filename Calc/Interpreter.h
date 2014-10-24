@@ -25,6 +25,7 @@ namespace PR
 		~Interpreter();
 		void work(const string &command);
 		void workFromFile(const string &fileName);
+		void connectStopComputing();
 	};
 }
 

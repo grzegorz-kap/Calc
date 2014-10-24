@@ -33,6 +33,12 @@ namespace PR
 		return sig_exception.connect(slot);
 	}
 
+	auto SignalEmitter::connect_stop_computing(const StopComputingSlot &slot)
+		-> boost::signals2::connection
+	{
+		return sig_stop_computing.connect(slot);
+	}
+
 	void SignalEmitter::call(const CalcException &exception)
 	{
 		sig_exception(exception.getMessageR().c_str(), exception.getPosition());
@@ -41,5 +47,10 @@ namespace PR
 	void SignalEmitter::call(const string &name, const shared_ptr<Data> &data)
 	{
 		sig_data_pointer(name.c_str(), data.get());
+	}
+
+	void SignalEmitter::call_stop()
+	{
+		sig_stop_computing();
 	}
 }

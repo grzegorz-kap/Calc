@@ -22,10 +22,13 @@ private:
 	static const QString endFontHtml;
 
 public:
-	void signal_receiver(const char *, const PR::Data *);
-	void errors_receiver(const char *, int);
 	InterpreterConnector();
 	~InterpreterConnector();
+
+	void connectStopComputing(){ interpreter.connectStopComputing(); }
+
+	void signal_receiver(const char *, const PR::Data *);
+	void errors_receiver(const char *, int);
 
 private slots:
 	void commandToInterpreter(const std::string &command);

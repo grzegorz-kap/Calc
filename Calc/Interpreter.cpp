@@ -23,6 +23,10 @@ namespace PR
 	{
 	}
 
+	void Interpreter::connectStopComputing()
+	{
+		SignalEmitter::get()->connect_stop_computing(CodeExecutor::set_stop_computing);
+	}
 
 	void Interpreter::work(const string &command)
 	{

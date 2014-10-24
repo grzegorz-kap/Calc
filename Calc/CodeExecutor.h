@@ -38,9 +38,12 @@ namespace PR
 			code.setInput(in);
 		}
 		void start();
+		static void set_stop_computing() { stop_computing = true; }
+		static void off_stop_computing(){ stop_computing = false; }
 		
 
 	private:
+		static bool stop_computing;
 		vector<shared_ptr<Data>> stack;
 		Instruction::const_iterator i;
 		vector<int> conditions;

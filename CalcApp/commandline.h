@@ -6,6 +6,8 @@
 #include <qevent.h>
 #include <qvector.h>
 
+#include "Calc\SignalEmitter.h"
+
 class CommandLine : public QPlainTextEdit
 {
 	Q_OBJECT

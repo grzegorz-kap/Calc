@@ -9,9 +9,12 @@ CalcApp::CalcApp(QWidget *parent)
 {
 	ui.setupUi(this);
 	interpreterConnector = new InterpreterConnector();
+	interpreterConnector->connectStopComputing();
+	
 	QThread *t = new QThread();
-	interpreterConnector->moveToThread(t);
 	t->start();
+	interpreterConnector->moveToThread(t);
+	
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
 	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, interpreterConnector, _1, _2));

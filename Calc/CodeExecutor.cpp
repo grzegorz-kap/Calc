@@ -5,6 +5,7 @@
 namespace PR
 {
 	variables CodeExecutor::globals = {};
+	bool CodeExecutor::stop_computing = false;
 
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
@@ -42,6 +43,12 @@ namespace PR
 		output_off_flag = false;
 		while (!code.eof())
 		{
+			if (CodeExecutor::stop_computing)
+			{
+				stop_computing = false;
+				return;
+			}
+
 			ip = code.get();
 			if (checkIF())
 				continue;
