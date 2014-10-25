@@ -44,10 +44,29 @@ namespace PR
 		{
 		}
 
+		bool onScalar(shared_ptr<Data> &data)
+		{
+			
+			TYPE s_type = data->_type;
+			if (s_type == TYPE::DOUBLE && d_type == TYPE::M_DOUBLE
+				||s_type==TYPE::R_DOUBLE && d_type==TYPE::RM_DOUBLE)
+			{
+				auto ptr = dynamic_cast<ComplexNumber<T> *>(data.get());
+				m_s = 1;
+				prepareRows();
+				mx->at(idx).push_back(*ptr);
+				return true;
+			}
+
+			if (data->isNumeric() && data->_type != d_type)
+				TypePromotor::convertTo(d_type, data, data);
+			return false;
+		}
+
 		virtual void add(shared_ptr<Data> &data) override
 		{
-			if (data->isNumeric()&&data->_type != d_type)
-				TypePromotor::convertTo(d_type, data, data);
+			if (onScalar(data))
+				return;
 
 			init_source(data);
 			if (data->isNumeric())

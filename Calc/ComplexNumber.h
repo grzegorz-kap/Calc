@@ -26,12 +26,12 @@ namespace PR
 	public:
 		ComplexNumber()
 		{
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		};
 
 		ComplexNumber(T reArg, T imArg = 0.0) : re(reArg), im(imArg)
 		{
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		};
 
 		ComplexNumber(const string &val_str)
@@ -49,7 +49,7 @@ namespace PR
 				ref = &re;
 
 			*ref = (T)atof(temp.c_str());
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		}
 
 		~ComplexNumber(){};

@@ -39,9 +39,12 @@ namespace PR
 	public:
 		static SignalEmitter* get();
 		
-		auto connect_output(const DataPointerSenderSlot &slot) -> boost::signals2::connection;
-		auto connect_errors(const ExceptionSenderSlot &slot)->boost::signals2::connection;
-		auto connect_stop_computing(const StopComputingSlot &slot)->boost::signals2::connection;
+
+		void connect_output(const DataPointerSenderSlot &slot);
+		void connect_errors(const ExceptionSenderSlot &slot);
+		void connect_stop_computing(const StopComputingSlot &slot);
+
+
 
 		void call(const string &, const shared_ptr<Data> &b);
 		void call(const CalcException &);

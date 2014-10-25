@@ -30,26 +30,26 @@ namespace PR
 		Matrix()
 			:M(0),N(0)
 		{
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		};
 
 		Matrix(const ComplexNumber<T> &b)
 			:Matrix(1,1,b)
 		{
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		}
 		
 		Matrix(Matrix<T> &&other)
 			:M(0), N(0)
 		{
 			*this = std::move(other);
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		}
 
 		Matrix(const Matrix<T> &b)
 			:mx(b.mx), M(b.M), N(b.N)
 		{
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		}
 
 		Matrix(const string &scalar)
@@ -58,7 +58,7 @@ namespace PR
 			mx.push_back(vector<ComplexNumber<T>>(1));
 			mx[0][0] = (T)atof(scalar.c_str());
 			M = N = 1;
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 		}
 
 		Matrix(int m, int n)
@@ -73,7 +73,7 @@ namespace PR
 		{
 			M = m;
 			N = n;
-			_type = Data::TYPE_MAP[typeid(*this)];
+			_type = Data::find_type(typeid(*this));
 			mx.assign(m, vector<ComplexNumber<T>>(n, value));
 		}
 

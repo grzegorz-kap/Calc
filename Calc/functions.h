@@ -17,10 +17,7 @@ namespace PR
 	template <typename T>
 	bool find(const vector<T> &search, const vector<T> &match)
 	{
-		if (std::find_first_of(search.begin(), search.end(), match.begin(), match.end()) != search.end())
-			return true;
-		else
-			return false;
+		return std::find_first_of(search.begin(), search.end(), match.begin(), match.end()) != search.end()
 	}
 
 	template <typename T>

@@ -18,18 +18,27 @@ namespace PR
 	template <class T>
 	class Numeric;
 
+	template <class T>
+	class Matrix;
+
+	template <class T>
+	class ComplexNumber;
+
 	class Token;
 	class Output;
 
 	enum class TYPE : int
 	{
+		UNKNOWN,
 		TOKEN,
 		OUTPUT,
 		DOUBLE,
+		R_DOUBLE,
 		M_DOUBLE,
+		RM_DOUBLE
 	};
 
-	class CALC_API  Data
+	class   Data
 	{
 	protected:
 		
@@ -37,9 +46,12 @@ namespace PR
 		Data();
 		~Data();
 		TYPE _type;
-		static std::unordered_map<std::type_index, TYPE> TYPE_MAP;
-		static std::unordered_map < TYPE, string > TYPE_NAME_MAP;
-		static bool TYPE_MAP_BUILDED;
+		
+		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP;
+		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP;
+
+		static TYPE find_type(const std::type_index &idx);
+		static const string & find_name(const TYPE &type);
 
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const
 		{
