@@ -6,12 +6,15 @@ using std::shared_ptr;
 using std::make_unique;
 
 #include  "Data.h"
-#include "Math.h"
+#include "Power.h"
 
 namespace PR
 {
 	template <class A>
 	class Matrix;
+
+	template <class A>
+	class ComplexNumber;
 
 	template <class T>
 	class Numeric
@@ -55,12 +58,12 @@ namespace PR
 
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const override
 		{
-			return make_shared<T>(Math::pow(*get_derived(), *b->cast_numeric<T>()->get_derived()));
+			return make_shared<T>(Power::pow(*get_derived(), *b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const override
 		{
-			return make_shared<T>(Math::mpow(*get_derived(), *b->cast_numeric<T>()->get_derived()));
+			return make_shared<T>(Power::mpow(*get_derived(), *b->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator -() const override

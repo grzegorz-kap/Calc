@@ -10,8 +10,7 @@ namespace PR
 		{
 		case TYPE::M_DOUBLE:
 			return make_unique<MatrixBuilder<double>>();
-		case TYPE::M_INT:
-			return make_unique < MatrixBuilder<int>>();
 		}
+		return nullptr;
 	}
 }

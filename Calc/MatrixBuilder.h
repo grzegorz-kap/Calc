@@ -14,12 +14,12 @@ namespace PR
 	{
 	private:
 		shared_ptr<Matrix<T>> matrix_ptr;
-		vector < vector<T>> *mx;
+		vector < vector<ComplexNumber<T>>> *mx;
 		int m_s;
 		int n_s;
 		int m;
 		int n;
-		vector<vector<T>> *mx_s;
+		vector<vector<ComplexNumber<T>>> *mx_s;
 		shared_ptr<Matrix<T>> matrix_s_ptr;
 		TYPE type;
 		unsigned int idx;
@@ -115,7 +115,7 @@ namespace PR
 
 			new_row_flag = false;
 
-			mx->insert(mx->end(), idx + m_s - mx->size(), vector<T>());
+			mx->insert(mx->end(), idx + m_s - mx->size(), vector<ComplexNumber<T>>());
 		}
 		
 		void changeIdxToEnd()

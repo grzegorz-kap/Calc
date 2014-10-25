@@ -44,10 +44,7 @@ namespace PR
 		while (!code.eof())
 		{
 			if (CodeExecutor::stop_computing)
-			{
-				stop_computing = false;
-				return;
-			}
+				throw CalcException("Canceled!");
 
 			ip = code.get();
 			if (checkIF())
@@ -65,9 +62,6 @@ namespace PR
 		assignment.clear();
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
-			if (CodeExecutor::stop_computing)
-				return nullptr;
-
 			switch ((*i)->getClass())
 			{
 			case TOKEN_CLASS::NUMBER:

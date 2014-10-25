@@ -3,28 +3,29 @@
 #include <vector>
 #include <memory>
 
-#include "Numeric.h"
+#include "ComplexNumber.h"
+#include "functions.h"
 
 using std::vector;
 using std::shared_ptr;
 
 namespace PR
 {
-
-	template<class VAL>
-	class Value;
+	template <class T>
+	class ComplexNumber;
+	class Power;
 
 	template<class T> class  Matrix
 		: public Numeric<Matrix<T>>
 	{
 		
 	protected:
-		vector< vector< T >> mx;
+		vector< vector< ComplexNumber<T> >> mx;
 		int M;
 		int N;
 	public:
 		friend class MatrixTransposer;
-		friend class Math;
+		friend class Power;
 		
 		Matrix()
 			:M(0),N(0)
@@ -32,7 +33,7 @@ namespace PR
 			_type = Data::TYPE_MAP[typeid(*this)];
 		};
 
-		Matrix(const T &b)
+		Matrix(const ComplexNumber<T> &b)
 			:Matrix(1,1,b)
 		{
 			_type = Data::TYPE_MAP[typeid(*this)];
@@ -50,6 +51,35 @@ namespace PR
 		{
 			_type = Data::TYPE_MAP[typeid(*this)];
 		}
+
+		Matrix(const string &scalar)
+			:Matrix()
+		{
+			mx.push_back(vector<ComplexNumber<T>>(1));
+			mx[0][0] = (T)atof(scalar.c_str());
+			M = N = 1;
+			_type = Data::TYPE_MAP[typeid(*this)];
+		}
+
+		Matrix(int m, int n)
+			: Matrix()
+		{
+			M = m;
+			N = n;
+			mx.assign(m, vector<ComplexNumber<T>>(n));
+		}
+
+		Matrix(int m, int n, const ComplexNumber<T> &value)
+		{
+			M = m;
+			N = n;
+			_type = Data::TYPE_MAP[typeid(*this)];
+			mx.assign(m, vector<ComplexNumber<T>>(n, value));
+		}
+
+		virtual ~Matrix()
+		{
+		};
 
 		Matrix<T> & operator = (const Matrix<T> &b)
 		{
@@ -76,34 +106,7 @@ namespace PR
 			return *this;
 		}
 
-		Matrix(const string &scalar)
-			:Matrix()
-		{
-			mx.push_back(vector<T>(1));
-			mx[0][0] = (T)atof(scalar.c_str());
-			M = N = 1;
-			_type = Data::TYPE_MAP[typeid(*this)];
-		}
-
-		Matrix(int m, int n)
-			: Matrix()
-		{ 
-			M = m;
-			N = n;
-			mx.assign(m, vector<T>(n)); 
-		}
-
-		Matrix(int m, int n, const T &value)
-		{ 
-			M = m;
-			N = n;
-			_type = Data::TYPE_MAP[typeid(*this)];
-			mx.assign(m, vector<T>(n, value)); 
-		}
-
-		virtual ~Matrix()
-		{
-		};
+		
 
 		/* Right array division */
 		template <class U>
@@ -125,7 +128,7 @@ namespace PR
 
 		/* Divide b by matrix */
 		template <class U>
-		auto ldivide(const U &b) const
+		auto ldivide(const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -137,7 +140,7 @@ namespace PR
 
 		/* Divide matrix by b */
 		template <class U>
-		auto rdivide(const U &b) const
+		auto rdivide(const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -170,12 +173,12 @@ namespace PR
 
 		void cols(int arg){ N = arg; }
 
-		Value<T> rows() const 
+		int rows() const 
 		{ 
 			return mx.size(); 
 		}
 
-		Value<T> cols() const
+		int cols() const
 		{
 			if (mx.size() > 0)
 				return (int)mx[0].size();
@@ -188,7 +191,7 @@ namespace PR
 			Matrix<T> out(M, N);
 			for (int i = 0; i < M; i++)
 				for (int j = 0; j < N; j++)
-					out.mx[i][j] = -mx[i][j];
+					out.mx[i][j] = mx[i][j].neg();
 			return out;
 		}
 
@@ -209,7 +212,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator + (const U &b) const
+		auto operator + (const ComplexNumber<U> &b) const
 			-> Matrix<decltype(T() + U())>
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -236,7 +239,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto sub(const U &b) const
+		auto sub(const ComplexNumber<U> &b) const
 			-> Matrix<decltype(T() + U())>
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -247,7 +250,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator - (const U &b) const
+		auto operator - (const ComplexNumber<U> &b) const
 			-> Matrix<decltype(T() + U())>
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -271,7 +274,7 @@ namespace PR
 			{
 				for (int j = 0; j < B.N; j++)
 				{
-					T temp(0);
+					ComplexNumber<T> temp(0);
 					for (int k = 0; k < N; k++)
 						temp += mx[i][k] * B.mx[k][j];
 					C.mx[i][j] = temp;
@@ -281,7 +284,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator * (const U &b) const
+		auto operator * (const ComplexNumber<U> &b) const
 			->Matrix<decltype(T() + U())>
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -301,10 +304,8 @@ namespace PR
 				return B.ldivide(mx[0][0]);
 		}
 
-		
-
 		template <class U>
-		auto operator / (const U &b) const
+		auto operator / (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T()+U())> C(M, N);
@@ -337,7 +338,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator == (const U &b) const
+		auto operator == (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -364,7 +365,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator != (const U &b) const
+		auto operator != (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -418,7 +419,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator < (const U &b) const
+		auto operator < (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -445,7 +446,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator > (const U &b) const
+		auto operator > (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -472,7 +473,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator <= (const U &b) const
+		auto operator <= (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -499,7 +500,7 @@ namespace PR
 		}
 
 		template <class U>
-		auto operator >= (const U &b) const
+		auto operator >= (const ComplexNumber<U> &b) const
 			->Matrix < decltype(T() + U()) >
 		{
 			Matrix<decltype(T() + U())> C(M, N);
@@ -509,7 +510,7 @@ namespace PR
 			return C;
 		}
 
-		vector<vector<T>>* getVector(){ return &mx; }
+		auto getVector() -> decltype(&mx) { return &mx; }
 
 		int * getM_P(){ return &M; }
 		int * getN_P(){ return &N; }
@@ -521,7 +522,7 @@ namespace PR
 			{
 				temp.append("\n");
 				for (int j = 0; j < N; j++)
-					temp.append("\t" + std::to_string(mx[i][j]));
+					temp.append("\t" + mx[i][j].toString());
 			}
 			return temp;
 		}
@@ -549,16 +550,18 @@ namespace PR
 			return std::move(C);
 		}
 
-		template<class X>
-		operator Value<X>()
-		{
-			return Value<X>((X)mx[0][0]);
-		}
-
-		
 		operator int ()
 		{
 			return int(mx[0][0]);
+		}
+
+		template <class U>
+		operator ComplexNumber<U>() const
+		{
+			if (M&&N)
+				return ComplexNumber<U>(mx[0][0]);
+			else
+				throw "!";
 		}
 
 		private:
@@ -585,5 +588,3 @@ namespace PR
 			}
 	};
 };
-
-//template class PR::Matrix < float > ;

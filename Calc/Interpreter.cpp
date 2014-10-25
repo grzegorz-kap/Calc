@@ -10,12 +10,8 @@ namespace PR
 		if (Data::TYPE_MAP_BUILDED == false)
 		{
 			Data::TYPE_MAP_BUILDED = true;
-			Data::TYPE_MAP[typeid(Matrix<int>)] = TYPE::M_INT;
-			Data::TYPE_MAP[typeid(Matrix<float>)] = TYPE::M_FLOAT;
 			Data::TYPE_MAP[typeid(Matrix<double>)] = TYPE::M_DOUBLE;
-			Data::TYPE_MAP[typeid(Value<int>)] = TYPE::INT;
-			Data::TYPE_MAP[typeid(Value<float>)] = TYPE::FLOAT;
-			Data::TYPE_MAP[typeid(Value<double>)] = TYPE::DOUBLE;
+			Data::TYPE_MAP[typeid(ComplexNumber<double>)] = TYPE::DOUBLE;
 		}
 	}
 
@@ -33,6 +29,7 @@ namespace PR
 		CodeExecutor exec(Interpreter::main_vars);
 		exec.setInput(command);
 		try{
+			CodeExecutor::off_stop_computing();
 			exec.start();
 		}
 		catch (CalcException ex)

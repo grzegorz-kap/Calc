@@ -1,8 +1,8 @@
 #pragma once
 #include "Token.h"
 #include "Data.h"
-#include "Value.h"
 #include "Matrix.h"
+#include "ComplexNumber.h"
 #include "EvalException.h"
 
 #include <memory>

@@ -123,9 +123,6 @@
     <ClInclude Include="Matrix.h">
       <Filter>Model\Numeric</Filter>
     </ClInclude>
-    <ClInclude Include="Value.h">
-      <Filter>Model\Numeric</Filter>
-    </ClInclude>
     <ClInclude Include="Data.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -170,9 +167,6 @@
     </ClInclude>
     <ClInclude Include="RightArrayDivision.h">
       <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Service\Math</Filter>
     </ClInclude>
     <ClInclude Include="MatrixExponentiationOperator.h">
       <Filter>Model\Operator</Filter>
@@ -246,6 +240,9 @@
     <ClInclude Include="SignalEmitter.h">
       <Filter>Service</Filter>
     </ClInclude>
+    <ClInclude Include="Power.h">
+      <Filter>Service\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -314,9 +311,6 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>Model\Numeric</Filter>
     </ClCompile>
-    <ClCompile Include="Value.cpp">
-      <Filter>Model\Numeric</Filter>
-    </ClCompile>
     <ClCompile Include="Data.cpp">
       <Filter>Model</Filter>
     </ClCompile>
@@ -361,9 +355,6 @@
     </ClCompile>
     <ClCompile Include="RightArrayDivision.cpp">
       <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>Service\Math</Filter>
     </ClCompile>
     <ClCompile Include="MatrixExponentiationOperator.cpp">
       <Filter>Model\Operator</Filter>
@@ -454,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="FileLoader.cpp">
       <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Power.cpp">
+      <Filter>Service\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

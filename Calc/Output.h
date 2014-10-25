@@ -10,9 +10,6 @@ using std::shared_ptr;
 
 namespace PR
 {
-	template<class V>
-	class Value;
-
 	class Output :
 		public Data
 	{

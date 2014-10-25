@@ -1,54 +1,38 @@
 #pragma once
+#include "export.h"
 
 #include <string>
 #include <utility>
+#include <complex>
 
 using std::string;
-using std::forward;
 
-#include "export.h"
+#include "Numeric.h"
 
 namespace PR
 {
+	class Power;
 
-	template<class T> class  ComplexNumber
+	template<class T> 
+	class  ComplexNumber
+		: public Numeric < ComplexNumber<T> >
 	{
 		template <class U>
 		friend  class ComplexNumber;
+		friend class Power;
 
 		T re;
 		T im;
 	public:
-		ComplexNumber(){};
+		ComplexNumber()
+		{
+			_type = Data::TYPE_MAP[typeid(*this)];
+		};
 
 		ComplexNumber(T reArg, T imArg = 0.0) : re(reArg), im(imArg)
 		{
+			_type = Data::TYPE_MAP[typeid(*this)];
 		};
-
-		template <typename T, typename U>
-		ComplexNumber<U> cast(const ComplexNumber<T> &b)
-		{
-			return ComplexNumber<U> a(b.re, b.im);
-		}
-
-		/*ComplexNumber(ComplexNumber<T> &&other)
-			:re(0), im(0)
-		{
-			*this = std::move(other);
-		}
-
-		ComplexNumber<T> & operator = (ComplexNumber<T> &&o)
-		{
-			if (this != &o)
-			{
-				re = o.re;
-				im = o.im;
-
-				o.re = 0;
-				o.im = 0;
-			}
-			return *this;
-		}*/
 
 		ComplexNumber(const string &val_str)
 		{
@@ -65,6 +49,7 @@ namespace PR
 				ref = &re;
 
 			*ref = (T)atof(temp.c_str());
+			_type = Data::TYPE_MAP[typeid(*this)];
 		}
 
 		~ComplexNumber(){};
@@ -74,17 +59,12 @@ namespace PR
 		void setRe(T re){ this->re = re; }
 		void setIm(T im){ this->im = im; }
 
-		ComplexNumber<T> operator - () const
-		{
-			return ComplexNumber<T>(-re, -im);
-		}
-
 		template <class U>
 		ComplexNumber<T> operator + (const ComplexNumber<U> &b) const
 		{
 			return ComplexNumber<T>(re + b.re, im + b.im);
 		}
-		
+
 		template <class U>
 		ComplexNumber<T> operator - (const ComplexNumber<U> &b) const
 		{
@@ -118,19 +98,32 @@ namespace PR
 			return c;
 		}
 
+		/* Element wise multiplication */
 		template <class U>
-		void operator += (const ComplexNumber<U> &b)
-		{ 
-			re += b.re; im += b.im; 
+		auto times(const ComplexNumber<U> &b) const
+			->ComplexNumber < decltype(T()*U()) >
+		{
+			return ComplexNumber<decltype(T() * U())>(*this * b);
 		}
 
 		template <class U>
-		bool operator == (const ComplexNumber<U> &b) const
+		auto rdivide(const ComplexNumber<U> &b) const
+			->ComplexNumber < decltype(T() / U()) >
 		{
-			if (re != b.re || im != b.im)
-				return false;
-			else
-				return true;
+			return *this / b;
+		}
+
+		template <class U>
+		auto ldivide(const ComplexNumber<U> &b) const
+			->ComplexNumber < decltype(T() / U()) >
+		{
+			return b / *this;
+		}
+
+		template <class U>
+		void operator += (const ComplexNumber<U> &b)
+		{
+			re += b.re; im += b.im;
 		}
 
 		template <class U>
@@ -139,6 +132,68 @@ namespace PR
 			re = i;
 			return *this;
 		}
+
+		ComplexNumber<T> neg() const
+		{
+			return ComplexNumber<T>(-re, -im);
+		}
+
+		template <class U>
+		ComplexNumber<T> operator == (const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re == b.re && im == b.im);
+		}
+
+		bool operator == (const bool &b) const
+		{
+			return (re || im) == b;
+		}
+
+		template <class U>
+		ComplexNumber<T> operator != (const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re != b.re || im != b.im);
+		}
+
+		template <class U>
+		ComplexNumber<T> operator < (const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re < b.re);
+		}
+
+		template <class U>
+		ComplexNumber<T> operator <= (const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re <= b.re);
+		}
+
+		template <class U>
+		ComplexNumber<T> operator >(const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re > b.re);
+		}
+
+		template <class U>
+		ComplexNumber<T> operator >= (const ComplexNumber<U> &b) const
+		{
+			return ComplexNumber<T>(re >= b.re);
+		}
+
+		ComplexNumber<T> transpose() const
+		{
+			return ComplexNumber<T>(*this);
+		}
+
+		ComplexNumber<T> rows() const
+		{
+			return ComplexNumber<T>(1);
+		}
+
+		ComplexNumber<T> cols() const
+		{
+			return ComplexNumber<T>(1);
+		}
+
 
 		string toString() const
 		{

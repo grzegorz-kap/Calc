@@ -4,8 +4,8 @@
 namespace PR
 {
 
-	EvalException::EvalException(const string &message)
-		:CalcException(message)
+	EvalException::EvalException(const string &message,int pos)
+		:CalcException(message,pos)
 	{
 	}
 

@@ -24,19 +24,11 @@ namespace PR
 		switch (_type)
 		{
 		case TYPE::DOUBLE:
-			return make_shared<Value<double>>(getLexemeR());
-		case TYPE::FLOAT:
-			return make_shared<Value<float>>(getLexemeR());
-		case TYPE::INT:
-			return make_shared< Value<int>>(getLexemeR());
+			return make_shared<ComplexNumber<double>>(getLexemeR());
 		case TYPE::M_DOUBLE:
 			return make_shared< Matrix<double>>(getLexemeR());
-		case TYPE::M_FLOAT:
-			return make_shared<Matrix<float>>(getLexemeR());
-		case TYPE::M_INT:
-			return make_shared<Matrix<int>>(getLexemeR());
 		default:
-			throw EvalException("Cannot evaluate numeric expression! Unrecognized type");
+			throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
 		}
 	}
 }

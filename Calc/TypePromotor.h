@@ -7,7 +7,6 @@
 using std::vector;
 
 #include "Data.h"
-#include "Value.h"
 #include "Matrix.h"
 #include "ComplexNumber.h"
 #include "Output.h"

@@ -8,5 +8,4 @@ function [a,b] = fun(z)
 			a=fun(z-1)+fun(z-2);
 		end
 	end
-	b=1
 end

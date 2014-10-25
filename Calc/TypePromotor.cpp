@@ -56,23 +56,12 @@ namespace PR
 
 		switch (type)
 		{
-		case TYPE::M_INT:
-			dest = a->convert_numeric<Matrix<int>>();
-			break;
-		case TYPE::M_FLOAT:
-			dest = a->convert_numeric<Matrix<float>>();
+		case TYPE::DOUBLE:
+			dest = a->convert_numeric<ComplexNumber<double>>();
 			break;
 		case TYPE::M_DOUBLE:
 			dest = a->convert_numeric<Matrix<double>>();
 			break;
-		case TYPE::INT:
-			dest = a->convert_numeric<Value<int>>();
-			break;
-		case TYPE::FLOAT:
-			dest = a->convert_numeric<Value<float>>();
-			break;
-		case TYPE::DOUBLE:
-			dest = a->convert_numeric<Value<double>>();
 		}
 	}
 
@@ -83,7 +72,10 @@ namespace PR
 
 		if (builder == nullptr&&vec.size())
 		{
-			convertTo(type, vec[0], dest);
+			if (type == vec[0]->_type)
+				dest = vec[0];
+			else
+				convertTo(type, vec[0], dest);
 			return;
 		}
 

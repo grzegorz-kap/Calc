@@ -18,9 +18,6 @@ namespace PR
 	template <class T>
 	class Numeric;
 
-	template <class T>
-	class Value;
-
 	class Token;
 	class Output;
 
@@ -28,18 +25,8 @@ namespace PR
 	{
 		TOKEN,
 		OUTPUT,
-		INT ,
-		FLOAT,
 		DOUBLE,
-		C_INT,
-		C_FLOAT,
-		C_DOUBLE,
-		M_INT,
-		M_FLOAT,
 		M_DOUBLE,
-		CM_INT,
-		CM_FLOAT,
-		CM_DOUBLE
 	};
 
 	class CALC_API  Data
@@ -193,16 +180,8 @@ namespace PR
 			{
 				case TYPE::M_DOUBLE:
 					return make_shared<T>(*dynamic_cast<Matrix<double> *>(this));
-				case TYPE::M_FLOAT:
-					return make_shared<T>(*dynamic_cast<Matrix<float> *>(this));
-				case TYPE::M_INT:
-					return make_shared<T>(*dynamic_cast<Matrix<int> *>(this));
 				case TYPE::DOUBLE:
-					return make_shared<T>(*dynamic_cast<Value<double> *>(this));
-				case TYPE::FLOAT:
-					return make_shared<T>(*dynamic_cast<Value<float> *>(this));
-				case TYPE::INT:
-					return make_shared<T>(*dynamic_cast<Value<int> *> (this));
+					return make_shared<T>(*dynamic_cast<ComplexNumber<double> *>(this));
 
 				default:
 					throw CastException("Cannot cast to different numeric type! Probably not numeric type");

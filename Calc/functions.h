@@ -3,13 +3,17 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <string>
 
-#include "Value.h"
+#include "ComplexNumber.h"
 
 using std::vector;
 
 namespace PR
 {
+	template <class T>
+	class ComplexNumber;
+
 	template <typename T>
 	bool find(const vector<T> &search, const vector<T> &match)
 	{
@@ -49,5 +53,4 @@ namespace PR
 		return out;
 	}
 
-	
 }

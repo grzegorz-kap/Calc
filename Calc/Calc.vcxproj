@@ -115,7 +115,7 @@
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
     <ClInclude Include="LTOperator.h" />
-    <ClInclude Include="Math.h" />
+    <ClInclude Include="Power.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="MatrixBuilderFactory.h" />
@@ -145,7 +145,6 @@
     <ClInclude Include="TypePromotor.h" />
     <ClInclude Include="UnimplementedException.h" />
     <ClInclude Include="USubtractionOperator.h" />
-    <ClInclude Include="Value.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assignment.cpp" />
@@ -193,7 +192,7 @@
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
     <ClCompile Include="LTOperator.cpp" />
-    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Power.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixBuilder.cpp" />
     <ClCompile Include="MatrixBuilderFactory.cpp" />
@@ -226,7 +225,6 @@
     <ClCompile Include="TypePromotor.cpp" />
     <ClCompile Include="UnimplementedException.cpp" />
     <ClCompile Include="USubtractionOperator.cpp" />
-    <ClCompile Include="Value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
