@@ -26,10 +26,7 @@ namespace PR
 	template <typename T>
 	bool find(const vector<T> &search, const T &value)
 	{
-		if (std::find(search.begin(), search.end(), value) != search.end())
-			return true;
-		else
-			return false;
+		return std::find(search.begin(), search.end(), value) != search.end();
 	}
 
 	template <typename T>

@@ -90,7 +90,7 @@ namespace PR
 		const string & name = token->getLexemeR();
 		if (name == "+" || name == "-")
 		{
-			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, token->getClass()) ||
+			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) ||
 				(prev==TOKEN_CLASS::OPERATOR&&prev_operator_args_num > 1))
 			{
 				token = OperatorsFactory::simple_get("$" + name);

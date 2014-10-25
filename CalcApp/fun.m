@@ -9,3 +9,5 @@ function [a,b] = fun(z)
 		end
 	end
 end
+
+[fun(11) 3- 9 89;-8 9- 7 8;+1 +2 3 4;[1 2+ 3 4]];

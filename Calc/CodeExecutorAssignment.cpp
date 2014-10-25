@@ -26,7 +26,7 @@ namespace PR
 			for (auto ii = target.begin(); ii != target.end(); ii++)
 			{
 				if (oo == source.end())
-					throw CalcException("!");
+					throw CalcException("Too many output arguments!");
 				assignment.push_back(vars_ref.insert({ (*ii)->getLexemeR(), *oo }));
 				if (assignment.back().second == false)
 					assignment.back().first->second = *oo;
