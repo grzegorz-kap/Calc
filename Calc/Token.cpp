@@ -11,6 +11,7 @@ namespace PR
 		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
 		_type = TYPE::TOKEN;
+		_evType = TYPE::DOUBLE;
 	}
 
 	Token::Token(TOKEN_CLASS arg)
@@ -18,6 +19,7 @@ namespace PR
 	{
 		_class = arg;
 		_type = TYPE::TOKEN;
+		_evType = TYPE::DOUBLE;
 	}
 
 	Token::Token(Token &&b)
@@ -27,11 +29,13 @@ namespace PR
 		position = b.position;
 		param = b.param;
 		mode = b.mode;
+		_evType = b._evType;
 
 		b._class = TOKEN_CLASS::NONE;
 		b.position = 0;
 		b.param = 0;
 		b.mode = PARSE_MODE::NORMAL;
+		b._evType = TYPE::DOUBLE;
 	}
 
 	Token::~Token()

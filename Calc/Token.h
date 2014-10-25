@@ -29,6 +29,7 @@ namespace PR
 		int position;
 		int param;
 		int keyword_balance;
+		TYPE _evType;
 	public:
 
 		Token();
@@ -52,6 +53,8 @@ namespace PR
 		void setMode(PARSE_MODE mode){ this->mode = mode; }
 		void setKeywordBalance(int b){ keyword_balance = b; }
 		int getKeywordBalance() const { return keyword_balance; }
+		TYPE getEvType()const{ return _evType; }
+		void setEvType(TYPE type){ _evType = type; }
 
 		string toString() const;
 		

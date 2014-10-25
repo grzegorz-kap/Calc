@@ -96,7 +96,7 @@ namespace PR
 	void LexicalBalanceHelper::onEndKeyword(Token &token)
 	{
 		if (key_word_balance == 0)
-			throw CalcException("Unexpected end keyword!");
+			throw CalcException("Unexpected end keyword!",pos);
 		token.setKeywordBalance(key_word_balance--);
 		
 		switch (key_word_mode.back())

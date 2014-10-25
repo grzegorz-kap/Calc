@@ -24,6 +24,7 @@ namespace PR
 		void setMode(Token &token);
 		PARSE_MODE getMode()const{ return mode.back(); }
 	private:
+		
 		vector<int> balance;
 		vector<PARSE_MODE> mode;
 		int pos;
@@ -35,6 +36,8 @@ namespace PR
 		void onInstructionKeyWord(Token &token);
 		void onEndKeyword(Token &token);
 		void onContBreakKeyWords();
+		void onFunction();
+		void onFunctionEnd();
 	};
 
 }

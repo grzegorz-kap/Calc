@@ -47,14 +47,24 @@ namespace PR
 	}
 
 	void Parser::onID()
-	{
-		
+	{		
 		if (lexAnalyzer.whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
 		{
 			Token token = *i;
 			token.set_class(TOKEN_CLASS::FUNCTION);
 			stack.push_back(make_shared<Token>(token));
 			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+
+			if (token.getLexemeR() == "mpf_float")
+			{
+				_ev_type_mode.push_back(TYPE::R_DOUBLE);
+				_ev_type_balance.push_back(0);
+			}
+			else if (token.getLexemeR() == "double")
+			{
+				_ev_type_balance.push_back(0);
+				_ev_type_mode.push_back(TYPE::DOUBLE);
+			}
 		}
 		else
 			onp.push_back(make_shared<Token>(*i));
@@ -70,6 +80,8 @@ namespace PR
 
 	void Parser::onNumber()
 	{
+		if (_ev_type_mode.size())
+			i->setEvType(_ev_type_mode.back());
 		onp.push_back(std::move(i));
 	}
 
@@ -94,11 +106,20 @@ namespace PR
 
 	void Parser::onOpenParenthesis()
 	{
+		if (_ev_type_balance.size())
+			_ev_type_balance.back()++;
+
 		stack.push_back(make_unique<Token>(*i));
 	}
 
 	void Parser::onCloseParenthesis()
 	{
+		if (_ev_type_balance.size() && _ev_type_balance.back()-- == 1)
+		{
+			_ev_type_balance.pop_back();
+			_ev_type_mode.pop_back();
+		}
+
 		stackToOnpUntilToken(TOKEN_CLASS::OPEN_PARENTHESIS);
 		if (stackBack() == TOKEN_CLASS::FUNCTION )
 			stackToOnp();

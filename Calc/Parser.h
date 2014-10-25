@@ -27,6 +27,9 @@ namespace PR
 		bool stop;
 		LexicalAnalyzer& lexAnalyzer;
 		unique_ptr<Token> i;
+
+		vector<TYPE> _ev_type_mode;
+		vector<int>  _ev_type_balance;
 	public:
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
