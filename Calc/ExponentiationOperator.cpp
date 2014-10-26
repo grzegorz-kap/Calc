@@ -5,7 +5,7 @@
 namespace PR
 {
 	ExponentiationOperator::ExponentiationOperator()
-		:Operator("^",20,2,EVAULATED::RIGHT)
+		:Operator(".^",20,2,EVAULATED::RIGHT)
 	{
 	}
 

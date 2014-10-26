@@ -29,6 +29,7 @@ using std::function;
 #include "NeOperator.h"
 #include "AssignmentOperator.h"
 #include "TranspositionOperator.h"
+#include "UPlusOperator.h"
 
 namespace PR
 {

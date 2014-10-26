@@ -12,6 +12,8 @@ namespace PR
 		~NumericException();
 
 		static void throwMatrixMultDimensions();
+		static void throwLogarithmFromZero();
+		static void throwLogarithmZeroBase();
 	};
 
 }

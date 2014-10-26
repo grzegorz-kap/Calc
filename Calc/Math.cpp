@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Power.h"
+#include "Math.h"
 
 
 namespace PR

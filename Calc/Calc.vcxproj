@@ -119,7 +119,7 @@
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="MpfFunction.h" />
     <ClInclude Include="NumericException.h" />
-    <ClInclude Include="Power.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="MatrixBuilderFactory.h" />
@@ -148,6 +148,7 @@
     <ClInclude Include="TranspositionOperator.h" />
     <ClInclude Include="TypePromotor.h" />
     <ClInclude Include="UnimplementedException.h" />
+    <ClInclude Include="UPlusOperator.h" />
     <ClInclude Include="USubtractionOperator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +199,7 @@
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="MpfFunction.cpp" />
     <ClCompile Include="NumericException.cpp" />
-    <ClCompile Include="Power.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixBuilder.cpp" />
     <ClCompile Include="MatrixBuilderFactory.cpp" />
@@ -230,6 +231,7 @@
     <ClCompile Include="TranspositionOperator.cpp" />
     <ClCompile Include="TypePromotor.cpp" />
     <ClCompile Include="UnimplementedException.cpp" />
+    <ClCompile Include="UPlusOperator.cpp" />
     <ClCompile Include="USubtractionOperator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

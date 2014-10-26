@@ -18,4 +18,14 @@ namespace PR
 	{
 		throw NumericException(string("Error using *\n Matrix dimensions must agree"));
 	}
+
+	void NumericException::throwLogarithmFromZero()
+	{
+		throw NumericException(string("Logarithm of 0!"));
+	}
+
+	void NumericException::throwLogarithmZeroBase()
+	{
+		throw NumericException(string("Logarithm base is 0!"));
+	}
 }

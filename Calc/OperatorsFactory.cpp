@@ -15,6 +15,8 @@ namespace PR
 		operators.insert(">=", [](){return make_unique<GeOperator>(); });
 		operators.insert("<", [](){return make_unique<LTOperator>(); });
 		operators.insert(">", [](){return make_unique<Gt>(); });
+		operators.insert("$-", [](){return make_unique<USubtractionOperator>(); });
+		operators.insert("$+", [](){return make_unique <UPlusOperator>(); });
 		operators.insert("+", [](){return make_unique<AdditionOperator>(); });
 		operators.insert("-", [](){return make_unique<SubtractionOperator>(); });
 		operators.insert(".*", [](){return make_unique<ElementWiseMultiplication>(); });
@@ -24,7 +26,6 @@ namespace PR
 		operators.insert("/", [](){return make_unique<DivisionOperator>(); });
 		operators.insert(".^", [](){return make_unique<ExponentiationOperator>(); });
 		operators.insert("^", [](){return make_unique<MatrixExponentiationOperator>(); });
-		operators.insert("$-", [](){return make_unique<USubtractionOperator>(); });
 		operators.insert("=", [](){return make_unique<AssignmentOperator>(); });
 		operators.insert("'", [](){return make_unique<TranspositionOperator>(); });
 	}
