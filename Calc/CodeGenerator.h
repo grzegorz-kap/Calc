@@ -29,8 +29,7 @@ namespace PR
 		Ip ip;
 		int lp;
 		bool end;
-		LexicalAnalyzer lexicalAnalyzer;
-
+		Parser parser;
 	public:
 		CodeGenerator();
 		CodeGenerator(const string &code_str);

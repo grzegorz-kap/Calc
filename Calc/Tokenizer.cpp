@@ -8,7 +8,7 @@ namespace PR
 		TOKEN_CLASS::CLOSE_PARENTHESIS, TOKEN_CLASS::SPACE, TOKEN_CLASS::COLON,
 		TOKEN_CLASS::SEMICOLON, TOKEN_CLASS::COMMA, TOKEN_CLASS::IF_KEYWORD, FOR_KEYWORD,
 		TOKEN_CLASS::WHILE_KEYWORD, TOKEN_CLASS::CONTINUE_KEYWORD, TOKEN_CLASS::BREAK_KEYWORD, TOKEN_CLASS::END_KEYWORD,
-		TOKEN_CLASS::FUNCTION_KEYWORD
+		TOKEN_CLASS::FUNCTION_KEYWORD,TOKEN_CLASS::OPERATOR
 	};
 
 	Tokenizer::Tokenizer()
@@ -36,6 +36,7 @@ namespace PR
 	void Tokenizer::readOthers()
 	{
 		TOKEN_CLASS type;
+		char znak = command[i];
 		switch (command[i])
 		{
 		case '(':
@@ -159,9 +160,9 @@ namespace PR
 
 	void Tokenizer::tokenize()
 	{	
+		deleteUneccessary();
 		while (i < N)
 		{
-			deleteUneccessary();
 			if (TokenizerHelper::isDigit(command[i]))
 				readNumber();
 			else if (TokenizerHelper::isLetter(command[i]))
@@ -171,7 +172,7 @@ namespace PR
 			else if (readOperator())
 				continue;
 			else readOthers();
-
+			deleteUneccessary();
 		}
 	}
 

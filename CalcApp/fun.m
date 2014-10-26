@@ -1,4 +1,4 @@
-function [a,b] = fun(z)
+function [a] = fun(z)
 	if z==0
 	 a = 0;
 	else
@@ -10,4 +10,4 @@ function [a,b] = fun(z)
 	end
 end
 
-[fun(11) 3- 9 89;-8 9- 7 8;+1 +2 3 4;[1 2+ 3 4]];
+//[fun(11) 3- 9 89;-8 9- 7 8;+1 +2 3 4;[1 2+ 3 4]];

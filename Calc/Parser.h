@@ -25,17 +25,17 @@ namespace PR
 		vector<shared_ptr<Token>> onp;
 		vector<shared_ptr<Token>> stack;
 		bool stop;
-		LexicalAnalyzer& lexAnalyzer;
 		unique_ptr<Token> i;
 		vector<unique_ptr<Token>> tokens;
 		vector<unique_ptr<Token>>::iterator iter;
 		vector<TYPE> _ev_type_mode;
 		vector<int>  _ev_type_balance;
 	public:
+		Parser();
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
 		virtual bool parse();
-
+		void setInput(LexicalAnalyzer &lex);
 		vector<shared_ptr<Token>> & getInstruction(){ return onp; }
 	private:
 		TOKEN_CLASS stackBack() const;

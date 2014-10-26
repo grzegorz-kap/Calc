@@ -5,9 +5,12 @@
 
 namespace PR
 {
+	Parser::Parser()
+	{
+
+	}
+
 	Parser::Parser(LexicalAnalyzer &lex)
-		:
-		lexAnalyzer(lex)
 	{
 		tokens = lex.getTokens();
 		iter = tokens.begin();
@@ -16,6 +19,12 @@ namespace PR
 	Parser::~Parser()
 	{
 		
+	}
+
+	void Parser::setInput(LexicalAnalyzer &lex)
+	{
+		tokens = lex.getTokens();
+		iter = tokens.begin();
 	}
 
 	void Parser::onComma()
@@ -182,7 +191,7 @@ namespace PR
 		onp.clear();
 		stop = false;
 
-		for (; iter!= tokens.end();++iter)
+		for (;!stop && iter!= tokens.end();++iter)
 		{
 			i = std::move(*iter);
 			switch (i->getClass())

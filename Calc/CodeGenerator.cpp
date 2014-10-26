@@ -9,13 +9,13 @@ namespace PR
 	}
 
 	CodeGenerator::CodeGenerator(const string &code_str)
-		:lexicalAnalyzer(code_str)
+		:parser(LexicalAnalyzer(code_str))
 	{
 		loadAndSetIp();
 	}
 
 	CodeGenerator::CodeGenerator(FileLoader &file)
-		:lexicalAnalyzer(file.loadAll())
+		: parser(LexicalAnalyzer(file.loadAll()))
 	{
 		loadAndSetIp();
 	}
@@ -34,19 +34,19 @@ namespace PR
 
 	void CodeGenerator::setInput(const string &name)
 	{
-		lexicalAnalyzer.setInput(name);
+		parser.setInput(LexicalAnalyzer(name));
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(string &&in)
 	{
-		lexicalAnalyzer.setInput(std::move(in));
+		parser.setInput(LexicalAnalyzer(in));
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(FileLoader &in)
 	{
-		lexicalAnalyzer.setInput(in);
+		parser.setInput(LexicalAnalyzer(in.loadAll()));
 		loadAndSetIp();
 	}
 
@@ -94,7 +94,6 @@ namespace PR
 
 	void CodeGenerator::load(void)
 	{
-		Parser parser(lexicalAnalyzer);
 		end = !parser.parse();
 		ip = code.insert(code.end(), std::move(parser.getInstruction()));
 		lp = code.size() - 1;
