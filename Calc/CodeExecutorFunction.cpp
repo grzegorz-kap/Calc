@@ -23,9 +23,15 @@ namespace PR
 
 	void CodeExecutor::onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name)
 	{
+		if (++recursions > recursion_limit)
+			throw CalcException("Error in '" + name + "'. Maximum recursion limit of " +
+			std::to_string(recursion_limit) + " reached.", (*i)->getPosition());
+		
 		auto function = FunctionFactory::load_external(name);
 		CodeExecutor exec(function,args);
 		exec.start();
+
+		recursions--;
 
 		const vector<string>& output = function.getOutput();
 		shared_ptr<Output> results = make_shared<Output>();

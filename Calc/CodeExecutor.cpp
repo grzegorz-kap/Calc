@@ -7,6 +7,9 @@ namespace PR
 	variables CodeExecutor::globals = {};
 	bool CodeExecutor::stop_computing = false;
 
+	int CodeExecutor::recursions = 0;
+	int CodeExecutor::recursion_limit = 300;
+
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
 	{

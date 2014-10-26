@@ -20,6 +20,7 @@ namespace PR
 
 	void Interpreter::work(const string &command)
 	{
+		CodeExecutor::recursions = 0;
 		CodeExecutor exec(Interpreter::main_vars);
 		exec.setInput(command);
 		try{

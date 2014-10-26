@@ -41,7 +41,8 @@ namespace PR
 		static void set_stop_computing() { stop_computing = true; }
 		static void off_stop_computing(){ stop_computing = false; }
 		
-
+		static int recursions;
+		static int recursion_limit;
 	private:
 		static bool stop_computing;
 		vector<shared_ptr<Data>> stack;
