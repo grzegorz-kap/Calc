@@ -230,6 +230,9 @@ namespace PR
 		else if (M == 1 && N == 1)
 			return B * mx[0][0];
 
+		if (N != B.M)
+			NumericException::throwMatrixMultDimensions();
+
 		Matrix<decltype(T() + U())> C(M, B.N);
 		for (int i = 0; i < M; i++)
 		{
@@ -238,7 +241,7 @@ namespace PR
 				ComplexNumber<T> temp(0.0);
 				for (int k = 0; k < N; k++)
 					temp += mx[i][k] * B.mx[k][j];
-				C.mx[i][j] = temp;
+				C.mx[i][j] = std::move(temp);
 			}
 		}
 		return C;

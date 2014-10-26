@@ -118,6 +118,7 @@
     <ClInclude Include="LexicalBalanceHelper.h" />
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="MpfFunction.h" />
+    <ClInclude Include="NumericException.h" />
     <ClInclude Include="Power.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixBuilder.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="LexicalBalanceHelper.cpp" />
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="MpfFunction.cpp" />
+    <ClCompile Include="NumericException.cpp" />
     <ClCompile Include="Power.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixBuilder.cpp" />

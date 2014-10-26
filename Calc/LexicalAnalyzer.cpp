@@ -83,6 +83,7 @@ namespace PR
 	{
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
 			token.set_class(TOKEN_CLASS::COMMA);
+		prev = TOKEN_CLASS::COMMA;
 	}
 
 	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token)

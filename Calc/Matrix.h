@@ -5,6 +5,7 @@
 
 #include "ComplexNumber.h"
 #include "functions.h"
+#include "NumericException.h"
 
 using std::vector;
 using std::shared_ptr;

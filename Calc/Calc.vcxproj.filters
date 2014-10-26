@@ -246,6 +246,9 @@
     <ClInclude Include="MpfFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NumericException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -453,6 +456,9 @@
       <Filter>Service\Math</Filter>
     </ClCompile>
     <ClCompile Include="MpfFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NumericException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
