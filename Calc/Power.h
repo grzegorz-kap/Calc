@@ -4,7 +4,9 @@
 
 #include "Matrix.h"
 
+#include <boost\multiprecision\cpp_bin_float.hpp>
 
+using namespace boost::multiprecision;
 
 
 namespace PR
@@ -14,7 +16,6 @@ namespace PR
 
 	template <class X>
 	class ComplexNumber;
-
 
 	class Power
 	{
@@ -28,22 +29,28 @@ namespace PR
 			->Matrix < decltype(T() + U()) >
 		{
 			if (b.isScalar())
-				return pow(a, b.mx[0][0]);
+				return Power::pow(a, b.mx[0][0]);
 
 			Matrix<decltype(T() + U())> C(a.M, a.N);
 			for (int i = 0; i < C.M; i++)
 			{
 				for (int j = 0; j < C.N; j++)
-					C.mx[i][j] = pow(a.mx[i][j], b.mx[i][j]);
+					C.mx[i][j] = Power::pow(a.mx[i][j], b.mx[i][j]);
 			}
 			return C;
 		}
 
-		template<class T,class U>
-		static auto pow(const T& a, const U& b)
-			-> decltype(T() + U())
+		template<class T>
+		static auto pow(const cpp_bin_float_100 &a, const cpp_bin_float_100 &b)
+			-> ComplexNumber < T >
 		{
-			return std::pow(a, b);
+			return ComplexNumber<T>(std::pow(a.convert_to<double>(), b.convert_to<double>()));
+		}
+		template<class T>
+		static auto pow(const double &a, const double &b)
+			->ComplexNumber<T>
+		{
+			return ComplexNumber<T>(std::pow(a, b));
 		}
 		
 		template<class T,class U>
@@ -51,7 +58,7 @@ namespace PR
 			->ComplexNumber<decltype(T() + U())>
 		{
 			if (a.im == 0 && b.im == 0)
-				return ComplexNumber<decltype(T() + U())>(pow(a.re , b.re));
+				return ComplexNumber<decltype(T() + U())>(Power::pow<T>(a.re,b.re));
 			else
 				throw "C";
 		}
@@ -63,7 +70,7 @@ namespace PR
 			Matrix<decltype(T() + U())> C(a.M, a.N);
 			for (int i = 0; i < a.M; i++)
 				for (int j = 0; j < a.N; j++)
-					C.mx[i][j] = pow(a.mx[i][j], b);
+					C.mx[i][j] = Power::pow(a.mx[i][j], b);
 			return C;
 		}
 
@@ -83,7 +90,7 @@ namespace PR
 			->Matrix < decltype(T() + U()) >
 		{
 			if (a.isScalar() && b.isScalar())
-				return pow(a.mx[0][0], b.mx[0][0]);
+				return Power::pow(a.mx[0][0], b.mx[0][0]);
 			
 			throw "!";
 		}
@@ -95,7 +102,7 @@ namespace PR
 			Matrix<decltype(T() + U())> C(a.M, a.N);
 			for (int i = 0; i < a.M; i++)
 				for (int j = 0; j < a.N; j++)
-					C.mx[i][j] = pow(mx[i][j], b);
+					C.mx[i][j] = Power::pow(mx[i][j], b);
 			return C;
 		}
 
@@ -106,7 +113,7 @@ namespace PR
 			if (!b.isScalar())
 				throw "!";
 
-			return pow(a, b.mx[0][0]);
+			return Power::pow(a, b.mx[0][0]);
 		}
 
 		template<class T, class U>
@@ -114,7 +121,7 @@ namespace PR
 			->ComplexNumber<decltype(T() + U())>
 		{
 			if (a.im == 0 && b.im == 0)
-				return ComplexNumber<decltype(T() + U())>(pow(a.re , b.re));
+				return ComplexNumber<decltype(T() + U())>(pow<T>(a.re , b.re));
 			else
 				throw "C";
 		}
@@ -130,7 +137,7 @@ namespace PR
 			for (int i = 0; i < C.M; i++)
 			{
 				for (int j = 0; j < C.N; j++)
-					C.mx[i][j] = pow(a.mx[i][j], b);
+					C.mx[i][j] = Power::pow(a.mx[i][j], b);
 			}
 			return C;
 		}

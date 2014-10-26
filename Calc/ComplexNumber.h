@@ -5,12 +5,18 @@
 #include <utility>
 #include <complex>
 
+#include <boost\multiprecision\cpp_bin_float.hpp>
+#include <boost\lexical_cast.hpp>
+
+using namespace boost::multiprecision;
 using std::string;
 
 #include "Numeric.h"
 
 namespace PR
 {
+	typedef cpp_bin_float_100 hdouble;
+
 	class Power;
 
 	template<class T> 
@@ -21,6 +27,8 @@ namespace PR
 		friend  class ComplexNumber;
 		friend class Power;
 
+		
+
 		T re;
 		T im;
 	public:
@@ -29,26 +37,30 @@ namespace PR
 			_type = Data::find_type(typeid(*this));
 		};
 
-		ComplexNumber(T reArg, T imArg = 0.0) : re(reArg), im(imArg)
+		ComplexNumber(double reArg, double imArg = 0) 
+			: re(reArg), im(imArg)
+		{
+			_type = Data::find_type(typeid(*this));
+		};
+
+		ComplexNumber(hdouble reArg, hdouble imArg = 0)
+			: re(reArg), im(imArg)
 		{
 			_type = Data::find_type(typeid(*this));
 		};
 
 		ComplexNumber(const string &val_str)
 		{
-			T *ref;
-			string temp = val_str;
-			re = 0;
-			im = 0;
-			if (temp.size() && temp.back() == 'i')
+			if (val_str.size() && val_str.back() == 'i')
 			{
-				ref = &im;
-				temp.pop_back();
+				im = (T)std::atof(val_str.c_str());
+				re = 0;
 			}
 			else
-				ref = &re;
-
-			*ref = (T)atof(temp.c_str());
+			{
+				re = (T)std::atof(val_str.c_str());
+				im = 0;
+			}
 			_type = Data::find_type(typeid(*this));
 		}
 
@@ -197,7 +209,18 @@ namespace PR
 
 		string toString() const
 		{
-			return std::to_string(re) + " " + std::to_string(im) + "i";
+			return ComplexNumber::to_string(*this);
 		}
+
+		static string to_string(const ComplexNumber<double> &b)
+		{
+			return boost::lexical_cast<string>(b.re) + " " + boost::lexical_cast<string>(b.im) + "i";
+		}
+
+		static string to_string(const ComplexNumber<hdouble> &b)
+		{
+			return b.re.str() + " " + b.im.str() + "i";
+		}
+
 	};
 }

@@ -274,7 +274,7 @@ namespace PR
 			{
 				for (int j = 0; j < B.N; j++)
 				{
-					ComplexNumber<T> temp(0);
+					ComplexNumber<T> temp(0.0);
 					for (int k = 0; k < N; k++)
 						temp += mx[i][k] * B.mx[k][j];
 					C.mx[i][j] = temp;

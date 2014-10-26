@@ -6,5 +6,4 @@ void main()
 {
 	PR::Interpreter inter;
 	inter.workFromFile("dane.txt");
-
 }

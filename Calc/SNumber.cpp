@@ -21,12 +21,16 @@ namespace PR
 
 	shared_ptr<Data> SNumber::evaluate()
 	{
-		switch (_type)
+		switch (getEvType())
 		{
 		case TYPE::DOUBLE:
 			return make_shared<ComplexNumber<double>>(getLexemeR());
 		case TYPE::M_DOUBLE:
 			return make_shared< Matrix<double>>(getLexemeR());
+		case TYPE::R_DOUBLE:
+			return make_shared<ComplexNumber<hdouble>>(getLexemeR());
+		case TYPE::RM_DOUBLE:
+			return make_shared<Matrix<hdouble>>(getLexemeR());
 		default:
 			throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
 		}
