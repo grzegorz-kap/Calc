@@ -9,7 +9,8 @@ namespace PR
 		:
 		lexAnalyzer(lex)
 	{
-		stop = false;
+		tokens = lex.getTokens();
+		iter = tokens.begin();
 	}
 
 	Parser::~Parser()
@@ -48,7 +49,7 @@ namespace PR
 
 	void Parser::onID()
 	{		
-		if (lexAnalyzer.whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
+		if (whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
 		{
 			Token token = *i;
 			token.set_class(TOKEN_CLASS::FUNCTION);
@@ -149,7 +150,7 @@ namespace PR
 
 	bool Parser::onColon()
 	{
-		if (lexAnalyzer.whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || lexAnalyzer.whatNext() == TOKEN_CLASS::COMMA)
+		if (whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || whatNext() == TOKEN_CLASS::COMMA)
 		{
 			onp.push_back(make_unique<Token>(":",TOKEN_CLASS::MATRIX_ALL,i->getPosition()));
 			return true;
@@ -181,9 +182,9 @@ namespace PR
 		onp.clear();
 		stop = false;
 
-		while (!stop&&lexAnalyzer.hasNext())
+		for (; iter!= tokens.end();++iter)
 		{
-			i = lexAnalyzer.getNext();
+			i = std::move(*iter);
 			switch (i->getClass())
 			{
 			case TOKEN_CLASS::NUMBER: 
@@ -241,10 +242,7 @@ namespace PR
 
 		stackToOnpAll();
 		changeIfAssignment();
-		if (lexAnalyzer.hasNext())
-			return true;
-		else
-			return false;
+		return iter != tokens.end();
 	}
 
 	TOKEN_CLASS Parser::stackBack() const

@@ -31,12 +31,6 @@ namespace PR
 	{
 	}
 
-	void LexicalAnalyzer::reset()
-	{
-		prev = TOKEN_CLASS::NONE;
-		what_next_flag = false;
-	}
-
 	void LexicalAnalyzer::setInput(const string &name)
 	{
 		tokenizer.setInput(name);
@@ -52,8 +46,33 @@ namespace PR
 		tokenizer.setInput(file.loadAll());
 	}
 
-	void LexicalAnalyzer::push(unique_ptr<Token> & token)
+	void LexicalAnalyzer::reset()
 	{
+		prev = TOKEN_CLASS::NONE;
+	}
+
+	auto LexicalAnalyzer::getTokens()
+		-> decltype(tokens)
+	{
+		tokenizer.tokenize();
+		tokens = tokenizer.getTokens();
+
+		prev = TOKEN_CLASS::NONE;
+		for (iter = tokens.begin(); iter != tokens.end(); ++iter)
+		{
+			process(*iter);
+			if (for_delete)
+				iter = tokens.erase(iter);
+		}
+
+		balancer.throwOnUnbalancedEnd();
+		return std::move(tokens);
+	}
+
+	void LexicalAnalyzer::process(unique_ptr<Token> & token)
+	{
+		for_delete = false;
+		
 		balancer.setMode(*token);
 
 		switch (token->getClass())
@@ -64,14 +83,10 @@ namespace PR
 		case TOKEN_CLASS::OPERATOR: 
 			onOperator(token); 
 			break;
-		case TOKEN_CLASS::FOR_KEYWORD:
-		case TOKEN_CLASS::IF_KEYWORD:
-		case TOKEN_CLASS::WHILE_KEYWORD:
-			break;
 		}
-
-		prev = token->getClass();
-		q.push(std::move(token));
+		
+		if (!for_delete)
+			prev = token->getClass();
 	}
 
 	void LexicalAnalyzer::onComma(Token &token)
@@ -83,7 +98,9 @@ namespace PR
 	{
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
 			token.set_class(TOKEN_CLASS::COMMA);
-		prev = TOKEN_CLASS::COMMA;
+		else
+			if (find(Tokenizer::FOR_SPACE_DELETE, whatNext()))
+				for_delete = true;
 	}
 
 	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token)
@@ -100,57 +117,10 @@ namespace PR
 		prev_operator_args_num = token->castToOperator()->getArgumentsNum();
 	}
 
-	bool LexicalAnalyzer::hasNext()
-	{
-		if (q.size() > 1 || q.size() == 1 && !tokenizer.hasNext())
-			return true;
-	
-		if (tokenizer.hasNext())
-		{
-			read();
-			return hasNext();
-		}
-		else
-			return false;
-	}
-
-	void LexicalAnalyzer::read()
-	{
-		unique_ptr<Token> current = tokenizer.getNext();
-		if (current->getClass() == TOKEN_CLASS::SPACE)
-		{
-			unique_ptr<Token> next = tokenizer.hasNext() ? tokenizer.getNext() : make_unique<Token>(TOKEN_CLASS::NONE);
-			if (find<TOKEN_CLASS>(Tokenizer::FOR_SPACE_DELETE, next->getClass()))
-			{
-				push(next);
-			}
-			else
-			{
-				push(current);
-				push(next);
-			}
-		}
-		else
-			push(current);
-	}
-
-	unique_ptr<Token> LexicalAnalyzer::getNext()
-	{
-		unique_ptr<Token> t = std::move(q.front());
-		q.pop();
-		what_next_flag = false;
-		return std::move(t);
-	}
-
 	TOKEN_CLASS LexicalAnalyzer::whatNext()
 	{
-		
-		if (!hasNext())
+		if (iter + 1 == tokens.end())
 			return TOKEN_CLASS::NONE;
-		else
-		{
-			what_next_flag = true;
-			return q.front()->getClass();
-		}
+		return (*(iter+1))->getClass();
 	}
 }

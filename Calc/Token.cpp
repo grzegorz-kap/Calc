@@ -5,6 +5,7 @@ namespace PR
 {
 	Token::Token()
 	{
+		_type = TYPE::TOKEN;
 	}
 
 	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
@@ -14,12 +15,19 @@ namespace PR
 		_evType = TYPE::DOUBLE;
 	}
 
-	Token::Token(TOKEN_CLASS arg)
-		: Token()
+	Token::Token(string &&tokenArg, TOKEN_CLASS typeArg, int position, int param, PARSE_MODE mode)
+		:lexeme(std::move(tokenArg)), _class(typeArg), position(position), param(param), mode(mode)
 	{
-		_class = arg;
 		_type = TYPE::TOKEN;
 		_evType = TYPE::DOUBLE;
+	}
+
+	Token::Token(TOKEN_CLASS arg,int position)
+		:_class(arg),
+		position(position),
+		_evType(TYPE::DOUBLE)
+	{
+		_type = TYPE::TOKEN;
 	}
 
 	Token::Token(Token &&b)

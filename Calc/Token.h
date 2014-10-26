@@ -33,9 +33,11 @@ namespace PR
 	public:
 
 		Token();
-		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = 0,
+		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = -1,
 			int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL);
-		Token(TOKEN_CLASS arg);
+		Token(string &&lexemeArg, TOKEN_CLASS typeArg, int position = -1,
+			int param = 0, PARSE_MODE mode = PARSE_MODE::NORMAL);
+		Token(TOKEN_CLASS arg,int position=-1);
 		Token(Token &&);
 		~Token();
 

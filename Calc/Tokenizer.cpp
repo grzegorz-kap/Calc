@@ -4,25 +4,22 @@
 namespace PR
 {
 	const vector<TOKEN_CLASS> Tokenizer::FOR_SPACE_DELETE = {
-		TOKEN_CLASS::NEW_LINE, TOKEN_CLASS::OPERATOR, TOKEN_CLASS::OPEN_PARENTHESIS,
+		TOKEN_CLASS::NEW_LINE,  TOKEN_CLASS::OPEN_PARENTHESIS,
 		TOKEN_CLASS::CLOSE_PARENTHESIS, TOKEN_CLASS::SPACE, TOKEN_CLASS::COLON,
 		TOKEN_CLASS::SEMICOLON, TOKEN_CLASS::COMMA, TOKEN_CLASS::IF_KEYWORD, FOR_KEYWORD,
 		TOKEN_CLASS::WHILE_KEYWORD, TOKEN_CLASS::CONTINUE_KEYWORD, TOKEN_CLASS::BREAK_KEYWORD, TOKEN_CLASS::END_KEYWORD,
 		TOKEN_CLASS::FUNCTION_KEYWORD
 	};
 
-
-
 	Tokenizer::Tokenizer()
 	{
 		N = 0;
 		i = 0;
-		prev = TOKEN_CLASS::NONE;
-		check = false;
 	}
 
     Tokenizer::~Tokenizer()
-	{}
+	{
+	}
 
 	void Tokenizer::setInput(const string &in)
 	{
@@ -36,10 +33,9 @@ namespace PR
 		init();
 	}
 
-	unique_ptr<Token> Tokenizer::readOthers()
+	void Tokenizer::readOthers()
 	{
 		TOKEN_CLASS type;
-		char znak = command[i];
 		switch (command[i])
 		{
 		case '(':
@@ -64,43 +60,40 @@ namespace PR
 			type = TOKEN_CLASS::COMMA;
 			break;
 		default:
-			throw CalcException("Unrecognized symbol '\\"+command[i], command, i);
+			throw CalcException("Unrecognized symbol "+command[i], command, i);
 		}
-		prev = type;
-		string temp = ""; 
-		temp += command[i];
-		return make_unique<Token>(std::move(temp), type,i++);
+		tokens.push_back(make_unique<Token>( type,i++));
 	}
 
-	unique_ptr<Operator> Tokenizer::readOperator()
+	bool Tokenizer::readOperator()
 	{
 		auto result = OperatorsFactory::get(command, i);
 		if (result != nullptr)
 		{
-			prev = TOKEN_CLASS::OPERATOR;
 			result->setPosition(i);
 			i += result->getLexemeR().size();
+			tokens.push_back(std::move(result));
+			return true;
 		}
-		return result;
+		return false;
 	}
 
-	unique_ptr<SNumber> Tokenizer::readNumber()
+	void Tokenizer::readNumber()
 	{
 		string out;
 		NumberReader::read(command, out, i);
-		i += out.size();
-		prev = TOKEN_CLASS::NUMBER;
-		return make_unique<SNumber>(Token(out, TOKEN_CLASS::NUMBER, i));
+		int m = out.size();
+		tokens.push_back(make_unique<SNumber>(Token(std::move(out), TOKEN_CLASS::NUMBER, i)));
+		i += m;
 	}
 
-	unique_ptr<Token> Tokenizer::readWord()
+	void Tokenizer::readWord()
 	{
 		int start = i;
 		string lexame="";
 		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
 			lexame += command[i++];
-		prev = TokenizerHelper::keyWordOrId(lexame);
-		return make_unique<Token>(lexame,prev, start);
+		tokens.push_back(make_unique<Token>(std::move(lexame), TokenizerHelper::keyWordOrId(lexame), start));
 	}
 
 	void Tokenizer::readString()
@@ -108,20 +101,20 @@ namespace PR
 		
 	}
 
-	unique_ptr<Token> Tokenizer::readWhiteSpace()
+	void Tokenizer::readWhiteSpace()
 	{
 		switch (command[i])
 		{
 		case '\n':
-			prev = TOKEN_CLASS::NEW_LINE;
-			return make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE, i++);
+			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE, i++));
+			break;
 		case '\t':
 		case ' ':
 		case '\r':
-			prev = TOKEN_CLASS::SPACE;
-			return make_unique<Token>(" ", TOKEN_CLASS::SPACE, i++);
-		default:
-			throw CalcException("d");
+			if (tokens.size()!=0 && !find(FOR_SPACE_DELETE, tokens.back()->getClass()))
+				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE, i));
+			i++;
+			break;
 		}
 	}
 
@@ -141,63 +134,45 @@ namespace PR
 			if (command[i++] == '\n')break;
 	}
 
-	bool Tokenizer::hasNext()
+	void Tokenizer::deleteUneccessary()
 	{
-		check = true;
 		if (i < N)
 		{
 			char z = command[i];
-			if (i < N - 1 && command[i] == '/' && command[i + 1] == '*')
+			if (i < N - 1 && z == '/' && command[i + 1] == '*')
 			{
 				skipBlockComment();
-				return hasNext();
+				deleteUneccessary();
 			}
-			else if (command[i] == '%' || (i < N - 1 && command[i] == '/'&&command[i + 1] == '/'))
+			else if (z == '%' || (i < N - 1 && z == '/'&&command[i + 1] == '/'))
 			{
 				skipLineComment();
-				return hasNext();
+				deleteUneccessary();
 			}
-			else if ((command[i] == ' ' || command[i] == '\t' || command[i] == '\r') &&
-				find(Tokenizer::FOR_SPACE_DELETE, prev))
+			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE  || prev() == TOKEN_CLASS::SEMICOLON)) ||(i < N - 1 && z == '\n'&&z == ';'))
 			{
 				i++;
-				return hasNext();
-			}
-			else if ((command[i] == '\n' && (prev == TOKEN_CLASS::NEW_LINE || prev == TOKEN_CLASS::NONE || prev == TOKEN_CLASS::SEMICOLON)) ||
-				(i < N - 1 && command[i]=='\n'&&command[i + 1] == ';'))
-			{
-				i++;
-				return hasNext();
+				deleteUneccessary();
 			}
 		}
-
-		return i < N;
 	}
 
-	void Tokenizer::deleteUneccessary()
-	{
-		
-	}
-
-	unique_ptr<Token> Tokenizer::getNext()
+	void Tokenizer::tokenize()
 	{	
-		if (check)
-			check = false;
-		else
-			hasNext();
+		while (i < N)
+		{
+			deleteUneccessary();
+			if (TokenizerHelper::isDigit(command[i]))
+				readNumber();
+			else if (TokenizerHelper::isLetter(command[i]))
+				readWord();
+			else if (TokenizerHelper::isWhiteSpace(command[i]))
+				readWhiteSpace();
+			else if (readOperator())
+				continue;
+			else readOthers();
 
-		if (TokenizerHelper::isDigit(command[i]))
-			return readNumber();
-		if (TokenizerHelper::isLetter(command[i]))
-			return readWord();
-		if (TokenizerHelper::isWhiteSpace(command[i]))
-			return readWhiteSpace();
-	
-		auto op = readOperator();
-		if (op != nullptr)
-			return std::move(op);
-		
-		return readOthers();
+		}
 	}
 
 	void Tokenizer::whiteSpacesBegin()
@@ -211,6 +186,4 @@ namespace PR
 		while (N > 0 && TokenizerHelper::isWhiteSpace(command[N - 1]))
 			N--;
 	}
-
-
 }

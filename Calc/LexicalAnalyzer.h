@@ -19,34 +19,30 @@ namespace PR
 {
 	class LexicalAnalyzer
 	{
-
+		vector<unique_ptr<Token>> tokens;
+		vector<unique_ptr<Token>>::iterator iter;
 	public:
-		bool hasNext();
-		unique_ptr<Token> getNext();
-		TOKEN_CLASS whatNext();
+		LexicalAnalyzer();
+		LexicalAnalyzer(const string &command);
+		~LexicalAnalyzer();
 
 		void setInput(const string &command);
 		void setInput(string &&in);
 		void setInput(FileLoader &in);
 
-		LexicalAnalyzer();
-		LexicalAnalyzer(const string &command);
-		~LexicalAnalyzer();
-
-	private:
-		Tokenizer tokenizer;
-		queue<unique_ptr<Token>> q;
-		bool what_next_flag;
-		unsigned int prev_operator_args_num;
-
-		const static vector<TOKEN_CLASS> UNARY_OP_PRECURSORS;
-
-		void reset();
-		void push(unique_ptr<Token> &token);
+		auto getTokens() -> decltype(tokens);
+	
+	private:	
+		Tokenizer tokenizer;	
 		LexicalBalanceHelper balancer;
 		TOKEN_CLASS prev;
-		void read();
+		unsigned int prev_operator_args_num;
+		const static vector<TOKEN_CLASS> UNARY_OP_PRECURSORS;
+		bool for_delete;
 
+		TOKEN_CLASS whatNext();
+		void reset();
+		void process(unique_ptr<Token> &token);
 		void onOperator(unique_ptr<Token> &token);
 		void onComma(Token &token);
 		void onSpace(Token &token);

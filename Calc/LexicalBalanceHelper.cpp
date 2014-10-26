@@ -9,7 +9,6 @@ namespace PR
 		reset();
 	}
 
-
 	LexicalBalanceHelper::~LexicalBalanceHelper()
 	{
 	}
@@ -121,5 +120,11 @@ namespace PR
 	{
 		if (key_word_balance == 0 || key_word_mode.back() != TOKEN_CLASS::FOR_KEYWORD && key_word_mode.back() != TOKEN_CLASS::WHILE_KEYWORD)
 			throw CalcException("Cannot use break or continue outside loop");
+	}
+
+	void LexicalBalanceHelper::throwOnUnbalancedEnd()
+	{
+		if (key_word_balance || balance.size() > 1 || balance.back() != 0)
+			throw CalcException("This statement is incomplete.");
 	}
 }

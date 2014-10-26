@@ -25,42 +25,49 @@ namespace PR
 	class Tokenizer
 	{
 		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
-	public:
-		Tokenizer();
-		~Tokenizer();
-		
-		/**
-		Return true if there are symbols to read
-		*/
-		bool hasNext();
 
-		/**
-		Return next symbol in input stream
-		*/
-		unique_ptr<Token> getNext();
+		vector<unique_ptr<Token>> tokens; 
+	public:
+		
+		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
+		
+		Tokenizer();
+		~Tokenizer();	
 		
 		void setInput(const string &command);
 		void setInput(string &&command);
- 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
 		Tokenizer & operator = (Tokenizer &&b);
+
+		void tokenize();
+		auto getTokens() -> decltype(tokens)
+		{
+			return std::move(tokens);
+		}
+
 	private:
+		
 		string command;
 		int i;
 		int N;
-		TOKEN_CLASS prev;
-		bool check;
 
-		unique_ptr<SNumber> readNumber();
-		unique_ptr<Token> readWord();
-		unique_ptr<Token> readWhiteSpace();
-		unique_ptr<Token> readOthers();
-		unique_ptr<Operator> readOperator();
+		void readNumber();
+		void readWord();
+		void readWhiteSpace();
+		void readOthers();
+		bool readOperator();
 		void skipBlockComment();
 		void skipLineComment();
 		void readString();
 		void whiteSpacesBegin();
 		void whiteSpacesEnd();
 		void deleteUneccessary();
+
+		TOKEN_CLASS prev()
+		{
+			if (tokens.size() == 0)
+				return TOKEN_CLASS::NONE;
+			return tokens.back()->getClass();
+		}
 		
 		void init()
 		{

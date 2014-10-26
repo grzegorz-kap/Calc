@@ -27,7 +27,8 @@ namespace PR
 		bool stop;
 		LexicalAnalyzer& lexAnalyzer;
 		unique_ptr<Token> i;
-
+		vector<unique_ptr<Token>> tokens;
+		vector<unique_ptr<Token>>::iterator iter;
 		vector<TYPE> _ev_type_mode;
 		vector<int>  _ev_type_balance;
 	public:
@@ -37,11 +38,17 @@ namespace PR
 
 		vector<shared_ptr<Token>> & getInstruction(){ return onp; }
 	private:
-		
 		TOKEN_CLASS stackBack() const;
 		TOKEN_CLASS onpBack() const;
 		void stackToOnp();
 		void stackToOnpAll();
+
+		TOKEN_CLASS whatNext()
+		{
+			if (iter + 1 == tokens.end())
+				return TOKEN_CLASS::NONE;
+			return (*(iter + 1))->getClass();
+		}
 
 		void onID();
 		void onNumber();
