@@ -5,18 +5,14 @@
 #include <utility>
 #include <complex>
 
-#include <boost\multiprecision\cpp_bin_float.hpp>
 #include <boost\lexical_cast.hpp>
 
-using namespace boost::multiprecision;
 using std::string;
 
 #include "Numeric.h"
 
 namespace PR
 {
-	typedef cpp_bin_float_100 hdouble;
-
 	class Power;
 
 	template<class T> 
@@ -27,200 +23,52 @@ namespace PR
 		friend  class ComplexNumber;
 		friend class Power;
 
-		
-
 		T re;
 		T im;
 	public:
-		ComplexNumber()
-		{
-			_type = Data::find_type(typeid(*this));
-		};
-
-		ComplexNumber(double reArg, double imArg = 0) 
-			: re(reArg), im(imArg)
-		{
-			_type = Data::find_type(typeid(*this));
-		};
-
-		ComplexNumber(hdouble reArg, hdouble imArg = 0)
-			: re(reArg), im(imArg)
-		{
-			_type = Data::find_type(typeid(*this));
-		};
-
-		ComplexNumber(const string &val_str)
-		{
-			if (val_str.size() && val_str.back() == 'i')
-			{
-				im = (T)std::atof(val_str.c_str());
-				re = 0;
-			}
-			else
-			{
-				re = (T)std::atof(val_str.c_str());
-				im = 0;
-			}
-			_type = Data::find_type(typeid(*this));
-		}
-
+		
+		ComplexNumber();
+		ComplexNumber(double reArg, double imArg = 0);
+		ComplexNumber(hdouble reArg, hdouble imArg = 0);
+		ComplexNumber(string &&val_str);
 		~ComplexNumber(){};
 
-		T getRe(){ return re; }
-		T getIm(){ return im; }
-		void setRe(T re){ this->re = re; }
-		void setIm(T im){ this->im = im; }
+		void operator += (const ComplexNumber<T> &b);
+		ComplexNumber<T> & operator = (const T &i);
 
-		template <class U>
-		ComplexNumber<T> operator + (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re + b.re, im + b.im);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator - (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re - b.re, im - b.im);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator * (const ComplexNumber<U> &b) const
-		{
-			ComplexNumber<T> c;
-			c.re = re*b.re - im*b.im;
-			c.im = re*b.im + im*b.re;
-			return c;
-		}
-
-		template <class U>
-		ComplexNumber<T> operator / (const ComplexNumber<U> &b) const
-		{
-			ComplexNumber<T> c;
-			if (im == 0 && b.im == 0)
-			{
-				c.re = re / b.re;
-				c.im = 0;
-			}
-			else
-			{
-				auto denominator = b.re*b.re + b.im*b.im;
-				c.re = (re*b.re + im*b.im) / denominator;
-				c.im = (im*b.re - re*b.im) / denominator;
-			}
-			return c;
-		}
-
-		/* Element wise multiplication */
-		template <class U>
-		auto times(const ComplexNumber<U> &b) const
-			->ComplexNumber < decltype(T()*U()) >
-		{
-			return ComplexNumber<decltype(T() * U())>(*this * b);
-		}
-
-		template <class U>
-		auto rdivide(const ComplexNumber<U> &b) const
-			->ComplexNumber < decltype(T() / U()) >
-		{
-			return *this / b;
-		}
-
-		template <class U>
-		auto ldivide(const ComplexNumber<U> &b) const
-			->ComplexNumber < decltype(T() / U()) >
-		{
-			return b / *this;
-		}
-
-		template <class U>
-		void operator += (const ComplexNumber<U> &b)
-		{
-			re += b.re; im += b.im;
-		}
-
-		template <class U>
-		ComplexNumber<T> & operator = (U i)
-		{
-			re = i;
-			return *this;
-		}
-
-		ComplexNumber<T> neg() const
-		{
-			return ComplexNumber<T>(-re, -im);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator == (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re == b.re && im == b.im);
-		}
-
-		bool operator == (const bool &b) const
-		{
-			return (re || im) == b;
-		}
-
-		template <class U>
-		ComplexNumber<T> operator != (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re != b.re || im != b.im);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator < (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re < b.re);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator <= (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re <= b.re);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator >(const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re > b.re);
-		}
-
-		template <class U>
-		ComplexNumber<T> operator >= (const ComplexNumber<U> &b) const
-		{
-			return ComplexNumber<T>(re >= b.re);
-		}
-
-		ComplexNumber<T> transpose() const
-		{
-			return ComplexNumber<T>(*this);
-		}
-
-		ComplexNumber<T> rows() const
-		{
-			return ComplexNumber<T>(1);
-		}
-
-		ComplexNumber<T> cols() const
-		{
-			return ComplexNumber<T>(1);
-		}
+		double getRe() const;
+		double getIm() const;
+		void setRe(const T &re);
+		void setIm(const T &im);
 
 
-		string toString() const
-		{
-			return ComplexNumber::to_string(*this);
-		}
+		template <class U> auto operator + (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() + U()) > ;	
+		template <class U> auto operator - (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() - U()) > ;
+		template <class U> auto operator * (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() * U()) > ;
+		template <class U> auto operator / (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() / U()) > ;
+		
+		template <class U> auto times(const ComplexNumber<U> &b) const -> ComplexNumber < decltype(T()*U()) > ; /* Element wise multiplication */
+		template <class U> auto rdivide(const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() / U()) >; /*  *this/b  */
+		template <class U> auto ldivide(const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() / U()) > ; /*  b/*this  */
+		
+		ComplexNumber<T> neg() const;
 
-		static string to_string(const ComplexNumber<double> &b)
-		{
-			return boost::lexical_cast<string>(b.re) + " " + boost::lexical_cast<string>(b.im) + "i";
-		}
+		template <class U> auto operator == (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) > ;
+		template <class U> auto operator != (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+		template <class U> auto operator < (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+		template <class U> auto operator <= (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+		template <class U> auto operator > (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+		template <class U> auto operator >= (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+		bool operator == (const bool &b) const;
 
-		static string to_string(const ComplexNumber<hdouble> &b)
-		{
-			return b.re.str() + " " + b.im.str() + "i";
-		}
+		ComplexNumber<T> transpose() const;
+		ComplexNumber<T> rows() const;
+		ComplexNumber<T> cols() const;
+
+		string toString() const;
+
+		operator ComplexNumber<hdouble>() const;
+		operator ComplexNumber<double>() const;
 
 	};
 }

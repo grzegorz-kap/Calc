@@ -243,6 +243,9 @@
     <ClInclude Include="Power.h">
       <Filter>Service\Math</Filter>
     </ClInclude>
+    <ClInclude Include="MpfFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -448,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="Power.cpp">
       <Filter>Service\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MpfFunction.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

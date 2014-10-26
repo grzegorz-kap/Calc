@@ -24,13 +24,13 @@ namespace PR
 		switch (getEvType())
 		{
 		case TYPE::DOUBLE:
-			return make_shared<ComplexNumber<double>>(getLexemeR());
+			return make_shared<ComplexNumber<double>>(getLexeme());
 		case TYPE::M_DOUBLE:
-			return make_shared< Matrix<double>>(getLexemeR());
+			return make_shared< Matrix<double>>(getLexeme());
 		case TYPE::R_DOUBLE:
-			return make_shared<ComplexNumber<hdouble>>(getLexemeR());
+			return make_shared<ComplexNumber<hdouble>>(getLexeme());
 		case TYPE::RM_DOUBLE:
-			return make_shared<Matrix<hdouble>>(getLexemeR());
+			return make_shared<Matrix<hdouble>>(getLexeme());
 		default:
 			throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
 		}

@@ -13,7 +13,6 @@ namespace PR
 	{
 	}
 
-
 	TypePromotor::~TypePromotor()
 	{
 	}
@@ -62,6 +61,14 @@ namespace PR
 		case TYPE::M_DOUBLE:
 			dest = a->convert_numeric<Matrix<double>>();
 			break;
+		case TYPE::R_DOUBLE:
+			dest = a->convert_numeric<ComplexNumber<hdouble>>();
+			break;
+		case TYPE::RM_DOUBLE:
+			dest = a->convert_numeric<Matrix<hdouble>>();
+			break;
+		default:
+			throw "!";
 		}
 	}
 

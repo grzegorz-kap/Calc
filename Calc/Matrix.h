@@ -550,11 +550,6 @@ namespace PR
 			return std::move(C);
 		}
 
-		operator int ()
-		{
-			return int(mx[0][0]);
-		}
-
 		template <class U>
 		operator ComplexNumber<U>() const
 		{

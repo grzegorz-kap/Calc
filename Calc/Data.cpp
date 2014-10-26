@@ -7,12 +7,16 @@ namespace PR
 	decltype(Data::TYPE_MAP) Data::TYPE_MAP =
 	{
 		{ typeid(Matrix<double>),TYPE::M_DOUBLE },
-		{ typeid(ComplexNumber<double>),TYPE::DOUBLE }
+		{ typeid(ComplexNumber<double>),TYPE::DOUBLE },
+		{ typeid(ComplexNumber<hdouble>), TYPE::R_DOUBLE },
+		{ typeid(Matrix<hdouble>), TYPE::RM_DOUBLE }
 	};
 
 	decltype(Data::TYPE_NAME_MAP) Data::TYPE_NAME_MAP =
 	{
 		{ TYPE::M_DOUBLE, "Matrix<double>" },
+		{ TYPE::RM_DOUBLE, "Matrix<mpf_float>" },
+		{ TYPE::R_DOUBLE, "mpf_float" },
 		{ TYPE::DOUBLE, "double" },
 		{ TYPE::OUTPUT, "'function output'" },
 		{ TYPE::UNKNOWN, "'unknown'" },

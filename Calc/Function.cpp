@@ -26,6 +26,9 @@ namespace PR
 
 	void Function::checkArgsCount(int i)
 	{
+		if (min_args_count == max_args_count == -1)
+			return;
+
 		if (i<min_args_count || i>max_args_count)
 			throw CalcException("Wrong number of parameters in function call '"+name+"'.");
 	}

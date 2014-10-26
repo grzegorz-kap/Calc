@@ -9,6 +9,7 @@ namespace PR
 	FunctionFactory::FunctionFactory()
 	{
 		builded_in.insert({ "size", [](){return make_unique<SizeFunction>(); } });
+		builded_in.insert({ "mpf_float", [](){return make_unique<MpfFunction>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()

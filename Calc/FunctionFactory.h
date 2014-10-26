@@ -14,8 +14,10 @@ using std::function;
 #include "Function.h"
 #include "ExternalFunction.h"
 #include "ExternalFunctionLoader.h"
-#include "SizeFunction.h"
 #include "LexicalAnalyzer.h"
+
+#include "SizeFunction.h"
+#include "MpfFunction.h"
 
 namespace PR
 {
