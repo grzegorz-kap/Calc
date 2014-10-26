@@ -27,59 +27,14 @@ namespace PR
 		friend class MatrixTransposer;
 		friend class Power;
 		
-		Matrix()
-			:M(0),N(0)
-		{
-			_type = Data::find_type(typeid(*this));
-		};
-
-		Matrix(const ComplexNumber<T> &b)
-			:Matrix(1,1,b)
-		{
-			_type = Data::find_type(typeid(*this));
-		}
-		
-		Matrix(Matrix<T> &&other)
-			:M(0), N(0)
-		{
-			*this = std::move(other);
-			_type = Data::find_type(typeid(*this));
-		}
-
-		Matrix(const Matrix<T> &b)
-			:mx(b.mx), M(b.M), N(b.N)
-		{
-			_type = Data::find_type(typeid(*this));
-		}
-
-		Matrix(const string &scalar)
-			:Matrix()
-		{
-			mx.push_back(vector<ComplexNumber<T>>(1));
-			mx[0][0] = (T)atof(scalar.c_str());
-			M = N = 1;
-			_type = Data::find_type(typeid(*this));
-		}
-
-		Matrix(int m, int n)
-			: Matrix()
-		{
-			M = m;
-			N = n;
-			mx.assign(m, vector<ComplexNumber<T>>(n));
-		}
-
-		Matrix(int m, int n, const ComplexNumber<T> &value)
-		{
-			M = m;
-			N = n;
-			_type = Data::find_type(typeid(*this));
-			mx.assign(m, vector<ComplexNumber<T>>(n, value));
-		}
-
-		virtual ~Matrix()
-		{
-		};
+		Matrix();
+		Matrix(const ComplexNumber<T> &b);
+		Matrix(Matrix<T> &&other);
+		Matrix(const Matrix<T> &b);
+		Matrix(string &&scalar);
+		Matrix(int m, int n);
+		Matrix(int m, int n, const ComplexNumber<T> &value);
+		virtual ~Matrix();
 
 		Matrix<T> & operator = (const Matrix<T> &b)
 		{
@@ -315,7 +270,7 @@ namespace PR
 			return C;
 		}
 
-		T& operator()(int i, int j)
+		ComplexNumber<T>& operator()(int i, int j)
 		{ 
 			return mx[i][j]; 
 		}
