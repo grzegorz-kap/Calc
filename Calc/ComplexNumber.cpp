@@ -136,6 +136,35 @@ namespace PR
 		return c;
 	}
 
+	template <class T>
+	void ComplexNumber<T>::operator/=(const ComplexNumber<T> &b)
+	{
+		if (im == 0 && b.im == 0)
+		{
+			re /= b.re;
+		}
+		else
+		{
+			auto denominator = b.re*b.re + b.im*b.im;
+			re = (re*b.re + im*b.im) / denominator;
+			im = (im*b.re - re*b.im) / denominator;
+		}
+	}
+
+	template <class T>
+	void ComplexNumber<T>::operator+=(const ComplexNumber<T> &b)
+	{
+		re += b.re;
+		im += b.im;
+	}
+
+	template <class T>
+	void ComplexNumber<T>::operator -= (const ComplexNumber<T> &b) 
+	{
+		re -= b.re;
+		im -= b.im;
+	}
+
 	template <class T> template <class U>
 	auto ComplexNumber<T>::times(const ComplexNumber<U> &b) const
 		->ComplexNumber < decltype(T()*U()) >
@@ -155,13 +184,6 @@ namespace PR
 		->ComplexNumber < decltype(T()*U()) >
 	{
 		return b / *this;
-	}
-
-	template <class T>
-	void ComplexNumber<T>::operator+=(const ComplexNumber<T> &b)
-	{
-		re += b.re;
-		im += b.im;
 	}
 
 	template <class T>

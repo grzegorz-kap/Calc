@@ -93,6 +93,7 @@
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
     <ClInclude Include="ComplexNumber.h" />
+    <ClInclude Include="CosFun.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="DivisionOperator.h" />
     <ClInclude Include="ElementWiseMultiplication.h" />
@@ -120,6 +121,7 @@
     <ClInclude Include="Log2Function.h" />
     <ClInclude Include="LogFunction.h" />
     <ClInclude Include="LTOperator.h" />
+    <ClInclude Include="LuFunction.h" />
     <ClInclude Include="Mathematic.h" />
     <ClInclude Include="MpfFunction.h" />
     <ClInclude Include="NumericException.h" />
@@ -139,10 +141,12 @@
     <ClInclude Include="AdditionOperator.h" />
     <ClInclude Include="RightArrayDivision.h" />
     <ClInclude Include="SignalEmitter.h" />
+    <ClInclude Include="SinFun.h" />
     <ClInclude Include="SizeFunction.h" />
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SubtractionOperator.h" />
+    <ClInclude Include="TanFun.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
@@ -170,6 +174,7 @@
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
+    <ClCompile Include="CosFun.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="DivisionOperator.cpp" />
     <ClCompile Include="dllmain.cpp">
@@ -203,6 +208,7 @@
     <ClCompile Include="Log2Function.cpp" />
     <ClCompile Include="LogFunction.cpp" />
     <ClCompile Include="LTOperator.cpp" />
+    <ClCompile Include="LuFunction.cpp" />
     <ClCompile Include="Mathematic.cpp" />
     <ClCompile Include="MpfFunction.cpp" />
     <ClCompile Include="NumericException.cpp" />
@@ -224,6 +230,7 @@
     <ClCompile Include="ParserAssignment.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />
+    <ClCompile Include="SinFun.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
     <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -231,6 +238,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SubtractionOperator.cpp" />
+    <ClCompile Include="TanFun.cpp" />
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />

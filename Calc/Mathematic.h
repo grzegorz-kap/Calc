@@ -189,6 +189,87 @@ namespace PR
 		{
 			return sqrt(z.re*z.re + z.im*z.im);
 		}
-	};
+
+		template <class T>
+		static ComplexNumber<T> sinus(const ComplexNumber<T> &z)
+		{
+			if (z.im == 0)
+				return ComplexNumber<T>(sin(z.re));
+			return ComplexNumber<T>(sin(z.re)*cosh(z.im), cos(z.re)*sinh(z.im));
+		}
+
+		template <class T>
+		static Matrix<T> sinus(const Matrix<T> &m)
+		{
+			Matrix<T> out(m.M, m.N);
+			for (int i = 0; i < m.M; i++)
+				for (int j = 0; j < m.N; j++)
+					out.mx[i][j] = sinus(m.mx[i][j]);
+			return out;
+		}
+	
+		template <class T>
+		static ComplexNumber<T> cosinus(const ComplexNumber<T> &a)
+		{
+			if (a.im == 0)
+				return ComplexNumber<T>(cos(a.re));
+			int m = a.im>0 ? 1 : -1;
+			return ComplexNumber<T>(cos(a.re)*cosh(a.im), sin(a.re)*sinh(a.im)*m);
+		}
+
+		template <class T>
+		static Matrix<T> cosinus(const Matrix<T> &a)
+		{
+			Matrix<T> c(a.M, a.N);
+			for (int i = 0; i < a.M; i++)
+				for (int j = 0; j < a.N; j++)
+					c.mx[i][j] = cosinus(a.mx[i][j]);
+			return c;
+		}
+
+		template <class T>
+		static ComplexNumber<T> tangens(const ComplexNumber<T> &a)
+		{
+			if (a.im == 0)
+				return ComplexNumber<T>(tan(a.re));
+			int m = a.im>0 ? 1 : -1;
+			ComplexNumber<T> out;
+			out.re = out.im = 1 / (cos(2 * a.re) + cosh(2 * a.im));
+			out.re *= sin(2 * a.re);
+			out.im *= sinh(2 * a.im);
+			return out;
+		}
+
+		template <class T>
+		static Matrix<T> tangens(const Matrix<T> &a)
+		{
+			Matrix<T> c(a.M, a.N);
+			for (int i = 0; i < a.M; i++)
+				for (int j = 0; j < a.N; j++)
+					c.mx[i][j] = tangens(a.mx[i][j]);
+			return c;
+		}
+
+		template <class T>
+		static Matrix<T> lu(const Matrix<T> &a)
+		{
+			Matrix<T> c = a;
+			for (int k = 0; k < a.N - 1; k++)
+			{
+				for (int i = k + 1; i < a.N; i++)
+					c.mx[i][k] /= c.mx[k][k];
+				for (int i = k + 1; i < a.N; i++)
+					for (int j = k + 1; j < a.N; j++)
+						c.mx[i][j] -= c.mx[i][k] * c.mx[k][j];
+			}
+			return c;
+		}
+
+		template <class T>
+		static ComplexNumber<T> lu(const ComplexNumber<T> &a)
+		{
+			return a;
+		}
+};
 }
 

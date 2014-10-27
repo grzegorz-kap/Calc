@@ -46,9 +46,6 @@
     <Filter Include="Service\LexicalAnalyze\Helpers">
       <UniqueIdentifier>{373b35e9-7575-4d8e-9ab0-ce70a1551742}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Service\Math">
-      <UniqueIdentifier>{42df83d6-9d5f-4872-82ce-bc650d0221fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Factories">
       <UniqueIdentifier>{717ff0f1-b58d-47a8-878f-4fd1fcc4e1f3}</UniqueIdentifier>
     </Filter>
@@ -262,6 +259,18 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="Log2Function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SinFun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CosFun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TanFun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -486,6 +495,18 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Log2Function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SinFun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CosFun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TanFun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LuFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

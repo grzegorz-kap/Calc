@@ -159,6 +159,26 @@ namespace PR
 			throw UnimplementedException("Cannot do 'log10' on this type");
 		}
 
+		virtual shared_ptr<Data> lu() const
+		{
+			throw UnimplementedException("Cannot do 'lu' on this type");
+		}
+
+		virtual shared_ptr<Data> sin() const
+		{
+			throw UnimplementedException("Cannot do 'sin' on this type");
+		}
+
+		virtual shared_ptr<Data> cos() const
+		{
+			throw UnimplementedException("Cannot do 'cos' on this type");
+		}
+
+		virtual shared_ptr<Data> tan() const
+		{
+			throw UnimplementedException("Cannot do 'tan' on this type");
+		}
+
 		virtual bool operator == (const bool &b) const
 		{
 			throw UnimplementedException("Cannot do bool eq on this type");

@@ -21,6 +21,10 @@ using std::function;
 #include "LogFunction.h"
 #include "Log10Function.h"
 #include "Log2Function.h"
+#include "SinFun.h"
+#include "CosFun.h"
+#include "TanFun.h"
+#include "LuFunction.h"
 
 namespace PR
 {
