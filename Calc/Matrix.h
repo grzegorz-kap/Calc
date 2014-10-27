@@ -28,7 +28,7 @@ namespace PR
 	public:
 		friend class MatrixTransposer;
 		friend class Mathematic;
-		friend class LuDecompositor;
+		friend class LUDecompositor;
 		
 		Matrix();
 		Matrix(const ComplexNumber<T> &b);

@@ -16,12 +16,12 @@ namespace PR
 		_type = Data::find_type(typeid(*this));
 	}
 
-	/*template <class T>
+	template <class T>
 	ComplexNumber<T>::ComplexNumber(hdouble reArg, hdouble imArg = 0)
 		: re(reArg), im(imArg)
 	{
 		_type = Data::find_type(typeid(*this));
-	};*/
+	};
 
 	template <>
 	ComplexNumber<double>::ComplexNumber(string &&val)
@@ -40,7 +40,7 @@ namespace PR
 		_type = TYPE::DOUBLE;
 	}
 
-	/*template <>
+	template <>
 	ComplexNumber<hdouble>::ComplexNumber(string &&val)
 	{
 		if (val.size() && val.back() == 'i')
@@ -55,13 +55,13 @@ namespace PR
 			im = 0;
 		}
 		_type = TYPE::R_DOUBLE;
-	}*/
+	}
 
-	/*template<>
+	template<>
 	double ComplexNumber<hdouble>::getRe() const
 	{
 		return re.convert_to<double>();
-	}*/
+	}
 
 	template<>
 	double ComplexNumber<double>::getRe() const
@@ -69,11 +69,11 @@ namespace PR
 		return re;
 	}
 
-	/*template<>
+	template<>
 	double ComplexNumber<hdouble>::getIm() const
 	{
 		return im.convert_to<double>();
-	}*/
+	}
 
 	template<>
 	double ComplexNumber<double>::getIm() const
@@ -276,7 +276,7 @@ namespace PR
 		return boost::lexical_cast<string>(re)+ boost::lexical_cast<string>(im)+"i";
 	}
 
-	/*template <>
+	template <>
 	string ComplexNumber<hdouble>::toString() const
 	{
 		if (im==0)
@@ -290,14 +290,14 @@ namespace PR
 	ComplexNumber<hdouble>::operator ComplexNumber<double>() const
 	{
 		return ComplexNumber<double>(re.convert_to<double>(), im.convert_to<double>());
-	}*/
+	}
 
-	/*template<>
+	template<>
 	ComplexNumber<double>::operator ComplexNumber<hdouble>() const
 	{
 		return ComplexNumber<hdouble>(re, im);
-	}*/
+	}
 
 	template class ComplexNumber < double > ;
-	//template class ComplexNumber < hdouble > ;
+	template class ComplexNumber < hdouble > ;
 }

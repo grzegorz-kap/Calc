@@ -188,6 +188,8 @@ namespace PR
 		template <class T>
 		static T module(const ComplexNumber<T> &z)
 		{
+			if (z.im == 0)
+				return(abs(z.re));
 			return sqrt(z.re*z.re + z.im*z.im);
 		}
 

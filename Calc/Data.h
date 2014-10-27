@@ -19,7 +19,7 @@ using std::make_shared;
 
 namespace PR
 {
-//	typedef cpp_bin_float_100 hdouble;
+	typedef cpp_bin_float_100 hdouble;
 
 	template <class T>
 	class Numeric;
@@ -240,10 +240,10 @@ namespace PR
 					return make_shared<T>(*dynamic_cast<Matrix<double> *>(this));
 				case TYPE::DOUBLE:
 					return make_shared<T>(*dynamic_cast<ComplexNumber<double> *>(this));
-				/*case TYPE::R_DOUBLE:
+				case TYPE::R_DOUBLE:
 					return make_shared<T>(*dynamic_cast<ComplexNumber<hdouble> *>(this));
 				case TYPE::RM_DOUBLE:
-					return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));*/
+					return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));
 
 				default:
 					throw CastException("Cannot cast to different numeric type! Probably not numeric type");

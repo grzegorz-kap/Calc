@@ -33,4 +33,9 @@ namespace PR
 	{
 		throw NumericException(string("Logarithm base has to be scalar"));
 	}
+
+	void NumericException::throwLuNotSquare()
+	{
+		throw string("LU decomposition error, intput matrix is not square");
+	}
 }

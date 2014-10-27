@@ -29,7 +29,7 @@ namespace PR
 		
 		ComplexNumber();
 		ComplexNumber(double reArg, double imArg = 0);
-		//ComplexNumber(hdouble reArg, hdouble imArg = 0);
+		ComplexNumber(hdouble reArg, hdouble imArg = 0);
 		ComplexNumber(string &&val_str);
 		~ComplexNumber(){};
 
@@ -70,7 +70,7 @@ namespace PR
 
 		string toString() const;
 
-		//operator ComplexNumber<hdouble>() const;
+		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;
 
 	};
