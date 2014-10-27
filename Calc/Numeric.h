@@ -7,6 +7,7 @@ using std::make_unique;
 
 #include  "Data.h"
 #include "Mathematic.h"
+#include "LUDecompositor.h"
 
 namespace PR
 {
@@ -103,7 +104,7 @@ namespace PR
 
 		virtual shared_ptr<Data> lu() const
 		{
-			return make_shared<T>(Mathematic::lu(*get_derived()));
+			return make_shared<T>(LUDecompositor::lu(*get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator -() const override

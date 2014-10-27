@@ -52,6 +52,9 @@
     <Filter Include="Function\functions">
       <UniqueIdentifier>{6c5a3097-5eb0-4b30-a7e9-a0963d9f1c78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Service\Math">
+      <UniqueIdentifier>{527bca14-36c6-45ba-9621-b3baa20faac1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -237,41 +240,44 @@
     <ClInclude Include="SignalEmitter.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="MpfFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UPlusOperator.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="NumericException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Mathematic.h">
-      <Filter>Service</Filter>
-    </ClInclude>
     <ClInclude Include="SizeFunction.h">
       <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="LogFunction.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Log10Function.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="Log2Function.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SinFun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CosFun.h">
-      <Filter>Header Files</Filter>
+      <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="TanFun.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Log2Function.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFunction.h">
+      <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="LuFunction.h">
-      <Filter>Header Files</Filter>
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="MpfFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="SinFun.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="TanFun.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematic.h">
+      <Filter>Service\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="LUDecompositor.h">
+      <Filter>Service\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -473,41 +479,44 @@
     <ClCompile Include="FileLoader.cpp">
       <Filter>Service</Filter>
     </ClCompile>
-    <ClCompile Include="MpfFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UPlusOperator.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="NumericException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="Mathematic.cpp">
-      <Filter>Service</Filter>
-    </ClCompile>
     <ClCompile Include="SizeFunction.cpp">
       <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="LogFunction.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Log10Function.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Log2Function.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="SinFun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CosFun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TanFun.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LogFunction.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="LuFunction.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="MpfFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="SinFun.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="CosFun.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="TanFun.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mathematic.cpp">
+      <Filter>Service\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="LUDecompositor.cpp">
+      <Filter>Service\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

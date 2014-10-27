@@ -5,6 +5,7 @@
 #include "NumericException.h"
 #include "Matrix.h"
 #include "ComplexNumber.h"
+
 #include <boost\math\constants\constants.hpp>
 
 using namespace boost::math::constants;
@@ -250,26 +251,6 @@ namespace PR
 			return c;
 		}
 
-		template <class T>
-		static Matrix<T> lu(const Matrix<T> &a)
-		{
-			Matrix<T> c = a;
-			for (int k = 0; k < a.N - 1; k++)
-			{
-				for (int i = k + 1; i < a.N; i++)
-					c.mx[i][k] /= c.mx[k][k];
-				for (int i = k + 1; i < a.N; i++)
-					for (int j = k + 1; j < a.N; j++)
-						c.mx[i][j] -= c.mx[i][k] * c.mx[k][j];
-			}
-			return c;
-		}
-
-		template <class T>
-		static ComplexNumber<T> lu(const ComplexNumber<T> &a)
-		{
-			return a;
-		}
-};
+	};
 }
 

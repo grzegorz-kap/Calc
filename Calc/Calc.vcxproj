@@ -121,6 +121,7 @@
     <ClInclude Include="Log2Function.h" />
     <ClInclude Include="LogFunction.h" />
     <ClInclude Include="LTOperator.h" />
+    <ClInclude Include="LUDecompositor.h" />
     <ClInclude Include="LuFunction.h" />
     <ClInclude Include="Mathematic.h" />
     <ClInclude Include="MpfFunction.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Log2Function.cpp" />
     <ClCompile Include="LogFunction.cpp" />
     <ClCompile Include="LTOperator.cpp" />
+    <ClCompile Include="LUDecompositor.cpp" />
     <ClCompile Include="LuFunction.cpp" />
     <ClCompile Include="Mathematic.cpp" />
     <ClCompile Include="MpfFunction.cpp" />

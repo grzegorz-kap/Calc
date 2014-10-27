@@ -27,10 +27,10 @@ namespace PR
 			return make_shared<ComplexNumber<double>>(getLexeme());
 		case TYPE::M_DOUBLE:
 			return make_shared< Matrix<double>>(getLexeme());
-		case TYPE::R_DOUBLE:
+		/*case TYPE::R_DOUBLE:
 			return make_shared<ComplexNumber<hdouble>>(getLexeme());
 		case TYPE::RM_DOUBLE:
-			return make_shared<Matrix<hdouble>>(getLexeme());
+			return make_shared<Matrix<hdouble>>(getLexeme());*/
 		default:
 			throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
 		}
