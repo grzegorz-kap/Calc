@@ -13,7 +13,7 @@ using std::string;
 
 namespace PR
 {
-	class Math;
+	class Mathematic;
 
 	template<class T> 
 	class  ComplexNumber
@@ -21,7 +21,7 @@ namespace PR
 	{
 		template <class U>
 		friend  class ComplexNumber;
-		friend class Math;
+		friend class Mathematic;
 
 		T re;
 		T im;

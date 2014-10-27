@@ -249,8 +249,8 @@
     <ClInclude Include="NumericException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Service\Math</Filter>
+    <ClInclude Include="Mathematic.h">
+      <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -464,8 +464,8 @@
     <ClCompile Include="NumericException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>Service\Math</Filter>
+    <ClCompile Include="Mathematic.cpp">
+      <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
