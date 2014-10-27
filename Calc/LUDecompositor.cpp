@@ -31,7 +31,7 @@ namespace PR
 
 			/* Swap vectors if neccessary */
 			if (k != idx)
-				A.mx[k].swap(A.mx[idx]);
+				std::swap(A.mx[k], A.mx[idx]);
 
 			for (int j = k + 1; j < n; j++)
 				A.mx[j][k] = A.mx[j][k] / A.mx[k][k];
@@ -40,8 +40,8 @@ namespace PR
 				for (int j = k + 1; j < n; j++)
 					if (i != k)
 						A.mx[i][j] = A.mx[i][j] - A.mx[i][k] * A.mx[k][j];
-			return A;
 		}
+		return A;
 	}
 
 	template Matrix<double> LUDecompositor::lu(const Matrix<double> &);
