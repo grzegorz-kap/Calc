@@ -134,6 +134,39 @@ namespace PR
 			return ComplexNumber<T>(log(module(b)), argument(b)) / ComplexNumber<T>(log(module(a)), argument(a));
 		}
 
+		template <class T>
+		static Matrix<T> logarithm10(const Matrix<T> &b)
+		{
+			Matrix<T> C(b.M, b.N);
+			for (int i = 0; i < b.M; i++)
+				for (int j = 0; j < b.N; j++)
+					C.mx[i][j] = logarithm10(b.mx[i][j]);
+			return C;
+		}
+
+		template <class T>
+		static ComplexNumber<T> logarithm10(const ComplexNumber<T> &b)
+		{
+			if (b.im == 0)
+				return ComplexNumber<T>(log10(b.re));
+			return logarithm(ComplexNumber<T>(10), b);
+		}
+
+		template <class T>
+		static Matrix<T> logarithm2(const Matrix<T> &b)
+		{
+			Matrix<T> C(b.M, b.N);
+			for (int i = 0; i < b.M; i++)
+				for (int j = 0; j < b.N; j++)
+					C.mx[i][j] = logarithm2(b.mx[i][j]);
+			return C;
+		}
+
+		template <class T>
+		static ComplexNumber<T> logarithm2(const ComplexNumber<T> &b)
+		{
+			return logarithm(ComplexNumber<T>(2), b);
+		}
 
 		/* Argument of complex number */
 		template <class T>

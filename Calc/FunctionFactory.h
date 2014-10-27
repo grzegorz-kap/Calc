@@ -19,6 +19,8 @@ using std::function;
 #include "SizeFunction.h"
 #include "MpfFunction.h"
 #include "LogFunction.h"
+#include "Log10Function.h"
+#include "Log2Function.h"
 
 namespace PR
 {

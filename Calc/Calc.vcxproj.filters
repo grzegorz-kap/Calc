@@ -258,6 +258,12 @@
     <ClInclude Include="LogFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Log10Function.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Log2Function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -474,6 +480,12 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="LogFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log10Function.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Log2Function.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

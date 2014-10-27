@@ -116,6 +116,8 @@
     <ClInclude Include="LeOperator.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
+    <ClInclude Include="Log10Function.h" />
+    <ClInclude Include="Log2Function.h" />
     <ClInclude Include="LogFunction.h" />
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="Mathematic.h" />
@@ -197,6 +199,8 @@
     <ClCompile Include="LeOperator.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
+    <ClCompile Include="Log10Function.cpp" />
+    <ClCompile Include="Log2Function.cpp" />
     <ClCompile Include="LogFunction.cpp" />
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="Mathematic.cpp" />
