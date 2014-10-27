@@ -14,6 +14,7 @@ namespace PR
 		static void throwMatrixMultDimensions();
 		static void throwLogarithmFromZero();
 		static void throwLogarithmZeroBase();
+		static void throwMatrixLogDimensions();
 	};
 
 }

@@ -26,9 +26,13 @@ namespace PR
 			convertTo(b_m, a, a);
 		else if (a_m>b_m)
 			convertTo(a_m, b, b);
-		else if (a->_type == TYPE::OUTPUT)
+		
+		if (a->_type == TYPE::OUTPUT)
 		{
 			convertTo(a_m, a, a);
+		}
+		if (b->_type == TYPE::OUTPUT)
+		{
 			convertTo(b_m, b, b);
 		}
 			

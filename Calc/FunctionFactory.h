@@ -18,6 +18,7 @@ using std::function;
 
 #include "SizeFunction.h"
 #include "MpfFunction.h"
+#include "LogFunction.h"
 
 namespace PR
 {

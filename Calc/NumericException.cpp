@@ -28,4 +28,9 @@ namespace PR
 	{
 		throw NumericException(string("Logarithm base is 0!"));
 	}
+
+	void NumericException::throwMatrixLogDimensions()
+	{
+		throw NumericException(string("Logarithm base has to be scalar"));
+	}
 }

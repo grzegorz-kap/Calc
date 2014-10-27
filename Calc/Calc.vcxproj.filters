@@ -52,6 +52,9 @@
     <Filter Include="Factories">
       <UniqueIdentifier>{717ff0f1-b58d-47a8-878f-4fd1fcc4e1f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Function\functions">
+      <UniqueIdentifier>{6c5a3097-5eb0-4b30-a7e9-a0963d9f1c78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -97,9 +100,6 @@
       <Filter>Execution</Filter>
     </ClInclude>
     <ClInclude Include="Function.h">
-      <Filter>Function</Filter>
-    </ClInclude>
-    <ClInclude Include="SizeFunction.h">
       <Filter>Function</Filter>
     </ClInclude>
     <ClInclude Include="CalcException.h">
@@ -252,6 +252,12 @@
     <ClInclude Include="Mathematic.h">
       <Filter>Service</Filter>
     </ClInclude>
+    <ClInclude Include="SizeFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -291,9 +297,6 @@
       <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="Function.cpp">
-      <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="SizeFunction.cpp">
       <Filter>Function</Filter>
     </ClCompile>
     <ClCompile Include="CodeExecutorFunction.cpp">
@@ -466,6 +469,12 @@
     </ClCompile>
     <ClCompile Include="Mathematic.cpp">
       <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="SizeFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="LogFunction.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

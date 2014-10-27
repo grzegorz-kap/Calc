@@ -65,17 +65,6 @@ namespace PR
 			return C;
 		}
 
-		/*template <class T, class U>
-		static auto power(const ComplexNumber<T> &a, const Matrix<U> &b)
-			->ComplexNumber < decltype(T() + U()) >
-		{
-			if (!b.isScalar())
-				throw "!";
-
-			return power(a, b.mx[0][0]);
-		}*/
-
-		/* Matrix exponentiation */
 		template<class T, class U>
 		static auto mpower(const Matrix<T> &a, const Matrix<U> &b)
 			->Matrix < decltype(T() + U()) >
@@ -86,16 +75,6 @@ namespace PR
 			throw CalcException("Matrix ^ Matrix to be implemented in the feature!");
 		}
 
-		/*template <class T, class U>
-		static auto mpower(const ComplexNumber<T> &a, const Matrix<U> &b)
-			->ComplexNumber < decltype(T() + U()) >
-		{
-			if (!b.isScalar())
-				throw "!";
-
-			return Mathematic::power(a, b.mx[0][0]);
-		}*/
-
 		template<class T, class U>
 		static auto mpower(const ComplexNumber<T> &a, const ComplexNumber<U> &b)
 			->ComplexNumber<decltype(T() + U())>
@@ -103,6 +82,31 @@ namespace PR
 			return power(a, b);
 		}
 
+		template<class T,class U>
+		static auto logarithm(const Matrix<T> &a, const Matrix<U> &b)
+			->Matrix < decltype(T() + U()) >
+		{
+			if (!a.isScalar())
+				NumericException::throwMatrixLogDimensions();
+
+			const ComplexNumber<T> &ref = a.mx[0][0];
+
+			Matrix<decltype(T() + U())> C(b.M, b.N);
+			for (int i = 0; i < b.M; i++)
+				for (int j = 0; j < b.N; j++)
+					C.mx[i][j] = logarithm(ref, b.mx[i][j]);
+			return C;
+		}
+
+		template<class T>
+		static Matrix<T> logarithm(const Matrix<T> &a)
+		{
+			Matrix<T> C(a.M, a.N);
+			for (int i = 0; i < a.M; i++)
+				for (int j = 0; j < a.N; j++)
+					C.mx[i][j] = logarithm(a.mx[i][j]);
+			return C;
+		}
 
 		template <class T, class U>
 		static auto logarithm(const ComplexNumber<T> &a, const ComplexNumber<U> &b)
@@ -118,6 +122,18 @@ namespace PR
 
 			return ComplexNumber<decltype(T() + U())>(log(module(b)), argument(b)) / ComplexNumber<decltype(T() + U())>(log(module(a)), argument(a));
 		}
+
+		template <class T>
+		static ComplexNumber<T> logarithm(const ComplexNumber<T> &b)
+		{
+			if (b.re == 0 && b.im == 0)
+				NumericException::throwLogarithmZeroBase();	
+			if (b.im == 0)
+				return ComplexNumber<T>(log(b.re));
+			ComplexNumber<T> a(e<T>());
+			return ComplexNumber<T>(log(module(b)), argument(b)) / ComplexNumber<T>(log(module(a)), argument(a));
+		}
+
 
 		/* Argument of complex number */
 		template <class T>

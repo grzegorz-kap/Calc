@@ -66,6 +66,16 @@ namespace PR
 			return make_shared<T>(Mathematic::mpower(*get_derived(), *b->cast_numeric<T>()->get_derived()));
 		}
 
+		virtual shared_ptr<Data> log() const override
+		{
+			return make_shared<T>(Mathematic::logarithm(*get_derived()));
+		}
+
+		virtual shared_ptr<Data> log(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(Mathematic::logarithm(*get_derived(), *b->cast_numeric<T>()->get_derived()));
+		}
+
 		virtual shared_ptr<Data> operator -() const override
 		{
 			return make_shared<T>(get_derived()->neg());
