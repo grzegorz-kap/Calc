@@ -16,15 +16,16 @@ namespace PR
 	public:
 
 		template<class T>
-		static void lu(const Matrix<T> &b, Matrix<T> **, Matrix<T> **ptr1 = nullptr, Matrix<T> **ptr2=nullptr);
+		static int lu(const Matrix<T> &src, Matrix<T> **L, Matrix<T> **U = nullptr, Matrix<T> **P=nullptr);
 
 		template <class T>
-		static void lu(const ComplexNumber<T> &a, ComplexNumber<T> **ptr, 
-			ComplexNumber<T> **ptr1 = nullptr, ComplexNumber<T> **ptr2=nullptr)
+		static int lu(const ComplexNumber<T> &src, ComplexNumber<T> **L, 
+			ComplexNumber<T> **U = nullptr, ComplexNumber<T> **P=nullptr)
 		{
-			*ptr = new ComplexNumber<T>(a);
-			if (ptr1) *ptr1= new ComplexNumber<T>(a);
-			if (ptr2) *ptr2 = new ComplexNumber<T>(1);
+			*L = new ComplexNumber<T>(src);
+			if (U) *U= new ComplexNumber<T>(src);
+			if (P) *P = new ComplexNumber<T>(1);
+			return 0;
 		}
 	};
 

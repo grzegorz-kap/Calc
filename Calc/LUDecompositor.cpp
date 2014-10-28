@@ -4,7 +4,7 @@
 namespace PR
 {
 	template <class T>
-	void LUDecompositor::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
+	int LUDecompositor::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
 	{
 		if (a.M != a.N)
 			NumericException::throwLuNotSquare();
@@ -14,10 +14,20 @@ namespace PR
 
 		/*Doolittle-Crout*/
 		std::unique_ptr<Matrix<T>> i_l = std::make_unique<Matrix<T>>(a);
-		std::unique_ptr<Matrix<T>> i_p = p == nullptr ? nullptr : std::make_unique<Matrix<T>>(MatrixBuilder<T>::buildEye(a.M,a.M));
+		std::unique_ptr<Matrix<T>> i_p;
 		Matrix<T> &A = *i_l;
 		int m = A.M;
 		int n = A.N;
+
+		if (p)
+		{
+			if (*p == nullptr)
+				i_p = make_unique<Matrix<T>>(MatrixBuilder<T>::buildEye(a.M, a.N));
+			else
+				i_p.reset(*p);
+			if (i_p->rows() != a.M)
+				throw CalcException("LU decompositor permutation matrix has wrong rows count");
+		}
 
 		for (int k = 0; k < m - 1; k++)
 		{
@@ -80,8 +90,9 @@ namespace PR
 			*p = i_p.release();
 		if (u)
 			*u = n_u;
+		return d.size();
 	}
 
-	template void LUDecompositor::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
-	template void LUDecompositor::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
+	template int LUDecompositor::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
+	template int LUDecompositor::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
 }
