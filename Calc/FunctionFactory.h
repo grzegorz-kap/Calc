@@ -25,6 +25,7 @@ using std::function;
 #include "CosFun.h"
 #include "TanFun.h"
 #include "LuFunction.h"
+#include "DetFunction.h"
 
 namespace PR
 {

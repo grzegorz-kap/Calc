@@ -48,6 +48,7 @@ namespace PR
 		
 		void operator /= (const ComplexNumber<T> &b);
 		void operator -= (const ComplexNumber<T> &b);
+		void operator *= (const ComplexNumber<T> &b);
 		
 		template <class U> auto times(const ComplexNumber<U> &b) const -> ComplexNumber < decltype(T()*U()) > ; /* Element wise multiplication */
 		template <class U> auto rdivide(const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() / U()) >; /*  *this/b  */

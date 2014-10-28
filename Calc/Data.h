@@ -174,6 +174,11 @@ namespace PR
 			throw UnimplementedException("Cannot do 'lu' on this type");
 		}
 
+		virtual shared_ptr<Data> det() const
+		{
+			throw UnimplementedException("Cannot do 'det' on this type");
+		}
+
 		virtual shared_ptr<Data> sin() const
 		{
 			throw UnimplementedException("Cannot do 'sin' on this type");

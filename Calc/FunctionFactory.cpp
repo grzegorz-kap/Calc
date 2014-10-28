@@ -17,6 +17,7 @@ namespace PR
 		builded_in.insert({ "cos", [](){ return make_unique<CosFun>(); } });
 		builded_in.insert({ "tan", [](){return make_unique<TanFun>(); } });
 		builded_in.insert({ "lu", [](){return make_unique<LuFunction>(); } });
+		builded_in.insert({ "det", [](){return make_unique<DetFunction>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()

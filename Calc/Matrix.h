@@ -15,7 +15,7 @@ namespace PR
 	template <class T>
 	class ComplexNumber;
 	class Mathematic;
-	class LUDecompositor;
+	class MatrixUtils;
 	template <class T>
 	class MatrixBuilder;
 
@@ -30,7 +30,7 @@ namespace PR
 	public:
 		friend class MatrixTransposer;
 		friend class Mathematic;
-		friend class LUDecompositor;
+		friend class MatrixUtils;
 		template<class T> friend class MatrixBuilder;
 		Matrix();
 		Matrix(const ComplexNumber<T> &b);

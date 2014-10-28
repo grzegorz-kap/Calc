@@ -159,6 +159,13 @@ namespace PR
 	}
 
 	template <class T>
+	void ComplexNumber<T>::operator*=(const ComplexNumber<T> &b)
+	{
+		re = re*b.re - im*b.im;
+		im = re*b.im + im*b.re;
+	}
+
+	template <class T>
 	void ComplexNumber<T>::operator -= (const ComplexNumber<T> &b) 
 	{
 		re -= b.re;

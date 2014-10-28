@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "LUDecompositor.h"
+#include "MatrixUtils.h"
 
 namespace PR
 {
 	template <class T>
-	int LUDecompositor::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
+	int MatrixUtils::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
 	{
 		if (a.M != a.N)
 			NumericException::throwLuNotSquare();
@@ -93,6 +93,40 @@ namespace PR
 		return d.size();
 	}
 
-	template int LUDecompositor::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
-	template int LUDecompositor::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
+	template <class T>
+	int MatrixUtils::lu(const ComplexNumber<T> &src, ComplexNumber<T> **L,ComplexNumber<T> **U, ComplexNumber<T> **P)
+	{
+		*L = new ComplexNumber<T>(src);
+		if (U) *U = new ComplexNumber<T>(src);
+		if (P) *P = new ComplexNumber<T>(1);
+		return 0;
+	}
+	
+	template <class T>
+	ComplexNumber<T> MatrixUtils::det(const Matrix<T> &a)
+	{
+		if (a.M != a.N)
+			throw NumericException("Cannot compute determinant from not squere matrix");
+		if (a.M == 0)
+			return ComplexNumber<T>(1);
+
+		Matrix<T> *ptr = nullptr;
+		bool sign = lu(a, &ptr) % 2 ? true : false;
+		auto &mx = ptr->mx;
+		ComplexNumber<T> det = mx[0][0];
+		for (int i = 1; i < a.M; i++)
+			det *= mx[i][i];
+		if (sign)
+			return det.neg();
+		else
+			return det;
+	}
+
+	/* Necessary for definitions in cpp file */
+	template int MatrixUtils::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
+	template int MatrixUtils::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
+	template int MatrixUtils::lu(const ComplexNumber<double> &, ComplexNumber<double>**, ComplexNumber<double>**, ComplexNumber<double>**);
+	template int MatrixUtils::lu(const ComplexNumber<hdouble> &, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**);
+	template ComplexNumber<double> MatrixUtils::det(const Matrix<double>&);
+	template ComplexNumber<hdouble> MatrixUtils::det(const Matrix<hdouble>&);
 }

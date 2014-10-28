@@ -95,6 +95,7 @@
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="CosFun.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="DetFunction.h" />
     <ClInclude Include="DivisionOperator.h" />
     <ClInclude Include="ElementWiseMultiplication.h" />
     <ClInclude Include="EqOperator.h" />
@@ -121,7 +122,7 @@
     <ClInclude Include="Log2Function.h" />
     <ClInclude Include="LogFunction.h" />
     <ClInclude Include="LTOperator.h" />
-    <ClInclude Include="LUDecompositor.h" />
+    <ClInclude Include="MatrixUtils.h" />
     <ClInclude Include="LuFunction.h" />
     <ClInclude Include="Mathematic.h" />
     <ClInclude Include="MpfFunction.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="ComplexNumber.cpp" />
     <ClCompile Include="CosFun.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="DetFunction.cpp" />
     <ClCompile Include="DivisionOperator.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
@@ -209,7 +211,7 @@
     <ClCompile Include="Log2Function.cpp" />
     <ClCompile Include="LogFunction.cpp" />
     <ClCompile Include="LTOperator.cpp" />
-    <ClCompile Include="LUDecompositor.cpp" />
+    <ClCompile Include="MatrixUtils.cpp" />
     <ClCompile Include="LuFunction.cpp" />
     <ClCompile Include="Mathematic.cpp" />
     <ClCompile Include="MpfFunction.cpp" />

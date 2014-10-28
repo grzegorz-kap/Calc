@@ -7,7 +7,7 @@ using std::make_unique;
 
 #include  "Data.h"
 #include "Mathematic.h"
-#include "LUDecompositor.h"
+#include "MatrixUtils.h"
 
 namespace PR
 {
@@ -105,7 +105,7 @@ namespace PR
 		virtual void lu(shared_ptr<Data> &dest) const override
 		{
 			T * ptr = nullptr;
-			LUDecompositor::lu(*get_derived(),&ptr);
+			MatrixUtils::lu(*get_derived(),&ptr);
 			dest = shared_ptr<Data>(ptr);
 		}
 
@@ -113,7 +113,7 @@ namespace PR
 		{
 			T * ptr2 = nullptr;
 			T * ptr1 = nullptr;
-			LUDecompositor::lu(*get_derived(), &ptr1,&ptr2);
+			MatrixUtils::lu(*get_derived(), &ptr1,&ptr2);
 			l = shared_ptr<Data>(ptr1);
 			u = shared_ptr<Data>(ptr2);
 		}
@@ -123,10 +123,15 @@ namespace PR
 			T *ptr3 = nullptr;
 			T * ptr2 = nullptr;
 			T * ptr1 = nullptr;
-			LUDecompositor::lu(*get_derived(), &ptr1, &ptr2,&ptr3);
+			MatrixUtils::lu(*get_derived(), &ptr1, &ptr2,&ptr3);
 			l = shared_ptr<Data>(ptr1);
 			u = shared_ptr<Data>(ptr2);
 			p = shared_ptr<Data>(ptr3);
+		}
+
+		virtual shared_ptr<Data> det() const override
+		{
+			return make_shared<T>(MatrixUtils::det(*get_derived()));
 		}
 
 		virtual shared_ptr<Data> operator -() const override

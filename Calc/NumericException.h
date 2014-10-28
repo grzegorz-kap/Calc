@@ -10,8 +10,9 @@ namespace PR
 		: public CalcException
 	{
 		//std::string message;
-		NumericException(std::string &&message);
+		
 	public:
+		NumericException(std::string &&message);
 		~NumericException();
 
 		static void throwMatrixMultDimensions();
