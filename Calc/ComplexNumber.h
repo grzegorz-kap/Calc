@@ -4,8 +4,7 @@
 #include <string>
 #include <utility>
 #include <complex>
-
-#include <boost\lexical_cast.hpp>
+#include <sstream>
 
 using std::string;
 

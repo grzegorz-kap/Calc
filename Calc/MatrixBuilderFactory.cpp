@@ -9,7 +9,9 @@ namespace PR
 		switch (_type)
 		{
 		case TYPE::M_DOUBLE:
-			return make_unique<MatrixBuilder<double>>();
+			return make_unique<MatrixBuilder<double>>(); 
+		case TYPE::RM_DOUBLE:
+			return make_unique<MatrixBuilder<hdouble>>();
 		}
 		return nullptr;
 	}

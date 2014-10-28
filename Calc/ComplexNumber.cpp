@@ -268,22 +268,19 @@ namespace PR
 	template <>
 	string ComplexNumber<double>::toString() const
 	{
-		using boost::lexical_cast;
-		if (im == 0)
-			return boost::lexical_cast<string>(re);
-		if (im>0)
-			return boost::lexical_cast<string>(re) + "+" + boost::lexical_cast<string>(im) + "i";
-		return boost::lexical_cast<string>(re)+ boost::lexical_cast<string>(im)+"i";
+		std::ostringstream ss;
+		ss << re;
+		if (im > 0)
+			ss << "+";
+		if (im != 0)
+			ss << im << "i";
+		return ss.str();
 	}
 
 	template <>
 	string ComplexNumber<hdouble>::toString() const
 	{
-		if (im==0)
-			return re.str();
-		if (im>0)
-			return re.str() + "+" + im.str() + "i";
-		return re.str() + im.str() + "i";
+		return ((ComplexNumber<double>)*this).toString();
 	}
 
 	template<>
