@@ -27,6 +27,14 @@ namespace PR
 		TYPE d_type;
 
 	public:
+
+		static Matrix<T> buildEye(int i, int m)
+		{
+			Matrix<T> out(i, m,0);
+			for (int i = 0; i < out.M && i < out.N; i++)
+				out.mx[i][i] = ComplexNumber<T>(1);
+			return out;
+		}
 		
 		MatrixBuilder()
 			:

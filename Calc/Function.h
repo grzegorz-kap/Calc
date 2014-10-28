@@ -21,6 +21,7 @@ namespace PR
 		string name;
 		int max_args_count;
 		int min_args_count;
+		int output;
 		vector<shared_ptr<Data>> arguments;
 	public:
 		Function();
@@ -30,7 +31,7 @@ namespace PR
 
 		string getName() const { return name; }
 
-		virtual void set(const vector<shared_ptr<Data>> &args);
+		virtual void set(const vector<shared_ptr<Data>> &args,int output=1);
 
 	protected:
 

@@ -38,6 +38,7 @@ namespace PR
 		Token(string &&lexemeArg, TOKEN_CLASS typeArg, int position = -1,
 			int param = 0, PARSE_MODE mode = PARSE_MODE::NORMAL);
 		Token(TOKEN_CLASS arg,int position=-1);
+		Token(TOKEN_CLASS arg, int position, int paramA) :Token(arg, position) { param = paramA; }
 		Token(Token &&);
 		~Token();
 

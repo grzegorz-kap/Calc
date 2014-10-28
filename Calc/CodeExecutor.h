@@ -44,6 +44,7 @@ namespace PR
 		static int recursions;
 		static int recursion_limit;
 	private:
+		
 		static bool stop_computing;
 		vector<shared_ptr<Data>> stack;
 		Instruction::const_iterator i;
@@ -69,6 +70,7 @@ namespace PR
 		void onOperator();
 		void onMatrixEnd();
 		void onFunction();
+		void onFunctionArgs();
 		void onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name);
 		void onAssignment();
 		void defaultAssignment();

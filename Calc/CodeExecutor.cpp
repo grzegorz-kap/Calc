@@ -83,7 +83,7 @@ namespace PR
 				onMatrixEnd();
 				break;
 			case TOKEN_CLASS::FUNCTON_ARGS_END:
-				stack.push_back(make_shared<Token>(FUNCTON_ARGS_END));
+				onFunctionArgs();
 				break;
 			case TOKEN_CLASS::FUNCTION:
 				onFunction();

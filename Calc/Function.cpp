@@ -18,10 +18,11 @@ namespace PR
 		throw CalcException("Unimplemented function behaviour!");
 	}
 
-	void Function::set(const vector<shared_ptr<Data>> &args)
+	void Function::set(const vector<shared_ptr<Data>> &args,int output_nr)
 	{
 		checkArgsCount(args.size());
 		arguments = args;
+		output = output_nr;
 	}
 
 	void Function::checkArgsCount(int i)

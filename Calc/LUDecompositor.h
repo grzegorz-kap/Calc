@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Matrix.h"
+#include "MatrixBuilder.h"
 #include "Mathematic.h"
+
+#include <memory>
 
 namespace PR
 {
@@ -13,12 +16,15 @@ namespace PR
 	public:
 
 		template<class T>
-		static Matrix<T> lu(const Matrix<T> &b);
+		static void lu(const Matrix<T> &b, Matrix<T> **, Matrix<T> **ptr1 = nullptr, Matrix<T> **ptr2=nullptr);
 
 		template <class T>
-		static ComplexNumber<T> lu(const ComplexNumber<T> &a)
+		static void lu(const ComplexNumber<T> &a, ComplexNumber<T> **ptr, 
+			ComplexNumber<T> **ptr1 = nullptr, ComplexNumber<T> **ptr2=nullptr)
 		{
-			return a;
+			*ptr = new ComplexNumber<T>(a);
+			if (ptr1) *ptr1= new ComplexNumber<T>(a);
+			if (ptr2) *ptr2 = new ComplexNumber<T>(1);
 		}
 	};
 

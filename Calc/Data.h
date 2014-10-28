@@ -159,7 +159,17 @@ namespace PR
 			throw UnimplementedException("Cannot do 'log10' on this type");
 		}
 
-		virtual shared_ptr<Data> lu() const
+		virtual void lu(shared_ptr<Data> &) const
+		{
+			throw UnimplementedException("Cannot do 'lu' on this type");
+		}
+
+		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &) const
+		{
+			throw UnimplementedException("Cannot do 'lu' on this type");
+		}
+
+		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &, shared_ptr<Data> &) const
 		{
 			throw UnimplementedException("Cannot do 'lu' on this type");
 		}

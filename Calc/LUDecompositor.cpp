@@ -4,13 +4,18 @@
 namespace PR
 {
 	template <class T>
-	Matrix<T> LUDecompositor::lu(const Matrix<T> &a)
+	void LUDecompositor::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
 	{
 		if (a.M != a.N)
 			NumericException::throwLuNotSquare();
 
+		vector<int> s;
+		vector<int> d;
+
 		/*Doolittle-Crout*/
-		Matrix<T> A = a;
+		std::unique_ptr<Matrix<T>> i_l = std::make_unique<Matrix<T>>(a);
+		std::unique_ptr<Matrix<T>> i_p = p == nullptr ? nullptr : std::make_unique<Matrix<T>>(MatrixBuilder<T>::buildEye(a.M,a.M));
+		Matrix<T> &A = *i_l;
 		int m = A.M;
 		int n = A.N;
 
@@ -31,19 +36,52 @@ namespace PR
 
 			/* Swap vectors if neccessary */
 			if (k != idx)
+			{
 				std::swap(A.mx[k], A.mx[idx]);
+				if (p)
+					std::swap(i_p->mx[k], i_p->mx[idx]);
+				else if (u)
+				{
+					s.push_back(k);
+					d.push_back(idx);
+				}
+			}
 
+			ComplexNumber<T> &ref = A.mx[k][k];
 			for (int j = k + 1; j < n; j++)
-				A.mx[j][k] = A.mx[j][k] / A.mx[k][k];
+				A.mx[j][k] /= ref;
 
 			for (int i = k + 1; i < m; i++)
 				for (int j = k + 1; j < n; j++)
 					if (i != k)
-						A.mx[i][j] = A.mx[i][j] - A.mx[i][k] * A.mx[k][j];
+						A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];	
 		}
-		return A;
+		Matrix<T> *n_u =nullptr;
+		if (u)
+		{
+			n_u = new Matrix<T>(m, n);
+			for (int i = 0; i < m; i++)
+				for (int j = 0; j < n; j++)
+				{
+				if (i == j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(1); }
+				else if (i < j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(0); }
+				else { n_u->mx[i][j] = ComplexNumber<T>(0); }
+				}
+		}
+
+		if (u&&!p)
+		{
+			for (int i = s.size()-1; i >=0; i--)
+				std::swap(A.mx[s[i]], A.mx[d[i]]);
+		}
+
+		*l = i_l.release();
+		if (p)
+			*p = i_p.release();
+		if (u)
+			*u = n_u;
 	}
 
-	template Matrix<double> LUDecompositor::lu(const Matrix<double> &);
-	template Matrix<hdouble> LUDecompositor::lu(const Matrix<hdouble> &);
+	template void LUDecompositor::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
+	template void LUDecompositor::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
 }

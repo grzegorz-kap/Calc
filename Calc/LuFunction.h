@@ -10,10 +10,7 @@ namespace PR
 		LuFunction();
 		~LuFunction();
 
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->lu();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 
 }

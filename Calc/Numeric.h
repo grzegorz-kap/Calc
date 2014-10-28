@@ -97,14 +97,36 @@ namespace PR
 			return make_shared<T>(Mathematic::cosinus(*get_derived()));
 		}
 
-		virtual shared_ptr<Data> tan() const
+		virtual shared_ptr<Data> tan() const override
 		{
 			return make_shared<T>(Mathematic::tangens(*get_derived()));
 		}
 
-		virtual shared_ptr<Data> lu() const
+		virtual void lu(shared_ptr<Data> &dest) const override
 		{
-			return make_shared<T>(LUDecompositor::lu(*get_derived()));
+			T * ptr = nullptr;
+			LUDecompositor::lu(*get_derived(),&ptr);
+			dest = shared_ptr<Data>(ptr);
+		}
+
+		virtual void lu(shared_ptr<Data> &l,shared_ptr<Data> &u) const override
+		{
+			T * ptr2 = nullptr;
+			T * ptr1 = nullptr;
+			LUDecompositor::lu(*get_derived(), &ptr1,&ptr2);
+			l = shared_ptr<Data>(ptr1);
+			u = shared_ptr<Data>(ptr2);
+		}
+
+		virtual void lu(shared_ptr<Data> &l, shared_ptr<Data> &u, shared_ptr<Data> &p) const override
+		{
+			T *ptr3 = nullptr;
+			T * ptr2 = nullptr;
+			T * ptr1 = nullptr;
+			LUDecompositor::lu(*get_derived(), &ptr1, &ptr2,&ptr3);
+			l = shared_ptr<Data>(ptr1);
+			u = shared_ptr<Data>(ptr2);
+			p = shared_ptr<Data>(ptr3);
 		}
 
 		virtual shared_ptr<Data> operator -() const override
