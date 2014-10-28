@@ -3,7 +3,7 @@
 Console::Console(QWidget *parent)
 	: QTextBrowser(parent)
 {
-	document()->setMaximumBlockCount(100);
+	document()->setMaximumBlockCount(5000);
 }
 
 Console::~Console()

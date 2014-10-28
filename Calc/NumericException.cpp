@@ -5,7 +5,7 @@
 namespace PR
 {
 	NumericException::NumericException(std::string &&message)
-		:message(std::move(message))
+		:CalcException(message)
 	{
 	}
 

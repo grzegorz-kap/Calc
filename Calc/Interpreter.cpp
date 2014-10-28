@@ -23,14 +23,14 @@ namespace PR
 		CodeExecutor::recursions = 0;
 		CodeExecutor exec(Interpreter::main_vars);
 		exec.setInput(command);
-//		try{
+	//	try{
 			CodeExecutor::off_stop_computing();
 			exec.start();
-	//	}
-	//	catch (CalcException ex)
-	//	{
-	//		SignalEmitter::get()->call(ex);
-	//	}
+	/*	}
+		catch (CalcException ex)
+		{
+			SignalEmitter::get()->call(ex);
+		}*/
 	}
 
 	void Interpreter::workFromFile(const string &fileName)

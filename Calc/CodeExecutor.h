@@ -81,6 +81,7 @@ namespace PR
 		void onWhileEnd();
 		bool checkWhile();
 		void onID();
+		bool onScript();
 
 		shared_ptr<Data> pop();
 		void pushToken(TOKEN_CLASS t);
