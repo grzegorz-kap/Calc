@@ -35,6 +35,7 @@ private slots:
 
 signals:
 	void interpreterResponded(const QString&);
+	void interpreterRespondedHtml(const QString &);
 	void interpreterError(const QString &);
 };
 

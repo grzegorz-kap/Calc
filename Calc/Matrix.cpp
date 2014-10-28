@@ -465,6 +465,20 @@ namespace PR
 		return temp;
 	}
 
+	template <class T> string Matrix<T>::toHtml() const
+	{
+		string temp = "<table>";
+		for (int i = 0; i < M; i++)
+		{
+			temp += "<tr>";
+			for (int j = 0; j < N; j++)
+				temp += "<td>" + mx[i][j].toString() + "&nbsp; &nbsp; &nbsp;</td>";
+			temp += "</tr>";
+		}
+		temp += "</table>";
+		return temp;
+	}
+
 	template <class T> bool Matrix<T>::operator == (const bool &b) const
 	{
 		if (b)

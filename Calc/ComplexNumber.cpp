@@ -283,6 +283,12 @@ namespace PR
 		return ((ComplexNumber<double>)*this).toString();
 	}
 
+	template<class T>
+	string ComplexNumber<T>::toHtml() const
+	{
+		return "<table><tr><td>" + toString() + "</td></tr></table>";
+	}
+
 	template<>
 	ComplexNumber<hdouble>::operator ComplexNumber<double>() const
 	{

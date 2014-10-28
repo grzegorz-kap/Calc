@@ -21,7 +21,7 @@ void InterpreterConnector::commandToInterpreter(const std::string &command)
 void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data) 
 {
 	Sync::get()->console_sem.acquire();
-	emit interpreterResponded(QString(str) + "=\n" + data->toString().c_str()+"\n");
+	emit interpreterRespondedHtml("<br>"+QString(+str) + "=<br>" + data->toHtml().c_str()+"<br>");
 }
 
 void InterpreterConnector::errors_receiver(const char *str, int position)

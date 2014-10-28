@@ -68,6 +68,7 @@ namespace PR
 		ComplexNumber<T> cols() const;
 
 		string toString() const;
+		string toHtml() const;
 
 		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;

@@ -22,6 +22,7 @@ namespace PR
 	{
 		checkArgsCount(args.size());
 		arguments = args;
+		TypePromotor::promote(arguments);
 		output = output_nr;
 	}
 

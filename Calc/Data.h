@@ -199,6 +199,11 @@ namespace PR
 			return string("");
 		}
 
+		virtual string toHtml() const
+		{
+			return string("");
+		}
+
 		virtual shared_ptr<Data> get_rows() const
 		{
 			throw UnimplementedException("Cannot do this on virtual type");

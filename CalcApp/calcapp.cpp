@@ -32,6 +32,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.commandLine, SIGNAL(commandEntered(const std::string &)), interpreterConnector, SLOT(commandToInterpreter(const std::string &)));
 	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.console, SLOT(appendWithoutRealase(const QString &)));
 	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.console, SLOT(append(const QString&)));
+	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(const QString&)), ui.console, SLOT(insertHtml(const QString&)));
 	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.console, SLOT(insertHtml(const QString&)));
 	connect(&fileWatcher, SIGNAL(directoryChanged(const QString&)), &fileWatcher, SLOT(changed(const QString &)));
 	connect(&fileWatcher, SIGNAL(sendFileList(const QStringList &)), ui.fileList, SLOT(set(const QStringList &)));

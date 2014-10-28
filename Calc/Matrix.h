@@ -90,10 +90,9 @@ namespace PR
 			return M == 1 && N == 1;
 		}
 
+		virtual string toHtml() const override;
 		virtual string toString() const override;
 		virtual bool operator == (const bool &b) const override;
-
-		
 
 		template <class U>
 		operator ComplexNumber<U>() const

@@ -8,6 +8,10 @@ namespace PR
 		auto target = make_shared<Assignment>();
 		target->getTarget().push_back(make_shared<Token>("ans", TOKEN_CLASS::ID));
 		stack.insert(stack.begin(), std::move(target));
+
+		if (stack.size() >= 2 && stack.back()->_type == TYPE::OUTPUT)
+			TypePromotor::convertTo(stack.back()->max_type(), stack.back(), stack.back());
+
 		onAssignment();
 	}
 
