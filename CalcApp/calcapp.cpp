@@ -26,14 +26,13 @@ CalcApp::CalcApp(QWidget *parent)
 	qRegisterMetaType<QString>("QString");
 	qRegisterMetaType<std::string>("std::string");
 	
-	ui.commandLine->setFocus();
-	ui.splitter->setStretchFactor(1, 300);
+	ui.commandL->setFocus();
 	
-	connect(ui.commandLine, SIGNAL(commandEntered(const std::string &)), interpreterConnector, SLOT(commandToInterpreter(const std::string &)));
-	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.console, SLOT(appendWithoutRealase(const QString &)));
-	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.console, SLOT(append(const QString&)));
-	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(const QString&)), ui.console, SLOT(insertHtml(const QString&)));
-	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.console, SLOT(insertHtml(const QString&)));
+	connect(ui.commandL, SIGNAL(commandEntered(const std::string &)), interpreterConnector, SLOT(commandToInterpreter(const std::string &)));
+	connect(ui.commandL, SIGNAL(commandEntered(const QString &)), ui.consoleL, SLOT(appendWithoutRealase(const QString &)));
+	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.consoleL, SLOT(append(const QString&)));
+	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(const QString&)), ui.consoleL, SLOT(insertHtml(const QString&)));
+	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.consoleL, SLOT(insertHtml(const QString&)));
 	connect(&fileWatcher, SIGNAL(directoryChanged(const QString&)), &fileWatcher, SLOT(changed(const QString &)));
 	connect(&fileWatcher, SIGNAL(sendFileList(const QStringList &)), ui.fileList, SLOT(set(const QStringList &)));
 
