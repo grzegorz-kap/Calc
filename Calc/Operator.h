@@ -36,6 +36,7 @@ namespace PR
 		bool operator < (const Operator &b) const;
 		int getPriority() const { return priority; }
 		int getArgumentsNum() const { return argumentsNum; }
+		void setPriority(int pr){ priority = pr; }
 		EVAULATED getEv() const { return ev; }
 
 		virtual Operator * castToOperator()  override

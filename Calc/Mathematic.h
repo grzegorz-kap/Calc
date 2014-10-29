@@ -43,16 +43,33 @@ namespace PR
 		static auto power(const ComplexNumber<T> &a, const ComplexNumber<U> &b)
 			->ComplexNumber<decltype(T() + U())>
 		{
-			if (a.im == 0 && b.im == 0)
+			if (a.im == 0 && b.im == 0 && (a.re>=0||b.re==floor(b.re)))
 				return ComplexNumber<decltype(T() + U())>(pow(a.re, b.re));
 
-			ComplexNumber<T> E(e<T>());
-			auto y = b*logarithm(E, a);
-			ComplexNumber<T> out;
-			out.re = out.im = pow(E.re, y.re);
-			out.re = out.re*cos(y.im);
-			out.im = out.im*sin(y.im);
-			return out;
+			if (b.im != 0)
+			{
+				ComplexNumber<T> E(e<T>());
+				auto y = b*logarithm(E, a);
+				ComplexNumber<T> out;
+				out.re = out.im = pow(E.re, y.re);
+				out.re *= cos(y.im);
+				out.im *= sin(y.im);
+				return out;
+			}
+			else
+			{
+				T arg = argument(a);
+				T mod = module(a);
+				ComplexNumber<T> out;
+				out.re = out.im = pow(mod, b.re);
+				T chck = arg*b.re;
+				if (chck == pi<T>() / 2.0 || chck == 3 * pi<T>() / 2.0)
+					out.re = 0;
+				else
+					out.re *= cos(arg*b.re);
+				out.im *= sin(arg*b.re);
+				return out;
+			}
 		}
 
 		template <class T, class U>
@@ -117,8 +134,9 @@ namespace PR
 				NumericException::throwLogarithmZeroBase();
 			if (b.re == 0 && b.im == 0)
 				NumericException::throwLogarithmFromZero();
-
-			if (a.im == 0 && b.im == 0)
+			if (a.re == 1 && b.re == 0)
+				throw NumericException("Logarithm base equals zero");
+			if (a.im == 0 && b.im == 0 && a.re>0 && b.re>0)
 				return ComplexNumber<decltype(T() + U())>(log(b.re) / log(a.re));
 
 			return ComplexNumber<decltype(T() + U())>(log(module(b)), argument(b)) / ComplexNumber<decltype(T() + U())>(log(module(a)), argument(a));

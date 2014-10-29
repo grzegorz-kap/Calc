@@ -12,6 +12,8 @@ namespace PR
 		vector<int> s;
 		vector<int> d;
 
+		int swaps_count = 0;
+
 		/*Doolittle-Crout*/
 		std::unique_ptr<Matrix<T>> i_l = std::make_unique<Matrix<T>>(a);
 		std::unique_ptr<Matrix<T>> i_p;
@@ -48,6 +50,7 @@ namespace PR
 			if (k != idx)
 			{
 				std::swap(A.mx[k], A.mx[idx]);
+				++swaps_count;
 				if (p)
 					std::swap(i_p->mx[k], i_p->mx[idx]);
 				else if (u)
@@ -90,7 +93,7 @@ namespace PR
 			*p = i_p.release();
 		if (u)
 			*u = n_u;
-		return d.size();
+		return swaps_count;
 	}
 
 	template <class T>

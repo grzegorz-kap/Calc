@@ -21,10 +21,7 @@ namespace PR
 
 	bool Operator::operator<(const Operator &b) const
 	{
-		if (priority > b.priority || ev == EVAULATED::RIGHT && priority == b.priority)
-			return true;
-		else
-			return false;
+		return priority > b.priority || ev == EVAULATED::RIGHT && priority == b.priority;
 	}
 
 	void Operator::setArguments(vector<shared_ptr<Data>> &stack)

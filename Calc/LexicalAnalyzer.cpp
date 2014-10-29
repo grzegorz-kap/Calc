@@ -109,12 +109,15 @@ namespace PR
 		if (name == "+" || name == "-")
 		{
 			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) ||
-				(prev==TOKEN_CLASS::OPERATOR&&prev_operator_args_num > 1))
+				(prev==TOKEN_CLASS::OPERATOR&&(prev_operator_args_num > 1||ev_op_prev==EVAULATED::LEFT)))
 			{
 				token = OperatorsFactory::simple_get("$" + name);
+				if (prev==TOKEN_CLASS::OPERATOR&&(iter - 1)->get()->getLexemeR() == "^")
+					token->castToOperator()->setPriority(19);
 			}
 		}
 		prev_operator_args_num = token->castToOperator()->getArgumentsNum();
+		ev_op_prev = token->castToOperator()->getEv();
 	}
 
 	TOKEN_CLASS LexicalAnalyzer::whatNext()

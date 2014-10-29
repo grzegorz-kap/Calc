@@ -39,6 +39,7 @@ namespace PR
 		unsigned int prev_operator_args_num;
 		const static vector<TOKEN_CLASS> UNARY_OP_PRECURSORS;
 		bool for_delete;
+		EVAULATED ev_op_prev;
 
 		TOKEN_CLASS whatNext();
 		void reset();

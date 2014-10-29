@@ -5,7 +5,7 @@
 namespace PR
 {
 	USubtractionOperator::USubtractionOperator()
-		:Operator("$-",30,1,EVAULATED::RIGHT)
+		:Operator("$-",30,1,EVAULATED::LEFT)
 	{
 	}
 
