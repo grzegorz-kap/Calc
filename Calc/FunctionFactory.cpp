@@ -18,6 +18,7 @@ namespace PR
 		builded_in.insert({ "tan", [](){return make_unique<TanFun>(); } });
 		builded_in.insert({ "lu", [](){return make_unique<LuFunction>(); } });
 		builded_in.insert({ "det", [](){return make_unique<DetFunction>(); } });
+		builded_in.insert({ "inv", [](){return make_unique<InvFunction>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()
@@ -36,8 +37,17 @@ namespace PR
 
 	ExternalFunction& FunctionFactory::load_external(const string &name)
 	{
+		loadInstance();
 		instance->readExternal(name);
 		return instance->externals[name];
+	}
+
+	void FunctionFactory::delete_external(const string &file)
+	{
+		loadInstance();
+	//	auto result = instance->externals.find(file);
+	//	if (result != instance->externals.end())
+			instance->externals.erase(file);
 	}
 
 	bool FunctionFactory::readExternal(const string &name)

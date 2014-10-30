@@ -24,9 +24,9 @@ namespace PR
 		if (!find)
 			return;
 
-		unique_ptr<Assignment> ptr = make_unique<Assignment>();
-		ptr->setPosition(onp.front()->getPosition());
-		ptr->loadTarget(onp);
+		Assignment assignment;
+		assignment.loadTarget(onp);
+		unique_ptr<Assignment> ptr = std::make_unique<Assignment>(assignment);
 		onp.insert(onp.begin(), std::move(ptr));
 	}
 }

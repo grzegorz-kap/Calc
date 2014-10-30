@@ -27,12 +27,12 @@ namespace PR
 	}
 
 	template <typename T>
-	void SafeRealase(T * var)
+	void SafeRealase(T ** ptr)
 	{
-		if (var != nullptr)
+		if (*ptr != nullptr)
 		{
-			delete var;
-			var = nullptr;
+			delete *ptr;
+			*ptr = nullptr;
 		}
 	}
 

@@ -26,6 +26,8 @@ namespace PR
 		void work(const string &command);
 		void workFromFile(const string &fileName);
 		void connectStopComputing();
+
+		void updateFile(const char *);
 	};
 }
 

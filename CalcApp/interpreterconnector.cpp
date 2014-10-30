@@ -17,6 +17,11 @@ void InterpreterConnector::commandToInterpreter(const std::string &command)
 	interpreter.work(command);	
 }
 
+void InterpreterConnector::updateFile(const QString &file)
+{
+	interpreter.updateFile(file.toStdString().c_str());
+}
+
 /* Boost signals2 */
 void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data) 
 {

@@ -3,6 +3,9 @@
 
 namespace PR
 {
+	decltype(Matrix<double>::matrix_divide) Matrix<double>::matrix_divide = MatrixUtils::divide<double>;
+	decltype(Matrix<hdouble>::matrix_divide) Matrix<hdouble>::matrix_divide = MatrixUtils::divide<hdouble>;
+
 	template <class T>
 	int MatrixUtils::lu(const Matrix<T> &a,Matrix<T> **l,Matrix<T> **u,Matrix<T> **p)
 	{
@@ -119,10 +122,28 @@ namespace PR
 		ComplexNumber<T> det = mx[0][0];
 		for (int i = 1; i < a.M; i++)
 			det *= mx[i][i];
+		SafeRealase(&ptr);
 		if (sign)
 			return det.neg();
 		else
 			return det;
+	}
+
+	template <class T>
+	Matrix<T> MatrixUtils::inv(const Matrix<T> &A)
+	{
+		Matrix<T> *lu = nullptr;
+		Matrix<T> *eye = nullptr;
+		
+		MatrixUtils::lu(A, &lu, (Matrix<T>**)nullptr, &eye);
+		Matrix<T> &x = *eye;
+		Matrix<T> &a = *lu;
+
+		for (int j = 0; j < x.N; j++)
+		{
+			url(a, x, j, x, j);
+		}
+		return x;
 	}
 
 	/* Necessary for definitions in cpp file */
@@ -132,4 +153,6 @@ namespace PR
 	template int MatrixUtils::lu(const ComplexNumber<hdouble> &, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**);
 	template ComplexNumber<double> MatrixUtils::det(const Matrix<double>&);
 	template ComplexNumber<hdouble> MatrixUtils::det(const Matrix<hdouble>&);
+	template Matrix<double> MatrixUtils::inv(const Matrix<double> &);
+	template Matrix<hdouble> MatrixUtils::inv(const Matrix<hdouble> &);
 }

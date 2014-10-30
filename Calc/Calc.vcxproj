@@ -113,6 +113,7 @@
     <ClInclude Include="Gt.h" />
     <ClInclude Include="IMatrixBuilder.h" />
     <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="InvFunction.h" />
     <ClInclude Include="i_order_map.h" />
     <ClInclude Include="LeftArrayDivision.h" />
     <ClInclude Include="LeOperator.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Gt.cpp" />
     <ClCompile Include="IMatrixBuilder.cpp" />
     <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="InvFunction.cpp" />
     <ClCompile Include="i_order_map.cpp" />
     <ClCompile Include="LeftArrayDivision.cpp" />
     <ClCompile Include="LeOperator.cpp" />

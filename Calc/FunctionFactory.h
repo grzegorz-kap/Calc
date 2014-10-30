@@ -26,6 +26,7 @@ using std::function;
 #include "TanFun.h"
 #include "LuFunction.h"
 #include "DetFunction.h"
+#include "InvFunction.h"
 
 namespace PR
 {
@@ -34,6 +35,7 @@ namespace PR
 	public:
 		static unique_ptr<Function> load_in(const string &name);
 		static ExternalFunction& load_external(const string &name);
+		static void delete_external(const string &name);
 	private:
 		FunctionFactory();
 		~FunctionFactory();

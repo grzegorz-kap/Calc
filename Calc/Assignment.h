@@ -6,7 +6,7 @@
 using std::vector;
 using std::unique_ptr;
 
-
+#include "CalcException.h"
 #include "Token.h"
 namespace PR
 {

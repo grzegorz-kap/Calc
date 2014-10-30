@@ -9,6 +9,7 @@ namespace PR
 		_type = Data::find_type(typeid(*this));
 	};
 
+
 	template <class T> Matrix<T>::Matrix(const ComplexNumber<T> &b)
 		:Matrix(1, 1, b)
 	{
@@ -85,6 +86,9 @@ namespace PR
 			return *this / b.mx[0][0];
 		else if (M == 1 && N == 1)
 			return b.ldivide(mx[0][0]);
+
+		if (M != b.M || N != b.N)
+			throw NumericException("/ Matrix dimensions must agree");
 
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -170,6 +174,9 @@ namespace PR
 		else if (M == 1 && N == 1)
 			return B + mx[0][0];
 
+		if (M != B.M || N != B.N)
+			throw NumericException("+ Matrix dimensions must agree");
+
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -194,6 +201,9 @@ namespace PR
 			return *this - B.mx[0][0];
 		else if (M == 1 && N == 1)
 			return B.sub(mx[0][0]);
+
+		if (M != B.M || N != B.N)
+			throw NumericException("- Matrix dimensions must agree");
 
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -257,14 +267,18 @@ namespace PR
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator / (const Matrix<U> &B) const ->Matrix < decltype(T() / U()) >
+	template <class T>
+	Matrix<T> Matrix<T>::operator / (const Matrix<T> &B) const 
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this / B.mx[0][0];
 		else if (M == 1 && N == 1)
 			return B.ldivide(mx[0][0]);
-		throw "!";
+		
+		if (M != B.M || N != B.N)
+			throw NumericException("/ Matrix dimensions must agree");
+
+		return Matrix<T>::matrix_divide(*this, B);
 	}
 
 	template <class T> template <class U>
@@ -292,6 +306,9 @@ namespace PR
 		if (b.isScalar())
 			return *this == b.mx[0][0];
 
+		if (M != b.M || N != b.N)
+			throw NumericException("== Matrix dimensions must agree");
+
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -318,6 +335,9 @@ namespace PR
 			return b != mx[0][0];
 		if (b.isScalar())
 			return *this != b.mx[0][0];
+
+		if (M != b.M || N != b.N)
+			throw NumericException("!= Matrix dimensions must agree");
 
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -354,6 +374,9 @@ namespace PR
 		if (b.isScalar())
 			return *this < b.mx[0][0];
 
+		if (M != b.M || N != b.N)
+			throw NumericException("< Matrix dimensions must agree");
+
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -378,6 +401,9 @@ namespace PR
 			return b < mx[0][0];
 		if (b.isScalar())
 			return *this > b.mx[0][0];
+
+		if (M != b.M || N != b.N)
+			throw NumericException("> Matrix dimensions must agree");
 
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -404,6 +430,9 @@ namespace PR
 		if (b.isScalar())
 			return *this <= b.mx[0][0];
 
+		if (M != b.M || N != b.N)
+			throw NumericException("<= Matrix dimensions must agree");
+
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -429,6 +458,9 @@ namespace PR
 			return b <= mx[0][0];
 		if (b.isScalar())
 			return *this >= b.mx[0][0];
+
+		if (M != b.M || N != b.N)
+			throw NumericException(">= Matrix dimensions must agree");
 
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -508,6 +540,28 @@ namespace PR
 					return true;
 		return false;
 	}
+
+	template <>
+	Matrix<double>::operator Matrix<hdouble>() const
+	{
+		Matrix<hdouble> out(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				out.mx[i][j] = mx[i][j];
+		return out;
+	}
+
+	template <>
+	Matrix<hdouble>::operator Matrix<double>() const
+	{
+		Matrix<double> out(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				out.mx[i][j] = mx[i][j];
+		return out;
+	}
+
+
 
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;

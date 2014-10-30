@@ -23,15 +23,20 @@ namespace PR
 		: public Numeric<Matrix<T>>
 	{
 		
+		static Matrix<T>(*matrix_divide)(const Matrix<T> &a, const Matrix<T> &b);
+
 	protected:
 		vector< vector< ComplexNumber<T> >> mx;
 		int M;
 		int N;
+
+		
 	public:
 		friend class MatrixTransposer;
 		friend class Mathematic;
 		friend class MatrixUtils;
 		template<class T> friend class MatrixBuilder;
+		template<class U> friend class Matrix;
 		Matrix();
 		Matrix(const ComplexNumber<T> &b);
 		Matrix(Matrix<T> &&other);
@@ -39,6 +44,7 @@ namespace PR
 		Matrix(string &&scalar);
 		Matrix(int m, int n);
 		Matrix(int m, int n, const ComplexNumber<T> &value);
+		template <class U>Matrix(const vector< vector< ComplexNumber<U> >> &);
 		virtual ~Matrix();
 
 		Matrix<T> & operator = (const Matrix<T> &b);
@@ -64,7 +70,7 @@ namespace PR
 		template <class U> auto operator - (const ComplexNumber<U> &b) const->Matrix < decltype(T() + U()) >;
 		template <class U> auto operator * (const Matrix<U> &B) const->Matrix < decltype(T() + U()) >;
 		template <class U> auto operator * (const ComplexNumber<U> &b) const->Matrix < decltype(T() + U()) >;
-		template <class U> auto operator / (const Matrix<U> &B) const->Matrix < decltype(T() + U()) >;
+		Matrix<T> operator / (const Matrix<T> &B) const;
 		template <class U> auto operator / (const ComplexNumber<U> &b) const->Matrix < decltype(T() + U()) >;
 		
 		template <class U> auto operator == (const Matrix<U> &b) const->Matrix < decltype(T() + U()) >;
@@ -102,6 +108,11 @@ namespace PR
 			else
 				throw "!";
 		}
+
+		operator Matrix<double>() const;
+		operator Matrix<hdouble>()const;
+		
+	
 
 		private:
 			bool checkIfTrue() const;

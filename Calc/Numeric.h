@@ -134,6 +134,11 @@ namespace PR
 			return make_shared<T>(MatrixUtils::det(*get_derived()));
 		}
 
+		virtual shared_ptr<Data> inv() const override
+		{
+			return make_shared<T>(MatrixUtils::inv(*get_derived()));
+		}
+
 		virtual shared_ptr<Data> operator -() const override
 		{
 			return make_shared<T>(get_derived()->neg());

@@ -35,6 +35,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.consoleL, SLOT(insertHtml(const QString&)));
 	connect(&fileWatcher, SIGNAL(directoryChanged(const QString&)), &fileWatcher, SLOT(changed(const QString &)));
 	connect(&fileWatcher, SIGNAL(sendFileList(const QStringList &)), ui.fileList, SLOT(set(const QStringList &)));
+	connect(&fileWatcher, SIGNAL(fileUpdated(const QString&)), interpreterConnector, SLOT(updateFile(const QString &)));
 
 	fileWatcher.changed(QDir::currentPath());
 }

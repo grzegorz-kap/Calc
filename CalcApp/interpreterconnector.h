@@ -32,6 +32,7 @@ public:
 
 private slots:
 	void commandToInterpreter(const std::string &command);
+	void updateFile(const QString&);
 
 signals:
 	void interpreterResponded(const QString&);

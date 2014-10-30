@@ -282,6 +282,9 @@
     <ClInclude Include="MatrixUtils.h">
       <Filter>Service\Math</Filter>
     </ClInclude>
+    <ClInclude Include="InvFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -523,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="MatrixUtils.cpp">
       <Filter>Service\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="InvFunction.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
