@@ -57,26 +57,14 @@ namespace PR
 		_type = TYPE::R_DOUBLE;
 	}
 
-	template<>
-	double ComplexNumber<hdouble>::getRe() const
-	{
-		return re.convert_to<double>();
-	}
-
-	template<>
-	double ComplexNumber<double>::getRe() const
+	template <class T>
+	T ComplexNumber<T>::getRe() const
 	{
 		return re;
 	}
 
-	template<>
-	double ComplexNumber<hdouble>::getIm() const
-	{
-		return im.convert_to<double>();
-	}
-
-	template<>
-	double ComplexNumber<double>::getIm() const
+	template <class T>
+	T ComplexNumber<T>::getIm() const
 	{
 		return im;
 	}

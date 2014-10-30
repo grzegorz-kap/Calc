@@ -35,8 +35,8 @@ namespace PR
 		void operator += (const ComplexNumber<T> &b);
 		ComplexNumber<T> & operator = (const T &i);
 
-		double getRe() const;
-		double getIm() const;
+		T getRe() const;
+		T getIm() const;
 		void setRe(const T &re);
 		void setIm(const T &im);
 

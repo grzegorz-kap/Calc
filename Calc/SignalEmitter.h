@@ -23,7 +23,6 @@ namespace PR
 		typedef ExceptionSender::slot_type ExceptionSenderSlot;
 		typedef StopComputingSender::slot_type StopComputingSlot;
 
-	private:
 		DataPointerSender sig_data_pointer;
 		ExceptionSender sig_exception;
 		StopComputingSender sig_stop_computing;
@@ -34,17 +33,13 @@ namespace PR
 		
 		SignalEmitter & operator=(const SignalEmitter &) = delete;
 		SignalEmitter(const SignalEmitter&) = delete;
-
-		
+	
 	public:
 		static SignalEmitter* get();
 		
-
 		void connect_output(const DataPointerSenderSlot &slot);
 		void connect_errors(const ExceptionSenderSlot &slot);
 		void connect_stop_computing(const StopComputingSlot &slot);
-
-
 
 		void call(const string &, const shared_ptr<Data> &b);
 		void call(const CalcException &);

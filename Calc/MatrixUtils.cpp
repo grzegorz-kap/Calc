@@ -139,10 +139,13 @@ namespace PR
 		Matrix<T> &x = *eye;
 		Matrix<T> &a = *lu;
 
+		unique_ptr<Matrix<T>> x_deleter(eye);
+
 		for (int j = 0; j < x.N; j++)
 		{
 			url(a, x, j, x, j);
 		}
+		SafeRealase(&lu);
 		return x;
 	}
 
