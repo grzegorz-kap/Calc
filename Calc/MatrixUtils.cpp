@@ -3,6 +3,7 @@
 
 namespace PR
 {
+	/* Set pointers to function for matrix division */
 	decltype(Matrix<double>::matrix_divide) Matrix<double>::matrix_divide = MatrixUtils::divide<double>;
 	decltype(Matrix<hdouble>::matrix_divide) Matrix<hdouble>::matrix_divide = MatrixUtils::divide<hdouble>;
 
@@ -149,13 +150,66 @@ namespace PR
 		return x;
 	}
 
+	template <class T> 
+	ComplexNumber<T> MatrixUtils::det(const ComplexNumber<T> &a)
+	{ 
+		return a; 
+	}
+
+	template <class T> 
+	ComplexNumber<T> MatrixUtils::inv(const ComplexNumber<T> &a)
+	{ 
+		return ComplexNumber<T>(1) / a; 
+	}
+
+	template <class T>
+	Matrix<T> MatrixUtils::divide(const Matrix<T> &AA, const Matrix<T> &BB)
+	{
+		return AA * inv(BB);
+	}
+
+	template <class T>
+	void MatrixUtils::url(const Matrix<T> &A, const Matrix<T> &b, int j_b, Matrix<T> &x, int j_x)
+	{
+		x.mx[0][j_x] = b.mx[0][j_b];
+		for (int i = 1; i < A.M; i++)
+		{
+			ComplexNumber<T> sum(0);
+			for (int j = 0; j < i; j++)
+				sum += A.mx[i][j] * x.mx[j][j_x];
+			x.mx[i][j_x] = b.mx[i][j_b] - sum;
+		}
+
+		x.mx.back()[j_x] /= A.mx.back().back();
+		for (int i = A.M - 2; i >= 0; i--)
+		{
+			ComplexNumber<T> sum(0);
+			for (int j = i + 1; j < A.M; j++)
+				sum += A.mx[i][j] * x.mx[j][j_x];
+			x.mx[i][j_x] -= sum;
+			x.mx[i][j_x] /= A.mx[i][i];
+		}
+	}
+
 	/* Necessary for definitions in cpp file */
 	template int MatrixUtils::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
 	template int MatrixUtils::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
 	template int MatrixUtils::lu(const ComplexNumber<double> &, ComplexNumber<double>**, ComplexNumber<double>**, ComplexNumber<double>**);
 	template int MatrixUtils::lu(const ComplexNumber<hdouble> &, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**, ComplexNumber<hdouble>**);
+	
 	template ComplexNumber<double> MatrixUtils::det(const Matrix<double>&);
 	template ComplexNumber<hdouble> MatrixUtils::det(const Matrix<hdouble>&);
+	template ComplexNumber<double> MatrixUtils::det(const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> MatrixUtils::det(const ComplexNumber<hdouble>&);
+	
+	template ComplexNumber<double> MatrixUtils::inv(const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> MatrixUtils::inv(const ComplexNumber<hdouble>&);
 	template Matrix<double> MatrixUtils::inv(const Matrix<double> &);
 	template Matrix<hdouble> MatrixUtils::inv(const Matrix<hdouble> &);
+
+	template Matrix<double> MatrixUtils::divide(const Matrix<double>&, const Matrix<double>&);
+	template Matrix<hdouble> MatrixUtils::divide(const Matrix<hdouble>&, const Matrix<hdouble>&);
+
+	template void MatrixUtils::url(const Matrix<double>&, const Matrix<double>&, int, Matrix<double>&, int);
+	template void MatrixUtils::url(const Matrix<hdouble>&, const Matrix<hdouble>&, int, Matrix<hdouble>&, int);
 }
