@@ -38,4 +38,14 @@ namespace PR
 		}
 		vec.erase(vec.begin(),++i);
 	}
+
+	vector<shared_ptr<Token>>& Assignment::getTarget()
+	{
+		return target;
+	}
+
+	Assignment* Assignment::castToAssignment()
+	{
+		return dynamic_cast<Assignment *>(this);
+	}
 }
