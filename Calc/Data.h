@@ -61,174 +61,62 @@ namespace PR
 		static TYPE find_type(const std::type_index &idx);
 		static const string & find_name(const TYPE &type);
 
-		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Can not do addition on this type!");
-		}
+		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator - () const;
+		virtual shared_ptr<Data> times(shared_ptr<Data> &) const;
+		virtual shared_ptr<Data> rdivide(shared_ptr<Data> &) const;
+		virtual shared_ptr<Data> eq(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> ge(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> gt(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> le(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> lt(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> ne(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> transposition() const;
+		virtual shared_ptr<Data> log() const;
+		virtual shared_ptr<Data> log(shared_ptr<Data> &) const;
+		virtual shared_ptr<Data> log2() const;
+		virtual shared_ptr<Data> log10() const;
+		virtual void lu(shared_ptr<Data> &) const;
+		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &) const;
+		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &, shared_ptr<Data> &) const;
+		virtual shared_ptr<Data> det() const;
+		virtual shared_ptr<Data> inv() const;
+		virtual shared_ptr<Data> sin() const;
+		virtual shared_ptr<Data> cos() const;
+		virtual shared_ptr<Data> tan() const;
+		virtual bool operator == (const bool &b) const;
+		virtual string toString() const;
+		virtual string toHtml() const;
+		virtual shared_ptr<Data> get_rows() const;
+		virtual shared_ptr<Data> get_cols() const;
+		virtual TYPE max_type() const;
+		virtual Token * cast_token();
+		virtual bool isNumeric() const;
+		virtual bool isOutput() const;
+		virtual Output * cast_output();
 
-		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const
+		template<class T>
+		shared_ptr<Numeric<T>>  convert_numeric()
 		{
-			throw UnimplementedException("Can not do subtraction on this type!");
-		}
+			switch (this->_type)
+			{
+			case TYPE::M_DOUBLE:
+				return make_shared<T>(*dynamic_cast<Matrix<double> *>(this));
+			case TYPE::DOUBLE:
+				return make_shared<T>(*dynamic_cast<ComplexNumber<double> *>(this));
+			case TYPE::R_DOUBLE:
+				return make_shared<T>(*dynamic_cast<ComplexNumber<hdouble> *>(this));
+			case TYPE::RM_DOUBLE:
+				return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));
 
-		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Can not do multiplication on this type!");
-		}
-
-		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Can not do division on this type!");
-		}
-
-		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do exponentiation on this type!");
-		}
-
-		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do matrix exponentiation on this type");
-		}
-
-		virtual shared_ptr<Data> operator - () const
-		{
-			throw UnimplementedException("Cannot do negation on this type!");
-		}
-
-		virtual shared_ptr<Data> times(shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do element wise multiplication on this type");
-		}
-
-		virtual shared_ptr<Data> rdivide(shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do right array division on this type");
-		}
-
-		virtual shared_ptr<Data> eq(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> ge(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> gt(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> le(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> lt(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> ne(shared_ptr<Data> &b) const
-		{
-			throw UnimplementedException("Cannot do relational operator on this type");
-		}
-
-		virtual shared_ptr<Data> transposition() const 
-		{
-			throw UnimplementedException("Cannot do transposition operator on this type");
-		}
-
-		virtual shared_ptr<Data> log() const
-		{
-			throw UnimplementedException("Cannot do 'log' on this type");
-		}
-
-		virtual shared_ptr<Data> log(shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do 'log' on this type");
-		}
-
-		virtual shared_ptr<Data> log2() const
-		{
-			throw UnimplementedException("Cannot do 'log2' on this type");
-		}
-
-		virtual shared_ptr<Data> log10() const
-		{
-			throw UnimplementedException("Cannot do 'log10' on this type");
-		}
-
-		virtual void lu(shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do 'lu' on this type");
-		}
-
-		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do 'lu' on this type");
-		}
-
-		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &, shared_ptr<Data> &) const
-		{
-			throw UnimplementedException("Cannot do 'lu' on this type");
-		}
-
-		virtual shared_ptr<Data> det() const
-		{
-			throw UnimplementedException("Cannot do 'det' on this type");
-		}
-
-		virtual shared_ptr<Data> inv() const
-		{
-			throw UnimplementedException("Cannot do 'inv' on this type");
-		}
-
-		virtual shared_ptr<Data> sin() const
-		{
-			throw UnimplementedException("Cannot do 'sin' on this type");
-		}
-
-		virtual shared_ptr<Data> cos() const
-		{
-			throw UnimplementedException("Cannot do 'cos' on this type");
-		}
-
-		virtual shared_ptr<Data> tan() const
-		{
-			throw UnimplementedException("Cannot do 'tan' on this type");
-		}
-
-		virtual bool operator == (const bool &b) const
-		{
-			throw UnimplementedException("Cannot do bool eq on this type");
-		}
-
-		virtual string toString() const
-		{
-			return string("");
-		}
-
-		virtual string toHtml() const
-		{
-			return string("");
-		}
-
-		virtual shared_ptr<Data> get_rows() const
-		{
-			throw UnimplementedException("Cannot do this on virtual type");
-		}
-
-		virtual shared_ptr<Data> get_cols() const
-		{
-			throw UnimplementedException("Cannot do this on virtual type");
-		}
-
-		virtual TYPE max_type() const
-		{
-			return _type;
+			default:
+				throw CastException("Cannot cast to different numeric type! Probably not numeric type");
+			}
 		}
 
 		template<class T>
@@ -236,46 +124,7 @@ namespace PR
 		{
 			return dynamic_cast<Numeric<T> *> (this);
 		}
-
-		virtual Token * cast_token()
-		{
-			throw CastException("Cannot cast to Token");
-		}
-
-		virtual bool isNumeric() const
-		{
-			return false;
-		}
-
-		virtual bool isOutput() const
-		{
-			return false;
-		}
-
-		virtual Output * cast_output()
-		{
-			throw CastException("Cannot cast to Output");
-		}
-
-
-		template<class T>
-		shared_ptr<Numeric<T>>  convert_numeric()
-		{
-			switch (this->_type)
-			{
-				case TYPE::M_DOUBLE:
-					return make_shared<T>(*dynamic_cast<Matrix<double> *>(this));
-				case TYPE::DOUBLE:
-					return make_shared<T>(*dynamic_cast<ComplexNumber<double> *>(this));
-				case TYPE::R_DOUBLE:
-					return make_shared<T>(*dynamic_cast<ComplexNumber<hdouble> *>(this));
-				case TYPE::RM_DOUBLE:
-					return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));
-
-				default:
-					throw CastException("Cannot cast to different numeric type! Probably not numeric type");
-			}
-		}
+		
 	};
 
 };
