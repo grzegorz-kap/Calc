@@ -29,6 +29,7 @@ namespace PR
 		int position;
 		int param;
 		int keyword_balance;
+	protected:
 		TYPE _evType;
 	public:
 

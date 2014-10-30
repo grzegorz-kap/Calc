@@ -7,11 +7,13 @@ namespace PR
 	SNumber::SNumber(Token &&token, TYPE type)
 		:_type(type), Token(std::move(token))
 	{
+		_evType = TYPE::DOUBLE;
 	}
 
 	SNumber::SNumber(const Token &token, TYPE type)
 		: _type(type), Token(token)
 	{
+		_evType = TYPE::DOUBLE;
 	}
 
 

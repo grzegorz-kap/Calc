@@ -3,9 +3,6 @@
 
 namespace PR
 {
-	/*const vector<string> TokenizerHelper::KEYWORDS = {
-		"if", "for", "while", "continue", "break"
-	};*/
 	const unordered_map<string,TOKEN_CLASS> TokenizerHelper::KEYWORDS = 
 	{
 		{ "if",TOKEN_CLASS::IF_KEYWORD },
@@ -46,8 +43,6 @@ namespace PR
 	{
 		return c == ' ' || c == '\n' || c == '\t' || c == '\r';
 	}
-
-	//bool TokenizerHelper::isOperator(const string &str, int start_p){}
 
 	void TokenizerHelper::toString(const vector<Token> &tokens, string &out)
 	{

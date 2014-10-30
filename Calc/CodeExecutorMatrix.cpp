@@ -7,17 +7,27 @@ namespace PR
 	{
 		vector<shared_ptr<Data>>::iterator ii;
 		TYPE max_type = TYPE::TOKEN;
+
+
 		for (ii = stack.end() - 1; ii >= stack.begin(); ii--)
 		{
 			auto _type = (*ii)->max_type();
 			if (_type > max_type)
 				max_type = _type;
 
-			if ((*ii)->_type == TYPE::TOKEN && std::dynamic_pointer_cast<Token>(*ii)->getClass() == TOKEN_CLASS::MATRIX_START)
-				break;
+			if ((*ii)->_type == TYPE::TOKEN)
+			{
+				Token *ptr = (*ii)->cast_token();
+				if (ptr->getClass() == TOKEN_CLASS::MATRIX_START)
+				{
+					if (ptr->getEvType() > TYPE::TOKEN)
+						max_type = ptr->getEvType();
+					break;
+				}
+			}
 		}
-
-		max_type = IMatrixBuilder::TYPES.at(max_type);
+		
+		max_type = max_type>=TYPE::DOUBLE ? IMatrixBuilder::TYPES.at(max_type) : TYPE::M_DOUBLE;
 
 		if (ii < stack.begin())
 			throw CalcException("Matrix start not found");

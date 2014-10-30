@@ -147,6 +147,8 @@ namespace PR
 	{
 		stack.push_back(make_unique<Token>(*i));
 		onp.push_back(make_unique<Token>(*i));
+		if (_ev_type_mode.size())
+			onp.back()->setEvType(_ev_type_mode.back());
 	}
 
 	void Parser::onMatrixEnd()
