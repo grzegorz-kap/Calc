@@ -184,6 +184,21 @@ namespace PR
 	{
 		throw UnimplementedException("Cannot do 'tan' on this type");
 	}
+	
+	shared_ptr<Data> Data::getAt() const
+	{
+		throw UnimplementedException("Cannot do 'at' on this type");
+	}
+
+	shared_ptr<Data> Data::getAt(shared_ptr<Data> &) const
+	{
+		throw UnimplementedException("Cannot do 'at' on this type");
+	}
+
+	shared_ptr<Data> Data::getAt(shared_ptr<Data> &m,shared_ptr<Data> &n) const
+	{
+		throw UnimplementedException("Cannot do 'at' on this type");
+	}
 
 	bool Data::operator == (const bool &b) const
 	{

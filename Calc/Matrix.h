@@ -96,6 +96,8 @@ namespace PR
 			return M == 1 && N == 1;
 		}
 
+		Matrix<T> at(const Matrix<T> &cells) const;
+
 		virtual string toHtml() const override;
 		virtual string toString() const override;
 		virtual bool operator == (const bool &b) const override;

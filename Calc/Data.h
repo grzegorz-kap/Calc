@@ -98,6 +98,9 @@ namespace PR
 		virtual Token * cast_token();
 		virtual bool isNumeric() const;
 		virtual bool isOutput() const;
+		virtual shared_ptr<Data> getAt() const;
+		virtual shared_ptr<Data> getAt(shared_ptr<Data>&) const;
+		virtual shared_ptr<Data> getAt(shared_ptr<Data>&, shared_ptr<Data>&) const;
 		virtual Output * cast_output();
 
 		template<class T>

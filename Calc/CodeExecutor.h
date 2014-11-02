@@ -70,9 +70,14 @@ namespace PR
 		
 		void onOperator();
 		void onMatrixEnd();
+		
 		void onFunction();
 		void onFunctionArgs();
-		void onExternalFunction(const vector<shared_ptr<Data>> &args,const string &name);
+
+
+		void onVariableFunction( vector<shared_ptr<Data>> &args, shared_ptr<Data> &var);
+		void onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name);
+		
 		void onAssignment();
 		void defaultAssignment();
 		void onIF();

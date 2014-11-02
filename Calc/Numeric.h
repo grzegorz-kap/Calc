@@ -204,6 +204,15 @@ namespace PR
 			return make_shared<T>(get_derived()->transpose());
 		}
 
+		virtual shared_ptr<Data> getAt() const override
+		{
+			return make_shared<T>(*get_derived());
+		}
+
+		virtual shared_ptr<Data> getAt(shared_ptr<Data> &cells) const override
+		{
+			return make_shared<T>(get_derived()->at(*cells->cast_numeric<T>()->get_derived()));
+		}
 		
 	private:
 		const T * get_derived() const

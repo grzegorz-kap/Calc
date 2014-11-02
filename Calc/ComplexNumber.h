@@ -9,17 +9,20 @@
 using std::string;
 
 #include "Numeric.h"
+#include "NumericException.h"
 
 namespace PR
 {
 	class Mathematic;
 
+	template <class X> class Matrix;
+
 	template<class T> 
 	class  ComplexNumber
 		: public Numeric < ComplexNumber<T> >
 	{
-		template <class U>
-		friend  class ComplexNumber;
+		template <class U> friend  class ComplexNumber;
+		template <class X> friend class Matrix;
 		friend class Mathematic;
 
 		T re;
@@ -67,6 +70,10 @@ namespace PR
 		ComplexNumber<T> transpose() const;
 		ComplexNumber<T> rows() const;
 		ComplexNumber<T> cols() const;
+
+		ComplexNumber<T> at(const ComplexNumber<T> &cell) const;
+		bool checkForPositiveInteger() const;
+		void computeIndex(int rows, int &i, int &j) const;
 
 		string toString() const;
 		string toHtml() const;

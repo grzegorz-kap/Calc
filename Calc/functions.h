@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <algorithm>
-#include <cmath>
 #include <string>
 
 #include "ComplexNumber.h"

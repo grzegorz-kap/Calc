@@ -296,6 +296,36 @@ namespace PR
 		return ComplexNumber<hdouble>(re, im);
 	}
 
+	template <class T>
+	bool ComplexNumber<T>::checkForPositiveInteger() const
+	{
+		return im == 0 && re > 0 && re == floor(re);
+	}
+
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::at(const ComplexNumber<T> &idx) const
+	{
+		if (!idx.checkForPositiveInteger())
+			NumericException::throwIndexMustBeReal();
+		if (idx.re > 1)
+			NumericException::throwIndexOutOfRange();
+		return *this;
+	}
+
+	template<>
+	void ComplexNumber<double>::computeIndex(int rows, int &i, int &j) const
+	{
+		j = ((int)re - 1) / rows;
+		i = ((int)re - 1) % rows;
+	}
+
+	template<>
+	void ComplexNumber<hdouble>::computeIndex(int rows, int &i, int &j) const
+	{
+		j = (re.convert_to<int>() - 1) / rows;
+		i = (re.convert_to<int>() - 1) % rows;
+	}
+
 	template class ComplexNumber < double > ;
 	template class ComplexNumber < hdouble > ;
 }

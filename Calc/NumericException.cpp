@@ -36,6 +36,16 @@ namespace PR
 
 	void NumericException::throwLuNotSquare()
 	{
-		throw string("LU decomposition error, intput matrix is not square");
+		throw NumericException(string("LU decomposition error, intput matrix is not square"));
+	}
+
+	void NumericException::throwIndexOutOfRange()
+	{
+		throw NumericException(string("Index exceeds matrix dimensions."));
+	}
+
+	void NumericException::throwIndexMustBeReal()
+	{
+		throw NumericException(string("Subscript indices must either be real positive integers or logicals."));
 	}
 }

@@ -49,7 +49,7 @@ namespace PR
 		}
 	}
 
-	void TypePromotor::convertTo(TYPE type, shared_ptr<Data> &a , shared_ptr<Data> &dest)
+	void TypePromotor::convertTo(TYPE type,const shared_ptr<Data> &a , shared_ptr<Data> &dest)
 	{
 		if (a->isOutput())
 		{
@@ -76,7 +76,7 @@ namespace PR
 		}
 	}
 
-	void TypePromotor::convertOutputTo(TYPE type,shared_ptr<Data> &a, shared_ptr<Data> &dest)
+	void TypePromotor::convertOutputTo(TYPE type,const shared_ptr<Data> &a, shared_ptr<Data> &dest)
 	{
 		auto vec = std::dynamic_pointer_cast<Output>(a)->getOutput();
 		auto builder =  MatrixBuilderFactory::get(type);

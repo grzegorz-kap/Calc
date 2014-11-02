@@ -566,7 +566,27 @@ namespace PR
 		return out;
 	}
 
-
+	template <class T>
+	Matrix<T> Matrix<T>::at(const Matrix<T> &a) const
+	{
+		Matrix<T> out(a.M, a.N);
+		int idx_max = M*N;
+		for (int i = 0; i < a.M; i++)
+		{
+			for (int j = 0; j < a.N; j++)
+			{
+				const ComplexNumber<T> &ref = a.mx[i][j];
+				if (!ref.checkForPositiveInteger())
+					NumericException::throwIndexMustBeReal();
+				if (ref.re > idx_max)
+					NumericException::throwIndexOutOfRange();
+				int row, col;
+				ref.computeIndex(M, row, col);
+				out.mx[i][j] = mx[row][col];
+			}
+		}
+		return out;
+	}
 
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;

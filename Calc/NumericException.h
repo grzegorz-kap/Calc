@@ -20,6 +20,8 @@ namespace PR
 		static void throwLogarithmZeroBase();
 		static void throwMatrixLogDimensions();
 		static void throwLuNotSquare();
+		static void throwIndexMustBeReal();
+		static void throwIndexOutOfRange();
 	};
 
 }
