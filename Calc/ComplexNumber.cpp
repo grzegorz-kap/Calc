@@ -64,6 +64,18 @@ namespace PR
 	}
 
 	template <class T>
+	int ComplexNumber<T>::getReInt() const
+	{
+		return (int)re;
+	}
+
+	template <>
+	int ComplexNumber<hdouble>::getReInt() const
+	{
+		return re.convert_to<int>();
+	}
+
+	template <class T>
 	T ComplexNumber<T>::getIm() const
 	{
 		return im;
@@ -308,6 +320,16 @@ namespace PR
 		if (!idx.checkForPositiveInteger())
 			NumericException::throwIndexMustBeReal();
 		if (idx.re > 1)
+			NumericException::throwIndexOutOfRange();
+		return *this;
+	}
+
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::at(const ComplexNumber<T> &f, const ComplexNumber<T> &s) const
+	{
+		if (!f.checkForPositiveInteger() || !s.checkForPositiveInteger())
+			NumericException::throwIndexMustBeReal();
+		if (f.re > 1 || s.re > 1)
 			NumericException::throwIndexOutOfRange();
 		return *this;
 	}

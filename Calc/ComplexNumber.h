@@ -43,6 +43,7 @@ namespace PR
 		void setRe(const T &re);
 		void setIm(const T &im);
 
+		int getReInt() const;
 
 		template <class U> auto operator + (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() + U()) > ;	
 		template <class U> auto operator - (const ComplexNumber<U> &b) const ->ComplexNumber < decltype(T() - U()) > ;
@@ -72,6 +73,7 @@ namespace PR
 		ComplexNumber<T> cols() const;
 
 		ComplexNumber<T> at(const ComplexNumber<T> &cell) const;
+		ComplexNumber<T> at(const ComplexNumber<T> &first, const ComplexNumber<T> &second) const;
 		bool checkForPositiveInteger() const;
 		void computeIndex(int rows, int &i, int &j) const;
 

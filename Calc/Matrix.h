@@ -97,6 +97,7 @@ namespace PR
 		}
 
 		Matrix<T> at(const Matrix<T> &cells) const;
+		Matrix<T> at(const Matrix<T> &first, const Matrix<T> &second) const;
 
 		virtual string toHtml() const override;
 		virtual string toString() const override;

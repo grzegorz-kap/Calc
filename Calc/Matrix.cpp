@@ -588,6 +588,47 @@ namespace PR
 		return out;
 	}
 
+	template <class T>
+	Matrix<T> Matrix<T>::at(const Matrix<T> &first, const Matrix<T> &second) const
+	{
+		Matrix<T> out(first.M*first.N, second.M*second.N);
+		int row = 0;
+		for (int j = 0; j < first.N; j++)
+		{
+			for (int i = 0; i < first.M; i++)
+			{
+				const ComplexNumber<T> &fcell = first.mx[i][j];
+				if (!fcell.checkForPositiveInteger())
+					NumericException::throwIndexMustBeReal();
+				int row_idx = fcell.getReInt()-1;
+				int col = 0;
+				if (row_idx >= M)
+					NumericException::throwIndexOutOfRange();
+
+				for (int jj = 0; jj < second.N; jj++)
+				{
+					for (int ii = 0; ii < second.M; ii++)
+					{
+						const ComplexNumber<T> &scell = second.mx[ii][jj];
+						if (!scell.checkForPositiveInteger())
+							NumericException::throwIndexMustBeReal();
+						int col_idx = scell.getReInt()-1;
+						if (col_idx >= N)
+							NumericException::throwIndexOutOfRange();
+
+						out.mx[row][col] = mx[row_idx][col_idx];
+
+						col++;
+					}
+				}
+
+				row++;
+			}
+		}
+
+		return out;
+	}
+
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;
 }
