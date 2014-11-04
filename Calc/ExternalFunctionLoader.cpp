@@ -66,10 +66,10 @@ namespace PR
 	{
 		if (i == ip->end() || (*i)->getClass() != TOKEN_CLASS::ASSIGNMENT_TARGET)
 			throw CalcException("Output list not found!");
-
-		auto target = (*i)->castToAssignment()->getTarget();
+		throw CalcException("Uncomment!");
+	/*	auto target = (*i)->castToAssignment()->getTarget();
 		for (auto iter = target.begin(); iter != target.end(); iter++)
-			fun.addOutput((*iter)->getLexeme());
+			fun.addOutput((*iter)->getLexeme());*/
 		i++;
 	}
 

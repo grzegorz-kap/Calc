@@ -24,9 +24,16 @@ namespace PR
 		if (!find)
 			return;
 
-		Assignment assignment;
+		unique_ptr<IAssignment> iAssignment(AssignmentFactory::get(onp.front()->getClass()));
+		
+		auto start = onp.begin();
+		auto end = onp.end();
+		iAssignment->loadTarget(start,end);
+		onp.erase(onp.begin(), start);
+
+		/*Assignment assignment;
 		assignment.loadTarget(onp);
-		unique_ptr<Assignment> ptr = std::make_unique<Assignment>(assignment);
-		onp.insert(onp.begin(), std::move(ptr));
+		unique_ptr<Assignment> ptr = std::make_unique<Assignment>(assignment);*/
+		onp.insert(onp.begin(), std::move(iAssignment));
 	}
 }

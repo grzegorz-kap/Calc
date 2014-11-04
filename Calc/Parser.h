@@ -1,3 +1,6 @@
+#ifndef PARSER_H
+#define PARSER_H
+
 #pragma once
 
 #include <vector>
@@ -11,7 +14,7 @@ using std::make_unique;
 
 #include "Token.h"
 #include "SNumber.h"
-#include "Assignment.h"
+#include "AssignmentFactory.h"
 #include "Operator.h"
 #include "functions.h"
 #include "CalcException.h"
@@ -64,7 +67,10 @@ namespace PR
 		bool onColon();
 		void changeIfAssignment();
 
-		void stackToOnpUntilToken(TOKEN_CLASS type,bool remove=true);
+		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);
 	};
 }
 
+
+
+#endif

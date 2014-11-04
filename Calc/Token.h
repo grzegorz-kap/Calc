@@ -16,7 +16,7 @@ using std::shared_ptr;
 namespace PR
 {
 	class Operator;
-	class Assignment;
+	class IAssignment;
 
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
@@ -72,7 +72,7 @@ namespace PR
 			throw CastException("Cannot cast to operator expression");
 		}
 
-		virtual Assignment * castToAssignment()
+		virtual IAssignment * castToAssignment()
 		{
 			throw CastException("Cannot cast to assignment target expression");
 		}

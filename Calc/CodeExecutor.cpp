@@ -4,7 +4,7 @@
 
 namespace PR
 {
-	variables CodeExecutor::globals = {};
+	Variables CodeExecutor::globals = Variables();
 	bool CodeExecutor::stop_computing = false;
 
 	int CodeExecutor::recursions = 0;
@@ -15,7 +15,7 @@ namespace PR
 	{
 	}
 
-	CodeExecutor::CodeExecutor(variables &ref)
+	CodeExecutor::CodeExecutor(Variables &ref)
 		:
 		vars_ref(ref)
 	{
@@ -33,7 +33,7 @@ namespace PR
 		{
 			if (i >= N)
 				throw CalcException("Too many input parameters in function call (" + fun.getName() + ")");
-			vars_ref[input[i++]] = data;
+			vars_ref.set(input[i++],data);
 		}
 	}
 
@@ -89,7 +89,7 @@ namespace PR
 				onFunction();
 				break;
 			case TOKEN_CLASS::ASSIGNMENT_TARGET:
-				stack.push_back(make_shared<Assignment>(*(*i)->castToAssignment()));
+				stack.push_back(*i);
 				break;
 			case TOKEN_CLASS::ASSIGNMENT:
 				onAssignment();
@@ -121,6 +121,17 @@ namespace PR
 			return stack.back();
 		else
 			return make_shared<Data>();
+	}
+
+	vector<shared_ptr<Data>> CodeExecutor::run_single(const vector<shared_ptr<Token>> &onp,Variables &vars)
+	{
+		CodeExecutor exec(vars);
+		exec.assignment_flag = true;
+		exec.output_off_flag = true;
+		vector<vector<shared_ptr<Token>>> code = { onp };
+		exec.ip = code.begin();
+		exec.run();
+		return exec.stack;
 	}
 
 	void CodeExecutor::onOperator()

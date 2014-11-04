@@ -58,11 +58,15 @@ namespace PR
 		tokens = tokenizer.getTokens();
 
 		prev = TOKEN_CLASS::NONE;
-		for (iter = tokens.begin(); iter != tokens.end(); ++iter)
+		for (iter = tokens.begin(); iter != tokens.end(); )
 		{
 			process(*iter);
 			if (for_delete)
+			{
 				iter = tokens.erase(iter);
+				continue;
+			}
+			iter++;
 		}
 
 		balancer.throwOnUnbalancedEnd();

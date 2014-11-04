@@ -3,7 +3,7 @@
 
 namespace PR
 {
-	variables Interpreter::main_vars = {};
+	Variables Interpreter::main_vars = Variables();
 
 	Interpreter::Interpreter()
 	{		
@@ -23,15 +23,15 @@ namespace PR
 		CodeExecutor::recursions = 0;
 		CodeExecutor exec(Interpreter::main_vars);
 		
-		try{
+		//try{
 			exec.setInput(command);
 			CodeExecutor::off_stop_computing();
 			exec.start();
-		}
+		/*}
 		catch (const CalcException &ex)
 		{
 			SignalEmitter::get()->call(ex);
-		}
+		}*/
 	}
 
 	void Interpreter::updateFile(const char *file)

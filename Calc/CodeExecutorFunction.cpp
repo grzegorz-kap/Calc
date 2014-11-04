@@ -8,7 +8,7 @@ namespace PR
 		if (i != ip->begin() && std::prev(i)->get()->getClass() == TOKEN_CLASS::ASSIGNMENT_TARGET)
 		{
 			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, 
-				std::prev(i)->get()->castToAssignment()->getTarget().size()));
+				std::prev(i)->get()->castToAssignment()->getTargetSize()));
 			return;
 		}
 		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END,-1,-1));
@@ -22,12 +22,13 @@ namespace PR
 		vector<shared_ptr<Data>> args(std::next(ii), stack.end());
 		int num = (*ii)->cast_token()->getParam();
 		stack.erase(ii, stack.end());
-		
-		auto variable = vars_ref.find(name);
-		if (variable != vars_ref.end())
-		{
-			onVariableFunction(args, variable->second);
+
+		try{
+			onVariableFunction(args, vars_ref.get(name));
 			return;
+		} 
+		catch (const string &ex)
+		{
 		}
 
 		auto function = FunctionFactory::load_in(name);
@@ -37,8 +38,8 @@ namespace PR
 			stack.push_back(function->run());
 		}
 		else
-			onExternalFunction(args,name);
-		
+			onExternalFunction(args, name);
+
 	}
 
 	void CodeExecutor::onVariableFunction( vector<shared_ptr<Data>> &args, shared_ptr<Data> &var)
@@ -77,12 +78,11 @@ namespace PR
 		shared_ptr<Output> results = make_shared<Output>();
 		for (const string &str : output)
 		{
-			auto result = exec.vars_ref.find(str);
-			if (result == exec.vars_ref.end())
+			auto result = exec.vars_ref.get(str);
+			if (result == nullptr)
 				break;
-			results->add(result->second);
+			results->add(result);
 		}
 		stack.push_back(results);
-		
 	}
 }

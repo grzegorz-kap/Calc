@@ -1,3 +1,6 @@
+#ifndef CODE_GENERATOR_H
+#define CODE_GENERATOR_H
+
 #pragma once
 
 #include <vector>
@@ -23,7 +26,7 @@ namespace PR
 
 	class CodeGenerator
 	{
-		
+
 	private:
 		Code code;
 		Ip ip;
@@ -40,7 +43,7 @@ namespace PR
 		void setInput(const string &in);
 		void setInput(string &&in);
 		void setInput(FileLoader &file);
-		
+
 		bool eof(void);
 		Ip get();
 		Ip get(int n);
@@ -49,11 +52,11 @@ namespace PR
 
 		void inc();
 		void dec();
-		
+
 	private:
 		void load(void);
 		void loadAndSetIp(){ lp = 0; load(); ip = code.begin(); }
 	};
-
-
 }
+
+#endif

@@ -3,10 +3,12 @@
 
 namespace PR
 {
+	decltype(AssignmentSubscripted::executor) AssignmentSubscripted::executor = CodeExecutor::run_single;
+
 	void CodeExecutor::defaultAssignment()
-	{
-		auto target = make_shared<Assignment>();
-		target->getTarget().push_back(make_shared<Token>("ans", TOKEN_CLASS::ID));
+	{	
+		auto target = make_unique<AssignmentSingle>();
+		target->setTargetName("ans");
 		stack.insert(stack.begin(), std::move(target));
 
 		if (stack.size() >= 2 && stack.back()->_type == TYPE::OUTPUT)
@@ -20,7 +22,11 @@ namespace PR
 		if (stack.size() < 2)
 			throw CalcException("!");
 
-		auto &target = std::dynamic_pointer_cast<Assignment>(*stack.begin())->getTarget();
+		IAssignment * iassignment = stack.front()->cast_token()->castToAssignment();
+		iassignment->doAssignment(vars_ref,std::next(stack.begin()), stack.end(), assignment);
+		stack.erase(stack.begin(), stack.begin() + 2);
+		assignment_flag = true;
+		/*auto &target = std::dynamic_pointer_cast<Assignment>(*stack.begin())->getTarget();
 		auto data = std::next(stack.begin());
 
 		if ((*data)->isOutput())
@@ -44,7 +50,7 @@ namespace PR
 				assignment.back().first->second = *data;
 		}
 		stack.erase(stack.begin(), stack.begin() + 2);
-		assignment_flag = true;
+		*/
 	}
 
 }

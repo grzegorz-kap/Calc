@@ -19,7 +19,7 @@ namespace PR
 {
 	class CALC_API Interpreter
 	{
-		static variables main_vars;
+		static Variables main_vars;
 	public:
 		Interpreter();
 		~Interpreter();

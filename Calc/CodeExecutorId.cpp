@@ -5,13 +5,14 @@ namespace PR
 {
 	void CodeExecutor::onID()
 	{
-		auto result = vars_ref.find((*i)->getLexemeR());
-		
-		if (result != vars_ref.end())
-			stack.push_back(result->second);
-		else 
+		try{
+			stack.push_back(vars_ref.get((*i)->getLexemeR()));
+		}
+		catch (const string &ex)
+		{
 			if (!onScript())
 				throw CalcException("Undefined variable or script '" + (*i)->getLexemeR() + "'.", (*i)->getPosition());
+		}		
 	}
 
 	bool CodeExecutor::onScript()

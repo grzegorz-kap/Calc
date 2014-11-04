@@ -85,8 +85,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assignment.h" />
+    <ClInclude Include="AssignmentFactory.h" />
+    <ClInclude Include="AssignmentMulti.h" />
     <ClInclude Include="AssignmentOperator.h" />
+    <ClInclude Include="AssignmentSingle.h" />
+    <ClInclude Include="AssignmentSubscripted.h" />
     <ClInclude Include="CalcException.h" />
     <ClInclude Include="CastException.h" />
     <ClInclude Include="CodeExecutor.h" />
@@ -111,6 +114,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="GeOperator.h" />
     <ClInclude Include="Gt.h" />
+    <ClInclude Include="IAssignment.h" />
     <ClInclude Include="IMatrixBuilder.h" />
     <ClInclude Include="Interpreter.h" />
     <ClInclude Include="InvFunction.h" />
@@ -160,10 +164,14 @@
     <ClInclude Include="UnimplementedException.h" />
     <ClInclude Include="UPlusOperator.h" />
     <ClInclude Include="USubtractionOperator.h" />
+    <ClInclude Include="Variables.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Assignment.cpp" />
+    <ClCompile Include="AssignmentFactory.cpp" />
+    <ClCompile Include="AssignmentMulti.cpp" />
     <ClCompile Include="AssignmentOperator.cpp" />
+    <ClCompile Include="AssignmentSingle.cpp" />
+    <ClCompile Include="AssignmentSubscripted.cpp" />
     <ClCompile Include="Calc.cpp" />
     <ClCompile Include="CalcException.cpp" />
     <ClCompile Include="CastException.cpp" />
@@ -201,6 +209,7 @@
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="GeOperator.cpp" />
     <ClCompile Include="Gt.cpp" />
+    <ClCompile Include="IAssignment.cpp" />
     <ClCompile Include="IMatrixBuilder.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="InvFunction.cpp" />
@@ -253,6 +262,7 @@
     <ClCompile Include="UnimplementedException.cpp" />
     <ClCompile Include="UPlusOperator.cpp" />
     <ClCompile Include="USubtractionOperator.cpp" />
+    <ClCompile Include="Variables.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

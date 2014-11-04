@@ -198,9 +198,6 @@
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
-    <ClInclude Include="Assignment.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
       <Filter>Service\Matrix</Filter>
     </ClInclude>
@@ -283,6 +280,24 @@
       <Filter>Service\Math</Filter>
     </ClInclude>
     <ClInclude Include="InvFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IAssignment.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentSingle.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentMulti.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentSubscripted.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Variables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -428,9 +443,6 @@
     <ClCompile Include="ParserAssignment.cpp">
       <Filter>Service\Parsing</Filter>
     </ClCompile>
-    <ClCompile Include="Assignment.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixBuilder.cpp">
       <Filter>Service\Matrix</Filter>
     </ClCompile>
@@ -528,6 +540,24 @@
       <Filter>Service\Math</Filter>
     </ClCompile>
     <ClCompile Include="InvFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IAssignment.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentSingle.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentMulti.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentSubscripted.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Variables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
