@@ -44,7 +44,7 @@ namespace PR
 		~Token();
 
 		bool operator == (const Token &b)const;
-		string getLexeme()const{ return lexeme; }
+		virtual string getLexeme()const{ return lexeme; }
 		const string & getLexemeR()const{ return lexeme; }
 		void setLexeme(const string &lexemeArg){ lexeme = lexemeArg; }
 		TOKEN_CLASS getClass() const { return _class; }

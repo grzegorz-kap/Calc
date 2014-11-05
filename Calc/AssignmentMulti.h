@@ -30,6 +30,12 @@ namespace PR
 
 		void prepareIterators(vector<shared_ptr<Data>>::iterator &data, vector<shared_ptr<Data>>::iterator &start, 
 			vector<shared_ptr<Data>>::iterator &end , int &size);
+		
+		auto getTargetConstReference() 
+			-> const decltype(target) &
+		{
+			return target;
+		}
 	};
 
 }

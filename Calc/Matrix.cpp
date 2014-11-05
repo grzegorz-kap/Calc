@@ -703,6 +703,12 @@ namespace PR
 		b must have LENGTH(I) rows and LENGTH(J) columns.
 		*/
 
+		if (data.isScalar())
+		{
+			assign(row, col, data.mx[0][0]);
+			return;
+		}
+
 		if (row.M*row.N != data.M || col.M*col.N != data.N)
 			throw NumericException("Subscripted assignment dimension mismatch.");
 
@@ -729,6 +735,34 @@ namespace PR
 							expandColsTo(col_idx, ComplexNumber<T>(0));
 
 						mx[row_idx][col_idx] = data.mx[i_data][j_data++];
+					}
+				}
+			}
+		}
+	}
+
+	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &row, const Matrix<T> &col, const ComplexNumber<T> &data)
+	{
+		row.checkForPositiveInteger();
+		col.checkForPositiveInteger();
+
+		for (int j_row = 0; j_row < row.N; j_row++)
+		{
+			for (int i_row = 0; i_row < row.M; i_row++)
+			{
+				int row_idx = row.mx[i_row][j_row].getReInt() - 1;
+				if (row_idx >= M)
+					expandRowsTo(row_idx, ComplexNumber<T>(0));
+				for (int j_col = 0; j_col < col.N; j_col++)
+				{
+					for (int i_col = 0; i_col < col.M; i_col++)
+					{
+						int col_idx = col.mx[i_col][j_col].getReInt() - 1;
+						if (col_idx >= N)
+							expandColsTo(col_idx, ComplexNumber<T>(0));
+
+						mx[row_idx][col_idx] = data;
 					}
 				}
 			}

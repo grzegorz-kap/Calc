@@ -23,6 +23,8 @@ namespace PR
 		virtual int getTargetSize() const override { return 1; }
 
 		void setTargetName(string &&name);
+
+		virtual string getLexeme() const override { return target->getLexeme(); }
 	};
 }
 

@@ -1,21 +1,17 @@
 function [A] = eye(M,N)
-	A=[];
-	i = 1;
-	while i<=M
-		j=1;
-		row = [];
-		while j<=N
-			if i==j
-				row = [row 1];
-			else
-				row = [row 0];
-			end
-			j=j+1;
+	A = [];
+	i = M;
+	while i > 0
+	 j = N;
+	 while j > 0
+		if i==j
+			A(i,j)=1;
+		else
+			A(i,j)=0;
 		end
-		
-		A=[A ; row];
-
-		i=i+1;
+		j=j-1;
+	 end
+	 i=i-1;
 	end
 
 end

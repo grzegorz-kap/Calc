@@ -64,12 +64,17 @@ namespace PR
 
 	void ExternalFunctionLoader::loadOutput()
 	{
-		if (i == ip->end() || (*i)->getClass() != TOKEN_CLASS::ASSIGNMENT_TARGET)
+		AssignmentMulti* assignment = dynamic_cast<AssignmentMulti *>(i->get());
+		if (assignment == nullptr)
 			throw CalcException("Output list not found!");
-		throw CalcException("Uncomment!");
-	/*	auto target = (*i)->castToAssignment()->getTarget();
-		for (auto iter = target.begin(); iter != target.end(); iter++)
-			fun.addOutput((*iter)->getLexeme());*/
+		const auto &target = assignment->getTargetConstReference();
+		for (const auto &element : target)
+		{
+			if (element->_assignment_type != ASSIGNMENT_TYPE::SINGLE)
+				throw CalcException("Invalid output list in function " + name, element->getPosition());
+			fun.addOutput(element->getLexeme());
+		}
+
 		i++;
 	}
 
