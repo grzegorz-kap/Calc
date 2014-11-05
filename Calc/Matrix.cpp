@@ -630,6 +630,12 @@ namespace PR
 	}
 
 	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &data)
+	{
+		*this = data;
+	}
+
+	template <class T>
 	void Matrix<T>::assign(const Matrix<T> &cells, const ComplexNumber<T> &data)
 	{
 		int idx_max = M*N;
@@ -652,14 +658,14 @@ namespace PR
 	template <class T>
 	void Matrix<T>::assign(const Matrix<T> &cells, const Matrix<T> &data)
 	{
-		
+
 		if (data.isScalar())
 		{
 			assign(cells, data.mx[0][0]);
 			return;
 		}
 
-		if (cells.M*cells.N != data.M*data.N )
+		if (cells.M*cells.N != data.M*data.N)
 			throw NumericException("In an assignment  A(I) = B, the number of elements in B and I must be the same.");
 
 		int idx_max = M*N;
@@ -687,11 +693,83 @@ namespace PR
 		}
 	}
 
+	
+	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &row, const Matrix<T> &col, const Matrix<T> &data)
+	{
+		/*
+		a(I,J) = b assigns the values of b into the elements of the rectangular 
+		submatrix of a specified by the subscript vectors I and J. 
+		b must have LENGTH(I) rows and LENGTH(J) columns.
+		*/
+
+		if (row.M*row.N != data.M || col.M*col.N != data.N)
+			throw NumericException("Subscripted assignment dimension mismatch.");
+
+		row.checkForPositiveInteger();
+		col.checkForPositiveInteger();
+		
+
+		int i_data = 0;
+		int j_data = 0;
+
+		for (int j_row = 0; j_row < row.N; j_row++)
+		{
+			for (int i_row = 0; i_row < row.M; i_row++ , j_data=0,i_data++)
+			{
+				int row_idx = row.mx[i_row][j_row].getReInt() - 1;
+				if (row_idx >= M)
+					expandRowsTo(row_idx, ComplexNumber<T>(0));
+				for (int j_col = 0; j_col < col.N; j_col++)
+				{
+					for (int i_col = 0; i_col < col.M; i_col++)
+					{
+						int col_idx = col.mx[i_col][j_col].getReInt() - 1;
+						if (col_idx >= N)
+							expandColsTo(col_idx, ComplexNumber<T>(0));
+
+						mx[row_idx][col_idx] = data.mx[i_data][j_data++];
+					}
+				}
+			}
+		}
+	}
 
 	template <class T>
-	void Matrix<T>::assign(const Matrix<T> &data)
+	void Matrix<T>::expandRowsTo(int idx, const ComplexNumber<T> &value)
 	{
-		*this = data;
+		int count = idx - M + 1;
+		if (count <= 0)
+			return;
+
+		mx.insert(mx.end(), count, vector<ComplexNumber<T>>(N, value));
+		M += count;
+	}
+
+	template <class T>
+	void Matrix<T>::expandColsTo(int idx, const ComplexNumber<T> &value)
+	{
+		int count = idx - N + 1;
+		if (count <= 0)
+			return;
+
+		for (auto &vec : mx)
+		{
+			vec.insert(vec.end(), count, value);
+		}
+
+		N += count;
+	}
+
+	template <class T>
+	void Matrix<T>::checkForPositiveInteger() const
+	{
+		std::for_each(mx.cbegin(), mx.cend(), [](const vector<ComplexNumber<T>> &vec){
+			std::for_each(vec.cbegin(), vec.cend(), [](const ComplexNumber<T> &cell){
+				if (!cell.checkForPositiveInteger())
+					NumericException::throwIndexMustBeReal();
+			});
+		});
 	}
 
 	template class Matrix < double > ;

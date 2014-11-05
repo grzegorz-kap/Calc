@@ -350,6 +350,16 @@ namespace PR
 		*this = data;
 	}
 
+	template <class T>
+	void ComplexNumber<T>::assign(const ComplexNumber<T> &row, const ComplexNumber<T> &col, const ComplexNumber<T> &data)
+	{
+		if (!row.checkForPositiveInteger() || !col.checkForPositiveInteger())
+			NumericException::throwIndexMustBeReal();
+		if (row.re > 1 || col.re > 1)
+			NumericException::throwIndexOutOfRange();
+		*this = data;
+	}
+
 	template<>
 	void ComplexNumber<double>::computeIndex(int rows, int &i, int &j) const
 	{

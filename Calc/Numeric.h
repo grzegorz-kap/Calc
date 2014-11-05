@@ -231,6 +231,13 @@ namespace PR
 		{
 			get_derived_non_const()->assign(*cells->cast_numeric<T>()->get_derived(),*data->cast_numeric<T>()->get_derived());
 		}
+
+		void assignAt(shared_ptr<Data>& rows, shared_ptr<Data>& cols, shared_ptr<Data>& data) override
+		{
+			get_derived_non_const()->assign(*rows->cast_numeric<T>()->get_derived(),
+				*cols->cast_numeric<T>()->get_derived(),
+				*data->cast_numeric<T>()->get_derived());
+		}
 		
 	private:
 		const T * get_derived() const

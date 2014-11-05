@@ -102,6 +102,11 @@ namespace PR
 		void assign(const Matrix<T> &b);
 		void assign(const Matrix<T> &cells, const Matrix<T> &data);
 		void assign(const Matrix<T> &cells, const ComplexNumber<T> &data);
+		void assign(const Matrix<T> &row, const Matrix<T> &col, const Matrix<T> &data);
+		void checkForPositiveInteger() const;
+
+		void expandRowsTo(int idx, const ComplexNumber<T> &value);
+		void expandColsTo(int idx, const ComplexNumber<T> &value);
 
 		virtual string toHtml() const override;
 		virtual string toString() const override;
