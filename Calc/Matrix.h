@@ -99,6 +99,10 @@ namespace PR
 		Matrix<T> at(const Matrix<T> &cells) const;
 		Matrix<T> at(const Matrix<T> &first, const Matrix<T> &second) const;
 
+		void assign(const Matrix<T> &b);
+		void assign(const Matrix<T> &cells, const Matrix<T> &data);
+		void assign(const Matrix<T> &cells, const ComplexNumber<T> &data);
+
 		virtual string toHtml() const override;
 		virtual string toString() const override;
 		virtual bool operator == (const bool &b) const override;

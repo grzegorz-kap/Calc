@@ -3,7 +3,7 @@
 
 #pragma once
 #include "IAssignment.h"
-
+#include "TypePromotor.h"
 namespace PR
 {
 	class AssignmentSubscripted :

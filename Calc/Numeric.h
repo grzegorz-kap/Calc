@@ -221,11 +221,26 @@ namespace PR
 				*second->cast_numeric<T>()->get_derived()
 				));
 		}
+
+		void assignAt(shared_ptr<Data>& data)  override
+		{
+			get_derived_non_const()->assign(*data->cast_numeric<T>()->get_derived());
+		}
+
+		void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data) override
+		{
+			get_derived_non_const()->assign(*cells->cast_numeric<T>()->get_derived(),*data->cast_numeric<T>()->get_derived());
+		}
 		
 	private:
 		const T * get_derived() const
 		{
 			return dynamic_cast<const T *>(this);
+		}
+
+		T * get_derived_non_const()
+		{
+			return dynamic_cast<T *>(this);
 		}
 
 		template <class U>

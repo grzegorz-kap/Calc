@@ -47,6 +47,28 @@ namespace PR
 		vector<shared_ptr<Data>>::iterator &last,
 		vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment)
 	{
+		if (first == last)
+			throw CalcException("Too few arguments on right side of assignment!");
+		
+		shared_ptr<Data> var = nullptr;
+		try{
+			var = vars.get(variable->getLexemeR());
+		}
+		catch (const string &ex)
+		{
+			throw CalcException(ex);
+		}
+
 		auto address = executor(onp, vars);
+		TypePromotor::promote(address, var->_type);
+		TypePromotor::promote(*first, var->_type);
+		switch (address.size())
+		{
+		case 2: var->assignAt(address[0], address[1], *first); break;
+		case 1: var->assignAt(address[0], *first); break;
+		case 0: var->assignAt(*first); break;
+		}
+
+		assignment.push_back(vars.set(variable->getLexemeR(), var));
 	}
 }

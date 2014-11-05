@@ -74,6 +74,10 @@ namespace PR
 
 		ComplexNumber<T> at(const ComplexNumber<T> &cell) const;
 		ComplexNumber<T> at(const ComplexNumber<T> &first, const ComplexNumber<T> &second) const;
+
+		void assign(const ComplexNumber<T> &data);
+		void assign(const ComplexNumber<T> &cell, const ComplexNumber<T> &data);
+
 		bool checkForPositiveInteger() const;
 		void computeIndex(int rows, int &i, int &j) const;
 

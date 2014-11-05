@@ -6,8 +6,8 @@ namespace PR
 {
 	decltype(Data::TYPE_MAP) Data::TYPE_MAP =
 	{
-		{ typeid(Matrix<double>),TYPE::M_DOUBLE },
-		{ typeid(ComplexNumber<double>),TYPE::DOUBLE },
+		{ typeid(Matrix<double>), TYPE::M_DOUBLE },
+		{ typeid(ComplexNumber<double>), TYPE::DOUBLE },
 		{ typeid(ComplexNumber<hdouble>), TYPE::R_DOUBLE },
 		{ typeid(Matrix<hdouble>), TYPE::RM_DOUBLE }
 	};
@@ -184,7 +184,7 @@ namespace PR
 	{
 		throw UnimplementedException("Cannot do 'tan' on this type");
 	}
-	
+
 	shared_ptr<Data> Data::getAt() const
 	{
 		throw UnimplementedException("Cannot do 'at' on this type");
@@ -195,9 +195,24 @@ namespace PR
 		throw UnimplementedException("Cannot do 'at' on this type");
 	}
 
-	shared_ptr<Data> Data::getAt(shared_ptr<Data> &m,shared_ptr<Data> &n) const
+	shared_ptr<Data> Data::getAt(shared_ptr<Data> &m, shared_ptr<Data> &n) const
 	{
 		throw UnimplementedException("Cannot do 'at' on this type");
+	}
+
+	void Data::assignAt(shared_ptr<Data>& data)
+	{
+		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
+	}
+
+	void Data::assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data)
+	{
+		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
+	}
+
+	void Data::assignAt(shared_ptr<Data>& rows, shared_ptr<Data> & colls, shared_ptr<Data>& data)
+	{
+		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
 	}
 
 	bool Data::operator == (const bool &b) const

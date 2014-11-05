@@ -629,6 +629,71 @@ namespace PR
 		return out;
 	}
 
+	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &cells, const ComplexNumber<T> &data)
+	{
+		int idx_max = M*N;
+		for (int j = 0; j<cells.N; j++)
+		{
+			for (int i = 0; i < cells.M; i++)
+			{
+				const ComplexNumber<T> &ref = cells.mx[i][j];
+				if (!ref.checkForPositiveInteger())
+					NumericException::throwIndexMustBeReal();
+				if (ref.re > idx_max)
+					NumericException::throwIndexOutOfRange();
+				int row, col;
+				ref.computeIndex(M, row, col);
+				mx[row][col] = data;
+			}
+		}
+	}
+
+	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &cells, const Matrix<T> &data)
+	{
+		
+		if (data.isScalar())
+		{
+			assign(cells, data.mx[0][0]);
+			return;
+		}
+
+		if (cells.M*cells.N != data.M*data.N )
+			throw NumericException("In an assignment  A(I) = B, the number of elements in B and I must be the same.");
+
+		int idx_max = M*N;
+		int i_data = 0;
+		int j_data = 0;
+		for (int j = 0; j<cells.N; j++)
+		{
+			for (int i = 0; i < cells.M; i++)
+			{
+				const ComplexNumber<T> &ref = cells.mx[i][j];
+				if (!ref.checkForPositiveInteger())
+					NumericException::throwIndexMustBeReal();
+				if (ref.re > idx_max)
+					NumericException::throwIndexOutOfRange();
+				int row, col;
+				ref.computeIndex(M, row, col);
+
+				mx[row][col] = data.mx[i_data++][j_data];
+				if (i_data >= data.M)
+				{
+					i_data = 0;
+					j_data++;
+				}
+			}
+		}
+	}
+
+
+	template <class T>
+	void Matrix<T>::assign(const Matrix<T> &data)
+	{
+		*this = data;
+	}
+
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;
 }

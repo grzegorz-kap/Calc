@@ -101,6 +101,9 @@ namespace PR
 		virtual shared_ptr<Data> getAt() const;
 		virtual shared_ptr<Data> getAt(shared_ptr<Data>&) const;
 		virtual shared_ptr<Data> getAt(shared_ptr<Data>&, shared_ptr<Data>&) const;
+		virtual void assignAt(shared_ptr<Data>& data);
+		virtual void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data);
+		virtual void assignAt(shared_ptr<Data>& rows, shared_ptr<Data> & colls, shared_ptr<Data>& data);
 		virtual Output * cast_output();
 
 		template<class T>
