@@ -51,10 +51,11 @@ namespace PR
 
 	void TypePromotor::promote(vector<shared_ptr<Data>> &vec, const TYPE &type)
 	{
-		std::for_each(vec.begin(), vec.end(), [&type](shared_ptr<Data> &data){
-			if (data->_type != type)
-				convertTo(type, data, data);
-		});
+		for (auto &ref : vec)
+		{
+			if (ref->_type != type)
+				convertTo(type, ref, ref);
+		}
 	}
 
 	void TypePromotor::promote(shared_ptr<Data> &a, const TYPE &type)

@@ -27,13 +27,15 @@ namespace PR
 
 		T re;
 		T im;
+
+		void setDataType();
 	public:
 		
 		ComplexNumber();
 		ComplexNumber(double reArg, double imArg = 0);
 		ComplexNumber(hdouble reArg, hdouble imArg = 0);
 		ComplexNumber(string &&val_str);
-		~ComplexNumber(){};
+		~ComplexNumber();
 
 		void operator += (const ComplexNumber<T> &b);
 		ComplexNumber<T> & operator = (const T &i);

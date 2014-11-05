@@ -6,27 +6,27 @@ namespace PR
 	template <class T> Matrix<T>::Matrix()
 		:M(0), N(0)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	};
 
 
 	template <class T> Matrix<T>::Matrix(const ComplexNumber<T> &b)
 		:Matrix(1, 1, b)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	}
 
 	template <class T> Matrix<T>::Matrix(Matrix<T> &&other)
 		: M(0), N(0)
 	{
 		*this = std::move(other);
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	}
 
 	template <class T> Matrix<T>::Matrix(const Matrix<T> &b)
 		:mx(b.mx), M(b.M), N(b.N)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	}
 
 	template <class T> Matrix<T>::Matrix(string &&scalar)
@@ -38,20 +38,32 @@ namespace PR
 	template <class T> Matrix<T>::Matrix(int m, int n)
 		: M(m), N(n)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 		mx.assign(m, vector<ComplexNumber<T>>(n));
 	}
 
 	template <class T> Matrix<T>::Matrix(int m, int n, const ComplexNumber<T> &value)
 		:M(m), N(n)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 		mx.assign(m, vector<ComplexNumber<T>>(n, value));
 	}
 
 	template <class T> Matrix<T>::~Matrix()
 	{
 
+	}
+
+	template <>
+	void Matrix<double>::setDataType()
+	{
+		_type = TYPE::M_DOUBLE;
+	}
+
+	template<>
+	void Matrix<hdouble>::setDataType()
+	{
+		_type = TYPE::RM_DOUBLE;
 	}
 
 	template <class T> Matrix<T>& Matrix<T>::operator=(const Matrix<T> &b)

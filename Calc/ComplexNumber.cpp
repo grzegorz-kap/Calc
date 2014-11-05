@@ -6,21 +6,21 @@ namespace PR
 	template <class T>
 	ComplexNumber<T>::ComplexNumber()
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	}
 
 	template <class T>
 	ComplexNumber<T>::ComplexNumber(double reArg, double imArg = 0.0)
 		:re(reArg), im(imArg)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	}
 
 	template <class T>
 	ComplexNumber<T>::ComplexNumber(hdouble reArg, hdouble imArg = 0)
 		: re(reArg), im(imArg)
 	{
-		_type = Data::find_type(typeid(*this));
+		setDataType();
 	};
 
 	template <>
@@ -54,6 +54,23 @@ namespace PR
 			re.assign(val);
 			im = 0;
 		}
+		_type = TYPE::R_DOUBLE;
+	}
+
+	template <class T>
+	ComplexNumber<T>::~ComplexNumber()
+	{
+	}
+
+	template <>
+	void ComplexNumber<double>::setDataType()
+	{
+		_type = TYPE::DOUBLE;
+	}
+
+	template <>
+	void ComplexNumber<hdouble>::setDataType()
+	{
 		_type = TYPE::R_DOUBLE;
 	}
 

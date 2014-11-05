@@ -50,6 +50,8 @@ namespace PR
 		Matrix<T> & operator = (const Matrix<T> &b);
 		Matrix<T> & operator = (Matrix<T> &&other);
 
+		void setDataType();
+
 		void rows(int arg){ M = arg; }
 		void cols(int arg){ N = arg; }
 		int rows() const;
