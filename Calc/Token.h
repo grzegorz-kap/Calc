@@ -69,7 +69,7 @@ namespace PR
 		
 		virtual shared_ptr<Data> evaluate()
 		{
-			throw 3.2;
+			throw CalcException("Cannot evaulate this expression! " + lexeme, position);
 		}
 
 		virtual Operator * castToOperator() 

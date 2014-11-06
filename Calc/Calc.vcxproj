@@ -95,6 +95,8 @@
     <ClInclude Include="CodeExecutor.h" />
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
+    <ClInclude Include="Colon2Operator.h" />
+    <ClInclude Include="Colon3Operator.h" />
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="CosFun.h" />
     <ClInclude Include="Data.h" />
@@ -184,6 +186,8 @@
     <ClCompile Include="CodeExecutorWHILE.cpp" />
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
+    <ClCompile Include="Colon2Operator.cpp" />
+    <ClCompile Include="Colon3Operator.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
     <ClCompile Include="CosFun.cpp" />
     <ClCompile Include="Data.cpp" />

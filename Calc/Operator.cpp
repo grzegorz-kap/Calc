@@ -38,12 +38,25 @@ namespace PR
 			arguments[i] = std::move(iter[k--]);
 		}
 
+		promoteArguments();
+		
+		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
+	}
+
+	void Operator::promoteArguments()
+	{
 		if (argumentsNum == 2)
 			TypePromotor::promote(arguments[0], arguments[1]);
 		else if (argumentsNum > 2)
 			TypePromotor::promote(arguments);
+	}
 
-		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
+	void Operator::promoteToMatrix()
+	{
+		if (argumentsNum == 2)
+			TypePromotor::promoteToMatrix(arguments[0], arguments[1]);
+		else if (argumentsNum > 2)
+			TypePromotor::promoteToMatrix(arguments);
 	}
 }
 

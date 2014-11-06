@@ -95,5 +95,7 @@ namespace PR
 		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;
 
+		virtual bool isComplexNumber() const override { return true; }
+
 	};
 }

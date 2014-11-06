@@ -65,7 +65,7 @@ namespace PR
 		void onOperator();
 		void onComma();
 		void onSemicolon();
-		bool onColon();
+		void onColon();
 		void changeIfAssignment();
 
 		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);

@@ -214,20 +214,15 @@ namespace PR
 	{
 		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
 	}
-
-	shared_ptr<Data> Data::getRowsIndexes() const
+	
+	shared_ptr<Data> Data::createVector(shared_ptr<Data> &end) const
 	{
-		throw UnimplementedException("Cannot get rows indexes on this type");
+		throw UnimplementedException("Wrong first operand for colon operator!");
 	}
-
-	shared_ptr<Data> Data::getColsIndexes() const
+	
+	shared_ptr<Data> Data::createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const
 	{
-		throw UnimplementedException("Cannot get cols indexes on this type");
-	}
-
-	shared_ptr<Data> Data::getSingleIndex() const
-	{
-		throw UnimplementedException("Cannot get cols and rows indexes on this type");
+		throw UnimplementedException("Wrong first operand for colon operator!");
 	}
 
 	bool Data::operator == (const bool &b) const

@@ -214,6 +214,7 @@ namespace PR
 	ComplexNumber<T>& ComplexNumber<T>::operator = (const T &i)
 	{
 		re = i;
+		im = 0;
 		return *this;
 	}
 

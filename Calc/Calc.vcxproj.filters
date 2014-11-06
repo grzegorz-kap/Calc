@@ -55,6 +55,15 @@
     <Filter Include="Service\Math">
       <UniqueIdentifier>{527bca14-36c6-45ba-9621-b3baa20faac1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model\Operator\h">
+      <UniqueIdentifier>{a1408d0b-7458-4242-8d3c-bbac4b9d5754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Assignment">
+      <UniqueIdentifier>{dbb6fc2b-4121-42d0-a005-95ce3dea89af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Operator\cpp">
+      <UniqueIdentifier>{88fb4947-db04-42ab-b0bc-2586bc5d7471}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -108,9 +117,6 @@
     <ClInclude Include="CodeGeneratorException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Operator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
     <ClInclude Include="OperatorException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
@@ -132,71 +138,17 @@
     <ClInclude Include="EvalException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="SNumber.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="Token.h">
       <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AdditionOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="SubtractionOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="DivisionOperator.h">
-      <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="UnimplementedException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="MultiplicationOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="ExponentiationOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
     <ClInclude Include="TypePromotor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="USubtractionOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseMultiplication.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="RightArrayDivision.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixExponentiationOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="NeOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="LTOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="LeOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="GeOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="Gt.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="EqOperator.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftArrayDivision.h">
-      <Filter>Model\Operator</Filter>
-    </ClInclude>
     <ClInclude Include="i_order_map.h">
       <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AssignmentOperator.h">
-      <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
       <Filter>Service\Matrix</Filter>
@@ -209,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="MatrixBuilderFactory.h">
       <Filter>Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="TranspositionOperator.h">
-      <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="FunctionFactory.h">
       <Filter>Factories</Filter>
@@ -236,9 +185,6 @@
     </ClInclude>
     <ClInclude Include="SignalEmitter.h">
       <Filter>Service</Filter>
-    </ClInclude>
-    <ClInclude Include="UPlusOperator.h">
-      <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="NumericException.h">
       <Filter>Exceptions</Filter>
@@ -282,23 +228,92 @@
     <ClInclude Include="InvFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IAssignment.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AssignmentSingle.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AssignmentMulti.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AssignmentSubscripted.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="AssignmentFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Variables.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdditionOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DivisionOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementWiseMultiplication.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="EqOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ExponentiationOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GeOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Gt.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftArrayDivision.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="LeOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="LTOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixExponentiationOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiplicationOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="NeOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Operator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="RightArrayDivision.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SubtractionOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="TranspositionOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="UPlusOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="USubtractionOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentMulti.h">
+      <Filter>Model\Assignment</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentSingle.h">
+      <Filter>Model\Assignment</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentSubscripted.h">
+      <Filter>Model\Assignment</Filter>
+    </ClInclude>
+    <ClInclude Include="IAssignment.h">
+      <Filter>Model\Assignment</Filter>
+    </ClInclude>
+    <ClInclude Include="SNumber.h">
+      <Filter>Model\Numeric</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentFactory.h">
+      <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Colon3Operator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Colon2Operator.h">
+      <Filter>Model\Operator\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,9 +365,6 @@
     <ClCompile Include="CodeGeneratorException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="Operator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
     <ClCompile Include="OperatorException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
@@ -374,71 +386,17 @@
     <ClCompile Include="EvalException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="SNumber.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="Token.cpp">
       <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AdditionOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="SubtractionOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="DivisionOperator.cpp">
-      <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="UnimplementedException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="MultiplicationOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="ExponentiationOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
     <ClCompile Include="TypePromotor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="USubtractionOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWiseMultiplication.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="RightArrayDivision.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixExponentiationOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="EqOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="GeOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="Gt.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="LeOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="LTOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="NeOperator.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftArrayDivision.cpp">
-      <Filter>Model\Operator</Filter>
-    </ClCompile>
     <ClCompile Include="i_order_map.cpp">
       <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AssignmentOperator.cpp">
-      <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="ParserAssignment.cpp">
       <Filter>Service\Parsing</Filter>
@@ -457,9 +415,6 @@
     </ClCompile>
     <ClCompile Include="Output.cpp">
       <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="TranspositionOperator.cpp">
-      <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="CodeExecutorDefinitions.cpp">
       <Filter>Execution</Filter>
@@ -496,9 +451,6 @@
     </ClCompile>
     <ClCompile Include="FileLoader.cpp">
       <Filter>Service</Filter>
-    </ClCompile>
-    <ClCompile Include="UPlusOperator.cpp">
-      <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="NumericException.cpp">
       <Filter>Exceptions</Filter>
@@ -542,23 +494,92 @@
     <ClCompile Include="InvFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IAssignment.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AssignmentSingle.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AssignmentMulti.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AssignmentSubscripted.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="AssignmentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Variables.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdditionOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DivisionOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWiseMultiplication.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EqOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ExponentiationOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GeOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftArrayDivision.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gt.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="LeOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="LTOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixExponentiationOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiplicationOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="NeOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Operator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="RightArrayDivision.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SubtractionOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="TranspositionOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="UPlusOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="USubtractionOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentMulti.cpp">
+      <Filter>Model\Assignment</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentSingle.cpp">
+      <Filter>Model\Assignment</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentSubscripted.cpp">
+      <Filter>Model\Assignment</Filter>
+    </ClCompile>
+    <ClCompile Include="IAssignment.cpp">
+      <Filter>Model\Assignment</Filter>
+    </ClCompile>
+    <ClCompile Include="SNumber.cpp">
+      <Filter>Model\Numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentFactory.cpp">
+      <Filter>Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="Colon2Operator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Colon3Operator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

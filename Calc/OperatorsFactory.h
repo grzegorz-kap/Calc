@@ -30,6 +30,8 @@ using std::function;
 #include "AssignmentOperator.h"
 #include "TranspositionOperator.h"
 #include "UPlusOperator.h"
+#include "Colon2Operator.h"
+#include "Colon3Operator.h"
 
 namespace PR
 {

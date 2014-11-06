@@ -45,6 +45,8 @@ namespace PR
 		}
 
 		void setArguments(vector<shared_ptr<Data>> &stack);
+		virtual void promoteArguments();
+		void promoteToMatrix();
 	};
 
 }

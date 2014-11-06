@@ -137,9 +137,21 @@ namespace PR
 
 	void Parser::onOperator()
 	{ 
-		while (stackBack() == TOKEN_CLASS::OPERATOR &&
-			*(i->castToOperator()) < *(stack.back()->castToOperator()))
-			stackToOnp();
+		Operator *o1 = i->castToOperator();
+		while (stackBack() == TOKEN_CLASS::OPERATOR)
+		{
+			Operator *o2 = stack.back()->castToOperator();
+			if (o1->getLexemeR() == ":" && o2->getLexemeR() == ":")
+			{
+				stack.pop_back();
+				stack.push_back(make_unique<Colon3Operator>());
+				return;
+			}
+			if (*o1 < *o2)
+				stackToOnp();
+			else
+				break;
+		}
 		stack.push_back(std::move(i));
 	}
 
@@ -164,15 +176,10 @@ namespace PR
 		onp.push_back(make_unique<Token>(*i));
 	}
 
-	bool Parser::onColon()
+	void Parser::onColon()
 	{
-		if (whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || whatNext() == TOKEN_CLASS::COMMA)
-		{
-			onp.push_back(make_unique<Token>(":",TOKEN_CLASS::MATRIX_ALL,i->getPosition()));
-			return true;
-		}
-		else
-			return false;
+		i = make_unique<Colon2Operator>();
+		onOperator();
 	}
 
 	void Parser::onSemicolon()
@@ -222,8 +229,6 @@ namespace PR
 				onSemicolon();
 				break;
 			case TOKEN_CLASS::OPERATOR:
-				if (i->getLexeme() == ":"&&onColon())
-					break;
 				onOperator();
 				break;
 			case TOKEN_CLASS::CLOSE_PARENTHESIS:
@@ -237,6 +242,9 @@ namespace PR
 				break;
 			case TOKEN_CLASS::MATRIX_END:
 				onMatrixEnd();
+				break;
+			case TOKEN_CLASS::COLON:
+				onColon();
 				break;
 			case TOKEN_CLASS::MATRIX_ALL:
 				onMatrixAll();

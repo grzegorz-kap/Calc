@@ -17,6 +17,37 @@ namespace PR
 	{
 	}
 
+	TYPE TypePromotor::promoteToMatrixHelper(shared_ptr<Data> &data)
+	{
+		if (data->isNumeric())
+			return IMatrixBuilder::TYPES.at(data->max_type());
+		return data->max_type();
+	}
+
+	void TypePromotor::promoteToMatrix(vector<shared_ptr<Data>> &vec)
+	{
+		auto max = std::max_element(vec.begin(), vec.end(), ptr_max_lambda);
+		auto _type = promoteToMatrixHelper(*max);
+		promote(vec, _type);
+	}
+
+	void TypePromotor::promoteToMatrix(shared_ptr<Data> &a, shared_ptr<Data> &b)
+	{
+		auto _type_a = a->max_type();
+		auto _type_b = b->max_type();
+		TYPE max;
+		if (_type_a >= _type_b)
+		{
+			max = promoteToMatrixHelper(a);
+		}
+		else if (_type_a < _type_b)
+		{
+			max = promoteToMatrixHelper(b);
+		}
+		promote(a, max);
+		promote(b, max);
+	}
+
 	void TypePromotor::promote(shared_ptr<Data> &a, shared_ptr<Data> &b)
 	{
 		auto a_m = a->max_type();
@@ -53,7 +84,7 @@ namespace PR
 	{
 		for (auto &ref : vec)
 		{
-			if (cond(ref))
+			if (ref->_type != _type && (cond == nullptr || cond(ref)))
 				convertTo(_type, ref, ref);
 		}
 	}

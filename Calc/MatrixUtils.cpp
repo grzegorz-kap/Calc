@@ -191,7 +191,59 @@ namespace PR
 		}
 	}
 
+	template <class T> 
+	Matrix<T> MatrixUtils::createVector(const Matrix<T> &start, const Matrix<T> &end)
+	{
+		if (start.isEmpty() || end.isEmpty())
+			return Matrix<T>(1, 0);
+
+		return createVector(start.mx[0][0], end.mx[0][0]);
+	}
+
+	template <class T>  
+	Matrix<T> MatrixUtils::createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &end)
+	{
+		return createVector(start, ComplexNumber<T>(1), end);
+	}
+
+	template <class T>  
+	Matrix<T> MatrixUtils::createVector(const Matrix<T> &start, const Matrix<T> &step, const Matrix<T> &end)
+	{
+		if (start.isEmpty() || end.isEmpty() || step.isEmpty() )
+			return Matrix<T>(1, 0);
+		return createVector(start.mx[0][0], step.mx[0][0], end.mx[0][0]);
+	}
+
+	template <class T>  
+	Matrix<T> MatrixUtils::createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &step, const ComplexNumber<T> &end)
+	{
+		int m = (int)Mathematic::fix((end - start) / step).getRe();
+		
+		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m<0 )
+			return Matrix<T>(1, 0);
+		
+		const T &j = start.getRe();
+		const T &i = step.getRe();
+		Matrix<T> out(1, m + 1);
+		auto &ref = out.mx[0];
+		
+		for (int k = 0; k <= m; k++)
+			ref[k] = j + k*i;
+		
+		return out;;
+	}
 	/* Necessary for definitions in cpp file */
+
+	template Matrix<double> MatrixUtils::createVector(const Matrix<double>&, const Matrix<double>&);
+	template Matrix<hdouble> MatrixUtils::createVector(const Matrix<hdouble>&, const Matrix<hdouble>&);
+	template Matrix<double> MatrixUtils::createVector(const Matrix<double>&, const Matrix<double>&, const Matrix<double>&);
+	template Matrix<hdouble> MatrixUtils::createVector(const Matrix<hdouble>&, const Matrix<hdouble>&, const Matrix<hdouble>&);
+
+	template Matrix<double> MatrixUtils::createVector(const ComplexNumber<double>&, const ComplexNumber<double>&);
+	template Matrix<hdouble> MatrixUtils::createVector(const ComplexNumber<hdouble>&, const ComplexNumber<hdouble>&);
+	template Matrix<double> MatrixUtils::createVector(const ComplexNumber<double>&, const ComplexNumber<double>&, const ComplexNumber<double>&);
+	template Matrix<hdouble> MatrixUtils::createVector(const ComplexNumber<hdouble>&, const ComplexNumber<hdouble>&, const ComplexNumber<hdouble>&);
+
 	template int MatrixUtils::lu(const Matrix<double> &, Matrix<double>**, Matrix<double>**, Matrix<double>**);
 	template int MatrixUtils::lu(const Matrix<hdouble> &, Matrix<hdouble>**, Matrix<hdouble>**, Matrix<hdouble>**);
 	template int MatrixUtils::lu(const ComplexNumber<double> &, ComplexNumber<double>**, ComplexNumber<double>**, ComplexNumber<double>**);

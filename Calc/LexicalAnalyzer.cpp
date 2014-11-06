@@ -99,7 +99,11 @@ namespace PR
 	void LexicalAnalyzer::onColon(Token &token)
 	{
 		if (token.getMode() == PARSE_MODE::FUNCTION)
-			token.set_class(TOKEN_CLASS::MATRIX_ALL);
+		{
+			if (prev == TOKEN_CLASS::OPEN_PARENTHESIS || prev == TOKEN_CLASS::COMMA ||
+				whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || whatNext() == TOKEN_CLASS::COMMA)
+				token.set_class(TOKEN_CLASS::MATRIX_ALL);
+		}
 	}
 
 	void LexicalAnalyzer::onComma(Token &token)

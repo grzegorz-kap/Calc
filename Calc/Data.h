@@ -62,6 +62,9 @@ namespace PR
 		static TYPE find_type(const std::type_index &idx);
 		static const string & find_name(const TYPE &type);
 
+		virtual bool isMatrix() const{ return false; }
+		virtual bool isComplexNumber() const{ return false; }
+
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const;
@@ -105,11 +108,10 @@ namespace PR
 		virtual void assignAt(shared_ptr<Data>& data);
 		virtual void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data);
 		virtual void assignAt(shared_ptr<Data>& rows, shared_ptr<Data> & colls, shared_ptr<Data>& data);
-		virtual shared_ptr<Data> getRowsIndexes() const;
-		virtual shared_ptr<Data> getColsIndexes() const;
-		virtual shared_ptr<Data> getSingleIndex() const;
 		virtual Output * cast_output();
 		virtual bool isToken(TOKEN_CLASS _class)const{ return false; }
+		virtual shared_ptr<Data> createVector(shared_ptr<Data> &end) const;
+		virtual shared_ptr<Data> createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const;
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()

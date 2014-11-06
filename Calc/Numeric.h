@@ -280,22 +280,37 @@ namespace PR
 		virtual int getRowsCountForEmptyMatrixAssignment() const { return 1; }
 		virtual int getColsCountForEmptyMatrixAssignment() const { return 1; }
 
-		virtual shared_ptr<Data> getRowsIndexes() const override
+		shared_ptr<Data> getRowsIndexes() const 
 		{
 			return make_shared<T>(get_derived()->getRowIndex());
 		}
 
-		virtual shared_ptr<Data> getColsIndexes() const override
+		shared_ptr<Data> getColsIndexes() const 
 		{
 			return make_shared<T>(get_derived()->getColIndex());
 		}
 		
-		virtual shared_ptr<Data> getSingleIndex() const override
+		shared_ptr<Data> getSingleIndex() const 
 		{
 			return make_shared<T>(get_derived()->getIndexAll());
 		}
 		
-		
+		virtual shared_ptr<Data> createVector(shared_ptr<Data> &end) const override
+		{
+			return make_shared<T>(MatrixUtils::createVector(
+				*get_derived(), 
+				*end->cast_numeric<T>()->get_derived()
+				));
+		}
+
+		virtual shared_ptr<Data> createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const override
+		{
+			return make_shared<T>(MatrixUtils::createVector(
+				*get_derived(),
+				*step->cast_numeric<T>()->get_derived(),
+				*end->cast_numeric<T>()->get_derived()
+				));
+		}
 
 	private:
 

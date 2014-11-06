@@ -136,6 +136,8 @@ namespace PR
 		operator Matrix<double>() const;
 		operator Matrix<hdouble>()const;
 
+		virtual bool isMatrix() const override{ return true; }
+
 		private:
 			bool checkIfTrue() const;
 			bool checkIfFalse() const;

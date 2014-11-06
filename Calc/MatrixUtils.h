@@ -28,6 +28,11 @@ namespace PR
 
 		template <class T> static Matrix<T> divide(const Matrix<T> &AA, const Matrix<T> &BB);
 		template <class T> static void url(const Matrix<T> &A, const Matrix<T> &b, int j_b, Matrix<T> &x, int j_x);
+
+		template <class T> static Matrix<T> createVector(const Matrix<T> &start, const Matrix<T> &end);
+		template <class T> static Matrix<T> createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &end);
+		template <class T> static Matrix<T> createVector(const Matrix<T> &start, const Matrix<T> &step, const Matrix<T> &end);
+		template <class T> static Matrix<T> createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &step, const ComplexNumber<T> &end);
 	};
 
 }

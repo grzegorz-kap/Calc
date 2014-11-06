@@ -242,6 +242,42 @@ namespace PR
 		return c;
 	}
 
+	template <class T>
+	static T Mathematic::fix(const T &value)
+	{
+		if (value < 0)
+			return ceil(value);
+		else
+			return floor(value);
+	}
+
+	template <class T>
+	static ComplexNumber<T> Mathematic::fix(const ComplexNumber<T> &val)
+	{
+		return ComplexNumber<T>(fix(val.re), fix(val.im));
+	}
+
+	template <class T>
+	static Matrix<T> Mathematic::fix(const Matrix<T> &matrix)
+	{
+		Matrix<T> out(matrix.M, matrix.N);
+		for (int i = 0; i<out.M; i++)
+		{
+			auto &o = out.mx[i];
+			const auto &m = matrix.mx[i];
+			for (int j = 0; j < out.N; j++)
+				o[j] = fix(m[j]);
+		}
+		return out;
+	}
+
+	template double Mathematic::fix(const double &);
+	template hdouble Mathematic::fix(const hdouble &);
+	template Matrix<double> Mathematic::fix(const Matrix<double>&);
+	template Matrix<hdouble> Mathematic::fix(const Matrix<hdouble>&);
+	template ComplexNumber<double> Mathematic::fix(const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> Mathematic::fix(const ComplexNumber<hdouble>&);
+
 	template double Mathematic::argument(const ComplexNumber<double> &);
 	template hdouble Mathematic::argument(const ComplexNumber<hdouble> &);
 	template double Mathematic::module(const ComplexNumber<double> &);
