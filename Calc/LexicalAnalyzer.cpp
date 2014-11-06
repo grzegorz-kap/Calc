@@ -87,10 +87,19 @@ namespace PR
 		case TOKEN_CLASS::OPERATOR: 
 			onOperator(token); 
 			break;
+		case TOKEN_CLASS::COLON:
+			onColon(*token);
+			break;
 		}
 		
 		if (!for_delete)
 			prev = token->getClass();
+	}
+
+	void LexicalAnalyzer::onColon(Token &token)
+	{
+		if (token.getMode() == PARSE_MODE::FUNCTION)
+			token.set_class(TOKEN_CLASS::MATRIX_ALL);
 	}
 
 	void LexicalAnalyzer::onComma(Token &token)

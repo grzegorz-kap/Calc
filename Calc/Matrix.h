@@ -108,12 +108,21 @@ namespace PR
 		void assign(const Matrix<T> &row, const Matrix<T> &col, const ComplexNumber<T> &data);
 		void checkForPositiveInteger() const;
 
+		Matrix<T> getIndex(int num) const;
+		Matrix<T> getIndexAll() const;
+		Matrix<T> getRowIndex() const { return getIndex(M); }
+		Matrix<T> getColIndex() const { return getIndex(N); }
+
+		virtual int getRowsCountForEmptyMatrixAssignment() const override;
+		virtual int getColsCountForEmptyMatrixAssignment() const override;
+
 		void expandRowsTo(int idx, const ComplexNumber<T> &value);
 		void expandColsTo(int idx, const ComplexNumber<T> &value);
 
 		virtual string toHtml() const override;
 		virtual string toString() const override;
 		virtual bool operator == (const bool &b) const override;
+		virtual bool isEmpty() const override { return M == 0 && N == 0; }
 
 		template <class U>
 		operator ComplexNumber<U>() const
@@ -126,8 +135,6 @@ namespace PR
 
 		operator Matrix<double>() const;
 		operator Matrix<hdouble>()const;
-		
-	
 
 		private:
 			bool checkIfTrue() const;

@@ -721,8 +721,19 @@ namespace PR
 			return;
 		}
 
-		if (row.M*row.N != data.M || col.M*col.N != data.N)
+		int length_row = row.M*row.N;
+		int length_col = col.M*col.N;
+		
+		if (length_row != data.M || length_col != data.N)
+		{
+			if (length_col == 1 == data.M && length_row == data.N ||
+				length_row == 1 == data.N && length_col == data.M)
+			{
+				assign(row, col, data.transpose());
+				return;
+			}
 			throw NumericException("Subscripted assignment dimension mismatch.");
+		}
 
 		row.checkForPositiveInteger();
 		col.checkForPositiveInteger();
@@ -779,6 +790,47 @@ namespace PR
 				}
 			}
 		}
+	}
+
+	template <class T>
+	Matrix<T> Matrix<T>::getIndex(int num) const
+	{
+		Matrix<T> out(1, num);
+		vector<ComplexNumber<T>> &ref = out.mx[0];
+		int i = 1;
+		for (ComplexNumber<T> &ref : ref)
+		{
+			ref = ComplexNumber<T>(i++);
+		}
+		return out;
+	}
+
+	template <class T>
+	Matrix<T> Matrix<T>::getIndexAll() const
+	{
+		Matrix<T> out(M*N, 1);
+		int ii = 1;
+		for (int i = 0;i< out.M; i++)
+			out.mx[i][0] = ComplexNumber<T>(ii++);
+		return out;
+	}
+
+	template <class T>
+	int Matrix<T>::getRowsCountForEmptyMatrixAssignment() const
+	{
+		if (M == 1 && N>1)
+			return N;
+		else
+			return M;
+	}
+
+	template <class T>
+	int Matrix<T>::getColsCountForEmptyMatrixAssignment() const
+	{
+		if (N == 1 && M>1)
+			return M;
+		else
+			return N;
 	}
 
 	template <class T>

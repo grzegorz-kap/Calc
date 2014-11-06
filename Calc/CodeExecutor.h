@@ -80,8 +80,10 @@ namespace PR
 		void onMatrixEnd();
 
 		void onFunction();
+		void onMatrixAll();
 		void onFunctionArgs();
 
+		
 		void onVariableFunction(vector<shared_ptr<Data>> &args, shared_ptr<Data> &var);
 		void onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name);
 

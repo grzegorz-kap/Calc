@@ -61,6 +61,11 @@ namespace PR
 		void setEvType(TYPE type){ _evType = type; }
 
 		string toString() const;
+
+		virtual bool isToken(TOKEN_CLASS token_class) const override
+		{
+			return _class == token_class;
+		}
 		
 		virtual shared_ptr<Data> evaluate()
 		{

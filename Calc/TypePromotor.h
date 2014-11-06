@@ -24,7 +24,7 @@ namespace PR
 
 		static void promote(shared_ptr<Data> &a, shared_ptr<Data> &b);
 		static void promote(vector<shared_ptr<Data>> &vec);
-		static void promote(vector<shared_ptr<Data>> &vec, const TYPE &type);
+		static void promote(vector<shared_ptr<Data>> &vec,TYPE _type, bool(*cond)(shared_ptr<Data>&));
 		static void promote(shared_ptr<Data> &a, const TYPE &type);
 		static void convertTo(TYPE type,const shared_ptr<Data> &a, shared_ptr<Data> &dest);
 	private:

@@ -81,6 +81,11 @@ namespace PR
 		void assign(const ComplexNumber<T> &cell, const ComplexNumber<T> &data);
 		void assign(const ComplexNumber<T> &row, const ComplexNumber<T> &col, const ComplexNumber<T> &data);
 
+		ComplexNumber<T> getRowIndex() const { return ComplexNumber<T>(1); }
+		ComplexNumber<T> getColIndex() const { return ComplexNumber<T>(1); }
+		ComplexNumber<T> getIndexAll() const { return ComplexNumber<T>(1); }
+		ComplexNumber<T> getIndex(int num) const { return ComplexNumber<T>(1); }
+
 		bool checkForPositiveInteger() const;
 		void computeIndex(int rows, int &i, int &j) const;
 

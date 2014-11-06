@@ -3,8 +3,12 @@
 
 namespace PR
 {
+	
 	void CodeExecutor::onFunctionArgs()
 	{
+		/*
+			Information about expected number of parameters returned from function
+		*/
 		if (i != ip->begin() && std::prev(i)->get()->getClass() == TOKEN_CLASS::ASSIGNMENT_TARGET)
 		{
 			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, 
@@ -12,6 +16,11 @@ namespace PR
 			return;
 		}
 		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END,-1,-1));
+	}
+
+	void CodeExecutor::onMatrixAll()
+	{
+		stack.push_back(make_shared<Token>(TOKEN_CLASS::MATRIX_ALL, (*i)->getPosition()));
 	}
 
 	void CodeExecutor::onFunction()
@@ -51,7 +60,7 @@ namespace PR
 		TYPE convertToType = var->_type;
 
 		for (int i = args.size() - 1; i >= 0; i--)
-			if (args[i]->_type != convertToType)
+			if (args[i]->_type != convertToType && !args[i]->isToken(TOKEN_CLASS::MATRIX_ALL))
 				TypePromotor::convertTo(convertToType, args[i], args[i]);		
 		
 		if (size == 2)

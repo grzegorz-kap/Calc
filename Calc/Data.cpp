@@ -215,6 +215,21 @@ namespace PR
 		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
 	}
 
+	shared_ptr<Data> Data::getRowsIndexes() const
+	{
+		throw UnimplementedException("Cannot get rows indexes on this type");
+	}
+
+	shared_ptr<Data> Data::getColsIndexes() const
+	{
+		throw UnimplementedException("Cannot get cols indexes on this type");
+	}
+
+	shared_ptr<Data> Data::getSingleIndex() const
+	{
+		throw UnimplementedException("Cannot get cols and rows indexes on this type");
+	}
+
 	bool Data::operator == (const bool &b) const
 	{
 		throw UnimplementedException("Cannot do bool eq on this type");

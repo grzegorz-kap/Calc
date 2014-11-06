@@ -49,12 +49,12 @@ namespace PR
 		}
 	}
 
-	void TypePromotor::promote(vector<shared_ptr<Data>> &vec, const TYPE &type)
+	void TypePromotor::promote(vector<shared_ptr<Data>> &vec,TYPE _type, bool(*cond)(shared_ptr<Data> &b))
 	{
 		for (auto &ref : vec)
 		{
-			if (ref->_type != type)
-				convertTo(type, ref, ref);
+			if (cond(ref))
+				convertTo(_type, ref, ref);
 		}
 	}
 

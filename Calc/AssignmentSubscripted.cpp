@@ -60,7 +60,11 @@ namespace PR
 		}
 
 		auto address = executor(onp, vars);
-		TypePromotor::promote(address, var->_type);
+
+		TypePromotor::promote(address, var->_type, [](shared_ptr<Data> &b){
+			return !b->isToken(TOKEN_CLASS::MATRIX_ALL); 
+		});
+
 		TypePromotor::promote(*first, var->_type);
 		switch (address.size())
 		{

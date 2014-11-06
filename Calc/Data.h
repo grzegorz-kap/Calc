@@ -17,6 +17,7 @@ using std::make_shared;
 
 #include "UnimplementedException.h"
 #include "CastException.h"
+#include "TokensTypes.h"
 
 
 namespace PR
@@ -104,7 +105,11 @@ namespace PR
 		virtual void assignAt(shared_ptr<Data>& data);
 		virtual void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data);
 		virtual void assignAt(shared_ptr<Data>& rows, shared_ptr<Data> & colls, shared_ptr<Data>& data);
+		virtual shared_ptr<Data> getRowsIndexes() const;
+		virtual shared_ptr<Data> getColsIndexes() const;
+		virtual shared_ptr<Data> getSingleIndex() const;
 		virtual Output * cast_output();
+		virtual bool isToken(TOKEN_CLASS _class)const{ return false; }
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()

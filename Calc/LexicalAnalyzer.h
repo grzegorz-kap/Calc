@@ -47,6 +47,7 @@ namespace PR
 		void onOperator(unique_ptr<Token> &token);
 		void onComma(Token &token);
 		void onSpace(Token &token);
+		void onColon(Token &token);
 	};
 }
 

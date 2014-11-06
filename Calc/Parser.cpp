@@ -151,6 +151,11 @@ namespace PR
 			onp.back()->setEvType(_ev_type_mode.back());
 	}
 
+	void Parser::onMatrixAll()
+	{
+		stack.push_back(make_unique<Token>(*i));
+	}
+
 	void Parser::onMatrixEnd()
 	{
 		stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START);
@@ -232,6 +237,9 @@ namespace PR
 				break;
 			case TOKEN_CLASS::MATRIX_END:
 				onMatrixEnd();
+				break;
+			case TOKEN_CLASS::MATRIX_ALL:
+				onMatrixAll();
 				break;
 			case TOKEN_CLASS::KEY_WORD:
 			case TOKEN_CLASS::IF_KEYWORD:

@@ -100,6 +100,9 @@ namespace PR
 			case TOKEN_CLASS::OUTPUT_OFF:
 				output_off_flag = true;
 				break;
+			case TOKEN_CLASS::MATRIX_ALL:
+				onMatrixAll();
+				break;
 			default:
 				throw CalcException("!");
 			}

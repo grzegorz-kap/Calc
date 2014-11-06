@@ -58,6 +58,7 @@ namespace PR
 		void onOpenParenthesis();
 		void onCloseParenthesis();
 		void onMatrixStart();
+		void onMatrixAll();
 		void onMatrixEnd();
 		void onNewLine();
 		void onFunction();
