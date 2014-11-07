@@ -34,6 +34,8 @@ void FileWatcher::changed(const QString &path)
 void FileWatcher::fileDialogButtonClicked()
 {
 	QString new_dir =  QFileDialog::getExistingDirectory();
+	if (new_dir == "")
+		return;
 	setNewDirectory(new_dir);	
 }
 
