@@ -144,9 +144,6 @@
     <ClInclude Include="UnimplementedException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="TypePromotor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="i_order_map.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -219,17 +216,8 @@
     <ClInclude Include="Mathematic.h">
       <Filter>Service\Math</Filter>
     </ClInclude>
-    <ClInclude Include="DetFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixUtils.h">
       <Filter>Service\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="InvFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Variables.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AdditionOperator.h">
       <Filter>Model\Operator\h</Filter>
@@ -315,11 +303,23 @@
     <ClInclude Include="Colon2Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
+    <ClInclude Include="DetFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="InvFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
     <ClInclude Include="ForIterator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="InstructionFor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Variables.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TypePromotor.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,9 +397,6 @@
     </ClCompile>
     <ClCompile Include="UnimplementedException.cpp">
       <Filter>Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="TypePromotor.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="i_order_map.cpp">
       <Filter>Model</Filter>
@@ -491,17 +488,8 @@
     <ClCompile Include="Mathematic.cpp">
       <Filter>Service\Math</Filter>
     </ClCompile>
-    <ClCompile Include="DetFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixUtils.cpp">
       <Filter>Service\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="InvFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Variables.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AdditionOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
@@ -590,14 +578,26 @@
     <ClCompile Include="CodeExecutorFor.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
-    <ClCompile Include="ForIterator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InstructionFor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ParserFOR.cpp">
       <Filter>Service\Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="DetFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="ForIterator.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionFor.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="InvFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Variables.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="TypePromotor.cpp">
+      <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

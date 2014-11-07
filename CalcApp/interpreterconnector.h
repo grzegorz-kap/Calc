@@ -30,6 +30,9 @@ public:
 	void signal_receiver(const char *, const PR::Data *);
 	void errors_receiver(const char *, int);
 
+public slots:
+	void workingDirectoryChanged(const QString &dir);
+
 private slots:
 	void commandToInterpreter(const std::string &command);
 	void updateFile(const QString&);

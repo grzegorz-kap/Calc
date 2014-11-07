@@ -1,9 +1,10 @@
 #include <iostream>
-#include <string>
-#include "Calc\Interpreter.h"
+
+
+
+using namespace std;
 
 void main()
 {
-	PR::Interpreter inter;
-	inter.workFromFile("dane.txt");
+	system("pause");
 }

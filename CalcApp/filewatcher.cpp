@@ -30,3 +30,19 @@ void FileWatcher::changed(const QString &path)
 	mFilesWatcher.addPaths(dir.entryList());
 	emit sendFileList(dir.entryList());
 }
+
+void FileWatcher::fileDialogButtonClicked()
+{
+	QString new_dir =  QFileDialog::getExistingDirectory();
+	setNewDirectory(new_dir);	
+}
+
+void FileWatcher::setNewDirectory(const QString &directory)
+{
+	if (dir.path() == directory)
+		return;
+	mFilesWatcher.removePaths(dir.entryList());
+	dir.setPath(directory == "" ? QDir::currentPath() : directory);
+	changed(directory);
+	emit workingDirectoryChanged(dir.path());
+}

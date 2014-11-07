@@ -28,6 +28,7 @@ namespace PR
 		void connectStopComputing();
 
 		void updateFile(const char *);
+		void changeWorkingDirectory(const char *dir);
 	};
 }
 

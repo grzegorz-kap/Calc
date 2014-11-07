@@ -6,71 +6,81 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>640</height>
+    <width>724</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CalcApp</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
     <item>
-     <widget class="QGroupBox" name="files_box">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Current Folder</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="FileList" name="fileList">
+        <widget class="DirectoryComboBox" name="dirComboBox"/>
+       </item>
+       <item>
+        <widget class="QToolButton" name="openFileDialogButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="calcapp.qrc">
+           <normaloff>:/CalcApp/open_icon.png</normaloff>:/CalcApp/open_icon.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_4" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QGroupBox" name="files_box">
          <property name="maximumSize">
           <size>
            <width>200</width>
            <height>16777215</height>
           </size>
          </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="widget_2" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_8">
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QGroupBox" name="console_box">
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>300</height>
-          </size>
-         </property>
          <property name="title">
-          <string>Console</string>
+          <string>Current Folder</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetDefaultConstraint</enum>
-          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
-           <widget class="Console" name="consoleL">
-            <property name="lineWrapMode">
-             <enum>QTextEdit::NoWrap</enum>
+           <widget class="FileList" name="fileList_2">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -78,73 +88,92 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="commandLine_box">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>150</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Command</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
+        <widget class="QWidget" name="widget_5" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="CommandLine" name="commandL">
+           <widget class="QGroupBox" name="console_box">
             <property name="baseSize">
              <size>
               <width>0</width>
-              <height>200</height>
+              <height>300</height>
              </size>
             </property>
+            <property name="title">
+             <string>Console</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <widget class="Console" name="consoleL">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="commandLine_box">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Command</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="CommandLine" name="commandL">
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="widget" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
        <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>Workspace</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <widget class="QWidget" name="widget_6" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
-           <widget class="QTableWidget" name="tableWidget"/>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Workspace</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QTableWidget" name="tableWidget"/>
+             </item>
+            </layout>
+           </widget>
           </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Command Histry</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QTreeWidget" name="treeWidget">
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string>Command Histry</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QTreeWidget" name="treeWidget">
+               <column>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -160,7 +189,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>930</width>
+     <width>724</width>
      <height>21</height>
     </rect>
    </property>
@@ -197,6 +226,11 @@
    <class>FileList</class>
    <extends>QListWidget</extends>
    <header location="global">filelist.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DirectoryComboBox</class>
+   <extends>QComboBox</extends>
+   <header location="global">directorycombobox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

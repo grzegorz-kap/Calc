@@ -45,9 +45,13 @@ namespace PR
 	void FunctionFactory::delete_external(const string &file)
 	{
 		loadInstance();
-	//	auto result = instance->externals.find(file);
-	//	if (result != instance->externals.end())
-			instance->externals.erase(file);
+		instance->externals.erase(file);
+	}
+
+	void FunctionFactory::clear_externals()
+	{
+		loadInstance();
+		instance->externals.clear();
 	}
 
 	bool FunctionFactory::readExternal(const string &name)

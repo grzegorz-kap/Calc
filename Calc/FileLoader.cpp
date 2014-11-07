@@ -4,12 +4,13 @@
 
 namespace PR
 {
-	FileLoader::FileLoader(const string &name)
-		:file(name,std::ios::in|std::ios::binary)
-		, name(name)
-	{
-	}
+	string FileLoader::working_directory = "";
 
+	FileLoader::FileLoader(const string &nameA)
+	{
+		name = working_directory + nameA;
+		file.open(name, std::ios::in | std::ios::binary);
+	}
 
 	FileLoader::~FileLoader()
 	{
@@ -29,5 +30,12 @@ namespace PR
 	{
 		onReadAttempt();
 		return string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
+	}
+
+	void FileLoader::changeWorkingDirectory(const string &directory)
+	{
+		working_directory = directory;
+		if (working_directory.size() && working_directory.back() != '/')
+			working_directory += "/";
 	}
 }

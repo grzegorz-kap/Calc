@@ -17,6 +17,11 @@ void InterpreterConnector::commandToInterpreter(const std::string &command)
 	interpreter.work(command);	
 }
 
+void InterpreterConnector::workingDirectoryChanged(const QString &command)
+{
+	interpreter.changeWorkingDirectory(command.toStdString().c_str());
+}
+
 void InterpreterConnector::updateFile(const QString &file)
 {
 	interpreter.updateFile(file.toStdString().c_str());

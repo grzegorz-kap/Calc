@@ -36,6 +36,7 @@ namespace PR
 		static unique_ptr<Function> load_in(const string &name);
 		static ExternalFunction& load_external(const string &name);
 		static void delete_external(const string &name);
+		static void clear_externals();
 	private:
 		FunctionFactory();
 		~FunctionFactory();

@@ -5,6 +5,7 @@
 #include <qstringlist.h>
 #include <qdir.h>
 #include <qregexp.h>
+#include <qfiledialog.h>
 
 class FileWatcher : public QFileSystemWatcher
 {
@@ -19,10 +20,13 @@ public:
 signals:
 	void sendFileList(const QStringList &list);
 	void fileUpdated(const QString &);
+	void workingDirectoryChanged(const QString &);
 
 public slots:
 	void changed(const QString & path);
+	void fileDialogButtonClicked();
 	void changedFile(const QString &path);
+	void setNewDirectory(const QString &path);
 	
 };
 

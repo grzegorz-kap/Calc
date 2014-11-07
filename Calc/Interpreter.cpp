@@ -45,4 +45,10 @@ namespace PR
 		exec.setInput(FileLoader(fileName));
 		exec.start();
 	}
+
+	void Interpreter::changeWorkingDirectory(const char *name)
+	{
+		FileLoader::changeWorkingDirectory(name);
+		FunctionFactory::clear_externals();
+	}
 }

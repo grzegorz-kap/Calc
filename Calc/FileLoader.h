@@ -16,6 +16,8 @@ namespace PR
 	{
 		std::ifstream file;
 		std::string name;
+
+		static string working_directory;
 	public:
 		FileLoader(const string &name);
 		~FileLoader();
@@ -25,7 +27,10 @@ namespace PR
 		string loadAll();
 		bool eof() const { return file.eof(); }
 	
+		static void changeWorkingDirectory(const string &directory);
+
 	private:
+		
 		void onReadAttempt()
 		{
 			if (!file.is_open())
