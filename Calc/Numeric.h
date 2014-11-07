@@ -272,6 +272,11 @@ namespace PR
 				*data->cast_numeric<T>()->get_derived());
 		}
 
+		virtual shared_ptr<Data> getColumn(int idx) const override
+		{
+			return make_shared<T>(get_derived()->atColumn(idx));
+		}
+
 		virtual bool isEmpty() const
 		{
 			return false;

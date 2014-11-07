@@ -315,6 +315,12 @@
     <ClInclude Include="Colon2Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
+    <ClInclude Include="ForIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionFor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -580,6 +586,18 @@
     </ClCompile>
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeExecutorFor.cpp">
+      <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="ForIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionFor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserFOR.cpp">
+      <Filter>Service\Parsing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

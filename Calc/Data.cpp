@@ -230,6 +230,11 @@ namespace PR
 		throw UnimplementedException("Cannot do bool eq on this type");
 	}
 
+	shared_ptr<Data> Data::getColumn(int idx) const
+	{
+		throw UnimplementedException("Get column is not supported on this type");
+	}
+
 	string Data::toString() const
 	{
 		return string("");

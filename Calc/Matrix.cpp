@@ -642,6 +642,20 @@ namespace PR
 	}
 
 	template <class T>
+	Matrix<T> Matrix<T>::atColumn(int idx) const
+	{
+		if (idx < 0)
+			NumericException::throwIndexMustBeReal();
+		if (idx >= N)
+			NumericException::throwIndexOutOfRange();
+
+		Matrix<T> out(M, 1);
+		for (int i = 0; i < M; i++)
+			out.mx[i][0] = mx[i][idx];
+		return out;
+	}
+
+	template <class T>
 	void Matrix<T>::assign(const Matrix<T> &data)
 	{
 		*this = data;

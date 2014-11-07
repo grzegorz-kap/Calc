@@ -44,6 +44,7 @@ namespace PR
 		T getIm() const;
 		void setRe(const T &re);
 		void setIm(const T &im);
+		virtual int get_cols_int() const override { return 1; }
 
 		int getReInt() const;
 
@@ -76,6 +77,7 @@ namespace PR
 
 		ComplexNumber<T> at(const ComplexNumber<T> &cell) const;
 		ComplexNumber<T> at(const ComplexNumber<T> &first, const ComplexNumber<T> &second) const;
+		ComplexNumber<T> atColumn(int idx) const;
 
 		void assign(const ComplexNumber<T> &data);
 		void assign(const ComplexNumber<T> &cell, const ComplexNumber<T> &data);

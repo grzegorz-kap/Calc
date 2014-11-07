@@ -56,6 +56,7 @@ namespace PR
 		void cols(int arg){ N = arg; }
 		int rows() const;
 		int cols() const;
+		virtual int get_cols_int() const override { return N; }
 		ComplexNumber<T>& operator()(int i, int j);
 
 		template <class U> auto rdivide(const Matrix<U> &b) const->Matrix < decltype(T() + U()) > ;
@@ -100,6 +101,7 @@ namespace PR
 
 		Matrix<T> at(const Matrix<T> &cells) const;
 		Matrix<T> at(const Matrix<T> &first, const Matrix<T> &second) const;
+		Matrix<T> atColumn(int idx) const;
 
 		void assign(const Matrix<T> &b);
 		void assign(const Matrix<T> &cells, const Matrix<T> &data);

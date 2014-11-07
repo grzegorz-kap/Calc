@@ -19,6 +19,7 @@ using std::make_unique;
 #include "functions.h"
 #include "CalcException.h"
 #include "LexicalAnalyzer.h"
+#include "InstructionFor.h"
 
 namespace PR
 {
@@ -45,13 +46,15 @@ namespace PR
 		TOKEN_CLASS onpBack() const;
 		void stackToOnp();
 		void stackToOnpAll();
-
+		void iterBack();
 		TOKEN_CLASS whatNext()
 		{
 			if (iter + 1 == tokens.end())
 				return TOKEN_CLASS::NONE;
 			return (*(iter + 1))->getClass();
 		}
+
+		void onKeywordFOR();
 
 		void onID();
 		void onNumber();

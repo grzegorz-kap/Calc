@@ -23,6 +23,7 @@ using std::vector;
 #include "SignalEmitter.h"
 #include "TypePromotor.h"
 #include "Variables.h"
+#include "ForIterator.h"
 
 namespace PR
 {
@@ -57,6 +58,7 @@ namespace PR
 		Instruction::const_iterator i;
 		vector<int> conditions;
 		vector<int> jumbs;
+		vector<ForIterator> for_iterators;
 		Ip ip;
 		CodeGenerator code;
 		bool output_off_flag;
@@ -89,11 +91,17 @@ namespace PR
 
 		void onAssignment();
 		void defaultAssignment();
+		
 		void onIF();
 		bool checkIF();
 		void onWHILE();
 		void onWhileEnd();
 		bool checkWhile();
+		
+		bool checkFor();
+		void onForKeyword();
+		void onForEndKeyword();
+		
 		void onID();
 		bool onScript();
 
@@ -107,6 +115,7 @@ namespace PR
 		static const vector<TOKEN_CLASS> IF_FIND;
 		static const vector<TOKEN_CLASS> ELSE_FIND;
 		static const vector<TOKEN_CLASS> WHILE_FIND;
+		static const vector<TOKEN_CLASS> FOR_FIND;
 
 	};
 }

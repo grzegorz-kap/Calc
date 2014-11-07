@@ -54,6 +54,8 @@ namespace PR
 				continue;
 			if (checkWhile())
 				continue;
+			if (checkFor())
+				continue;
 			run();
 			code.inc();
 		}

@@ -249,6 +249,10 @@ namespace PR
 			case TOKEN_CLASS::MATRIX_ALL:
 				onMatrixAll();
 				break;
+			case TOKEN_CLASS::FOR_KEYWORD:
+				onKeywordFOR();
+				stop = true;
+				break;
 			case TOKEN_CLASS::KEY_WORD:
 			case TOKEN_CLASS::IF_KEYWORD:
 			case TOKEN_CLASS::ELSE_KEYWORD:
@@ -257,6 +261,7 @@ namespace PR
 			case TOKEN_CLASS::WHILE_KEYWORD:
 			case TOKEN_CLASS::FUNCTION_KEYWORD:
 			case TOKEN_CLASS::END_FUNCTION:
+			case TOKEN_CLASS::END_FOR:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
 				stop = true;
@@ -303,5 +308,11 @@ namespace PR
 	{
 		onp.push_back(std::move(stack.back()));
 		stack.pop_back();
+	}
+
+	void Parser::iterBack()
+	{
+		if (tokens.begin() != iter)
+			iter--;
 	}
 }

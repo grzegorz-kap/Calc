@@ -18,4 +18,9 @@ namespace PR
 	{ 
 		TOKEN_CLASS::END_WHILE 
 	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::FOR_FIND =
+	{
+		TOKEN_CLASS::END_FOR
+	};
 }

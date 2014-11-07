@@ -111,6 +111,7 @@
     <ClInclude Include="ExternalFunctionLoader.h" />
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="FileLoaderException.h" />
+    <ClInclude Include="ForIterator.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="FunctionFactory.h" />
     <ClInclude Include="functions.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Gt.h" />
     <ClInclude Include="IAssignment.h" />
     <ClInclude Include="IMatrixBuilder.h" />
+    <ClInclude Include="InstructionFor.h" />
     <ClInclude Include="Interpreter.h" />
     <ClInclude Include="InvFunction.h" />
     <ClInclude Include="i_order_map.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="CodeExecutor.cpp" />
     <ClCompile Include="CodeExecutorAssignment.cpp" />
     <ClCompile Include="CodeExecutorDefinitions.cpp" />
+    <ClCompile Include="CodeExecutorFor.cpp" />
     <ClCompile Include="CodeExecutorFunction.cpp" />
     <ClCompile Include="CodeExecutorId.cpp" />
     <ClCompile Include="CodeExecutorIF.cpp" />
@@ -209,12 +212,14 @@
     <ClCompile Include="ExternalFunctionLoader.cpp" />
     <ClCompile Include="FileLoader.cpp" />
     <ClCompile Include="FileLoaderException.cpp" />
+    <ClCompile Include="ForIterator.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="FunctionFactory.cpp" />
     <ClCompile Include="GeOperator.cpp" />
     <ClCompile Include="Gt.cpp" />
     <ClCompile Include="IAssignment.cpp" />
     <ClCompile Include="IMatrixBuilder.cpp" />
+    <ClCompile Include="InstructionFor.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="InvFunction.cpp" />
     <ClCompile Include="i_order_map.cpp" />
@@ -247,6 +252,7 @@
     <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
     <ClCompile Include="ParserAssignment.cpp" />
+    <ClCompile Include="ParserFOR.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />
     <ClCompile Include="SinFun.cpp" />

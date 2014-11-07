@@ -353,6 +353,16 @@ namespace PR
 	}
 
 	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::atColumn(int idx) const
+	{
+		if (idx < 0)
+			NumericException::throwIndexMustBeReal();
+		if (idx>1)
+			NumericException::throwIndexOutOfRange();
+		return *this;
+	}
+
+	template <class T>
 	void ComplexNumber<T>::assign(const ComplexNumber<T> &data)
 	{
 		*this = data;
