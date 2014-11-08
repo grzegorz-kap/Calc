@@ -8,6 +8,7 @@
 #include <qfile.h>
 #include <qdir.h>
 #include <qtextstream.h>
+#include <qtreewidget.h>
 
 class AppData : public QObject
 {
@@ -26,10 +27,14 @@ public:
 	AppData(QObject *parent);
 	~AppData();
 
+	static void appendToDirHistory(const QString &dir);
 	static void writeDirHistory(QComboBox *ptr);
 	static void loadDirHistory(QComboBox *ptr);
+	static void appendToCommandHistory(const QString &command);
+	static void loadCommandHistory(QTreeWidget *ptr);
 private:
 	static void createCalcFolder();
+	static void appendToFile(const QString &fileName, const QString &data);
 };
 
 #endif // APPDATA_H

@@ -3,6 +3,7 @@
 
 #include <QTreeWidget>
 #include <qdatetime.h>
+#include <appdata.h>
 
 class CommandHistory : public QTreeWidget
 {

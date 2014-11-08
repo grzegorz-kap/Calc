@@ -18,7 +18,7 @@ void DirectoryComboBox::workingDirectoryChanged(const QString &dir)
 	if (result == -1)
 	{
 		addItem(dir);
-		AppData::writeDirHistory(this);
+		AppData::appendToDirHistory(dir);
 		setCurrentIndex(count() - 1);
 	}
 	else

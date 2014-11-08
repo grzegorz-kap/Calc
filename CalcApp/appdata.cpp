@@ -27,6 +27,21 @@ void AppData::createCalcFolder()
 		QDir().mkdir(calcFolder);
 }
 
+void AppData::appendToFile(const QString &fileName, const QString &data)
+{
+	createCalcFolder();
+	QFile file(fileName);
+	if (!file.open(QIODevice::Append | QIODevice::Text))
+		return;
+	QTextStream(&file) << data;
+	file.close();
+}
+
+void AppData::appendToDirHistory(const QString &command)
+{
+	appendToFile(dirHistory, command + "\n");
+}
+
 void AppData::writeDirHistory(QComboBox *dir)
 {
 	createCalcFolder();
@@ -57,6 +72,39 @@ void AppData::loadDirHistory(QComboBox *dir)
 		{
 			element.remove("\n");
 			dir->addItem(element);
+		}
+	}
+	file.close();
+}
+
+void AppData::appendToCommandHistory(const QString &command)
+{
+	appendToFile(commandHistory, command + "\n");
+}
+
+void AppData::loadCommandHistory(QTreeWidget *widget)
+{
+	QFile file(commandHistory);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return;
+
+	QTreeWidgetItem *current = nullptr;
+	while (!file.atEnd())
+	{
+		QString line = file.readLine();
+		line.remove("\n");
+
+		if (line.size() == 0)
+			continue;
+
+		if (line[0] == '%')
+		{
+			current = new QTreeWidgetItem(QStringList(line));
+			widget->addTopLevelItem(current);
+		}
+		else if (current != nullptr)
+		{
+			current->addChild(new QTreeWidgetItem(QStringList(line)));
 		}
 	}
 	file.close();
