@@ -34,7 +34,7 @@ public slots:
 	void workingDirectoryChanged(const QString &dir);
 
 private slots:
-	void commandToInterpreter(const std::string &command);
+	void commandToInterpreter(const QString &command);
 	void updateFile(const QString&);
 
 signals:

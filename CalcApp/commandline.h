@@ -27,8 +27,7 @@ private:
 	void addToHistory();
 	void onKeyUpOrDown(int key);
 signals:
-	void commandEntered(const std::string &command);
-	void commandEntered(const QString &);
+	void commandEntered(const QString &command);
 };
 
 #endif // COMMANDLINE_H

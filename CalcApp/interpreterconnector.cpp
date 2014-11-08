@@ -12,9 +12,9 @@ InterpreterConnector::~InterpreterConnector()
 {
 }
 
-void InterpreterConnector::commandToInterpreter(const std::string &command)
+void InterpreterConnector::commandToInterpreter(const QString &command)
 {
-	interpreter.work(command);	
+	interpreter.work(command.toStdString());	
 }
 
 void InterpreterConnector::workingDirectoryChanged(const QString &command)

@@ -3,7 +3,6 @@
 CommandLine::CommandLine(QWidget *parent)
 	: QPlainTextEdit(parent)
 {
-	this->appendPlainText(">> ");
 	commandIdx = 0;
 	historyFlag = false;
 }
@@ -35,15 +34,8 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 	{
 		addToHistory();
 		commandIdx = commandHistory.size() - 1;
-
-		QString command = toPlainText();
-		emit commandEntered(command);
-		command.remove(0, 3);
-		emit commandEntered(command.toStdString());
-
+		emit commandEntered(toPlainText());
 		clear();
-		appendPlainText(">> ");
-
 		return;
 	}
 	commandIdx = commandHistory.size()-1;
@@ -65,15 +57,11 @@ void CommandLine::onKeyUpOrDown(int key)
 
 	clear();
 	if (commandIdx == commandHistory.size())
-	{
-		appendPlainText(">> ");
 		return;
-	}
+
 
 	if (commandHistory.size())
 		appendPlainText(commandHistory[commandIdx]);
-	else
-		appendPlainText(">> ");
 	
 }
 

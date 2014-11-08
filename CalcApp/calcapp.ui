@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>527</height>
+    <width>810</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -145,6 +145,12 @@
        </item>
        <item>
         <widget class="QWidget" name="widget_6" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
            <widget class="QGroupBox" name="groupBox">
@@ -165,10 +171,10 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QTreeWidget" name="treeWidget">
+              <widget class="CommandHistory" name="commandHistory">
                <column>
                 <property name="text">
-                 <string notr="true">1</string>
+                 <string notr="true">Command</string>
                 </property>
                </column>
               </widget>
@@ -189,7 +195,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>724</width>
+     <width>810</width>
      <height>21</height>
     </rect>
    </property>
@@ -232,11 +238,36 @@
    <extends>QComboBox</extends>
    <header location="global">directorycombobox.h</header>
   </customwidget>
+  <customwidget>
+   <class>CommandHistory</class>
+   <extends>QTreeWidget</extends>
+   <header>commandhistory.h</header>
+   <slots>
+    <slot>onItemDoubleClicked(QTreeWidgetItem*,int)</slot>
+   </slots>
+  </customwidget>
  </customwidgets>
  <resources>
   <include location="calcapp.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>commandHistory</sender>
+   <signal>itemDoubleClicked(QTreeWidgetItem*,int)</signal>
+   <receiver>commandHistory</receiver>
+   <slot>onItemDoubleClicked(QTreeWidgetItem*,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>606</x>
+     <y>390</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>licz()</slot>
  </slots>

@@ -21,7 +21,7 @@ void Console::append(const QString &s)
 
 void Console::appendWithoutRealase(const QString &s)
 {
-	QTextBrowser::append(s + "\n");
+	QTextBrowser::append(">> "+s + "\n");
 	cursorToEnd();
 }
 

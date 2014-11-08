@@ -28,8 +28,11 @@ CalcApp::CalcApp(QWidget *parent)
 	qRegisterMetaType<std::string>("std::string");
 	
 	ui.commandL->setFocus();
-	connect(ui.commandL, SIGNAL(commandEntered(const std::string &)), interpreterConnector, SLOT(commandToInterpreter(const std::string &)));
+	connect(ui.commandL, SIGNAL(commandEntered(const QString &)), interpreterConnector, SLOT(commandToInterpreter(const QString &)));
 	connect(ui.commandL, SIGNAL(commandEntered(const QString &)), ui.consoleL, SLOT(appendWithoutRealase(const QString &)));
+	connect(ui.commandL, SIGNAL(commandEntered(const QString &)), ui.commandHistory, SLOT(insertCommand(const QString &)));
+	connect(ui.commandHistory, SIGNAL(executeCommand(const QString &)), ui.consoleL,(SLOT(appendWithoutRealase(const QString &))));
+	connect(ui.commandHistory, SIGNAL(executeCommand(const QString &)), interpreterConnector, SLOT(commandToInterpreter(const QString &)));
 	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.consoleL, SLOT(append(const QString&)));
 	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(const QString&)), ui.consoleL, SLOT(insertHtml(const QString&)));
 	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.consoleL, SLOT(insertHtml(const QString&)));
