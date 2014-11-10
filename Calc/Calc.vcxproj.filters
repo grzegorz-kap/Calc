@@ -321,6 +321,9 @@
     <ClInclude Include="TypePromotor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="VariableInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -598,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="TypePromotor.cpp">
       <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableInfo.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

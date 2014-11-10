@@ -114,6 +114,12 @@ namespace PR
 		virtual shared_ptr<Data> createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const;
 		virtual int get_cols_int() const { return 0; }
 		virtual shared_ptr<Data> getColumn(int idx) const;
+
+		virtual string minValueString() const;
+		virtual string maxValueString() const;
+		virtual string getValueInfoString() const;
+		virtual string getTypeName() const;
+
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()
 		{

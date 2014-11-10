@@ -3,7 +3,7 @@
 
 namespace PR
 {
-	Variables Interpreter::main_vars = Variables();
+	Variables Interpreter::main_vars = Variables(true);
 
 	Interpreter::Interpreter()
 	{		
@@ -23,10 +23,18 @@ namespace PR
 		CodeExecutor::recursions = 0;
 		CodeExecutor exec(Interpreter::main_vars);
 		
+		main_vars.getAddedRef().clear();
+		main_vars.getRemovedRef().clear();
+		main_vars.getUpdatedRef().clear();
+
 		try{
 			exec.setInput(command);
 			CodeExecutor::off_stop_computing();
 			exec.start();
+
+			sendNewVariablesInformations();
+			sendUpdatedVariablesInformations();
+			sendRemovedVariablesInformations();
 		}
 		catch (const CalcException &ex)
 		{
@@ -50,5 +58,47 @@ namespace PR
 	{
 		FileLoader::changeWorkingDirectory(name);
 		FunctionFactory::clear_externals();
+	}
+
+	void Interpreter::sendNewVariablesInformations()
+	{
+		vector<VariableInfo> info;
+		prepareVariableInformationVector(main_vars.getAddedRef(), info);
+
+		if (info.size())
+			SignalEmitter::get()->call_sig_added_variables(&info[0], info.size());
+	}
+
+	void Interpreter::sendUpdatedVariablesInformations()
+	{
+		vector<VariableInfo> updated;
+		prepareVariableInformationVector(main_vars.getUpdatedRef(), updated);
+		if (updated.size())
+			SignalEmitter::get()->call_sig_updated_variables(&updated[0], updated.size());
+	}
+
+	void Interpreter::prepareVariableInformationVector(const vector<string> &src, vector<VariableInfo> &dest)
+	{
+		if (src.size()==0)
+			return;
+
+		dest.reserve(src.size());
+		for (const string &name : src)
+			dest.push_back(VariableInfo(name, main_vars.get(name).get()));
+	}
+
+	void Interpreter::sendRemovedVariablesInformations()
+	{
+		vector<string> &removed = main_vars.getRemovedRef();
+		
+		if (removed.size() == 0)
+			return;
+
+		vector<const char *> removeList;
+		removeList.reserve(removed.size());
+		for (const string &name : removed)
+			removeList.push_back(name.c_str());
+
+		SignalEmitter::get()->call_sig_removed_variables(&removeList[0], removeList.size());
 	}
 }

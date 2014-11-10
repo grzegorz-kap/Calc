@@ -25,6 +25,7 @@ namespace PR
 
 	Data::Data()
 	{
+		_type = TYPE::UNKNOWN;
 	}
 
 	Data::~Data()
@@ -233,6 +234,26 @@ namespace PR
 	shared_ptr<Data> Data::getColumn(int idx) const
 	{
 		throw UnimplementedException("Get column is not supported on this type");
+	}
+
+	string Data::minValueString() const
+	{
+		throw UnimplementedException("Cannot find minimum value of this type");
+	}
+
+	string Data::maxValueString() const
+	{
+		throw UnimplementedException("Cannot find maximum value of this type");
+	}
+
+	string Data::getValueInfoString() const
+	{
+		throw UnimplementedException("Cannot do get value information from this type!");
+	}
+
+	string Data::getTypeName() const
+	{
+		return TYPE_NAME_MAP.find(_type)->second;
 	}
 
 	string Data::toString() const

@@ -139,6 +139,12 @@ namespace PR
 		operator Matrix<hdouble>()const;
 
 		virtual bool isMatrix() const override{ return true; }
+		virtual string getValueInfoString() const override;
+
+		ComplexNumber<T> minValue() const;
+		ComplexNumber<T> maxValue() const;
+		virtual string minValueString() const override;
+		virtual string maxValueString() const override;
 
 		private:
 			bool checkIfTrue() const;

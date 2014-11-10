@@ -9,7 +9,7 @@
 using std::string;
 using std::cout;
 
-
+#include "VariableInfo.h"
 #include "LexicalAnalyzer.h"
 #include "Parser.h"
 #include "CodeExecutor.h"
@@ -29,6 +29,14 @@ namespace PR
 
 		void updateFile(const char *);
 		void changeWorkingDirectory(const char *dir);
+		
+		void sendNewVariablesInformations();
+		void sendRemovedVariablesInformations();
+		void sendUpdatedVariablesInformations();
+
+	private:
+
+		static void prepareVariableInformationVector(const vector<string> &src, vector<VariableInfo> &dest);
 	};
 }
 

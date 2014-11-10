@@ -9,6 +9,7 @@
 #include "ui_calcapp.h"
 #include "interpreterconnector.h"
 #include "FileWatcher.h"
+#include "variablesinfos.h"
 
 
 class CalcApp : public QMainWindow

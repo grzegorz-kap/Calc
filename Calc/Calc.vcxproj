@@ -168,6 +168,7 @@
     <ClInclude Include="UnimplementedException.h" />
     <ClInclude Include="UPlusOperator.h" />
     <ClInclude Include="USubtractionOperator.h" />
+    <ClInclude Include="VariableInfo.h" />
     <ClInclude Include="Variables.h" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +273,7 @@
     <ClCompile Include="UnimplementedException.cpp" />
     <ClCompile Include="UPlusOperator.cpp" />
     <ClCompile Include="USubtractionOperator.cpp" />
+    <ClCompile Include="VariableInfo.cpp" />
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

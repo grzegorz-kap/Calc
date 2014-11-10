@@ -490,6 +490,56 @@ namespace PR
 				C.mx[i][j] = mx[i][j] >= b;
 		return C;
 	}
+	
+	template <class T>
+	ComplexNumber<T> Matrix<T>::maxValue() const
+	{
+		if (M == 0 || N == 0)
+			return ComplexNumber<T>(0);
+
+		ComplexNumber<T> max_value(mx[0][0]);
+		for (const vector<ComplexNumber<T>> &row : mx)
+		{
+			auto row_max = std::max_element(row.begin(), row.end(),
+				[](const ComplexNumber<T> &a, const ComplexNumber<T> &b){
+				return a.getRe() < b.getRe();
+			});
+			if ((*row_max > max_value)==true)
+				max_value = *row_max;
+		}
+		return max_value;
+	}
+
+	template <class T>
+	ComplexNumber<T> Matrix<T>::minValue() const
+	{
+		if (M == 0 || N == 0)
+			return ComplexNumber<T>(0);
+
+		ComplexNumber<T> min_value(mx[0][0]);
+		for (const vector<ComplexNumber<T>> &row : mx)
+		{
+			auto row_min = std::min_element(row.begin(), row.end(),
+				[](const ComplexNumber<T> &a, const ComplexNumber<T> &b){
+				return a.getRe() > b.getRe();
+			});
+			if ((*row_min < min_value)==true)
+				min_value = *row_min;
+		}
+		return min_value;
+	}
+
+	template <class T>
+	string Matrix<T>::maxValueString() const
+	{
+		return maxValue().toString();
+	}
+
+	template <class T>
+	string Matrix<T>::minValueString() const
+	{
+		return minValue().toString();
+	}
 
 	template <class T> 
 	vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector()
@@ -882,6 +932,15 @@ namespace PR
 					NumericException::throwIndexMustBeReal();
 			});
 		});
+	}
+
+	template <class T>
+	string Matrix<T>::getValueInfoString() const
+	{
+		if (isScalar())
+			return mx[0][0].toString();
+		
+		return "Size: " + std::to_string(M) + "x" + std::to_string(N);
 	}
 
 	template class Matrix < double > ;

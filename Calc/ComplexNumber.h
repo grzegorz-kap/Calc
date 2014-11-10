@@ -99,5 +99,8 @@ namespace PR
 
 		virtual bool isComplexNumber() const override { return true; }
 
+		virtual string getValueInfoString() const override{ return toString(); }
+		virtual string minValueString() const override { return toString(); }
+		virtual string maxValueString() const override { return toString(); }
 	};
 }
