@@ -22,6 +22,7 @@ CalcApp::CalcApp(QWidget *parent)
 	ui.dirComboBox->workingDirectoryChanged(temp);
 
 	variablesEditor = new VariablesEditor(interpreterConnector,this);
+	variablesEditor->connectToInterpretSingals();
 
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));

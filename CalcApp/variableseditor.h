@@ -5,6 +5,7 @@
 #include <qtablewidget.h>
 
 #include "Calc\VariableInfo.h"
+#include "Calc\SignalEmitter.h"
 
 #include "ui_variableseditor.h"
 #include "VariableEditWidget.h"
@@ -19,14 +20,19 @@ public:
 	VariablesEditor(InterpreterConnector *interpreter,QWidget *parent = 0);
 	~VariablesEditor();
 
+	void connectToInterpretSingals();
+
 private:
 	Ui::VariablesEditor ui;
 	InterpreterConnector *interpreterConnector;
 	QWidget* findTab(const QString &name);
 
+	void receiveVarsUpdate(const PR::VariableInfo *data, int num);
+
 public slots:
 	void onVariableSelection(QTableWidgetItem *item);
 	void receiveVariableInformation(PR::VariableInfo info);
+	void onCurrentTabChanged(int idx);
 signals:
 	void variableInformationRequest(QString varName);
 };

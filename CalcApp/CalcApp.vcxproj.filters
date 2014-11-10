@@ -13,11 +13,6 @@
       <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
       <Extensions>ui</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>moc;h;cpp</Extensions>
@@ -35,6 +30,11 @@
     </Filter>
     <Filter Include="Variables">
       <UniqueIdentifier>{54c3b0d4-64b8-48bf-8b27-3095622c7e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Variables\Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +164,7 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="calcapp.qrc">
-      <Filter>Resource Files</Filter>
+      <Filter>Variables\Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="commandline.h">
       <Filter>Header Files</Filter>

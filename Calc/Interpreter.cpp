@@ -32,6 +32,7 @@ namespace PR
 			CodeExecutor::off_stop_computing();
 			exec.start();
 
+			/* Boost thread safety */
 			sendNewVariablesInformations();
 			sendUpdatedVariablesInformations();
 			sendRemovedVariablesInformations();

@@ -22,6 +22,7 @@ void VariablesInfos::connectSlots()
 
 void VariablesInfos::addNewVariables(const VariableInfo *data, int num)
 {
+
 	for (int i = 0; i < num; i++)
 	{
 		const VariableInfo *variable = data + i;
