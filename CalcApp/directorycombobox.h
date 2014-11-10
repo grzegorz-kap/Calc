@@ -17,7 +17,7 @@ public:
 private:
 
 public slots :
-	void workingDirectoryChanged(const QString &directory);
+	void workingDirectoryChanged(QString directory);
 	void sort();
 	
 };

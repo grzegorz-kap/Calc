@@ -10,7 +10,7 @@ FileList::~FileList()
 {
 
 }
-void FileList::set(const QStringList &list)
+void FileList::set(QStringList list)
 {
 	clear();
 	insertItems(0, list);

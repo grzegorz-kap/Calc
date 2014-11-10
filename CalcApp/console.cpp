@@ -12,20 +12,20 @@ Console::~Console()
 
 }
 
-void Console::append(const QString &s)
+void Console::append(QString s)
 {
 	QTextBrowser::append(s);
 	cursorToEnd();
 	Sync::get()->console_sem.release();
 }
 
-void Console::appendWithoutRealase(const QString &s)
+void Console::appendWithoutRealase(QString s)
 {
 	QTextBrowser::append(">> "+s + "\n");
 	cursorToEnd();
 }
 
-void Console::insertHtml(const QString &html)
+void Console::insertHtml(QString html)
 {
 	QTextBrowser::insertHtml(html);
 	cursorToEnd();

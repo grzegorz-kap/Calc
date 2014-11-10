@@ -5,29 +5,34 @@
 #include "CalcException.h"
 
 #include <string>
+#include <memory>
 
 using std::string;
+using std::weak_ptr;
 
 namespace PR
 {
 	class CALC_API VariableInfo
 	{
 	private:
+		weak_ptr<Data> data;
 		string name;
-		string value;
-		string min;
-		string max;
-		string type;
+		static const string expired;
 	public:
 		VariableInfo(){};
-		VariableInfo(const string &name,Data *);
+		VariableInfo(const string &name,const shared_ptr<Data> &ptr);
 		~VariableInfo();
 
-		const char * getName() const;
-		const char * getValue() const;
-		const char * getMin() const;
-		const char * getMax() const;
-		const char * getType() const;
+		string getName() const;
+		string getValue() const;
+		string getMin() const;
+		string getMax() const;
+		string getType() const;
+
+		int get_rows() const;
+		int get_cols() const;
+
+		string get_cell(int i,int j) const;
 	};
 }
 

@@ -13,7 +13,7 @@ public:
 
 private:
 	public slots :
-		void set(const QStringList &list);
+		void set(QStringList list);
 };
 
 #endif // FILELIST_H

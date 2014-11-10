@@ -33,6 +33,9 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Variables">
+      <UniqueIdentifier>{54c3b0d4-64b8-48bf-8b27-3095622c7e5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,14 +128,32 @@
     <ClCompile Include="GeneratedFiles\Release\moc_commandhistory.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="variablesinfos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_variablesinfos.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_variablesinfos.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_variableseditor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_variableseditor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="variablesinfos.cpp">
+      <Filter>Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="variableseditor.cpp">
+      <Filter>Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VariableEditWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VariableEditWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableEditWidget.cpp">
+      <Filter>Variables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,8 +190,20 @@
     <CustomBuild Include="commandhistory.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="variableseditor.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="variablesinfos.h">
-      <Filter>Header Files</Filter>
+      <Filter>Variables</Filter>
+    </CustomBuild>
+    <CustomBuild Include="variableseditor.h">
+      <Filter>Variables</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VariableEditWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VariableEditWidget.h">
+      <Filter>Variables</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +215,12 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_variableseditor.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_VariableEditWidget.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@ void CommandHistory::insertTopLevel(const QString &str)
 	AppData::appendToCommandHistory(str);
 }
 
-void CommandHistory::insertCommand(const QString &str)
+void CommandHistory::insertCommand(QString str)
 {
 	if (prevItem == nullptr)
 		return;

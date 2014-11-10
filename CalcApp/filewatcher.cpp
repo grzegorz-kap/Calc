@@ -16,14 +16,14 @@ FileWatcher::~FileWatcher()
 
 }
 
-void FileWatcher::changedFile(const QString &path)
+void FileWatcher::changedFile(QString path)
 {
 	QString temp = path;
 	temp.remove(QRegExp("\.m$"));
 	emit fileUpdated(temp);
 }
 
-void FileWatcher::changed(const QString &path)
+void FileWatcher::changed(QString path)
 {
 	mFilesWatcher.removePaths(dir.entryList());
 	dir.refresh();
@@ -39,7 +39,7 @@ void FileWatcher::fileDialogButtonClicked()
 	setNewDirectory(new_dir);	
 }
 
-void FileWatcher::setNewDirectory(const QString &directory)
+void FileWatcher::setNewDirectory( QString directory)
 {
 	if (dir.path() == directory)
 		return;

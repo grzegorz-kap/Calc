@@ -45,6 +45,8 @@ namespace PR
 		void setRe(const T &re);
 		void setIm(const T &im);
 		virtual int get_cols_int() const override { return 1; }
+		virtual int get_rows_int() const override { return 1; }
+		virtual string get_cell_string(int i, int j) const override;
 
 		int getReInt() const;
 

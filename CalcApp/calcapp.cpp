@@ -21,6 +21,8 @@ CalcApp::CalcApp(QWidget *parent)
 	fileWatcher.addPath(QDir::currentPath());
 	ui.dirComboBox->workingDirectoryChanged(temp);
 
+	variablesEditor = new VariablesEditor(this);
+
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
 	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, interpreterConnector, _1, _2));
@@ -31,23 +33,27 @@ CalcApp::CalcApp(QWidget *parent)
 	qRegisterMetaType<std::string>("std::string");
 	
 //	ui.commandL->setFocus();
-	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), interpreterConnector, SLOT(commandToInterpreter(const QString &)));
-	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.console, SLOT(appendWithoutRealase(const QString &)));
-	connect(ui.commandLine, SIGNAL(commandEntered(const QString &)), ui.commandHistory, SLOT(insertCommand(const QString &)));
-	connect(ui.commandHistory, SIGNAL(executeCommand(const QString &)), ui.console,(SLOT(appendWithoutRealase(const QString &))));
-	connect(ui.commandHistory, SIGNAL(executeCommand(const QString &)), interpreterConnector, SLOT(commandToInterpreter(const QString &)));
+	connect(ui.commandLine, SIGNAL(commandEntered(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
+	connect(ui.commandLine, SIGNAL(commandEntered(QString)), ui.console, SLOT(appendWithoutRealase(QString)));
+	connect(ui.commandLine, SIGNAL(commandEntered(QString)), ui.commandHistory, SLOT(insertCommand(QString)));
+	connect(ui.commandHistory, SIGNAL(executeCommand(QString)), ui.console,(SLOT(appendWithoutRealase(QString))));
+	connect(ui.commandHistory, SIGNAL(executeCommand(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	connect(ui.commandHistory, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), ui.commandHistory, SLOT(onItemDoubleClicked(QTreeWidgetItem *, int)));
-	connect(interpreterConnector, SIGNAL(interpreterResponded(const QString&)), ui.console, SLOT(append(const QString&)));
-	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(const QString&)), ui.console, SLOT(insertHtml(const QString&)));
-	connect(interpreterConnector, SIGNAL(interpreterError(const QString &)), ui.console, SLOT(insertHtml(const QString&)));
-	connect(&fileWatcher, SIGNAL(directoryChanged(const QString&)), &fileWatcher, SLOT(changed(const QString &)));
-	connect(&fileWatcher, SIGNAL(sendFileList(const QStringList &)), ui.filesList, SLOT(set(const QStringList &)));
-	connect(&fileWatcher, SIGNAL(fileUpdated(const QString&)), interpreterConnector, SLOT(updateFile(const QString &)));
+	connect(interpreterConnector, SIGNAL(interpreterResponded(QString)), ui.console, SLOT(append(QString)));
+	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(QString)), ui.console, SLOT(insertHtml(QString)));
+	connect(interpreterConnector, SIGNAL(interpreterError(QString)), ui.console, SLOT(insertHtml(QString)));
+	connect(&fileWatcher, SIGNAL(directoryChanged(QString)), &fileWatcher, SLOT(changed(QString)));
+	connect(&fileWatcher, SIGNAL(sendFileList(QStringList)), ui.filesList, SLOT(set(QStringList)));
+	connect(&fileWatcher, SIGNAL(fileUpdated(QString)), interpreterConnector, SLOT(updateFile(QString)));
 	connect(ui.workingDirChangeButton, SIGNAL(clicked()), &fileWatcher, SLOT(fileDialogButtonClicked()));
-	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(const QString &)), interpreterConnector, SLOT(workingDirectoryChanged(const QString &)));
-	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(const QString &)), ui.dirComboBox, SLOT(workingDirectoryChanged(const QString &)));
-	connect(ui.dirComboBox, SIGNAL(currentIndexChanged(const QString &)), &fileWatcher, SLOT(setNewDirectory(const QString &)));
+	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), interpreterConnector, SLOT(workingDirectoryChanged(QString)));
+	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), ui.dirComboBox, SLOT(workingDirectoryChanged(QString)));
+	connect(ui.dirComboBox, SIGNAL(currentIndexChanged(QString)), &fileWatcher, SLOT(setNewDirectory(QString)));
+	
+	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));
+	
 	fileWatcher.changed(QDir::currentPath());
+	
 }
 
 CalcApp::~CalcApp()

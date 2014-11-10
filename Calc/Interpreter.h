@@ -30,13 +30,14 @@ namespace PR
 		void updateFile(const char *);
 		void changeWorkingDirectory(const char *dir);
 		
-		void sendNewVariablesInformations();
-		void sendRemovedVariablesInformations();
-		void sendUpdatedVariablesInformations();
+		VariableInfo getVariableInfo(const char *name);
 
 	private:
 
 		static void prepareVariableInformationVector(const vector<string> &src, vector<VariableInfo> &dest);
+		void sendNewVariablesInformations();
+		void sendRemovedVariablesInformations();
+		void sendUpdatedVariablesInformations();
 	};
 }
 

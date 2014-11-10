@@ -12,7 +12,7 @@ DirectoryComboBox::~DirectoryComboBox()
 
 }
 
-void DirectoryComboBox::workingDirectoryChanged(const QString &dir)
+void DirectoryComboBox::workingDirectoryChanged(QString dir)
 {
 	int result = findText(dir);
 	if (result == -1)

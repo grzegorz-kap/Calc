@@ -10,6 +10,7 @@
 #include "interpreterconnector.h"
 #include "FileWatcher.h"
 #include "variablesinfos.h"
+#include "variableseditor.h"
 
 
 class CalcApp : public QMainWindow
@@ -24,6 +25,7 @@ private:
 	Ui::CalcAppClass ui;
 	InterpreterConnector *interpreterConnector;
 	FileWatcher fileWatcher;
+	VariablesEditor *variablesEditor;
 
 };
 

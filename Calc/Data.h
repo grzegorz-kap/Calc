@@ -113,6 +113,8 @@ namespace PR
 		virtual shared_ptr<Data> createVector(shared_ptr<Data> &end) const;
 		virtual shared_ptr<Data> createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const;
 		virtual int get_cols_int() const { return 0; }
+		virtual int get_rows_int() const { return 0; }
+		virtual string get_cell_string(int i, int j) const{ return ""; }
 		virtual shared_ptr<Data> getColumn(int idx) const;
 
 		virtual string minValueString() const;

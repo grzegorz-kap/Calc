@@ -4,26 +4,12 @@
 
 namespace PR
 {
-	VariableInfo::VariableInfo(const string &name, Data * data)
+	const string VariableInfo::expired = "expired";
+
+	VariableInfo::VariableInfo(const string &name, const shared_ptr<Data> &ptr)
+		:name(name),
+		data(ptr)
 	{
-		this->name = name;
-
-		if (data == nullptr)
-			return;
-
-		type = data->getTypeName();
-
-		try{ value = data->getValueInfoString(); }
-		catch (const CalcException &ex){ value == "Unknown"; }
-		
-		try{ value = data->getValueInfoString(); }
-		catch (const CalcException &ex){ min = "Unknown"; }
-
-		try{ min = data->minValueString(); }
-		catch (const CalcException &ex){ min = "Unknown"; }
-		
-		try{ max = data->maxValueString(); }
-		catch (const CalcException &ex){ max = "Unknown"; }
 	}
 
 
@@ -31,28 +17,64 @@ namespace PR
 	{
 	}
 
-	const char * VariableInfo::getName() const
+	string VariableInfo::getName() const
 	{
-		return name.c_str();
+		return name;
 	}
 
-	const char * VariableInfo::getValue() const
+	string VariableInfo::getValue() const
 	{
-		return value.c_str();
+		auto sp = data.lock();
+		if (sp)
+			return sp->getValueInfoString();
+		return expired;
 	}
 
-	const char * VariableInfo::getMax() const
+	string VariableInfo::getMax() const
 	{
-		return max.c_str();
+		auto sp = data.lock();
+		if (sp)
+			return sp->maxValueString();
+		return expired;
 	}
 
-	const char *  VariableInfo::getMin() const
+	string  VariableInfo::getMin() const
 	{
-		return min.c_str();
+		auto sp = data.lock();
+		if (sp)
+			return sp->minValueString();
+		return expired;
 	}
 
-	const char * VariableInfo::getType() const
+	string VariableInfo::getType() const
 	{
-		return type.c_str();
+		auto sp = data.lock();
+		if (sp)
+			return sp->getTypeName();
+		return expired;
+	}
+
+	int VariableInfo::get_cols() const
+	{
+		auto sp = data.lock();
+		if (sp)
+			return sp->get_cols_int();
+		return 0;
+	}
+
+	int VariableInfo::get_rows() const
+	{
+		auto sp = data.lock();
+		if (sp)
+			return sp->get_rows_int();
+		return 0;
+	}
+
+	string VariableInfo::get_cell(int i, int j) const
+	{
+		auto sp = data.lock();
+		if (sp)
+			return sp->get_cell_string(i, j);
+		return expired;
 	}
 }

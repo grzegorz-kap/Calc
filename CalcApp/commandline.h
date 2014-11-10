@@ -27,7 +27,7 @@ private:
 	void addToHistory();
 	void onKeyUpOrDown(int key);
 signals:
-	void commandEntered(const QString &command);
+	void commandEntered(QString command);
 };
 
 #endif // COMMANDLINE_H

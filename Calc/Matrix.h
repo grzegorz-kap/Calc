@@ -57,6 +57,8 @@ namespace PR
 		int rows() const;
 		int cols() const;
 		virtual int get_cols_int() const override { return N; }
+		virtual int get_rows_int() const override { return M; }
+		virtual string get_cell_string(int i, int j) const override;
 		ComplexNumber<T>& operator()(int i, int j);
 
 		template <class U> auto rdivide(const Matrix<U> &b) const->Matrix < decltype(T() + U()) > ;

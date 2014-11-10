@@ -18,14 +18,14 @@ public:
 	
 public slots:
 	void onItemDoubleClicked(QTreeWidgetItem *item, int);
-	void insertCommand(const QString &command);
+	void insertCommand(QString command);
 
 private:
 	QTreeWidgetItem *prevItem;
 	QTreeWidgetItem *prevCommandItem;
 
 signals:
-	void executeCommand(const QString &);
+	void executeCommand(QString);
 };
 
 #endif // COMMANDHISTORY_H

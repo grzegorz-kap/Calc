@@ -402,6 +402,14 @@ namespace PR
 		i = (re.convert_to<int>() - 1) % rows;
 	}
 
+	template <class T>
+	string ComplexNumber<T>::get_cell_string(int i, int j) const
+	{
+		if (i > 1 || j > 1)
+			return "Out of range";
+		return toString();
+	}
+
 	template class ComplexNumber < double > ;
 	template class ComplexNumber < hdouble > ;
 }

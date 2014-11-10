@@ -870,6 +870,14 @@ namespace PR
 	}
 
 	template <class T>
+	string Matrix<T>::get_cell_string(int i, int j) const
+	{
+		if (i >= M || j >= N)
+			return "Out of range";
+		return mx[i][j].toString();
+	}
+
+	template <class T>
 	Matrix<T> Matrix<T>::getIndexAll() const
 	{
 		Matrix<T> out(M*N, 1);

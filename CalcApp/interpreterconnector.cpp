@@ -12,19 +12,24 @@ InterpreterConnector::~InterpreterConnector()
 {
 }
 
-void InterpreterConnector::commandToInterpreter(const QString &command)
+void InterpreterConnector::commandToInterpreter(QString command)
 {
 	interpreter.work(command.toStdString());	
 }
 
-void InterpreterConnector::workingDirectoryChanged(const QString &command)
+void InterpreterConnector::workingDirectoryChanged(QString command)
 {
 	interpreter.changeWorkingDirectory(command.toStdString().c_str());
 }
 
-void InterpreterConnector::updateFile(const QString &file)
+void InterpreterConnector::updateFile(QString file)
 {
 	interpreter.updateFile(file.toStdString().c_str());
+}
+
+void InterpreterConnector::getInformation(QString variableName)
+{
+	emit sendVariableInformation(interpreter.getVariableInfo(variableName.toStdString().c_str()));
 }
 
 /* Boost signals2 */

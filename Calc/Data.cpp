@@ -238,17 +238,17 @@ namespace PR
 
 	string Data::minValueString() const
 	{
-		throw UnimplementedException("Cannot find minimum value of this type");
+		return "Unknown";
 	}
 
 	string Data::maxValueString() const
 	{
-		throw UnimplementedException("Cannot find maximum value of this type");
+		return "Unknown";
 	}
 
 	string Data::getValueInfoString() const
 	{
-		throw UnimplementedException("Cannot do get value information from this type!");
+		return "Unknown";
 	}
 
 	string Data::getTypeName() const

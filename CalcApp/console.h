@@ -13,9 +13,9 @@ public:
 	~Console();
 
 public slots:
-	void append(const QString &);
-	void appendWithoutRealase(const QString &);
-	void insertHtml(const QString &);
+	void append(QString );
+	void appendWithoutRealase(QString);
+	void insertHtml(QString );
 private:
 	void cursorToEnd();
 };

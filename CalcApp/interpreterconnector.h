@@ -31,16 +31,17 @@ public:
 	void errors_receiver(const char *, int);
 
 public slots:
-	void workingDirectoryChanged(const QString &dir);
+	void workingDirectoryChanged(QString dir);
 
 private slots:
-	void commandToInterpreter(const QString &command);
-	void updateFile(const QString&);
-
+	void commandToInterpreter(QString command);
+	void updateFile(QString);
+	void getInformation( QString variableName);
 signals:
-	void interpreterResponded(const QString&);
-	void interpreterRespondedHtml(const QString &);
-	void interpreterError(const QString &);
+	void interpreterResponded(QString);
+	void interpreterRespondedHtml(QString);
+	void interpreterError(QString);
+	void sendVariableInformation(PR::VariableInfo);
 };
 
 #endif // INTERPRETERCONNECTOR_H

@@ -60,6 +60,17 @@ namespace PR
 		FunctionFactory::clear_externals();
 	}
 
+	VariableInfo Interpreter::getVariableInfo(const char *name)
+	{
+		try{
+			return VariableInfo(name, main_vars.get(name));
+		}
+		catch (const CalcException &ex)
+		{
+			return VariableInfo(name, nullptr);
+		}
+	}
+
 	void Interpreter::sendNewVariablesInformations()
 	{
 		vector<VariableInfo> info;
@@ -84,7 +95,7 @@ namespace PR
 
 		dest.reserve(src.size());
 		for (const string &name : src)
-			dest.push_back(VariableInfo(name, main_vars.get(name).get()));
+			dest.push_back(VariableInfo(name, main_vars.get(name)));
 	}
 
 	void Interpreter::sendRemovedVariablesInformations()

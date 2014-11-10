@@ -18,15 +18,15 @@ public:
 
 	QFileSystemWatcher mFilesWatcher;
 signals:
-	void sendFileList(const QStringList &list);
-	void fileUpdated(const QString &);
-	void workingDirectoryChanged(const QString &);
+	void sendFileList(QStringList list);
+	void fileUpdated( QString );
+	void workingDirectoryChanged( QString );
 
 public slots:
-	void changed(const QString & path);
+	void changed( QString  path);
 	void fileDialogButtonClicked();
-	void changedFile(const QString &path);
-	void setNewDirectory(const QString &path);
+	void changedFile( QString path);
+	void setNewDirectory( QString path);
 	
 };
 

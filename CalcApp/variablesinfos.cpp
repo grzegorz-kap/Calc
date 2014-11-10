@@ -27,11 +27,11 @@ void VariablesInfos::addNewVariables(const VariableInfo *data, int num)
 		const VariableInfo *variable = data + i;
 		int rowIndex = rowCount();
 		insertRow(rowIndex);
-		setItem(rowIndex, 0, createCell(variable->getName()));
-		setItem(rowIndex, 1, createCell(variable->getValue()));
-		setItem(rowIndex, 2, createCell(variable->getType()));
-		setItem(rowIndex, 3, createCell(variable->getMin()));
-		setItem(rowIndex, 4, createCell(variable->getMax()));
+		setItem(rowIndex, 0, createCell(variable->getName().c_str()));
+		setItem(rowIndex, 1, createCell(variable->getValue().c_str()));
+		setItem(rowIndex, 2, createCell(variable->getType().c_str()));
+		setItem(rowIndex, 3, createCell(variable->getMin().c_str()));
+		setItem(rowIndex, 4, createCell(variable->getMax().c_str()));
 	}
 }
 
@@ -40,14 +40,14 @@ void VariablesInfos::updateVariables(const VariableInfo *data, int num)
 	for (int i = 0; i < num; i++)
 	{
 		const VariableInfo *variable = data + i;
-		int row = findInCol(0, variable->getName());
+		int row = findInCol(0, variable->getName().c_str());
 		if (row < 0)
 			continue;
 
-		item(row, 1)->setText(QString(variable->getValue()));
-		item(row, 2)->setText(QString(variable->getType()));
-		item(row, 3)->setText(QString(variable->getMin()));
-		item(row, 4)->setText(QString(variable->getMax()));
+		item(row, 1)->setText(QString(variable->getValue().c_str()));
+		item(row, 2)->setText(QString(variable->getType().c_str()));
+		item(row, 3)->setText(QString(variable->getMin().c_str()));
+		item(row, 4)->setText(QString(variable->getMax().c_str()));
 		viewport()->update();
 	}
 	
