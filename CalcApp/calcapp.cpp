@@ -21,7 +21,7 @@ CalcApp::CalcApp(QWidget *parent)
 	fileWatcher.addPath(QDir::currentPath());
 	ui.dirComboBox->workingDirectoryChanged(temp);
 
-	variablesEditor = new VariablesEditor(this);
+	variablesEditor = new VariablesEditor(interpreterConnector,this);
 
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
@@ -31,6 +31,7 @@ CalcApp::CalcApp(QWidget *parent)
 
 	qRegisterMetaType<QString>("QString");
 	qRegisterMetaType<std::string>("std::string");
+	qRegisterMetaType<PR::VariableInfo>("PR::VariableInfo");
 	
 //	ui.commandL->setFocus();
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
@@ -52,6 +53,9 @@ CalcApp::CalcApp(QWidget *parent)
 	
 	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));
 	
+	connect(variablesEditor, SIGNAL(variableInformationRequest(QString)), interpreterConnector, SLOT(getInformation(QString)));
+	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
+
 	fileWatcher.changed(QDir::currentPath());
 	
 }

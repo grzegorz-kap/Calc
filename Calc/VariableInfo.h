@@ -32,6 +32,8 @@ namespace PR
 		int get_rows() const;
 		int get_cols() const;
 
+		bool is_scalar() const;
+
 		string get_cell(int i,int j) const;
 	};
 }

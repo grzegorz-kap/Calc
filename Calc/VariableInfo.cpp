@@ -77,4 +77,12 @@ namespace PR
 			return sp->get_cell_string(i, j);
 		return expired;
 	}
+
+	bool VariableInfo::is_scalar() const
+	{
+		auto sp = data.lock();
+		if (sp)
+			return sp->isComplexNumber();
+		return false;
+	}
 }

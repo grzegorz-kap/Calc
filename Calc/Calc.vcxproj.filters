@@ -322,7 +322,7 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="VariableInfo.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -603,7 +603,7 @@
       <Filter>Service</Filter>
     </ClCompile>
     <ClCompile Include="VariableInfo.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
