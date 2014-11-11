@@ -298,6 +298,12 @@
           </layout>
          </widget>
          <widget class="QFrame" name="workSpaceFrame">
+          <property name="maximumSize">
+           <size>
+            <width>400</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="baseSize">
            <size>
             <width>300</width>

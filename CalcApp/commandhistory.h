@@ -24,6 +24,8 @@ private:
 	QTreeWidgetItem *prevItem;
 	QTreeWidgetItem *prevCommandItem;
 
+	bool dateInserted;
+
 signals:
 	void executeCommand(QString);
 };

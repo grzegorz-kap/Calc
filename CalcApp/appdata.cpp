@@ -96,6 +96,7 @@ void AppData::loadCommandHistory(QTreeWidget *widget)
 
 		if (line.size() == 0)
 			continue;
+		
 
 		if (line[0] == '%')
 		{
