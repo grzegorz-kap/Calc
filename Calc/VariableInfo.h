@@ -19,6 +19,7 @@ namespace PR
 		string name;
 		static const string expired;
 	public:
+		
 		VariableInfo(){};
 		VariableInfo(const string &name,const shared_ptr<Data> &ptr);
 		~VariableInfo();

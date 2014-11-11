@@ -33,10 +33,6 @@ namespace PR
 		VariableInfo getVariableInfo(const char *name);
 
 	private:
-
-		static void prepareVariableInformationVector(const vector<string> &src, vector<VariableInfo> &dest);
-		void sendNewVariablesInformations();
-		void sendRemovedVariablesInformations();
 		void sendUpdatedVariablesInformations();
 	};
 }

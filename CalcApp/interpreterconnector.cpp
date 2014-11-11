@@ -37,6 +37,7 @@ void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data
 {
 	Sync::get()->console_sem.acquire();
 	emit interpreterRespondedHtml("<br>"+QString(+str) + "=<br>" + data->toHtml().c_str()+"<br>");
+	//emit interpreterResponded(data->toString().c_str());
 }
 
 void InterpreterConnector::errors_receiver(const char *str, int position)

@@ -3,25 +3,8 @@
 
 namespace PR
 {
-	template <class T>
-	ComplexNumber<T>::ComplexNumber()
-	{
-		setDataType();
-	}
+	
 
-	template <class T>
-	ComplexNumber<T>::ComplexNumber(double reArg, double imArg = 0.0)
-		:re(reArg), im(imArg)
-	{
-		setDataType();
-	}
-
-	template <class T>
-	ComplexNumber<T>::ComplexNumber(hdouble reArg, hdouble imArg = 0)
-		: re(reArg), im(imArg)
-	{
-		setDataType();
-	};
 
 	template <>
 	ComplexNumber<double>::ComplexNumber(string &&val)

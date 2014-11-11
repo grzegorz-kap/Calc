@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Data.h"
+#include "VariableInfo.h"
 
 using std::string;
 using std::map;
@@ -17,9 +18,6 @@ namespace PR
 	class Variables
 	{
 		map<string, shared_ptr<Data>> mem;
-		vector<string> added;
-		vector<string> removed;
-		vector<string> updated;
 		bool main;
 	
 	public:
@@ -31,11 +29,7 @@ namespace PR
 		auto set(const string &name, const shared_ptr<Data> &data)
 			->std::pair < std::map<string, shared_ptr<Data>>::iterator, bool > ;
 
-		void clearAddedAndRemoved();
-		
-		vector<string>& getAddedRef(){ return added; }
-		vector<string>& getRemovedRef(){ return removed; }
-		vector<string>& getUpdatedRef(){ return updated; }
+		void getUpdated(vector<VariableInfo> &added , vector<VariableInfo> &updated) const;
 	};
 
 }

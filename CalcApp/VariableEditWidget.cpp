@@ -18,6 +18,8 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 	if (updated == false)
 		return;
 
+	scalar = info.is_scalar();
+
 	variableName = info.getName().c_str();
 	int rows = info.get_rows();
 	int cols = info.get_cols();
@@ -69,7 +71,12 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 
 void VariableEditWidget::onItemChanged(QTableWidgetItem *item)
 {
-	QString command = variableName + "(" + QString::number(item->row()+1) + "," + QString::number(item->column()+1) + ")";
-	command.append("=" + item->text() + ";");
+	QString command = "";
+
+	if (scalar && (item->column() > 0 || item->row() > 0))
+		command += variableName + "=[" + variableName + "];";
+	
+	command += variableName + "(" + QString::number(item->row()+1) + "," + QString::number(item->column()+1) + ")";
+	command += "=" + item->text() + ";";
 	emit notifyVariableUpdate(command);
 }

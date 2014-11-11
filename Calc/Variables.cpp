@@ -4,6 +4,7 @@
 
 namespace PR
 {
+
 	Variables::Variables(bool main)
 		:main(main)
 	{
@@ -32,18 +33,33 @@ namespace PR
 		if (result.second == false)
 		{
 			result.first->second = data;
-			if (main)
-				updated.push_back(name);
+			data->_added = false;
+			data->_updated = true;
 		}
-		else if (main)
-			added.push_back(name);
-
+		else
+		{
+			data->_added = true;
+			data->_updated = false;
+		}
 		return result;
 	}
 
-	void Variables::clearAddedAndRemoved()
+	void Variables::getUpdated(vector<VariableInfo> &added, vector<VariableInfo> &updated) const
 	{
 		added.clear();
-		removed.clear();
+		updated.clear();
+		for (const auto &element : mem)
+		{
+			if (element.second->_added)
+			{
+				added.push_back(VariableInfo(element.first, element.second));
+			}
+			else if (element.second->_updated)
+			{
+				updated.push_back(VariableInfo(element.first, element.second));
+			}
+			element.second->_updated = false;
+			element.second->_added = false;
+		}
 	}
 }

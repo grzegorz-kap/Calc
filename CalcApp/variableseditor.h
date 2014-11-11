@@ -17,10 +17,11 @@ class VariablesEditor : public QWidget
 	Q_OBJECT
 
 public:
-	VariablesEditor(InterpreterConnector *interpreter,QWidget *parent = 0);
+	VariablesEditor(QWidget *parent = 0);
 	~VariablesEditor();
 
 	void connectToInterpretSingals();
+	void setInterpreter(InterpreterConnector *ptr){ interpreterConnector = ptr; }
 
 private:
 	Ui::VariablesEditor ui;

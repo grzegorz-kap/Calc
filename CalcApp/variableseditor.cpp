@@ -1,9 +1,9 @@
 #include "variableseditor.h"
 
-VariablesEditor::VariablesEditor(InterpreterConnector *interpreter,QWidget *parent)
+VariablesEditor::VariablesEditor(QWidget *parent)
 	: QWidget(parent)
 {
-	interpreterConnector = interpreter;
+
 	ui.setupUi(this);
 	setWindowFlags(Qt::Window);
 

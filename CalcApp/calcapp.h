@@ -25,7 +25,7 @@ private:
 	Ui::CalcAppClass ui;
 	InterpreterConnector *interpreterConnector;
 	FileWatcher fileWatcher;
-	VariablesEditor *variablesEditor;
+	VariablesEditor variablesEditor;
 
 };
 

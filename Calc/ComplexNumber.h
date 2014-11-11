@@ -31,9 +31,23 @@ namespace PR
 		void setDataType();
 	public:
 		
-		ComplexNumber();
-		ComplexNumber(double reArg, double imArg = 0);
-		ComplexNumber(hdouble reArg, hdouble imArg = 0);
+		ComplexNumber()
+		{
+			setDataType();
+		}
+
+		ComplexNumber(const double & reArg, const double & imArg = 0) 
+			:re(reArg), im(imArg)
+		{
+			setDataType();
+		}
+
+		ComplexNumber(const hdouble & reArg, const hdouble & imArg = 0)
+			:re(reArg), im(imArg)
+		{
+			setDataType();
+		}
+
 		ComplexNumber(string &&val_str);
 		~ComplexNumber();
 
@@ -105,4 +119,6 @@ namespace PR
 		virtual string minValueString() const override { return toString(); }
 		virtual string maxValueString() const override { return toString(); }
 	};
+
+
 }

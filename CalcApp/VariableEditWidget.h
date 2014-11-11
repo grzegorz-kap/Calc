@@ -28,6 +28,7 @@ private:
 	Ui::VariableEditWidget ui;
 	QString variableName;
 	bool updated;
+	bool scalar;
 	PR::VariableInfo info;
 };
 
