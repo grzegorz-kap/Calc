@@ -6,6 +6,7 @@ VariableEditWidget::VariableEditWidget(QWidget *parent)
 	ui.setupUi(this);
 	connect(ui.tableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onItemChanged(QTableWidgetItem*)));
 	updated = true;
+	ui.tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 VariableEditWidget::~VariableEditWidget()
@@ -26,27 +27,41 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 	int current_row = table->currentRow();
 	int current_col = table->currentColumn();
 
-	table->clearContents();
-	table->setColumnCount(5);
-	table->setRowCount(5);
-	
+	int current_row_count = table->rowCount();
+	int current_col_count = table->columnCount();
+
 	table->blockSignals(true);
 	for (int i = 0; i < rows; i++)
 	{
-		table->insertRow(i);
+		if (i >= current_row_count)
+			table->insertRow(i);
 		for (int j = 0; j < cols; j++)
 		{
-			if (i == 0)
+			if (i == 0 && j >= current_col_count)
 				table->insertColumn(j);
-			table->setItem(i, j, new QTableWidgetItem(QString(info.get_cell(i, j).c_str())));
+
+			QTableWidgetItem *item = table->item(i, j);
+
+			if (item==nullptr)
+				table->setItem(i, j, new QTableWidgetItem(QString(info.get_cell(i, j).c_str())));
+			else
+				table->item(i, j)->setText(QString(info.get_cell(i, j).c_str()));
 		}
 	}
+
+	for (int i = current_row_count - 1; i >= rows; i--)
+		table->removeRow(i);
+	for (int j = current_col_count - 1; j >= cols; j--)
+		table->removeColumn(j);
+
+	table->setColumnCount(cols + 5);
+	table->setRowCount(rows + 5);
 
 	if (rembemberSelection)
 	{
 		table->setCurrentCell(current_row, current_col);
 	}
-
+	
 
 	table->blockSignals(false);
 	updated = false;
