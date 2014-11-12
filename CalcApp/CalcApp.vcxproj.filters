@@ -36,6 +36,9 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="ScriptEdition">
+      <UniqueIdentifier>{2c0384e3-c2df-4c43-9988-21c78acf39b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,6 +158,24 @@
     <ClCompile Include="VariableEditWidget.cpp">
       <Filter>Variables</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_scripteditor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_scripteditor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="scripteditor.cpp">
+      <Filter>ScriptEdition</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_scripteditwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_scripteditwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="scripteditwidget.cpp">
+      <Filter>ScriptEdition</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="calcapp.h">
@@ -205,6 +226,15 @@
     <CustomBuild Include="VariableEditWidget.h">
       <Filter>Variables</Filter>
     </CustomBuild>
+    <CustomBuild Include="scripteditor.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="scripteditor.h">
+      <Filter>ScriptEdition</Filter>
+    </CustomBuild>
+    <CustomBuild Include="scripteditwidget.h">
+      <Filter>ScriptEdition</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_calcapp.h">
@@ -220,6 +250,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_VariableEditWidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_scripteditor.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

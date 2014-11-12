@@ -1,6 +1,7 @@
 <RCC>
-    <qresource prefix="/CalcApp">
-        <file>calcapp.qrc</file>
-        <file>open_icon.png</file>
-    </qresource>
+  <qresource prefix="/CalcApp">
+    <file>calcapp.qrc</file>
+    <file>dot.png</file>
+    <file>open_icon.png</file>
+  </qresource>
 </RCC>

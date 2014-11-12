@@ -6,7 +6,6 @@ VariablesEditor::VariablesEditor(QWidget *parent)
 
 	ui.setupUi(this);
 	setWindowFlags(Qt::Window);
-
 	connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
 }
 

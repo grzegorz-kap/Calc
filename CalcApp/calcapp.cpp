@@ -7,7 +7,8 @@ CalcApp::CalcApp(QWidget *parent)
 	: QMainWindow(parent),
 	interpreterConnector(new InterpreterConnector()),
 	fileWatcher(QDir::currentPath(), this),
-	variablesEditor( this)
+	variablesEditor(),
+	scriptEditor()
 {
 	ui.setupUi(this);
 	interpreterConnector = new InterpreterConnector();
@@ -60,11 +61,18 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(&variablesEditor, SIGNAL(variableInformationRequest(QString)), interpreterConnector, SLOT(getInformation(QString)));
 	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
 
-	
+	scriptEditor.show();
 }
 
 CalcApp::~CalcApp()
 {
 
+}
+
+void CalcApp::closeEvent(QCloseEvent *ev)
+{
+	scriptEditor.close();
+	variablesEditor.close();
+	ev->accept();
 }
 

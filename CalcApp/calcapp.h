@@ -11,6 +11,7 @@
 #include "FileWatcher.h"
 #include "variablesinfos.h"
 #include "variableseditor.h"
+#include "ScriptEditor.h"
 
 
 class CalcApp : public QMainWindow
@@ -26,6 +27,9 @@ private:
 	InterpreterConnector *interpreterConnector;
 	FileWatcher fileWatcher;
 	VariablesEditor variablesEditor;
+	ScriptEditor scriptEditor;
+
+	void closeEvent(QCloseEvent *ev);
 
 };
 
