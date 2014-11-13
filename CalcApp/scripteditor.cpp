@@ -5,6 +5,7 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
+	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
 }
 
 ScriptEditor::~ScriptEditor()
@@ -48,6 +49,7 @@ void ScriptEditor::onChangesSaved()
 	if (widget == nullptr)
 		return;
 	ui.tabWidget->setTabIcon(ui.tabWidget->indexOf(widget), QIcon());
+	ui.tabWidget->setTabText(ui.tabWidget->indexOf(widget), QDir(widget->getFilePath()).dirName());
 }
 
 void ScriptEditor::onScriptDblClicked(QListWidgetItem *item)
@@ -80,5 +82,13 @@ void ScriptEditor::onSaveAsAction()
 		return;
 	widget->setUpdated(true);
 	widget->setFilePath(fileName);
+	widget->saveToFile();
+}
+
+void ScriptEditor::onSaveAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget *>(ui.tabWidget->currentWidget());
+	if (widget == nullptr)
+		return;
 	widget->saveToFile();
 }

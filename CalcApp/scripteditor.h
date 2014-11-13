@@ -22,6 +22,8 @@ public:
 	void onChangesSaved();
 	void workingDirectoryChanged(QString directoryPath);
 	void onScriptDblClicked(QListWidgetItem *item);
+	
+	void onSaveAction();
 	void onSaveAsAction();
 
 private:
