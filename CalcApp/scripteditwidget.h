@@ -2,7 +2,9 @@
 #define SCRIPTEDITWIDGET_H
 
 #include <QTextEdit>
+#include <qevent.h>
 #include <qfile.h>
+#include <qfiledialog.h>
 
 class ScriptEditWidget : public QTextEdit
 {
@@ -17,11 +19,22 @@ public:
 
 	void setUpdated(bool q);
 	void setFilePath(QString path);
-	bool readFromFile();	
+	bool readFromFile();
+	bool saveToFile();
+	QString askForPathToSave();
+
+	static void setWorkingDirectory(const QString &directory);
+	static QString getWorkingDirectory();
+
+signals:
+	void fileSaved();
 
 private:
 	bool updated;
 	QString filePath;
+	static QString workingDirectory;
+protected:
+	virtual void keyPressEvent(QKeyEvent *ev);
 	
 	
 };

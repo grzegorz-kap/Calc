@@ -1,5 +1,7 @@
 #include "scripteditwidget.h"
 
+QString ScriptEditWidget::workingDirectory = "";
+
 ScriptEditWidget::ScriptEditWidget(QWidget *parent)
 	: QTextEdit(parent)
 {
@@ -52,4 +54,59 @@ bool ScriptEditWidget::readFromFile()
 	return true;
 }
 
+void ScriptEditWidget::keyPressEvent(QKeyEvent *ev)
+{
+	if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
+	{
+		saveToFile();
+	}
+	else
+		QTextEdit::keyPressEvent(ev);
+}
 
+
+bool ScriptEditWidget::saveToFile()
+{
+	if (!updated)
+		return false;
+
+	if (filePath == "")
+	{
+		filePath = askForPathToSave();
+	}
+
+	if (filePath == "")
+		return false;
+
+	QFile file(filePath);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return false;
+
+	file.write(toPlainText().toStdString().c_str());
+	file.close();
+
+
+	updated = false;
+	emit fileSaved();
+	return true;
+}
+
+QString ScriptEditWidget::askForPathToSave()
+{
+	return QFileDialog::getSaveFileName(
+		this,
+		"Save script",
+		workingDirectory+"/"+QDir(filePath).dirName(),
+		tr("Scripts (*.m)")
+		);
+}
+
+void ScriptEditWidget::setWorkingDirectory(const QString &directory)
+{
+	workingDirectory = directory;
+}
+
+QString ScriptEditWidget::getWorkingDirectory()
+{
+	return workingDirectory;
+}

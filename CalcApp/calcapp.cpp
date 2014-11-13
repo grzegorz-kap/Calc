@@ -23,6 +23,7 @@ CalcApp::CalcApp(QWidget *parent)
 	interpreterConnector->workingDirectoryChanged(temp);
 	fileWatcher.addPath(QDir::currentPath());
 	ui.dirComboBox->workingDirectoryChanged(temp);
+	scriptEditor.workingDirectoryChanged(temp);
 
 
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
@@ -51,8 +52,9 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.workingDirChangeButton, SIGNAL(clicked()), &fileWatcher, SLOT(fileDialogButtonClicked()));
 	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), interpreterConnector, SLOT(workingDirectoryChanged(QString)));
 	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), ui.dirComboBox, SLOT(workingDirectoryChanged(QString)));
+	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), &scriptEditor, SLOT(workingDirectoryChanged(QString)));
 	connect(ui.dirComboBox, SIGNAL(currentIndexChanged(QString)), &fileWatcher, SLOT(setNewDirectory(QString)));
-	
+	connect(ui.filesList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), &scriptEditor, SLOT(onScriptDblClicked(QListWidgetItem*)));
 	fileWatcher.changed(QDir::currentPath());
 
 
