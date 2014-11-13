@@ -4,6 +4,7 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 }
 
 ScriptEditor::~ScriptEditor()
@@ -66,4 +67,18 @@ void ScriptEditor::onScriptDblClicked(QListWidgetItem *item)
 	addTab(ScriptEditWidget::getWorkingDirectory() + "/" + scriptName);
 	hide();
 	show();
+}
+
+void ScriptEditor::onSaveAsAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget *>(ui.tabWidget->currentWidget());
+	if (widget == nullptr)
+		return;
+
+	QString fileName = widget->askForPathToSave();
+	if (fileName == "")
+		return;
+	widget->setUpdated(true);
+	widget->setFilePath(fileName);
+	widget->saveToFile();
 }

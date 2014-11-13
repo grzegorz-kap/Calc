@@ -22,6 +22,7 @@ public:
 	void onChangesSaved();
 	void workingDirectoryChanged(QString directoryPath);
 	void onScriptDblClicked(QListWidgetItem *item);
+	void onSaveAsAction();
 
 private:
 	Ui::ScriptEditor ui;
