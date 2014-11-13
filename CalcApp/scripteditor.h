@@ -26,6 +26,7 @@ public:
 	void onSaveAction();
 	void onSaveAsAction();
 	void onNewFileAction();
+	void onOpenAction();
 
 private:
 	Ui::ScriptEditor ui;
