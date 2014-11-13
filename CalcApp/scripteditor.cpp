@@ -6,10 +6,19 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
+	ui.actionNew->setShortcut(QKeySequence::New);
+	ui.actionOtw_Rz->setShortcut(QKeySequence::Open);
+	ui.actionSave->setShortcut(QKeySequence::Save);
+	ui.actionSave_as->setShortcut(QKeySequence::SaveAs);
+	ui.actionRun->setShortcut(QKeySequence::Refresh);
+
+
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(onNewFileAction()));
 	connect(ui.actionOtw_Rz, SIGNAL(triggered()), this, SLOT(onOpenAction()));
+	connect(ui.actionRun, SIGNAL(triggered()), this, SLOT(onRunAction()));
 }
 
 ScriptEditor::~ScriptEditor()
@@ -136,4 +145,13 @@ void ScriptEditor::onOpenAction()
 		}
 		addTab(path);
 	}
+}
+
+void ScriptEditor::onRunAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget*>(ui.tabWidget->currentWidget());
+	QString scriptName = QDir(widget->getFilePath()).dirName();
+	scriptName = scriptName.left(scriptName.lastIndexOf("."));
+	if (scriptName.size())
+		emit runCommand(scriptName);
 }

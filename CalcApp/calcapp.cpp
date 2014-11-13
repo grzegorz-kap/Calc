@@ -57,6 +57,10 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.filesList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), &scriptEditor, SLOT(onScriptDblClicked(QListWidgetItem*)));
 	fileWatcher.changed(QDir::currentPath());
 
+	connect(&scriptEditor, SIGNAL(runCommand(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
+	connect(&scriptEditor, SIGNAL(runCommand(QString)), ui.console, SLOT(appendWithoutRealase(QString)));
+	connect(&scriptEditor, SIGNAL(runCommand(QString)), ui.commandHistory, SLOT(insertCommand(QString)));
+
 
 	variablesEditor.connectToInterpretSingals();
 	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), &variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));

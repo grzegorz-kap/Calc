@@ -27,6 +27,10 @@ public:
 	void onSaveAsAction();
 	void onNewFileAction();
 	void onOpenAction();
+	void onRunAction();
+
+signals:
+	void runCommand(QString command);
 
 private:
 	Ui::ScriptEditor ui;

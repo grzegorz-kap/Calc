@@ -56,11 +56,11 @@ bool ScriptEditWidget::readFromFile()
 
 void ScriptEditWidget::keyPressEvent(QKeyEvent *ev)
 {
-	if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
+	/*if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
 	{
 		saveToFile();
 	}
-	else
+	else*/
 		QTextEdit::keyPressEvent(ev);
 }
 

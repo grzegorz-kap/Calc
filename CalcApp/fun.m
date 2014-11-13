@@ -1,16 +1,14 @@
-function [sorted] = fun(A)
- sorted=A; 
- A(10,10) = 3;
- [m,n]=size(sorted);
+function [A] = fun(A)
+ [m,n]=size(A);
  i=1;
 
  while i<=m
      j=2;
      while j<=n
-     if sorted(i,j-1)>sorted(i,j)
-        temp = sorted(i,j);
-        sorted(i,j) = sorted(i,j-1);
-        sorted(i,j-1)= temp;
+     if A(i,j-1)>A(i,j)
+        temp = A(i,j);
+        A(i,j) = A(i,j-1);
+        A(i,j-1)= temp;
         if j>2
           j=j-1;
         end
@@ -22,5 +20,5 @@ function [sorted] = fun(A)
  end
 
 
-
+ 
 end
