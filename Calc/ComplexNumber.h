@@ -115,6 +115,11 @@ namespace PR
 
 		virtual bool isComplexNumber() const override { return true; }
 
+		virtual Data* copy() const
+		{
+			return new ComplexNumber<T>(*this);
+		}
+
 		virtual string getValueInfoString() const override{ return toString(); }
 		virtual string minValueString() const override { return toString(); }
 		virtual string maxValueString() const override { return toString(); }

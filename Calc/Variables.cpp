@@ -29,17 +29,19 @@ namespace PR
 	auto Variables::set(const string &name, const shared_ptr<Data> &data)
 		-> std::pair < std::map<string, shared_ptr<Data>>::iterator, bool >
 	{
-		auto result = mem.insert({ name, data });
+		shared_ptr<Data> temp(data->copy());
+
+		auto result = mem.insert({ name, temp });
 		if (result.second == false)
 		{
-			result.first->second = data;
-			data->_added = false;
-			data->_updated = true;
+			result.first->second = temp;
+			temp->_added = false;
+			temp->_updated = true;
 		}
 		else
 		{
-			data->_added = true;
-			data->_updated = false;
+			temp->_added = true;
+			temp->_updated = false;
 		}
 		return result;
 	}

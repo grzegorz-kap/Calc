@@ -33,6 +33,16 @@ namespace PR
 		{
 			if (i >= N)
 				throw CalcException("Too many input parameters in function call (" + fun.getName() + ")");
+			
+			shared_ptr<Data> temp;
+			if (data->isOutput())
+			{
+				temp.reset(data.get());
+				TypePromotor::promote(temp, temp->max_type());
+			}
+			else
+				temp = data;
+			
 			vars_ref.set(input[i++],data);
 		}
 	}

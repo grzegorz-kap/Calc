@@ -62,8 +62,6 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), &variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));
 	connect(&variablesEditor, SIGNAL(variableInformationRequest(QString)), interpreterConnector, SLOT(getInformation(QString)));
 	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
-
-	scriptEditor.show();
 }
 
 CalcApp::~CalcApp()

@@ -45,7 +45,11 @@ namespace PR
 
 	void Operator::promoteArguments()
 	{
-		if (argumentsNum == 2)
+		if (argumentsNum == 1 && arguments[0]->isOutput())
+		{
+			TypePromotor::promote(arguments[0], arguments[0]->max_type());
+		}
+		else if (argumentsNum == 2)
 			TypePromotor::promote(arguments[0], arguments[1]);
 		else if (argumentsNum > 2)
 			TypePromotor::promote(arguments);
@@ -53,7 +57,11 @@ namespace PR
 
 	void Operator::promoteToMatrix()
 	{
-		if (argumentsNum == 2)
+		if (argumentsNum == 1 && arguments[0]->isOutput())
+		{
+			TypePromotor::promote(arguments[0], arguments[0]->max_type());
+		}
+		else if (argumentsNum == 2)
 			TypePromotor::promoteToMatrix(arguments[0], arguments[1]);
 		else if (argumentsNum > 2)
 			TypePromotor::promoteToMatrix(arguments);

@@ -124,6 +124,8 @@ namespace PR
 		virtual string getValueInfoString() const;
 		virtual string getTypeName() const;
 
+		virtual Data* copy() const;
+
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()
 		{

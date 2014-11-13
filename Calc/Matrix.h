@@ -148,6 +148,11 @@ namespace PR
 		virtual string minValueString() const override;
 		virtual string maxValueString() const override;
 
+		virtual Data* copy() const
+		{
+			return new Matrix<T>(*this);
+		}
+
 		private:
 			bool checkIfTrue() const;
 			bool checkIfFalse() const;

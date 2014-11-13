@@ -58,10 +58,12 @@ void ScriptEditor::onScriptDblClicked(QListWidgetItem *item)
 		if (ui.tabWidget->tabText(i) == scriptName)
 		{
 			ui.tabWidget->setCurrentIndex(i);
+			hide();
 			show();
 			return;
 		}
 	}
 	addTab(ScriptEditWidget::getWorkingDirectory() + "/" + scriptName);
+	hide();
 	show();
 }
