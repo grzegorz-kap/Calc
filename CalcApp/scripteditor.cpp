@@ -1,11 +1,14 @@
 #include "scripteditor.h"
 
+int ScriptEditor::i = 0;
+
 ScriptEditor::ScriptEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
+	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(onNewFileAction()));
 }
 
 ScriptEditor::~ScriptEditor()
@@ -22,6 +25,10 @@ void ScriptEditor::addTab(QString pathArg)
 	widget->readFromFile();
 	connect(widget, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 	connect(widget, SIGNAL(fileSaved()), this, SLOT(onChangesSaved()));
+	
+	if (fileName == ".")
+		fileName = "Untitled" + (i++ ? QString::number(i) : "") ;
+
 	ui.tabWidget->addTab(widget, fileName);
 	ui.tabWidget->setCurrentWidget(widget);
 }
@@ -91,4 +98,12 @@ void ScriptEditor::onSaveAction()
 	if (widget == nullptr)
 		return;
 	widget->saveToFile();
+}
+
+void ScriptEditor::onNewFileAction()
+{
+	QString name = "Untitled" + (i++ == 0 ? "" : QString::number(i)) + ".m";
+	addTab("");
+	hide();
+	show();
 }

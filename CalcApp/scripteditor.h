@@ -25,11 +25,12 @@ public:
 	
 	void onSaveAction();
 	void onSaveAsAction();
+	void onNewFileAction();
 
 private:
 	Ui::ScriptEditor ui;
 
-
+	static int i;
 };
 
 #endif // SCRIPTEDITOR_H
