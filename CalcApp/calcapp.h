@@ -5,6 +5,7 @@
 #include <qthread.h>
 #include <qmetatype.h>
 #include <qdir.h>
+#include <qfont.h>
 
 #include "ui_calcapp.h"
 #include "interpreterconnector.h"
@@ -31,6 +32,8 @@ private:
 
 	void closeEvent(QCloseEvent *ev);
 
+	static QFont font;
+	void setupFont();
 };
 
 #endif // CALCAPP_H

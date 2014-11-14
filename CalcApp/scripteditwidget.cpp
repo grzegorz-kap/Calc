@@ -1,13 +1,16 @@
 #include "scripteditwidget.h"
 
 QString ScriptEditWidget::workingDirectory = "";
+QFont ScriptEditWidget::defaultFont = QFont();
 
 ScriptEditWidget::ScriptEditWidget(QWidget *parent)
 	: QTextEdit(parent)
 {
 	updated = false;
-	
+	setFont(defaultFont);
+	setTabStopWidth(30);
 	filePath= "";
+	highlighter = new Highlighter(document());
 }
 
 ScriptEditWidget::~ScriptEditWidget()

@@ -34,7 +34,6 @@ signals:
 
 private:
 	Ui::ScriptEditor ui;
-
 	static int i;
 };
 

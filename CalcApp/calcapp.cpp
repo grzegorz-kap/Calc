@@ -1,6 +1,6 @@
 #include "calcapp.h"
 
-
+QFont CalcApp::font = QFont();
 
 
 CalcApp::CalcApp(QWidget *parent)
@@ -66,11 +66,25 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), &variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));
 	connect(&variablesEditor, SIGNAL(variableInformationRequest(QString)), interpreterConnector, SLOT(getInformation(QString)));
 	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
+
+	setupFont();
 }
 
 CalcApp::~CalcApp()
 {
 
+}
+
+void CalcApp::setupFont()
+{
+	font.setFamily("Courier");
+	font.setStyleHint(QFont::Monospace);
+	font.setFixedPitch(true);
+	font.setPointSize(10);
+
+	ui.console->setFont(font);
+	ui.commandLine->setFont(font);
+	ScriptEditWidget::defaultFont = font;
 }
 
 void CalcApp::closeEvent(QCloseEvent *ev)

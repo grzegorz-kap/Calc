@@ -13,6 +13,8 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	ui.actionSave_as->setShortcut(QKeySequence::SaveAs);
 	ui.actionRun->setShortcut(QKeySequence::Refresh);
 
+	
+
 
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
@@ -150,6 +152,7 @@ void ScriptEditor::onOpenAction()
 void ScriptEditor::onRunAction()
 {
 	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget*>(ui.tabWidget->currentWidget());
+	widget->saveToFile();
 	QString scriptName = QDir(widget->getFilePath()).dirName();
 	scriptName = scriptName.left(scriptName.lastIndexOf("."));
 	if (scriptName.size())

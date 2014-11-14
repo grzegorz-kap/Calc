@@ -8,6 +8,8 @@
 
 #include "Calc\SignalEmitter.h"
 
+#include "highlighter.h"
+
 class CommandLine : public QPlainTextEdit
 {
 	Q_OBJECT
@@ -26,6 +28,8 @@ private:
 	void keyPressEvent(QKeyEvent* e);
 	void addToHistory();
 	void onKeyUpOrDown(int key);
+
+	Highlighter *highlighter;
 signals:
 	void commandEntered(QString command);
 };

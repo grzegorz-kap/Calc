@@ -176,6 +176,15 @@
     <ClCompile Include="scripteditwidget.cpp">
       <Filter>ScriptEdition</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_highlighter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_highlighter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="highlighter.cpp">
+      <Filter>ScriptEdition</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="calcapp.h">
@@ -233,6 +242,9 @@
       <Filter>ScriptEdition</Filter>
     </CustomBuild>
     <CustomBuild Include="scripteditwidget.h">
+      <Filter>ScriptEdition</Filter>
+    </CustomBuild>
+    <CustomBuild Include="highlighter.h">
       <Filter>ScriptEdition</Filter>
     </CustomBuild>
   </ItemGroup>
