@@ -1,9 +1,26 @@
 #include "scripteditor.h"
 
+int ScriptEditor::i = 0;
+
 ScriptEditor::ScriptEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
+	ui.actionNew->setShortcut(QKeySequence::New);
+	ui.actionOtw_Rz->setShortcut(QKeySequence::Open);
+	ui.actionSave->setShortcut(QKeySequence::Save);
+	ui.actionSave_as->setShortcut(QKeySequence::SaveAs);
+	ui.actionRun->setShortcut(QKeySequence::Refresh);
+
+	
+
+
+	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
+	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
+	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(onNewFileAction()));
+	connect(ui.actionOtw_Rz, SIGNAL(triggered()), this, SLOT(onOpenAction()));
+	connect(ui.actionRun, SIGNAL(triggered()), this, SLOT(onRunAction()));
 }
 
 ScriptEditor::~ScriptEditor()
@@ -20,6 +37,10 @@ void ScriptEditor::addTab(QString pathArg)
 	widget->readFromFile();
 	connect(widget, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 	connect(widget, SIGNAL(fileSaved()), this, SLOT(onChangesSaved()));
+	
+	if (fileName == ".")
+		fileName = "Untitled" + (i++ ? QString::number(i) : "") ;
+
 	ui.tabWidget->addTab(widget, fileName);
 	ui.tabWidget->setCurrentWidget(widget);
 }
@@ -47,15 +68,17 @@ void ScriptEditor::onChangesSaved()
 	if (widget == nullptr)
 		return;
 	ui.tabWidget->setTabIcon(ui.tabWidget->indexOf(widget), QIcon());
+	ui.tabWidget->setTabText(ui.tabWidget->indexOf(widget), QDir(widget->getFilePath()).dirName());
 }
 
 void ScriptEditor::onScriptDblClicked(QListWidgetItem *item)
 {
-	QString scriptName = item->text();
+	QString scriptName = ScriptEditWidget::getWorkingDirectory() + "/" + item->text();
 	int N = ui.tabWidget->count();
 	for (int i = 0; i < N; i++)
 	{
-		if (ui.tabWidget->tabText(i) == scriptName)
+		ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget*>(ui.tabWidget->widget(i));
+		if (widget->getFilePath() == scriptName)
 		{
 			ui.tabWidget->setCurrentIndex(i);
 			hide();
@@ -63,7 +86,75 @@ void ScriptEditor::onScriptDblClicked(QListWidgetItem *item)
 			return;
 		}
 	}
-	addTab(ScriptEditWidget::getWorkingDirectory() + "/" + scriptName);
+	addTab(scriptName);
 	hide();
 	show();
+}
+
+void ScriptEditor::onSaveAsAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget *>(ui.tabWidget->currentWidget());
+	if (widget == nullptr)
+		return;
+
+	QString fileName = widget->askForPathToSave();
+	if (fileName == "")
+		return;
+	widget->setUpdated(true);
+	widget->setFilePath(fileName);
+	widget->saveToFile();
+}
+
+void ScriptEditor::onSaveAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget *>(ui.tabWidget->currentWidget());
+	if (widget == nullptr)
+		return;
+	widget->saveToFile();
+}
+
+void ScriptEditor::onNewFileAction()
+{
+	QString name = "Untitled" + (i++ == 0 ? "" : QString::number(i)) + ".m";
+	addTab("");
+	hide();
+	show();
+}
+
+void ScriptEditor::onOpenAction()
+{
+	QStringList files = QFileDialog::getOpenFileNames(this, tr("Select scripts"),
+		ScriptEditWidget::getWorkingDirectory(), tr("Script files (*.m)"));
+
+	for (const auto &path : files)
+	{
+		int count = ui.tabWidget->count();
+		bool found = false;
+		i = 0;
+		for (; i < count; i++)
+		{
+			ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget*>(ui.tabWidget->widget(i));
+			if (widget->getFilePath() == path)
+			{
+				found = true;
+				break;
+			}
+		}
+		if (found)
+		{
+			ui.tabWidget->setCurrentIndex(i);
+			continue;
+		}
+		addTab(path);
+	}
+}
+
+void ScriptEditor::onRunAction()
+{
+	ScriptEditWidget *widget = dynamic_cast<ScriptEditWidget*>(ui.tabWidget->currentWidget());
+	widget->saveToFile();
+	QString scriptName = QDir(widget->getFilePath()).dirName();
+	scriptName = scriptName.left(scriptName.lastIndexOf("."));
+	if (scriptName.size())
+		emit runCommand(scriptName);
 }

@@ -1,13 +1,16 @@
 #include "scripteditwidget.h"
 
 QString ScriptEditWidget::workingDirectory = "";
+QFont ScriptEditWidget::defaultFont = QFont();
 
 ScriptEditWidget::ScriptEditWidget(QWidget *parent)
 	: QTextEdit(parent)
 {
 	updated = false;
-	
+	setFont(defaultFont);
+	setTabStopWidth(30);
 	filePath= "";
+	highlighter = new Highlighter(document());
 }
 
 ScriptEditWidget::~ScriptEditWidget()
@@ -56,11 +59,11 @@ bool ScriptEditWidget::readFromFile()
 
 void ScriptEditWidget::keyPressEvent(QKeyEvent *ev)
 {
-	if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
+	/*if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
 	{
 		saveToFile();
 	}
-	else
+	else*/
 		QTextEdit::keyPressEvent(ev);
 }
 

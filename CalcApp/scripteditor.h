@@ -22,11 +22,19 @@ public:
 	void onChangesSaved();
 	void workingDirectoryChanged(QString directoryPath);
 	void onScriptDblClicked(QListWidgetItem *item);
+	
+	void onSaveAction();
+	void onSaveAsAction();
+	void onNewFileAction();
+	void onOpenAction();
+	void onRunAction();
+
+signals:
+	void runCommand(QString command);
 
 private:
 	Ui::ScriptEditor ui;
-
-
+	static int i;
 };
 
 #endif // SCRIPTEDITOR_H

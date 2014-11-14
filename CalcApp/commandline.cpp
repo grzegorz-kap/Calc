@@ -6,6 +6,7 @@ CommandLine::CommandLine(QWidget *parent)
 	commandIdx = 0;
 	historyFlag = false;
 	setPlaceholderText(">> Enter command here");
+	highlighter = new Highlighter(document());
 }
 
 CommandLine::~CommandLine()
