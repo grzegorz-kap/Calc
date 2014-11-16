@@ -142,7 +142,7 @@ namespace PR
 		Matrix<decltype(T() + U())> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
-				C.mx[i][j] = mx[i][j] + b.mx[i][j];
+				C.mx[i][j] = mx[i][j] * b.mx[i][j];
 		return C;
 	}
 

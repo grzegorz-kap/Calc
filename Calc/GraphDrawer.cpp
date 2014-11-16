@@ -36,8 +36,16 @@ void GraphDrawer::plot(double *x , double *y, int x_count,int y_count)
 
 	ic = g.intrgb(0.95, 0.95, 0.95);
 	g.axsbgd(ic);
+	
+	g.gaxpar(*std::min_element(x,x+x_count),*std::max_element(x,x+x_count), 
+		"EXTEND", "X", &x_min_limit, &x_max_limit, &x_first_axis_label, &x_step_axis_label, &x_ndig);
 
-	g.graf(0.0, 360.0, 0.0, 90.0, -10.0, 10.0, -10.0, 2.0);
+	g.gaxpar(*std::min_element(y, y + y_count), *std::max_element(y, y + y_count),
+		"EXTEND", "Y", &y_min_limit, &y_max_limit, &y_first_axis_label, &y_step_axis_label, &y_ndig);
+
+	g.graf(x_min_limit,x_max_limit,x_first_axis_label,x_step_axis_label,
+		y_min_limit,y_max_limit,y_first_axis_label,y_step_axis_label);
+
 	g.setrgb(0.7, 0.7, 0.7);
 	g.grid(1, 1);
 

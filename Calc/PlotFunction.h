@@ -13,6 +13,7 @@ namespace PR
 		~PlotFunction();
 
 		virtual shared_ptr<Data> run() override;
+
 	};
 
 }
