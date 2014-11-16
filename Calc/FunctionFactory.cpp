@@ -20,6 +20,7 @@ namespace PR
 		builded_in.insert({ "det", [](){return make_unique<DetFunction>(); } });
 		builded_in.insert({ "inv", [](){return make_unique<InvFunction>(); } });
 		builded_in.insert({ "plot", [](){return make_unique <PlotFunction>(); } });
+		builded_in.insert({ "plot3", [](){return make_unique<Plot3Function>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()

@@ -156,6 +156,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
+    <ClInclude Include="Plot3Function.h" />
     <ClInclude Include="PlotFunction.h" />
     <ClInclude Include="RightArrayDivision.h" />
     <ClInclude Include="SignalEmitter.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="AdditionOperator.cpp" />
     <ClCompile Include="ParserAssignment.cpp" />
     <ClCompile Include="ParserFOR.cpp" />
+    <ClCompile Include="Plot3Function.cpp" />
     <ClCompile Include="PlotFunction.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />

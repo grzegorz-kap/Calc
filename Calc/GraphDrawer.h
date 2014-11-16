@@ -15,7 +15,13 @@ public:
 	GraphDrawer();
 	~GraphDrawer();
 	void plot(double *x,double *y,int x_count,int y_count);
+	void plot3(double *x,double *y,double *z, int x_n,int y_n,int z_n);
 private:
+
+	void setupXAxisParameters(double *x, int n);
+	void setupYAxisParameters(double *y, int n);
+	void setupZAxisParameters(double *z, int n);
+
 	Dislin g;
 	double x_min_limit;
 	double x_max_limit;
@@ -33,7 +39,7 @@ private:
 	double z_max_limit;
 	double z_first_axis_label;
 	double z_step_axis_label;
-	double z_ndig;
+	int z_ndig;
 
 };
 
