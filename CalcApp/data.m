@@ -1,10 +1,8 @@
+/*
 tab = [1 4 3  32 3 2 ; 43 32 1 3 4 4 ; 12 4 3 4 2 3]
-
 [m,n] = size(tab)
- 
 i=1;
 j=1;
-
 //Sortowanie
 while i<=m
 	 j=2;
@@ -22,6 +20,9 @@ while i<=m
 	 end
 	 i=i+1; 
 end
-
-
 tab
+*/
+
+for i=1:10
+	plot((1:10),(1:10)./i);
+end

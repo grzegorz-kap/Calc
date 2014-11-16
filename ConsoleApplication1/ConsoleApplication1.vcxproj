@@ -87,9 +87,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CalcPlot\CalcPlot.vcxproj">
-      <Project>{bc2d3258-d3e2-4c15-8417-431d18a46c62}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Calc\Calc.vcxproj">
       <Project>{6e6d4955-d81b-4270-8b58-7cccb0263787}</Project>
     </ProjectReference>

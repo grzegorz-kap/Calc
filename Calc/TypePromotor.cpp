@@ -127,6 +127,9 @@ namespace PR
 		auto vec = std::dynamic_pointer_cast<Output>(a)->getOutput();
 		auto builder =  MatrixBuilderFactory::get(type);
 
+		if (builder == nullptr)
+			builder = MatrixBuilderFactory::get(TYPE::DOUBLE);
+
 		if (builder == nullptr&&vec.size())
 		{
 			if (type == vec[0]->_type)

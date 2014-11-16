@@ -6,11 +6,9 @@
 #include <future>
 #include <vector>
 
-#include "exports.h"
-
 using namespace std;
 
-class CALCPLOT_API GraphDrawer
+class  GraphDrawer
 {
 	
 public:

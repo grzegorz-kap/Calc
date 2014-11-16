@@ -153,6 +153,21 @@ namespace PR
 			return new Matrix<T>(*this);
 		}
 
+
+		virtual vector<double> toDoubleVector() const override
+		{
+			if (mx.size() == 0)
+				return vector<double>();
+			vector<double> out;
+			out.reserve(mx[0].size());
+			for (const ComplexNumber<T> &element : mx[0])
+			{
+				out.push_back(element.toDouble());
+			}
+			return out;
+
+		}
+
 		private:
 			bool checkIfTrue() const;
 			bool checkIfFalse() const;

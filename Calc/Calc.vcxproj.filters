@@ -324,6 +324,12 @@
     <ClInclude Include="VariableInfo.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="PlotFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphDrawer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -604,6 +610,12 @@
     </ClCompile>
     <ClCompile Include="VariableInfo.cpp">
       <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="PlotFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphDrawer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
