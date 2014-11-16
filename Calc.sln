@@ -20,7 +20,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.vcxproj", "{AE95F879-1A85-4829-8273-7D51C159FDC8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6E6D4955-D81B-4270-8B58-7CCCB0263787} = {6E6D4955-D81B-4270-8B58-7CCCB0263787}
+		{BC2D3258-D3E2-4C15-8417-431D18A46C62} = {BC2D3258-D3E2-4C15-8417-431D18A46C62}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalcPlot", "CalcPlot\CalcPlot.vcxproj", "{BC2D3258-D3E2-4C15-8417-431D18A46C62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +47,10 @@ Global
 		{AE95F879-1A85-4829-8273-7D51C159FDC8}.Debug|Win32.Build.0 = Debug|Win32
 		{AE95F879-1A85-4829-8273-7D51C159FDC8}.Release|Win32.ActiveCfg = Release|Win32
 		{AE95F879-1A85-4829-8273-7D51C159FDC8}.Release|Win32.Build.0 = Release|Win32
+		{BC2D3258-D3E2-4C15-8417-431D18A46C62}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BC2D3258-D3E2-4C15-8417-431D18A46C62}.Debug|Win32.Build.0 = Debug|Win32
+		{BC2D3258-D3E2-4C15-8417-431D18A46C62}.Release|Win32.ActiveCfg = Release|Win32
+		{BC2D3258-D3E2-4C15-8417-431D18A46C62}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,7 @@
 *.user
 *.m
 *.sln.docstates
+*.met
 
 # Build results
 CalcApp/GeneratedFiles/
