@@ -12,17 +12,12 @@ using namespace std;
 
 class CALCPLOT_API GraphDrawer
 {
-	GraphDrawer();
-public:
 	
-	static GraphDrawer* get();
-	void plot(double mult);
+public:
+	GraphDrawer();
+	~GraphDrawer();
+	void plot(double *x,double *y,int x_count,int y_count);
 private:
 	Dislin g;
-	static GraphDrawer *inst;
-	
-	static void load();
-
-	~GraphDrawer();
 };
 

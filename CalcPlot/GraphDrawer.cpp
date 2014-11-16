@@ -1,13 +1,9 @@
 #include "stdafx.h"
 #include "GraphDrawer.h"
 
-GraphDrawer* GraphDrawer::inst = nullptr;
 
 GraphDrawer::GraphDrawer()
-{
-	
-
-	
+{	
 }
 
 
@@ -15,35 +11,13 @@ GraphDrawer::~GraphDrawer()
 {
 }
 
-GraphDrawer* GraphDrawer::get()
+void GraphDrawer::plot(double *x , double *y, int x_count,int y_count)
 {
-	load();
-	return inst;
-}
-
-void GraphDrawer::load()
-{
-	if (inst == nullptr)
-		inst = new GraphDrawer();
-}
-
-void GraphDrawer::plot(double mult)
-{
-	int n = 100, i, ic;
-	double fpi = 3.1415926 / 180.0, step, x;
-	double xray[100], y1ray[100], y2ray[100];
+	int ic;
 	g.erase();
-	step = 360. / (n - 1);
-
-
-	for (i = 0; i < n; i++)
-	{
-		xray[i] = i * step;
-		x = xray[i] * fpi;
-		y1ray[i] = sin(x)*mult;
-		y2ray[i] = cos(x)/mult;
-	}
-
+	
+	if (x_count != y_count)
+		throw 'c';
 	
 	g.window(100, 100, 800, 640);
 	g.metafl("cons");
@@ -72,10 +46,7 @@ void GraphDrawer::plot(double mult)
 	g.title();
 	
 	g.color("red");
-	g.curve(xray, y1ray, n);
-	g.color("green");
-	g.curve(xray, y2ray, n);
+	g.curve(x, y, x_count);
 	g.disfin();
 
-	
 }
