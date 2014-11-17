@@ -1,4 +1,4 @@
-function [A] = fun(A)
+function A = fun(A)
  [m,n]=size(A);
  i=1;
 
