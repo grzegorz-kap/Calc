@@ -162,6 +162,6 @@ void GraphDrawer::surface(double *x, double *y, double *z, size sx, size sy, siz
 	g.grid3d(1, 1, "ALL");
 
 	g.color("green");
-	g.surmat(z, sz.n, sz.m, 1, 1);
+	g.surmat(z, sz.m, sz.n, 1, 1);
 	g.disfin();
 }
