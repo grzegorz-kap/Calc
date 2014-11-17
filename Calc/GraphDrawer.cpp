@@ -31,9 +31,6 @@ void GraphDrawer::plot(double *x , double *y, int x_count,int y_count)
 	g.ticks(9, "x");
 	g.ticks(10, "y");
 
-	g.titlin("Demonstration of CURVE", 1);
-	g.titlin("SIN(X), COS(X)", 3);
-
 	ic = g.intrgb(0.95, 0.95, 0.95);
 	g.axsbgd(ic);
 	
@@ -74,9 +71,6 @@ void GraphDrawer::plot3(double *x, double *y, double *z, int x_n, int y_n, int z
 	g.ticks(9, "x");
 	g.ticks(10, "y");
 	g.ticks(9, "z");
-
-	g.titlin("Demonstration of CURVE", 1);
-	g.titlin("SIN(X), COS(X)", 3);
 
 	g.view3d(-1, -1, .3, "ABS");
 
@@ -138,9 +132,6 @@ void GraphDrawer::surface(double *x, double *y, double *z, size sx, size sy, siz
 	g.ticks(9, "x");
 	g.ticks(10, "y");
 	g.ticks(9, "z");
-
-	g.titlin("Demonstration of CURVE", 1);
-	g.titlin("SIN(X), COS(X)", 3);
 
 	g.view3d(-1, -1, .3, "ABS");
 
