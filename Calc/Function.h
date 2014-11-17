@@ -12,6 +12,7 @@ using std::shared_ptr;
 #include "Matrix.h"
 #include "Output.h"
 
+#define PLOT_TYPE double
 
 namespace PR
 {

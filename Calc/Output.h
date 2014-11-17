@@ -41,6 +41,8 @@ namespace PR
 
 		virtual TYPE max_type() const override
 		{
+			if (out.size() == 0)
+				return _type;
 			return (*std::max_element(out.begin(), out.end(),
 				[](const shared_ptr<Data> &a, const shared_ptr<Data> &b){return a->_type < b->_type; }))->_type;
 		}

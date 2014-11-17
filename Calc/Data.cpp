@@ -241,6 +241,16 @@ namespace PR
 		throw UnimplementedException("Get column is not supported on this type");
 	}
 
+	vector<double> Data::toDoubleVector() const
+	{
+		throw UnimplementedException("Undefined behaviour! toDoubleVector()");
+	}
+
+	vector<double> Data::toDoubleVectorAll() const
+	{
+		throw UnimplementedException("Undefined behaviour! toDoubleVector()");
+	}
+
 	string Data::minValueString() const
 	{
 		return "Unknown";

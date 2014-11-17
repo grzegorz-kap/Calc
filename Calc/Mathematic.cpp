@@ -21,9 +21,9 @@ namespace PR
 	template<class T>
 	ComplexNumber<T> Mathematic::power(const ComplexNumber<T> &a, const ComplexNumber<T> &b)
 	{
-		if (a.im == 0 && b.im == 0 && (a.re >= 0 || b.re == floor(b.re)))
+		if (a.im == 0 && b.im == 0 && (a.re >= 0 || fmod(b.re,1)==0.0))
 			return ComplexNumber<T>(pow(a.re, b.re));
-
+		
 		if (b.im != 0)
 		{
 			ComplexNumber<T> E(e<T>());

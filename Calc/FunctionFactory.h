@@ -27,6 +27,9 @@ using std::function;
 #include "LuFunction.h"
 #include "DetFunction.h"
 #include "InvFunction.h"
+#include "PlotFunction.h"
+#include "Plot3Function.h"
+#include "SurfaceFunction.h"
 
 namespace PR
 {

@@ -5,15 +5,15 @@
 #include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
+#include <vector>
 
 #include <boost\multiprecision\cpp_bin_float.hpp>
-
-
 
 using namespace boost::multiprecision;
 
 using std::shared_ptr;
 using std::make_shared;
+using std::vector;
 
 #include "UnimplementedException.h"
 #include "CastException.h"
@@ -118,6 +118,8 @@ namespace PR
 		virtual int get_rows_int() const { return 0; }
 		virtual string get_cell_string(int i, int j) const{ return ""; }
 		virtual shared_ptr<Data> getColumn(int idx) const;
+		virtual vector<double> toDoubleVector() const;
+		virtual vector<double> toDoubleVectorAll() const;
 
 		virtual string minValueString() const;
 		virtual string maxValueString() const;

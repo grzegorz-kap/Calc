@@ -120,9 +120,30 @@ namespace PR
 			return new ComplexNumber<T>(*this);
 		}
 
+
+
 		virtual string getValueInfoString() const override{ return toString(); }
 		virtual string minValueString() const override { return toString(); }
 		virtual string maxValueString() const override { return toString(); }
+
+		
+
+		virtual vector<double> toDoubleVector() const override
+		{
+			return vector<double>(1, toDouble());
+		}
+
+		virtual vector<double> toDoubleVectorAll() const override
+		{
+			return vector<double>(1, toDouble());
+		}
+
+		double toDouble() const
+		{
+			return hdouble(re).convert_to<double>();
+		}
+
+		
 	};
 
 

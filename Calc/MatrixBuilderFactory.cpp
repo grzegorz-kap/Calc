@@ -8,8 +8,10 @@ namespace PR
 	{
 		switch (_type)
 		{
+		case TYPE::DOUBLE:
 		case TYPE::M_DOUBLE:
-			return make_unique<MatrixBuilder<double>>(); 
+			return make_unique<MatrixBuilder<double>>();
+		case TYPE::R_DOUBLE:
 		case TYPE::RM_DOUBLE:
 			return make_unique<MatrixBuilder<hdouble>>();
 		}
