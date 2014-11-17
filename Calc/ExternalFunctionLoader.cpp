@@ -64,6 +64,14 @@ namespace PR
 
 	void ExternalFunctionLoader::loadOutput()
 	{
+		AssignmentSingle* single = dynamic_cast<AssignmentSingle*>(i->get());
+		if (single != nullptr)
+		{
+			fun.addOutput(single->getLexeme());
+			i++;
+			return;
+		}
+
 		AssignmentMulti* assignment = dynamic_cast<AssignmentMulti *>(i->get());
 		if (assignment == nullptr)
 			throw CalcException("Output list not found!");

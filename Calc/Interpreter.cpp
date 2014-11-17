@@ -29,9 +29,7 @@ namespace PR
 			exec.start();
 
 			/* Boost thread safety */
-		//	sendNewVariablesInformations();
 			sendUpdatedVariablesInformations();
-		//	sendRemovedVariablesInformations();
 		}
 		catch (const CalcException &ex)
 		{

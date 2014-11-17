@@ -26,6 +26,8 @@ namespace PR
 	Data::Data()
 	{
 		_type = TYPE::UNKNOWN;
+		_added = false;
+		_updated = false;
 	}
 
 	Data::~Data()

@@ -25,6 +25,7 @@ namespace PR
 		virtual void setAndCheckSize(bool f = true) = 0;
 
 		static const std::unordered_map<TYPE, TYPE> TYPES;
+		TYPE getAssociatedType(const TYPE &_type);
 	};
 
 }

@@ -118,12 +118,7 @@ namespace PR
 	template <class T>
 	static ComplexNumber<T> Mathematic::logarithm(const ComplexNumber<T> &b)
 	{
-		if (b.re == 0 && b.im == 0)
-			NumericException::throwLogarithmZeroBase();
-		if (b.im == 0)
-			return ComplexNumber<T>(log(b.re));
-		ComplexNumber<T> a(e<T>());
-		return ComplexNumber<T>(log(module(b)), argument(b)) / ComplexNumber<T>(log(module(a)), argument(a));
+		return logarithm(ComplexNumber<T>(boost::math::constants::e<T>()), b);
 	}
 
 	template <class T>
@@ -139,8 +134,6 @@ namespace PR
 	template <class T>
 	static ComplexNumber<T> Mathematic::logarithm10(const ComplexNumber<T> &b)
 	{
-		if (b.im == 0)
-			return ComplexNumber<T>(log10(b.re));
 		return logarithm(ComplexNumber<T>(10), b);
 	}
 

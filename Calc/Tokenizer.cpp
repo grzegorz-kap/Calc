@@ -61,7 +61,7 @@ namespace PR
 			type = TOKEN_CLASS::COMMA;
 			break;
 		default:
-			throw CalcException("Unrecognized symbol "+command[i], command, i);
+			throw CalcException("Unrecognized symbol", i);
 		}
 		tokens.push_back(make_unique<Token>( type,i++));
 	}

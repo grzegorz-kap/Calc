@@ -2,6 +2,7 @@
 #define VARIABLESINFOS_H
 
 #include <QTableWidget>
+#include <qcolor.h>
 
 #include "Calc\VariableInfo.h"
 #include "Calc\SignalEmitter.h"
@@ -21,9 +22,12 @@ public:
 	void updateVariables(const VariableInfo *data, int num);
 	void removeVariables(const char **, int num);
 
-	int findInCol(int col, const QString &match);
+	
 private:
 	static QTableWidgetItem* createCell(const QString &str) { return new QTableWidgetItem(str); }
+	void addCell(const VariableInfo *data);
+	void updateCell(int idx, const VariableInfo *data);
+	int findInCol(int col, const QString &match);
 };
 
 #endif // VARIABLESINFOS_H

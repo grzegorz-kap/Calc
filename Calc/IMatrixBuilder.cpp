@@ -21,4 +21,13 @@ namespace PR
 	IMatrixBuilder::~IMatrixBuilder()
 	{
 	}
+
+	TYPE IMatrixBuilder::getAssociatedType(const TYPE &_type)
+	{
+		auto result = TYPES.find(_type);
+		if (result != TYPES.end())
+			return result->second;
+		else
+			return TYPE::UNKNOWN;
+	}
 }
