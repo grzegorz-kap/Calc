@@ -35,13 +35,11 @@ namespace PR
 		if (result.second == false)
 		{
 			result.first->second = temp;
-			temp->_added = false;
 			temp->_updated = true;
 		}
 		else
 		{
 			temp->_added = true;
-			temp->_updated = false;
 		}
 		return result;
 	}
