@@ -135,6 +135,7 @@ namespace PR
 		}
 	}
 
+
 	template class MatrixBuilder < double > ;
 	template class MatrixBuilder < hdouble > ;
 }

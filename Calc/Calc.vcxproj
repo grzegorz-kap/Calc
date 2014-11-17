@@ -158,6 +158,7 @@
     <ClInclude Include="AdditionOperator.h" />
     <ClInclude Include="Plot3Function.h" />
     <ClInclude Include="PlotFunction.h" />
+    <ClInclude Include="RandFunction.h" />
     <ClInclude Include="RightArrayDivision.h" />
     <ClInclude Include="SignalEmitter.h" />
     <ClInclude Include="SinFun.h" />
@@ -266,6 +267,7 @@
     <ClCompile Include="ParserFOR.cpp" />
     <ClCompile Include="Plot3Function.cpp" />
     <ClCompile Include="PlotFunction.cpp" />
+    <ClCompile Include="RandFunction.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />
     <ClCompile Include="SinFun.cpp" />

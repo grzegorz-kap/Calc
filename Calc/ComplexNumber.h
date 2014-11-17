@@ -113,7 +113,20 @@ namespace PR
 		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;
 
-		virtual bool isComplexNumber() const override { return true; }
+		virtual bool isComplexNumber() const override 
+		{ 
+			return true; 
+		}
+
+		virtual bool isScalar() const override
+		{
+			return true;
+		}
+
+		virtual bool isInteger() const override
+		{
+			return im == 0.0 && floor(re) == re;
+		}
 
 		virtual Data* copy() const
 		{
@@ -141,6 +154,11 @@ namespace PR
 		double toDouble() const
 		{
 			return hdouble(re).convert_to<double>();
+		}
+
+		int toInteger() const
+		{
+			return hdouble(re).convert_to<int>();
 		}
 
 		

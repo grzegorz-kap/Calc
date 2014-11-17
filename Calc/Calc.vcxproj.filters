@@ -336,6 +336,9 @@
     <ClInclude Include="SurfaceFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RandFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -627,6 +630,9 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="SurfaceFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RandFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

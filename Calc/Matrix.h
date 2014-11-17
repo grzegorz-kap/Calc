@@ -94,11 +94,29 @@ namespace PR
 
 		vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector();
 
-		int * getM_P(){ return &M; }
-		int * getN_P(){ return &N; }
-		bool isScalar() const
+		int * getM_P()
+		{ 
+			return &M; 
+		}
+		
+		int * getN_P()
+		{ 
+			return &N; 
+		}
+		
+		bool virtual isScalar() const override
 		{
 			return M == 1 && N == 1;
+		}
+
+		bool virtual isInteger() const override
+		{
+			return isScalar() && mx[0][0].isInteger();
+		}
+
+		int virtual toInteger() const override
+		{
+			return mx[0][0].toInteger();
 		}
 
 		Matrix<T> at(const Matrix<T> &cells) const;

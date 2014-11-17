@@ -283,6 +283,11 @@ namespace PR
 		return string("");
 	}
 
+	int Data::toInteger() const
+	{
+		throw UnimplementedException("Unimplemted 'toInteger()' function");
+	}
+
 	shared_ptr<Data> Data::get_rows() const
 	{
 		throw UnimplementedException("Cannot do this on  type");
