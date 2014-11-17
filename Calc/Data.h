@@ -119,6 +119,7 @@ namespace PR
 		virtual string get_cell_string(int i, int j) const{ return ""; }
 		virtual shared_ptr<Data> getColumn(int idx) const;
 		virtual vector<double> toDoubleVector() const;
+		virtual vector<double> toDoubleVectorAll() const;
 
 		virtual string minValueString() const;
 		virtual string maxValueString() const;

@@ -331,6 +331,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Plot3Function.h">
+      <Filter>Function</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -621,6 +624,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Plot3Function.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

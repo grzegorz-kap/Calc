@@ -156,16 +156,29 @@ namespace PR
 
 		virtual vector<double> toDoubleVector() const override
 		{
-			if (mx.size() == 0)
+			if (!M)
 				return vector<double>();
 			vector<double> out;
-			out.reserve(mx[0].size());
+			out.reserve(N);
 			for (const ComplexNumber<T> &element : mx[0])
 			{
 				out.push_back(element.toDouble());
 			}
 			return out;
+		}
 
+		virtual vector<double> toDoubleVectorAll() const override
+		{
+			vector<double> out;
+			out.reserve(M*N);
+			for (const auto &row : mx)
+			{
+				for (const auto &cell : row)
+				{
+					out.push_back(cell.toDouble());
+				}
+			}
+			return out;
 		}
 
 		private:

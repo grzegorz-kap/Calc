@@ -8,6 +8,13 @@
 
 using namespace std;
 
+struct size
+{
+	size(int i, int j) :m(i), n(j){}
+	int m;
+	int n;
+};
+
 class  GraphDrawer
 {
 	
@@ -16,6 +23,7 @@ public:
 	~GraphDrawer();
 	void plot(double *x,double *y,int x_count,int y_count);
 	void plot3(double *x,double *y,double *z, int x_n,int y_n,int z_n);
+	void surface(double *x,double *y,double *z,size sx,size sy,size sz);
 private:
 
 	void setupXAxisParameters(double *x, int n);

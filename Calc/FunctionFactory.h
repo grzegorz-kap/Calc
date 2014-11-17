@@ -29,6 +29,7 @@ using std::function;
 #include "InvFunction.h"
 #include "PlotFunction.h"
 #include "Plot3Function.h"
+#include "SurfaceFunction.h"
 
 namespace PR
 {

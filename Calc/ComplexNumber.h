@@ -25,8 +25,6 @@ namespace PR
 		template <class X> friend class Matrix;
 		friend class Mathematic;
 
-		template <class G> struct type{};
-
 		T re;
 		T im;
 
@@ -130,7 +128,12 @@ namespace PR
 
 		
 
-		virtual vector<double> toDoubleVector() const
+		virtual vector<double> toDoubleVector() const override
+		{
+			return vector<double>(1, toDouble());
+		}
+
+		virtual vector<double> toDoubleVectorAll() const override
 		{
 			return vector<double>(1, toDouble());
 		}
@@ -139,8 +142,8 @@ namespace PR
 		{
 			return hdouble(re).convert_to<double>();
 		}
+
 		
-			
 	};
 
 

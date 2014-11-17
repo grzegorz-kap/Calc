@@ -165,6 +165,7 @@
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SubtractionOperator.h" />
+    <ClInclude Include="SurfaceFunction.h" />
     <ClInclude Include="TanFun.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
@@ -275,6 +276,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SubtractionOperator.cpp" />
+    <ClCompile Include="SurfaceFunction.cpp" />
     <ClCompile Include="TanFun.cpp" />
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />

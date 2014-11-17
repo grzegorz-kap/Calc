@@ -129,8 +129,13 @@ namespace PR
 				(prev==TOKEN_CLASS::OPERATOR&&(prev_operator_args_num > 1||ev_op_prev==EVAULATED::LEFT)))
 			{
 				token = OperatorsFactory::simple_get("$" + name);
-				if (prev==TOKEN_CLASS::OPERATOR&&(iter - 1)->get()->getLexemeR() == "^")
-					token->castToOperator()->setPriority(19);
+				
+				if (prev == TOKEN_CLASS::OPERATOR)
+				{
+					const string &prevlexeme = (iter - 1)->get()->getLexemeR();
+					if (prevlexeme == "^" || prevlexeme == ".^")
+						token->castToOperator()->setPriority(19);
+				}
 			}
 		}
 		prev_operator_args_num = token->castToOperator()->getArgumentsNum();

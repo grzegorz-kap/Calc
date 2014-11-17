@@ -246,6 +246,11 @@ namespace PR
 		throw UnimplementedException("Undefined behaviour! toDoubleVector()");
 	}
 
+	vector<double> Data::toDoubleVectorAll() const
+	{
+		throw UnimplementedException("Undefined behaviour! toDoubleVector()");
+	}
+
 	string Data::minValueString() const
 	{
 		return "Unknown";
