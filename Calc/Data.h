@@ -103,6 +103,12 @@ namespace PR
 		virtual shared_ptr<Data> sin() const;
 		virtual shared_ptr<Data> cos() const;
 		virtual shared_ptr<Data> tan() const;
+
+		virtual shared_ptr<Data> cfix() const;
+		virtual shared_ptr<Data> cfloor() const;
+		virtual shared_ptr<Data> cmod(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> cceil() const;
+		virtual shared_ptr<Data> cround() const;
 		
 		virtual bool operator == (const bool &b) const;
 		virtual string toString() const;

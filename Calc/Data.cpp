@@ -88,6 +88,31 @@ namespace PR
 		throw UnimplementedException("Cannot do matrix exponentiation on this type");
 	}
 
+	shared_ptr<Data> Data::cfix() const
+	{
+		throw UnimplementedException("Cannot 'fix()' this type");
+	}
+
+	shared_ptr<Data> Data::cround() const
+	{
+		throw UnimplementedException("Cannot 'round()' this type");
+	}
+
+	shared_ptr<Data> Data::cfloor() const
+	{
+		throw UnimplementedException("Cannot 'floor()' this type");
+	}
+
+	shared_ptr<Data> Data::cmod(shared_ptr<Data> &b) const
+	{
+		throw UnimplementedException("Cannot 'mod' this types");
+	}
+
+	shared_ptr<Data> Data::cceil() const
+	{
+		throw UnimplementedException("Cannot 'ceil' this type");
+	}
+
 	shared_ptr<Data> Data::operator - () const
 	{
 		throw UnimplementedException("Cannot do negation on this type!");

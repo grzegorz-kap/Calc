@@ -122,7 +122,7 @@ namespace PR
 
 	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token)
 	{
-		const string & name = token->getLexemeR();
+		string name = token->getLexemeR();
 		if (name == "+" || name == "-")
 		{
 			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) ||

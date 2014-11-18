@@ -2,7 +2,7 @@
 
 #include "NumericException.h"
 #include "Matrix.h"
-#include "ComplexNumber.h"
+
 
 #include <boost\math\constants\constants.hpp>
 
@@ -249,7 +249,7 @@ namespace PR
 			return ComplexNumber<T>(fix(value.re), fix(value.im));
 		}
 
-		template <class T> static Matrix<T> fix(const Matrix<T> &value)
+		template <class T> static Matrix<T> fix(const Matrix<T> &matrix)
 		{
 			Matrix<T> out(matrix.M, matrix.N);
 			for (int i = 0; i<out.M; i++)
@@ -259,6 +259,83 @@ namespace PR
 				for (int j = 0; j < out.N; j++)
 					o[j] = fix(m[j]);
 			}
+			return out;
+		}
+
+		template <class T> static ComplexNumber<T> cfloor(const ComplexNumber<T> &a)
+		{
+			return ComplexNumber<T>(floor(a.re), floor(a.im));
+		}
+
+		template <class T> static Matrix<T> cfloor(const Matrix<T> &A)
+		{
+			Matrix<T> out(A.M, A.N);
+			for (int i = 0; i < A.M; i++)
+				for (int j = 0; j < A.N; j++)
+					out.mx[i][j] = cfloor(A.mx[i][j]);
+			return out;
+		}
+
+
+		template <class T> static ComplexNumber<T> cceil(const ComplexNumber<T> &a)
+		{
+			return ComplexNumber<T>(ceil(a.re), ceil(a.im));
+		}
+
+		template <class T> static Matrix<T> cceil(const Matrix<T> &A)
+		{
+			Matrix<T> out(A.M, A.N);
+			for (int i = 0; i < A.M; i++)
+				for (int j = 0; j < A.N; j++)
+					out.mx[i][j] = cceil(A.mx[i][j]);
+			return out;
+		}
+
+		template <class T> static ComplexNumber<T> cmod(const ComplexNumber<T> &a, const ComplexNumber<T> &b)
+		{
+			if (!a.isReal() || !b.isReal())
+				throw NumericException("Error using mod. Arguments must be real.");
+			T val = fmod(a.re, b.re);
+			if (val != 0 && (a.re < 0 && b.re>0 || a.re > 0 && b.re < 0))
+				val += b.re;
+			return ComplexNumber<T>(val);
+		}
+
+		template <class T> static Matrix<T> cmod(const Matrix<T> &A, const ComplexNumber<T> &b)
+		{
+			Matrix<T> C(A.M, A.N);
+			for (int i = 0; i < A.M; i++)
+				for (int j = 0; j < A.N; j++)
+					C.mx[i][j] = cmod(A.mx[i][j], b);
+			return C;
+		}
+
+		template <class T> static Matrix<T> cmod(const Matrix<T> &A, const Matrix<T> &B)
+		{
+			if (B.isScalar())
+				return cmod(A, B.mx[0][0]);
+
+			if (A.M != B.M || A.N != B.N)
+				throw NumericException("Error using mod. Matrix sizes must agree!");
+
+			Matrix<T> C(A.M, A.N);
+			for (int i = 0; i < A.M; i++)
+				for (int j = 0; j < A.N; j++)
+					C.mx[i][j] = cmod(A.mx[i][j], B.mx[i][j]);
+			return C;
+		}
+
+		template <class T> static ComplexNumber<T> cround(const ComplexNumber<T> &a)
+		{
+			return ComplexNumber<T>(round(a.re), round(a.im));
+		}
+
+		template <class T> static Matrix<T> cround(const Matrix<T> &A)
+		{
+			Matrix<T> out(A.M, A.N);
+			for (int i = 0; i < A.M; i++)
+				for (int j = 0; j < A.N; j++)
+					out.mx[i][j] = cround(A.mx[i][j]);
 			return out;
 		}
 	};
