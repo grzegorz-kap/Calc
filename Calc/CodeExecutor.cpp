@@ -82,8 +82,13 @@ namespace PR
 			case TOKEN_CLASS::NUMBER:
 				stack.push_back(shared_ptr<Data>((*i)->evaluate()));
 				break;
+			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
+				break;
+			case TOKEN_CLASS::SHORT_CIRCUIT_END:
+			case TOKEN_CLASS::SHORT_CIRCUIT_OR:
+				onShortCircuitJumper();
 				break;
 			case TOKEN_CLASS::MATRIX_START:
 				stack.push_back(make_shared<Token>(MATRIX_START));
@@ -154,6 +159,23 @@ namespace PR
 		auto p = dynamic_cast<Operator *>(i->get());
 		p->setArguments(stack);
  		stack.push_back(shared_ptr<Data>(p->evaluate()));
+	}
+
+	void CodeExecutor::onShortCircuitJumper()
+	{
+		if (stack.size() == 0)
+			throw CalcException("Expression or statement is incomplete or incorrect.", (*i)->getPosition());
+		
+		if (!stack.back()->isScalar())
+			throw CalcException("Operands to the || and && operators must be convertible to logical scalar values",
+									(*i)->getPosition());
+
+		bool leftArgument = *stack.back() == true;
+		ShortCircuitJumper * jumper = dynamic_cast<ShortCircuitJumper *>(i->get());
+		if (leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_OR)
+			i = ip->begin() + jumper->getJumpOnTrue() - 1;
+		else if (!leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_END)
+			i = ip->begin() + jumper->getJumpOnFalse() - 1;
 	}
 
 	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)

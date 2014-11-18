@@ -13,6 +13,7 @@ using std::unique_ptr;
 using std::make_unique;
 
 #include "Token.h"
+#include "ShortCircuitJumper.h"
 #include "SNumber.h"
 #include "AssignmentFactory.h"
 #include "Operator.h"
@@ -70,8 +71,11 @@ namespace PR
 		void onSemicolon();
 		void onColon();
 		void changeIfAssignment();
-
+		void onShortCircuitOperator();
+		void computeTreeLevels();
 		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);
+
+		static void computeShortCircuitJumps(vector<shared_ptr<Token>> &onp);
 	};
 }
 

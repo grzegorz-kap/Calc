@@ -339,6 +339,15 @@
     <ClInclude Include="RandFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AndOperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OROperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortCircuitJumper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -633,6 +642,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RandFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AndOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OROperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortCircuitJumper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,6 +7,7 @@ namespace PR
 	{
 		_type = TYPE::TOKEN;
 		_evType = TYPE::TOKEN;
+		tree_level = -1;
 	}
 
 	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
@@ -14,6 +15,7 @@ namespace PR
 	{
 		_type = TYPE::TOKEN;
 		_evType = TYPE::DOUBLE;
+		tree_level = -1;
 	}
 
 	Token::Token(string &&tokenArg, TOKEN_CLASS typeArg, int position, int param, PARSE_MODE mode)
@@ -21,6 +23,7 @@ namespace PR
 	{
 		_type = TYPE::TOKEN;
 		_evType = TYPE::TOKEN;
+		tree_level = -1;
 	}
 
 	Token::Token(TOKEN_CLASS arg,int position)
@@ -29,6 +32,7 @@ namespace PR
 		_evType(TYPE::TOKEN)
 	{
 		_type = TYPE::TOKEN;
+		tree_level = -1;
 	}
 
 	Token::Token(Token &&b)
@@ -39,12 +43,14 @@ namespace PR
 		param = b.param;
 		mode = b.mode;
 		_evType = b._evType;
+		tree_level = b.tree_level;
 
 		b._class = TOKEN_CLASS::NONE;
 		b.position = 0;
 		b.param = 0;
 		b.mode = PARSE_MODE::NORMAL;
 		b._evType = TYPE::DOUBLE;
+		b.tree_level = -1;
 	}
 
 	Token::~Token()

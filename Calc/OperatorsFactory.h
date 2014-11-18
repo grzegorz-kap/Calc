@@ -32,6 +32,8 @@ using std::function;
 #include "UPlusOperator.h"
 #include "Colon2Operator.h"
 #include "Colon3Operator.h"
+#include "AndOperator.h"
+#include "OROperator.h"
 
 namespace PR
 {

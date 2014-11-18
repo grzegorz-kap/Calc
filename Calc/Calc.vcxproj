@@ -90,6 +90,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AndOperator.h" />
     <ClInclude Include="AssignmentFactory.h" />
     <ClInclude Include="AssignmentMulti.h" />
     <ClInclude Include="AssignmentOperator.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Operator.h" />
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
+    <ClInclude Include="OROperator.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="PlotFunction.h" />
     <ClInclude Include="RandFunction.h" />
     <ClInclude Include="RightArrayDivision.h" />
+    <ClInclude Include="ShortCircuitJumper.h" />
     <ClInclude Include="SignalEmitter.h" />
     <ClInclude Include="SinFun.h" />
     <ClInclude Include="SizeFunction.h" />
@@ -182,6 +185,7 @@
     <ClInclude Include="Variables.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AndOperator.cpp" />
     <ClCompile Include="AssignmentFactory.cpp" />
     <ClCompile Include="AssignmentMulti.cpp" />
     <ClCompile Include="AssignmentOperator.cpp" />
@@ -259,6 +263,7 @@
     <ClCompile Include="Operator.cpp" />
     <ClCompile Include="OperatorException.cpp" />
     <ClCompile Include="OperatorsFactory.cpp" />
+    <ClCompile Include="OROperator.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="CodeExecutorMatrix.cpp" />
@@ -269,6 +274,7 @@
     <ClCompile Include="PlotFunction.cpp" />
     <ClCompile Include="RandFunction.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
+    <ClCompile Include="ShortCircuitJumper.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />
     <ClCompile Include="SinFun.cpp" />
     <ClCompile Include="SizeFunction.cpp" />

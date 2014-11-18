@@ -29,6 +29,7 @@ namespace PR
 		int position;
 		int param;
 		int keyword_balance;
+		int tree_level;
 	protected:
 		TYPE _evType;
 	public:
@@ -59,6 +60,8 @@ namespace PR
 		int getKeywordBalance() const { return keyword_balance; }
 		TYPE getEvType()const{ return _evType; }
 		void setEvType(TYPE type){ _evType = type; }
+		int getTreeLevel() const{ return tree_level; }
+		void setTreeLevel(int arg){ tree_level = arg; }
 
 		string toString() const;
 
