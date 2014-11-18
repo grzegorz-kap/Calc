@@ -93,6 +93,11 @@ namespace PR
 		throw UnimplementedException("Cannot do negation on this type!");
 	}
 
+	shared_ptr<Data> Data::operator ! () const
+	{
+		throw UnimplementedException("Cannot do logical negation on this type!");
+	}
+
 	shared_ptr<Data> Data::times(shared_ptr<Data> &) const
 	{
 		throw UnimplementedException("Cannot do element wise multiplication on this type");

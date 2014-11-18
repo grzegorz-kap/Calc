@@ -138,6 +138,14 @@ namespace PR
 				}
 			}
 		}
+
+		if (name == "~" && prev==TOKEN_CLASS::OPERATOR)
+		{
+			const string &prevlexeme = (iter - 1)->get()->getLexemeR();
+			if (prevlexeme == "^" || prevlexeme == ".^")
+				token->castToOperator()->setPriority(19);
+		}
+
 		prev_operator_args_num = token->castToOperator()->getArgumentsNum();
 		ev_op_prev = token->castToOperator()->getEv();
 	}

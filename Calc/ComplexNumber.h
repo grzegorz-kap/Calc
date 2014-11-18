@@ -96,6 +96,12 @@ namespace PR
 			return ComplexNumber<T>(re &&b.re);
 		}
 
+
+		ComplexNumber<T> logical_not () const
+		{
+			return ComplexNumber<T>(!re);
+		}
+
 		bool operator == (const bool &b) const;
 
 		

@@ -36,6 +36,7 @@ using std::function;
 #include "OROperator.h"
 #include "ElementWiseAnd.h"
 #include "ElementWiseOr.h"
+#include "LogicalNotOperator.h"
 
 namespace PR
 {

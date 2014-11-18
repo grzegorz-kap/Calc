@@ -139,6 +139,7 @@
     <ClInclude Include="Log10Function.h" />
     <ClInclude Include="Log2Function.h" />
     <ClInclude Include="LogFunction.h" />
+    <ClInclude Include="LogicalNotOperator.h" />
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="MatrixUtils.h" />
     <ClInclude Include="LuFunction.h" />
@@ -250,6 +251,7 @@
     <ClCompile Include="Log10Function.cpp" />
     <ClCompile Include="Log2Function.cpp" />
     <ClCompile Include="LogFunction.cpp" />
+    <ClCompile Include="LogicalNotOperator.cpp" />
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="MatrixUtils.cpp" />
     <ClCompile Include="LuFunction.cpp" />

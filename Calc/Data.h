@@ -78,6 +78,7 @@ namespace PR
 		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator | (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator & (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator ! () const;
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator - () const;

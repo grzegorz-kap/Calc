@@ -354,6 +354,9 @@
     <ClInclude Include="ElementWiseOr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LogicalNotOperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -663,6 +666,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ElementWiseOr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicalNotOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -32,6 +32,7 @@ namespace PR
 		operators.insert("||", [](){return make_unique<OROperator>(); });
 		operators.insert("|", [](){return make_unique<ElementWiseOr>(); });
 		operators.insert("&", [](){return make_unique<ElementWiseAnd>(); });
+		operators.insert("~", [](){return make_unique<LogicalNotOperator>(); });
 	}
 
 	void OperatorsFactory::init()

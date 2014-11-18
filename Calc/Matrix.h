@@ -115,6 +115,18 @@ namespace PR
 			return c;
 		}
 
+		Matrix<T> logical_not() const
+		{
+			if (M == 0 || N == 0)
+				return Matrix<T>(1, 1, ComplexNumber<T>(0));
+
+			Matrix<T> c(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					c.mx[i][j] = mx[i][j].logical_not();
+			return c;
+		}
+
 		vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector();
 
 		int * getM_P()
