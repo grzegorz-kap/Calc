@@ -11,6 +11,10 @@ namespace PR
 		TOKEN_CLASS::FUNCTION_KEYWORD,TOKEN_CLASS::OPERATOR
 	};
 
+	const vector<string> Tokenizer::END_SYNONIMS = {
+		"endfor", "endif", "endwhile", "endfunction"
+	};
+
 	Tokenizer::Tokenizer()
 	{
 		N = 0;
@@ -95,6 +99,9 @@ namespace PR
 		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
 			lexame += command[i++];
 		
+		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) != END_SYNONIMS.end())
+			lexame = "end";
+
 		auto _class = TokenizerHelper::keyWordOrId(lexame);
 		if (i < N&& command[i] == '(')
 		{

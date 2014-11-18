@@ -330,23 +330,23 @@
     <ClInclude Include="GraphDrawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plot3Function.h">
-      <Filter>Function</Filter>
-    </ClInclude>
-    <ClInclude Include="SurfaceFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RandFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AndOperator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="OROperator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="ShortCircuitJumper.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="RandFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Plot3Function.h">
+      <Filter>Function\functions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -638,20 +638,20 @@
     <ClCompile Include="Plot3Function.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="SurfaceFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RandFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AndOperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="OROperator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="ShortCircuitJumper.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="RandFunction.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
