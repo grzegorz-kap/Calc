@@ -34,6 +34,8 @@ using std::function;
 #include "Colon3Operator.h"
 #include "AndOperator.h"
 #include "OROperator.h"
+#include "ElementWiseAnd.h"
+#include "ElementWiseOr.h"
 
 namespace PR
 {

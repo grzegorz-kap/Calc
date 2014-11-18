@@ -63,6 +63,16 @@ namespace PR
 		throw UnimplementedException("Can not do multiplication on this type!");
 	}
 
+	shared_ptr<Data> Data::operator | (shared_ptr<Data> &b) const
+	{
+		throw UnimplementedException("Cannot execute logical | on this type.");
+	}
+
+	shared_ptr<Data> Data::operator & (shared_ptr<Data> &b) const
+	{
+		throw UnimplementedException("Cannot execute logical & on this type.");
+	}
+
 	shared_ptr<Data> Data::operator / (shared_ptr<Data> &b) const
 	{
 		throw UnimplementedException("Can not do division on this type!");

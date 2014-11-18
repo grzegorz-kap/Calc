@@ -30,6 +30,8 @@ namespace PR
 		operators.insert("'", [](){return make_unique<TranspositionOperator>(); });
 		operators.insert("&&", [](){return make_unique<AndOperator>(); });
 		operators.insert("||", [](){return make_unique<OROperator>(); });
+		operators.insert("|", [](){return make_unique<ElementWiseOr>(); });
+		operators.insert("&", [](){return make_unique<ElementWiseAnd>(); });
 	}
 
 	void OperatorsFactory::init()

@@ -92,6 +92,29 @@ namespace PR
 		template <class U> auto operator >= (const Matrix<U> &b) const->Matrix < decltype(T() + U()) >;
 		template <class U> auto operator >= (const ComplexNumber<U> &b) const->Matrix < decltype(T() + U()) >;
 
+
+		Matrix<T> operator | (const Matrix<T> &b) const
+		{
+			if (M != b.M || N != b.N)
+				throw NumericException("Error using | . Matrix sizes must agree");
+			Matrix<T> c(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					c.mx[i][j] = mx[i][j] | b.mx[i][j];
+			return c;
+		}
+
+		Matrix<T> operator & (const Matrix<T> &b) const
+		{
+			if (M != b.M || N != b.N)
+				throw NumericException("Error using & . Matrix sizes must agree");
+			Matrix<T> c(M, N);
+			for (int i = 0; i < M; i++)
+				for (int j = 0; j < N; j++)
+					c.mx[i][j] = mx[i][j] & b.mx[i][j];
+			return c;
+		}
+
 		vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector();
 
 		int * getM_P()
@@ -112,6 +135,15 @@ namespace PR
 		bool virtual isInteger() const override
 		{
 			return isScalar() && mx[0][0].isInteger();
+		}
+
+		bool virtual isReal() const override
+		{
+			for (const auto &row : mx)
+				for (const auto &element : row)
+					if (!element.isReal())
+						return false;
+			return true;
 		}
 
 		int virtual toInteger() const override

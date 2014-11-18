@@ -85,7 +85,20 @@ namespace PR
 		template <class U> auto operator <= (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
 		template <class U> auto operator > (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
 		template <class U> auto operator >= (const ComplexNumber<U> &b) const->ComplexNumber < decltype(T() + U()) >;
+
+		ComplexNumber<T> operator | (const ComplexNumber<T> &b) const
+		{
+			return ComplexNumber<T>(re || b.re);
+		}
+
+		ComplexNumber<T> operator & (const ComplexNumber<T> &b) const
+		{
+			return ComplexNumber<T>(re &&b.re);
+		}
+
 		bool operator == (const bool &b) const;
+
+		
 
 		ComplexNumber<T> transpose() const;
 		ComplexNumber<T> rows() const;
@@ -126,6 +139,11 @@ namespace PR
 		virtual bool isInteger() const override
 		{
 			return im == 0.0 && floor(re) == re;
+		}
+
+		virtual bool isReal() const override
+		{
+			return im == 0;
 		}
 
 		virtual Data* copy() const

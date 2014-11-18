@@ -348,6 +348,12 @@
     <ClInclude Include="Plot3Function.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
+    <ClInclude Include="ElementWiseAnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementWiseOr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -652,6 +658,12 @@
     </ClCompile>
     <ClCompile Include="RandFunction.cpp">
       <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWiseAnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWiseOr.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
