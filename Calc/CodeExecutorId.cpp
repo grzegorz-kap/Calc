@@ -6,7 +6,13 @@ namespace PR
 	void CodeExecutor::onID()
 	{
 		try{
-			stack.push_back(vars_ref.get((*i)->getLexemeR()));
+			if (ip->size() == 1)
+			{
+				assignment.push_back({ vars_ref.getIterator((*i)->getLexemeR()), false });
+				assignment_flag = true;
+			}
+			else
+				stack.push_back(vars_ref.get((*i)->getLexemeR()));
 		}
 		catch (const string &ex)
 		{

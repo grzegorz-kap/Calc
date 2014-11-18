@@ -25,7 +25,8 @@ namespace PR
 		~Variables();
 
 		shared_ptr<Data> get(const string &name, bool ex = true);
-
+		auto getIterator(const string &name, bool ex = true)
+			-> std::map<string, shared_ptr<Data>>::iterator;
 		auto set(const string &name, const shared_ptr<Data> &data)
 			->std::pair < std::map<string, shared_ptr<Data>>::iterator, bool > ;
 

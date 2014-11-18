@@ -26,6 +26,15 @@ namespace PR
 		return result->second;
 	}
 
+	auto Variables::getIterator(const string &name, bool ex)
+		-> std::map<string, shared_ptr<Data>>::iterator
+	{
+		auto result = mem.find(name);
+		if (result == mem.end() &&ex)
+			throw string("Variable '" + name + "' not found!");
+		return result;
+	}
+
 	auto Variables::set(const string &name, const shared_ptr<Data> &data)
 		-> std::pair < std::map<string, shared_ptr<Data>>::iterator, bool >
 	{
