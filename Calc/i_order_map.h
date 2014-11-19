@@ -2,7 +2,11 @@
 
 #include <unordered_map>
 #include <vector>
+#include <string>
+#include <memory>
 
+#include "Data.h"
+#include "Operator.h"
 
 namespace PR
 {
@@ -13,29 +17,15 @@ namespace PR
 		std::vector<KEY> vec;
 		int i;
 	public:
-		i_order_map():i(0){};
-		~i_order_map(){};
+		
+		i_order_map();
+		~i_order_map();
 
-		void insert(const KEY &key, const VALUE &value)
-		{
-			map[key] = value;
-			vec.push_back(key);
-		}
+		void insert(const KEY &key, const VALUE &value);
+		int length() const;
+		const std::vector<KEY> & getVec() const;
+		VALUE & operator[](const KEY &b);
 
-		int length() const 
-		{
-			return vec.size();
-		}
-
-		const std::vector<KEY> & getVec() const
-		{
-			return vec;
-		}
-
-		VALUE & operator[](const KEY &b)
-		{
-			return map[b];
-		}
 	};
 
 }

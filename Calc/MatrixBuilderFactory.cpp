@@ -4,6 +4,9 @@
 
 namespace PR
 {
+	extern template class MatrixBuilder < double > ;
+	extern template class MatrixBuilder < hdouble > ;
+
 	unique_ptr<IMatrixBuilder> MatrixBuilderFactory::get(TYPE _type)
 	{
 		switch (_type)

@@ -45,7 +45,7 @@ namespace PR
 	private:
 		OperatorsFactory();
 		static OperatorsFactory * instance;
-		i_order_map<string, function<unique_ptr<Operator>(void)>>  operators;
+		i_order_map<string, unique_ptr<Operator>(*)()>  operators;
 	
 	public:
 		OperatorsFactory & operator = (const OperatorsFactory &) = delete;
