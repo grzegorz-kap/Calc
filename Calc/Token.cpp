@@ -90,4 +90,114 @@ namespace PR
 		return out;
 	}
 
+	string Token::getLexeme() const 
+	{ 
+		return lexeme; 
+	}
+
+	const string & Token::getLexemeR() const
+	{ 
+		return lexeme; 
+	}
+
+	void Token::setLexeme(const string &lexemeArg)
+	{ 
+		lexeme = lexemeArg; 
+	}
+
+	TOKEN_CLASS Token::getClass() const 
+	{ 
+		return _class; 
+	}
+
+	void Token::set_class(const TOKEN_CLASS &typeArg)
+	{ 
+		_class = typeArg;
+	}
+
+	int Token::getPosition()const
+	{ 
+		return position; 
+	}
+
+	void Token::setPosition(int pos)
+	{ 
+		position = pos; 
+	}
+
+	int Token::getParam() const 
+	{ 
+		return param; 
+	}
+
+	void Token::setParam(int p)
+	{ 
+		param = p;
+	}
+
+	PARSE_MODE Token::getMode()const 
+	{ 
+		return mode; 
+	}
+
+	void Token::setMode(PARSE_MODE mode)
+	{ 
+		this->mode = mode; 
+	}
+
+	void Token::setKeywordBalance(int b)
+	{ 
+		keyword_balance = b; 
+	}
+
+	int Token::getKeywordBalance() const 
+	{ 
+		return keyword_balance; 
+	}
+
+	TYPE Token::getEvType()const
+	{ 
+		return _evType; 
+	}
+
+	void Token::setEvType(TYPE type)
+	{ 
+		_evType = type; 
+	}
+
+	int Token::getTreeLevel() const
+	{ 
+		return tree_level; 
+	}
+
+	void Token::setTreeLevel(int arg)
+	{ 
+		tree_level = arg; 
+	}
+
+	bool Token::isToken(TOKEN_CLASS token_class) const
+	{
+		return _class == token_class;
+	}
+
+	shared_ptr<Data> Token::evaluate()
+	{
+		throw CalcException("Cannot evaulate this expression! " + lexeme, position);
+	}
+
+	Operator * Token::castToOperator()
+	{
+		throw CastException("Cannot cast to operator expression");
+	}
+
+	IAssignment * Token::castToAssignment()
+	{
+		throw CastException("Cannot cast to assignment target expression");
+	}
+
+	Token* Token::cast_token()
+	{
+		return dynamic_cast<Token *>(this);
+	}
+
 }

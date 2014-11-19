@@ -22,7 +22,7 @@ namespace PR
 
 		void reset();
 		void setMode(Token &token);
-		PARSE_MODE getMode()const{ return mode.back(); }
+		PARSE_MODE getMode()const;
 
 		void throwOnUnbalancedEnd();
 	private:

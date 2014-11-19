@@ -99,4 +99,21 @@ namespace PR
 		lp = code.size() - 1;
 	}
 
+	int CodeGenerator::getLP()
+	{ 
+		return lp; 
+	}
+
+	void CodeGenerator::setIp(int lpA)
+	{ 
+		ip = code.begin() + lpA;
+		lp = lpA; 
+	}
+
+	void CodeGenerator::loadAndSetIp()
+	{ 
+		lp = 0; 
+		load(); 
+		ip = code.begin(); 
+	}
 }

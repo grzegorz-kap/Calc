@@ -36,27 +36,23 @@ namespace PR
 		vector<TYPE> _ev_type_mode;
 		vector<int>  _ev_type_balance;
 	public:
+		
 		Parser();
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
 		virtual bool parse();
 		void setInput(LexicalAnalyzer &lex);
-		vector<shared_ptr<Token>> & getInstruction(){ return onp; }
-	private:
+		vector<shared_ptr<Token>> & getInstruction();
+	
+	private:	
 		TOKEN_CLASS stackBack() const;
 		TOKEN_CLASS onpBack() const;
 		void stackToOnp();
 		void stackToOnpAll();
 		void iterBack();
-		TOKEN_CLASS whatNext()
-		{
-			if (iter + 1 == tokens.end())
-				return TOKEN_CLASS::NONE;
-			return (*(iter + 1))->getClass();
-		}
-
+		TOKEN_CLASS whatNext();
+		
 		void onKeywordFOR();
-
 		void onID();
 		void onNumber();
 		void onOpenParenthesis();

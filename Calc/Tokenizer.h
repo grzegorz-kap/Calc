@@ -24,28 +24,21 @@ namespace PR
 {
 	class Tokenizer
 	{
-		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
-		static const vector<string> END_SYNONIMS;
-		vector<unique_ptr<Token>> tokens; 
-	public:
-		
+	public:	
 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
 		
 		Tokenizer();
 		~Tokenizer();	
-		
 		void setInput(const string &command);
 		void setInput(string &&command);
 		Tokenizer & operator = (Tokenizer &&b);
-
 		void tokenize();
-		auto getTokens() -> decltype(tokens)
-		{
-			return std::move(tokens);
-		}
+		vector<unique_ptr<Token>> getTokens();
 
 	private:
-		
+		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
+		static const vector<string> END_SYNONIMS;
+		vector<unique_ptr<Token>> tokens;
 		string command;
 		int i;
 		int N;
@@ -61,21 +54,8 @@ namespace PR
 		void whiteSpacesBegin();
 		void whiteSpacesEnd();
 		void deleteUneccessary();
-
-		TOKEN_CLASS prev()
-		{
-			if (tokens.size() == 0)
-				return TOKEN_CLASS::NONE;
-			return tokens.back()->getClass();
-		}
-		
-		void init()
-		{
-			N = command.size();
-			i = 0;
-			whiteSpacesEnd();
-			whiteSpacesBegin();
-		}
+		TOKEN_CLASS prev();
+		void init();
 	};
 
 }

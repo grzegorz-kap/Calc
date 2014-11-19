@@ -455,4 +455,16 @@ namespace PR
 		onp.push_back(std::move(_for));
 		iterBack();
 	}
+
+	TOKEN_CLASS Parser::whatNext()
+	{
+		if (iter + 1 == tokens.end())
+			return TOKEN_CLASS::NONE;
+		return (*(iter + 1))->getClass();
+	}
+
+	vector<shared_ptr<Token>> & Parser::getInstruction()
+	{ 
+		return onp; 
+	}
 }
