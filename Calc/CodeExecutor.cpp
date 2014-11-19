@@ -4,6 +4,12 @@
 
 namespace PR
 {
+	extern template class Matrix < double >;
+	extern template class Matrix < hdouble >;
+	extern template class ComplexNumber<double>;
+	extern template class ComplexNumber<hdouble>;
+	extern template class MatrixBuilder < double > ;
+	extern template class MatrixBuilder < hdouble > ;
 	
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
