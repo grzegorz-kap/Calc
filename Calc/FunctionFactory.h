@@ -30,6 +30,12 @@ using std::function;
 #include "PlotFunction.h"
 #include "Plot3Function.h"
 #include "SurfaceFunction.h"
+#include "RandFunction.h"
+#include "FixFunction.h"
+#include "FloorFunction.h"
+#include "CeilFunction.h"
+#include "ModFunction.h"
+#include "RoundFunction.h"
 
 namespace PR
 {

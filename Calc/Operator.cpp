@@ -66,5 +66,13 @@ namespace PR
 		else if (argumentsNum > 2)
 			TypePromotor::promoteToMatrix(arguments);
 	}
+
+	void Operator::throwIfNot( const string &message,bool(*fun)(const shared_ptr<Data>&)) const
+	{
+		for_each(arguments.begin(), arguments.end(), [&](const shared_ptr<Data> &data){
+			if (!fun(data))
+				throw CalcException("Error in \"" + getLexemeR() + "\" operator: " + message);
+		});
+	}
 }
 

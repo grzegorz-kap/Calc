@@ -330,10 +330,46 @@
     <ClInclude Include="GraphDrawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plot3Function.h">
-      <Filter>Function</Filter>
+    <ClInclude Include="AndOperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="OROperator.h">
+      <Filter>Model\Operator\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortCircuitJumper.h">
+      <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="SurfaceFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="RandFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Plot3Function.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementWiseAnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementWiseOr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicalNotOperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FixFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CeilFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -371,14 +407,8 @@
     <ClCompile Include="CodeExecutor.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
-    <ClCompile Include="CodeExecutorMatrix.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
     <ClCompile Include="Function.cpp">
       <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorFunction.cpp">
-      <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="CalcException.cpp">
       <Filter>Exceptions</Filter>
@@ -434,15 +464,6 @@
     <ClCompile Include="Output.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="CodeExecutorDefinitions.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorIF.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorWHILE.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
     <ClCompile Include="FunctionFactory.cpp">
       <Filter>Factories</Filter>
     </ClCompile>
@@ -454,12 +475,6 @@
     </ClCompile>
     <ClCompile Include="SignalEmitter.cpp">
       <Filter>Service</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorAssignment.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorId.cpp">
-      <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="FileLoaderException.cpp">
       <Filter>Exceptions</Filter>
@@ -590,9 +605,6 @@
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="CodeExecutorFor.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
     <ClCompile Include="ParserFOR.cpp">
       <Filter>Service\Parsing</Filter>
     </ClCompile>
@@ -626,7 +638,43 @@
     <ClCompile Include="Plot3Function.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
+    <ClCompile Include="AndOperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="OROperator.cpp">
+      <Filter>Model\Operator\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortCircuitJumper.cpp">
+      <Filter>Model\Operator</Filter>
+    </ClCompile>
     <ClCompile Include="SurfaceFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="RandFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWiseAnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementWiseOr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicalNotOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FixFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CeilFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

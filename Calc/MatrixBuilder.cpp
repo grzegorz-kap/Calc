@@ -1,9 +1,13 @@
 #include "stdafx.h"
 #include "MatrixBuilder.h"
 
-
 namespace PR
 {
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber<double>;
+	extern template class ComplexNumber<hdouble>;
+
 	template <class T>
 	MatrixBuilder<T>::MatrixBuilder()
 		:
@@ -30,7 +34,7 @@ namespace PR
 	}
 
 	template <class T>
-	void MatrixBuilder<T>::setAndCheckSize(bool f=true)
+	void MatrixBuilder<T>::setAndCheckSize(bool f = true)
 	{
 		m = mx->size();
 		n = m ? mx->at(0).size() : 0;
@@ -49,7 +53,7 @@ namespace PR
 	bool MatrixBuilder<T>::onScalar(shared_ptr<Data> &data)
 	{
 		TYPE s_type = data->max_type();
-		if (data->isNumeric()&& s_type!=d_type && IMatrixBuilder::getAssociatedType(s_type)==d_type)
+		if (data->isNumeric() && s_type != d_type && IMatrixBuilder::getAssociatedType(s_type) == d_type)
 		{
 			auto ptr = dynamic_cast<ComplexNumber<T> *>(data.get());
 			m_s = 1;
@@ -70,7 +74,7 @@ namespace PR
 			return;
 
 		init_source(data);
-		if (data->isNumeric() && m_s!=0 && n_s!=0)
+		if (data->isNumeric() && m_s != 0 && n_s != 0)
 		{
 			addMatrix();
 		}
@@ -91,6 +95,19 @@ namespace PR
 	}
 
 	template <class T>
+	Matrix<T> MatrixBuilder<T>::buildRand(int m, int n)
+	{
+		if (m < 0 || n < 0)
+			return Matrix<T>();
+
+		Matrix<double> out(m, n);
+		for (auto &vec : out.mx)
+			for (auto &element : vec)
+				element = ComplexNumber<T>(rand() / 1000.0);
+		return out;
+	}
+
+	template <class T>
 	void MatrixBuilder<T>::init_source(const shared_ptr<Data> &data)
 	{
 		type = data->_type;
@@ -107,7 +124,7 @@ namespace PR
 	void MatrixBuilder<T>::addMatrix()
 	{
 		prepareRows();
-		for (int i = 0; i < m_s;i++)
+		for (int i = 0; i < m_s; i++)
 			mx->at(idx + i).insert(mx->at(idx + i).end(), mx_s->at(i).begin(), mx_s->at(i).end());
 	}
 
@@ -135,6 +152,7 @@ namespace PR
 		}
 	}
 
-	template class MatrixBuilder < double > ;
-	template class MatrixBuilder < hdouble > ;
+
+	template class MatrixBuilder < double >;
+	template class MatrixBuilder < hdouble >;
 }

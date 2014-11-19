@@ -66,11 +66,19 @@ namespace PR
 
 		virtual bool isMatrix() const{ return false; }
 		virtual bool isComplexNumber() const{ return false; }
+		virtual bool isScalar() const { return false; }
+		virtual bool isInteger() const { return false; }
+		virtual bool isReal() const { return false; }
+
+		virtual int toInteger() const;
 
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator - (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator * (shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator | (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator & (shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> operator ! () const;
 		virtual shared_ptr<Data> exponentiation(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> operator - () const;
@@ -95,6 +103,13 @@ namespace PR
 		virtual shared_ptr<Data> sin() const;
 		virtual shared_ptr<Data> cos() const;
 		virtual shared_ptr<Data> tan() const;
+
+		virtual shared_ptr<Data> cfix() const;
+		virtual shared_ptr<Data> cfloor() const;
+		virtual shared_ptr<Data> cmod(shared_ptr<Data> &b) const;
+		virtual shared_ptr<Data> cceil() const;
+		virtual shared_ptr<Data> cround() const;
+		
 		virtual bool operator == (const bool &b) const;
 		virtual string toString() const;
 		virtual string toHtml() const;

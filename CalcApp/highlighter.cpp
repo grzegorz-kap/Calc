@@ -8,7 +8,10 @@ Highlighter::Highlighter(QTextDocument *parent)
 	keywordFormat.setForeground(Qt::darkBlue);
 	keywordFormat.setFontWeight(QFont::Bold);
 	QStringList keywordPatterns;
-	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" <<"\\belse\\b"<<"\\bfunction\\b";
+	
+	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" <<"\\belse\\b"<<"\\bfunction\\b"
+		<<"\\bendfor\\b"<<"\\bendwhile\\b"<<"\\bendif\\b"<<"\\bendfunction\\b";
+	
 	foreach(const QString &pattern, keywordPatterns) 
 	{
 		rule.pattern = QRegExp(pattern);

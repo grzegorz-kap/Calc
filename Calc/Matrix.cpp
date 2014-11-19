@@ -3,6 +3,9 @@
 
 namespace PR
 {
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+
 	template <class T> Matrix<T>::Matrix()
 		:M(0), N(0)
 	{

@@ -79,6 +79,7 @@ namespace PR
 		
 
 		void onOperator();
+		void onShortCircuitJumper();
 		void onMatrixEnd();
 
 		void onFunction();

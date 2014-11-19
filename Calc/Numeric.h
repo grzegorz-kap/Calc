@@ -11,11 +11,8 @@ using std::make_unique;
 
 namespace PR
 {
-	template <class A>
-	class Matrix;
-
-	template <class A>
-	class ComplexNumber;
+	template <class A> class Matrix;
+	template <class A> class ComplexNumber;
 
 	template <class T>
 	class Numeric
@@ -51,6 +48,20 @@ namespace PR
 			return make_shared<T>(*get_derived() * *(b->cast_numeric<T>()->get_derived()));
 		}
 
+		virtual shared_ptr<Data> operator | (shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() | *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> operator & (shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(*get_derived() & *b->cast_numeric<T>()->get_derived());
+		}
+
+		virtual shared_ptr<Data> operator ! () const override
+		{
+			return make_shared<T>(get_derived()->logical_not());
+		}
 
 		virtual shared_ptr<Data> operator / (shared_ptr<Data> &b) const override
 		{
@@ -65,6 +76,31 @@ namespace PR
 		virtual shared_ptr<Data> mexponentiation(shared_ptr<Data> &b) const override
 		{
 			return make_shared<T>(Mathematic::mpower(*get_derived(), *b->cast_numeric<T>()->get_derived()));
+		}
+
+		virtual shared_ptr<Data> cfix() const override
+		{
+			return make_shared<T>(Mathematic::fix(*get_derived()));
+		}
+
+		virtual shared_ptr<Data> cfloor() const override
+		{
+			return make_shared<T>(Mathematic::cfloor(*get_derived()));
+		}
+
+		virtual shared_ptr<Data> cmod(shared_ptr<Data> &b) const override
+		{
+			return make_shared<T>(Mathematic::cmod(*get_derived(), *b->cast_numeric<T>()->get_derived()));
+		}
+
+		virtual shared_ptr<Data> cceil() const override
+		{
+			return make_shared<T>(Mathematic::cceil(*get_derived()));
+		}
+
+		virtual shared_ptr<Data> cround() const override
+		{
+			return make_shared<T>(Mathematic::cround(*get_derived()));
 		}
 
 		virtual shared_ptr<Data> log() const override
@@ -334,8 +370,6 @@ namespace PR
 			return dynamic_cast<T *>(this);
 		}
 
-		template <class U>
-		friend class Numeric;
+		template <class U> friend class Numeric;
 	};
-
 };

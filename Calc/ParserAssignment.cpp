@@ -29,6 +29,11 @@ namespace PR
 		auto start = onp.begin();
 		auto end = onp.end();
 		iAssignment->loadTarget(start,end);
+		if (iAssignment->_assignment_type == ASSIGNMENT_TYPE::SUBSCRIPTED)
+		{
+			auto ptr = dynamic_cast<AssignmentSubscripted*>(iAssignment.get());
+			computeShortCircuitJumps(ptr->getOnpRef());
+		}
 		onp.erase(onp.begin(), start);
 
 		/*Assignment assignment;

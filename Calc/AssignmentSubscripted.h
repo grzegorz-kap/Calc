@@ -34,6 +34,7 @@ namespace PR
 		{
 			return dynamic_cast<AssignmentSubscripted *>(this);
 		}
+		vector<shared_ptr<Token>>& getOnpRef() { return onp; }
 	};
 }
 

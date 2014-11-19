@@ -138,7 +138,7 @@ namespace PR
 	void Parser::onOperator()
 	{ 
 		Operator *o1 = i->castToOperator();
-		while (stackBack() == TOKEN_CLASS::OPERATOR)
+		while (stackBack() == TOKEN_CLASS::OPERATOR || stackBack()==TOKEN_CLASS::SHORT_CIRCUIT_OP)
 		{
 			Operator *o2 = stack.back()->castToOperator();
 			if (o1->getLexemeR() == ":" && o2->getLexemeR() == ":")
@@ -152,7 +152,77 @@ namespace PR
 			else
 				break;
 		}
+
+		if (i->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_OP)
+			onShortCircuitOperator();
+
 		stack.push_back(std::move(i));
+	}
+
+	void Parser::onShortCircuitOperator()
+	{
+		if (i->getLexemeR() == "&&")
+			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_END));
+		else if (i->getLexemeR() == "||")
+			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_OR));
+	}
+
+	void Parser::computeShortCircuitJumps( vector<shared_ptr<Token>> &onp)
+	{
+		for (auto iter = onp.begin(); iter != onp.end(); ++iter)
+		{
+			auto &ptr = *iter;
+			TOKEN_CLASS _class = ptr->getClass();
+			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END || _class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
+			{
+				int _level = ptr->getTreeLevel();
+				auto result = std::find_if(iter + 1, onp.end(), [&_level, &_class](const shared_ptr<Token> &token){
+					bool lvl = _level == token->getTreeLevel();
+					bool end = TOKEN_CLASS::SHORT_CIRCUIT_END == _class && token->getLexemeR() == "&&";
+					bool or = TOKEN_CLASS::SHORT_CIRCUIT_OR == _class && token->getLexemeR() == "||";
+					return lvl && (end || or);
+				});
+				int idx = std::distance(onp.begin(), result);
+				if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END)
+					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnFalse(idx + 1);
+				else if (_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
+					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnTrue(idx + 1);
+			}
+		}
+	}
+
+	void Parser::computeTreeLevels()
+	{
+		int main = 0;
+		vector<int> funs;
+		vector<int> mtrx;
+		vector<int> mains;
+		for (const auto &t : onp)
+		{
+			int balance = 0;
+			switch (t->getClass())
+			{
+			case TOKEN_CLASS::ID:
+			case TOKEN_CLASS::NUMBER:
+				balance = 1; break;
+			case TOKEN_CLASS::FUNCTON_ARGS_END:
+				funs.push_back(0); break;
+			case TOKEN_CLASS::MATRIX_START:
+				mtrx.push_back(0); break;
+			case TOKEN_CLASS::OPERATOR:
+			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
+				balance = -t->castToOperator()->getArgumentsNum() + 1; break;
+			case TOKEN_CLASS::MATRIX_END:
+				balance = -mtrx.back() + 1; mtrx.pop_back(); break;
+			case TOKEN_CLASS::FUNCTION:
+				balance = -funs.back() + 1; funs.pop_back(); break;
+			}
+			main += balance;
+			if (funs.size()) funs.back() += balance;
+			if (mtrx.size()) mtrx.back() += balance;
+			t->setTreeLevel(main);
+			mains.push_back(main);
+		}
 	}
 
 	void Parser::onMatrixStart()
@@ -228,6 +298,7 @@ namespace PR
 			case TOKEN_CLASS::SEMICOLON:
 				onSemicolon();
 				break;
+			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
 				break;
@@ -271,9 +342,10 @@ namespace PR
 				break;
 			}
 		}
-
 		stackToOnpAll();
+		computeTreeLevels();
 		changeIfAssignment();
+		computeShortCircuitJumps(onp);
 		return iter != tokens.end();
 	}
 
@@ -297,7 +369,8 @@ namespace PR
 	{
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
+			TOKEN_CLASS _type = stack[i]->getClass();
+			if (_type != TOKEN_CLASS::OPERATOR && _type!=TOKEN_CLASS::SHORT_CIRCUIT_OP)
 				throw CalcException("Unexpected symbol!", stack[i]->getPosition());
 			onp.push_back(std::move(stack[i]));
 		}

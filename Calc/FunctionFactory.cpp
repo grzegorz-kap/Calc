@@ -22,6 +22,12 @@ namespace PR
 		builded_in.insert({ "plot", [](){return make_unique <PlotFunction>(); } });
 		builded_in.insert({ "plot3", [](){return make_unique<Plot3Function>(); } });
 		builded_in.insert({ "surface", [](){return make_unique<SurfaceFunction>(); } });
+		builded_in.insert({ "rand", [](){return make_unique<RandFunction>(); } });
+		builded_in.insert({ "fix", [](){return make_unique<FixFunction>(); } });
+		builded_in.insert({ "floor", [](){return make_unique<FloorFunction>(); } });
+		builded_in.insert({ "ceil", [](){return make_unique<CeilFunction>(); } });
+		builded_in.insert({ "mod", [](){return make_unique<ModFunction>(); } });
+		builded_in.insert({ "round", [](){return make_unique<RoundFunction>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()

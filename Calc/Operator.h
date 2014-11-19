@@ -30,6 +30,9 @@ namespace PR
 		int argumentsNum;
 		EVAULATED ev;
 		vector<shared_ptr<Data>> arguments;
+		
+		void throwIfNot(const string &message,bool(*fun)(const shared_ptr<Data> &)) const;
+
 	public:
 		Operator(const string &name, int priority, int arguments,EVAULATED ev);
 		~Operator();
