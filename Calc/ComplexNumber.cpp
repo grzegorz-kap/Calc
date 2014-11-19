@@ -3,11 +3,24 @@
 
 namespace PR
 {
-	
+	template <class T> ComplexNumber<T>::ComplexNumber()
+	{
+		setDataType();
+	}
 
+	template <class T> ComplexNumber<T>::ComplexNumber(const double & reArg, const double & imArg = 0)
+		:re(reArg), im(imArg)
+	{
+		setDataType();
+	}
 
-	template <>
-	ComplexNumber<double>::ComplexNumber(string &&val)
+	template <class T> ComplexNumber<T>::ComplexNumber(const hdouble & reArg, const hdouble & imArg = 0)
+		:re(reArg), im(imArg)
+	{
+		setDataType();
+	}
+
+	template <> ComplexNumber<double>::ComplexNumber(string &&val)
 	{
 		if (val.size() && val.back() == 'i')
 		{
@@ -23,8 +36,7 @@ namespace PR
 		_type = TYPE::DOUBLE;
 	}
 
-	template <>
-	ComplexNumber<hdouble>::ComplexNumber(string &&val)
+	template <> ComplexNumber<hdouble>::ComplexNumber(string &&val)
 	{
 		if (val.size() && val.back() == 'i')
 		{
@@ -40,88 +52,75 @@ namespace PR
 		_type = TYPE::R_DOUBLE;
 	}
 
-	template <class T>
-	ComplexNumber<T>::~ComplexNumber()
+	template <class T> ComplexNumber<T>::~ComplexNumber()
 	{
 	}
 
-	template <>
-	void ComplexNumber<double>::setDataType()
+	template <> void ComplexNumber<double>::setDataType()
 	{
 		_type = TYPE::DOUBLE;
 	}
 
-	template <>
-	void ComplexNumber<hdouble>::setDataType()
+	template <> void ComplexNumber<hdouble>::setDataType()
 	{
 		_type = TYPE::R_DOUBLE;
 	}
 
-	template <class T>
-	T ComplexNumber<T>::getRe() const
+	template <class T> T ComplexNumber<T>::getRe() const
 	{
 		return re;
 	}
 
-	template <class T>
-	int ComplexNumber<T>::getReInt() const
+	template <class T> int ComplexNumber<T>::getReInt() const
 	{
 		return (int)re;
 	}
 
-	template <>
-	int ComplexNumber<hdouble>::getReInt() const
+	template <> int ComplexNumber<hdouble>::getReInt() const
 	{
 		return re.convert_to<int>();
 	}
 
-	template <class T>
-	T ComplexNumber<T>::getIm() const
+	template <class T> T ComplexNumber<T>::getIm() const
 	{
 		return im;
 	}
 
-	template <class T>
-	void ComplexNumber<T>::setRe(const T &reA)
+	template <class T> void ComplexNumber<T>::setRe(const T &reA)
 	{
 		re = reA;
 	}
 
-	template <class T>
-	void ComplexNumber<T>::setIm(const T &imA)
+	template <class T> void ComplexNumber<T>::setIm(const T &imA)
 	{
 		im = imA;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator + (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T> 
+	ComplexNumber<T> ComplexNumber<T>::operator + (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re + b.re, im + b.im);
+		return ComplexNumber<T>(re + b.re, im + b.im);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator - (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() - U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator - (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() - U())>(re - b.re, im - b.im);
+		return ComplexNumber<T>(re - b.re, im - b.im);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator * (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() * U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator * (const ComplexNumber<T> &b) const
 	{
-		ComplexNumber<decltype(T() * U())> c;
+		ComplexNumber<T> c;
 		c.re = re*b.re - im*b.im;
 		c.im = re*b.im + im*b.re;
 		return c;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator / (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() / U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator / (const ComplexNumber<T> &b) const
 	{
-		ComplexNumber<decltype(T() / U())> c;
+		ComplexNumber<T> c;
 		if (im == 0 && b.im == 0)
 		{
 			c.re = re / b.re;
@@ -172,23 +171,20 @@ namespace PR
 		im -= b.im;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::times(const ComplexNumber<U> &b) const
-		->ComplexNumber < decltype(T()*U()) >
-	{
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::times(const ComplexNumber<T> &b) const
+	{ 
 		return *this * b;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::rdivide(const ComplexNumber<U> &b) const
-		->ComplexNumber < decltype(T()*U()) >
+	template <class T> 
+	ComplexNumber<T> ComplexNumber<T>::rdivide(const ComplexNumber<T> &b) const
 	{
 		return *this / b;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::ldivide(const ComplexNumber<U> &b) const
-		->ComplexNumber < decltype(T()*U()) >
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::ldivide(const ComplexNumber<T> &b) const
 	{
 		return b / *this;
 	}
@@ -213,46 +209,60 @@ namespace PR
 		return (re || im) == b;
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator == (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T> 
+	ComplexNumber<T> ComplexNumber<T>::operator == (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re == b.re && im == b.im);
+		return ComplexNumber<T>(re == b.re && im == b.im);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator != (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator != (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re != b.re || im != b.im);
+		return ComplexNumber<T>(re != b.re || im != b.im);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator < (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator < (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re < b.re);
+		return ComplexNumber<T>(re < b.re);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator <= (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator <= (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re <= b.re);
+		return ComplexNumber<T>(re <= b.re);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator > (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator >(const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re > b.re);
+		return ComplexNumber<T>(re > b.re);
 	}
 
-	template <class T> template <class U>
-	auto ComplexNumber<T>::operator >= (const ComplexNumber<U> &b) const
-		->ComplexNumber<decltype(T() + U())>
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator >= (const ComplexNumber<T> &b) const
 	{
-		return ComplexNumber<decltype(T() + U())>(re >= b.re);
+		return ComplexNumber<T>(re >= b.re);
+	}
+
+
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator | (const ComplexNumber<T> &b) const
+	{
+		return ComplexNumber<T>(re || b.re);
+	}
+
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::operator & (const ComplexNumber<T> &b) const
+	{
+		return ComplexNumber<T>(re &&b.re);
+	}
+
+
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::logical_not() const
+	{
+		return ComplexNumber<T>(!re);
 	}
 
 	template <class T>
@@ -386,6 +396,18 @@ namespace PR
 	}
 
 	template <class T>
+	int ComplexNumber<T>::get_cols_int() const
+	{ 
+		return 1; 
+	}
+
+	template <class T>
+	int ComplexNumber<T>::get_rows_int() const
+	{ 
+		return 1; 
+	}
+
+	template <class T>
 	string ComplexNumber<T>::get_cell_string(int i, int j) const
 	{
 		if (i > 1 || j > 1)
@@ -393,6 +415,106 @@ namespace PR
 		return toString();
 	}
 
-	template class ComplexNumber < double > ;
-	template class ComplexNumber < hdouble > ;
+	template <class T>
+ 	ComplexNumber<T> ComplexNumber<T>::getRowIndex() const
+	{
+		return ComplexNumber<T>(1);
+	}
+	
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::getColIndex() const
+	{
+		return ComplexNumber<T>(1);
+	}
+	
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::getIndexAll() const
+	{
+		return ComplexNumber<T>(1);
+	}
+	
+	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::getIndex(int num) const
+	{
+		return ComplexNumber<T>(1);
+	}
+
+	template <class T>
+	bool ComplexNumber<T>::isComplexNumber() const
+	{
+		return true;
+	}
+
+	template <class T>
+	bool ComplexNumber<T>::isScalar() const
+	{
+		return true;
+	}
+
+	template <class T>
+	bool ComplexNumber<T>::isInteger() const 
+	{
+		return im == 0.0 && floor(re) == re;
+	}
+
+	template <class T>
+	bool ComplexNumber<T>::isReal() const 
+	{
+		return im == 0;
+	}
+
+	template <class T>
+	Data* ComplexNumber<T>::copy() const
+	{
+		return new ComplexNumber<T>(*this);
+	}
+
+	template <class T> string ComplexNumber<T>::getValueInfoString() const
+	{ 
+		return toString(); 
+	}
+
+	template <class T> string ComplexNumber<T>::minValueString() const 
+	{ 
+		return toString(); 
+	}
+
+	template <class T> string ComplexNumber<T>::maxValueString() const 
+	{ 
+		return toString(); 
+	}
+
+	template <class T> vector<double> ComplexNumber<T>::toDoubleVector() const
+	{
+		return vector<double>(1, toDouble());
+	}
+
+	template <class T> vector<double> ComplexNumber<T>::toDoubleVectorAll() const
+	{
+		return vector<double>(1, toDouble());
+	}
+
+	template <class T> double ComplexNumber<T>::toDouble() const
+	{
+		return re;
+	}
+
+	template <class T> int ComplexNumber<T>::toInteger() const
+	{
+		return re;
+	}
+
+	template <> double ComplexNumber<hdouble>::toDouble() const
+	{
+		return re.convert_to<double>();
+	}
+
+	template <> int ComplexNumber<hdouble>::toInteger() const
+	{
+		return re.convert_to<int>();
+	}
+
+
+	template class ComplexNumber < double >;
+	template class ComplexNumber < hdouble >;
 }

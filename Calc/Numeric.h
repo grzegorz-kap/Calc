@@ -11,11 +11,8 @@ using std::make_unique;
 
 namespace PR
 {
-	template <class A>
-	class Matrix;
-
-	template <class A>
-	class ComplexNumber;
+	template <class A> class Matrix;
+	template <class A> class ComplexNumber;
 
 	template <class T>
 	class Numeric
@@ -373,8 +370,6 @@ namespace PR
 			return dynamic_cast<T *>(this);
 		}
 
-		template <class U>
-		friend class Numeric;
+		template <class U> friend class Numeric;
 	};
-
 };
