@@ -10,6 +10,8 @@ namespace PR
 	extern template class ComplexNumber<hdouble>;
 	extern template class MatrixBuilder < double > ;
 	extern template class MatrixBuilder < hdouble > ;
+
+	extern class SignalEmitter;
 	
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
