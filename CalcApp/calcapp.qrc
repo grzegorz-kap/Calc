@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/CalcApp">
+    <file>stop.png</file>
     <file>save.png</file>
     <file>run.png</file>
     <file>new.png</file>

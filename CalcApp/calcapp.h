@@ -37,6 +37,8 @@ private:
 	void setupFont();
 	void setupToolbar();
 
+	public slots:
+	void stopComputing();
 
 };
 

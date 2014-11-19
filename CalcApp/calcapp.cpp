@@ -92,6 +92,17 @@ void CalcApp::setupToolbar()
 	button->setToolTip("New script");
 	ui.mainToolBar->addWidget(button);
 	connect(button, SIGNAL(clicked()), &scriptEditor, SLOT(onNewFileAction()));
+
+	button = new QPushButton(this);
+	button->setIcon(QIcon(":/CalcApp/stop.png"));
+	button->setToolTip("Stop computing");
+	ui.mainToolBar->addWidget(button);
+	connect(button, SIGNAL(clicked()), this, SLOT(stopComputing()));
+}
+
+void CalcApp::stopComputing()
+{
+	PR::SignalEmitter::get()->call_stop();
 }
 
 void CalcApp::closeEvent(QCloseEvent *ev)
