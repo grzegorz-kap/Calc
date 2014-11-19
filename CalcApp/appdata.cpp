@@ -33,7 +33,9 @@ void AppData::appendToFile(const QString &fileName, const QString &data)
 	QFile file(fileName);
 	if (!file.open(QIODevice::Append | QIODevice::Text))
 		return;
-	QTextStream(&file) << data;
+	QTextStream stream(&file);
+	stream.setCodec(QTextCodec::codecForName("UTF-8"));
+	stream << data;
 	file.close();
 }
 
@@ -50,7 +52,7 @@ void AppData::writeDirHistory(QComboBox *dir)
 		return;
 
 	QTextStream s(&file);
-
+	s.setCodec(QTextCodec::codecForName("UTF-8"));
 	int N = dir->count();
 	for (int i = 0; i < N; i++)
 	{

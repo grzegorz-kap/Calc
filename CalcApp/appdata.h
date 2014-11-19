@@ -9,6 +9,7 @@
 #include <qdir.h>
 #include <qtextstream.h>
 #include <qtreewidget.h>
+#include <qtextcodec.h>
 
 class AppData : public QObject
 {
