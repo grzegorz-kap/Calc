@@ -4,12 +4,7 @@
 
 namespace PR
 {
-	Variables CodeExecutor::globals = Variables();
-	bool CodeExecutor::stop_computing = false;
-
-	int CodeExecutor::recursions = 0;
-	int CodeExecutor::recursion_limit = 300;
-
+	
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
 	{
@@ -142,7 +137,7 @@ namespace PR
 		else
 			return make_shared<Data>();
 	}
-
+	
 	vector<shared_ptr<Data>> CodeExecutor::run_single(const vector<shared_ptr<Token>> &onp,Variables &vars)
 	{
 		CodeExecutor exec(vars);
@@ -209,4 +204,360 @@ namespace PR
 			next();
 		}
 	}
+
+	void CodeExecutor::defaultAssignment()
+	{
+		auto target = make_unique<AssignmentSingle>();
+		target->setTargetName("ans");
+		stack.insert(stack.begin(), std::move(target));
+
+		if (stack.size() >= 2 && stack.back()->_type == TYPE::OUTPUT)
+			TypePromotor::convertTo(stack.back()->max_type(), stack.back(), stack.back());
+
+		onAssignment();
+	}
+
+	void CodeExecutor::onAssignment()
+	{
+		if (stack.size() < 2)
+			throw CalcException("!");
+
+		IAssignment * iassignment = stack.front()->cast_token()->castToAssignment();
+		iassignment->doAssignment(vars_ref, std::next(stack.begin()), stack.end(), assignment);
+		stack.erase(stack.begin(), stack.begin() + 2);
+		assignment_flag = true;
+	}
+
+	bool CodeExecutor::checkFor()
+	{
+		if (isKeyword(TOKEN_CLASS::FOR_KEYWORD))
+		{
+			onForKeyword();
+			return true;
+		}
+
+		if (isKeyword(TOKEN_CLASS::END_FOR))
+		{
+			onForEndKeyword();
+			return true;
+		}
+		return false;
+	}
+
+	void CodeExecutor::onForKeyword()
+	{
+		for_iterators.push_back(ForIterator(vars_ref));
+		ForIterator & _iterator = for_iterators.back();
+		InstructionFor * _for = dynamic_cast<InstructionFor *>(ip->at(0).get());
+
+		_iterator.setName(_for->getLexeme());
+		_iterator.setData(run_single(_for->getOnp(), vars_ref));
+
+		int balance = ip->at(0)->getKeywordBalance();
+		next();
+		_iterator.setCodeBegin(code.getLP());
+		setIPTo(FOR_FIND, balance);
+		_iterator.setCodeEnd(code.getLP() + 1);
+		if (!_iterator.eof())
+		{
+			_iterator.loadNext();
+			code.setIp(_iterator.getCodeBegin());
+		}
+		else
+			code.inc();
+	}
+
+	void CodeExecutor::onForEndKeyword()
+	{
+		if (for_iterators.size() == 0)
+			throw CalcException("END-FOR found , but there is no for-iterators in memory!");
+		ForIterator & _iterator = for_iterators.back();
+		if (_iterator.eof())
+		{
+			code.inc();
+			for_iterators.pop_back();
+		}
+		else
+		{
+			_iterator.loadNext();
+			code.setIp(_iterator.getCodeBegin());
+		}
+	}
+
+	void CodeExecutor::onFunctionArgs()
+	{
+		/*
+		Information about expected number of parameters returned from function
+		*/
+		if (i != ip->begin() && std::prev(i)->get()->getClass() == TOKEN_CLASS::ASSIGNMENT_TARGET)
+		{
+			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1,
+				std::prev(i)->get()->castToAssignment()->getTargetSize()));
+			return;
+		}
+		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
+	}
+
+	void CodeExecutor::onMatrixAll()
+	{
+		stack.push_back(make_shared<Token>(TOKEN_CLASS::MATRIX_ALL, (*i)->getPosition()));
+	}
+
+	void CodeExecutor::onFunction()
+	{
+		const string &name = (*i)->getLexemeR();
+
+		auto ii = find(TOKEN_CLASS::FUNCTON_ARGS_END, true);
+		vector<shared_ptr<Data>> args(std::next(ii), stack.end());
+		int num = (*ii)->cast_token()->getParam();
+		stack.erase(ii, stack.end());
+
+		try{
+			onVariableFunction(args, vars_ref.get(name));
+			return;
+		}
+		catch (const string &ex)
+		{
+		}
+
+		auto function = FunctionFactory::load_in(name);
+		if (function != nullptr)
+		{
+			function->set(args, num > 0 ? num : 1);
+			stack.push_back(function->run());
+		}
+		else
+			onExternalFunction(args, name);
+
+	}
+
+	void CodeExecutor::onVariableFunction(vector<shared_ptr<Data>> &args, shared_ptr<Data> &var)
+	{
+		int size = args.size();
+		if (size > 2)
+			throw CalcException("Too many arguments while accessing variables cells");
+
+		TYPE convertToType = var->_type;
+
+		for (int i = args.size() - 1; i >= 0; i--)
+			if (args[i]->_type != convertToType && !args[i]->isToken(TOKEN_CLASS::MATRIX_ALL))
+				TypePromotor::convertTo(convertToType, args[i], args[i]);
+
+		if (size == 2)
+			stack.push_back(var->getAt(args[0], args[1]));
+		else if (size == 1)
+			stack.push_back(var->getAt(args[0]));
+		else
+			stack.push_back(var->getAt());
+	}
+
+	void CodeExecutor::onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name)
+	{
+		if (++recursions > recursion_limit)
+			throw CalcException("Error in '" + name + "'. Maximum recursion limit of " +
+			std::to_string(recursion_limit) + " reached.", (*i)->getPosition());
+
+		auto function = FunctionFactory::load_external(name);
+		CodeExecutor exec(function, args);
+		exec.start();
+
+		recursions--;
+
+		const vector<string>& output = function.getOutput();
+		shared_ptr<Output> results = make_shared<Output>();
+		for (const string &str : output)
+		{
+			auto result = exec.vars_ref.get(str);
+			if (result == nullptr)
+				break;
+			results->add(result);
+		}
+		stack.push_back(results);
+	}
+
+	void CodeExecutor::onID()
+	{
+		try{
+			if (ip->size() == 1)
+			{
+				assignment.push_back({ vars_ref.getIterator((*i)->getLexemeR()), false });
+				assignment_flag = true;
+			}
+			else
+				stack.push_back(vars_ref.get((*i)->getLexemeR()));
+		}
+		catch (const string &ex)
+		{
+			if (!onScript())
+				throw CalcException("Undefined variable or script '" + (*i)->getLexemeR() + "'.", (*i)->getPosition());
+		}
+	}
+
+	bool CodeExecutor::onScript()
+	{
+		if (ip->size() > 1)
+			return false;
+
+		FileLoader file((*i)->getLexeme() + ".m");
+		if (!file.is_open())
+			return false;
+
+		CodeExecutor exec(vars_ref);
+		exec.setInput(file);
+		exec.start();
+		assignment_flag = true;
+		return true;
+	}
+
+	bool CodeExecutor::checkIF()
+	{
+		if (isKeyword(TOKEN_CLASS::IF_KEYWORD))
+		{
+			onIF();
+			return true;
+		}
+
+		if (isKeyword(TOKEN_CLASS::END_IF))
+		{
+			code.inc();
+			return true;
+		}
+
+		if (isKeyword(TOKEN_CLASS::ELSE_KEYWORD))
+		{
+			setIPTo(ELSE_FIND, ip->at(0)->getKeywordBalance());
+			code.inc();
+			return true;
+		}
+
+		return false;
+	}
+
+	void CodeExecutor::onIF()
+	{
+		int balance = ip->at(0)->getKeywordBalance();
+		next();
+		assignment_flag = true;
+		output_off_flag = true;
+		if (*run() == false)
+		{
+			next();
+			setIPTo(IF_FIND, balance);
+		}
+		code.inc();
+	}
+
+	void CodeExecutor::onMatrixEnd()
+	{
+		vector<shared_ptr<Data>>::iterator ii;
+		TYPE max_type = TYPE::TOKEN;
+
+
+		for (ii = stack.end() - 1; ii >= stack.begin(); ii--)
+		{
+			auto _type = (*ii)->max_type();
+			if (_type > max_type)
+				max_type = _type;
+
+			if ((*ii)->_type == TYPE::TOKEN)
+			{
+				Token *ptr = (*ii)->cast_token();
+				if (ptr->getClass() == TOKEN_CLASS::MATRIX_START)
+				{
+					if (ptr->getEvType() > TYPE::TOKEN)
+						max_type = ptr->getEvType();
+					break;
+				}
+			}
+		}
+
+		max_type = max_type >= TYPE::DOUBLE ? IMatrixBuilder::TYPES.at(max_type) : TYPE::M_DOUBLE;
+
+		if (ii < stack.begin())
+			throw CalcException("Matrix start not found");
+
+		auto builder = MatrixBuilderFactory::get(max_type);
+		for (auto k = std::next(ii); k != stack.end(); k++)
+		{
+			builder->add(*k);
+		}
+		builder->setAndCheckSize();
+		stack.erase(ii, stack.end());
+		stack.push_back(builder->getPtr());
+	}
+
+	bool CodeExecutor::checkWhile()
+	{
+		if (isKeyword(TOKEN_CLASS::WHILE_KEYWORD))
+		{
+			onWHILE();
+			return true;
+		}
+		if (isKeyword(TOKEN_CLASS::END_WHILE))
+		{
+			onWhileEnd();
+			return true;
+		}
+		return false;
+	}
+
+	void CodeExecutor::onWhileEnd()
+	{
+		ip = code.get(conditions.back());
+		assignment_flag = true;
+		output_off_flag = true;
+		if (*run() == false)
+		{
+			conditions.pop_back();
+			code.inc();
+		}
+		else
+		{
+			code.setIp(conditions.back() + 1);
+		}
+	}
+
+	void CodeExecutor::onWHILE()
+	{
+		int balance = ip->at(0)->getKeywordBalance();
+		next();
+		conditions.push_back(code.getLP());
+		assignment_flag = true;
+		output_off_flag = true;
+		if (*run() == false)
+		{
+			next();
+			setIPTo(WHILE_FIND, balance);
+		}
+		code.inc();
+	}
+
+	decltype(AssignmentSubscripted::executor) AssignmentSubscripted::executor = CodeExecutor::run_single;
+
+	const vector<TOKEN_CLASS> CodeExecutor::IF_FIND =
+	{
+		TOKEN_CLASS::END_IF,
+		TOKEN_CLASS::ELSE_KEYWORD
+	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::ELSE_FIND =
+	{
+		TOKEN_CLASS::END_IF
+	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::WHILE_FIND =
+	{
+		TOKEN_CLASS::END_WHILE
+	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::FOR_FIND =
+	{
+		TOKEN_CLASS::END_FOR
+	};
+
+	Variables CodeExecutor::globals = Variables();
+	bool CodeExecutor::stop_computing = false;
+
+	int CodeExecutor::recursions = 0;
+	int CodeExecutor::recursion_limit = 300;
 }

@@ -407,14 +407,8 @@
     <ClCompile Include="CodeExecutor.cpp">
       <Filter>Execution</Filter>
     </ClCompile>
-    <ClCompile Include="CodeExecutorMatrix.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
     <ClCompile Include="Function.cpp">
       <Filter>Function</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorFunction.cpp">
-      <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="CalcException.cpp">
       <Filter>Exceptions</Filter>
@@ -470,15 +464,6 @@
     <ClCompile Include="Output.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="CodeExecutorDefinitions.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorIF.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorWHILE.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
     <ClCompile Include="FunctionFactory.cpp">
       <Filter>Factories</Filter>
     </ClCompile>
@@ -490,12 +475,6 @@
     </ClCompile>
     <ClCompile Include="SignalEmitter.cpp">
       <Filter>Service</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorAssignment.cpp">
-      <Filter>Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorId.cpp">
-      <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="FileLoaderException.cpp">
       <Filter>Exceptions</Filter>
@@ -625,9 +604,6 @@
     </ClCompile>
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeExecutorFor.cpp">
-      <Filter>Execution</Filter>
     </ClCompile>
     <ClCompile Include="ParserFOR.cpp">
       <Filter>Service\Parsing</Filter>

@@ -204,13 +204,6 @@
     <ClCompile Include="CastException.cpp" />
     <ClCompile Include="CeilFunction.cpp" />
     <ClCompile Include="CodeExecutor.cpp" />
-    <ClCompile Include="CodeExecutorAssignment.cpp" />
-    <ClCompile Include="CodeExecutorDefinitions.cpp" />
-    <ClCompile Include="CodeExecutorFor.cpp" />
-    <ClCompile Include="CodeExecutorFunction.cpp" />
-    <ClCompile Include="CodeExecutorId.cpp" />
-    <ClCompile Include="CodeExecutorIF.cpp" />
-    <ClCompile Include="CodeExecutorWHILE.cpp" />
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
     <ClCompile Include="Colon2Operator.cpp" />
@@ -281,7 +274,6 @@
     <ClCompile Include="OROperator.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="CodeExecutorMatrix.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
     <ClCompile Include="ParserAssignment.cpp" />
     <ClCompile Include="ParserFOR.cpp" />
