@@ -2,12 +2,10 @@
 
 #include <memory>
 #include <string>
-#include <functional>
 
 using std::unique_ptr;
 using std::make_unique;
 using std::string;
-using std::function;
 
 #include "i_order_map.h"
 #include "Token.h"

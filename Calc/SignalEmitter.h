@@ -28,12 +28,12 @@ namespace PR
 		typedef AddedVariablesSender::slot_type AddedVariablesSlot;
 		typedef CharStringSender::slot_type CharStringSenderSlot;
 
-		DataValueSender sig_data_value;
-		ExceptionSender sig_exception;
-		StopComputingSender sig_stop_computing;
-		AddedVariablesSender sig_added_variables;
-		AddedVariablesSender sig_updated_variables;
-		CharStringSender sig_removed_variables;
+		DataValueSender			*sig_data_value;
+		ExceptionSender			*sig_exception;
+		StopComputingSender		*sig_stop_computing;
+		AddedVariablesSender	*sig_added_variables;
+		AddedVariablesSender	*sig_updated_variables;
+		CharStringSender		*sig_removed_variables;
 
 		static SignalEmitter * instance;
 		SignalEmitter();
