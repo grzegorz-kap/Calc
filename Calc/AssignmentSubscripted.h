@@ -18,23 +18,11 @@ namespace PR
 		AssignmentSubscripted();
 		~AssignmentSubscripted();
 
-		virtual void loadTarget(vector<shared_ptr<Token>>::iterator &start, vector<shared_ptr<Token>>::iterator &end) override;
-
-		virtual void doAssignment(Variables &vars,
-			vector<shared_ptr<Data>>::iterator &first,
-			vector<shared_ptr<Data>>::iterator &last,
-			vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment) override;
-
-		virtual int getTargetSize() const override
-		{
-			return 1;
-		}
-
-		virtual IAssignment* castToAssignment() override
-		{
-			return dynamic_cast<AssignmentSubscripted *>(this);
-		}
-		vector<shared_ptr<Token>>& getOnpRef() { return onp; }
+		virtual void loadTarget(instr_iter &start, instr_iter &end) override;
+		virtual void doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment) override;
+		virtual int getTargetSize() const override;
+		virtual IAssignment * castToAssignment() override;
+		vector<shared_ptr<Token>>& getOnpRef();
 	};
 }
 

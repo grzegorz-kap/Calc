@@ -24,15 +24,9 @@ namespace PR
 {
 	typedef cpp_bin_float_100 hdouble;
 
-	template <class T>
-	class Numeric;
-
-	template <class T>
-	class Matrix;
-
-	template <class T>
-	class ComplexNumber;
-
+	template <class T> class Numeric;
+	template <class T> class Matrix;
+	template <class T> class ComplexNumber;
 	class Token;
 	class Output;
 
@@ -103,13 +97,11 @@ namespace PR
 		virtual shared_ptr<Data> sin() const;
 		virtual shared_ptr<Data> cos() const;
 		virtual shared_ptr<Data> tan() const;
-
 		virtual shared_ptr<Data> cfix() const;
 		virtual shared_ptr<Data> cfloor() const;
 		virtual shared_ptr<Data> cmod(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> cceil() const;
 		virtual shared_ptr<Data> cround() const;
-		
 		virtual bool operator == (const bool &b) const;
 		virtual string toString() const;
 		virtual string toHtml() const;
@@ -135,12 +127,10 @@ namespace PR
 		virtual shared_ptr<Data> getColumn(int idx) const;
 		virtual vector<double> toDoubleVector() const;
 		virtual vector<double> toDoubleVectorAll() const;
-
 		virtual string minValueString() const;
 		virtual string maxValueString() const;
 		virtual string getValueInfoString() const;
 		virtual string getTypeName() const;
-
 		virtual Data* copy() const;
 
 		template<class T>
