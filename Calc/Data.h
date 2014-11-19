@@ -131,7 +131,7 @@ namespace PR
 		virtual string maxValueString() const;
 		virtual string getValueInfoString() const;
 		virtual string getTypeName() const;
-		virtual Data* copy() const;
+		virtual shared_ptr<Data> copy() const;
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()

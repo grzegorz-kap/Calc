@@ -27,15 +27,14 @@ namespace PR
 			exec.setInput(command);
 			CodeExecutor::off_stop_computing();
 			exec.start();
-
-			/* Boost thread safety */
-			sendUpdatedVariablesInformations();
+			
 		}
 		catch (const CalcException &ex)
 		{
 			SignalEmitter::get()->call(ex);
-			sendUpdatedVariablesInformations();
 		}
+		SignalEmitter::get()->call_execution_complate();
+		sendUpdatedVariablesInformations();
 	}
 
 	void Interpreter::updateFile(const char *file)

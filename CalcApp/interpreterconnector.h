@@ -16,19 +16,19 @@ class InterpreterConnector : public QObject
 private:
 	
 	PR::Interpreter interpreter;
-	
-
 	static const QString errorHtml;
 	static const QString endFontHtml;
 
+	
 public:
 	InterpreterConnector();
 	~InterpreterConnector();
 
 	void connectStopComputing(){ interpreter.connectStopComputing(); }
-
+	void connectToInterpreterSingals();
 	void signal_receiver(const char *, const PR::Data *);
 	void errors_receiver(const char *, int);
+	void executionComplate(void);
 
 public slots:
 	void workingDirectoryChanged(QString dir);
@@ -40,6 +40,7 @@ private slots:
 signals:
 	void interpreterResponded(QString);
 	void interpreterRespondedHtml(QString);
+	void interpreterResponded();
 	void interpreterError(QString);
 	void sendVariableInformation(PR::VariableInfo);
 };

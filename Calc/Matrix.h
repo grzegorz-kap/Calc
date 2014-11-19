@@ -119,7 +119,7 @@ namespace PR
 		ComplexNumber<T> maxValue() const;
 		virtual string minValueString() const override;
 		virtual string maxValueString() const override;
-		virtual Data* copy() const;
+		virtual shared_ptr<Data> copy() const;
 		virtual vector<double> toDoubleVector() const override;
 		virtual vector<double> toDoubleVectorAll() const override;
 

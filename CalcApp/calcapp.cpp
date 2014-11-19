@@ -18,17 +18,13 @@ CalcApp::CalcApp(QWidget *parent)
 	QThread *t = new QThread();
 	t->start();
 	interpreterConnector->moveToThread(t);
+	interpreterConnector->connectToInterpreterSingals();
 	
 	QString temp = QDir::currentPath();
 	interpreterConnector->workingDirectoryChanged(temp);
 	fileWatcher.addPath(QDir::currentPath());
 	ui.dirComboBox->workingDirectoryChanged(temp);
 	scriptEditor.workingDirectoryChanged(temp);
-
-
-	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, interpreterConnector, _1, _2));
-	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, interpreterConnector, _1, _2));
-
 	ui.variables->connectSlots();
 
 	qRegisterMetaType<QString>("QString");
@@ -46,6 +42,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(interpreterConnector, SIGNAL(interpreterResponded(QString)), ui.console, SLOT(append(QString)));
 	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(QString)), ui.console, SLOT(insertHtml(QString)));
 	connect(interpreterConnector, SIGNAL(interpreterError(QString)), ui.console, SLOT(insertHtml(QString)));
+	connect(interpreterConnector, SIGNAL(interpreterResponded()), ui.commandLine, SLOT(interpreterRespond()));
 	connect(&fileWatcher, SIGNAL(directoryChanged(QString)), &fileWatcher, SLOT(changed(QString)));
 	connect(&fileWatcher, SIGNAL(sendFileList(QStringList)), ui.filesList, SLOT(set(QStringList)));
 	connect(&fileWatcher, SIGNAL(fileUpdated(QString)), interpreterConnector, SLOT(updateFile(QString)));

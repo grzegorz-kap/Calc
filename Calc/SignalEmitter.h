@@ -21,12 +21,14 @@ namespace PR
 		typedef boost::signals2::signal < void() > StopComputingSender;
 		typedef boost::signals2::signal < void(const VariableInfo *, int)> AddedVariablesSender;
 		typedef boost::signals2::signal < void(const char **,int num)> CharStringSender;
+		typedef boost::signals2::signal < void(void)> VoidSender;
 		
 		typedef DataValueSender::slot_type DataPointerSenderSlot;
 		typedef ExceptionSender::slot_type ExceptionSenderSlot;
 		typedef StopComputingSender::slot_type StopComputingSlot;
 		typedef AddedVariablesSender::slot_type AddedVariablesSlot;
 		typedef CharStringSender::slot_type CharStringSenderSlot;
+		typedef VoidSender::slot_type VoidSenderSlot;
 
 		DataValueSender			*sig_data_value;
 		ExceptionSender			*sig_exception;
@@ -34,6 +36,7 @@ namespace PR
 		AddedVariablesSender	*sig_added_variables;
 		AddedVariablesSender	*sig_updated_variables;
 		CharStringSender		*sig_removed_variables;
+		VoidSender				*sig_execution_complate;
 
 		static SignalEmitter * instance;
 		SignalEmitter();
@@ -45,6 +48,7 @@ namespace PR
 	public:
 		static SignalEmitter* get();
 		
+		void connect_execution_complate(const VoidSenderSlot &slot);
 		void connect_output(const DataPointerSenderSlot &slot);
 		void connect_errors(const ExceptionSenderSlot &slot);
 		void connect_stop_computing(const StopComputingSlot &slot);
@@ -52,6 +56,7 @@ namespace PR
 		void connect_updated_variables_slot(const AddedVariablesSlot &slot);
 		void connect_removed_variables_slot(const CharStringSenderSlot &slot);
 
+		void call_execution_complate();
 		void call(const string &, const shared_ptr<Data> &b);
 		void call(const CalcException &);
 		void call_stop();

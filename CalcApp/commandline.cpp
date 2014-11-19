@@ -37,6 +37,8 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 		addToHistory();
 		commandIdx = commandHistory.size() - 1;
 		emit commandEntered(toPlainText());
+		setReadOnly(true);
+		setPlaceholderText("Executing... Please wait");
 		clear();
 		return;
 	}
@@ -78,4 +80,11 @@ void CommandLine::addToHistory()
 		return;
 	
 	commandHistory.push_back(temp);
+}
+
+
+void CommandLine::interpreterRespond()
+{
+	setPlaceholderText(">> Enter command here");
+	setReadOnly(false);
 }
