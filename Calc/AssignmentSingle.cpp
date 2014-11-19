@@ -14,7 +14,7 @@ namespace PR
 	{
 	}
 
-	void AssignmentSingle::loadTarget(vector<shared_ptr<Token>>::iterator &start, vector<shared_ptr<Token>>::iterator &end)
+	void AssignmentSingle::loadTarget(instr_iter &start, instr_iter &end)
 	{
 		if (start == end)
 			throw CalcException("Cannot load assignment target! Empty instruction");
@@ -32,10 +32,17 @@ namespace PR
 		return dynamic_cast<AssignmentSingle *>(this);
 	}
 
-	void AssignmentSingle::doAssignment(Variables &vars,
-		vector<shared_ptr<Data>>::iterator &first,
-		vector<shared_ptr<Data>>::iterator &last,
-		vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment)
+	int AssignmentSingle::getTargetSize() const
+	{
+		return 1;
+	}
+
+	string AssignmentSingle::getLexeme() const  
+	{ 
+		return target->getLexeme(); 
+	}
+
+	void AssignmentSingle::doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment)
 	{
 		if (first == last)
 			throw CalcException("Assign expression is incomplate!");
