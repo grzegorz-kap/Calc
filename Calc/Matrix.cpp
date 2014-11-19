@@ -6,6 +6,11 @@ namespace PR
 	extern template class ComplexNumber < double > ;
 	extern template class ComplexNumber < hdouble > ;
 
+	extern template class Numeric < Matrix<double> > ;
+	extern template class Numeric < Matrix<hdouble> > ;
+	extern template class Numeric < ComplexNumber<double> > ;
+	extern template class Numeric < ComplexNumber<hdouble> > ;
+
 	template <class T> Matrix<T>::Matrix()
 		:M(0), N(0)
 	{
@@ -57,14 +62,12 @@ namespace PR
 
 	}
 
-	template <>
-	void Matrix<double>::setDataType()
+	template <> void Matrix<double>::setDataType()
 	{
 		_type = TYPE::M_DOUBLE;
 	}
 
-	template<>
-	void Matrix<hdouble>::setDataType()
+	template<> void Matrix<hdouble>::setDataType()
 	{
 		_type = TYPE::RM_DOUBLE;
 	}
@@ -94,8 +97,7 @@ namespace PR
 		return *this;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::rdivide(const Matrix<U> &b) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::rdivide(const Matrix<T> &b) const
 	{
 		if (b.M == 1 && b.N == 1)
 			return *this / b.mx[0][0];
@@ -105,35 +107,32 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("/ Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] / b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::rdivide(const ComplexNumber<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::rdivide(const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] / b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::ldivide(const ComplexNumber<U> &b) const->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::ldivide(const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = b / mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::times(const Matrix<U> &b) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::times(const Matrix<T> &b) const 
 	{
 		if (b.M == 1 && b.N == 1)
 			return *this * b.mx[0][0];
@@ -142,15 +141,14 @@ namespace PR
 
 		if (b.N != N || b.M != M)
 			throw CalcException("Incompatibile matrix m x n");
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] * b.mx[i][j];
 		return C;
 	}
 
-	template <class T>
-	Matrix<T> Matrix<T>::transpose() const
+	template <class T> Matrix<T> Matrix<T>::transpose() const
 	{
 		Matrix<T> C(N, M);
 		for (int i = 0; i < M; i++)
@@ -181,8 +179,7 @@ namespace PR
 		return out;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator + (const Matrix<U> &B) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator + (const Matrix<T> &B) const
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this + B.mx[0][0];
@@ -199,18 +196,16 @@ namespace PR
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator + (const ComplexNumber<U> &b) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator + (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] + b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator - (const Matrix<U> &B) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator - (const Matrix<T> &B) const
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this - B.mx[0][0];
@@ -220,35 +215,32 @@ namespace PR
 		if (M != B.M || N != B.N)
 			throw NumericException("- Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] - B.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::sub(const ComplexNumber<U> &b) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::sub(const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = b - mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator - (const ComplexNumber<U> &b) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator - (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] - b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator * (const Matrix<U> &B) const -> Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator * (const Matrix<T> &B) const
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this * B.mx[0][0];
@@ -258,7 +250,7 @@ namespace PR
 		if (N != B.M)
 			NumericException::throwMatrixMultDimensions();
 
-		Matrix<decltype(T() + U())> C(M, B.N);
+		Matrix<T> C(M, B.N);
 		for (int i = 0; i < M; i++)
 		{
 			for (int j = 0; j < B.N; j++)
@@ -272,18 +264,16 @@ namespace PR
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator * (const ComplexNumber<U> &b) const ->Matrix<decltype(T() + U())>
+	template <class T> Matrix<T> Matrix<T>::operator * (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] * b;
 		return C;
 	}
 
-	template <class T>
-	Matrix<T> Matrix<T>::operator / (const Matrix<T> &B) const 
+	template <class T> Matrix<T> Matrix<T>::operator / (const Matrix<T> &B) const 
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this / B.mx[0][0];
@@ -296,25 +286,21 @@ namespace PR
 		return Matrix<T>::matrix_divide(*this, B);
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator / (const ComplexNumber<U> &b) const
-		->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator / (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] / b;
 		return C;
 	}
 
-	template <class T>
-	ComplexNumber<T>& Matrix<T>::operator()(int i, int j)
+	template <class T> ComplexNumber<T>& Matrix<T>::operator()(int i, int j)
 	{
 		return mx[i][j];
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator == (const Matrix<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator == (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b == mx[0][0];
@@ -324,27 +310,23 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("== Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] == b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator == (const ComplexNumber<U> &b) const
-		->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator == (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] == b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator != (const Matrix<U> &b) const
-		->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator != (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b != mx[0][0];
@@ -354,35 +336,32 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("!= Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] != b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator != (const ComplexNumber<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator != (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] != b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator != (const U &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator != (const T &b) const 
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] != b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator < (const Matrix<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator < (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b > mx[0][0];
@@ -392,25 +371,23 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("< Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] < b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator < (const ComplexNumber<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator < (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] < b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator > (const Matrix<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator > (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b < mx[0][0];
@@ -420,25 +397,23 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("> Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] > b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator >(const ComplexNumber<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator >(const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] > b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator <= (const Matrix<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator <= (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b >= mx[0][0];
@@ -448,26 +423,23 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException("<= Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] == b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator <= (const ComplexNumber<U> &b) const
-		->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator <= (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] <= b;
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator >= (const Matrix<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator >= (const Matrix<T> &b) const
 	{
 		if (isScalar())
 			return b <= mx[0][0];
@@ -477,21 +449,54 @@ namespace PR
 		if (M != b.M || N != b.N)
 			throw NumericException(">= Matrix dimensions must agree");
 
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] >= b.mx[i][j];
 		return C;
 	}
 
-	template <class T> template <class U>
-	auto Matrix<T>::operator >= (const ComplexNumber<U> &b) const ->Matrix < decltype(T() + U()) >
+	template <class T> Matrix<T> Matrix<T>::operator >= (const ComplexNumber<T> &b) const
 	{
-		Matrix<decltype(T() + U())> C(M, N);
+		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				C.mx[i][j] = mx[i][j] >= b;
 		return C;
+	}
+
+	template <class T> Matrix<T> Matrix<T>::operator | (const Matrix<T> &b) const
+	{
+		if (M != b.M || N != b.N)
+			throw NumericException("Error using | . Matrix sizes must agree");
+		Matrix<T> c(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				c.mx[i][j] = mx[i][j] | b.mx[i][j];
+		return c;
+	}
+
+	template <class T> Matrix<T> Matrix<T>::operator & (const Matrix<T> &b) const
+	{
+		if (M != b.M || N != b.N)
+			throw NumericException("Error using & . Matrix sizes must agree");
+		Matrix<T> c(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				c.mx[i][j] = mx[i][j] & b.mx[i][j];
+		return c;
+	}
+
+	template <class T> Matrix<T> Matrix<T>::logical_not() const
+	{
+		if (M == 0 || N == 0)
+			return Matrix<T>(1, 1, ComplexNumber<T>(0));
+
+		Matrix<T> c(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				c.mx[i][j] = mx[i][j].logical_not();
+		return c;
 	}
 	
 	template <class T>
@@ -953,6 +958,127 @@ namespace PR
 		
 		return "Size: " + std::to_string(M) + "x" + std::to_string(N);
 	}
+
+	template <class T> void Matrix<T>::rows(int arg)
+	{
+		M = arg; 
+	}
+
+	template <class T> void Matrix<T>::cols(int arg)
+	{ 
+		N = arg; 
+	}
+
+	template <class T> int Matrix<T>::get_cols_int() const  
+	{ 
+		return N;
+	}
+
+	template <class T> int Matrix<T>::get_rows_int() const  
+	{ 
+		return M; 
+	}
+
+	template <class T> int * Matrix<T>::getM_P()
+	{
+		return &M;
+	}
+
+	template <class T> int * Matrix<T>::getN_P()
+	{
+		return &N;
+	}
+
+	template <class T> bool Matrix<T>::isScalar() const
+	{
+		return M == 1 && N == 1;
+	}
+
+	template <class T> bool Matrix<T>::isInteger() const
+	{
+		return isScalar() && mx[0][0].isInteger();
+	}
+
+	template <class T> bool Matrix<T>::isReal() const
+	{
+		for (const auto &row : mx)
+			for (const auto &element : row)
+				if (!element.isReal())
+					return false;
+		return true;
+	}
+
+	template <class T> bool Matrix<T>::isMatrix() const 
+	{ 
+		return true; 
+	}
+
+	template <class T> bool Matrix<T>::isEmpty() const 
+	{ 
+		return M == 0 && N == 0; 
+	}
+
+	template <class T> int Matrix<T>::toInteger() const
+	{
+		return mx[0][0].toInteger();
+	}
+
+	template<class T> Matrix<T> Matrix<T>::getRowIndex() const 
+	{ 
+		return getIndex(M);
+	}
+
+	template<class T> Matrix<T> Matrix<T>::getColIndex() const 
+	{ 
+		return getIndex(N); 
+	}
+
+	
+
+	template <class T> Data* Matrix<T>::copy() const
+	{
+		return new Matrix<T>(*this);
+	}
+
+	template <class T> vector<double> Matrix<T>::toDoubleVector() const
+	{
+		if (!M)
+			return vector<double>();
+		vector<double> out;
+		out.reserve(N);
+		for (const ComplexNumber<T> &element : mx[0])
+			out.push_back(element.toDouble());
+		return out;
+	}
+
+	template <class T> vector<double> Matrix<T>::toDoubleVectorAll() const
+	{
+		vector<double> out;
+		out.reserve(M*N);
+		for (const auto &row : mx)
+			for (const auto &cell : row)
+				out.push_back(cell.toDouble());
+		return out;
+	}
+
+	template <class T>
+	Matrix<T>::operator ComplexNumber<double>() const
+	{
+		if (M&&N)
+			return ComplexNumber<double>(mx[0][0]);
+		else
+			throw CalcException("Cannot convert empty matrix to scalar value.");
+	}
+
+	template <class T>
+	Matrix<T>::operator ComplexNumber<hdouble>() const
+	{
+		if (M&&N)
+			return ComplexNumber<hdouble>(mx[0][0]);
+		else
+			throw CalcException("Cannot convert empty matrix to scalar value.");
+	}
+
 
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;

@@ -5,6 +5,11 @@
 
 namespace PR
 {
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+
 	template<class T>
 	Matrix<T> Mathematic::power(const Matrix<T> &a, const Matrix<T> &b)
 	{

@@ -318,9 +318,6 @@
     <ClInclude Include="Variables.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="TypePromotor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="VariableInfo.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -371,6 +368,9 @@
     </ClInclude>
     <ClInclude Include="RoundFunction.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TypePromotor.h">
+      <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,7 +446,6 @@
     <ClCompile Include="i_order_map.cpp">
       <Filter>Model</Filter>
     </ClCompile>
- 
     <ClCompile Include="MatrixBuilder.cpp">
       <Filter>Service\Matrix</Filter>
     </ClCompile>
@@ -603,7 +602,6 @@
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-
     <ClCompile Include="DetFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>

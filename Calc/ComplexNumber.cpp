@@ -3,6 +3,9 @@
 
 namespace PR
 {
+	extern template class Numeric < ComplexNumber<double> >;
+	extern template class Numeric < ComplexNumber<hdouble> >;
+
 	template <class T> ComplexNumber<T>::ComplexNumber()
 	{
 		setDataType();
