@@ -15,9 +15,6 @@ class AppData : public QObject
 {
 	Q_OBJECT
 
-private:
-
-
 public:
 
 	static const QString dirHistory;
@@ -36,6 +33,7 @@ public:
 private:
 	static void createCalcFolder();
 	static void appendToFile(const QString &fileName, const QString &data);
+
 };
 
 #endif // APPDATA_H

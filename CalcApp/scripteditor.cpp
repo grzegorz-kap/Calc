@@ -13,14 +13,14 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	ui.actionSave_as->setShortcut(QKeySequence::SaveAs);
 	ui.actionRun->setShortcut(QKeySequence::Refresh);
 
-	
-
 
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(onNewFileAction()));
 	connect(ui.actionOtw_Rz, SIGNAL(triggered()), this, SLOT(onOpenAction()));
 	connect(ui.actionRun, SIGNAL(triggered()), this, SLOT(onRunAction()));
+
+	setupToolbar();
 }
 
 ScriptEditor::~ScriptEditor()
@@ -121,6 +121,7 @@ void ScriptEditor::onNewFileAction()
 	show();
 }
 
+
 void ScriptEditor::onOpenAction()
 {
 	QStringList files = QFileDialog::getOpenFileNames(this, tr("Select scripts"),
@@ -157,4 +158,26 @@ void ScriptEditor::onRunAction()
 	scriptName = scriptName.left(scriptName.lastIndexOf("."));
 	if (scriptName.size())
 		emit runCommand(scriptName);
+}
+
+void ScriptEditor::setupToolbar()
+{
+	QPushButton* button = new QPushButton(this);
+	button->setIcon(QIcon(":/CalcApp/new.png"));
+	button->setToolTip("New script");
+	ui.mainToolBar->addWidget(button);
+	connect(button, SIGNAL(clicked()), this, SLOT(onNewFileAction()));
+
+	button = new QPushButton(this);
+	button->setIcon(QIcon(":/CalcApp/save.png"));
+	button->setToolTip("Save");
+	ui.mainToolBar->addWidget(button);
+	connect(button, SIGNAL(clicked()), this, SLOT(onSaveAction()));
+
+
+	button = new QPushButton(this);
+	button->setIcon(QIcon(":/CalcApp/run.png"));
+	button->setToolTip("Run script");
+	ui.mainToolBar->addWidget(button);
+	connect(button, SIGNAL(clicked()), this, SLOT(onRunAction()));
 }

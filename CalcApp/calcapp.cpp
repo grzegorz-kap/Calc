@@ -68,6 +68,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
 
 	setupFont();
+	setupToolbar();
 }
 
 CalcApp::~CalcApp()
@@ -85,6 +86,15 @@ void CalcApp::setupFont()
 	ui.console->setFont(font);
 	ui.commandLine->setFont(font);
 	ScriptEditWidget::defaultFont = font;
+}
+
+void CalcApp::setupToolbar()
+{
+	QPushButton* button = new QPushButton(this);
+	button->setIcon(QIcon(":/CalcApp/new.png"));
+	button->setToolTip("New script");
+	ui.mainToolBar->addWidget(button);
+	connect(button, SIGNAL(clicked()), &scriptEditor, SLOT(onNewFileAction()));
 }
 
 void CalcApp::closeEvent(QCloseEvent *ev)
