@@ -4,6 +4,14 @@
 
 namespace PR
 {
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+	extern template class Numeric < Matrix<double> > ;
+	extern template class Numeric < Matrix<hdouble> > ;
+	extern template class Numeric < ComplexNumber<double> > ;
+	extern template class Numeric < ComplexNumber<hdouble> > ;
 
 	SurfaceFunction::SurfaceFunction()
 	{

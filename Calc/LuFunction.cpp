@@ -7,6 +7,7 @@ namespace PR
 	LuFunction::LuFunction()
 	{
 		min_args_count = max_args_count = 1;
+		name = "lu";
 	}
 
 
@@ -18,7 +19,7 @@ namespace PR
 	{
 		auto out = make_shared<Output>();
 		auto &vec = out->getOutput();
-		vec.assign(output, shared_ptr<Data>());
+		vec.assign(output, shared_ptr<Data>()); /*output is number of expected outputs */
 		switch (output)
 		{
 		case 1: arguments[0]->lu(vec[0]); break;

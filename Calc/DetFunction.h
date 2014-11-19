@@ -9,11 +9,7 @@ namespace PR
 	public:
 		DetFunction();
 		~DetFunction();
-
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->det();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

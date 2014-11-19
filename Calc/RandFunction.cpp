@@ -4,6 +4,13 @@
 
 namespace PR
 {
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+	extern template class MatrixBuilder < double > ;
+	extern template class MatrixBuilder < hdouble > ;
+
 	bool RandFunction::random_generator_initiated = false;
 
 	RandFunction::RandFunction()

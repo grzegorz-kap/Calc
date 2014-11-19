@@ -8,11 +8,7 @@ namespace PR
 	public:
 		Log10Function();
 		~Log10Function();
-
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->log10();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

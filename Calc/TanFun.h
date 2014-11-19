@@ -3,17 +3,13 @@
 
 namespace PR
 {
-	class TanFun :
-		public Function
+	class TanFun : public Function
 	{
 	public:
 		TanFun();
 		~TanFun();
 
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->tan();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

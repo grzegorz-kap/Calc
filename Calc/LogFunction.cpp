@@ -8,6 +8,7 @@ namespace PR
 	{
 		min_args_count = 1;
 		max_args_count = 2;
+		name = "log";
 	}
 
 
