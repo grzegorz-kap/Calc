@@ -7,6 +7,7 @@ namespace PR
 	MpfFunction::MpfFunction()
 	{
 		max_args_count = min_args_count = 1;
+		name = "mpf_float";
 	}
 
 

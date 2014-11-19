@@ -9,11 +9,7 @@ namespace PR
 	public:
 		InvFunction();
 		~InvFunction();
-
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->inv();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 
 }

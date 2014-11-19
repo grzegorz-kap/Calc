@@ -7,6 +7,7 @@ namespace PR
 	SizeFunction::SizeFunction()
 	{
 		max_args_count = min_args_count = 1;
+		name = "size";
 	}
 
 

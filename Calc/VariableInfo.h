@@ -1,3 +1,6 @@
+#ifndef VARIABLES_INFO_H
+#define VARIABLES_INFO_H
+
 #pragma once
 
 #include "export.h"
@@ -19,9 +22,9 @@ namespace PR
 		string name;
 		static const string expired;
 	public:
-		
+
 		VariableInfo(){};
-		VariableInfo(const string &name,const shared_ptr<Data> &ptr);
+		VariableInfo(const string &name, const shared_ptr<Data> &ptr);
 		~VariableInfo();
 
 		string getName() const;
@@ -35,7 +38,10 @@ namespace PR
 
 		bool is_scalar() const;
 
-		string get_cell(int i,int j) const;
+		string get_cell(int i, int j) const;
 	};
 }
 
+
+
+#endif

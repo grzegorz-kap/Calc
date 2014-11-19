@@ -9,11 +9,7 @@ namespace PR
 	public:
 		Log2Function();
 		~Log2Function();
-
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->log2();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

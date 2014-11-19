@@ -20,6 +20,11 @@ namespace PR
 		key_word_balance = 0;
 	}
 
+	PARSE_MODE LexicalBalanceHelper::getMode()const
+	{ 
+		return mode.back();
+	}
+
 	void LexicalBalanceHelper::changeMode(PARSE_MODE modeA,bool start)
 	{
 		if (start)

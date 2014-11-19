@@ -14,28 +14,23 @@ namespace PR
 {
 	class FileLoader
 	{
-		std::ifstream file;
-		std::string name;
-
-		static string working_directory;
 	public:
 		FileLoader(const string &name);
 		~FileLoader();
 
-		bool is_open() const { return file.is_open(); }
+		bool is_open() const;
 		string getLine();
 		string loadAll();
-		bool eof() const { return file.eof(); }
+		bool eof() const;
 	
 		static void changeWorkingDirectory(const string &directory);
 
 	private:
-		
-		void onReadAttempt()
-		{
-			if (!file.is_open())
-				throw FileLoaderException("File: '" + name + "' is not opened or does not exist. ");
-		}
+		std::ifstream file;
+		std::string name;
+		static string working_directory;
+
+		void onReadAttempt();
 	};
 }
 

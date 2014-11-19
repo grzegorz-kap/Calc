@@ -203,4 +203,24 @@ namespace PR
 		while (N > 0 && TokenizerHelper::isWhiteSpace(command[N - 1]))
 			N--;
 	}
+
+	vector<unique_ptr<Token>> Tokenizer::getTokens()
+	{
+		return std::move(tokens);
+	}
+
+	TOKEN_CLASS Tokenizer::prev()
+	{
+		if (tokens.size() == 0)
+			return TOKEN_CLASS::NONE;
+		return tokens.back()->getClass();
+	}
+
+	void Tokenizer::init()
+	{
+		N = command.size();
+		i = 0;
+		whiteSpacesEnd();
+		whiteSpacesBegin();
+	}
 }

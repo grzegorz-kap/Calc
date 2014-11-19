@@ -9,11 +9,7 @@
 using std::string;
 using std::cout;
 
-#include "VariableInfo.h"
-#include "LexicalAnalyzer.h"
-#include "Parser.h"
 #include "CodeExecutor.h"
-#include "CodeGenerator.h"
 
 namespace PR
 {

@@ -10,7 +10,7 @@ namespace PR
 	extern template class ComplexNumber<hdouble>;
 	extern template class MatrixBuilder < double > ;
 	extern template class MatrixBuilder < hdouble > ;
-	
+
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
 	{
@@ -50,6 +50,26 @@ namespace PR
 
 	CodeExecutor::~CodeExecutor()
 	{
+	}
+
+	void CodeExecutor::setInput(const string &in)
+	{
+		code.setInput(in);
+	}
+
+	void CodeExecutor::setInput(FileLoader &in)
+	{
+		code.setInput(in);
+	}
+
+	void CodeExecutor::set_stop_computing() 
+	{ 
+		stop_computing = true; 
+	}
+
+	void CodeExecutor::off_stop_computing()
+	{ 
+		stop_computing = false;
 	}
 
 	void CodeExecutor::start()
@@ -536,6 +556,18 @@ namespace PR
 			setIPTo(WHILE_FIND, balance);
 		}
 		code.inc();
+	}
+
+	void CodeExecutor::next()
+	{
+		code.inc();
+		ip = code.get(); 
+	}
+
+	void CodeExecutor::prev()
+	{ 
+		code.dec();	
+		ip = code.get(); 
 	}
 
 	decltype(AssignmentSubscripted::executor) AssignmentSubscripted::executor = CodeExecutor::run_single;

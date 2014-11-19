@@ -3,6 +3,11 @@
 
 namespace PR
 {
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+
 	decltype(TypePromotor::ptr_max_lambda) TypePromotor::ptr_max_lambda = 
 		[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool
 	{

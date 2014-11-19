@@ -13,7 +13,7 @@ namespace PR
 	{
 	}
 
-	void AssignmentSubscripted::loadTarget(vector<shared_ptr<Token>>::iterator &start, vector<shared_ptr<Token>>::iterator &end)
+	void AssignmentSubscripted::loadTarget(instr_iter &start, instr_iter &end)
 	{
 		if (start == end)
 			throw CalcException("Error in subscripted assignment");
@@ -42,10 +42,7 @@ namespace PR
 		start = std::next(result);
 	}
 
-	void AssignmentSubscripted::doAssignment(Variables &vars,
-		vector<shared_ptr<Data>>::iterator &first,
-		vector<shared_ptr<Data>>::iterator &last,
-		vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment)
+	void AssignmentSubscripted::doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment)
 	{
 		if (first == last)
 			throw CalcException("Too few arguments on right side of assignment!");
@@ -68,11 +65,26 @@ namespace PR
 		TypePromotor::promote(*first, var->_type);
 		switch (address.size())
 		{
-		case 2: var->assignAt(address[0], address[1], *first); break;
-		case 1: var->assignAt(address[0], *first); break;
-		case 0: var->assignAt(*first); break;
+		case 2: var->assignAt(address[0], address[1], *first);	break;
+		case 1: var->assignAt(address[0], *first);				break;
+		case 0: var->assignAt(*first);							break;
 		}
 
 		assignment.push_back(vars.set(variable->getLexemeR(), var));
+	}
+
+	int AssignmentSubscripted::getTargetSize() const
+	{
+		return 1;
+	}
+
+	vector<shared_ptr<Token>>& AssignmentSubscripted::getOnpRef()
+	{ 
+		return onp; 
+	}
+
+	IAssignment* AssignmentSubscripted::castToAssignment()
+	{
+		return dynamic_cast<AssignmentSubscripted*>(this);
 	}
 }

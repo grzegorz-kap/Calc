@@ -18,6 +18,18 @@ namespace PR
 	{
 	}
 
+	ExternalFunction ExternalFunctionLoader::get()
+	{
+		return fun;
+	}
+
+	void ExternalFunctionLoader::next()
+	{
+		code.inc();
+		throwEof();
+		ip = code.get();
+	}
+
 	void ExternalFunctionLoader::start()
 	{
 		if (loadSymbol() != TOKEN_CLASS::FUNCTION_KEYWORD)

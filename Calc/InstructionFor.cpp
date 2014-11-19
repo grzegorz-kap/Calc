@@ -19,4 +19,29 @@ namespace PR
 	InstructionFor::~InstructionFor()
 	{
 	}
+
+	void InstructionFor::setName(const string &new_name)
+	{ 
+		name = new_name;
+	}
+
+	void InstructionFor::setOnp(const vector<shared_ptr<Token>> &o)
+	{ 
+		onp = o; 
+	}
+
+	void InstructionFor::setOnp(vector<shared_ptr<Token>> &&o)
+	{ 
+		onp = std::move(o);
+	}
+
+	const vector<shared_ptr<Token>>& InstructionFor::getOnp() const 
+	{ 
+		return onp;
+	}
+
+	string InstructionFor::getLexeme() const 
+	{ 
+		return name; 
+	}
 }

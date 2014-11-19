@@ -10,10 +10,7 @@ namespace PR
 		SinFun();
 		~SinFun();
 
-		virtual shared_ptr<Data> run() override
-		{
-			return arguments[0]->sin();
-		}
+		virtual shared_ptr<Data> run() override;
 	};
 }
 

@@ -27,6 +27,86 @@ namespace PR
 		iter = tokens.begin();
 	}
 
+	bool Parser::parse()
+	{
+		stack.clear();
+		onp.clear();
+		stop = false;
+
+		for (; !stop && iter != tokens.end(); ++iter)
+		{
+			i = std::move(*iter);
+			switch (i->getClass())
+			{
+			case TOKEN_CLASS::NUMBER:
+				onNumber();
+				break;
+			case TOKEN_CLASS::ID:
+				onID();
+				break;
+			case TOKEN_CLASS::COMMA:
+				onComma();
+				break;
+			case TOKEN_CLASS::OPEN_PARENTHESIS:
+				onOpenParenthesis();
+				break;
+			case TOKEN_CLASS::FUNCTION:
+				onFunction();
+				break;
+			case TOKEN_CLASS::SEMICOLON:
+				onSemicolon();
+				break;
+			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
+			case TOKEN_CLASS::OPERATOR:
+				onOperator();
+				break;
+			case TOKEN_CLASS::CLOSE_PARENTHESIS:
+				onCloseParenthesis();
+				break;
+			case TOKEN_CLASS::NEW_LINE:
+				onNewLine();
+				break;
+			case TOKEN_CLASS::MATRIX_START:
+				onMatrixStart();
+				break;
+			case TOKEN_CLASS::MATRIX_END:
+				onMatrixEnd();
+				break;
+			case TOKEN_CLASS::COLON:
+				onColon();
+				break;
+			case TOKEN_CLASS::MATRIX_ALL:
+				onMatrixAll();
+				break;
+			case TOKEN_CLASS::FOR_KEYWORD:
+				onKeywordFOR();
+				stop = true;
+				break;
+			case TOKEN_CLASS::KEY_WORD:
+			case TOKEN_CLASS::IF_KEYWORD:
+			case TOKEN_CLASS::ELSE_KEYWORD:
+			case TOKEN_CLASS::END_IF:
+			case TOKEN_CLASS::END_WHILE:
+			case TOKEN_CLASS::WHILE_KEYWORD:
+			case TOKEN_CLASS::FUNCTION_KEYWORD:
+			case TOKEN_CLASS::END_FUNCTION:
+			case TOKEN_CLASS::END_FOR:
+				if (onp.size() == 0 && stack.size() == 0)
+					onp.push_back(make_unique<Token>(*i));
+				stop = true;
+				break;
+			default:
+				throw CalcException("Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
+				break;
+			}
+		}
+		stackToOnpAll();
+		computeTreeLevels();
+		changeIfAssignment();
+		computeShortCircuitJumps(onp);
+		return iter != tokens.end();
+	}
+
 	void Parser::onComma()
 	{
 		if (i->getMode() == PARSE_MODE::NORMAL||i->getMode()==PARSE_MODE::KEYWORD)
@@ -269,86 +349,6 @@ namespace PR
 		}
 	}
 
-	bool Parser::parse()
-	{
-		stack.clear();
-		onp.clear();
-		stop = false;
-
-		for (;!stop && iter!= tokens.end();++iter)
-		{
-			i = std::move(*iter);
-			switch (i->getClass())
-			{
-			case TOKEN_CLASS::NUMBER: 
-				onNumber(); 
-				break;
-			case TOKEN_CLASS::ID:
-				onID();
-				break;
-			case TOKEN_CLASS::COMMA:
-				onComma();
-				break;
-			case TOKEN_CLASS::OPEN_PARENTHESIS:
-				onOpenParenthesis();
-				break;
-			case TOKEN_CLASS::FUNCTION:
-				onFunction();
-				break;
-			case TOKEN_CLASS::SEMICOLON:
-				onSemicolon();
-				break;
-			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
-			case TOKEN_CLASS::OPERATOR:
-				onOperator();
-				break;
-			case TOKEN_CLASS::CLOSE_PARENTHESIS:
-				onCloseParenthesis();
-				break;
-			case TOKEN_CLASS::NEW_LINE:
-				onNewLine();
-				break;
-			case TOKEN_CLASS::MATRIX_START:
-				onMatrixStart();
-				break;
-			case TOKEN_CLASS::MATRIX_END:
-				onMatrixEnd();
-				break;
-			case TOKEN_CLASS::COLON:
-				onColon();
-				break;
-			case TOKEN_CLASS::MATRIX_ALL:
-				onMatrixAll();
-				break;
-			case TOKEN_CLASS::FOR_KEYWORD:
-				onKeywordFOR();
-				stop = true;
-				break;
-			case TOKEN_CLASS::KEY_WORD:
-			case TOKEN_CLASS::IF_KEYWORD:
-			case TOKEN_CLASS::ELSE_KEYWORD:
-			case TOKEN_CLASS::END_IF:
-			case TOKEN_CLASS::END_WHILE:
-			case TOKEN_CLASS::WHILE_KEYWORD:
-			case TOKEN_CLASS::FUNCTION_KEYWORD:
-			case TOKEN_CLASS::END_FUNCTION:
-			case TOKEN_CLASS::END_FOR:
-				if (onp.size() == 0 && stack.size() == 0)
-					onp.push_back(make_unique<Token>(*i));
-				stop = true;
-				break;
-			default:
-				throw CalcException("Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
-				break;
-			}
-		}
-		stackToOnpAll();
-		computeTreeLevels();
-		changeIfAssignment();
-		computeShortCircuitJumps(onp);
-		return iter != tokens.end();
-	}
-
 	TOKEN_CLASS Parser::stackBack() const
 	{
 		if (stack.size() != 0)
@@ -387,5 +387,84 @@ namespace PR
 	{
 		if (tokens.begin() != iter)
 			iter--;
+	}
+
+	void Parser::changeIfAssignment()
+	{
+		if (onp.size() < 3)
+			return;
+
+		bool find = false;
+		if (onp.back()->getLexemeR() == "=")
+		{
+			find = true;
+			onp.back()->set_class(TOKEN_CLASS::ASSIGNMENT);
+		}
+
+		if (!find && onp.back()->getClass() == TOKEN_CLASS::OUTPUT_OFF && onp.rbegin()[1]->getLexemeR() == "=")
+		{
+			find = true;
+			onp.rbegin()[1]->set_class(TOKEN_CLASS::ASSIGNMENT);
+		}
+
+		if (!find)
+			return;
+
+		unique_ptr<IAssignment> iAssignment(AssignmentFactory::get(onp.front()->getClass()));
+
+		auto start = onp.begin();
+		auto end = onp.end();
+		iAssignment->loadTarget(start, end);
+		if (iAssignment->_assignment_type == ASSIGNMENT_TYPE::SUBSCRIPTED)
+		{
+			auto ptr = dynamic_cast<AssignmentSubscripted*>(iAssignment.get());
+			computeShortCircuitJumps(ptr->getOnpRef());
+		}
+		onp.erase(onp.begin(), start);
+		onp.insert(onp.begin(), std::move(iAssignment));
+	}
+
+	void Parser::onKeywordFOR()
+	{
+		unique_ptr<InstructionFor> _for = make_unique<InstructionFor>(*i);
+		iter++;
+
+		if (iter == tokens.end())
+			throw CalcException("Unexpected end of code", i->getPosition());
+
+		parse();
+
+		if (onp.size() < 3)
+			throw CalcException("Error parsing 'for' keyword", i->getPosition());
+
+		AssignmentSingle * assignment = dynamic_cast<AssignmentSingle *>(onp.front().get());
+		if (assignment == nullptr)
+			throw CalcException("Error in for instruction,single assignment not found!");
+		_for->setName(assignment->getLexeme());
+		onp.erase(onp.begin());
+
+		if (onp.back()->getClass() == TOKEN_CLASS::OUTPUT_OFF)
+			onp.pop_back();
+		if (onp.back()->getClass() == TOKEN_CLASS::ASSIGNMENT)
+			onp.pop_back();
+
+		if (onp.size() == 0)
+			throw CalcException("Error parsing 'for' keyword", i->getPosition());
+
+		_for->setOnp(std::move(onp));
+		onp.push_back(std::move(_for));
+		iterBack();
+	}
+
+	TOKEN_CLASS Parser::whatNext()
+	{
+		if (iter + 1 == tokens.end())
+			return TOKEN_CLASS::NONE;
+		return (*(iter + 1))->getClass();
+	}
+
+	vector<shared_ptr<Token>> & Parser::getInstruction()
+	{ 
+		return onp; 
 	}
 }
