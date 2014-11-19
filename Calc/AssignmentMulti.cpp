@@ -14,7 +14,7 @@ namespace PR
 	{
 	}
 
-	void AssignmentMulti::loadTarget(vector<shared_ptr<Token>>::iterator &start, vector<shared_ptr<Token>>::iterator &end)
+	void AssignmentMulti::loadTarget(instr_iter &start, instr_iter &end)
 	{
 		if ((*start)->getClass() != TOKEN_CLASS::MATRIX_START)
 			throw CalcException("Wrong start of multiassignment!");
@@ -38,15 +38,7 @@ namespace PR
 		start++;
 	}
 
-	IAssignment* AssignmentMulti::castToAssignment()
-	{
-		return dynamic_cast<AssignmentMulti *>(this);
-	}
-
-	void AssignmentMulti::doAssignment(Variables &vars,
-		vector<shared_ptr<Data>>::iterator &first,
-		vector<shared_ptr<Data>>::iterator &last,
-		vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment)
+	void AssignmentMulti::doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment)
 	{
 		if (first==last)
 			throw CalcException("Too many output arguments!");
@@ -67,8 +59,7 @@ namespace PR
 	}
 
 
-	void AssignmentMulti::prepareIterators(vector<shared_ptr<Data>>::iterator &data, vector<shared_ptr<Data>>::iterator &start,
-		vector<shared_ptr<Data>>::iterator &end, int &size)
+	void AssignmentMulti::prepareIterators(stack_iterator &data, stack_iterator &start, stack_iterator &end, int &size)
 	{
 		if ((*data)->isOutput())
 		{
@@ -83,5 +74,21 @@ namespace PR
 			start = data;
 			end = std::next(data);
 		}
+	}
+
+	IAssignment* AssignmentMulti::castToAssignment()
+	{
+		return dynamic_cast<AssignmentMulti *>(this);
+	}
+
+	int AssignmentMulti::getTargetSize() const
+	{
+		return target.size();
+	}
+
+	auto AssignmentMulti::getTargetConstReference()
+		-> const decltype(target) &
+	{
+		return target;
 	}
 }
