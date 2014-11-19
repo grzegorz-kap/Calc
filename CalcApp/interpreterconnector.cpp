@@ -12,6 +12,18 @@ InterpreterConnector::~InterpreterConnector()
 {
 }
 
+void InterpreterConnector::connectToInterpreterSingals()
+{
+	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, this, _1, _2));
+	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, this, _1, _2));
+	PR::SignalEmitter::get()->connect_execution_complate(boost::bind(&InterpreterConnector::executionComplate,this));
+}
+
+void InterpreterConnector::executionComplate(void)
+{
+	emit interpreterResponded();
+}
+
 void InterpreterConnector::commandToInterpreter(QString command)
 {
 	interpreter.work(command.toStdString());	

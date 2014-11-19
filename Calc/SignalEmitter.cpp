@@ -14,6 +14,7 @@ namespace PR
 		sig_added_variables		= new AddedVariablesSender();
 		sig_updated_variables	= new AddedVariablesSender();
 		sig_removed_variables	= new CharStringSender();
+		sig_execution_complate  = new VoidSender();
 	}
 
 	SignalEmitter::~SignalEmitter()
@@ -24,6 +25,7 @@ namespace PR
 		delete	sig_added_variables	   ;
 		delete	sig_updated_variables  ;
 		delete	sig_removed_variables  ;
+		delete sig_execution_complate;
 	}
 
 	SignalEmitter* SignalEmitter::get()
@@ -31,6 +33,11 @@ namespace PR
 		if (instance == nullptr)
 			instance = new SignalEmitter();
 		return instance;
+	}
+
+	void SignalEmitter::connect_execution_complate(const VoidSenderSlot &slot)
+	{
+		sig_execution_complate->connect(slot);
 	}
 
 	void SignalEmitter::connect_output(const DataPointerSenderSlot &slot)
@@ -91,5 +98,10 @@ namespace PR
 	void SignalEmitter::call_sig_removed_variables(const char **data, int num)
 	{
 		(*sig_removed_variables)(data, num);
+	}
+
+	void SignalEmitter::call_execution_complate()
+	{
+		(*sig_execution_complate)();
 	}
 }

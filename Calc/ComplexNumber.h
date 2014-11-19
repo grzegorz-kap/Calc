@@ -85,7 +85,7 @@ namespace PR
 		virtual bool isScalar() const override;
 		virtual bool isInteger() const override;
 		virtual bool isReal() const override;
-		virtual Data* copy() const	override;
+		virtual shared_ptr<Data> copy() const	override;
 		virtual string getValueInfoString() const;
 		virtual string minValueString() const ;
 		virtual string maxValueString() const ;

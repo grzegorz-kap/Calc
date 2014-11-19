@@ -9,13 +9,11 @@
 #include <qdir.h>
 #include <qtextstream.h>
 #include <qtreewidget.h>
+#include <qtextcodec.h>
 
 class AppData : public QObject
 {
 	Q_OBJECT
-
-private:
-
 
 public:
 
@@ -35,6 +33,7 @@ public:
 private:
 	static void createCalcFolder();
 	static void appendToFile(const QString &fileName, const QString &data);
+
 };
 
 #endif // APPDATA_H

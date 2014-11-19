@@ -23,6 +23,9 @@ public:
 	CommandLine(QWidget *parent);
 	~CommandLine();
 
+	public slots:
+	void interpreterRespond();
+
 private:
 	void setCursorPosition(int n);
 	void keyPressEvent(QKeyEvent* e);

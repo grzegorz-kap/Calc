@@ -1035,9 +1035,9 @@ namespace PR
 
 	
 
-	template <class T> Data* Matrix<T>::copy() const
+	template <class T> shared_ptr<Data> Matrix<T>::copy() const
 	{
-		return new Matrix<T>(*this);
+		return make_shared<Matrix<T>>(*this);
 	}
 
 	template <class T> vector<double> Matrix<T>::toDoubleVector() const

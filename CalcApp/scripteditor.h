@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qdir.h>
 #include <qlistwidget.h>
+#include <qpushbutton.h>
 #include "ui_scripteditor.h"
 #include "scripteditwidget.h"
 
@@ -35,6 +36,8 @@ signals:
 private:
 	Ui::ScriptEditor ui;
 	static int i;
+
+	void setupToolbar();
 };
 
 #endif // SCRIPTEDITOR_H

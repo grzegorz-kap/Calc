@@ -233,7 +233,7 @@ namespace PR
 		throw UnimplementedException("Cannot do 'at' on this type");
 	}
 
-	Data* Data::copy() const
+	shared_ptr<Data> Data::copy() const
 	{
 		throw UnimplementedException("Cannot copy this data");
 	}

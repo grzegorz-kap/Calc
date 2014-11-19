@@ -19,7 +19,7 @@ public:
 public slots:
 	void onItemDoubleClicked(QTreeWidgetItem *item, int);
 	void insertCommand(QString command);
-
+	
 private:
 	QTreeWidgetItem *prevItem;
 	QTreeWidgetItem *prevCommandItem;

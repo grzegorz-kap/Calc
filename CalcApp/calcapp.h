@@ -6,6 +6,7 @@
 #include <qmetatype.h>
 #include <qdir.h>
 #include <qfont.h>
+#include <qtoolbutton.h>
 
 #include "ui_calcapp.h"
 #include "interpreterconnector.h"
@@ -34,6 +35,11 @@ private:
 
 	static QFont font;
 	void setupFont();
+	void setupToolbar();
+
+	public slots:
+	void stopComputing();
+
 };
 
 #endif // CALCAPP_H

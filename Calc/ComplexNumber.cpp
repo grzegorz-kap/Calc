@@ -467,9 +467,9 @@ namespace PR
 	}
 
 	template <class T>
-	Data* ComplexNumber<T>::copy() const
+	shared_ptr<Data> ComplexNumber<T>::copy() const
 	{
-		return new ComplexNumber<T>(*this);
+		return make_shared<ComplexNumber<T>>(*this);
 	}
 
 	template <class T> string ComplexNumber<T>::getValueInfoString() const
