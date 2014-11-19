@@ -8,6 +8,8 @@ CommandHistory::CommandHistory(QWidget *parent)
 	AppData::loadCommandHistory(this);
 	dateInserted = false;
 	insertCurrentDate();
+	expandAll();
+	scrollToBottom();
 }
 
 CommandHistory::~CommandHistory()
