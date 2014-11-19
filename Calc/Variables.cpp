@@ -26,8 +26,7 @@ namespace PR
 		return result->second;
 	}
 
-	auto Variables::getIterator(const string &name, bool ex)
-		-> std::map<string, shared_ptr<Data>>::iterator
+	variables_map_iter Variables::getIterator(const string &name, bool ex)
 	{
 		auto result = mem.find(name);
 		if (result == mem.end() &&ex)
@@ -35,8 +34,7 @@ namespace PR
 		return result;
 	}
 
-	auto Variables::set(const string &name, const shared_ptr<Data> &data)
-		-> std::pair < std::map<string, shared_ptr<Data>>::iterator, bool >
+	variables_map_pair Variables::set(const string &name, const shared_ptr<Data> &data)
 	{
 		shared_ptr<Data> temp(data->copy());
 

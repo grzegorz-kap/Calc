@@ -67,15 +67,6 @@ namespace PR
 		}
 	}
 
-	/*void Interpreter::sendNewVariablesInformations()
-	{
-		vector<VariableInfo> info;
-		prepareVariableInformationVector(main_vars.getAdded(), info);
-
-		if (info.size())
-			SignalEmitter::get()->call_sig_added_variables(&info[0], info.size());
-	}*/
-
 	void Interpreter::sendUpdatedVariablesInformations()
 	{
 		vector<VariableInfo> updated;
@@ -87,28 +78,5 @@ namespace PR
 			SignalEmitter::get()->call_sig_added_variables(&added[0], added.size());
 	}
 
-	//void Interpreter::prepareVariableInformationVector(const vector<string> &src, vector<VariableInfo> &dest)
-	//{
-	//	if (src.size()==0)
-	//		return;
-
-	//	dest.reserve(src.size());
-	//	for (const string &name : src)
-	//		dest.push_back(VariableInfo(name, main_vars.get(name)));
-	//}
-
-	//void Interpreter::sendRemovedVariablesInformations()
-	//{
-	///*	vector<string> &removed = main_vars.getRemovedRef();
-	//	
-	//	if (removed.size() == 0)
-	//		return;
-
-	//	vector<const char *> removeList;
-	//	removeList.reserve(removed.size());
-	//	for (const string &name : removed)
-	//		removeList.push_back(name.c_str());
-
-	//	SignalEmitter::get()->call_sig_removed_variables(&removeList[0], removeList.size());*/
-	//}
+	
 }

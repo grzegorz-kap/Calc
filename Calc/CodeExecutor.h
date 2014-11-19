@@ -24,9 +24,7 @@ namespace PR
 {
 	class CodeExecutor
 	{
-
-		typedef vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> AssignmentsData;
-
+		
 	public:
 		static int recursions;
 		static int recursion_limit;

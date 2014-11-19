@@ -7,11 +7,11 @@ using std::unique_ptr;
 
 namespace PR
 {
-	class AssignmentMulti :
-		public IAssignment
+	class AssignmentMulti : public IAssignment
 	{
 		vector<unique_ptr<IAssignment>> target;
 	public:
+		
 		AssignmentMulti();
 		~AssignmentMulti();
 

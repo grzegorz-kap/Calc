@@ -9,15 +9,14 @@ using std::vector;
 using std::shared_ptr;
 
 #include "CalcException.h"
-#include "Matrix.h"
-#include "Output.h"
+#include "TypePromotor.h"
 
-#define PLOT_TYPE double
 
 namespace PR
 {
 	class Function
 	{
+	
 	protected:
 		string name;
 		int max_args_count;
@@ -28,10 +27,8 @@ namespace PR
 		Function();
 		~Function();
 
-		virtual shared_ptr<Data> run();
-
 		string getName() const { return name; }
-
+		virtual shared_ptr<Data> run();
 		virtual void set(const vector<shared_ptr<Data>> &args,int output=1);
 
 	protected:

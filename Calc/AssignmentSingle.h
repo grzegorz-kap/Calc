@@ -1,5 +1,6 @@
 #pragma once
 #include "IAssignment.h"
+#include "Output.h"
 
 namespace PR
 {

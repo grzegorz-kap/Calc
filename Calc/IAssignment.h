@@ -1,6 +1,6 @@
 #pragma once
+
 #include "Token.h"
-#include "Output.h"
 #include "Variables.h"
 
 #include <vector>
@@ -22,33 +22,21 @@ namespace PR
 		SUBSCRIPTED
 	};
 
-	class IAssignment :
-		public Token
+	typedef vector<shared_ptr<Token>>::iterator instr_iter;
+	typedef vector<shared_ptr<Data>>::iterator stack_iterator;
+
+	class IAssignment : public Token
 	{
 	public:
-		IAssignment(const ASSIGNMENT_TYPE &_type);
-		~IAssignment();
-		
 		const ASSIGNMENT_TYPE _assignment_type;
 
-		virtual void loadTarget(vector<shared_ptr<Token>>::iterator &start, vector<shared_ptr<Token>>::iterator &end) {};	
+		IAssignment(const ASSIGNMENT_TYPE &_type);
+		~IAssignment();	
+		virtual void loadTarget(instr_iter &start, instr_iter &end);
+		virtual void doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment);
+		virtual int getTargetSize() const;
 		
-		virtual void doAssignment(Variables &vars,
-								  vector<shared_ptr<Data>>::iterator &first,
-								  vector<shared_ptr<Data>>::iterator &last, 
-								  vector<std::pair<std::map<string, shared_ptr<Data>>::iterator, bool>> &assignment) 
-		{
-			throw CalcException("Unimplemented assignment");
-		};
-		
-		static auto assign(Variables &vars, const string &key, const shared_ptr<Data> &data)
-			 -> std::pair<std::map<string,shared_ptr<Data>>::iterator,bool> ;
-		 
-		virtual int getTargetSize() const 
-		 { 
-			 return 0; 
-		 }
-
+		static variables_map_pair assign(Variables &vars, const string &key, const shared_ptr<Data> &data);
 	};
 }
 
