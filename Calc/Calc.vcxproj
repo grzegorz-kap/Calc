@@ -275,8 +275,6 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
-    <ClCompile Include="ParserAssignment.cpp" />
-    <ClCompile Include="ParserFOR.cpp" />
     <ClCompile Include="Plot3Function.cpp" />
     <ClCompile Include="PlotFunction.cpp" />
     <ClCompile Include="RandFunction.cpp" />

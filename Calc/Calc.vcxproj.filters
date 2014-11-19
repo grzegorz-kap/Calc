@@ -446,9 +446,7 @@
     <ClCompile Include="i_order_map.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="ParserAssignment.cpp">
-      <Filter>Service\Parsing</Filter>
-    </ClCompile>
+ 
     <ClCompile Include="MatrixBuilder.cpp">
       <Filter>Service\Matrix</Filter>
     </ClCompile>
@@ -605,9 +603,7 @@
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="ParserFOR.cpp">
-      <Filter>Service\Parsing</Filter>
-    </ClCompile>
+
     <ClCompile Include="DetFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
