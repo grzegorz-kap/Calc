@@ -35,6 +35,7 @@ namespace PR
 		UNKNOWN,
 		TOKEN,
 		OUTPUT,
+		STRING,
 		DOUBLE,
 		R_DOUBLE,
 		M_DOUBLE,

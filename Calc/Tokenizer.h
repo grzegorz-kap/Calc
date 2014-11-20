@@ -16,6 +16,7 @@ using std::vector;
 #include "functions.h"
 #include "Token.h"
 #include "SNumber.h"
+#include "String.h"
 #include "Operator.h"
 #include "OperatorsFactory.h"
 #include "NumberReader.h"
