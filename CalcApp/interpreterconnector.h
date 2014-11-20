@@ -29,7 +29,7 @@ public:
 	void signal_receiver(const char *, const PR::Data *);
 	void errors_receiver(const char *, int);
 	void executionComplate(void);
-
+	void clearScreen(){ emit clsScreen(); }
 public slots:
 	void workingDirectoryChanged(QString dir);
 
@@ -43,6 +43,7 @@ signals:
 	void interpreterResponded();
 	void interpreterError(QString);
 	void sendVariableInformation(PR::VariableInfo);
+	void clsScreen();
 };
 
 #endif // INTERPRETERCONNECTOR_H

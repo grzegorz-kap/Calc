@@ -15,6 +15,7 @@ namespace PR
 		sig_updated_variables	= new AddedVariablesSender();
 		sig_removed_variables	= new CharStringSender();
 		sig_execution_complate  = new VoidSender();
+		sig_clean_screen = new VoidSender();
 	}
 
 	SignalEmitter::~SignalEmitter()
@@ -26,6 +27,7 @@ namespace PR
 		delete	sig_updated_variables  ;
 		delete	sig_removed_variables  ;
 		delete sig_execution_complate;
+		delete sig_clean_screen;
 	}
 
 	SignalEmitter* SignalEmitter::get()
@@ -70,6 +72,11 @@ namespace PR
 		sig_removed_variables->connect(slot);
 	}
 
+	void SignalEmitter::connect_clear_screen(const VoidSenderSlot &slot)
+	{
+		sig_clean_screen->connect(slot);
+	}
+
 	void SignalEmitter::call(const CalcException &exception)
 	{
 		(*sig_exception)(exception.getMessageR().c_str(), exception.getPosition());
@@ -103,5 +110,10 @@ namespace PR
 	void SignalEmitter::call_execution_complate()
 	{
 		(*sig_execution_complate)();
+	}
+
+	void SignalEmitter::call_sig_clear_screen()
+	{
+		(*sig_clean_screen)();
 	}
 }

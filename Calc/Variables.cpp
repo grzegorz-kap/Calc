@@ -36,7 +36,7 @@ namespace PR
 
 	variables_map_pair Variables::set(const string &name, const shared_ptr<Data> &data)
 	{
-		shared_ptr<Data> temp(data->copy());
+		shared_ptr<Data> temp = data->_temp ? data : data->copy();
 
 		auto result = mem.insert({ name, temp });
 		if (result.second == false)
@@ -48,6 +48,7 @@ namespace PR
 		{
 			temp->_added = true;
 		}
+		temp->_temp = false;
 		return result;
 	}
 

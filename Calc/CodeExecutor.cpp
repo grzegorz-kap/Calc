@@ -35,15 +35,9 @@ namespace PR
 			if (i >= N)
 				throw CalcException("Too many input parameters in function call (" + fun.getName() + ")");
 			
-			shared_ptr<Data> temp;
+			shared_ptr<Data> temp = data->_temp? data : data->copy();
 			if (data->isOutput())
-			{
-				temp.reset(data.get());
 				TypePromotor::promote(temp, temp->max_type());
-			}
-			else
-				temp = data;
-			
 			vars_ref.set(input[i++],data);
 		}
 	}
@@ -415,7 +409,10 @@ namespace PR
 		catch (const string &ex)
 		{
 			if (!onScript())
-				throw CalcException("Undefined variable or script '" + (*i)->getLexemeR() + "'.", (*i)->getPosition());
+				if ((*i)->getLexemeR() != "clc")
+					throw CalcException("Undefined variable or script '" + (*i)->getLexemeR() + "'.", (*i)->getPosition());
+				else
+					SignalEmitter::get()->call_sig_clear_screen();
 		}
 	}
 

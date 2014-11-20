@@ -17,6 +17,7 @@ void InterpreterConnector::connectToInterpreterSingals()
 	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, this, _1, _2));
 	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, this, _1, _2));
 	PR::SignalEmitter::get()->connect_execution_complate(boost::bind(&InterpreterConnector::executionComplate,this));
+	PR::SignalEmitter::get()->connect_clear_screen(boost::bind(&InterpreterConnector::clearScreen, this));
 }
 
 void InterpreterConnector::executionComplate(void)

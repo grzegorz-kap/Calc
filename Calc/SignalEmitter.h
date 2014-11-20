@@ -37,6 +37,7 @@ namespace PR
 		AddedVariablesSender	*sig_updated_variables;
 		CharStringSender		*sig_removed_variables;
 		VoidSender				*sig_execution_complate;
+		VoidSender				*sig_clean_screen;
 
 		static SignalEmitter * instance;
 		SignalEmitter();
@@ -55,6 +56,7 @@ namespace PR
 		void connect_added_variables_slot(const AddedVariablesSlot &slot);
 		void connect_updated_variables_slot(const AddedVariablesSlot &slot);
 		void connect_removed_variables_slot(const CharStringSenderSlot &slot);
+		void connect_clear_screen(const VoidSenderSlot &slot);
 
 		void call_execution_complate();
 		void call(const string &, const shared_ptr<Data> &b);
@@ -63,6 +65,7 @@ namespace PR
 		void call_sig_added_variables(const VariableInfo *data, int num);
 		void call_sig_updated_variables(const VariableInfo *data, int num);
 		void call_sig_removed_variables(const char ** chars, int num);
+		void call_sig_clear_screen();
 	};
 
 }

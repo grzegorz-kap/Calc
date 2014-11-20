@@ -4,7 +4,6 @@ Console::Console(QWidget *parent)
 	: QTextBrowser(parent)
 {
 	document()->setMaximumBlockCount(3000);
-	
 }
 
 Console::~Console()
@@ -37,4 +36,9 @@ void Console::cursorToEnd()
 	QTextCursor c = textCursor();
 	c.movePosition(QTextCursor::End);
 	setTextCursor(c);
+}
+
+void Console::clear()
+{
+	setText("");
 }

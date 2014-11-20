@@ -30,7 +30,6 @@ CalcApp::CalcApp(QWidget *parent)
 	qRegisterMetaType<QString>("QString");
 	qRegisterMetaType<std::string>("std::string");
 	qRegisterMetaType<PR::VariableInfo>("PR::VariableInfo");
-
 	
 //	ui.commandL->setFocus();
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
@@ -52,6 +51,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), &scriptEditor, SLOT(workingDirectoryChanged(QString)));
 	connect(ui.dirComboBox, SIGNAL(currentIndexChanged(QString)), &fileWatcher, SLOT(setNewDirectory(QString)));
 	connect(ui.filesList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), &scriptEditor, SLOT(onScriptDblClicked(QListWidgetItem*)));
+	connect(interpreterConnector, SIGNAL(clsScreen()), ui.console,SLOT(clear()));
 	fileWatcher.changed(QDir::currentPath());
 
 	connect(&scriptEditor, SIGNAL(runCommand(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));

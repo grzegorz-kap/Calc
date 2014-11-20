@@ -31,6 +31,7 @@ private:
 	void keyPressEvent(QKeyEvent* e);
 	void addToHistory();
 	void onKeyUpOrDown(int key);
+	void clearScreen(){ setPlainText(""); }
 
 	Highlighter *highlighter;
 signals:

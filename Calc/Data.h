@@ -51,6 +51,7 @@ namespace PR
 		TYPE _type;
 		bool _updated;
 		bool _added;
+		bool _temp;
 		
 		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP;
 		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP;

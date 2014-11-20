@@ -3,6 +3,7 @@
 
 #include <qtextbrowser.h>
 #include "Sync.h"
+#include "Calc\SignalEmitter.h"
 
 class Console : public QTextBrowser
 {
@@ -16,6 +17,7 @@ public slots:
 	void append(QString );
 	void appendWithoutRealase(QString);
 	void insertHtml(QString );
+	void clear();
 private:
 	void cursorToEnd();
 };
