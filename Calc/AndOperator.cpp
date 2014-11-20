@@ -7,7 +7,6 @@ namespace PR
 	AndOperator::AndOperator()
 		:Operator("&&",100,2,EVAULATED::RIGHT)
 	{
-		set_class(TOKEN_CLASS::SHORT_CIRCUIT_OP);
 	}
 
 

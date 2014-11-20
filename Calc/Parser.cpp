@@ -56,7 +56,6 @@ namespace PR
 			case TOKEN_CLASS::SEMICOLON:
 				onSemicolon();
 				break;
-			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
 				break;
@@ -218,7 +217,7 @@ namespace PR
 	void Parser::onOperator()
 	{ 
 		Operator *o1 = i->castToOperator();
-		while (stackBack() == TOKEN_CLASS::OPERATOR || stackBack()==TOKEN_CLASS::SHORT_CIRCUIT_OP)
+		while (stackBack() == TOKEN_CLASS::OPERATOR )
 		{
 			Operator *o2 = stack.back()->castToOperator();
 			if (o1->getLexemeR() == ":" && o2->getLexemeR() == ":")
@@ -232,10 +231,7 @@ namespace PR
 			else
 				break;
 		}
-
-		if (i->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_OP)
-			onShortCircuitOperator();
-
+		onShortCircuitOperator();
 		stack.push_back(std::move(i));
 	}
 
@@ -290,7 +286,6 @@ namespace PR
 			case TOKEN_CLASS::MATRIX_START:
 				mtrx.push_back(0); break;
 			case TOKEN_CLASS::OPERATOR:
-			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
 				balance = -t->castToOperator()->getArgumentsNum() + 1; break;
 			case TOKEN_CLASS::MATRIX_END:
 				balance = -mtrx.back() + 1; mtrx.pop_back(); break;
@@ -370,7 +365,7 @@ namespace PR
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
 			TOKEN_CLASS _type = stack[i]->getClass();
-			if (_type != TOKEN_CLASS::OPERATOR && _type!=TOKEN_CLASS::SHORT_CIRCUIT_OP)
+			if (_type != TOKEN_CLASS::OPERATOR)
 				throw CalcException("Unexpected symbol!", stack[i]->getPosition());
 			onp.push_back(std::move(stack[i]));
 		}

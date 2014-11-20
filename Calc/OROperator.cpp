@@ -7,7 +7,6 @@ namespace PR
 	OROperator::OROperator()
 		:Operator("||",110,2,EVAULATED::RIGHT)
 	{
-		set_class(TOKEN_CLASS::SHORT_CIRCUIT_OP);
 	}
 
 

@@ -97,7 +97,6 @@ namespace PR
 			case TOKEN_CLASS::NUMBER:
 				stack.push_back(shared_ptr<Data>((*i)->evaluate()));
 				break;
-			case TOKEN_CLASS::SHORT_CIRCUIT_OP:
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
 				break;
