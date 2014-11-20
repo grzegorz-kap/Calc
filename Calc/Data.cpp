@@ -9,7 +9,8 @@ namespace PR
 		{ typeid(Matrix<double>), TYPE::M_DOUBLE },
 		{ typeid(ComplexNumber<double>), TYPE::DOUBLE },
 		{ typeid(ComplexNumber<hdouble>), TYPE::R_DOUBLE },
-		{ typeid(Matrix<hdouble>), TYPE::RM_DOUBLE }
+		{ typeid(Matrix<hdouble>), TYPE::RM_DOUBLE },
+		{ typeid(String),TYPE::STRING }
 	};
 
 	decltype(Data::TYPE_NAME_MAP) Data::TYPE_NAME_MAP =
@@ -20,7 +21,8 @@ namespace PR
 		{ TYPE::DOUBLE, "double" },
 		{ TYPE::OUTPUT, "'function output'" },
 		{ TYPE::UNKNOWN, "'unknown'" },
-		{ TYPE::TOKEN, "'token'" }
+		{ TYPE::TOKEN, "'token'" },
+		{ TYPE::STRING, "'string'" }
 	};
 
 	Data::Data()

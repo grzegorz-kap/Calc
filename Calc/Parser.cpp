@@ -81,6 +81,9 @@ namespace PR
 				onKeywordFOR();
 				stop = true;
 				break;
+			case TOKEN_CLASS::STRING:
+				onp.push_back(std::move(i));
+				break;
 			case TOKEN_CLASS::KEY_WORD:
 			case TOKEN_CLASS::IF_KEYWORD:
 			case TOKEN_CLASS::ELSE_KEYWORD:
@@ -280,6 +283,7 @@ namespace PR
 			{
 			case TOKEN_CLASS::ID:
 			case TOKEN_CLASS::NUMBER:
+			case TOKEN_CLASS::STRING:
 				balance = 1; break;
 			case TOKEN_CLASS::FUNCTON_ARGS_END:
 				funs.push_back(0); break;

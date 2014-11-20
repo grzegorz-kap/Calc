@@ -131,6 +131,7 @@ namespace PR
 				if (i < N - 1 && command[i + 1] == '\'')
 				{
 					i += 2;
+					lexame += '\'';
 					continue;
 				}
 				found = true;

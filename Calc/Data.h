@@ -27,6 +27,7 @@ namespace PR
 	template <class T> class Numeric;
 	template <class T> class Matrix;
 	template <class T> class ComplexNumber;
+	class String;
 	class Token;
 	class Output;
 

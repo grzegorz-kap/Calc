@@ -123,7 +123,7 @@ namespace PR
 			dest = a->convert_numeric<Matrix<hdouble>>();
 			break;
 		default:
-			throw "!";
+			throw CalcException("Cannot convert to this type");
 		}
 	}
 
