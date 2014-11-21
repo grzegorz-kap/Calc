@@ -18,6 +18,9 @@ namespace PR
 	{
 		const static unordered_map<string, TOKEN_CLASS> KEYWORDS;
 	public:
+		const static vector<TOKEN_CLASS> NO_STRING_PRECURSORS;
+		
+
 		static void toString(const vector<Token> &tokens, string &out);
 		static bool isLetter(char c);
 		static bool isDigit(char c);

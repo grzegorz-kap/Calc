@@ -131,11 +131,14 @@ namespace PR
 			case TOKEN_CLASS::OUTPUT_OFF:
 				output_off_flag = true;
 				break;
+			case TOKEN_CLASS::STRING:
+				stack.push_back(*i);
+				break;
 			case TOKEN_CLASS::MATRIX_ALL:
 				onMatrixAll();
 				break;
 			default:
-				throw CalcException("!");
+				throw CalcException("Cannot execute this: '"+(*i)->getLexemeR()+"'",(*i)->getPosition());
 			}
 		}
 
@@ -356,7 +359,7 @@ namespace PR
 		if (size > 2)
 			throw CalcException("Too many arguments while accessing variables cells");
 
-		TYPE convertToType = var->_type;
+		TYPE convertToType = var->_type == TYPE::STRING ? TYPE::M_DOUBLE : var->_type;
 
 		for (int i = args.size() - 1; i >= 0; i--)
 			if (args[i]->_type != convertToType && !args[i]->isToken(TOKEN_CLASS::MATRIX_ALL))

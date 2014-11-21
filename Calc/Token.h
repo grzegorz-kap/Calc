@@ -40,7 +40,7 @@ namespace PR
 
 		bool operator == (const Token &b)const;
 		virtual string getLexeme()const;
-		const string & getLexemeR()const;
+		virtual const string & getLexemeR()const;
 		void setLexeme(const string &lexemeArg);
 		TOKEN_CLASS getClass() const;
 		void set_class(const TOKEN_CLASS &typeArg);

@@ -15,6 +15,10 @@ namespace PR
 		{ "function",TOKEN_CLASS::FUNCTION_KEYWORD }
 	};
 
+	const vector<TOKEN_CLASS> TokenizerHelper::NO_STRING_PRECURSORS = {
+		NUMBER , CLOSE_PARENTHESIS , MATRIX_END, ID
+	};
+
 	bool TokenizerHelper::isKeyWord(const string &word)
 	{
 		return TokenizerHelper::KEYWORDS.find(word) != TokenizerHelper::KEYWORDS.end();

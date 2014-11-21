@@ -72,6 +72,12 @@ namespace PR
 
 	bool Tokenizer::readOperator()
 	{
+		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev()))
+		{
+			readString();
+			return true;
+		}
+
 		auto result = OperatorsFactory::get(command, i);
 		if (result != nullptr)
 		{
@@ -115,7 +121,32 @@ namespace PR
 
 	void Tokenizer::readString()
 	{
-		
+		int start = i++;
+		string lexame = "";
+		bool found = false;
+		while (i < N && command[i]!='\n')
+		{
+			if (command[i] == '\'')
+			{
+				if (i < N - 1 && command[i + 1] == '\'')
+				{
+					i += 2;
+					lexame += '\'';
+					continue;
+				}
+				found = true;
+				i++;
+				break;
+			}
+			lexame += command[i++];
+		}
+
+		if (!found)
+			throw CalcException(" A MATLAB string constant is not terminated properly.", start);
+
+		unique_ptr<String> token = make_unique<String>(std::move(lexame));
+		token->setPosition(start);
+		tokens.push_back(std::move(token));
 	}
 
 	void Tokenizer::readWhiteSpace()

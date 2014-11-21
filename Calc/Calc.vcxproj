@@ -176,6 +176,7 @@
     <ClInclude Include="SizeFunction.h" />
     <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="String.h" />
     <ClInclude Include="SubtractionOperator.h" />
     <ClInclude Include="SurfaceFunction.h" />
     <ClInclude Include="TanFun.h" />
@@ -289,6 +290,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="String.cpp" />
     <ClCompile Include="SubtractionOperator.cpp" />
     <ClCompile Include="SurfaceFunction.cpp" />
     <ClCompile Include="TanFun.cpp" />
