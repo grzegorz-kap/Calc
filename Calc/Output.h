@@ -15,6 +15,8 @@ namespace PR
 		vector<shared_ptr<Data>> out;
 	public:
 
+		bool _extern;
+
 		Output();
 		~Output();
 

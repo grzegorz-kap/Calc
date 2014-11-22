@@ -7,6 +7,7 @@ namespace PR
 	Output::Output()
 	{
 		_type = TYPE::OUTPUT;
+		_extern = false;
 	}
 
 

@@ -387,6 +387,7 @@ namespace PR
 
 		const vector<string>& output = function.getOutput();
 		shared_ptr<Output> results = make_shared<Output>();
+		results->_extern = true;
 		for (const string &str : output)
 		{
 			auto result = exec.vars_ref.get(str);

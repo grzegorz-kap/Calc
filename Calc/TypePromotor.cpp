@@ -107,7 +107,6 @@ namespace PR
 			convertOutputTo(type, a, dest);
 			return;
 		}
-
 		switch (type)
 		{
 		case TYPE::DOUBLE:
@@ -129,9 +128,18 @@ namespace PR
 
 	void TypePromotor::convertOutputTo(TYPE type,const shared_ptr<Data> &a, shared_ptr<Data> &dest)
 	{
-		auto vec = std::dynamic_pointer_cast<Output>(a)->getOutput();
-		auto builder =  MatrixBuilderFactory::get(type);
+		shared_ptr<Output> output = std::dynamic_pointer_cast<Output>(a);
 
+		auto vec = output->getOutput();
+
+		if (output->_extern && vec.size())
+		{
+			dest = vec[0];
+			promote(dest, type);
+			return;
+		}
+
+		auto builder =  MatrixBuilderFactory::get(type);
 		if (builder == nullptr)
 			builder = MatrixBuilderFactory::get(TYPE::DOUBLE);
 

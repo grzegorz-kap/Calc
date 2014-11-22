@@ -52,8 +52,8 @@ namespace PR
 	template <class T>
 	bool MatrixBuilder<T>::onScalar(shared_ptr<Data> &data)
 	{
-		TYPE s_type = data->max_type();
-		if (data->isNumeric() && s_type != d_type && IMatrixBuilder::getAssociatedType(s_type) == d_type)
+		TYPE s_type = data->_type;
+		if (data->isComplexNumber() && IMatrixBuilder::getAssociatedType(s_type) == d_type)
 		{
 			auto ptr = dynamic_cast<ComplexNumber<T> *>(data.get());
 			m_s = 1;
@@ -61,9 +61,8 @@ namespace PR
 			mx->at(idx).push_back(*ptr);
 			return true;
 		}
-
-		if (data->isNumeric() && data->_type != d_type)
-			TypePromotor::convertTo(d_type, data, data);
+		if (data->isNumeric())
+			TypePromotor::promote(data, d_type);
 		return false;
 	}
 
