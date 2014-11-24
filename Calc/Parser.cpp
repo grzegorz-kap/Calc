@@ -31,6 +31,9 @@ namespace PR
 	{
 		stack.clear();
 		onp.clear();
+		_function_names.clear();
+		_function_args.clear();
+		_function_onp_addr.clear();
 		stop = false;
 
 		for (; !stop && iter != tokens.end(); ++iter)
@@ -75,6 +78,7 @@ namespace PR
 				onColon();
 				break;
 			case TOKEN_CLASS::MATRIX_ALL:
+			case TOKEN_CLASS::LAST_INDEX_OF:
 				onMatrixAll();
 				break;
 			case TOKEN_CLASS::FOR_KEYWORD:
@@ -98,7 +102,7 @@ namespace PR
 				stop = true;
 				break;
 			default:
-				throw CalcException("Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
+				throw CalcException("Parser. Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
 				break;
 			}
 		}
@@ -130,12 +134,17 @@ namespace PR
 			if (!flag)
 				throw CalcException("Unbalanced parenthesis!");
 		}
+		if (i->getMode() == PARSE_MODE::FUNCTION)
+			_function_args.back()++;
 	}
 
 	void Parser::onFunction()
 	{
 		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		stack.push_back(make_shared<Token>(*i));
+		_function_names.push_back(i->getLexemeR());
+		_function_args.push_back(1);
+		_function_onp_addr.push_back(vector<int>());
 	}
 
 	void Parser::onID()
@@ -146,7 +155,9 @@ namespace PR
 			token.set_class(TOKEN_CLASS::FUNCTION);
 			stack.push_back(make_shared<Token>(token));
 			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
-
+			_function_names.push_back(token.getLexemeR());
+			_function_args.push_back(1);
+			_function_onp_addr.push_back(vector<int>());
 			if (token.getLexemeR() == "mpf_float")
 			{
 				_ev_type_mode.push_back(TYPE::R_DOUBLE);
@@ -213,8 +224,20 @@ namespace PR
 		}
 
 		stackToOnpUntilToken(TOKEN_CLASS::OPEN_PARENTHESIS);
-		if (stackBack() == TOKEN_CLASS::FUNCTION )
+		if (stackBack() == TOKEN_CLASS::FUNCTION)
+		{
+			_function_names.pop_back();
+			stack.back()->argumentsNum(_function_args.back());
+
+			for (int i : _function_onp_addr.back())
+			{
+				if (i < onp.size())
+					onp[i]->argumentsNum(_function_args.back());
+			}
+
+			_function_args.pop_back();
 			stackToOnp();
+		}
 	}
 
 	void Parser::onOperator()
@@ -314,7 +337,12 @@ namespace PR
 
 	void Parser::onMatrixAll()
 	{
-		stack.push_back(make_unique<Token>(*i));
+		if (_function_names.size() == 0||_function_args.size()==0)
+			throw CalcException("Unexpected end keyword or : operator",i->getPosition());
+		onp.push_back(make_shared<Token>(*i));
+		onp.back()->setLexeme(_function_names.back());
+		onp.back()->setParam(_function_args.back());
+		_function_onp_addr.back().push_back(onp.size()-1);
 	}
 
 	void Parser::onMatrixEnd()
@@ -379,6 +407,8 @@ namespace PR
 	void Parser::stackToOnp()
 	{
 		onp.push_back(std::move(stack.back()));
+		if (_function_args.size())
+			onp.back()->argumentsNum(_function_args.back());
 		stack.pop_back();
 	}
 

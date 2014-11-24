@@ -48,6 +48,11 @@ namespace PR
 		void onComma(Token &token);
 		void onSpace(Token &token);
 		void onColon(Token &token);
+
+		/*
+			Recognize what means (last index of or if/for/while end)
+		*/
+		void onEndKeyword(Token &token);
 	};
 }
 

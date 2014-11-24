@@ -35,6 +35,9 @@ namespace PR
 		vector<unique_ptr<Token>>::iterator iter;
 		vector<TYPE> _ev_type_mode;
 		vector<int>  _ev_type_balance;
+		vector<string> _function_names;
+		vector<int> _function_args;
+		vector<vector<int>> _function_onp_addr;
 	public:
 		
 		Parser();

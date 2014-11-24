@@ -128,6 +128,9 @@ namespace PR
 		operator Matrix<double>() const;
 		operator Matrix<hdouble>()const;
 
+		Matrix<T> getLastIndexOfCol() const;
+		Matrix<T> getLastIndexOfRow() const;
+
 		private:
 			bool checkIfTrue() const;
 			bool checkIfFalse() const;

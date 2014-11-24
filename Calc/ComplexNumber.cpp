@@ -518,6 +518,9 @@ namespace PR
 	}
 
 
+	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfRow() const{return ComplexNumber<T>(1);}
+	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfCol() const{return ComplexNumber<T>(1);}
+
 	template class ComplexNumber < double >;
 	template class ComplexNumber < hdouble >;
 }

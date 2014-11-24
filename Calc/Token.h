@@ -26,6 +26,7 @@ namespace PR
 		int param;
 		int keyword_balance;
 		int tree_level;
+		int _arguments_num;
 	protected:
 		TYPE _evType;
 	public:
@@ -57,6 +58,8 @@ namespace PR
 		int getTreeLevel() const;
 		void setTreeLevel(int arg);
 		string toString() const;
+		void argumentsNum(int n);
+		int argumentsNum() const;
 		virtual bool isToken(TOKEN_CLASS token_class) const override;
 		virtual shared_ptr<Data> evaluate();
 		virtual Operator * castToOperator();

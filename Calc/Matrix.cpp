@@ -659,6 +659,18 @@ namespace PR
 	}
 
 	template <class T>
+	Matrix<T> Matrix<T>::getLastIndexOfCol() const
+	{
+		return Matrix<T>(1, 1, ComplexNumber<T>(N));
+	}
+
+	template <class T>
+	Matrix<T> Matrix<T>::getLastIndexOfRow() const
+	{
+		return Matrix<T>(1, 1, ComplexNumber<T>(M));
+	}
+
+	template <class T>
 	Matrix<T> Matrix<T>::at(const Matrix<T> &first, const Matrix<T> &second) const
 	{
 		Matrix<T> out(first.M*first.N, second.M*second.N);
@@ -868,6 +880,13 @@ namespace PR
 	Matrix<T> Matrix<T>::getIndex(int num) const
 	{
 		Matrix<T> out(1, num);
+
+		if (num==0)
+		{
+			out.N = -1;
+			return out;
+		}
+
 		vector<ComplexNumber<T>> &ref = out.mx[0];
 		int i = 1;
 		for (ComplexNumber<T> &ref : ref)
@@ -1015,7 +1034,7 @@ namespace PR
 
 	template <class T> bool Matrix<T>::isEmpty() const 
 	{ 
-		return M == 0 && N == 0; 
+		return M <= 0 && N <= 0; 
 	}
 
 	template <class T> int Matrix<T>::toInteger() const

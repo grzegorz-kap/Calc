@@ -92,7 +92,9 @@ namespace PR
 		virtual vector<double> toDoubleVector() const override;
 		virtual vector<double> toDoubleVectorAll() const override;
 		double toDouble() const;
-		int toInteger() const;	
+		int toInteger() const;
+		ComplexNumber<T> getLastIndexOfRow() const;
+		ComplexNumber<T> getLastIndexOfCol() const;
 	};
 
 }

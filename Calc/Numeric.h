@@ -247,21 +247,15 @@ namespace PR
 
 		virtual shared_ptr<Data> getAt(shared_ptr<Data> &cells) const override
 		{
-			if (cells->isToken(TOKEN_CLASS::MATRIX_ALL))
-				cells = getSingleIndex();
 			return make_shared<T>(get_derived()->at(*cells->cast_numeric<T>()->get_derived()));
 		}
 
 		virtual shared_ptr<Data> getAt(shared_ptr<Data> &first, shared_ptr<Data> &second) const override
 		{
-			if (first->isToken(TOKEN_CLASS::MATRIX_ALL))
-				first = getRowsIndexes();
-			if (second->isToken(TOKEN_CLASS::MATRIX_ALL))
-				second = getColsIndexes();
 			return make_shared<T>(get_derived()->at(
 				*first->cast_numeric<T>()->get_derived(),
 				*second->cast_numeric<T>()->get_derived()
-				));
+			));
 		}
 
 		virtual void assignAt(shared_ptr<Data>& data)  override
@@ -271,39 +265,21 @@ namespace PR
 
 		virtual void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data) override
 		{ 
-			if (cells->isToken(TOKEN_CLASS::MATRIX_ALL))
-				cells = getSingleIndex();
 			get_derived_non_const()->assign(*cells->cast_numeric<T>()->get_derived(),*data->cast_numeric<T>()->get_derived());
 		}
 
 		virtual void assignAt(shared_ptr<Data>& rows, shared_ptr<Data>& cols, shared_ptr<Data>& data) override
 		{
-			if (rows->isToken(TOKEN_CLASS::MATRIX_ALL) && cols->isToken(TOKEN_CLASS::MATRIX_ALL))
+			if (isEmpty())
 			{
-				cols = getColsIndexes();
-				rows = getRowsIndexes();
-			}
-			else
-			{
-				if (rows->isToken(TOKEN_CLASS::MATRIX_ALL))
-				{
-					if (isEmpty())
-						rows = getVectorForAssignment(data->cast_numeric<T>()->getRowsCountForEmptyMatrixAssignment());
-					else
-						rows = getRowsIndexes();
-				}
-
-				if (cols->isToken(TOKEN_CLASS::MATRIX_ALL))
-				{
-					if (isEmpty())
-						cols = getVectorForAssignment(data->cast_numeric<T>()->getColsCountForEmptyMatrixAssignment());
-					else
-						cols = getColsIndexes();
-				}
+				if (rows->get_rows_int() == 1 && rows->get_cols_int() == -1)
+					rows = getVectorForAssignment(data->cast_numeric<T>()->getRowsCountForEmptyMatrixAssignment());
+				if (cols->get_rows_int() == 1 && cols->get_cols_int()==-1)
+					cols = getVectorForAssignment(data->cast_numeric<T>()->getColsCountForEmptyMatrixAssignment());
 			}
 			
-
-			get_derived_non_const()->assign(*rows->cast_numeric<T>()->get_derived(),
+			get_derived_non_const()->assign(
+				*rows->cast_numeric<T>()->get_derived(),
 				*cols->cast_numeric<T>()->get_derived(),
 				*data->cast_numeric<T>()->get_derived());
 		}
@@ -321,17 +297,17 @@ namespace PR
 		virtual int getRowsCountForEmptyMatrixAssignment() const { return 1; }
 		virtual int getColsCountForEmptyMatrixAssignment() const { return 1; }
 
-		shared_ptr<Data> getRowsIndexes() const 
+		virtual shared_ptr<Data> get_rows_index() const override
 		{
 			return make_shared<T>(get_derived()->getRowIndex());
 		}
 
-		shared_ptr<Data> getColsIndexes() const 
+		virtual shared_ptr<Data> get_cols_index() const override
 		{
 			return make_shared<T>(get_derived()->getColIndex());
 		}
 		
-		shared_ptr<Data> getSingleIndex() const 
+		virtual shared_ptr<Data> get_single_index() const override
 		{
 			return make_shared<T>(get_derived()->getIndexAll());
 		}
@@ -352,7 +328,6 @@ namespace PR
 				*end->cast_numeric<T>()->get_derived()
 				));
 		}
-
 	private:
 
 		shared_ptr<Data> getVectorForAssignment(const int &stop) const

@@ -296,6 +296,22 @@ namespace PR
 		throw UnimplementedException("Undefined behaviour! toDoubleVector()");
 	}
 
+	shared_ptr<Data> Data::get_single_index() const
+	{
+		throw UnimplementedException("Cannot indexing this type");
+	}
+
+	shared_ptr<Data> Data::get_rows_index() const
+	{
+		throw UnimplementedException("Cannot indexing this type");
+	}
+
+	shared_ptr<Data> Data::get_cols_index() const
+	{
+		throw UnimplementedException("Cannot indexing this type");
+	}
+
+
 	string Data::minValueString() const
 	{
 		return "Unknown";

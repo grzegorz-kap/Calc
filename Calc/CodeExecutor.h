@@ -39,7 +39,7 @@ namespace PR
 		static void set_stop_computing();
 		static void off_stop_computing();
 		static vector<shared_ptr<Data>> run_single(const vector<shared_ptr<Token>> &onp, Variables &vars);
-	
+		static bool isMatrixEndOrColon(const shared_ptr<Token> &t);
 	private:
 
 		static bool stop_computing;			/* Set to true if compution should be canceled*/
@@ -56,6 +56,7 @@ namespace PR
 		Variables internal_vars;			/* Should not be used directly! Local variables in extern function execution */
 		Variables &vars_ref;				/* Reference to variables */
 		static Variables globals;			/* Global variables */
+		bool _single_run;
 
 		/* Constructor for external function execution */
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
@@ -71,7 +72,6 @@ namespace PR
 		void onShortCircuitJumper();
 		void onMatrixEnd();
 		void onFunction();
-		void onMatrixAll();
 		void onFunctionArgs();
 		void onVariableFunction(vector<shared_ptr<Data>> &args, shared_ptr<Data> &var);
 		void onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name);
@@ -85,6 +85,7 @@ namespace PR
 		bool checkFor();
 		void onForKeyword();
 		void onForEndKeyword();
+		void onMatrixAllOrLastInex();
 		void onID();
 		bool onScript();
 		shared_ptr<Data> pop();
@@ -93,7 +94,6 @@ namespace PR
 		void setIPTo(const vector<TOKEN_CLASS> &set, int balance);
 		void next();
 		void prev();
-
 		static const vector<TOKEN_CLASS> IF_FIND;
 		static const vector<TOKEN_CLASS> ELSE_FIND;
 		static const vector<TOKEN_CLASS> WHILE_FIND;

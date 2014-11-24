@@ -53,14 +53,16 @@ namespace PR
 		}
 		catch (const string &ex)
 		{
-			throw CalcException(ex);
+			throw CalcException("Error in subscripted assignment."+ex);
+		}
+
+		if (var->isComplexNumber())
+		{
+			TypePromotor::promote(var,IMatrixBuilder::getAssociatedType(var->_type));
 		}
 
 		auto address = executor(onp, vars);
-
-		TypePromotor::promote(address, var->_type, [](shared_ptr<Data> &b){
-			return !b->isToken(TOKEN_CLASS::MATRIX_ALL); 
-		});
+		TypePromotor::promote(address, var->_type);
 
 		TypePromotor::promote(*first, var->_type);
 		switch (address.size())

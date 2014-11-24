@@ -135,6 +135,9 @@ namespace PR
 		virtual string getValueInfoString() const;
 		virtual string getTypeName() const;
 		virtual shared_ptr<Data> copy() const;
+		virtual shared_ptr<Data> get_single_index() const; /* For indexing */
+		virtual shared_ptr<Data> get_rows_index() const; /* For indexing */
+		virtual shared_ptr<Data> get_cols_index() const; /* For indexing */
 
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()

@@ -140,6 +140,16 @@ namespace PR
 		return mode; 
 	}
 
+	void Token::argumentsNum(int n)
+	{
+		_arguments_num = n;
+	}
+
+	int Token::argumentsNum() const
+	{
+		return _arguments_num;
+	}
+
 	void Token::setMode(PARSE_MODE mode)
 	{ 
 		this->mode = mode; 

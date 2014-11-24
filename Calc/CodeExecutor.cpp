@@ -14,12 +14,14 @@ namespace PR
 	CodeExecutor::CodeExecutor()
 		:vars_ref(internal_vars)
 	{
+		_single_run = false;
 	}
 
 	CodeExecutor::CodeExecutor(Variables &ref)
 		:
 		vars_ref(ref)
 	{
+		_single_run = false;
 	}
 
 	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
@@ -29,6 +31,7 @@ namespace PR
 	{
 		auto input = fun.getInput();
 		int i = 0;
+		_single_run = false;
 		int N = input.size();
 		for (const shared_ptr<Data> &data : args)
 		{
@@ -122,6 +125,10 @@ namespace PR
 			case TOKEN_CLASS::ASSIGNMENT_TARGET:
 				stack.push_back(*i);
 				break;
+			case TOKEN_CLASS::MATRIX_ALL:
+			case TOKEN_CLASS::LAST_INDEX_OF:
+				onMatrixAllOrLastInex();
+				break;
 			case TOKEN_CLASS::ASSIGNMENT:
 				onAssignment();
 				break;
@@ -133,9 +140,6 @@ namespace PR
 				break;
 			case TOKEN_CLASS::STRING:
 				stack.push_back(*i);
-				break;
-			case TOKEN_CLASS::MATRIX_ALL:
-				onMatrixAll();
 				break;
 			default:
 				throw CalcException("Cannot execute this: '"+(*i)->getLexemeR()+"'",(*i)->getPosition());
@@ -163,12 +167,54 @@ namespace PR
 	vector<shared_ptr<Data>> CodeExecutor::run_single(const vector<shared_ptr<Token>> &onp,Variables &vars)
 	{
 		CodeExecutor exec(vars);
+		exec._single_run = true;
 		exec.assignment_flag = true;
 		exec.output_off_flag = true;
 		vector<vector<shared_ptr<Token>>> code = { onp };
 		exec.ip = code.begin();
 		exec.run();
 		return exec.stack;
+	}
+
+	bool CodeExecutor::isMatrixEndOrColon(const shared_ptr<Token> &t)
+	{
+		return t->isToken(MATRIX_ALL) || t->isToken(LAST_INDEX_OF);
+	}
+
+	void CodeExecutor::onMatrixAllOrLastInex()
+	{
+		shared_ptr<Data> variable;
+		try{
+			variable = vars_ref.get((*i)->getLexemeR());
+		}
+		catch (const CalcException &ex)
+		{
+			throw CalcException("Error evaulating 'end' or ':' matrix index" + ex.getMessageR(), (*i)->getPosition());
+		}
+
+		int idx = (*i)->getParam();
+		int num = (*i)->argumentsNum();
+
+		if ((*i)->getClass() == MATRIX_ALL)
+		{
+			if (idx == 1 && num == 1)
+				stack.push_back(variable->get_single_index());
+			else if (idx == 1 && num == 2)
+				stack.push_back(variable->get_rows_index());
+			else if (idx == 2 && num == 2)
+				stack.push_back(variable->get_cols_index());
+			return;
+		}
+
+		if ((*i)->getClass() == LAST_INDEX_OF)
+		{
+			if (idx == 1 && num == 1)
+				stack.push_back(*variable->get_rows() * variable->get_cols());
+			else if (idx == 1 && num == 2)
+				stack.push_back(variable->get_rows());
+			else if (idx == 2 && num == 2)
+				stack.push_back(variable->get_cols());
+		}
 	}
 
 	void CodeExecutor::onOperator()
@@ -320,11 +366,6 @@ namespace PR
 		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
 	}
 
-	void CodeExecutor::onMatrixAll()
-	{
-		stack.push_back(make_shared<Token>(TOKEN_CLASS::MATRIX_ALL, (*i)->getPosition()));
-	}
-
 	void CodeExecutor::onFunction()
 	{
 		const string &name = (*i)->getLexemeR();
@@ -362,8 +403,11 @@ namespace PR
 		TYPE convertToType = var->_type == TYPE::STRING ? TYPE::M_DOUBLE : var->_type;
 
 		for (int i = args.size() - 1; i >= 0; i--)
-			if (args[i]->_type != convertToType && !args[i]->isToken(TOKEN_CLASS::MATRIX_ALL))
-				TypePromotor::convertTo(convertToType, args[i], args[i]);
+		{
+			shared_ptr<Data> &ref = args[i];
+			if (ref->_type != convertToType && !ref->isToken(TOKEN_CLASS::MATRIX_ALL) && !ref->isToken(TOKEN_CLASS::LAST_INDEX_OF))
+				TypePromotor::convertTo(convertToType, ref, ref);
+		}
 
 		if (size == 2)
 			stack.push_back(var->getAt(args[0], args[1]));

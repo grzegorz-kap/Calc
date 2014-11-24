@@ -73,12 +73,21 @@ namespace PR
 		return std::move(tokens);
 	}
 
+	void LexicalAnalyzer::onEndKeyword(Token &token)
+	{
+		if (balancer.getMode() != PARSE_MODE::FUNCTION)
+			return;
+		token.set_class(LAST_INDEX_OF);
+	}
+
 	void LexicalAnalyzer::process(unique_ptr<Token> & token)
 	{
 		for_delete = false;
 		
-		balancer.setMode(*token);
+		if (token->getClass() == END_KEYWORD)
+			onEndKeyword(*token);
 
+		balancer.setMode(*token);
 		switch (token->getClass())
 		{
 		case TOKEN_CLASS::SPACE: 
