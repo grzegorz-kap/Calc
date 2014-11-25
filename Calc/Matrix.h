@@ -96,6 +96,7 @@ namespace PR
 		Matrix<T> at(const Matrix<T> &first, const Matrix<T> &second) const;
 		Matrix<T> atColumn(int idx) const;
 		void assign(const Matrix<T> &b);
+		void deleteAt(const Matrix<T> &row, const Matrix<T> &col);
 		void assign(const Matrix<T> &cells, const Matrix<T> &data);
 		void assign(const Matrix<T> &cells, const ComplexNumber<T> &data);
 		void assign(const Matrix<T> &row, const Matrix<T> &col, const Matrix<T> &data);

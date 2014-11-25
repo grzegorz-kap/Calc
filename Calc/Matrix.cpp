@@ -798,6 +798,11 @@ namespace PR
 		submatrix of a specified by the subscript vectors I and J. 
 		b must have LENGTH(I) rows and LENGTH(J) columns.
 		*/
+		if (data.isEmpty())
+		{
+			deleteAt(row, col);
+			return;
+		}
 
 		if (data.isScalar())
 		{
@@ -846,6 +851,84 @@ namespace PR
 				}
 			}
 		}
+	}
+
+	template <class T>
+	void Matrix<T>::deleteAt(const Matrix<T> &rowsA, const Matrix<T> &colsA)
+	{
+		if (rowsA.M <= 0 || rowsA.N <= 0 || colsA.M <= 0 || colsA.N <= 0)
+			return;
+		if (rowsA.M>1 && rowsA.N > 1 || colsA.M > 1 && colsA.N > 1)
+			throw CalcException("Wrong data to matrix elements erase");
+		if (rowsA.M!=M && rowsA.N!=M && colsA.M!=N && colsA.N!=N)
+			throw CalcException("Wrong data to matrix elements erase");
+		rowsA.checkForPositiveInteger();
+		colsA.checkForPositiveInteger();	
+		Matrix<T> rows = rowsA.M > 1 ? rowsA.transpose() : rowsA;
+		Matrix<T> cols = colsA.M > 1 ? colsA.transpose() : colsA;
+
+		std::sort(rows.mx[0].begin(), rows.mx[0].end(), [](ComplexNumber<T> &a, ComplexNumber<T> &b){
+			return a.re < b.re;
+		});
+		if (rows.mx[0].back().toInteger()>M)
+			throw CalcException("Wrong data to matrix elements erase");
+
+		std::sort(cols.mx[0].begin(), cols.mx[0].end(), [](ComplexNumber<T> &a, ComplexNumber<T> &b){
+			return a.re < b.re;
+		});
+		if (cols.mx[0].back().toInteger()>N)
+			throw CalcException("Wrong data to matrix elements erase");
+
+		auto iter = std::unique(rows.mx[0].begin(), rows.mx[0].end(), [](ComplexNumber<T> &a, ComplexNumber<T> &b){
+			return a.re == b.re;
+		});
+		if (iter != rows.mx[0].end())
+			throw CalcException("Wrong data to matrix elements erase");
+
+		iter = std::unique(cols.mx[0].begin(), cols.mx[0].end(), [](ComplexNumber<T> &a, ComplexNumber<T> &b){
+			return a.re == b.re;
+		});
+		if (iter != cols.mx[0].end())
+			throw CalcException("Wrong data to matrix elements erase");
+		
+		if (rows.N == M)
+		{
+			int i = 1;
+			for (; i < M; i++)
+				if (rows.mx[0][i].re != i + 1)
+					break;
+			if (i>=M)
+			{
+				for (int j = cols.N - 1; j >= 0; j--)
+				{
+					int col = cols.mx[0][j].toInteger() - 1;
+					std::for_each(mx.begin(), mx.end(), [&](vector<ComplexNumber<T>> &vec){
+						vec.erase(vec.begin() + col);
+					});
+				}
+				N = M ? mx[0].size() : 0;
+				return;
+			}
+		}
+
+		if (cols.N == N)
+		{
+			int i = 1;
+			for (; i < N; i++)
+				if (cols.mx[0][i].re != i + 1)
+					break;
+			if (i>=N)
+			{
+				for (int i = rows.N - 1; i >= 0; i--)
+				{
+					int row = rows.mx[0][i].toInteger() - 1;
+					mx.erase(mx.begin() + row);
+				}
+				M = mx.size();
+				return;
+			}
+		}
+		throw CalcException("Wrong data to matrix elements erase");
 	}
 
 	template <class T>
