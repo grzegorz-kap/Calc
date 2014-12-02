@@ -20,19 +20,19 @@ Highlighter::Highlighter(QTextDocument *parent)
 	}
 
 	singleLineCommentFormat.setForeground(Qt::darkGreen);
-	rule.pattern = QRegExp("(//|%)[^\n]*");
+	rule.pattern = QRegExp("(//|%)[^\n(%\\})]*");
 	rule.format = singleLineCommentFormat;
 	highlightingRules.append(rule);
 
 
 	multiLineCommentFormat.setForeground(Qt::darkGreen);
-	commentStartExpression = QRegExp("/\\*");
-	commentEndExpression = QRegExp("\\*/");
+	commentStartExpression = QRegExp("%\\{");
+	commentEndExpression = QRegExp("%\\}");
 }
 
 Highlighter::~Highlighter()
 {
-
+	
 }
 
 void Highlighter::highlightBlock(const QString &text)

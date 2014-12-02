@@ -57,6 +57,13 @@ namespace PR
 		tokenizer.tokenize();
 		tokens = tokenizer.getTokens();
 
+		for (int i = tokens.size() - 1; i >= 0; i--)
+		{
+			if (tokens[i]->getClass() != TOKEN_CLASS::SPACE)
+				break;
+			tokens.pop_back();
+		}
+
 		prev = TOKEN_CLASS::NONE;
 		for (iter = tokens.begin(); iter != tokens.end(); )
 		{

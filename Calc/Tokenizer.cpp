@@ -170,7 +170,7 @@ namespace PR
 	void Tokenizer::skipBlockComment()
 	{
 		while (i < N - 1)
-			if (command[i] == '*'&&command[i + 1] == '/')
+			if (command[i] == '%'&&command[i + 1] == '}')
 				break;
 			else
 				i++;
@@ -188,7 +188,7 @@ namespace PR
 		if (i < N)
 		{
 			char z = command[i];
-			if (i < N - 1 && z == '/' && command[i + 1] == '*')
+			if (i < N - 1 && z == '%' && command[i + 1] == '{')
 			{
 				skipBlockComment();
 				deleteUneccessary();
