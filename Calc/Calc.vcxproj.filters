@@ -246,26 +246,11 @@
     <ClInclude Include="GraphDrawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AndOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="OROperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="ShortCircuitJumper.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="RandFunction.h">
       <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseAnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseOr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicalNotOperator.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ModFunction.h">
       <Filter>Header Files</Filter>
@@ -295,6 +280,9 @@
       <Filter>Model\Operator</Filter>
     </ClInclude>
     <ClInclude Include="RelationalOperators.h">
+      <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicalOperators.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
   </ItemGroup>
@@ -473,23 +461,8 @@
     <ClCompile Include="GraphDrawer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AndOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="OROperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="ShortCircuitJumper.cpp">
       <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWiseAnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWiseOr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LogicalNotOperator.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModFunction.cpp">
       <Filter>Source Files</Filter>
@@ -519,6 +492,9 @@
       <Filter>Model\Operator</Filter>
     </ClCompile>
     <ClCompile Include="RelationalOperators.cpp">
+      <Filter>Model\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicalOperators.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
   </ItemGroup>

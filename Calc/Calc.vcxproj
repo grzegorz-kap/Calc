@@ -90,7 +90,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AndOperator.h" />
     <ClInclude Include="ArithmeticOperators.h" />
     <ClInclude Include="AssignmentFactory.h" />
     <ClInclude Include="AssignmentMulti.h" />
@@ -107,8 +106,6 @@
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="ElementaryMathFunctions.h" />
-    <ClInclude Include="ElementWiseAnd.h" />
-    <ClInclude Include="ElementWiseOr.h" />
     <ClInclude Include="EvalException.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="ExternalFunction.h" />
@@ -128,7 +125,7 @@
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
     <ClInclude Include="LinearAlgebraFunctions.h" />
-    <ClInclude Include="LogicalNotOperator.h" />
+    <ClInclude Include="LogicalOperators.h" />
     <ClInclude Include="MatrixUtils.h" />
     <ClInclude Include="Mathematic.h" />
     <ClInclude Include="ModFunction.h" />
@@ -142,7 +139,6 @@
     <ClInclude Include="Operator.h" />
     <ClInclude Include="OperatorException.h" />
     <ClInclude Include="OperatorsFactory.h" />
-    <ClInclude Include="OROperator.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PlotingFunctions.h" />
@@ -168,7 +164,6 @@
     <ClInclude Include="Variables.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AndOperator.cpp" />
     <ClCompile Include="ArithmeticOperators.cpp" />
     <ClCompile Include="AssignmentFactory.cpp" />
     <ClCompile Include="AssignmentMulti.cpp" />
@@ -194,8 +189,6 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ElementaryMathFunctions.cpp" />
-    <ClCompile Include="ElementWiseAnd.cpp" />
-    <ClCompile Include="ElementWiseOr.cpp" />
     <ClCompile Include="EvalException.cpp" />
     <ClCompile Include="ExternalFunction.cpp" />
     <ClCompile Include="ExternalFunctionLoader.cpp" />
@@ -213,7 +206,7 @@
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
     <ClCompile Include="LinearAlgebraFunctions.cpp" />
-    <ClCompile Include="LogicalNotOperator.cpp" />
+    <ClCompile Include="LogicalOperators.cpp" />
     <ClCompile Include="MatrixUtils.cpp" />
     <ClCompile Include="Mathematic.cpp" />
     <ClCompile Include="ModFunction.cpp" />
@@ -227,7 +220,6 @@
     <ClCompile Include="Operator.cpp" />
     <ClCompile Include="OperatorException.cpp" />
     <ClCompile Include="OperatorsFactory.cpp" />
-    <ClCompile Include="OROperator.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PlotingFunctions.cpp" />

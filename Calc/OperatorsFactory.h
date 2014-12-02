@@ -11,15 +11,12 @@ using std::string;
 #include "Token.h"
 #include "ArithmeticOperators.h"
 #include "RelationalOperators.h"
+#include "LogicalOperators.h"
 #include "AssignmentOperator.h"
 #include "TranspositionOperator.h"
 #include "Colon2Operator.h"
 #include "Colon3Operator.h"
-#include "AndOperator.h"
-#include "OROperator.h"
-#include "ElementWiseAnd.h"
-#include "ElementWiseOr.h"
-#include "LogicalNotOperator.h"
+
 
 namespace PR
 {
