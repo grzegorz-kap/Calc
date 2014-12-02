@@ -100,6 +100,8 @@ namespace PR
 		virtual shared_ptr<Data> sin() const;
 		virtual shared_ptr<Data> cos() const;
 		virtual shared_ptr<Data> tan() const;
+		virtual shared_ptr<Data> cot() const;
+		virtual shared_ptr<Data> conj() const;
 		virtual shared_ptr<Data> cfix() const;
 		virtual shared_ptr<Data> cfloor() const;
 		virtual shared_ptr<Data> cmod(shared_ptr<Data> &b) const;

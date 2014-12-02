@@ -49,6 +49,7 @@ namespace PR
 		ComplexNumber<T> rdivide(const ComplexNumber<T> &b) const; 
 		ComplexNumber<T> ldivide(const ComplexNumber<T> &b) const; 
 		ComplexNumber<T> neg() const;
+		ComplexNumber<T> conjugate() const;
 		ComplexNumber<T> operator == (const ComplexNumber<T> &b) const;
 		ComplexNumber<T> operator != (const ComplexNumber<T> &b) const;
 		ComplexNumber<T> operator <  (const ComplexNumber<T> &b) const;

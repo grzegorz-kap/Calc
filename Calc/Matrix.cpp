@@ -487,6 +487,15 @@ namespace PR
 		return c;
 	}
 
+	template <class T> Matrix<T> Matrix<T>::conjugate() const
+	{
+		Matrix<T> c(M, N);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				c.mx[i][j] = mx[i][j].conjugate();
+		return c;
+	}
+
 	template <class T> Matrix<T> Matrix<T>::logical_not() const
 	{
 		if (M == 0 || N == 0)

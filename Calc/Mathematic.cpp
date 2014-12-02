@@ -241,6 +241,22 @@ namespace PR
 	}
 
 	template <class T>
+	static Matrix<T> Mathematic::cotangens(const Matrix<T> &b)
+	{
+		Matrix<T> C(b.M, b.N);
+		for (int i = 0; i < C.M; i++)
+			for (int j = 0; j < C.N; j++)
+				C.mx[i][j] = cotangens(b.mx[i][j]);
+		return C;
+	}
+
+	template <class T>
+	static ComplexNumber<T> Mathematic::cotangens(const ComplexNumber<T> &b)
+	{
+		return cosinus(b) / sinus(b);
+	}
+
+	template <class T>
 	static T Mathematic::fix(const T &value)
 	{
 		if (value < 0)
@@ -386,6 +402,8 @@ namespace PR
 	template Matrix<hdouble> Mathematic::cosinus(const Matrix<hdouble>&);
 	template Matrix<double> Mathematic::tangens(const Matrix<double>&);
 	template Matrix<hdouble> Mathematic::tangens(const Matrix<hdouble>&);
+	template Matrix<double> Mathematic::cotangens(const Matrix<double>&);
+	template Matrix<hdouble> Mathematic::cotangens(const Matrix<hdouble>&);
 
 	template ComplexNumber<double> Mathematic::sinus(const ComplexNumber<double>&);
 	template ComplexNumber<hdouble> Mathematic::sinus(const ComplexNumber<hdouble>&);
@@ -393,6 +411,8 @@ namespace PR
 	template ComplexNumber<hdouble> Mathematic::cosinus(const ComplexNumber<hdouble>&);
 	template ComplexNumber<double> Mathematic::tangens(const ComplexNumber<double>&);
 	template ComplexNumber<hdouble> Mathematic::tangens(const ComplexNumber<hdouble>&);
+	template ComplexNumber<double> Mathematic::cotangens(const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> Mathematic::cotangens(const ComplexNumber<hdouble>&);
 
 	template Matrix<double> Mathematic::power(const Matrix<double>&, const Matrix<double>&);
 	template Matrix<hdouble> Mathematic::power(const Matrix<hdouble>&, const Matrix<hdouble>&);

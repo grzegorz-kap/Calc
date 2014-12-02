@@ -11,9 +11,7 @@ namespace PR
 	public:
 		RandFunction();
 		~RandFunction();
-
 		virtual shared_ptr<Data> run() override;
-
 	private:
 		void init_rand_generator();
 	};

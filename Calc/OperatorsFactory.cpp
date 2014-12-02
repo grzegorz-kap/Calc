@@ -16,9 +16,11 @@ namespace PR
 		operators.insert("<=",  []()->unique_ptr<Operator>{return make_unique<LeOperator>(); });
 		operators.insert(">=",  []()->unique_ptr<Operator>{return make_unique<GeOperator>(); });
 		operators.insert("<",   []()->unique_ptr<Operator>{return make_unique<LTOperator>(); });
-		operators.insert(">",   []()->unique_ptr<Operator>{return make_unique<Gt>(); });
+		operators.insert(">",   []()->unique_ptr<Operator>{return make_unique<GtOperator>(); });
 		operators.insert("$-",  []()->unique_ptr<Operator>{return make_unique<USubtractionOperator>(); });
 		operators.insert("$+",  []()->unique_ptr<Operator>{return make_unique <UPlusOperator>(); });
+		operators.insert(".+", []()->unique_ptr<Operator>{return make_unique<AdditionOperator>(); });
+		operators.insert(".-", []()->unique_ptr<Operator>{return make_unique<SubtractionOperator>(); });
 		operators.insert("+",   []()->unique_ptr<Operator>{return make_unique<AdditionOperator>(); });
 		operators.insert("-",   []()->unique_ptr<Operator>{return make_unique<SubtractionOperator>(); });
 		operators.insert(".*",  []()->unique_ptr<Operator>{return make_unique<ElementWiseMultiplication>(); });
@@ -29,7 +31,7 @@ namespace PR
 		operators.insert(".^",  []()->unique_ptr<Operator>{return make_unique<ExponentiationOperator>(); });
 		operators.insert("^",   []()->unique_ptr<Operator>{return make_unique<MatrixExponentiationOperator>(); });
 		operators.insert("=",   []()->unique_ptr<Operator>{return make_unique<AssignmentOperator>(); });
-		operators.insert("'",   []()->unique_ptr<Operator>{return make_unique<TranspositionOperator>(); });
+		operators.insert(".'",   []()->unique_ptr<Operator>{return make_unique<TranspositionOperator>(); });
 		operators.insert("&&",  []()->unique_ptr<Operator>{return make_unique<AndOperator>(); });
 		operators.insert("||",  []()->unique_ptr<Operator>{return make_unique<OROperator>(); });
 		operators.insert("|",   []()->unique_ptr<Operator>{return make_unique<ElementWiseOr>(); });
@@ -43,14 +45,18 @@ namespace PR
 			instance = new OperatorsFactory();
 	}
 
-	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx)
+	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx,int &length)
 	{
 		init();
+		length = 0;
 		const vector<string> &vec = instance->operators.getVec();
 		for (auto iter = vec.cbegin(); iter != vec.cend(); iter++)
 		{
 			if (!name.compare(startIdx, iter->length(), *iter))
+			{
+				length = iter->length();
 				return instance->operators[*iter]();
+			}
 		}
 		return nullptr;
 	}

@@ -28,6 +28,8 @@ namespace PR
 		builded_in.insert({ "ceil", [](){return make_unique<CeilFunction>(); } });
 		builded_in.insert({ "mod", [](){return make_unique<ModFunction>(); } });
 		builded_in.insert({ "round", [](){return make_unique<RoundFunction>(); } });
+		builded_in.insert({ "cot", [](){return make_unique<CotanFun>(); } });
+		builded_in.insert({ "conj", [](){return make_unique<ConjFunction>(); } });
 	}
 
 	FunctionFactory::~FunctionFactory()

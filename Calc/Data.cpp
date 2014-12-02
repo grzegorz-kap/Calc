@@ -186,6 +186,11 @@ namespace PR
 		throw UnimplementedException("Cannot do 'log2' on this type");
 	}
 
+	shared_ptr<Data> Data::conj() const
+	{
+		throw UnimplementedException("Cannot do 'conj' on this type");
+	}
+
 	shared_ptr<Data> Data::log10() const
 	{
 		throw UnimplementedException("Cannot do 'log10' on this type");
@@ -229,6 +234,11 @@ namespace PR
 	shared_ptr<Data> Data::tan() const
 	{
 		throw UnimplementedException("Cannot do 'tan' on this type");
+	}
+
+	shared_ptr<Data> Data::cot() const
+	{
+		throw UnimplementedException("Cannot do 'cot' on this type");
 	}
 
 	shared_ptr<Data> Data::getAt() const

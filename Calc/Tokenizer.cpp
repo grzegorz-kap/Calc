@@ -72,17 +72,18 @@ namespace PR
 
 	bool Tokenizer::readOperator()
 	{
-		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev()))
+		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev())&&prevChar()!='.')
 		{
 			readString();
 			return true;
 		}
 
-		auto result = OperatorsFactory::get(command, i);
+		int length;
+		auto result = OperatorsFactory::get(command, i,length);
 		if (result != nullptr)
 		{
 			result->setPosition(i);
-			i += result->getLexemeR().size();
+			i += length;
 			tokens.push_back(std::move(result));
 			return true;
 		}
@@ -253,5 +254,12 @@ namespace PR
 		i = 0;
 		whiteSpacesEnd();
 		whiteSpacesBegin();
+	}
+
+	char Tokenizer::prevChar()
+	{
+		if (i == 0)
+			return 0;
+		return command[i - 1];
 	}
 }

@@ -189,28 +189,7 @@
     <ClInclude Include="SizeFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="Log10Function.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="CosFun.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="Log2Function.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="LogFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="LuFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="MpfFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="SinFun.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="TanFun.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="Mathematic.h">
@@ -219,64 +198,13 @@
     <ClInclude Include="MatrixUtils.h">
       <Filter>Service\Math</Filter>
     </ClInclude>
-    <ClInclude Include="AdditionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="AssignmentOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="DivisionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseMultiplication.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="EqOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="ExponentiationOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="GeOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Gt.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftArrayDivision.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="LeOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="LTOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixExponentiationOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiplicationOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="NeOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="RightArrayDivision.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="SubtractionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="TranspositionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="UPlusOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="USubtractionOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="AssignmentMulti.h">
@@ -303,12 +231,6 @@
     <ClInclude Include="Colon2Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="DetFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="InvFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="ForIterator.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -321,52 +243,16 @@
     <ClInclude Include="VariableInfo.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="PlotFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="GraphDrawer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AndOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="OROperator.h">
-      <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="ShortCircuitJumper.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
-    <ClInclude Include="SurfaceFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="RandFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="Plot3Function.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseAnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseOr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicalNotOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FixFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FloorFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CeilFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ModFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoundFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TypePromotor.h">
@@ -374,6 +260,30 @@
     </ClInclude>
     <ClInclude Include="String.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrigonometryFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundingFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotingFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementaryMathFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearAlgebraFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="ArithmeticOperators.h">
+      <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationalOperators.h">
+      <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicalOperators.h">
+      <Filter>Model\Operator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,28 +401,7 @@
     <ClCompile Include="SizeFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="Log10Function.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="Log2Function.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="LogFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="LuFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="MpfFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="SinFun.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="CosFun.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="TanFun.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Mathematic.cpp">
@@ -521,64 +410,13 @@
     <ClCompile Include="MatrixUtils.cpp">
       <Filter>Service\Math</Filter>
     </ClCompile>
-    <ClCompile Include="AdditionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="AssignmentOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="DivisionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWiseMultiplication.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="EqOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ExponentiationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="GeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftArrayDivision.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gt.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LTOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixExponentiationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiplicationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="NeOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="RightArrayDivision.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="SubtractionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="TranspositionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="UPlusOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="USubtractionOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="AssignmentMulti.cpp">
@@ -605,17 +443,11 @@
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="DetFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="ForIterator.cpp">
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="InstructionFor.cpp">
       <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="InvFunction.cpp">
-      <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Variables.cpp">
       <Filter>Model</Filter>
@@ -626,56 +458,44 @@
     <ClCompile Include="VariableInfo.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="PlotFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="GraphDrawer.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plot3Function.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="AndOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="OROperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="ShortCircuitJumper.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
-    <ClCompile Include="SurfaceFunction.cpp">
+    <ClCompile Include="ModFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrigonometryFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="RandFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="ElementWiseAnd.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RoundingFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="ElementWiseOr.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PlotingFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="LogicalNotOperator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ElementaryMathFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="FixFunction.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LinearAlgebraFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="FloorFunction.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ArithmeticOperators.cpp">
+      <Filter>Model\Operator</Filter>
     </ClCompile>
-    <ClCompile Include="CeilFunction.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RelationalOperators.cpp">
+      <Filter>Model\Operator</Filter>
     </ClCompile>
-    <ClCompile Include="ModFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoundFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="String.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LogicalOperators.cpp">
+      <Filter>Model\Operator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

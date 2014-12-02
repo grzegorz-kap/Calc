@@ -275,6 +275,12 @@ namespace PR
 	}
 
 	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::conjugate() const
+	{
+		return ComplexNumber<T>(re, -im);
+	}
+
+	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::rows() const
 	{
 		return ComplexNumber<T>(1);
