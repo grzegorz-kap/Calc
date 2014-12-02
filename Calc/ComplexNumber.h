@@ -64,6 +64,7 @@ namespace PR
 		virtual int get_rows_int() const override;
 		virtual string get_cell_string(int i, int j) const override;
 		ComplexNumber<T> transpose() const;
+		ComplexNumber<T> ctranspose() const;
 		ComplexNumber<T> rows() const;
 		ComplexNumber<T> cols() const;
 		ComplexNumber<T> at(const ComplexNumber<T> &cell) const;

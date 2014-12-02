@@ -157,6 +157,15 @@ namespace PR
 		return std::move(C);
 	}
 
+	template <class T> Matrix<T> Matrix<T>::ctranspose() const
+	{
+		Matrix<T> C(N, M);
+		for (int i = 0; i < M; i++)
+			for (int j = 0; j < N; j++)
+				C.mx[j][i] = mx[i][j].conjugate();
+		return C;
+	}
+
 	template <class T> int Matrix<T>::rows() const
 	{
 		return mx.size();

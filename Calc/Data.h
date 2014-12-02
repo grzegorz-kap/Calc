@@ -88,6 +88,7 @@ namespace PR
 		virtual shared_ptr<Data> lt(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> ne(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> transposition() const;
+		virtual shared_ptr<Data> ctransposition() const;
 		virtual shared_ptr<Data> log() const;
 		virtual shared_ptr<Data> log(shared_ptr<Data> &) const;
 		virtual shared_ptr<Data> log2() const;

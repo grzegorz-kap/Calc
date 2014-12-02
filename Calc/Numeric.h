@@ -245,6 +245,11 @@ namespace PR
 			return make_shared<T>(get_derived()->transpose());
 		}
 
+		virtual shared_ptr<Data> ctransposition() const override
+		{
+			return make_shared<T>(get_derived()->ctranspose());
+		}
+
 		virtual shared_ptr<Data> getAt() const override
 		{
 			return make_shared<T>(*get_derived());

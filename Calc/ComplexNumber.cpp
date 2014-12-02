@@ -275,6 +275,12 @@ namespace PR
 	}
 
 	template <class T>
+	ComplexNumber<T> ComplexNumber<T>::ctranspose() const
+	{
+		return conjugate();
+	}
+
+	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::conjugate() const
 	{
 		return ComplexNumber<T>(re, -im);
