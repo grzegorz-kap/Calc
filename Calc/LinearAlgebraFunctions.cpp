@@ -61,4 +61,19 @@ namespace PR
 		return out;
 	}
 
+	ConjFunction::ConjFunction()
+	{
+		min_args_count = max_args_count = 1;
+		name = "conj";
+	}
+
+	ConjFunction::~ConjFunction()
+	{
+	}
+
+	shared_ptr<Data> ConjFunction::run()
+	{
+		return arguments[0]->conj();
+	}
+
 }

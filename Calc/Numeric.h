@@ -333,6 +333,11 @@ namespace PR
 				*end->cast_numeric<T>()->get_derived()
 				));
 		}
+
+		virtual shared_ptr<Data> conj() const override
+		{
+			return make_shared<T>(get_derived()->conjugate());
+		}
 	private:
 
 		shared_ptr<Data> getVectorForAssignment(const int &stop) const

@@ -186,6 +186,11 @@ namespace PR
 		throw UnimplementedException("Cannot do 'log2' on this type");
 	}
 
+	shared_ptr<Data> Data::conj() const
+	{
+		throw UnimplementedException("Cannot do 'conj' on this type");
+	}
+
 	shared_ptr<Data> Data::log10() const
 	{
 		throw UnimplementedException("Cannot do 'log10' on this type");

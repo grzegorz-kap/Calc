@@ -82,6 +82,7 @@ namespace PR
 		Matrix<T> operator / (const Matrix<T> &B) const;
 		Matrix<T> transpose() const;
 		Matrix<T> neg() const;
+		Matrix<T> conjugate() const;
 		Matrix<T> operator | (const Matrix<T> &b) const;
 		Matrix<T> operator & (const Matrix<T> &b) const;
 		Matrix<T> logical_not() const;

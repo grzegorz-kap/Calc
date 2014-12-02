@@ -28,4 +28,12 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
+	class ConjFunction : public Function
+	{
+	public:
+		ConjFunction();
+		~ConjFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
 }

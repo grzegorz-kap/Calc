@@ -51,11 +51,9 @@ namespace PR
 		template <class T> static Matrix<T> cfloor(const Matrix<T> &A);
 		template <class T> static ComplexNumber<T> cceil(const ComplexNumber<T> &a);
 		template <class T> static Matrix<T> cceil(const Matrix<T> &A);
-
 		template <class T> static ComplexNumber<T> cmod(const ComplexNumber<T> &a, const ComplexNumber<T> &b);
 		template <class T> static Matrix<T> cmod(const Matrix<T> &A, const ComplexNumber<T> &b);
 		template <class T> static Matrix<T> cmod(const Matrix<T> &A, const Matrix<T> &B);
-		
 		template <class T> static ComplexNumber<T> cround(const ComplexNumber<T> &a);
 		template <class T> static Matrix<T> cround(const Matrix<T> &A);
 
