@@ -49,6 +49,12 @@ namespace PR
 
 		FunctionFactory & operator = (const FunctionFactory &b) = delete;
 		FunctionFactory(const FunctionFactory &b) = delete;
+
+		template <class T>
+		void insert(const string &name)
+		{
+			builded_in.insert({ name, [](){return make_unique<T>(); } });
+		}
 	};
 }
 

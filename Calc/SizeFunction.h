@@ -13,5 +13,67 @@ namespace PR
 
 		virtual shared_ptr<Data> run() override;
 	};
+
+
+	class LengthFunction : public Function
+	{
+	public:
+		LengthFunction();
+		~LengthFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+
+	class NumelFunction : public Function
+	{
+	public:
+		NumelFunction();
+		~NumelFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+	class IsColumnFunction : public Function
+	{
+	public:
+		IsColumnFunction();
+		~IsColumnFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+
+	class IsEmptyFunction : public Function
+	{
+	public:
+		IsEmptyFunction();
+		~IsEmptyFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+
+	class IsRowFunction : public Function
+	{
+	public:
+		IsRowFunction();
+		~IsRowFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+
+	class IsScalarFunction : public Function
+	{
+	public:
+		IsScalarFunction();
+		~IsScalarFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+
+	class IsVectorFunction : public Function
+	{
+	public:
+		IsVectorFunction();
+		~IsVectorFunction();
+		virtual shared_ptr<Data> run() override;
+	};
 }
 
