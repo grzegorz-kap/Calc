@@ -46,7 +46,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\dislin;C:\Boost\include\boost-1_56\;C:\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\dislin;C:\Boost\include\boost-1_57\;C:\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\dislin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
