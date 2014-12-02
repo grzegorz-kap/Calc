@@ -18,9 +18,7 @@ using std::function;
 
 #include "SizeFunction.h"
 #include "MpfFunction.h"
-#include "LogFunction.h"
-#include "Log10Function.h"
-#include "Log2Function.h"
+#include "ElementaryMathFunctions.h"
 #include "TrigonometryFunctions.h"
 #include "LuFunction.h"
 #include "DetFunction.h"

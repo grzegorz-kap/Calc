@@ -107,6 +107,7 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="DetFunction.h" />
     <ClInclude Include="DivisionOperator.h" />
+    <ClInclude Include="ElementaryMathFunctions.h" />
     <ClInclude Include="ElementWiseAnd.h" />
     <ClInclude Include="ElementWiseMultiplication.h" />
     <ClInclude Include="ElementWiseOr.h" />
@@ -135,9 +136,6 @@
     <ClInclude Include="LeOperator.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
-    <ClInclude Include="Log10Function.h" />
-    <ClInclude Include="Log2Function.h" />
-    <ClInclude Include="LogFunction.h" />
     <ClInclude Include="LogicalNotOperator.h" />
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="MatrixUtils.h" />
@@ -213,6 +211,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ElementaryMathFunctions.cpp" />
     <ClCompile Include="ElementWiseAnd.cpp" />
     <ClCompile Include="ElementWiseMultiplication.cpp" />
     <ClCompile Include="ElementWiseOr.cpp" />
@@ -239,9 +238,6 @@
     <ClCompile Include="LeOperator.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
-    <ClCompile Include="Log10Function.cpp" />
-    <ClCompile Include="Log2Function.cpp" />
-    <ClCompile Include="LogFunction.cpp" />
     <ClCompile Include="LogicalNotOperator.cpp" />
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="MatrixUtils.cpp" />

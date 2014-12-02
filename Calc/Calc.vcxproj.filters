@@ -189,15 +189,6 @@
     <ClInclude Include="SizeFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="Log10Function.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="Log2Function.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="LogFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="LuFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
@@ -354,6 +345,9 @@
     <ClInclude Include="PlotingFunctions.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
+    <ClInclude Include="ElementaryMathFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -468,15 +462,6 @@
       <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="SizeFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="Log10Function.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="Log2Function.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="LogFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="LuFunction.cpp">
@@ -633,6 +618,9 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="PlotingFunctions.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementaryMathFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>
