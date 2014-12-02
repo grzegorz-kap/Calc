@@ -345,19 +345,7 @@
     <ClInclude Include="LogicalNotOperator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FixFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FloorFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CeilFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ModFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoundFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TypePromotor.h">
@@ -367,6 +355,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TrigonometryFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundingFunctions.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -632,9 +623,6 @@
     <ClCompile Include="SurfaceFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="RandFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="ElementWiseAnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -644,25 +632,19 @@
     <ClCompile Include="LogicalNotOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FixFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FloorFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CeilFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ModFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoundFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrigonometryFunctions.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="RandFunction.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundingFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>

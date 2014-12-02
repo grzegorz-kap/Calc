@@ -98,7 +98,6 @@
     <ClInclude Include="AssignmentSubscripted.h" />
     <ClInclude Include="CalcException.h" />
     <ClInclude Include="CastException.h" />
-    <ClInclude Include="CeilFunction.h" />
     <ClInclude Include="CodeExecutor.h" />
     <ClInclude Include="CodeGenerator.h" />
     <ClInclude Include="CodeGeneratorException.h" />
@@ -119,8 +118,6 @@
     <ClInclude Include="ExternalFunctionLoader.h" />
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="FileLoaderException.h" />
-    <ClInclude Include="FixFunction.h" />
-    <ClInclude Include="FloorFunction.h" />
     <ClInclude Include="ForIterator.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="FunctionFactory.h" />
@@ -168,7 +165,7 @@
     <ClInclude Include="PlotFunction.h" />
     <ClInclude Include="RandFunction.h" />
     <ClInclude Include="RightArrayDivision.h" />
-    <ClInclude Include="RoundFunction.h" />
+    <ClInclude Include="RoundingFunctions.h" />
     <ClInclude Include="ShortCircuitJumper.h" />
     <ClInclude Include="SignalEmitter.h" />
     <ClInclude Include="SizeFunction.h" />
@@ -201,7 +198,6 @@
     <ClCompile Include="Calc.cpp" />
     <ClCompile Include="CalcException.cpp" />
     <ClCompile Include="CastException.cpp" />
-    <ClCompile Include="CeilFunction.cpp" />
     <ClCompile Include="CodeExecutor.cpp" />
     <ClCompile Include="CodeGenerator.cpp" />
     <ClCompile Include="CodeGeneratorException.cpp" />
@@ -229,8 +225,6 @@
     <ClCompile Include="ExternalFunctionLoader.cpp" />
     <ClCompile Include="FileLoader.cpp" />
     <ClCompile Include="FileLoaderException.cpp" />
-    <ClCompile Include="FixFunction.cpp" />
-    <ClCompile Include="FloorFunction.cpp" />
     <ClCompile Include="ForIterator.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="FunctionFactory.cpp" />
@@ -277,7 +271,7 @@
     <ClCompile Include="PlotFunction.cpp" />
     <ClCompile Include="RandFunction.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
-    <ClCompile Include="RoundFunction.cpp" />
+    <ClCompile Include="RoundingFunctions.cpp" />
     <ClCompile Include="ShortCircuitJumper.cpp" />
     <ClCompile Include="SignalEmitter.cpp" />
     <ClCompile Include="SizeFunction.cpp" />
