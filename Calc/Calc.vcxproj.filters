@@ -192,9 +192,6 @@
     <ClInclude Include="Log10Function.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="CosFun.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="Log2Function.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
@@ -205,12 +202,6 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="MpfFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="SinFun.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="TanFun.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="Mathematic.h">
@@ -375,6 +366,9 @@
     <ClInclude Include="String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TrigonometryFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -504,15 +498,6 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="MpfFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="SinFun.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="CosFun.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="TanFun.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Mathematic.cpp">
@@ -676,6 +661,9 @@
     </ClCompile>
     <ClCompile Include="String.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrigonometryFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
