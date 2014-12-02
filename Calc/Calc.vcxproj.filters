@@ -198,22 +198,10 @@
     <ClInclude Include="MatrixUtils.h">
       <Filter>Service\Math</Filter>
     </ClInclude>
-    <ClInclude Include="AdditionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="DivisionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWiseMultiplication.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="EqOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="ExponentiationOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="GeOperator.h">
@@ -222,19 +210,10 @@
     <ClInclude Include="Gt.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="LeftArrayDivision.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="LeOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="LTOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixExponentiationOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiplicationOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="NeOperator.h">
@@ -243,19 +222,7 @@
     <ClInclude Include="Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="RightArrayDivision.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="SubtractionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="TranspositionOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="UPlusOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="USubtractionOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
     <ClInclude Include="AssignmentMulti.h">
@@ -341,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="LinearAlgebraFunctions.h">
       <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="ArithmeticOperators.h">
+      <Filter>Model\Operator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -467,28 +437,13 @@
     <ClCompile Include="MatrixUtils.cpp">
       <Filter>Service\Math</Filter>
     </ClCompile>
-    <ClCompile Include="AdditionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="AssignmentOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="DivisionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ElementWiseMultiplication.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="EqOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="ExponentiationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="GeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftArrayDivision.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="Gt.cpp">
@@ -500,31 +455,13 @@
     <ClCompile Include="LTOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixExponentiationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiplicationOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="NeOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="RightArrayDivision.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="SubtractionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="TranspositionOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="UPlusOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="USubtractionOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
     <ClCompile Include="AssignmentMulti.cpp">
@@ -610,6 +547,9 @@
     </ClCompile>
     <ClCompile Include="LinearAlgebraFunctions.cpp">
       <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="ArithmeticOperators.cpp">
+      <Filter>Model\Operator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

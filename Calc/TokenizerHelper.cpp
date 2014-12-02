@@ -16,7 +16,7 @@ namespace PR
 	};
 
 	const vector<TOKEN_CLASS> TokenizerHelper::NO_STRING_PRECURSORS = {
-		NUMBER , CLOSE_PARENTHESIS , MATRIX_END, ID
+		NUMBER , CLOSE_PARENTHESIS , MATRIX_END, ID 
 	};
 
 	bool TokenizerHelper::isKeyWord(const string &word)

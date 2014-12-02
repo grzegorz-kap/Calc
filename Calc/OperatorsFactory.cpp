@@ -29,7 +29,7 @@ namespace PR
 		operators.insert(".^",  []()->unique_ptr<Operator>{return make_unique<ExponentiationOperator>(); });
 		operators.insert("^",   []()->unique_ptr<Operator>{return make_unique<MatrixExponentiationOperator>(); });
 		operators.insert("=",   []()->unique_ptr<Operator>{return make_unique<AssignmentOperator>(); });
-		operators.insert("'",   []()->unique_ptr<Operator>{return make_unique<TranspositionOperator>(); });
+		operators.insert(".'",   []()->unique_ptr<Operator>{return make_unique<TranspositionOperator>(); });
 		operators.insert("&&",  []()->unique_ptr<Operator>{return make_unique<AndOperator>(); });
 		operators.insert("||",  []()->unique_ptr<Operator>{return make_unique<OROperator>(); });
 		operators.insert("|",   []()->unique_ptr<Operator>{return make_unique<ElementWiseOr>(); });

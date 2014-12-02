@@ -72,7 +72,7 @@ namespace PR
 
 	bool Tokenizer::readOperator()
 	{
-		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev()))
+		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev())&&prevChar()!='.')
 		{
 			readString();
 			return true;
@@ -253,5 +253,12 @@ namespace PR
 		i = 0;
 		whiteSpacesEnd();
 		whiteSpacesBegin();
+	}
+
+	char Tokenizer::prevChar()
+	{
+		if (i == 0)
+			return 0;
+		return command[i - 1];
 	}
 }
