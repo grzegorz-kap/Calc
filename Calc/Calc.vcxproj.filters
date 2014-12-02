@@ -189,9 +189,6 @@
     <ClInclude Include="SizeFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
-    <ClInclude Include="LuFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="MpfFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
@@ -285,12 +282,6 @@
     <ClInclude Include="Colon2Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="DetFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="InvFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="ForIterator.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -346,6 +337,9 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="ElementaryMathFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearAlgebraFunctions.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -464,9 +458,6 @@
     <ClCompile Include="SizeFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="LuFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="MpfFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
@@ -560,17 +551,11 @@
     <ClCompile Include="Colon3Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="DetFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="ForIterator.cpp">
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="InstructionFor.cpp">
       <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="InvFunction.cpp">
-      <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="Variables.cpp">
       <Filter>Model</Filter>
@@ -621,6 +606,9 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="ElementaryMathFunctions.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearAlgebraFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>

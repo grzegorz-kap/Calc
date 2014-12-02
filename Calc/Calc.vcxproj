@@ -105,7 +105,6 @@
     <ClInclude Include="Colon3Operator.h" />
     <ClInclude Include="ComplexNumber.h" />
     <ClInclude Include="Data.h" />
-    <ClInclude Include="DetFunction.h" />
     <ClInclude Include="DivisionOperator.h" />
     <ClInclude Include="ElementaryMathFunctions.h" />
     <ClInclude Include="ElementWiseAnd.h" />
@@ -130,16 +129,15 @@
     <ClInclude Include="IMatrixBuilder.h" />
     <ClInclude Include="InstructionFor.h" />
     <ClInclude Include="Interpreter.h" />
-    <ClInclude Include="InvFunction.h" />
     <ClInclude Include="i_order_map.h" />
     <ClInclude Include="LeftArrayDivision.h" />
     <ClInclude Include="LeOperator.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="LexicalBalanceHelper.h" />
+    <ClInclude Include="LinearAlgebraFunctions.h" />
     <ClInclude Include="LogicalNotOperator.h" />
     <ClInclude Include="LTOperator.h" />
     <ClInclude Include="MatrixUtils.h" />
-    <ClInclude Include="LuFunction.h" />
     <ClInclude Include="Mathematic.h" />
     <ClInclude Include="ModFunction.h" />
     <ClInclude Include="MpfFunction.h" />
@@ -201,7 +199,6 @@
     <ClCompile Include="Colon3Operator.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
     <ClCompile Include="Data.cpp" />
-    <ClCompile Include="DetFunction.cpp" />
     <ClCompile Include="DivisionOperator.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
@@ -232,16 +229,15 @@
     <ClCompile Include="IMatrixBuilder.cpp" />
     <ClCompile Include="InstructionFor.cpp" />
     <ClCompile Include="Interpreter.cpp" />
-    <ClCompile Include="InvFunction.cpp" />
     <ClCompile Include="i_order_map.cpp" />
     <ClCompile Include="LeftArrayDivision.cpp" />
     <ClCompile Include="LeOperator.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="LexicalBalanceHelper.cpp" />
+    <ClCompile Include="LinearAlgebraFunctions.cpp" />
     <ClCompile Include="LogicalNotOperator.cpp" />
     <ClCompile Include="LTOperator.cpp" />
     <ClCompile Include="MatrixUtils.cpp" />
-    <ClCompile Include="LuFunction.cpp" />
     <ClCompile Include="Mathematic.cpp" />
     <ClCompile Include="ModFunction.cpp" />
     <ClCompile Include="MpfFunction.cpp" />
