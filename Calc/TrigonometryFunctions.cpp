@@ -24,7 +24,6 @@ namespace PR
 		name = "sin";
 	}
 
-
 	SinFun::~SinFun()
 	{
 	}
@@ -40,7 +39,6 @@ namespace PR
 		name = "tan";
 	}
 
-
 	TanFun::~TanFun()
 	{
 	}
@@ -48,5 +46,20 @@ namespace PR
 	shared_ptr<Data> TanFun::run()
 	{
 		return arguments[0]->tan();
+	}
+
+	CotanFun::CotanFun()
+	{
+		max_args_count = min_args_count = 1;
+		name = "cot";
+	}
+
+	CotanFun::~CotanFun()
+	{
+	}
+
+	shared_ptr<Data> CotanFun::run()
+	{
+		return arguments[0]->cot();
 	}
 }

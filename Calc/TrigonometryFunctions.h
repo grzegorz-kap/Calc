@@ -24,7 +24,14 @@ namespace PR
 	public:
 		TanFun();
 		~TanFun();
+		virtual shared_ptr<Data> run() override;
+	};
 
+	class CotanFun : public Function
+	{
+	public:
+		CotanFun();
+		~CotanFun();
 		virtual shared_ptr<Data> run() override;
 	};
 }

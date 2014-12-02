@@ -138,6 +138,11 @@ namespace PR
 			return make_shared<T>(Mathematic::tangens(*get_derived()));
 		}
 
+		virtual shared_ptr<Data> cot() const override
+		{
+			return make_shared<T>(Mathematic::cotangens(*get_derived()));
+		}
+
 		virtual void lu(shared_ptr<Data> &dest) const override
 		{
 			T * ptr = nullptr;

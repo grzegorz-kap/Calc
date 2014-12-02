@@ -42,6 +42,8 @@ namespace PR
 		template <class T> static Matrix<T> cosinus(const Matrix<T> &a);
 		template <class T> static ComplexNumber<T> tangens(const ComplexNumber<T> &a);
 		template <class T> static Matrix<T> tangens(const Matrix<T> &a);
+		template <class T> static ComplexNumber<T> cotangens(const ComplexNumber<T> &a);
+		template <class T> static Matrix<T> cotangens(const Matrix<T> &a);
 		template <class T> static T fix(const T &value);
 		template <class T> static ComplexNumber<T> fix(const ComplexNumber<T> &value);
 		template <class T> static Matrix<T> fix(const Matrix<T> &value);
