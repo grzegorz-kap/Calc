@@ -19,6 +19,8 @@ namespace PR
 		operators.insert(">",   []()->unique_ptr<Operator>{return make_unique<Gt>(); });
 		operators.insert("$-",  []()->unique_ptr<Operator>{return make_unique<USubtractionOperator>(); });
 		operators.insert("$+",  []()->unique_ptr<Operator>{return make_unique <UPlusOperator>(); });
+		operators.insert(".+", []()->unique_ptr<Operator>{return make_unique<AdditionOperator>(); });
+		operators.insert(".-", []()->unique_ptr<Operator>{return make_unique<SubtractionOperator>(); });
 		operators.insert("+",   []()->unique_ptr<Operator>{return make_unique<AdditionOperator>(); });
 		operators.insert("-",   []()->unique_ptr<Operator>{return make_unique<SubtractionOperator>(); });
 		operators.insert(".*",  []()->unique_ptr<Operator>{return make_unique<ElementWiseMultiplication>(); });
@@ -43,14 +45,18 @@ namespace PR
 			instance = new OperatorsFactory();
 	}
 
-	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx)
+	unique_ptr<Operator> OperatorsFactory::get(const string &name,int startIdx,int &length)
 	{
 		init();
+		length = 0;
 		const vector<string> &vec = instance->operators.getVec();
 		for (auto iter = vec.cbegin(); iter != vec.cend(); iter++)
 		{
 			if (!name.compare(startIdx, iter->length(), *iter))
+			{
+				length = iter->length();
 				return instance->operators[*iter]();
+			}
 		}
 		return nullptr;
 	}

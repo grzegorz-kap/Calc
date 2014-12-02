@@ -40,7 +40,7 @@ namespace PR
 		OperatorsFactory(const OperatorsFactory &) = delete;
 		~OperatorsFactory();
 
-		static unique_ptr<Operator> get(const string &name,int startIdx=0);
+		static unique_ptr<Operator> get(const string &name,int startIdx,int &length);
 		static unique_ptr<Operator> simple_get(const string &name);
 
 	private:
