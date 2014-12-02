@@ -201,24 +201,6 @@
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="EqOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="GeOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Gt.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="LeOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="LTOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
-    <ClInclude Include="NeOperator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="Operator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
@@ -310,6 +292,9 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="ArithmeticOperators.h">
+      <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationalOperators.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
   </ItemGroup>
@@ -440,24 +425,6 @@
     <ClCompile Include="AssignmentOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="EqOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="GeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gt.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="LTOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="NeOperator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Operator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
@@ -549,6 +516,9 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="ArithmeticOperators.cpp">
+      <Filter>Model\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="RelationalOperators.cpp">
       <Filter>Model\Operator</Filter>
     </ClCompile>
   </ItemGroup>

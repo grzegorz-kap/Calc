@@ -16,7 +16,7 @@ namespace PR
 		operators.insert("<=",  []()->unique_ptr<Operator>{return make_unique<LeOperator>(); });
 		operators.insert(">=",  []()->unique_ptr<Operator>{return make_unique<GeOperator>(); });
 		operators.insert("<",   []()->unique_ptr<Operator>{return make_unique<LTOperator>(); });
-		operators.insert(">",   []()->unique_ptr<Operator>{return make_unique<Gt>(); });
+		operators.insert(">",   []()->unique_ptr<Operator>{return make_unique<GtOperator>(); });
 		operators.insert("$-",  []()->unique_ptr<Operator>{return make_unique<USubtractionOperator>(); });
 		operators.insert("$+",  []()->unique_ptr<Operator>{return make_unique <UPlusOperator>(); });
 		operators.insert(".+", []()->unique_ptr<Operator>{return make_unique<AdditionOperator>(); });
