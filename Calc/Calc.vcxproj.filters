@@ -312,9 +312,6 @@
     <ClInclude Include="VariableInfo.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="PlotFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="GraphDrawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -327,13 +324,7 @@
     <ClInclude Include="ShortCircuitJumper.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
-    <ClInclude Include="SurfaceFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="RandFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="Plot3Function.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="ElementWiseAnd.h">
@@ -358,6 +349,9 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="RoundingFunctions.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotingFunctions.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -602,14 +596,8 @@
     <ClCompile Include="VariableInfo.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="PlotFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="GraphDrawer.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plot3Function.cpp">
-      <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="AndOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
@@ -619,9 +607,6 @@
     </ClCompile>
     <ClCompile Include="ShortCircuitJumper.cpp">
       <Filter>Model\Operator</Filter>
-    </ClCompile>
-    <ClCompile Include="SurfaceFunction.cpp">
-      <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="ElementWiseAnd.cpp">
       <Filter>Source Files</Filter>
@@ -645,6 +630,9 @@
       <Filter>Function\functions</Filter>
     </ClCompile>
     <ClCompile Include="RoundingFunctions.cpp">
+      <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="PlotingFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>

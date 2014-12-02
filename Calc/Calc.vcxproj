@@ -161,8 +161,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="AdditionOperator.h" />
-    <ClInclude Include="Plot3Function.h" />
-    <ClInclude Include="PlotFunction.h" />
+    <ClInclude Include="PlotingFunctions.h" />
     <ClInclude Include="RandFunction.h" />
     <ClInclude Include="RightArrayDivision.h" />
     <ClInclude Include="RoundingFunctions.h" />
@@ -173,7 +172,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="SubtractionOperator.h" />
-    <ClInclude Include="SurfaceFunction.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
@@ -267,8 +265,7 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="AdditionOperator.cpp" />
-    <ClCompile Include="Plot3Function.cpp" />
-    <ClCompile Include="PlotFunction.cpp" />
+    <ClCompile Include="PlotingFunctions.cpp" />
     <ClCompile Include="RandFunction.cpp" />
     <ClCompile Include="RightArrayDivision.cpp" />
     <ClCompile Include="RoundingFunctions.cpp" />
@@ -282,7 +279,6 @@
     </ClCompile>
     <ClCompile Include="String.cpp" />
     <ClCompile Include="SubtractionOperator.cpp" />
-    <ClCompile Include="SurfaceFunction.cpp" />
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />
