@@ -81,6 +81,7 @@ namespace PR
 		Matrix<T> operator >= (const ComplexNumber<T> &b) const;
 		Matrix<T> operator / (const Matrix<T> &B) const;
 		Matrix<T> transpose() const;
+		Matrix<T> ctranspose() const;
 		Matrix<T> neg() const;
 		Matrix<T> conjugate() const;
 		Matrix<T> operator | (const Matrix<T> &b) const;

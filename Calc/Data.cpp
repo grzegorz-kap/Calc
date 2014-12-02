@@ -171,6 +171,11 @@ namespace PR
 		throw UnimplementedException("Cannot do transposition operator on this type");
 	}
 
+	shared_ptr<Data> Data::ctransposition() const
+	{
+		throw UnimplementedException("Cannot do conjugate transposition operator on this type");
+	}
+
 	shared_ptr<Data> Data::log() const
 	{
 		throw UnimplementedException("Cannot do 'log' on this type");

@@ -8,28 +8,34 @@ namespace PR
 
 	FunctionFactory::FunctionFactory()
 	{
-		builded_in.insert({ "size", [](){return make_unique<SizeFunction>(); } });
-		builded_in.insert({ "mpf_float", [](){return make_unique<MpfFunction>(); } });
-		builded_in.insert({ "log", [](){return make_unique<LogFunction>(); } });
-		builded_in.insert({ "log10", [](){return make_unique<Log10Function>(); } });
-		builded_in.insert({ "log2", [](){return make_unique<Log2Function>(); } });
-		builded_in.insert({ "sin", [](){return make_unique<SinFun>(); } });
-		builded_in.insert({ "cos", [](){ return make_unique<CosFun>(); } });
-		builded_in.insert({ "tan", [](){return make_unique<TanFun>(); } });
-		builded_in.insert({ "lu", [](){return make_unique<LuFunction>(); } });
-		builded_in.insert({ "det", [](){return make_unique<DetFunction>(); } });
-		builded_in.insert({ "inv", [](){return make_unique<InvFunction>(); } });
-		builded_in.insert({ "plot", [](){return make_unique <PlotFunction>(); } });
-		builded_in.insert({ "plot3", [](){return make_unique<Plot3Function>(); } });
-		builded_in.insert({ "surface", [](){return make_unique<SurfaceFunction>(); } });
-		builded_in.insert({ "rand", [](){return make_unique<RandFunction>(); } });
-		builded_in.insert({ "fix", [](){return make_unique<FixFunction>(); } });
-		builded_in.insert({ "floor", [](){return make_unique<FloorFunction>(); } });
-		builded_in.insert({ "ceil", [](){return make_unique<CeilFunction>(); } });
-		builded_in.insert({ "mod", [](){return make_unique<ModFunction>(); } });
-		builded_in.insert({ "round", [](){return make_unique<RoundFunction>(); } });
-		builded_in.insert({ "cot", [](){return make_unique<CotanFun>(); } });
-		builded_in.insert({ "conj", [](){return make_unique<ConjFunction>(); } });
+		insert<SizeFunction>("insert");
+		insert<MpfFunction>("mpf_float");
+		insert<LogFunction>("log");
+		insert<Log10Function>("log10");
+		insert<Log2Function>("log2");
+		insert<SinFun>("sin");
+		insert<CosFun>("cos");
+		insert<TanFun>("tan");
+		insert<LuFunction>("lu");
+		insert<DetFunction>("det");
+		insert<InvFunction>("inv");
+		insert<PlotFunction>("plot");
+		insert<Plot3Function>("plot3");
+		insert<SurfaceFunction>("surface");
+		insert<RandFunction>("rand");
+		insert<FixFunction>("fix");
+		insert<CeilFunction>("ceil");
+		insert<ModFunction>("mod");
+		insert<RoundFunction>("round");
+		insert<CotanFun>("cot");
+		insert<ConjFunction>("conj");
+		insert<LengthFunction>("length");
+		insert<NumelFunction>("numel");
+		insert<IsColumnFunction>("iscolumn");
+		insert<IsEmptyFunction>("isempty");
+		insert<IsRowFunction>("isrow");
+		insert<IsScalarFunction>("isscalar");
+		insert<IsVectorFunction>("isvector");
 	}
 
 	FunctionFactory::~FunctionFactory()
