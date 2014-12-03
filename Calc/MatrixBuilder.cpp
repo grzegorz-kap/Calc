@@ -94,6 +94,16 @@ namespace PR
 	}
 
 	template <class T>
+	Matrix<T> MatrixBuilder<T>::buildOnes(int m, int n)
+	{
+		Matrix<T> out(m, m, 1);
+		for (int i = 0; i < m ; i++)
+			for (int j = 0; j < n;j++)
+			out.mx[i][j] = ComplexNumber<T>(1);
+		return out;
+	}
+
+	template <class T>
 	Matrix<T> MatrixBuilder<T>::buildRand(int m, int n)
 	{
 		if (m < 0 || n < 0)

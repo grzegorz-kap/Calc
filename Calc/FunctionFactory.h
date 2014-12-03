@@ -22,7 +22,7 @@ using std::function;
 #include "TrigonometryFunctions.h"
 #include "LinearAlgebraFunctions.h"
 #include "PlotingFunctions.h"
-#include "RandFunction.h"
+#include "MatrixGenerationFunctions.h"
 #include "ModFunction.h"
 #include "RoundingFunctions.h"
 

@@ -142,7 +142,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PlotingFunctions.h" />
-    <ClInclude Include="RandFunction.h" />
+    <ClInclude Include="MatrixGenerationFunctions.h" />
     <ClInclude Include="RelationalOperators.h" />
     <ClInclude Include="RoundingFunctions.h" />
     <ClInclude Include="ShortCircuitJumper.h" />
@@ -223,7 +223,7 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PlotingFunctions.cpp" />
-    <ClCompile Include="RandFunction.cpp" />
+    <ClCompile Include="MatrixGenerationFunctions.cpp" />
     <ClCompile Include="RelationalOperators.cpp" />
     <ClCompile Include="RoundingFunctions.cpp" />
     <ClCompile Include="ShortCircuitJumper.cpp" />

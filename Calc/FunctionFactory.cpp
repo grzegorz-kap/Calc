@@ -21,8 +21,10 @@ namespace PR
 		insert<InvFunction>("inv");
 		insert<PlotFunction>("plot");
 		insert<Plot3Function>("plot3");
-		insert<SurfaceFunction>("surface");
+		insert<SurfaceFunction>("mesh");
 		insert<RandFunction>("rand");
+		insert<EyeFunction>("eye");
+		insert<OnesFunction>("ones");
 		insert<FixFunction>("fix");
 		insert<CeilFunction>("ceil");
 		insert<ModFunction>("mod");

@@ -249,9 +249,6 @@
     <ClInclude Include="ShortCircuitJumper.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
-    <ClInclude Include="RandFunction.h">
-      <Filter>Function\functions</Filter>
-    </ClInclude>
     <ClInclude Include="ModFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -284,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="LogicalOperators.h">
       <Filter>Model\Operator</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixGenerationFunctions.h">
+      <Filter>Function\functions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -473,9 +473,6 @@
     <ClCompile Include="TrigonometryFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-    <ClCompile Include="RandFunction.cpp">
-      <Filter>Function\functions</Filter>
-    </ClCompile>
     <ClCompile Include="RoundingFunctions.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
@@ -496,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="LogicalOperators.cpp">
       <Filter>Model\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixGenerationFunctions.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

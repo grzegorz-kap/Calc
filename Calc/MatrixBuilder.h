@@ -36,6 +36,7 @@ namespace PR
 		virtual void add(shared_ptr<Data> &data) override;
 		virtual void setAndCheckSize(bool f = true) override;
 		static Matrix<T> buildEye(int m, int n);
+		static Matrix<T> buildOnes(int m, int n);
 		static Matrix<T> buildRand(int m, int n);
 
 	private:
