@@ -8,6 +8,7 @@ using std::string;
 
 #include "CalcException.h"
 #include "Token.h"
+#include "functions.h"
 
 namespace PR
 {

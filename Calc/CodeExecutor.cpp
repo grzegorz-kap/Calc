@@ -76,8 +76,11 @@ namespace PR
 		{
 			if (CodeExecutor::stop_computing)
 				throw CalcException("Canceled!");
-
 			ip = code.get();
+			if (isKeyword(RETURN_KEYWORD))
+				return;
+			if (checkLoopsControl())
+				continue;
 			if (checkIF())
 				continue;
 			if (checkWhile())
@@ -266,7 +269,7 @@ namespace PR
 			return;
 		while (1)
 		{
-			if (ip->size() == 1 && balance == ip->at(0)->getKeywordBalance() &&
+			if (ip->size() == 1 && (balance==-2||balance == ip->at(0)->getKeywordBalance()) &&
 				std::find(set.begin(), set.end(), ip->at(0)->getClass()) != set.end())
 				return;
 			next();
@@ -350,6 +353,34 @@ namespace PR
 			_iterator.loadNext();
 			code.setIp(_iterator.getCodeBegin());
 		}
+	}
+
+	bool CodeExecutor::checkLoopsControl()
+	{
+		if (isKeyword(CONTINUE_KEYWORD))
+		{
+			onContinueKeyword();
+			return true;
+		}
+		if (isKeyword(BREAK_KEYWORD))
+		{
+			onBreakKeyword();
+			return true;
+		}
+		return false;
+	}
+
+	void CodeExecutor::onContinueKeyword()
+	{
+		next();
+		setIPTo(BRK_CONT_FIND, -2);
+	}
+
+	void CodeExecutor::onBreakKeyword()
+	{
+		next();
+		setIPTo(BRK_CONT_FIND, -2);
+		code.inc();
 	}
 
 	void CodeExecutor::onFunctionArgs()
@@ -450,8 +481,7 @@ namespace PR
 				assignment.push_back({ vars_ref.getIterator((*i)->getLexemeR()), false });
 				assignment_flag = true;
 			}
-			else
-				stack.push_back(vars_ref.get((*i)->getLexemeR()));
+			stack.push_back(vars_ref.get((*i)->getLexemeR()));
 		}
 		catch (const string &ex)
 		{
@@ -660,6 +690,11 @@ namespace PR
 	const vector<TOKEN_CLASS> CodeExecutor::FOR_FIND =
 	{
 		TOKEN_CLASS::END_FOR
+	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::BRK_CONT_FIND =
+	{
+		END_FOR, END_WHILE
 	};
 
 	Variables CodeExecutor::globals = Variables();

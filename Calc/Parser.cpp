@@ -97,6 +97,9 @@ namespace PR
 			case TOKEN_CLASS::WHILE_KEYWORD:
 			case TOKEN_CLASS::FUNCTION_KEYWORD:
 			case TOKEN_CLASS::END_FUNCTION:
+			case TOKEN_CLASS::CONTINUE_KEYWORD:
+			case TOKEN_CLASS::BREAK_KEYWORD:
+			case TOKEN_CLASS::RETURN_KEYWORD:
 			case TOKEN_CLASS::END_FOR:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
