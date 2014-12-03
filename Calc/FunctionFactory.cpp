@@ -31,6 +31,7 @@ namespace PR
 		insert<RoundFunction>("round");
 		insert<CotanFun>("cot");
 		insert<ConjFunction>("conj");
+		insert<SizeFunction>("size");
 		insert<LengthFunction>("length");
 		insert<NumelFunction>("numel");
 		insert<IsColumnFunction>("iscolumn");
