@@ -78,6 +78,7 @@ namespace PR
 		void onAssignment();
 		void defaultAssignment();
 		void onIF();
+		void onElseIf();
 		bool checkIF();
 		void onWHILE();
 		void onWhileEnd();
@@ -98,6 +99,7 @@ namespace PR
 		static const vector<TOKEN_CLASS> ELSE_FIND;
 		static const vector<TOKEN_CLASS> WHILE_FIND;
 		static const vector<TOKEN_CLASS> FOR_FIND;
+		static const vector<TOKEN_CLASS> ELSEIF_FIND;
 	};
 }
 

@@ -74,6 +74,9 @@ namespace PR
 		case TOKEN_CLASS::END_KEYWORD:
 			onEndKeyword(token);
 			break;
+		case TOKEN_CLASS::ELSEIF_KEYWORD:
+			onElseIf(token);
+			break;
 		case TOKEN_CLASS::ELSE_KEYWORD:
 			token.setKeywordBalance(key_word_balance);
 			break;
@@ -89,6 +92,13 @@ namespace PR
 			break;
 		}
 		token.setMode(mode.back());
+	}
+
+	void LexicalBalanceHelper::onElseIf(Token &token)
+	{
+		if (key_word_balance == 0 || key_word_mode.back() != TOKEN_CLASS::IF_KEYWORD)
+			throw CalcException("Unexpected 'elseif' outside 'if'",pos);
+		token.setKeywordBalance(key_word_balance);
 	}
 
 	void LexicalBalanceHelper::onInstructionKeyWord(Token &token)

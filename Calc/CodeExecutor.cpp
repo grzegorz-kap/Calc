@@ -487,6 +487,12 @@ namespace PR
 			return true;
 		}
 
+		if (isKeyword(TOKEN_CLASS::ELSEIF_KEYWORD))
+		{
+			onElseIf();
+			return true;
+		}
+
 		if (isKeyword(TOKEN_CLASS::END_IF))
 		{
 			code.inc();
@@ -503,6 +509,14 @@ namespace PR
 		return false;
 	}
 
+	void CodeExecutor::onElseIf()
+	{
+		int balance = ip->at(0)->getKeywordBalance();
+		next();
+		setIPTo(ELSEIF_FIND, balance);
+		code.inc();
+	}
+
 	void CodeExecutor::onIF()
 	{
 		int balance = ip->at(0)->getKeywordBalance();
@@ -513,6 +527,11 @@ namespace PR
 		{
 			next();
 			setIPTo(IF_FIND, balance);
+			if (isKeyword(TOKEN_CLASS::ELSEIF_KEYWORD))
+			{
+				onIF();
+				return;
+			}
 		}
 		code.inc();
 	}
@@ -619,7 +638,13 @@ namespace PR
 	const vector<TOKEN_CLASS> CodeExecutor::IF_FIND =
 	{
 		TOKEN_CLASS::END_IF,
+		TOKEN_CLASS::ELSEIF_KEYWORD,
 		TOKEN_CLASS::ELSE_KEYWORD
+	};
+
+	const vector<TOKEN_CLASS> CodeExecutor::ELSEIF_FIND =
+	{
+		TOKEN_CLASS::END_IF
 	};
 
 	const vector<TOKEN_CLASS> CodeExecutor::ELSE_FIND =

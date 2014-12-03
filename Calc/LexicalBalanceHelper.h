@@ -37,6 +37,7 @@ namespace PR
 		void onParenthesis(bool start);
 		void onInstructionKeyWord(Token &token);
 		void onEndKeyword(Token &token);
+		void onElseIf(Token &token);
 		void onContBreakKeyWords();
 		void onFunction();
 		void onFunctionEnd();
