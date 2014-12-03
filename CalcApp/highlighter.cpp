@@ -10,7 +10,7 @@ Highlighter::Highlighter(QTextDocument *parent)
 	QStringList keywordPatterns;
 	
 	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" <<"\\belse\\b"<<"\\bfunction\\b"
-		<<"\\bendfor\\b"<<"\\bendwhile\\b"<<"\\bendif\\b"<<"\\bendfunction\\b";
+		<<"\\bendfor\\b"<<"\\bendwhile\\b"<<"\\bendif\\b"<<"\\bendfunction\\b"<<"\\belseif\\b";
 	
 	foreach(const QString &pattern, keywordPatterns) 
 	{
