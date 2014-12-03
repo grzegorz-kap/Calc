@@ -86,6 +86,9 @@ namespace PR
 		bool checkFor();
 		void onForKeyword();
 		void onForEndKeyword();
+		void onBreakKeyword();
+		void onContinueKeyword();
+		bool checkLoopsControl();
 		void onMatrixAllOrLastInex();
 		void onID();
 		bool onScript();
@@ -100,6 +103,7 @@ namespace PR
 		static const vector<TOKEN_CLASS> WHILE_FIND;
 		static const vector<TOKEN_CLASS> FOR_FIND;
 		static const vector<TOKEN_CLASS> ELSEIF_FIND;
+		static const vector<TOKEN_CLASS> BRK_CONT_FIND;
 	};
 }
 

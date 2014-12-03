@@ -9,8 +9,9 @@ Highlighter::Highlighter(QTextDocument *parent)
 	keywordFormat.setFontWeight(QFont::Bold);
 	QStringList keywordPatterns;
 	
-	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" <<"\\belse\\b"<<"\\bfunction\\b"
-		<<"\\bendfor\\b"<<"\\bendwhile\\b"<<"\\bendif\\b"<<"\\bendfunction\\b"<<"\\belseif\\b";
+	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" << "\\belse\\b" << "\\bfunction\\b"
+		<< "\\bendfor\\b" << "\\bendwhile\\b" << "\\bendif\\b" << "\\bendfunction\\b" << "\\belseif\\b" << "\\breturn\\b"
+		<< "\\bcontinue\\b" << "\\bbreak\\b";
 	
 	foreach(const QString &pattern, keywordPatterns) 
 	{

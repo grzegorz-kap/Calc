@@ -133,7 +133,7 @@ namespace PR
 
 	void LexicalBalanceHelper::onContBreakKeyWords()
 	{
-		if (key_word_balance == 0 || key_word_mode.back() != TOKEN_CLASS::FOR_KEYWORD && key_word_mode.back() != TOKEN_CLASS::WHILE_KEYWORD)
+		if (key_word_balance == 0 || !find(key_word_mode, FOR_KEYWORD) && !find(key_word_mode,WHILE_KEYWORD))
 			throw CalcException("Cannot use break or continue outside loop");
 	}
 

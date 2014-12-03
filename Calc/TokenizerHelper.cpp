@@ -13,7 +13,8 @@ namespace PR
 		{ "end",TOKEN_CLASS::END_KEYWORD },
 		{ "else",TOKEN_CLASS::ELSE_KEYWORD },
 		{ "function",TOKEN_CLASS::FUNCTION_KEYWORD },
-		{ "elseif",TOKEN_CLASS::ELSEIF_KEYWORD }
+		{ "elseif",TOKEN_CLASS::ELSEIF_KEYWORD },
+		{ "return",TOKEN_CLASS::RETURN_KEYWORD }
 	};
 
 	const vector<TOKEN_CLASS> TokenizerHelper::NO_STRING_PRECURSORS = {
