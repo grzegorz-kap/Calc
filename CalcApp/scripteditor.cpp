@@ -13,6 +13,8 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	ui.actionSave_as->setShortcut(QKeySequence::SaveAs);
 	ui.actionRun->setShortcut(QKeySequence::Refresh);
 
+	setWindowIcon(QIcon(":/CalcApp/script_edit.png"));
+	setWindowTitle("KLab - Script editor");
 
 	connect(ui.actionSave_as, SIGNAL(triggered()), this, SLOT(onSaveAsAction()));
 	connect(ui.actionSave, SIGNAL(triggered()), this, SLOT(onSaveAction()));

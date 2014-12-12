@@ -25,7 +25,6 @@ Highlighter::Highlighter(QTextDocument *parent)
 	rule.format = singleLineCommentFormat;
 	highlightingRules.append(rule);
 
-
 	multiLineCommentFormat.setForeground(Qt::darkGreen);
 	commentStartExpression = QRegExp("%\\{");
 	commentEndExpression = QRegExp("%\\}");

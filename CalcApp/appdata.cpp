@@ -112,3 +112,4 @@ void AppData::loadCommandHistory(QTreeWidget *widget)
 	}
 	file.close();
 }
+

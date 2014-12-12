@@ -6,6 +6,8 @@ VariablesEditor::VariablesEditor(QWidget *parent)
 
 	ui.setupUi(this);
 	setWindowFlags(Qt::Window);
+	setWindowTitle("Variables editor");
+	setWindowIcon(QIcon(":/CalcApp/Matrix-icon.png"));
 	connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
 }
 

@@ -407,6 +407,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew_script"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -419,6 +420,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew_script">
+   <property name="text">
+    <string>New script</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

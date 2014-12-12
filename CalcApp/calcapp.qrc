@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/CalcApp">
+    <file>Matrix-icon.png</file>
+    <file>script_edit.png</file>
+    <file>Math.png</file>
     <file>stop.png</file>
     <file>save.png</file>
     <file>run.png</file>

@@ -87,7 +87,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixBuilder<T>::buildEye(int m, int n)
 	{
-		Matrix<T> out(m, m, 0);
+		Matrix<T> out(m, n, 0);
 		for (int i = 0; i < m && i < n; i++)
 			out.mx[i][i] = ComplexNumber<T>(1);
 		return out;
@@ -96,7 +96,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixBuilder<T>::buildOnes(int m, int n)
 	{
-		Matrix<T> out(m, m, 1);
+		Matrix<T> out(m, n, 1);
 		for (int i = 0; i < m ; i++)
 			for (int j = 0; j < n;j++)
 			out.mx[i][j] = ComplexNumber<T>(1);

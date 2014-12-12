@@ -11,6 +11,9 @@ CalcApp::CalcApp(QWidget *parent)
 	scriptEditor()
 {
 	ui.setupUi(this);
+	setWindowTitle("KLab 1.0");
+	setWindowIcon(QIcon(":/CalcApp/Math.png"));
+
 	interpreterConnector = new InterpreterConnector();
 	interpreterConnector->connectStopComputing();
 	variablesEditor.setInterpreter(interpreterConnector);
@@ -57,6 +60,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(&scriptEditor, SIGNAL(runCommand(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	connect(&scriptEditor, SIGNAL(runCommand(QString)), ui.console, SLOT(appendWithoutRealase(QString)));
 	connect(&scriptEditor, SIGNAL(runCommand(QString)), ui.commandHistory, SLOT(insertCommand(QString)));
+
 
 
 	variablesEditor.connectToInterpretSingals();
