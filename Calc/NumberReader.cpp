@@ -68,11 +68,7 @@ namespace PR
 		{
 			if (position < N - 1 && TokenizerHelper::isDigit(in[position + 1]))
 				throw CalcException("Unexpected expression.", position + 1);
-
-			if (exp)
-				throw PR::CalcException("Number read error!", position - 1);
-			else
-				out.append("i");
+			out.append("i");
 		}
 	}
 }
