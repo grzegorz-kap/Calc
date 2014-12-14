@@ -66,7 +66,12 @@ namespace PR
 
 		prev = TOKEN_CLASS::NONE;
 		for (iter = tokens.begin(); iter != tokens.end(); )
-		{
+		{ 
+			if ((*iter)->getClass() == TOKEN_CLASS::FOR_DELETE)
+			{
+				iter = tokens.erase(iter);
+				continue;
+			}
 			process(*iter);
 			if (for_delete)
 			{
@@ -129,10 +134,25 @@ namespace PR
 
 	void LexicalAnalyzer::onSpace(Token &token)
 	{
+		/******** Fix: A=[1 - 3] interpreted as A=[1 -3] (should be A=[1-3]) *************/
+		if (whatNext()==TOKEN_CLASS::OPERATOR&&balancer.getMode() == PARSE_MODE::MATRIX)
+		{
+			int idx = std::distance(tokens.begin(), iter);
+			if (idx < tokens.size() - 2 && tokens[idx + 2]->getClass() == TOKEN_CLASS::SPACE &&
+				 find<string>({ "-", "+" }, tokens[idx + 1]->getLexemeR()))
+			{
+				tokens[idx]->set_class(FOR_DELETE);
+				tokens[idx + 2]->set_class(FOR_DELETE);
+				for_delete = true;
+			}
+		}
+		/*********************************************************************************/
+		if (prev == TOKEN_CLASS::OPERATOR)
+			for_delete = true;
+		
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
 			token.set_class(TOKEN_CLASS::COMMA);
-		else
-			if (find(Tokenizer::FOR_SPACE_DELETE, whatNext()))
+		else if (whatNext() == TOKEN_CLASS::OPERATOR||find(Tokenizer::FOR_SPACE_DELETE, whatNext()))
 				for_delete = true;
 	}
 
@@ -141,21 +161,15 @@ namespace PR
 		string name = token->getLexemeR();
 		if (name == "+" || name == "-")
 		{
-			if (find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) ||
-				(prev==TOKEN_CLASS::OPERATOR&&(prev_operator_args_num > 1||ev_op_prev==EVAULATED::LEFT)))
+			if ((prev == TOKEN_CLASS::OPERATOR && (prev_operator_args_num > 1 || ev_op_prev == EVAULATED::LEFT))||
+				find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) 
+				)
 			{
 				token = OperatorsFactory::simple_get("$" + name);
-				
-				if (prev == TOKEN_CLASS::OPERATOR)
-				{
-					const string &prevlexeme = (iter - 1)->get()->getLexemeR();
-					if (prevlexeme == "^" || prevlexeme == ".^")
-						token->castToOperator()->setPriority(19);
-				}
 			}
 		}
 
-		if (name == "~" && prev==TOKEN_CLASS::OPERATOR)
+		if (prev == TOKEN_CLASS::OPERATOR && find<string>({ "$-", "$+", "~" }, name))
 		{
 			const string &prevlexeme = (iter - 1)->get()->getLexemeR();
 			if (prevlexeme == "^" || prevlexeme == ".^")
