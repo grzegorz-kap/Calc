@@ -15,6 +15,7 @@ namespace PR
 		:vars_ref(internal_vars)
 	{
 		_single_run = false;
+		eval_flag = false;
 	}
 
 	CodeExecutor::CodeExecutor(Variables &ref)
@@ -22,6 +23,7 @@ namespace PR
 		vars_ref(ref)
 	{
 		_single_run = false;
+		eval_flag = false;
 	}
 
 	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
@@ -32,6 +34,7 @@ namespace PR
 		auto input = fun.getInput();
 		int i = 0;
 		_single_run = false;
+		eval_flag = false;
 		int N = input.size();
 		for (const shared_ptr<Data> &data : args)
 		{
@@ -96,6 +99,7 @@ namespace PR
 	{
 		stack.clear();
 		assignment.clear();
+
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
 			switch ((*i)->getClass())
@@ -149,7 +153,7 @@ namespace PR
 			}
 		}
 
-		if (assignment_flag == false)
+		if (assignment_flag == false && stack.size())
 			defaultAssignment();
 		if (!output_off_flag)
 		{
@@ -291,7 +295,9 @@ namespace PR
 	void CodeExecutor::onAssignment()
 	{
 		if (stack.size() < 2)
-			throw CalcException("!");
+			throw CalcException("Too few arguments in data stack during assignment");
+		if (eval_flag)
+			throw CalcException("Assignemnt unallowed here.");
 
 		IAssignment * iassignment = stack.front()->cast_token()->castToAssignment();
 		iassignment->doAssignment(vars_ref, std::next(stack.begin()), stack.end(), assignment);
@@ -414,6 +420,12 @@ namespace PR
 		{
 		}
 
+		if (name == "eval")
+		{
+			onEval(args);
+			return;
+		}
+
 		auto function = FunctionFactory::load_in(name);
 		if (function != nullptr)
 		{
@@ -423,6 +435,24 @@ namespace PR
 		else
 			onExternalFunction(args, name);
 
+	}
+
+	void CodeExecutor::onEval(vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() != 1)
+			throw CalcException("Wrong arguments number in 'eval' function");
+		String *ptr = dynamic_cast<String*>(args[0].get());
+		if (ptr == nullptr)
+			throw CalcException("String data type expected in 'eval' function");
+		CodeExecutor exec(vars_ref);
+		exec.eval_flag = true;
+		exec.assignment_flag = true;
+		exec.output_off_flag = true;
+		exec.setInput(ptr->toString());
+		exec.start();
+		if (exec.stack.size() == 0)
+			throw CalcException("eval function must return value");
+		stack.push_back(exec.stack.back());
 	}
 
 	void CodeExecutor::onVariableFunction(vector<shared_ptr<Data>> &args, shared_ptr<Data> &var)

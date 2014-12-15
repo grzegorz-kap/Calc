@@ -43,6 +43,7 @@ namespace PR
 	private:
 
 		static bool stop_computing;			/* Set to true if compution should be canceled*/
+		bool eval_flag;						/* eval function flag */
 		vector<shared_ptr<Data>> stack;		/* Data stack */
 		Instruction::const_iterator i;		/* Single instruction iterator */
 		vector<int> conditions;				/* Conditions addresses for while instruction */
@@ -78,6 +79,7 @@ namespace PR
 		void onAssignment();
 		void defaultAssignment();
 		void onIF();
+		void onEval(vector<shared_ptr<Data>> &args);
 		void onElseIf();
 		bool checkIF();
 		void onWHILE();
