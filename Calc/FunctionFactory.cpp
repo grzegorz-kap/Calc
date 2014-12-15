@@ -8,7 +8,6 @@ namespace PR
 
 	FunctionFactory::FunctionFactory()
 	{
-		insert<SizeFunction>("insert");
 		insert<MpfFunction>("mpf_float");
 		insert<LogFunction>("log");
 		insert<Log10Function>("log10");
@@ -25,6 +24,7 @@ namespace PR
 		insert<RandFunction>("rand");
 		insert<EyeFunction>("eye");
 		insert<OnesFunction>("ones");
+		insert<ZerosFunction>("zeros");
 		insert<FixFunction>("fix");
 		insert<CeilFunction>("ceil");
 		insert<ModFunction>("mod");

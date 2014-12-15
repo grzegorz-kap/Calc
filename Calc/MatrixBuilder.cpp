@@ -41,7 +41,7 @@ namespace PR
 
 		for (auto i = mx->begin(); i != mx->end(); i++)
 			if (i->size() != n)
-				throw CalcException("Inconsintent cols count");
+				throw CalcException("Dimensions of matrices being concatenated are not consistent.");
 		if (f)
 		{
 			matrix_ptr->rows(m);
@@ -112,7 +112,7 @@ namespace PR
 		Matrix<double> out(m, n);
 		for (auto &vec : out.mx)
 			for (auto &element : vec)
-				element = ComplexNumber<T>(rand() / 1000.0);
+				element = ComplexNumber<T>(rand());
 		return out;
 	}
 
