@@ -55,6 +55,7 @@ namespace PR
 		void whiteSpacesBegin();
 		void whiteSpacesEnd();
 		void deleteUneccessary();
+		bool onDot();
 		TOKEN_CLASS prev();
 		char prevChar();
 		void init();

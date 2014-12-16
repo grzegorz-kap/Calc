@@ -575,8 +575,8 @@ namespace PR
 
 	template <class T> string Matrix<T>::toString() const
 	{
-		if (M == 0 && N == 0)
-			return "[ ]";
+		if (M == 0 || N == 0)
+			return "[ ] "+std::to_string(M)+"x"+std::to_string(N);
 
 		string temp = "";
 		for (int i = 0; i < M; i++)
@@ -590,8 +590,8 @@ namespace PR
 
 	template <class T> string Matrix<T>::toHtml() const
 	{
-		if (M == 0 && N == 0)
-			return "[ ]";
+		if (M == 0 || N == 0)
+			return "[ ] " + std::to_string(M) + "x" + std::to_string(N);
 		string temp = "<table>";
 		for (int i = 0; i < M; i++)
 		{
