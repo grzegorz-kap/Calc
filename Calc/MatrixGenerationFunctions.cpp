@@ -83,4 +83,24 @@ namespace PR
 		int n = arguments.size() > 1 ? arguments[1]->toInteger() : m;
 		return make_shared<Matrix<double>>(MatrixBuilder<double>::buildEye(m, n));
 	}
+
+
+	ZerosFunction::ZerosFunction()
+	{
+		min_args_count = 1;
+		max_args_count = 2;
+		name = "zeros";
+	}
+	ZerosFunction::~ZerosFunction()
+	{
+
+	}
+	shared_ptr<Data> ZerosFunction::run()
+	{
+		if (!arguments[0]->isInteger() || arguments.size() > 1 && !arguments[1]->isInteger())
+			throw CalcException("Error using 'zeros'. Size input is not integer.");
+		int m = arguments[0]->toInteger();
+		int n = arguments.size() > 1 ? arguments[1]->toInteger() : m;
+		return make_shared<Matrix<double>>(m,n,ComplexNumber<double>(0));
+	}
 }

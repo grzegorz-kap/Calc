@@ -68,6 +68,21 @@ namespace PR
 		return *arguments[0] / arguments[1];
 	}
 
+	LeftDivisionOperator::LeftDivisionOperator()
+		:Operator("\\", 40, 2, EVAULATED::RIGHT)
+	{
+	}
+	LeftDivisionOperator::~LeftDivisionOperator()
+	{
+	}
+	shared_ptr<Data> LeftDivisionOperator::evaluate()
+	{
+		if (arguments[0]->isScalar() || arguments[1]->isScalar())
+			return *arguments[1] / arguments[0];
+		else
+			return arguments[0]->url(arguments[1]);
+	}
+
 
 
 	LeftArrayDivision::LeftArrayDivision()

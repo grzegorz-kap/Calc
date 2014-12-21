@@ -45,6 +45,14 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
+	class LeftDivisionOperator : public Operator
+	{
+	public:
+		LeftDivisionOperator();
+		~LeftDivisionOperator();
+		virtual shared_ptr<Data> evaluate() override;
+	};
+
 	class LeftArrayDivision : public Operator
 	{
 	public:

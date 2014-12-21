@@ -217,11 +217,27 @@ namespace PR
 				readWord();
 			else if (TokenizerHelper::isWhiteSpace(command[i]))
 				readWhiteSpace();
+			else if (onDot())
+				continue;
 			else if (readOperator())
 				continue;
 			else readOthers();
 			deleteUneccessary();
 		}
+	}
+
+	bool Tokenizer::onDot()
+	{
+		if (i < N - 2 && command[i] == '.'&& command[i + 1] == '.' && command[i + 2] == '.')
+		{
+			i += 3;
+			while (i < N && command[i]!='\n')
+				i++;
+			i++;
+		}
+		else
+			return false;
+		return true;
 	}
 
 	void Tokenizer::whiteSpacesBegin()

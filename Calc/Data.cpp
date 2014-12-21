@@ -81,6 +81,11 @@ namespace PR
 		throw UnimplementedException("Can not do division on this type!");
 	}
 
+	shared_ptr<Data> Data::url (shared_ptr<Data> &b) const
+	{
+		throw UnimplementedException("Cannot solve URL on this type!");
+	}
+
 	shared_ptr<Data> Data::exponentiation(shared_ptr<Data> &b) const
 	{
 		throw UnimplementedException("Cannot do exponentiation on this type!");

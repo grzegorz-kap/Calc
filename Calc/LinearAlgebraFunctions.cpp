@@ -18,6 +18,21 @@ namespace PR
 		return arguments[0]->det();
 	}
 
+	UrlFunction::UrlFunction()
+	{
+		min_args_count = max_args_count = 2;
+		name = "url";
+	}
+
+	UrlFunction::~UrlFunction()
+	{
+	}
+
+	shared_ptr<Data> UrlFunction::run()
+	{
+		return arguments[0]->url(arguments[1]);
+	}
+
 
 	InvFunction::InvFunction()
 	{

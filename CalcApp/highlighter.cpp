@@ -21,9 +21,11 @@ Highlighter::Highlighter(QTextDocument *parent)
 	}
 
 	singleLineCommentFormat.setForeground(Qt::darkGreen);
-	rule.pattern = QRegExp("(//|%)[^\n%\\}]*");
+	rule.pattern = QRegExp("(//|%)[^\\n\\r%\\}]*");
 	rule.format = singleLineCommentFormat;
 	highlightingRules.append(rule);
+
+
 
 	multiLineCommentFormat.setForeground(Qt::darkGreen);
 	commentStartExpression = QRegExp("%\\{");

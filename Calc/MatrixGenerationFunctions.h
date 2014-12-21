@@ -32,4 +32,12 @@ namespace PR
 		~EyeFunction();
 		virtual shared_ptr<Data> run() override;
 	};
+
+	class ZerosFunction : public Function
+	{
+	public:
+		ZerosFunction();
+		~ZerosFunction();
+		virtual shared_ptr<Data> run() override;
+	};
 }
