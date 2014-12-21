@@ -18,6 +18,7 @@ namespace PR
 		insert<LuFunction>("lu");
 		insert<DetFunction>("det");
 		insert<InvFunction>("inv");
+		insert<UrlFunction>("url");
 		insert<PlotFunction>("plot");
 		insert<Plot3Function>("plot3");
 		insert<SurfaceFunction>("mesh");

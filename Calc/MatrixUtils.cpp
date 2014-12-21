@@ -144,12 +144,33 @@ namespace PR
 		Matrix<T> &x = *eye;
 		Matrix<T> &a = *lu;
 
-		unique_ptr<Matrix<T>> x_deleter(eye);
+		unique_ptr<Matrix<T>> x_deleter;
+		x_deleter.reset(eye);
 
 		for (int j = 0; j < x.N; j++)
 		{
 			url(a, x, j, x, j);
 		}
+		SafeRealase(&lu);
+		return x;
+	}
+
+	template <class T>
+	Matrix<T> MatrixUtils::ldivide(const Matrix<T> &A, const Matrix<T> &B)
+	{
+		if (A.M != B.M)
+			throw NumericException("A/B==x <==> A*x=B . Number of rows in A and B must be the same.");
+
+		Matrix<T> *lu = nullptr;
+		Matrix<T> x = B;
+		Matrix<T> *x_ptr = &x;
+
+		MatrixUtils::lu(A, &lu, (Matrix<T>**)nullptr, &x_ptr);
+
+		Matrix<T> &a = *lu;
+
+		for (int i = 0; i < B.N; i++)
+			url(a, x, i, x, i);
 		SafeRealase(&lu);
 		return x;
 	}
@@ -170,6 +191,13 @@ namespace PR
 	Matrix<T> MatrixUtils::divide(const Matrix<T> &AA, const Matrix<T> &BB)
 	{
 		return AA * inv(BB);
+	}
+
+
+	template <class T>
+	ComplexNumber<T> MatrixUtils::ldivide(const ComplexNumber<T> &A, const ComplexNumber<T> &B)
+	{
+		return B / A;
 	}
 
 	template <class T>
@@ -265,6 +293,11 @@ namespace PR
 
 	template Matrix<double> MatrixUtils::divide(const Matrix<double>&, const Matrix<double>&);
 	template Matrix<hdouble> MatrixUtils::divide(const Matrix<hdouble>&, const Matrix<hdouble>&);
+
+	template Matrix<double> MatrixUtils::ldivide(const Matrix<double>&, const Matrix<double>&);
+	template Matrix<hdouble> MatrixUtils::ldivide(const Matrix<hdouble>&, const Matrix<hdouble>&);
+	template ComplexNumber<double> MatrixUtils::ldivide(const ComplexNumber<double>&, const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> MatrixUtils::ldivide(const ComplexNumber<hdouble>&, const ComplexNumber<hdouble>&);
 
 	template void MatrixUtils::url(const Matrix<double>&, const Matrix<double>&, int, Matrix<double>&, int);
 	template void MatrixUtils::url(const Matrix<hdouble>&, const Matrix<hdouble>&, int, Matrix<hdouble>&, int);

@@ -27,6 +27,7 @@ namespace PR
 		operators.insert("*",   []()->unique_ptr<Operator>{return make_unique<MultiplicationOperator>(); });
 		operators.insert("./",  []()->unique_ptr<Operator>{return make_unique<RightArrayDivision>(); });
 		operators.insert(".\\", []()->unique_ptr<Operator>{return make_unique<LeftArrayDivision>(); });
+		operators.insert("\\", []()->unique_ptr < Operator > {return make_unique<LeftDivisionOperator>(); });
 		operators.insert("/",   []()->unique_ptr<Operator>{return make_unique<DivisionOperator>(); });
 		operators.insert(".^",  []()->unique_ptr<Operator>{return make_unique<ExponentiationOperator>(); });
 		operators.insert("^",   []()->unique_ptr<Operator>{return make_unique<MatrixExponentiationOperator>(); });

@@ -44,10 +44,10 @@ namespace PR
 	}
 
 	template <class T> Matrix<T>::Matrix(int m, int n)
-		: M(m), N(n)
+		: M(m>0?m:0), N(n)
 	{
 		setDataType();
-		mx.assign(m, vector<ComplexNumber<T>>(n));
+		mx.assign(M, vector<ComplexNumber<T>>(n));
 	}
 
 	template <class T> Matrix<T>::Matrix(int m, int n, const ComplexNumber<T> &value)
@@ -288,9 +288,9 @@ namespace PR
 			return *this / B.mx[0][0];
 		else if (M == 1 && N == 1)
 			return B.ldivide(mx[0][0]);
-		
-		if (M != B.M || N != B.N)
-			throw NumericException("/ Matrix dimensions must agree");
+	
+		if (N != B.M)
+			throw NumericException("A/B <==> A*inv(B) Matrix dimensions must agree");
 
 		return Matrix<T>::matrix_divide(*this, B);
 	}
