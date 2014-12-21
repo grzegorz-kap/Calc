@@ -14,8 +14,7 @@ namespace PR
 	template <class T>
 	int MatrixUtils::lu(const Matrix<T> &a, Matrix<T> **l, Matrix<T> **u, Matrix<T> **p)
 	{
-		if (a.M != a.N)
-			NumericException::throwLuNotSquare();
+		
 
 		vector<int> s;
 		vector<int> d;
@@ -28,6 +27,7 @@ namespace PR
 		Matrix<T> &A = *i_l;
 		int m = A.M;
 		int n = A.N;
+		int diag = min(m, n);
 
 		if (p)
 		{
@@ -39,7 +39,7 @@ namespace PR
 				throw CalcException("LU decompositor permutation matrix has wrong rows count");
 		}
 
-		for (int k = 0; k < m - 1; k++)
+		for (int k = 0; k < diag - 1; k++)
 		{
 			/*Finding max module*/
 			T max = 0;
@@ -69,7 +69,7 @@ namespace PR
 			}
 
 			ComplexNumber<T> &ref = A.mx[k][k];
-			for (int j = k + 1; j < n; j++)
+			for (int j = k + 1; j < m; j++)
 				A.mx[j][k] /= ref;
 
 			for (int i = k + 1; i < m; i++)
@@ -158,6 +158,8 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::ldivide(const Matrix<T> &A, const Matrix<T> &B)
 	{
+		if (A.M!=A.N)
+			throw NumericException("A/B==x <==> A*x=B . A must by squere Matrix.");
 		if (A.M != B.M)
 			throw NumericException("A/B==x <==> A*x=B . Number of rows in A and B must be the same.");
 
