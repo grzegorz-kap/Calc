@@ -165,7 +165,8 @@ namespace PR
 				find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev) 
 				)
 			{
-				token = OperatorsFactory::simple_get("$" + name);
+				name = "$" + name;
+				token = OperatorsFactory::simple_get(name);
 			}
 		}
 
