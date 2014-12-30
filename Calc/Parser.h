@@ -75,6 +75,7 @@ namespace PR
 		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);
 
 		static void computeShortCircuitJumps(vector<shared_ptr<Token>> &onp);
+
 	};
 }
 

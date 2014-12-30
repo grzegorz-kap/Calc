@@ -105,19 +105,9 @@ namespace PR
 		string lexame="";
 		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
 			lexame += command[i++];
-		
 		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) != END_SYNONIMS.end())
 			lexame = "end";
-
-		auto _class = TokenizerHelper::keyWordOrId(lexame);
-		if (i < N&& command[i] == '(')
-		{
-			if (_class != TOKEN_CLASS::ID)
-				throw CalcException("Unexpected open parenthesis!", i);
-			_class = TOKEN_CLASS::FUNCTION;
-		}
-
-		tokens.push_back(make_unique<Token>(std::move(lexame), _class, start));
+		tokens.push_back(make_unique<Token>(std::move(lexame), TokenizerHelper::keyWordOrId(lexame), start));
 	}
 
 	void Tokenizer::readString()

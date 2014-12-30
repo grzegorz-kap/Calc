@@ -144,37 +144,26 @@ namespace PR
 
 	void Parser::onFunction()
 	{
-		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+	    onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		stack.push_back(make_shared<Token>(*i));
 		_function_names.push_back(i->getLexemeR());
 		_function_args.push_back(1);
 		_function_onp_addr.push_back(vector<int>());
+		if (i->getLexemeR() == "mpf_float")
+		{
+			_ev_type_mode.push_back(TYPE::R_DOUBLE);
+			_ev_type_balance.push_back(0);
+		}
+		else if (i->getLexemeR() == "double")
+		{
+			_ev_type_balance.push_back(0);
+			_ev_type_mode.push_back(TYPE::DOUBLE);
+		}
 	}
 
 	void Parser::onID()
 	{		
-		if (whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
-		{
-			Token token = *i;
-			token.set_class(TOKEN_CLASS::FUNCTION);
-			stack.push_back(make_shared<Token>(token));
-			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
-			_function_names.push_back(token.getLexemeR());
-			_function_args.push_back(1);
-			_function_onp_addr.push_back(vector<int>());
-			if (token.getLexemeR() == "mpf_float")
-			{
-				_ev_type_mode.push_back(TYPE::R_DOUBLE);
-				_ev_type_balance.push_back(0);
-			}
-			else if (token.getLexemeR() == "double")
-			{
-				_ev_type_balance.push_back(0);
-				_ev_type_mode.push_back(TYPE::DOUBLE);
-			}
-		}
-		else
-			onp.push_back(make_shared<Token>(*i));
+		onp.push_back(make_shared<Token>(*i));
 	}
 
 	void Parser::onNewLine()
