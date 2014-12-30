@@ -15,6 +15,7 @@ namespace PR
 		public Token
 	{
 		TYPE _type;
+		shared_ptr<Data> cache;
 	public:
 		SNumber(Token &&token, TYPE type = TYPE::DOUBLE);
 		SNumber(const Token &token, TYPE type = TYPE::DOUBLE);
