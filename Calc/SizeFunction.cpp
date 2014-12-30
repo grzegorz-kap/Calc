@@ -122,4 +122,32 @@ namespace PR
 	{
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int() == 1 || arguments[0]->get_rows_int() == 1);
 	}
+
+
+	ColsFunction::ColsFunction()
+	{
+		max_args_count = min_args_count = 1;
+		name = "cols";
+	}
+	ColsFunction::~ColsFunction()
+	{
+	}
+	shared_ptr<Data> ColsFunction::run()
+	{
+		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int());
+	}
+
+
+	RowsFunction::RowsFunction()
+	{
+		max_args_count = min_args_count = 1;
+		name = "rows";
+	}
+	RowsFunction::~RowsFunction()
+	{
+	}
+	shared_ptr<Data> RowsFunction::run()
+	{
+		return make_shared<ComplexNumber<double>>(arguments[0]->get_rows_int());
+	}
 }

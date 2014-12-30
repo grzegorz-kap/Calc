@@ -35,6 +35,8 @@ namespace PR
 		insert<SizeFunction>("size");
 		insert<LengthFunction>("length");
 		insert<NumelFunction>("numel");
+		insert<RowsFunction>("rows");
+		insert<ColsFunction>("cols");
 		insert<IsColumnFunction>("iscolumn");
 		insert<IsEmptyFunction>("isempty");
 		insert<IsRowFunction>("isrow");
