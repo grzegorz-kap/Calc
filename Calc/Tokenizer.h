@@ -38,6 +38,7 @@ namespace PR
 
 	private:
 		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
+		static const unordered_map<char, TOKEN_CLASS> OTHERS;
 		static const vector<string> END_SYNONIMS;
 		vector<unique_ptr<Token>> tokens;
 		string command;
