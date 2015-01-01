@@ -50,6 +50,8 @@ namespace PR
 		void setArguments(vector<shared_ptr<Data>> &stack);
 		virtual void promoteArguments();
 		void promoteToMatrix();
+
+		virtual bool isColon2Operator() const { return false; }
 	};
 
 }

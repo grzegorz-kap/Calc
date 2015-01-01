@@ -239,7 +239,7 @@ namespace PR
 		while (stackBack() == TOKEN_CLASS::OPERATOR )
 		{
 			Operator *o2 = stack.back()->castToOperator();
-			if (o1->getLexemeR() == ":" && o2->getLexemeR() == ":")
+			if (o1->isColon2Operator() && o2->isColon2Operator())
 			{
 				stack.pop_back();
 				stack.push_back(make_unique<Colon3Operator>());
@@ -313,6 +313,8 @@ namespace PR
 				balance = -funs.back() + 1; funs.pop_back(); break;
 			}
 			main += balance;
+			if (main <= 0 && t->getClass()==TOKEN_CLASS::OPERATOR || main<0)
+				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), t->getPosition());
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);

@@ -228,7 +228,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::createVector(const Matrix<T> &start, const Matrix<T> &end)
 	{
-		if (start.isEmpty() || end.isEmpty())
+		if (start.M==0||start.N==0||end.M==0||end.N==0)
 			return Matrix<T>(1, 0);
 
 		return createVector(start.mx[0][0], end.mx[0][0]);
@@ -251,9 +251,15 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &step, const ComplexNumber<T> &end)
 	{
+		if (step.getRe() == 0)
+			return Matrix<T>(1, 0);
 		int m = (int)Mathematic::fix((end - start) / step).getRe();
-
 		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m<0)
+			return Matrix<T>(1, 0);
+
+		if (m==0 && step.getRe()>0 && start.getRe()>end.getRe() )
+			return Matrix<T>(1, 0);
+		if (m==0 && step.getRe()<0 && start.getRe()<end.getRe())
 			return Matrix<T>(1, 0);
 
 		const T &j = start.getRe();

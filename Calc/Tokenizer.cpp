@@ -90,15 +90,22 @@ namespace PR
 		string lexame="";
 
 		/* Wczytanie identyfikatora*/
-		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
+		while (i < N && 
+				(  TokenizerHelper::isLetter(command[i]) || 
+				   TokenizerHelper::isDigit(command[i])  ) 
+				)
 			lexame += command[i++];
 
 		/* Zamiana endfor, endif, endwhile, endfunction na end. */
-		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) != END_SYNONIMS.end())
+		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) 
+			!= END_SYNONIMS.end())
 			lexame = "end";
 
 		/* Dodanie do tablicy rozpoznanych symboli leksykalnych. */
-		tokens.push_back(make_unique<Token>(std::move(lexame), TokenizerHelper::keyWordOrId(lexame), start));
+		tokens.push_back(make_unique<Token>(std::move(lexame),
+						TokenizerHelper::keyWordOrId(lexame), 
+						start)
+			);
 	}
 
 	void Tokenizer::readString()
@@ -124,7 +131,7 @@ namespace PR
 		}
 
 		if (!found)
-			throw CalcException(" A MATLAB string constant is not terminated properly.", start);
+			throw CalcException(" A KapiLab string constant is not terminated properly.", start);
 
 		unique_ptr<String> token = make_unique<String>(std::move(lexame));
 		token->setPosition(start);
