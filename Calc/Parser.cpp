@@ -121,27 +121,27 @@ namespace PR
 
 	void Parser::onComma()
 	{
-		if (i->getMode() == PARSE_MODE::NORMAL||i->getMode()==PARSE_MODE::KEYWORD)
-			stop = true;
-		else
+		if (i->getMode() == PARSE_MODE::NORMAL || i->getMode() == PARSE_MODE::KEYWORD)
 		{
-			TOKEN_CLASS type = i->getMode() == PARSE_MODE::FUNCTION ? TOKEN_CLASS::OPEN_PARENTHESIS : TOKEN_CLASS::MATRIX_START;
-			bool flag = false;
-			for (int i = stack.size()-1; i >= 0; i--)
-			{
-				if (stack[i]->getClass() == type)
-				{
-					flag = true;
-					break;
-				}
-				else
-					stackToOnp();
-			}
-			if (!flag)
-				throw CalcException("Unbalanced parenthesis!");
+			stop = true;
+			return;
 		}
-		if (i->getMode() == PARSE_MODE::FUNCTION)
-			_function_args.back()++;
+
+		TOKEN_CLASS type = i->getMode() == PARSE_MODE::FUNCTION ? TOKEN_CLASS::OPEN_PARENTHESIS : TOKEN_CLASS::MATRIX_START;
+		bool flag = false;
+		for (int i = stack.size()-1; i >= 0; i--)
+		{
+			if (stack[i]->getClass() == type)
+			{
+				flag = true;
+				break;
+			}
+			else
+				stackToOnp();
+		}
+		if (!flag)
+			throw CalcException("Unbalanced parenthesis!");
+		_function_args.back()++;
 	}
 
 	void Parser::onFunction()
@@ -255,35 +255,46 @@ namespace PR
 		onShortCircuitOperator();
 		stack.push_back(std::move(i));
 	}
-
 	void Parser::onShortCircuitOperator()
 	{
 		if (i->getLexemeR() == "&&")
-			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_END));
+			onp.push_back(make_unique<ShortCircuitJumper>(SHORT_CIRCUIT_END));
 		else if (i->getLexemeR() == "||")
-			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_OR));
+			onp.push_back(make_unique<ShortCircuitJumper>(SHORT_CIRCUIT_OR));
 	}
 
-	void Parser::computeShortCircuitJumps( vector<shared_ptr<Token>> &onp)
+	/** Ustalenie indeksów elementów instrukcji do których nale¿y 
+	   przejœæ, gdy:
+			-pierwszy operand operatora || jest ró¿ny od 0 
+			-pierwszy operand operatora && jest równy 0
+	*/
+	void Parser::computeShortCircuitJumps(vector<shared_ptr<Token>> &onp)
 	{
 		for (auto iter = onp.begin(); iter != onp.end(); ++iter)
 		{
-			auto &ptr = *iter;
-			TOKEN_CLASS _class = ptr->getClass();
-			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END || _class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
+			TOKEN_CLASS _class = (*iter)->getClass();
+			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END ||
+				_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
 			{
-				int _level = ptr->getTreeLevel();
-				auto result = std::find_if(iter + 1, onp.end(), [&_level, &_class](const shared_ptr<Token> &token){
-					bool lvl = _level == token->getTreeLevel();
-					bool end = TOKEN_CLASS::SHORT_CIRCUIT_END == _class && token->getLexemeR() == "&&";
-					bool or = TOKEN_CLASS::SHORT_CIRCUIT_OR == _class && token->getLexemeR() == "||";
-					return lvl && (end || or);
+				int _level = (*iter)->getTreeLevel();
+				string _op = _class == SHORT_CIRCUIT_END ? "&&" : "||";
+				/* Znalezienie operatora do którego nale¿y operand. */
+				auto result = std::find_if(iter + 1, onp.end(),
+					[&](const shared_ptr<Token> &token){
+						return _level == token->getTreeLevel() && 
+							token->getLexemeR()==_op;
 				});
+
+				/* Indeks znalezionego operatora.*/
 				int idx = std::distance(onp.begin(), result);
+
+				/* Ustawienie skoku na element po znalezionym operatorze*/
 				if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END)
-					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnFalse(idx + 1);
-				else if (_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
-					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnTrue(idx + 1);
+					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
+						->setJumpOnFalse(idx + 1);
+				else
+					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
+						->setJumpOnTrue(idx + 1);
 			}
 		}
 	}
@@ -433,7 +444,7 @@ namespace PR
 		if (!find)
 			return;
 
-		unique_ptr<IAssignment> iAssignment(AssignmentFactory::get(onp.front()->getClass()));
+		unique_ptr<IAssignment> iAssignment = AssignmentFactory::get(onp.front()->getClass());
 
 		auto start = onp.begin();
 		auto end = onp.end();
