@@ -103,6 +103,8 @@ namespace PR
 			case TOKEN_CLASS::END_FOR:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
+				else
+					throw CalcException("Parser. Unexpected keyword:" + i->getLexemeR(), i->getPosition());
 				stop = true;
 				break;
 			default:
@@ -291,7 +293,6 @@ namespace PR
 		int main = 0;
 		vector<int> funs;
 		vector<int> mtrx;
-		vector<int> mains;
 		for (const auto &t : onp)
 		{
 			int balance = 0;
@@ -318,7 +319,6 @@ namespace PR
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);
-			mains.push_back(main);
 		}
 	}
 
@@ -391,9 +391,8 @@ namespace PR
 	{
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			TOKEN_CLASS _type = stack[i]->getClass();
-			if (_type != TOKEN_CLASS::OPERATOR)
-				throw CalcException("Unexpected symbol!", stack[i]->getPosition());
+			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
+				throw CalcException("Unexpected symbol! "+stack[i]->getLexemeR(), stack[i]->getPosition());
 			onp.push_back(std::move(stack[i]));
 		}
 		stack.clear();
@@ -450,6 +449,9 @@ namespace PR
 
 	void Parser::onKeywordFOR()
 	{
+		if (stack.size() || onp.size())
+			throw CalcException("Parser. Unexpected keyword: for", i->getPosition());
+
 		unique_ptr<InstructionFor> _for = make_unique<InstructionFor>(*i);
 		iter++;
 
