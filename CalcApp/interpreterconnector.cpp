@@ -27,6 +27,7 @@ void InterpreterConnector::executionComplate(void)
 
 void InterpreterConnector::commandToInterpreter(QString command)
 {
+	emit executionStarted();
 	interpreter.work(command.toStdString());	
 }
 

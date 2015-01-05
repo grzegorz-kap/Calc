@@ -34,20 +34,28 @@ namespace PR
 		return result;
 	}
 
-	variables_map_pair Variables::set(const string &name, const shared_ptr<Data> &data)
+	variables_map_pair Variables::set(const string &name,
+									  const shared_ptr<Data> &data)
 	{
+		/* Je¿eli obiekt nie jest tymczasowy,
+		   skopiowanie jego wartoœci */
 		shared_ptr<Data> temp = data->_temp ? data : data->copy();
 
+		/* Zapis do aktualnej przestrzeni roboczej */
 		auto result = mem.insert({ name, temp });
+		
+		/* Je¿eli zmienna ju¿ istnieje*/
 		if (result.second == false)
 		{
+			/* Zaktualizowanie jej wartoœci */
 			result.first->second = temp;
 			temp->_updated = true;
 		}
 		else
-		{
 			temp->_added = true;
-		}
+
+		/* Zapisany obiekt nie jest ju¿ wartoœci¹
+		   tymczasow¹ */
 		temp->_temp = false;
 		return result;
 	}

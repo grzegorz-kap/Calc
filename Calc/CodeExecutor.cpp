@@ -196,11 +196,14 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throw CalcException("Error evaulating 'end' or ':' matrix index" + ex.getMessageR(), (*i)->getPosition());
+			throw CalcException(
+				"Error evaulating 'end' or ':' matrix index"
+					+ ex.getMessageR(), 
+				(*i)->getPosition());
 		}
 
-		int idx = (*i)->getParam();
-		int num = (*i)->argumentsNum();
+		int idx = (*i)->getParam();  // numer argumentu indeksowanie
+		int num = (*i)->argumentsNum(); // rodzaj indeksowania
 
 		if ((*i)->getClass() == MATRIX_ALL)
 		{
@@ -241,11 +244,12 @@ namespace PR
 									(*i)->getPosition());
 
 		bool leftArgument = *stack.back() == true;
-		ShortCircuitJumper * jumper = dynamic_cast<ShortCircuitJumper *>(i->get());
-		if (leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_OR)
-			i = ip->begin() + jumper->getJumpOnTrue() - 1;
-		else if (!leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_END)
-			i = ip->begin() + jumper->getJumpOnFalse() - 1;
+		TOKEN_CLASS _class = (*i)->getClass();
+		if (leftArgument&&_class == SHORT_CIRCUIT_OR ||
+			!leftArgument&&_class == SHORT_CIRCUIT_END)
+			i = ip->begin() + 
+				dynamic_pointer_cast<ShortCircuitJumper>(*i)
+						->getJumpOn(_class) - 1;
 	}
 
 	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)
