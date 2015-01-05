@@ -398,9 +398,9 @@ namespace PR
 		{
 			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1,
 				std::prev(i)->get()->castToAssignment()->getTargetSize()));
-			return;
 		}
-		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
+		else
+			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
 	}
 
 	void CodeExecutor::onFunction()
@@ -430,7 +430,9 @@ namespace PR
 		if (function != nullptr)
 		{
 			function->set(args, num > 0 ? num : 1);
-			stack.push_back(function->run());
+			shared_ptr<Data> out = function->run();
+			if (out->_type!=TYPE::OUTPUT || out->cast_output()->getArgumentsNumber()>0)
+				stack.push_back(out);
 		}
 		else
 			onExternalFunction(args, name);
