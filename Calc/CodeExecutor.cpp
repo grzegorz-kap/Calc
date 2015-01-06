@@ -229,9 +229,9 @@ namespace PR
 
 	void CodeExecutor::onOperator()
 	{
-		auto p = dynamic_cast<Operator *>(i->get());
+		auto p = dynamic_pointer_cast<Operator>(*i);
 		p->setArguments(stack);
- 		stack.push_back(shared_ptr<Data>(p->evaluate()));
+ 		stack.push_back(p->evaluate());
 	}
 
 	void CodeExecutor::onShortCircuitJumper()
@@ -338,14 +338,6 @@ namespace PR
 		next();
 		_iterator.setCodeBegin(code.getLP());
 		setIPTo(FOR_FIND, balance);
-		_iterator.setCodeEnd(code.getLP() + 1);
-		if (!_iterator.eof())
-		{
-			_iterator.loadNext();
-			code.setIp(_iterator.getCodeBegin());
-		}
-		else
-			code.inc();
 	}
 
 	void CodeExecutor::onForEndKeyword()
