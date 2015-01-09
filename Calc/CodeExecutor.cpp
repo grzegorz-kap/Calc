@@ -327,14 +327,19 @@ namespace PR
 
 	void CodeExecutor::onForKeyword()
 	{
+		/* Utworzenie nowego interatora */
 		for_iterators.push_back(ForIterator(vars_ref));
 		ForIterator & _iterator = for_iterators.back();
-		InstructionFor * _for = dynamic_cast<InstructionFor *>(ip->at(0).get());
-
+		
+		/* Ustawienie informacji o nazwie zmiennej bêd¹cej 
+		   iteratorem oraz ustawienie zbioru wartoœci */
+		auto _for = dynamic_pointer_cast<InstructionFor>(ip->front());
 		_iterator.setName(_for->getLexeme());
 		_iterator.setData(run_single(_for->getOnp(), vars_ref));
 
-		int balance = ip->at(0)->getKeywordBalance();
+		/* Ustawienie adresu pocz¹tku cia³a pêtli oraz 
+		   przejœcie na koniec pêtli */
+		int balance = _for->getKeywordBalance();
 		next();
 		_iterator.setCodeBegin(code.getLP());
 		setIPTo(FOR_FIND, balance);
@@ -345,14 +350,17 @@ namespace PR
 		if (for_iterators.size() == 0)
 			throw CalcException("END-FOR found , but there is no for-iterators in memory!");
 		ForIterator & _iterator = for_iterators.back();
-		if (_iterator.eof())
+		/* Je¿eli przeiterowano ca³y zestaw wartoœci */
+		if (_iterator.end())
 		{
 			code.inc();
 			for_iterators.pop_back();
 		}
 		else
 		{
+			/* Za³adowanie nastêpnej wartoœci do iteratora pêtli */
 			_iterator.loadNext();
+			/* Przejœcie do pocz¹tku pêtli */
 			code.setIp(_iterator.getCodeBegin());
 		}
 	}

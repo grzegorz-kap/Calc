@@ -141,7 +141,8 @@ namespace PR
 		}
 		if (!flag)
 			throw CalcException("Unbalanced parenthesis!");
-		_function_args.back()++;
+		if (i->getMode() == PARSE_MODE::FUNCTION)
+			_function_args.back()++;
 	}
 
 	void Parser::onFunction()
