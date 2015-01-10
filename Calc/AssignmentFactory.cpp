@@ -4,16 +4,16 @@
 
 namespace PR
 {
-	IAssignment* AssignmentFactory::get(TOKEN_CLASS _class)
+	unique_ptr<IAssignment> AssignmentFactory::get(TOKEN_CLASS _class)
 	{
 		switch (_class)
 		{
 		case TOKEN_CLASS::ID: 
-			return new AssignmentSingle();
+			return make_unique<AssignmentSingle>();
 		case TOKEN_CLASS::MATRIX_START: 
-			return new AssignmentMulti();
+			return make_unique<AssignmentMulti>();
 		case TOKEN_CLASS::FUNCTON_ARGS_END:
-			return new AssignmentSubscripted();
+			return make_unique<AssignmentSubscripted>();
 		default:
 			throw CalcException("Unrecognized assignment target");
 		}

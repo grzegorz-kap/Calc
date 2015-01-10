@@ -75,5 +75,21 @@ namespace PR
 		~IsVectorFunction();
 		virtual shared_ptr<Data> run() override;
 	};
+
+	class ColsFunction : public Function
+	{
+	public:
+		ColsFunction();
+		~ColsFunction();
+		virtual shared_ptr<Data> run() override;
+	};
+
+	class RowsFunction : public Function
+	{
+	public:
+		RowsFunction();
+		~RowsFunction();
+		virtual shared_ptr<Data> run() override;
+	};
 }
 

@@ -196,11 +196,14 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throw CalcException("Error evaulating 'end' or ':' matrix index" + ex.getMessageR(), (*i)->getPosition());
+			throw CalcException(
+				"Error evaulating 'end' or ':' matrix index"
+					+ ex.getMessageR(), 
+				(*i)->getPosition());
 		}
 
-		int idx = (*i)->getParam();
-		int num = (*i)->argumentsNum();
+		int idx = (*i)->getParam();  // numer argumentu indeksowanie
+		int num = (*i)->argumentsNum(); // rodzaj indeksowania
 
 		if ((*i)->getClass() == MATRIX_ALL)
 		{
@@ -226,9 +229,9 @@ namespace PR
 
 	void CodeExecutor::onOperator()
 	{
-		auto p = dynamic_cast<Operator *>(i->get());
+		auto p = dynamic_pointer_cast<Operator>(*i);
 		p->setArguments(stack);
- 		stack.push_back(shared_ptr<Data>(p->evaluate()));
+ 		stack.push_back(p->evaluate());
 	}
 
 	void CodeExecutor::onShortCircuitJumper()
@@ -241,11 +244,12 @@ namespace PR
 									(*i)->getPosition());
 
 		bool leftArgument = *stack.back() == true;
-		ShortCircuitJumper * jumper = dynamic_cast<ShortCircuitJumper *>(i->get());
-		if (leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_OR)
-			i = ip->begin() + jumper->getJumpOnTrue() - 1;
-		else if (!leftArgument && (*i)->getClass() == TOKEN_CLASS::SHORT_CIRCUIT_END)
-			i = ip->begin() + jumper->getJumpOnFalse() - 1;
+		TOKEN_CLASS _class = (*i)->getClass();
+		if (leftArgument&&_class == SHORT_CIRCUIT_OR ||
+			!leftArgument&&_class == SHORT_CIRCUIT_END)
+			i = ip->begin() + 
+				dynamic_pointer_cast<ShortCircuitJumper>(*i)
+						->getJumpOn(_class) - 1;
 	}
 
 	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)
@@ -323,25 +327,22 @@ namespace PR
 
 	void CodeExecutor::onForKeyword()
 	{
+		/* Utworzenie nowego interatora */
 		for_iterators.push_back(ForIterator(vars_ref));
 		ForIterator & _iterator = for_iterators.back();
-		InstructionFor * _for = dynamic_cast<InstructionFor *>(ip->at(0).get());
-
+		
+		/* Ustawienie informacji o nazwie zmiennej bêd¹cej 
+		   iteratorem oraz ustawienie zbioru wartoœci */
+		auto _for = dynamic_pointer_cast<InstructionFor>(ip->front());
 		_iterator.setName(_for->getLexeme());
 		_iterator.setData(run_single(_for->getOnp(), vars_ref));
 
-		int balance = ip->at(0)->getKeywordBalance();
+		/* Ustawienie adresu pocz¹tku cia³a pêtli oraz 
+		   przejœcie na koniec pêtli */
+		int balance = _for->getKeywordBalance();
 		next();
 		_iterator.setCodeBegin(code.getLP());
 		setIPTo(FOR_FIND, balance);
-		_iterator.setCodeEnd(code.getLP() + 1);
-		if (!_iterator.eof())
-		{
-			_iterator.loadNext();
-			code.setIp(_iterator.getCodeBegin());
-		}
-		else
-			code.inc();
 	}
 
 	void CodeExecutor::onForEndKeyword()
@@ -349,14 +350,17 @@ namespace PR
 		if (for_iterators.size() == 0)
 			throw CalcException("END-FOR found , but there is no for-iterators in memory!");
 		ForIterator & _iterator = for_iterators.back();
-		if (_iterator.eof())
+		/* Je¿eli przeiterowano ca³y zestaw wartoœci */
+		if (_iterator.end())
 		{
 			code.inc();
 			for_iterators.pop_back();
 		}
 		else
 		{
+			/* Za³adowanie nastêpnej wartoœci do iteratora pêtli */
 			_iterator.loadNext();
+			/* Przejœcie do pocz¹tku pêtli */
 			code.setIp(_iterator.getCodeBegin());
 		}
 	}
@@ -398,9 +402,9 @@ namespace PR
 		{
 			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1,
 				std::prev(i)->get()->castToAssignment()->getTargetSize()));
-			return;
 		}
-		stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
+		else
+			stack.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END, -1, -1));
 	}
 
 	void CodeExecutor::onFunction()
@@ -430,7 +434,9 @@ namespace PR
 		if (function != nullptr)
 		{
 			function->set(args, num > 0 ? num : 1);
-			stack.push_back(function->run());
+			shared_ptr<Data> out = function->run();
+			if (out->_type!=TYPE::OUTPUT || out->cast_output()->getArgumentsNumber()>0)
+				stack.push_back(out);
 		}
 		else
 			onExternalFunction(args, name);

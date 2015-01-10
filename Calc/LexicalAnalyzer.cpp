@@ -102,6 +102,9 @@ namespace PR
 		balancer.setMode(*token);
 		switch (token->getClass())
 		{
+		case TOKEN_CLASS::ID:
+			onID(*token);
+			break;
 		case TOKEN_CLASS::SPACE: 
 			onSpace(*token); 
 			break;
@@ -115,6 +118,12 @@ namespace PR
 		
 		if (!for_delete)
 			prev = token->getClass();
+	}
+
+	void LexicalAnalyzer::onID(Token &token)
+	{
+		if (whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
+			token.set_class(TOKEN_CLASS::FUNCTION);
 	}
 
 	void LexicalAnalyzer::onColon(Token &token)

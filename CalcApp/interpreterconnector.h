@@ -44,6 +44,7 @@ signals:
 	void interpreterError(QString);
 	void sendVariableInformation(PR::VariableInfo);
 	void clsScreen();
+	void executionStarted();
 };
 
 #endif // INTERPRETERCONNECTOR_H

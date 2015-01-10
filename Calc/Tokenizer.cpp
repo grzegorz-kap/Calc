@@ -15,6 +15,16 @@ namespace PR
 		"endfor", "endif", "endwhile", "endfunction"
 	};
 
+	const unordered_map<char, TOKEN_CLASS> Tokenizer::OTHERS = {
+		{ '(',TOKEN_CLASS::OPEN_PARENTHESIS},
+		{ ')',TOKEN_CLASS::CLOSE_PARENTHESIS },
+		{ '[',TOKEN_CLASS::MATRIX_START },
+		{ ']',TOKEN_CLASS::MATRIX_END },
+		{ ':',TOKEN_CLASS::COLON },
+		{ ';',TOKEN_CLASS::SEMICOLON },
+		{ ',',TOKEN_CLASS::COMMA }
+	};
+
 	Tokenizer::Tokenizer()
 	{
 		N = 0;
@@ -39,40 +49,15 @@ namespace PR
 
 	void Tokenizer::readOthers()
 	{
-		TOKEN_CLASS type;
-		char znak = command[i];
-		switch (command[i])
-		{
-		case '(':
-			type = TOKEN_CLASS::OPEN_PARENTHESIS;
-			break;
-		case ')':
-			type =  TOKEN_CLASS::CLOSE_PARENTHESIS;
-			break;
-		case '[':
-			type = TOKEN_CLASS::MATRIX_START;
-			break;
-		case ']':
-			type = TOKEN_CLASS::MATRIX_END;
-			break;
-		case ':':
-			type = TOKEN_CLASS::COLON;
-			break;
-		case ';':
-			type =  TOKEN_CLASS::SEMICOLON;
-			break;
-		case ',':
-			type = TOKEN_CLASS::COMMA;
-			break;
-		default:
+		auto result = OTHERS.find(command[i]);
+		if (result == OTHERS.end())
 			throw CalcException("Unrecognized symbol", i);
-		}
-		tokens.push_back(make_unique<Token>( type,i++));
+		tokens.push_back(make_unique<Token>( result->second,i++));
 	}
 
 	bool Tokenizer::readOperator()
 	{
-		if (command[i]=='\''&&!find(TokenizerHelper::NO_STRING_PRECURSORS, prev())&&prevChar()!='.')
+		if (command[i] == '\'' && prevChar() != '.' && !find(TokenizerHelper::NO_STRING_PRECURSORS, prev()))
 		{
 			readString();
 			return true;
@@ -103,21 +88,24 @@ namespace PR
 	{
 		int start = i;
 		string lexame="";
-		while (i < N && (TokenizerHelper::isLetter(command[i]) || TokenizerHelper::isDigit(command[i])))
+
+		/* Wczytanie identyfikatora*/
+		while (i < N && 
+				(  TokenizerHelper::isLetter(command[i]) || 
+				   TokenizerHelper::isDigit(command[i])  ) 
+				)
 			lexame += command[i++];
-		
-		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) != END_SYNONIMS.end())
+
+		/* Zamiana endfor, endif, endwhile, endfunction na end. */
+		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) 
+			!= END_SYNONIMS.end())
 			lexame = "end";
 
-		auto _class = TokenizerHelper::keyWordOrId(lexame);
-		if (i < N&& command[i] == '(')
-		{
-			if (_class != TOKEN_CLASS::ID)
-				throw CalcException("Unexpected open parenthesis!", i);
-			_class = TOKEN_CLASS::FUNCTION;
-		}
-
-		tokens.push_back(make_unique<Token>(std::move(lexame), _class, start));
+		/* Dodanie do tablicy rozpoznanych symboli leksykalnych. */
+		tokens.push_back(make_unique<Token>(std::move(lexame),
+						TokenizerHelper::keyWordOrId(lexame), 
+						start)
+			);
 	}
 
 	void Tokenizer::readString()
@@ -143,7 +131,7 @@ namespace PR
 		}
 
 		if (!found)
-			throw CalcException(" A MATLAB string constant is not terminated properly.", start);
+			throw CalcException(" A KapiLab string constant is not terminated properly.", start);
 
 		unique_ptr<String> token = make_unique<String>(std::move(lexame));
 		token->setPosition(start);

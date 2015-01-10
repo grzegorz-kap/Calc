@@ -19,7 +19,7 @@ namespace PR
 
 		Output();
 		~Output();
-
+		int getArgumentsNumber() const { return out.size(); }
 		void add(const shared_ptr<Data> &item);
 		vector<shared_ptr<Data>>& getOutput();
 		virtual bool isOutput() const override;

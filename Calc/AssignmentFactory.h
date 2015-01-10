@@ -7,12 +7,17 @@
 #include "AssignmentMulti.h"
 #include "AssignmentSubscripted.h"
 
+#include <memory>
+
+using std::unique_ptr;
+using std::make_unique;
+
 namespace PR
 {
 	class AssignmentFactory
 	{
 	public:
-		static IAssignment* get(TOKEN_CLASS _class);
+		static unique_ptr<IAssignment> get(TOKEN_CLASS _class);
 	};
 }
 

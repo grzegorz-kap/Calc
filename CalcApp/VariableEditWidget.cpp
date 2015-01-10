@@ -71,6 +71,9 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 
 void VariableEditWidget::onItemChanged(QTableWidgetItem *item)
 {
+	if (item->text().size() == 0)
+		return;
+
 	QString command = "";
 
 	if (scalar && (item->column() > 0 || item->row() > 0))

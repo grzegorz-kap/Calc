@@ -8,12 +8,14 @@ namespace PR
 		:_type(type), Token(std::move(token))
 	{
 		_evType = TYPE::DOUBLE;
+		cache = nullptr;
 	}
 
 	SNumber::SNumber(const Token &token, TYPE type)
 		: _type(type), Token(token)
 	{
 		_evType = TYPE::DOUBLE;
+		cache = nullptr;
 	}
 
 
@@ -23,18 +25,24 @@ namespace PR
 
 	shared_ptr<Data> SNumber::evaluate()
 	{
-		switch (getEvType())
-		{
-		case TYPE::DOUBLE:
-			return make_shared<ComplexNumber<double>>(getLexeme());
-		case TYPE::M_DOUBLE:
-			return make_shared< Matrix<double>>(getLexeme());
-		case TYPE::R_DOUBLE:
-			return make_shared<ComplexNumber<hdouble>>(getLexeme());
-		case TYPE::RM_DOUBLE:
-			return make_shared<Matrix<hdouble>>(getLexeme());
-		default:
-			throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
-		}
+		if (cache==nullptr)
+			switch (getEvType())
+			{
+			case TYPE::DOUBLE:
+				cache = make_shared<ComplexNumber<double>>(getLexeme());
+				break;
+			case TYPE::M_DOUBLE:
+				cache = make_shared< Matrix<double>>(getLexeme());
+				break;
+			case TYPE::R_DOUBLE:
+				cache = make_shared<ComplexNumber<hdouble>>(getLexeme());
+				break;
+			case TYPE::RM_DOUBLE:
+				cache = make_shared<Matrix<hdouble>>(getLexeme());
+				break;
+			default:
+				throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
+			}
+		return cache;
 	}
 }

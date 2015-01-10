@@ -103,6 +103,8 @@ namespace PR
 			case TOKEN_CLASS::END_FOR:
 				if (onp.size() == 0 && stack.size() == 0)
 					onp.push_back(make_unique<Token>(*i));
+				else
+					throw CalcException("Parser. Unexpected keyword:" + i->getLexemeR(), i->getPosition());
 				stop = true;
 				break;
 			default:
@@ -119,62 +121,52 @@ namespace PR
 
 	void Parser::onComma()
 	{
-		if (i->getMode() == PARSE_MODE::NORMAL||i->getMode()==PARSE_MODE::KEYWORD)
-			stop = true;
-		else
+		if (i->getMode() == PARSE_MODE::NORMAL || i->getMode() == PARSE_MODE::KEYWORD)
 		{
-			TOKEN_CLASS type = i->getMode() == PARSE_MODE::FUNCTION ? TOKEN_CLASS::OPEN_PARENTHESIS : TOKEN_CLASS::MATRIX_START;
-			bool flag = false;
-			for (int i = stack.size()-1; i >= 0; i--)
-			{
-				if (stack[i]->getClass() == type)
-				{
-					flag = true;
-					break;
-				}
-				else
-					stackToOnp();
-			}
-			if (!flag)
-				throw CalcException("Unbalanced parenthesis!");
+			stop = true;
+			return;
 		}
+
+		TOKEN_CLASS type = i->getMode() == PARSE_MODE::FUNCTION ? TOKEN_CLASS::OPEN_PARENTHESIS : TOKEN_CLASS::MATRIX_START;
+		bool flag = false;
+		for (int i = stack.size()-1; i >= 0; i--)
+		{
+			if (stack[i]->getClass() == type)
+			{
+				flag = true;
+				break;
+			}
+			else
+				stackToOnp();
+		}
+		if (!flag)
+			throw CalcException("Unbalanced parenthesis!");
 		if (i->getMode() == PARSE_MODE::FUNCTION)
 			_function_args.back()++;
 	}
 
 	void Parser::onFunction()
 	{
-		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+	    onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		stack.push_back(make_shared<Token>(*i));
 		_function_names.push_back(i->getLexemeR());
 		_function_args.push_back(1);
 		_function_onp_addr.push_back(vector<int>());
+		if (i->getLexemeR() == "mpf_float")
+		{
+			_ev_type_mode.push_back(TYPE::R_DOUBLE);
+			_ev_type_balance.push_back(0);
+		}
+		else if (i->getLexemeR() == "double")
+		{
+			_ev_type_balance.push_back(0);
+			_ev_type_mode.push_back(TYPE::DOUBLE);
+		}
 	}
 
 	void Parser::onID()
 	{		
-		if (whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
-		{
-			Token token = *i;
-			token.set_class(TOKEN_CLASS::FUNCTION);
-			stack.push_back(make_shared<Token>(token));
-			onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
-			_function_names.push_back(token.getLexemeR());
-			_function_args.push_back(1);
-			_function_onp_addr.push_back(vector<int>());
-			if (token.getLexemeR() == "mpf_float")
-			{
-				_ev_type_mode.push_back(TYPE::R_DOUBLE);
-				_ev_type_balance.push_back(0);
-			}
-			else if (token.getLexemeR() == "double")
-			{
-				_ev_type_balance.push_back(0);
-				_ev_type_mode.push_back(TYPE::DOUBLE);
-			}
-		}
-		else
-			onp.push_back(make_shared<Token>(*i));
+		onp.push_back(make_shared<Token>(*i));
 	}
 
 	void Parser::onNewLine()
@@ -250,7 +242,7 @@ namespace PR
 		while (stackBack() == TOKEN_CLASS::OPERATOR )
 		{
 			Operator *o2 = stack.back()->castToOperator();
-			if (o1->getLexemeR() == ":" && o2->getLexemeR() == ":")
+			if (o1->isColon2Operator() && o2->isColon2Operator())
 			{
 				stack.pop_back();
 				stack.push_back(make_unique<Colon3Operator>());
@@ -264,35 +256,46 @@ namespace PR
 		onShortCircuitOperator();
 		stack.push_back(std::move(i));
 	}
-
 	void Parser::onShortCircuitOperator()
 	{
 		if (i->getLexemeR() == "&&")
-			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_END));
+			onp.push_back(make_unique<ShortCircuitJumper>(SHORT_CIRCUIT_END));
 		else if (i->getLexemeR() == "||")
-			onp.push_back(make_unique<ShortCircuitJumper>(TOKEN_CLASS::SHORT_CIRCUIT_OR));
+			onp.push_back(make_unique<ShortCircuitJumper>(SHORT_CIRCUIT_OR));
 	}
 
-	void Parser::computeShortCircuitJumps( vector<shared_ptr<Token>> &onp)
+	/** Ustalenie indeksów elementów instrukcji do których nale¿y 
+	   przejœæ, gdy:
+			-pierwszy operand operatora || jest ró¿ny od 0 
+			-pierwszy operand operatora && jest równy 0
+	*/
+	void Parser::computeShortCircuitJumps(vector<shared_ptr<Token>> &onp)
 	{
 		for (auto iter = onp.begin(); iter != onp.end(); ++iter)
 		{
-			auto &ptr = *iter;
-			TOKEN_CLASS _class = ptr->getClass();
-			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END || _class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
+			TOKEN_CLASS _class = (*iter)->getClass();
+			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END ||
+				_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
 			{
-				int _level = ptr->getTreeLevel();
-				auto result = std::find_if(iter + 1, onp.end(), [&_level, &_class](const shared_ptr<Token> &token){
-					bool lvl = _level == token->getTreeLevel();
-					bool end = TOKEN_CLASS::SHORT_CIRCUIT_END == _class && token->getLexemeR() == "&&";
-					bool or = TOKEN_CLASS::SHORT_CIRCUIT_OR == _class && token->getLexemeR() == "||";
-					return lvl && (end || or);
+				int _level = (*iter)->getTreeLevel();
+				string _op = _class == SHORT_CIRCUIT_END ? "&&" : "||";
+				/* Znalezienie operatora do którego nale¿y operand. */
+				auto result = std::find_if(iter + 1, onp.end(),
+					[&](const shared_ptr<Token> &token){
+						return _level == token->getTreeLevel() && 
+							token->getLexemeR()==_op;
 				});
+
+				/* Indeks znalezionego operatora.*/
 				int idx = std::distance(onp.begin(), result);
+
+				/* Ustawienie skoku na element po znalezionym operatorze*/
 				if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END)
-					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnFalse(idx + 1);
-				else if (_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
-					dynamic_cast<ShortCircuitJumper *>(ptr.get())->setJumpOnTrue(idx + 1);
+					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
+						->setJumpOnFalse(idx + 1);
+				else
+					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
+						->setJumpOnTrue(idx + 1);
 			}
 		}
 	}
@@ -302,7 +305,6 @@ namespace PR
 		int main = 0;
 		vector<int> funs;
 		vector<int> mtrx;
-		vector<int> mains;
 		for (const auto &t : onp)
 		{
 			int balance = 0;
@@ -324,10 +326,11 @@ namespace PR
 				balance = -funs.back() + 1; funs.pop_back(); break;
 			}
 			main += balance;
+			if (main <= 0 && t->getClass()==TOKEN_CLASS::OPERATOR || main<0)
+				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), t->getPosition());
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);
-			mains.push_back(main);
 		}
 	}
 
@@ -400,9 +403,8 @@ namespace PR
 	{
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			TOKEN_CLASS _type = stack[i]->getClass();
-			if (_type != TOKEN_CLASS::OPERATOR)
-				throw CalcException("Unexpected symbol!", stack[i]->getPosition());
+			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
+				throw CalcException("Unexpected symbol! "+stack[i]->getLexemeR(), stack[i]->getPosition());
 			onp.push_back(std::move(stack[i]));
 		}
 		stack.clear();
@@ -443,7 +445,7 @@ namespace PR
 		if (!find)
 			return;
 
-		unique_ptr<IAssignment> iAssignment(AssignmentFactory::get(onp.front()->getClass()));
+		unique_ptr<IAssignment> iAssignment = AssignmentFactory::get(onp.front()->getClass());
 
 		auto start = onp.begin();
 		auto end = onp.end();
@@ -459,6 +461,9 @@ namespace PR
 
 	void Parser::onKeywordFOR()
 	{
+		if (stack.size() || onp.size())
+			throw CalcException("Parser. Unexpected keyword: for", i->getPosition());
+
 		unique_ptr<InstructionFor> _for = make_unique<InstructionFor>(*i);
 		iter++;
 

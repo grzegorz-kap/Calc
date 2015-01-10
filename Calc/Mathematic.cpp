@@ -16,6 +16,9 @@ namespace PR
 		if (b.isScalar())
 			return Mathematic::power(a, b.mx[0][0]);
 
+		if (a.M != b.M || a.N != b.N)
+			throw NumericException("Error in .^: matrix dimensions must agree");
+
 		Matrix<T> C(a.M, a.N);
 		for (int i = 0; i < C.M; i++)
 			for (int j = 0; j < C.N; j++)

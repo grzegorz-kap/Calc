@@ -13,6 +13,7 @@ namespace PR
 		int getJumpOnFalse() const;
 		int getJumpOnTrue() const;
 		int getJumpOn(bool val) const;
+		int getJumpOn(TOKEN_CLASS _class) const;
 				
 		void setJumpOnFalse(int val);
 		void setJumpOnTrue(int val);

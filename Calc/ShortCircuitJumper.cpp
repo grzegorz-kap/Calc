@@ -29,6 +29,11 @@ namespace PR
 		return val ? jump_on_true : jump_on_false;
 	}
 
+	int ShortCircuitJumper::getJumpOn(TOKEN_CLASS _class) const
+	{
+		return _class == SHORT_CIRCUIT_END ? jump_on_false : jump_on_true;
+	}
+
 	int ShortCircuitJumper::getJumpOnTrue() const
 	{
 		return jump_on_true;

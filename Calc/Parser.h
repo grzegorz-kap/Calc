@@ -11,6 +11,7 @@ using std::vector;
 using std::string;
 using std::unique_ptr;
 using std::make_unique;
+using std::dynamic_pointer_cast;
 
 #include "Token.h"
 #include "ShortCircuitJumper.h"
@@ -75,6 +76,7 @@ namespace PR
 		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);
 
 		static void computeShortCircuitJumps(vector<shared_ptr<Token>> &onp);
+
 	};
 }
 

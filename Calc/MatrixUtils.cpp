@@ -14,14 +14,9 @@ namespace PR
 	template <class T>
 	int MatrixUtils::lu(const Matrix<T> &a, Matrix<T> **l, Matrix<T> **u, Matrix<T> **p)
 	{
-		
-
 		vector<int> s;
 		vector<int> d;
-
 		int swaps_count = 0;
-
-		/*Doolittle-Crout*/
 		std::unique_ptr<Matrix<T>> i_l = std::make_unique<Matrix<T>>(a);
 		std::unique_ptr<Matrix<T>> i_p;
 		Matrix<T> &A = *i_l;
@@ -69,13 +64,16 @@ namespace PR
 			}
 
 			ComplexNumber<T> &ref = A.mx[k][k];
-			for (int j = k + 1; j < m; j++)
-				A.mx[j][k] /= ref;
-
 			for (int i = k + 1; i < m; i++)
+			{
+				A.mx[i][k] /= ref;
+				for (int j = k+1; j < m; j++)
+					A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];
+			}
+
+			/*for (int i = k + 1; i < m; i++)
 				for (int j = k + 1; j < n; j++)
-					if (i != k)
-						A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];
+						A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];*/
 		}
 		Matrix<T> *n_u = nullptr;
 		if (u)
@@ -228,7 +226,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::createVector(const Matrix<T> &start, const Matrix<T> &end)
 	{
-		if (start.isEmpty() || end.isEmpty())
+		if (start.M==0||start.N==0||end.M==0||end.N==0)
 			return Matrix<T>(1, 0);
 
 		return createVector(start.mx[0][0], end.mx[0][0]);
@@ -251,9 +249,15 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &step, const ComplexNumber<T> &end)
 	{
+		if (step.getRe() == 0)
+			return Matrix<T>(1, 0);
 		int m = (int)Mathematic::fix((end - start) / step).getRe();
-
 		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m<0)
+			return Matrix<T>(1, 0);
+
+		if (m==0 && step.getRe()>0 && start.getRe()>end.getRe() )
+			return Matrix<T>(1, 0);
+		if (m==0 && step.getRe()<0 && start.getRe()<end.getRe())
 			return Matrix<T>(1, 0);
 
 		const T &j = start.getRe();

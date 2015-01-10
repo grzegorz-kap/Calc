@@ -25,6 +25,7 @@ public:
 
 	public slots:
 	void interpreterRespond();
+	void executionStarted();
 
 private:
 	void setCursorPosition(int n);

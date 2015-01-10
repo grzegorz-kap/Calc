@@ -31,7 +31,7 @@ namespace PR
 		int getCodeBegin() const { return code_begin; }
 		int getCodeEnd() const { return code_end; }
 
-		bool eof() const { return idx >= size; }
+		bool end() const { return idx >= size; }
 		void loadNext();
 	};
 
