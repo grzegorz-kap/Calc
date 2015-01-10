@@ -16,6 +16,7 @@ namespace PR
 		insert<CosFun>("cos");
 		insert<TanFun>("tan");
 		insert<LuFunction>("lu");
+		//insert<CholeskyFunction>("chol");
 		insert<DetFunction>("det");
 		insert<InvFunction>("inv");
 		insert<UrlFunction>("url");

@@ -96,6 +96,7 @@ namespace PR
 		virtual void lu(shared_ptr<Data> &) const;
 		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &) const;
 		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &, shared_ptr<Data> &) const;
+		virtual shared_ptr<Data> cholesky() const;
 		virtual shared_ptr<Data> url(shared_ptr<Data> &b) const;
 		virtual shared_ptr<Data> det() const;
 		virtual shared_ptr<Data> inv() const;

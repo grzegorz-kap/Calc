@@ -25,6 +25,8 @@ namespace PR
 		template <class T> static ComplexNumber<T> det(const ComplexNumber<T> &a);
 		template <class T> static ComplexNumber<T> inv(const ComplexNumber<T> &a);
 		template <class T> static Matrix<T> inv(const Matrix<T> &A);
+		template <class T> static Matrix<T> cholesky(const Matrix<T> &A);
+		template <class T> static ComplexNumber<T> cholesky(const ComplexNumber<T> &b);
 
 		template <class T> static Matrix<T> divide(const Matrix<T> &AA, const Matrix<T> &BB);
 		template <class T> static Matrix<T> ldivide(const Matrix<T> &A, const Matrix<T> &B);

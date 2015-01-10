@@ -175,6 +175,11 @@ namespace PR
 			p = shared_ptr<Data>(ptr3);
 		}
 
+		virtual shared_ptr<Data> cholesky() const override
+		{
+			return make_shared<T>(MatrixUtils::cholesky(*get_derived()));
+		}
+
 		virtual shared_ptr<Data> det() const override
 		{
 			return make_shared<T>(MatrixUtils::det(*get_derived()));

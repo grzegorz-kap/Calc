@@ -221,6 +221,12 @@ namespace PR
 		throw UnimplementedException("Cannot do 'lu' on this type");
 	}
 
+
+	shared_ptr<Data> Data::cholesky() const
+	{
+		throw UnimplementedException("Cannot do 'chol' on this type");
+	}
+
 	shared_ptr<Data> Data::det() const
 	{
 		throw UnimplementedException("Cannot do 'det' on this type");

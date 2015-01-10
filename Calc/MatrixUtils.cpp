@@ -272,6 +272,18 @@ namespace PR
 	}
 	/* Necessary for definitions in cpp file */
 
+	template <class T>
+	Matrix<T> MatrixUtils::cholesky(const Matrix<T> &A)
+	{
+		return A;
+	}
+
+	template <class T>
+	ComplexNumber<T> MatrixUtils::cholesky(const ComplexNumber<T> &b)
+	{
+		return b;
+	}
+
 	template Matrix<double> MatrixUtils::createVector(const Matrix<double>&, const Matrix<double>&);
 	template Matrix<hdouble> MatrixUtils::createVector(const Matrix<hdouble>&, const Matrix<hdouble>&);
 	template Matrix<double> MatrixUtils::createVector(const Matrix<double>&, const Matrix<double>&, const Matrix<double>&);
@@ -291,6 +303,11 @@ namespace PR
 	template ComplexNumber<hdouble> MatrixUtils::det(const Matrix<hdouble>&);
 	template ComplexNumber<double> MatrixUtils::det(const ComplexNumber<double>&);
 	template ComplexNumber<hdouble> MatrixUtils::det(const ComplexNumber<hdouble>&);
+
+	template Matrix<double> MatrixUtils::cholesky(const Matrix<double>&);
+	template Matrix<hdouble> MatrixUtils::cholesky(const Matrix<hdouble>&);
+	template ComplexNumber<double> MatrixUtils::cholesky(const ComplexNumber<double>&);
+	template ComplexNumber<hdouble> MatrixUtils::cholesky(const ComplexNumber<hdouble>&);
 
 	template ComplexNumber<double> MatrixUtils::inv(const ComplexNumber<double>&);
 	template ComplexNumber<hdouble> MatrixUtils::inv(const ComplexNumber<hdouble>&);
