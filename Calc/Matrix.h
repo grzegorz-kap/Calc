@@ -114,6 +114,7 @@ namespace PR
 		void expandColsTo(int idx, const ComplexNumber<T> &value);
 		virtual string toHtml() const override;
 		virtual string toString() const override;
+		virtual string toStringCommpact() const override;
 		virtual bool operator == (const bool &b) const override;
 		virtual bool isEmpty() const override;
 		virtual bool isMatrix() const override;

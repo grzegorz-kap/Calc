@@ -80,6 +80,7 @@ namespace PR
 		bool checkForPositiveInteger() const;
 		void computeIndex(int rows, int &i, int &j) const;
 		string toString() const;
+		virtual string toStringCommpact() const override;
 		string toHtml() const;
 		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;

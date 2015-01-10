@@ -5,6 +5,8 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <iostream>
+#include <fstream>
 #include "Data.h"
 #include "VariableInfo.h"
 using std::string;
@@ -38,6 +40,8 @@ namespace PR
 		void clearRemoved();
 	private:
 		void remove(vector<shared_ptr<Data>> &args);
+		void safe_to_file(const string &working_dir, vector<shared_ptr<Data>> &args);
+		void safe_to_file(std::ofstream &file, vector<shared_ptr<Data>> &args);
 	};
 }
 #endif

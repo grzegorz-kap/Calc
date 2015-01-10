@@ -108,6 +108,8 @@ namespace PR
 	{
 		if (operation == "clear")
 			remove(args);
+		else if (operation == "save")
+			safe_to_file(working_dir, args);
 	}
 
 	void Variables::remove(vector<shared_ptr<Data>> &args)
@@ -123,6 +125,43 @@ namespace PR
 			if (ptr->_type != TYPE::STRING)
 				throw CalcException("Argument of 'clear' must be string");
 			clear(ptr->toString());
+		}
+	}
+
+	void Variables::safe_to_file(const string &working_dir, vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() == 0 )
+			throw CalcException("Too few arguments for 'save' command!");
+
+		int idx = 0;
+		for (const auto &i : args)
+		{
+			if (i->_type != TYPE::STRING)
+				throw CalcException("Argument of 'save' command must be string");
+			if (idx++&&mem.find(i->toString()) == mem.end())
+				throw CalcException("'save' command: variable '" + i->toString() + "' not found!");
+		}
+
+		std::ofstream file;
+		file.open(working_dir + args[0]->toString()+".klab");
+		
+		if (args.size() == 1)
+		{
+			for (auto i = mem.begin(); i != mem.end(); i++)
+				file << i->first << "=" << i->second->toStringCommpact() << ";\n";
+		}
+		else
+			safe_to_file(file, args);
+		file.close();
+	}
+
+	void Variables::safe_to_file(std::ofstream &file, vector<shared_ptr<Data>> &args)
+	{
+		for (auto i = args.begin()+1 ; i != args.end(); i++)
+		{
+			/* Checked before if variable exists */
+			auto result = mem.find((*i)->toString());
+			file << result->first << "=" << result->second->toStringCommpact() << ";\n";
 		}
 	}
 }

@@ -202,6 +202,14 @@ namespace PR
 			--iter;
 			return;
 		}
+
+		if (whatNext() == OPEN_PARENTHESIS)
+		{
+			i->set_class(FUNCTION);
+			onFunction();
+			return;
+		}
+
 		onp.push_back(make_shared<Token>(*i));
 	}
 

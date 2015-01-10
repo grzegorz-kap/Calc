@@ -15,6 +15,7 @@ namespace PR
 		virtual const string & getLexemeR() const override;
 		virtual string getLexeme() const override;
 		virtual string toString() const override;
+		virtual string toStringCommpact() const override;
 		virtual string toHtml() const override;
 		virtual string getValueInfoString() const override;
 		virtual shared_ptr<Data> copy() const override;

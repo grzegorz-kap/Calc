@@ -38,6 +38,11 @@ namespace PR
 		return data;
 	}
 
+	string String::toStringCommpact() const
+	{
+		return "'" + data + "'";
+	}
+
 	string String::toHtml() const
 	{
 		return data;

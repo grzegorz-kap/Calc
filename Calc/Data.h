@@ -112,6 +112,7 @@ namespace PR
 		virtual shared_ptr<Data> cround() const;
 		virtual bool operator == (const bool &b) const;
 		virtual string toString() const;
+		virtual string toStringCommpact() const;
 		virtual string toHtml() const;
 		virtual shared_ptr<Data> get_rows() const;
 		virtual shared_ptr<Data> get_cols() const;

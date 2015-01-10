@@ -363,6 +363,11 @@ namespace PR
 		return string("");
 	}
 
+	string Data::toStringCommpact() const
+	{
+		return string("");
+	}
+
 	string Data::toHtml() const
 	{
 		return string("");
