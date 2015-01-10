@@ -122,8 +122,6 @@ namespace PR
 
 		for (const shared_ptr<Data> &ptr : args)
 		{
-			if (ptr->_type != TYPE::STRING)
-				throw CalcException("Argument of 'clear' must be string");
 			clear(ptr->toString());
 		}
 	}
@@ -136,8 +134,6 @@ namespace PR
 		int idx = 0;
 		for (const auto &i : args)
 		{
-			if (i->_type != TYPE::STRING)
-				throw CalcException("Argument of 'save' command must be string");
 			if (idx++&&mem.find(i->toString()) == mem.end())
 				throw CalcException("'save' command: variable '" + i->toString() + "' not found!");
 		}

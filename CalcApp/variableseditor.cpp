@@ -37,7 +37,7 @@ void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 	int idx;
 	if (widget == nullptr)
 	{
-		widget = new VariableEditWidget(ui.tabWidget);
+		widget = new VariableEditWidget();
 		ui.tabWidget->addTab(widget, info.getName().c_str());
 		connect(widget, SIGNAL(notifyVariableUpdate(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	}
@@ -77,9 +77,17 @@ void VariablesEditor::receiveRemoved(vector<string> removed)
 		QWidget *tab = findTab(QString(name.c_str()));
 		if (tab == nullptr)
 			continue;
-		int idx = ui.tabWidget->indexOf(tab);
-		ui.tabWidget->removeTab(idx);
+		to_remove.push_back(tab);
 	}
+}
+
+void VariablesEditor::computationComplate()
+{
+	for (QWidget *widget : to_remove)
+	{
+		ui.tabWidget->removeTab(ui.tabWidget->indexOf(widget));
+	}
+	to_remove.clear();
 }
 
 QWidget* VariablesEditor::findTab(const QString &name)
@@ -97,6 +105,6 @@ QWidget* VariablesEditor::findTab(const QString &name)
 void VariablesEditor::onCurrentTabChanged(int idx)
 {
 	VariableEditWidget *widget = dynamic_cast<VariableEditWidget*>(ui.tabWidget->widget(idx));
-	if (widget->needUpdate())
+	if (widget && widget->needUpdate())
 		emit variableInformationRequest(ui.tabWidget->tabText(idx));
 }

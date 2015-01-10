@@ -95,6 +95,13 @@ namespace PR
 		}
 	}
 
+	void CodeExecutor::start(const string &in)
+	{
+		CodeExecutor exec(vars_ref);
+		exec.setInput(in);
+		exec.start();
+	}
+
 	shared_ptr<Data> CodeExecutor::run()
 	{
 		stack.clear();
@@ -243,8 +250,45 @@ namespace PR
 		auto ii = find(TOKEN_CLASS::FUNCTON_ARGS_END, true);
 		vector<shared_ptr<Data>> args(std::next(ii), stack.end());
 		stack.erase(ii, stack.end());
-		vars_ref.menage(name, FileLoader::getWorkingDirectory(), args);
-		
+
+		for (const auto &i : args)
+		{
+			if (i->_type != TYPE::STRING)
+				throw CalcException("Argument of 'save' command must be string");
+		}
+		if (name == "load")
+			loadFromFile(args);
+		else
+			vars_ref.menage(name, FileLoader::getWorkingDirectory(), args);
+	}
+
+	void CodeExecutor::loadFromFile(vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() == 0)
+			throw CalcException("Too few arguments for 'load' command.");
+		FileLoader file(args.front()->toString()+".klab");
+		if (args.size() == 1)
+		{
+			CodeExecutor exec(vars_ref);
+			exec.setInput(file);
+			exec.start();
+			return;
+		}
+		args.erase(args.begin());
+		while (!file.eof())
+		{
+			string line = file.getLine();
+			string name = line.substr(0, line.find("="));
+			auto result = std::find_if(args.begin(), args.end(), [&name](shared_ptr<Data> &r){
+				return r->toString() == name;
+			});
+			if (result != args.end())
+			{
+				start(line);
+				args.erase(result);
+			}
+		}
+
 	}
 
 	void CodeExecutor::onShortCircuitJumper()
