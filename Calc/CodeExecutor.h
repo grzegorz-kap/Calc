@@ -92,6 +92,7 @@ namespace PR
 		void onContinueKeyword();
 		bool checkLoopsControl();
 		void onMatrixAllOrLastInex();
+		void onVariablesManagement();
 		void onID();
 		bool onScript();
 		shared_ptr<Data> pop();

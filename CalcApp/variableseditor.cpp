@@ -19,6 +19,7 @@ VariablesEditor::~VariablesEditor()
 void VariablesEditor::connectToInterpretSingals()
 {
 	PR::SignalEmitter::get()->connect_updated_variables_slot(boost::bind(&VariablesEditor::receiveVarsUpdate, this, _1, _2));
+	PR::SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesEditor::receiveRemoved, this, _1));
 }
 
 void VariablesEditor::onVariableSelection(QTableWidgetItem *item)
@@ -66,6 +67,18 @@ void VariablesEditor::receiveVarsUpdate(const PR::VariableInfo *data, int num)
 		edit->setUpdate(true);
 		if (edit->isVisibleTo(this))
 			edit->loadWidget(*variable,true);
+	}
+}
+
+void VariablesEditor::receiveRemoved(vector<string> removed)
+{
+	for (const string &name : removed)
+	{
+		QWidget *tab = findTab(QString(name.c_str()));
+		if (tab == nullptr)
+			continue;
+		int idx = ui.tabWidget->indexOf(tab);
+		ui.tabWidget->removeTab(idx);
 	}
 }
 

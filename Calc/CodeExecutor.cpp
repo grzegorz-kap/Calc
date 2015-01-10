@@ -148,6 +148,9 @@ namespace PR
 			case TOKEN_CLASS::STRING:
 				stack.push_back(*i);
 				break;
+			case TOKEN_CLASS::VARIABLES_MANAGEMENT:
+				onVariablesManagement();
+				break;
 			default:
 				throw CalcException("Cannot execute this: '"+(*i)->getLexemeR()+"'",(*i)->getPosition());
 			}
@@ -232,6 +235,16 @@ namespace PR
 		auto p = dynamic_pointer_cast<Operator>(*i);
 		p->setArguments(stack);
  		stack.push_back(p->evaluate());
+	}
+
+	void CodeExecutor::onVariablesManagement()
+	{
+		string name = (*i)->getLexemeR();
+		auto ii = find(TOKEN_CLASS::FUNCTON_ARGS_END, true);
+		vector<shared_ptr<Data>> args(std::next(ii), stack.end());
+		stack.erase(ii, stack.end());
+		vars_ref.menage(name, FileLoader::getWorkingDirectory(), args);
+		
 	}
 
 	void CodeExecutor::onShortCircuitJumper()

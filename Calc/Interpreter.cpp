@@ -75,7 +75,11 @@ namespace PR
 			SignalEmitter::get()->call_sig_updated_variables(&updated[0], updated.size());
 		if (added.size())
 			SignalEmitter::get()->call_sig_added_variables(&added[0], added.size());
+		SignalEmitter::get()->call_sig_removed_variables(main_vars.getRemoved());
+		main_vars.clearRemoved();
 	}
+
+
 
 	
 }

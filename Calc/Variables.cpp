@@ -26,6 +26,21 @@ namespace PR
 		return result->second;
 	}
 
+	void Variables::clear(const string &name)
+	{
+		if (mem.erase(name) > 0)
+			removed.push_back(name);
+	}
+
+	void Variables::clear()
+	{
+		for (auto i = mem.begin(); i != mem.end();)
+		{
+			removed.push_back(i->first);
+			i = mem.erase(i);
+		}
+	}
+
 	variables_map_iter Variables::getIterator(const string &name, bool ex)
 	{
 		auto result = mem.find(name);
@@ -76,6 +91,38 @@ namespace PR
 			}
 			element.second->_updated = false;
 			element.second->_added = false;
+		}
+	}
+
+	vector<string> Variables::getRemoved()
+	{
+		return removed;
+	}
+
+	void Variables::clearRemoved()
+	{
+		removed.clear();
+	}
+
+	void Variables::menage(const string &operation, const string &working_dir, vector<shared_ptr<Data>> &args)
+	{
+		if (operation == "clear")
+			remove(args);
+	}
+
+	void Variables::remove(vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() == 0)
+		{
+			clear();
+			return;
+		}
+
+		for (const shared_ptr<Data> &ptr : args)
+		{
+			if (ptr->_type != TYPE::STRING)
+				throw CalcException("Argument of 'clear' must be string");
+			clear(ptr->toString());
 		}
 	}
 }

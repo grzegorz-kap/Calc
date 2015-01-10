@@ -20,14 +20,14 @@ namespace PR
 		typedef boost::signals2::signal < void(const char *, int) > ExceptionSender;
 		typedef boost::signals2::signal < void() > StopComputingSender;
 		typedef boost::signals2::signal < void(const VariableInfo *, int)> AddedVariablesSender;
-		typedef boost::signals2::signal < void(const char **,int num)> CharStringSender;
+		typedef boost::signals2::signal < void(vector<string>)> StringSender;
 		typedef boost::signals2::signal < void(void)> VoidSender;
 		
 		typedef DataValueSender::slot_type DataPointerSenderSlot;
 		typedef ExceptionSender::slot_type ExceptionSenderSlot;
 		typedef StopComputingSender::slot_type StopComputingSlot;
 		typedef AddedVariablesSender::slot_type AddedVariablesSlot;
-		typedef CharStringSender::slot_type CharStringSenderSlot;
+		typedef StringSender::slot_type StringSenderSlot;
 		typedef VoidSender::slot_type VoidSenderSlot;
 
 		DataValueSender			*sig_data_value;
@@ -35,7 +35,7 @@ namespace PR
 		StopComputingSender		*sig_stop_computing;
 		AddedVariablesSender	*sig_added_variables;
 		AddedVariablesSender	*sig_updated_variables;
-		CharStringSender		*sig_removed_variables;
+		StringSender		*sig_removed_variables;
 		VoidSender				*sig_execution_complate;
 		VoidSender				*sig_clean_screen;
 
@@ -55,7 +55,7 @@ namespace PR
 		void connect_stop_computing(const StopComputingSlot &slot);
 		void connect_added_variables_slot(const AddedVariablesSlot &slot);
 		void connect_updated_variables_slot(const AddedVariablesSlot &slot);
-		void connect_removed_variables_slot(const CharStringSenderSlot &slot);
+		void connect_removed_variables_slot(const StringSenderSlot &slot);
 		void connect_clear_screen(const VoidSenderSlot &slot);
 
 		void call_execution_complate();
@@ -64,7 +64,7 @@ namespace PR
 		void call_stop();
 		void call_sig_added_variables(const VariableInfo *data, int num);
 		void call_sig_updated_variables(const VariableInfo *data, int num);
-		void call_sig_removed_variables(const char ** chars, int num);
+		void call_sig_removed_variables(vector<string> &removed);
 		void call_sig_clear_screen();
 	};
 

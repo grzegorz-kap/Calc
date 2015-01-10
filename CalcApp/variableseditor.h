@@ -28,6 +28,7 @@ private:
 	InterpreterConnector *interpreterConnector;
 	QWidget* findTab(const QString &name);
 
+	void receiveRemoved(vector<string> removed);
 	void receiveVarsUpdate(const PR::VariableInfo *data, int num);
 
 public slots:

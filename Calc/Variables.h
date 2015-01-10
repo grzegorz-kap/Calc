@@ -22,15 +22,22 @@ namespace PR
 	{
 		variables_map mem;
 		bool main;
-
+		vector<string> removed;
 	public:
 		Variables(bool main = false);
 		~Variables();
 
 		shared_ptr<Data> get(const string &name, bool ex = true);
+		void clear();
+		void clear(const string &name);
 		variables_map_iter getIterator(const string &name, bool ex = true);
-		variables_map_pair set(const string &name, const shared_ptr<Data> &data);
+		variables_map_pair set(const string &name, const shared_ptr<Data> &data);	
+		void menage(const string &operation, const string &working_dir, vector<shared_ptr<Data>> &args);
 		void getUpdated(vector<VariableInfo> &added, vector<VariableInfo> &updated) const;
+		vector<string> getRemoved();
+		void clearRemoved();
+	private:
+		void remove(vector<shared_ptr<Data>> &args);
 	};
 }
 #endif
