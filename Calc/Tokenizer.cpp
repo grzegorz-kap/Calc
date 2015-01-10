@@ -168,7 +168,12 @@ namespace PR
 	void Tokenizer::skipLineComment()
 	{
 		while (i < N)
-			if (command[i++] == '\n')break;
+		if (command[i++] == '\n')
+		{
+			i--;
+			break;
+		}
+
 	}
 
 	void Tokenizer::deleteUneccessary()

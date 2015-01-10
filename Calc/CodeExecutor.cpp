@@ -173,6 +173,9 @@ namespace PR
 			}
 		}
 
+		if (!_single_run &&stack.size() > 1)
+			throw CalcException("Expression is incorrect.");
+
 		output_off_flag = false;
 		assignment_flag = false;
 		if (stack.size())
