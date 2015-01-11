@@ -160,15 +160,17 @@ namespace PR
 				return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));
 
 			default:
-				throw CastException("Cannot cast to different numeric type! Probably not numeric type");
+				throw CastException(prepareCastError());
 			}
 		}
-
 		template<class T>
 		Numeric<T> * cast_numeric()
 		{
 			return dynamic_cast<Numeric<T> *> (this);
 		}
+
+		private:
+			string prepareCastError();
 		
 	};
 

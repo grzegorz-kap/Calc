@@ -413,5 +413,10 @@ namespace PR
 		throw CastException("Cannot cast to Output");
 	}
 
+	string Data::prepareCastError()
+	{
+		return "Cannot cast '" + find_name(this->_type) + "' to numeric type";
+	}
+
 
 }
