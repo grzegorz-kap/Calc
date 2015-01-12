@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <qtablewidget.h>
+#include <qvector.h>
 
 #include "Calc\VariableInfo.h"
 #include "Calc\SignalEmitter.h"
@@ -15,7 +16,8 @@
 class VariablesEditor : public QWidget
 {
 	Q_OBJECT
-
+private:
+	vector<QWidget*> to_remove;
 public:
 	VariablesEditor(QWidget *parent = 0);
 	~VariablesEditor();
@@ -28,12 +30,14 @@ private:
 	InterpreterConnector *interpreterConnector;
 	QWidget* findTab(const QString &name);
 
+	void receiveRemoved(vector<string> removed);
 	void receiveVarsUpdate(const PR::VariableInfo *data, int num);
 
 public slots:
 	void onVariableSelection(QTableWidgetItem *item);
 	void receiveVariableInformation(PR::VariableInfo info);
 	void onCurrentTabChanged(int idx);
+	void computationComplate();
 signals:
 	void variableInformationRequest(QString varName);
 };

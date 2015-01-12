@@ -112,6 +112,7 @@ namespace PR
 		virtual shared_ptr<Data> cround() const;
 		virtual bool operator == (const bool &b) const;
 		virtual string toString() const;
+		virtual string toStringCommpact() const;
 		virtual string toHtml() const;
 		virtual shared_ptr<Data> get_rows() const;
 		virtual shared_ptr<Data> get_cols() const;
@@ -159,15 +160,17 @@ namespace PR
 				return make_shared<T>(*dynamic_cast<Matrix<hdouble> *>(this));
 
 			default:
-				throw CastException("Cannot cast to different numeric type! Probably not numeric type");
+				throw CastException(prepareCastError());
 			}
 		}
-
 		template<class T>
 		Numeric<T> * cast_numeric()
 		{
 			return dynamic_cast<Numeric<T> *> (this);
 		}
+
+		private:
+			string prepareCastError();
 		
 	};
 

@@ -13,7 +13,7 @@ namespace PR
 		sig_stop_computing		= new StopComputingSender();
 		sig_added_variables		= new AddedVariablesSender();
 		sig_updated_variables	= new AddedVariablesSender();
-		sig_removed_variables	= new CharStringSender();
+		sig_removed_variables	= new StringSender();
 		sig_execution_complate  = new VoidSender();
 		sig_clean_screen = new VoidSender();
 	}
@@ -67,7 +67,7 @@ namespace PR
 		sig_updated_variables->connect(slot);
 	}
 
-	void SignalEmitter::connect_removed_variables_slot(const CharStringSenderSlot &slot)
+	void SignalEmitter::connect_removed_variables_slot(const StringSenderSlot &slot)
 	{
 		sig_removed_variables->connect(slot);
 	}
@@ -102,9 +102,9 @@ namespace PR
 		(*sig_updated_variables)(data, num);
 	}
 
-	void SignalEmitter::call_sig_removed_variables(const char **data, int num)
+	void SignalEmitter::call_sig_removed_variables(vector<string> &data)
 	{
-		(*sig_removed_variables)(data, num);
+		(*sig_removed_variables)(data);
 	}
 
 	void SignalEmitter::call_execution_complate()

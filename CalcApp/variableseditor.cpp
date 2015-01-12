@@ -19,6 +19,7 @@ VariablesEditor::~VariablesEditor()
 void VariablesEditor::connectToInterpretSingals()
 {
 	PR::SignalEmitter::get()->connect_updated_variables_slot(boost::bind(&VariablesEditor::receiveVarsUpdate, this, _1, _2));
+	PR::SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesEditor::receiveRemoved, this, _1));
 }
 
 void VariablesEditor::onVariableSelection(QTableWidgetItem *item)
@@ -36,7 +37,7 @@ void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 	int idx;
 	if (widget == nullptr)
 	{
-		widget = new VariableEditWidget(ui.tabWidget);
+		widget = new VariableEditWidget();
 		ui.tabWidget->addTab(widget, info.getName().c_str());
 		connect(widget, SIGNAL(notifyVariableUpdate(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	}
@@ -69,6 +70,26 @@ void VariablesEditor::receiveVarsUpdate(const PR::VariableInfo *data, int num)
 	}
 }
 
+void VariablesEditor::receiveRemoved(vector<string> removed)
+{
+	for (const string &name : removed)
+	{
+		QWidget *tab = findTab(QString(name.c_str()));
+		if (tab == nullptr)
+			continue;
+		to_remove.push_back(tab);
+	}
+}
+
+void VariablesEditor::computationComplate()
+{
+	for (QWidget *widget : to_remove)
+	{
+		ui.tabWidget->removeTab(ui.tabWidget->indexOf(widget));
+	}
+	to_remove.clear();
+}
+
 QWidget* VariablesEditor::findTab(const QString &name)
 {
 	int tabs_number = ui.tabWidget->count();
@@ -84,6 +105,6 @@ QWidget* VariablesEditor::findTab(const QString &name)
 void VariablesEditor::onCurrentTabChanged(int idx)
 {
 	VariableEditWidget *widget = dynamic_cast<VariableEditWidget*>(ui.tabWidget->widget(idx));
-	if (widget->needUpdate())
+	if (widget && widget->needUpdate())
 		emit variableInformationRequest(ui.tabWidget->tabText(idx));
 }

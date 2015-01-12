@@ -588,6 +588,25 @@ namespace PR
 		return temp;
 	}
 
+	template <class T> string Matrix<T>::toStringCommpact() const
+	{
+		string temp = _type == TYPE::RM_DOUBLE ? "mpf_float([" : "[";
+		for (int i = 0; i < M; i++)
+		{
+			for (int j = 0; j < N; j++)
+			{
+				if (j<N-1)
+					temp.append(mx[i][j].toStringCommpact() + ",");
+				else
+					temp.append(mx[i][j].toStringCommpact());
+			}
+			if (i < M - 1)
+				temp.append(";");
+		}
+		temp.append("]");
+		return temp;
+	}
+
 	template <class T> string Matrix<T>::toHtml() const
 	{
 		if (M == 0 || N == 0)

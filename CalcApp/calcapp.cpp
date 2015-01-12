@@ -45,7 +45,8 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(interpreterConnector, SIGNAL(interpreterRespondedHtml(QString)), ui.console, SLOT(insertHtml(QString)));
 	connect(interpreterConnector, SIGNAL(interpreterError(QString)), ui.console, SLOT(insertHtml(QString)));
 	connect(interpreterConnector, SIGNAL(interpreterResponded()), ui.commandLine, SLOT(interpreterRespond()));
-	connect(interpreterConnector, SIGNAL(executionStarted()), ui.commandLine, SLOT(executionStarted()));
+	connect(interpreterConnector, SIGNAL(interpreterResponded()), ui.commandLine, SLOT(interpreterRespond()));
+	connect(interpreterConnector, SIGNAL(executionStarted()), &variablesEditor, SLOT(computationComplate()));
 	connect(&fileWatcher, SIGNAL(directoryChanged(QString)), &fileWatcher, SLOT(changed(QString)));
 	connect(&fileWatcher, SIGNAL(sendFileList(QStringList)), ui.filesList, SLOT(set(QStringList)));
 	connect(&fileWatcher, SIGNAL(fileUpdated(QString)), interpreterConnector, SLOT(updateFile(QString)));

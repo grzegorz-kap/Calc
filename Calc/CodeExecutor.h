@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include <regex>
 
 using std::map;
 using std::unique_ptr;
@@ -35,13 +36,14 @@ namespace PR
 		
 		void setInput(const string &in);
 		void setInput(FileLoader &in);
-		void start();	
+		void start();
+		
 		static void set_stop_computing();
 		static void off_stop_computing();
 		static vector<shared_ptr<Data>> run_single(const vector<shared_ptr<Token>> &onp, Variables &vars);
 		static bool isMatrixEndOrColon(const shared_ptr<Token> &t);
 	private:
-
+		
 		static bool stop_computing;			/* Set to true if compution should be canceled*/
 		bool eval_flag;						/* eval function flag */
 		vector<shared_ptr<Data>> stack;		/* Data stack */
@@ -67,7 +69,7 @@ namespace PR
 
 		/* Execute single instruction */
 		shared_ptr<Data> run();
-		
+		void start(const string &in);
 
 		void onOperator();
 		void onShortCircuitJumper();
@@ -92,6 +94,8 @@ namespace PR
 		void onContinueKeyword();
 		bool checkLoopsControl();
 		void onMatrixAllOrLastInex();
+		void onVariablesManagement();
+		void loadFromFile(vector<shared_ptr<Data>> &args);
 		void onID();
 		bool onScript();
 		shared_ptr<Data> pop();

@@ -26,6 +26,21 @@ namespace PR
 		return result->second;
 	}
 
+	void Variables::clear(const string &name)
+	{
+		if (mem.erase(name) > 0)
+			removed.push_back(name);
+	}
+
+	void Variables::clear()
+	{
+		for (auto i = mem.begin(); i != mem.end();)
+		{
+			removed.push_back(i->first);
+			i = mem.erase(i);
+		}
+	}
+
 	variables_map_iter Variables::getIterator(const string &name, bool ex)
 	{
 		auto result = mem.find(name);
@@ -76,6 +91,73 @@ namespace PR
 			}
 			element.second->_updated = false;
 			element.second->_added = false;
+		}
+	}
+
+	vector<string> Variables::getRemoved()
+	{
+		return removed;
+	}
+
+	void Variables::clearRemoved()
+	{
+		removed.clear();
+	}
+
+	void Variables::menage(const string &operation, const string &working_dir, vector<shared_ptr<Data>> &args)
+	{
+		if (operation == "clear")
+			remove(args);
+		else if (operation == "save")
+			safe_to_file(working_dir, args);
+	}
+
+	void Variables::remove(vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() == 0)
+		{
+			clear();
+			return;
+		}
+
+		for (const shared_ptr<Data> &ptr : args)
+		{
+			clear(ptr->toString());
+		}
+	}
+
+	void Variables::safe_to_file(const string &working_dir, vector<shared_ptr<Data>> &args)
+	{
+		if (args.size() == 0 )
+			throw CalcException("Too few arguments for 'save' command!");
+
+		int idx = 0;
+		for (const auto &i : args)
+		{
+			if (idx++&&mem.find(i->toString()) == mem.end())
+				throw CalcException("'save' command: variable '" + i->toString() + "' not found!");
+		}
+
+		std::ofstream file;
+		file.open(working_dir + args[0]->toString()+".klab");
+		
+		if (args.size() == 1)
+		{
+			for (auto i = mem.begin(); i != mem.end(); i++)
+				file << i->first << "=" << i->second->toStringCommpact() << ";\n";
+		}
+		else
+			safe_to_file(file, args);
+		file.close();
+	}
+
+	void Variables::safe_to_file(std::ofstream &file, vector<shared_ptr<Data>> &args)
+	{
+		for (auto i = args.begin()+1 ; i != args.end(); i++)
+		{
+			/* Checked before if variable exists */
+			auto result = mem.find((*i)->toString());
+			file << result->first << "=" << result->second->toStringCommpact() << ";\n";
 		}
 	}
 }

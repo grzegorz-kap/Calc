@@ -20,7 +20,7 @@ public:
 	void connectSlots();
 	void addNewVariables(const VariableInfo *data, int num);
 	void updateVariables(const VariableInfo *data, int num);
-	void removeVariables(const char **, int num);
+	void removeVariables(vector<string> variables);
 
 	
 private:

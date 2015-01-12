@@ -24,7 +24,7 @@ namespace PR
 		bool eof() const;
 	
 		static void changeWorkingDirectory(const string &directory);
-
+		static string getWorkingDirectory() { return working_directory; }
 	private:
 		std::ifstream file;
 		std::string name;

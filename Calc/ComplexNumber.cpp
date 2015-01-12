@@ -316,6 +316,25 @@ namespace PR
 		return ((ComplexNumber<double>)*this).toString();
 	}
 
+	template <>
+	string ComplexNumber<hdouble>::toStringCommpact() const
+	{
+		return ((ComplexNumber<double>)*this).toStringCommpact();
+	}
+
+	template <>
+	string ComplexNumber<double>::toStringCommpact() const
+	{
+		std::ostringstream ss;
+		if (re!=0||im==0)
+			ss << re;
+		if (im > 0&&re)
+			ss << "+";
+		if (im != 0)
+			ss << im << "i";
+		return ss.str();
+	}
+
 	template<class T>
 	string ComplexNumber<T>::toHtml() const
 	{

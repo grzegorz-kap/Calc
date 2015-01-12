@@ -15,7 +15,7 @@ void VariablesInfos::connectSlots()
 {
 	SignalEmitter::get()->connect_added_variables_slot(boost::bind(&VariablesInfos::addNewVariables, this, _1, _2));
 	SignalEmitter::get()->connect_updated_variables_slot(boost::bind(&VariablesInfos::updateVariables, this, _1, _2));
-	SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesInfos::removeVariables,this, _1, _2));
+	SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesInfos::removeVariables,this, _1));
 
 }
 
@@ -65,9 +65,15 @@ void VariablesInfos::updateCell(int idx, const VariableInfo *data)
 	viewport()->update();
 }
 
-void VariablesInfos::removeVariables(const char **data, int num)
+void VariablesInfos::removeVariables(vector<string> variables)
 {
-
+	for (const string &name : variables)
+	{
+		int row = findInCol(0, name.c_str());
+		if (row < 0)
+			continue;
+		removeRow(row);
+	}
 }
 
 int VariablesInfos::findInCol(int col, const QString &match)

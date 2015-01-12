@@ -8,6 +8,7 @@
 *.sln.docstates
 *.met
 dane.txt
+*.klab
 
 # Build results
 CalcApp/GeneratedFiles/

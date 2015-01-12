@@ -162,10 +162,54 @@ namespace PR
 			_ev_type_balance.push_back(0);
 			_ev_type_mode.push_back(TYPE::DOUBLE);
 		}
+		else if (find<string>({ "load", "save", "clear" }, i->getLexemeR()))
+			stack.back()->set_class(VARIABLES_MANAGEMENT);
 	}
 
 	void Parser::onID()
 	{		
+		if (whatNext()!=TOKEN_CLASS::OPEN_PARENTHESIS &&
+			find<string>({ "clear", "load", "save" }, i->getLexemeR()))
+		{
+			if (stack.size() || onp.size())
+				throw CalcException("Unexpected command: " + i->getLexemeR(), i->getPosition());
+			string name = i->getLexemeR();
+			onp.push_back(make_shared<Token>(FUNCTON_ARGS_END));
+			stop = false;
+			while (++iter != tokens.end()&&!stop)
+			{
+				switch ((*iter)->getClass())
+				{
+				case TOKEN_CLASS::STRING:
+					onp.push_back(std::move(*iter));
+					break;
+				case TOKEN_CLASS::ID:
+					onp.push_back(make_shared<String>((*iter)->getLexemeR()));
+					break;
+				case TOKEN_CLASS::SPACE:
+				case TOKEN_CLASS::COMMA:
+					continue;
+				case TOKEN_CLASS::NEW_LINE:
+				case TOKEN_CLASS::SEMICOLON:
+					stop = true;
+					break;
+				default:
+					throw CalcException("Unallowed token: " + (*iter)->getLexemeR(),i->getPosition());
+				}
+			}
+			onp.push_back(make_shared<Token>(name, TOKEN_CLASS::VARIABLES_MANAGEMENT));
+			this->stop = true;
+			--iter;
+			return;
+		}
+
+		if (whatNext() == OPEN_PARENTHESIS)
+		{
+			i->set_class(FUNCTION);
+			onFunction();
+			return;
+		}
+
 		onp.push_back(make_shared<Token>(*i));
 	}
 
@@ -220,7 +264,7 @@ namespace PR
 		}
 
 		stackToOnpUntilToken(TOKEN_CLASS::OPEN_PARENTHESIS);
-		if (stackBack() == TOKEN_CLASS::FUNCTION)
+		if (stackBack() == TOKEN_CLASS::FUNCTION ||stackBack()==VARIABLES_MANAGEMENT)
 		{
 			_function_names.pop_back();
 			stack.back()->argumentsNum(_function_args.back());

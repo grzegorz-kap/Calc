@@ -363,6 +363,11 @@ namespace PR
 		return string("");
 	}
 
+	string Data::toStringCommpact() const
+	{
+		return string("");
+	}
+
 	string Data::toHtml() const
 	{
 		return string("");
@@ -406,6 +411,11 @@ namespace PR
 	Output * Data::cast_output()
 	{
 		throw CastException("Cannot cast to Output");
+	}
+
+	string Data::prepareCastError()
+	{
+		return "Cannot cast '" + find_name(this->_type) + "' to numeric type";
 	}
 
 

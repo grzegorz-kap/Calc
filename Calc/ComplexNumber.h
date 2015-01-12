@@ -10,21 +10,19 @@ using std::string;
 
 namespace PR
 {
-	class Mathematic;
-
-	template <class X> class Matrix;
+	//class Mathematic;
+	//template <class X> class Matrix;
 
 	template<class T> class  ComplexNumber : public Numeric < ComplexNumber<T> >
 	{
-		template <class U> friend  class ComplexNumber;
+		/*template <class U> friend  class ComplexNumber;
 		template <class X> friend class Matrix;
 		friend class Mathematic;
-
+		*/
+		void setDataType();
+	public:
 		T re;
 		T im;
-		void setDataType();
-
-	public:
 		
 		ComplexNumber();
 		ComplexNumber(const double & reArg, const double & imArg = 0);
@@ -80,6 +78,7 @@ namespace PR
 		bool checkForPositiveInteger() const;
 		void computeIndex(int rows, int &i, int &j) const;
 		string toString() const;
+		virtual string toStringCommpact() const override;
 		string toHtml() const;
 		operator ComplexNumber<hdouble>() const;
 		operator ComplexNumber<double>() const;

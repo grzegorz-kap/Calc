@@ -12,12 +12,13 @@ using std::shared_ptr;
 
 namespace PR
 {
-	template <class T> class ComplexNumber;
+	//template <class T> class ComplexNumber;
 	class Mathematic;
 	class MatrixUtils;
 	template <class T> class MatrixBuilder;
 
-	template<class T> class  Matrix : public Numeric<Matrix<T>>
+	template<class T> 
+	class  Matrix : public Numeric<Matrix<T>>
 	{
 
 		friend class MatrixTransposer;
@@ -114,6 +115,7 @@ namespace PR
 		void expandColsTo(int idx, const ComplexNumber<T> &value);
 		virtual string toHtml() const override;
 		virtual string toString() const override;
+		virtual string toStringCommpact() const override;
 		virtual bool operator == (const bool &b) const override;
 		virtual bool isEmpty() const override;
 		virtual bool isMatrix() const override;

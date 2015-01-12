@@ -11,12 +11,8 @@ using std::make_unique;
 
 namespace PR
 {
-	template <class A> class Matrix;
-	template <class A> class ComplexNumber;
-
 	template <class T>
-	class Numeric
-		:public Data
+	class Numeric : public Data
 	{
 	public:
 
@@ -353,7 +349,7 @@ namespace PR
 		{
 			return make_shared<T>(get_derived()->conjugate());
 		}
-	private:
+	//private:
 
 		shared_ptr<Data> getVectorForAssignment(const int &stop) const
 		{
@@ -370,6 +366,6 @@ namespace PR
 			return dynamic_cast<T *>(this);
 		}
 
-		template <class U> friend class Numeric;
+	//	template <class U> friend class Numeric;
 	};
 };
