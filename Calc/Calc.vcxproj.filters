@@ -201,9 +201,6 @@
     <ClInclude Include="AssignmentOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
-    <ClInclude Include="Operator.h">
-      <Filter>Model\Operator\h</Filter>
-    </ClInclude>
     <ClInclude Include="TranspositionOperator.h">
       <Filter>Model\Operator\h</Filter>
     </ClInclude>
@@ -284,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="MatrixGenerationFunctions.h">
       <Filter>Function\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Operator.h">
+      <Filter>Model\Operator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -413,9 +413,6 @@
     <ClCompile Include="AssignmentOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Operator.cpp">
-      <Filter>Model\Operator\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="TranspositionOperator.cpp">
       <Filter>Model\Operator\cpp</Filter>
     </ClCompile>
@@ -496,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="MatrixGenerationFunctions.cpp">
       <Filter>Function\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Operator.cpp">
+      <Filter>Model\Operator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

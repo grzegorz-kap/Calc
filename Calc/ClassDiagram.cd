@@ -1,2 +1,921 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GraphDrawer" Collapsed="true">
+    <Position X="95.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAgAgAAEAEAABCRAAAEQEAQCAAQIAAQAAQAAgCA=</HashCode>
+      <FileName>GraphDrawer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Interpreter" Collapsed="true">
+    <Position X="90.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIABBAAACAAEAABAAAEAAAAAAAAAAAAAMEAAA=</HashCode>
+      <FileName>Interpreter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ModFunction" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::String" Collapsed="true">
+    <Position X="8.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCAAAAACAQAAABAAACIAAAAIAAAAwAAAAgAA=</HashCode>
+      <FileName>String.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Matrix&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>kkYQBkChAEAUAACAEAPoHwAADhKgQGYAqGAwAJIEYEM=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ComplexNumber&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EgYQAkGhgEAcEACAACLgFwAQChCgQEYAiCAwIAAQIEE=</HashCode>
+      <FileName>ComplexNumber.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MatrixBuilder&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwAAAAUAEBAAIBAAAAAAAASAABBAADUgAEAgASAgI=</HashCode>
+      <FileName>MatrixBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CodeExecutor" Collapsed="true">
+    <Position X="92" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>INIGm0IACJAE0oQgAQAIAJCA4CkEAIIMKAF4iEMQSCQ=</HashCode>
+      <FileName>CodeExecutor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::i_order_map&lt;KEY, VALUE&gt;" Collapsed="true">
+    <Position X="97.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAQAAABAAAAAAGAAAAAAAAEAAAAgIAAAAAAAAAA=</HashCode>
+      <FileName>i_order_map.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Numeric&lt;T&gt;" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQgIKaEEQEoJAAQAIICgyQAiA1AIAACmBkIwCKACQAA=</HashCode>
+      <FileName>Numeric.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Token" Collapsed="true">
+    <Position X="9.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAIAAACAGSECCBAAIIJQACAIIIIQBBCKAAgQgRAJA=</HashCode>
+      <FileName>Token.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Output" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADEAAACAAAAAAAAAJAoAAAAAAAAAAAAAAKAACAAA=</HashCode>
+      <FileName>Output.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Data" Collapsed="true">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwgYPeCFwEoBQASAIIChz4AgC3CIQBfmFkIyADgCAEE=</HashCode>
+      <FileName>Data.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ForIterator" Collapsed="true">
+    <Position X="92" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAEQCAAAAAAAAAICAAAAAFEAAAKBBIAAQAAAAAgA=</HashCode>
+      <FileName>ForIterator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::InstructionFor" Collapsed="true">
+    <Position X="13.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAgAAACAAAAAEAAAAAAAIAAACEAABAAAAAAAAAAAA=</HashCode>
+      <FileName>InstructionFor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Operator" Collapsed="true">
+    <Position X="10" Y="6.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAEAAACUAAAAAAAQQAAAAAAAgAAAEAAwhgAgIIAA=</HashCode>
+      <FileName>Operator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IAssignment" Collapsed="true">
+    <Position X="15.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAAAAEAAAAAAAAAAAAAAgAAAAAAAEIAAAAAAE=</HashCode>
+      <FileName>IAssignment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::VariableInfo" Collapsed="true">
+    <Position X="95.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAAAAACAYAIAAAAAAAQEEAIAAAgBUAAAAAAA=</HashCode>
+      <FileName>VariableInfo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Variables" Collapsed="true">
+    <Position X="97.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAQAIAAEQARAQQAQAAAAAAAgQAQAAgAAAAQ=</HashCode>
+      <FileName>Variables.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Mathematic" Collapsed="true">
+    <Position X="95.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAIAAAAQYAEEAAABAgAAAAAAQEgACCAAABAACAQAAg=</HashCode>
+      <FileName>Mathematic.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MatrixUtils" Collapsed="true">
+    <Position X="90.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAEAEAAAAEAAAAAgAAgAAAIAAAAAEAAAAAIAAA=</HashCode>
+      <FileName>MatrixUtils.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SNumber" Collapsed="true">
+    <Position X="17" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAQAAABAAAAAAAIAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>SNumber.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AdditionOperator" Collapsed="true">
+    <Position X="63.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAACAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::UPlusOperator" Collapsed="true">
+    <Position X="5.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACIAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SubtractionOperator" Collapsed="true">
+    <Position X="11" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::USubtractionOperator" Collapsed="true">
+    <Position X="20.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAIAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::DivisionOperator" Collapsed="true">
+    <Position X="25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAQAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LeftDivisionOperator" Collapsed="true">
+    <Position X="31.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LeftArrayDivision" Collapsed="true">
+    <Position X="38.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIBAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::RightArrayDivision" Collapsed="true">
+    <Position X="43" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAgAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MultiplicationOperator" Collapsed="true">
+    <Position X="47.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ElementWiseMultiplication" Collapsed="true">
+    <Position X="52" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAACAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ExponentiationOperator" Collapsed="true">
+    <Position X="56.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MatrixExponentiationOperator" Collapsed="true">
+    <Position X="61" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAgIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AndOperator" Collapsed="true">
+    <Position X="65.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAUAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::OROperator" Collapsed="true">
+    <Position X="7.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ElementWiseAnd" Collapsed="true">
+    <Position X="12.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAABAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ElementWiseOr" Collapsed="true">
+    <Position X="22.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>LogicalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LogicalNotOperator" Collapsed="true">
+    <Position X="27.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::EqOperator" Collapsed="true">
+    <Position X="34" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::GeOperator" Collapsed="true">
+    <Position X="40.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAEAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::GtOperator" Collapsed="true">
+    <Position X="45.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LeOperator" Collapsed="true">
+    <Position X="49.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LTOperator" Collapsed="true">
+    <Position X="54.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::NeOperator" Collapsed="true">
+    <Position X="58.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAgIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RelationalOperators.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ShortCircuitJumper" Collapsed="true">
+    <Position X="11.5" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAQAAAAAAIAAEiAAAgAgACAAAAAAAAAAAA=</HashCode>
+      <FileName>ShortCircuitJumper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AssignmentOperator" Collapsed="true">
+    <Position X="67.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AssignmentOperator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Colon2Operator" Collapsed="true">
+    <Position X="9" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAIAAAAIAAwAAAAAAAA=</HashCode>
+      <FileName>Colon2Operator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Colon3Operator" Collapsed="true">
+    <Position X="14.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAEAAAAAIAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Colon3Operator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::TranspositionOperator" Collapsed="true">
+    <Position X="29.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAACAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TranspositionOperator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ConjugateTranspositionOperator" Collapsed="true">
+    <Position X="36.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAIAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>TranspositionOperator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AssignmentMulti" Collapsed="true">
+    <Position X="15.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAABAAIAAAAABAAAIAAQAAAAEIAAAAAAE=</HashCode>
+      <FileName>AssignmentMulti.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AssignmentSingle" Collapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAACAAAAAAAIAAAAAAAAAACAQAAAAEIAAAAAAE=</HashCode>
+      <FileName>AssignmentSingle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AssignmentSubscripted" Collapsed="true">
+    <Position X="18.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAgAAAAABAAAAAAAAEAAAAAAAAAQAAAAEIAAAEAAE=</HashCode>
+      <FileName>AssignmentSubscripted.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CalcException" Collapsed="true">
+    <Position X="8.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIBgAAAIAAAAAAAAAIAAAAAQAAAAAAEAAAAAgACA=</HashCode>
+      <FileName>CalcException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CastException" Collapsed="true">
+    <Position X="12.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>CastException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CodeGeneratorException" Collapsed="true">
+    <Position X="15" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>CodeGeneratorException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::EvalException" Collapsed="true">
+    <Position X="1.5" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EvalException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::FileLoaderException" Collapsed="true">
+    <Position X="3.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileLoaderException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::NumericException" Collapsed="true">
+    <Position X="6" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAgAAAAAAAhAABBAAAAAKAAAAAAAAAAIAAA=</HashCode>
+      <FileName>NumericException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::OperatorException" Collapsed="true">
+    <Position X="8.25" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperatorException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::UnimplementedException" Collapsed="true">
+    <Position X="10.5" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnimplementedException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ExternalFunction" Collapsed="true">
+    <Position X="95.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AsEAAAEAACQAAAABAQAAgAQACQAEABBAAAAEAEAAAAA=</HashCode>
+      <FileName>ExternalFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ExternalFunctionLoader" Collapsed="true">
+    <Position X="97.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAmAAgAAAAgAAAQQAAAIEAEBAABIAioIIIAAAA=</HashCode>
+      <FileName>ExternalFunctionLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Function" Collapsed="true">
+    <Position X="43.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAIQAAAAAAQAAAIACAAkAAAAAAAEAAQAQAA=</HashCode>
+      <FileName>Function.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Log2Function" Collapsed="true">
+    <Position X="58.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElementaryMathFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Log10Function" Collapsed="true">
+    <Position X="65" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAABAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElementaryMathFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LogFunction" Collapsed="true">
+    <Position X="71.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>ElementaryMathFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::DetFunction" Collapsed="true">
+    <Position X="78.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAgAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::UrlFunction" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::InvFunction" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CholeskyFunction" Collapsed="true">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAA=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LuFunction" Collapsed="true">
+    <Position X="26.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgI=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ConjFunction" Collapsed="true">
+    <Position X="33.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAgAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LinearAlgebraFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MpfFunction" Collapsed="true">
+    <Position X="40.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAhAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MpfFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::PlotFunction" Collapsed="true">
+    <Position X="47" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>PlotingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Plot3Function" Collapsed="true">
+    <Position X="53.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlotingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SurfaceFunction" Collapsed="true">
+    <Position X="60.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>PlotingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::RandFunction" Collapsed="true">
+    <Position X="67.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAQAAAAAACAAAAAAACAAAAQAAAAAA=</HashCode>
+      <FileName>MatrixGenerationFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::OnesFunction" Collapsed="true">
+    <Position X="74" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>MatrixGenerationFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::EyeFunction" Collapsed="true">
+    <Position X="80.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MatrixGenerationFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ZerosFunction" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAEA=</HashCode>
+      <FileName>MatrixGenerationFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CeilFunction" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQgAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RoundingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::FixFunction" Collapsed="true">
+    <Position X="22.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RoundingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::FloorFunction" Collapsed="true">
+    <Position X="29" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAACAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>RoundingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::RoundFunction" Collapsed="true">
+    <Position X="35.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RoundingFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SizeFunction" Collapsed="true">
+    <Position X="42.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LengthFunction" Collapsed="true">
+    <Position X="49.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::NumelFunction" Collapsed="true">
+    <Position X="56" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IsColumnFunction" Collapsed="true">
+    <Position X="62.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAEAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IsEmptyFunction" Collapsed="true">
+    <Position X="69.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IsRowFunction" Collapsed="true">
+    <Position X="76.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IsScalarFunction" Collapsed="true">
+    <Position X="83" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IsVectorFunction" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::ColsFunction" Collapsed="true">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::RowsFunction" Collapsed="true">
+    <Position X="24.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SizeFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CosFun" Collapsed="true">
+    <Position X="31.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>TrigonometryFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SinFun" Collapsed="true">
+    <Position X="38" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TrigonometryFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::TanFun" Collapsed="true">
+    <Position X="44.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABAAAA=</HashCode>
+      <FileName>TrigonometryFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CotanFun" Collapsed="true">
+    <Position X="51.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAA=</HashCode>
+      <FileName>TrigonometryFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::CodeGenerator" Collapsed="true">
+    <Position X="93.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAACAKAAgAAAAAAEwAAAIAAAAAAAAAAkAAQEJAA=</HashCode>
+      <FileName>CodeGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::FileLoader" Collapsed="true">
+    <Position X="90.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAEAEACAAAECCBABAAAAQAFAAA=</HashCode>
+      <FileName>FileLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::SignalEmitter" Collapsed="true">
+    <Position X="97.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQBAAEbAAEAMgQQBDAAAQgQAAABAACCAABIgAAAAAAQ=</HashCode>
+      <FileName>SignalEmitter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::TypePromotor" Collapsed="true">
+    <Position X="93.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAEQCAAAAAAAAACAAAAEgAAAAIAA=</HashCode>
+      <FileName>TypePromotor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::IMatrixBuilder" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAQAAAAABAAAAAAAwAACAAA=</HashCode>
+      <FileName>IMatrixBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Parser" Collapsed="true">
+    <Position X="95.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JBkihAKEAAAAIAAACCAABACAJAghDoAAIQBAqgAgKgA=</HashCode>
+      <FileName>Parser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LexicalAnalyzer" Collapsed="true">
+    <Position X="92" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BFEBQACEAAFAICgIAAAQAAIAJAgAAABAAABAAACAAAA=</HashCode>
+      <FileName>LexicalAnalyzer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::LexicalBalanceHelper" Collapsed="true">
+    <Position X="93.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACAJGAAAAgCSAAAIAAIAIAAAQAABDAAAIAAAAAAA=</HashCode>
+      <FileName>LexicalBalanceHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::Tokenizer" Collapsed="true">
+    <Position X="90.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABEAAAAgggFBAAgAAEBMAAAAAAQBAAIAMAHgRBEAAAA=</HashCode>
+      <FileName>Tokenizer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::NumberReader" Collapsed="true">
+    <Position X="92" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEQAAAAAAAABAGAAIAACAAAAAQAAAAAAABEAAgA=</HashCode>
+      <FileName>NumberReader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::TokenizerHelper" Collapsed="true">
+    <Position X="92" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAABAAAwAgAAAAAAJAAAAAAAACAAQACAAAAAAAA=</HashCode>
+      <FileName>TokenizerHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::AssignmentFactory" Collapsed="true">
+    <Position X="90.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AssignmentFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::FunctionFactory" Collapsed="true">
+    <Position X="93.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAEABABAAAAAQAAAABAABAAAQAAAIoABABAAA=</HashCode>
+      <FileName>FunctionFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::MatrixBuilderFactory" Collapsed="true">
+    <Position X="97.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MatrixBuilderFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PR::OperatorsFactory" Collapsed="true">
+    <Position X="93.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAQAAQAQBAAAIAAAAgAAAAAAA=</HashCode>
+      <FileName>OperatorsFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="size" Collapsed="true">
+    <Position X="90.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEgAAAAAAAAA=</HashCode>
+      <FileName>GraphDrawer.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="PR::hdouble" Collapsed="true">
+    <Position X="93.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::variables_map" Collapsed="true">
+    <Position X="93.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Variables.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::variables_map_iter" Collapsed="true">
+    <Position X="95.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Variables.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::variables_map_pair" Collapsed="true">
+    <Position X="97.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Variables.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::AssignmentsData" Collapsed="true">
+    <Position X="90.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Variables.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::instr_iter" Collapsed="true">
+    <Position X="95.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAssignment.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::stack_iterator" Collapsed="true">
+    <Position X="92" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAssignment.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::Code" Collapsed="true">
+    <Position X="92" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CodeGenerator.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::Instruction" Collapsed="true">
+    <Position X="97.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CodeGenerator.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="PR::Ip" Collapsed="true">
+    <Position X="90.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CodeGenerator.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="PR::TYPE" Collapsed="true">
+    <Position X="97.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABEAAAAAAAAABAIACAAAAAAgQAAAAAAAAAA=</HashCode>
+      <FileName>Data.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PR::PARSE_MODE" Collapsed="true">
+    <Position X="93.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAEACAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Token.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PR::EVAULATED" Collapsed="true">
+    <Position X="92" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Operator.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PR::ASSIGNMENT_TYPE" Collapsed="true">
+    <Position X="90.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAssignment.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PR::TOKEN_CLASS" Collapsed="true">
+    <Position X="95.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEIABAQAEBABgAABAQiERAiAQxAJAigLEDCAiADIEAE=</HashCode>
+      <FileName>TokensTypes.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

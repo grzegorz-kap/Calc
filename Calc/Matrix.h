@@ -12,12 +12,13 @@ using std::shared_ptr;
 
 namespace PR
 {
-	template <class T> class ComplexNumber;
+	//template <class T> class ComplexNumber;
 	class Mathematic;
 	class MatrixUtils;
 	template <class T> class MatrixBuilder;
 
-	template<class T> class  Matrix : public Numeric<Matrix<T>>
+	template<class T> 
+	class  Matrix : public Numeric<Matrix<T>>
 	{
 
 		friend class MatrixTransposer;

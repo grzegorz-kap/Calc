@@ -74,5 +74,10 @@ namespace PR
 				throw CalcException("Error in \"" + getLexemeR() + "\" operator: " + message);
 		});
 	}
+
+	void Operator::clearArguments()
+	{
+		arguments.clear();
+	}
 }
 

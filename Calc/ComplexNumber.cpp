@@ -326,7 +326,7 @@ namespace PR
 	string ComplexNumber<double>::toStringCommpact() const
 	{
 		std::ostringstream ss;
-		if (re!=0)
+		if (re!=0||im==0)
 			ss << re;
 		if (im > 0&&re)
 			ss << "+";

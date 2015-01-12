@@ -245,6 +245,7 @@ namespace PR
 		auto p = dynamic_pointer_cast<Operator>(*i);
 		p->setArguments(stack);
  		stack.push_back(p->evaluate());
+		p->clearArguments();
 	}
 
 	void CodeExecutor::onVariablesManagement()
