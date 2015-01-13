@@ -31,6 +31,7 @@ namespace PR
 		vector<int> balance;
 		vector<PARSE_MODE> mode;
 		int pos;
+		int line;
 		vector<TOKEN_CLASS> key_word_mode;
 		int key_word_balance;
 

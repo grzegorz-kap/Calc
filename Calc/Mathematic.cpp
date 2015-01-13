@@ -74,7 +74,20 @@ namespace PR
 		if (a.isScalar() && b.isScalar())
 			return Mathematic::power(a.mx[0][0], b.mx[0][0]);
 
-		throw CalcException("Matrix ^ Matrix to be implemented in the feature!");
+		if (a.isMatrix() && (!b.isScalar() || !b.isInteger() || b.mx[0][0].re < 0 ||b.mx[0][0].im!=0))
+			throw NumericException("A^B. Second argument must be non-negative integer.");
+
+		if (a.M != a.N)
+			throw NumericException("A^B. First argument must be scalar or squere matrix");
+
+		int bb = b.mx[0][0].toInteger();
+		if (bb == 0)
+			return MatrixBuilder<T>::buildEye(a.M, a.N);
+
+		Matrix<T> out(a);
+		for (int i = 2; i <= bb; i++)
+			out=out*a;
+		return out;
 	}
 
 	template<class T>

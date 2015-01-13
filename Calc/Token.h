@@ -23,14 +23,16 @@ namespace PR
 		TOKEN_CLASS _class;
 		PARSE_MODE mode;
 		int position;
+		int line;
 		int param;
 		int keyword_balance;
 		int tree_level;
 		int _arguments_num;
+	
 	protected:
 		TYPE _evType;
+	
 	public:
-
 		Token();
 		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = -1, int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL);
 		Token(string &&lexemeArg, TOKEN_CLASS typeArg, int position = -1, int param = 0, PARSE_MODE mode = PARSE_MODE::NORMAL);
@@ -47,6 +49,8 @@ namespace PR
 		void set_class(const TOKEN_CLASS &typeArg);
 		int getPosition()const;
 		void setPosition(int pos);
+		int getLine() const;
+		void setLine(int line);
 		int getParam() const;
 		void setParam(int p);
 		PARSE_MODE getMode()const;
@@ -65,5 +69,8 @@ namespace PR
 		virtual Operator * castToOperator();
 		virtual IAssignment * castToAssignment();
 		virtual Token* cast_token() override;
+
+	private:
+		void init();
 	};
 }

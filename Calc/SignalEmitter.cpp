@@ -79,7 +79,11 @@ namespace PR
 
 	void SignalEmitter::call(const CalcException &exception)
 	{
-		(*sig_exception)(exception.getMessageR().c_str(), exception.getPosition());
+		string message = exception.getCommand().size() ? exception.getCommand()+"<br>"  : "";
+		message += "Col: " + std::to_string(exception.getPosition()) + ", ";
+		message += "Line: " + std::to_string(exception.getLine()) + "<br>";
+		message += exception.getMessage();
+		(*sig_exception)(message.c_str(), exception.getPosition());
 	}
 
 	void SignalEmitter::call(const string &name, const shared_ptr<Data> &data)

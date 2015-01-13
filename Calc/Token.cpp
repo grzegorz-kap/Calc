@@ -5,34 +5,35 @@ namespace PR
 {
 	Token::Token()
 	{
-		_type = TYPE::TOKEN;
-		_evType = TYPE::TOKEN;
-		tree_level = -1;
+		init();
 	}
 
 	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
 		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
-		_type = TYPE::TOKEN;
-		_evType = TYPE::DOUBLE;
-		tree_level = -1;
+		init();
 	}
 
 	Token::Token(string &&tokenArg, TOKEN_CLASS typeArg, int position, int param, PARSE_MODE mode)
 		:lexeme(std::move(tokenArg)), _class(typeArg), position(position), param(param), mode(mode)
 	{
-		_type = TYPE::TOKEN;
-		_evType = TYPE::TOKEN;
-		tree_level = -1;
+		init();
 	}
 
 	Token::Token(TOKEN_CLASS arg,int position)
 		:_class(arg),
-		position(position),
-		_evType(TYPE::TOKEN)
+		position(position)
+	{
+		init();
+	}
+
+	void Token::init()
 	{
 		_type = TYPE::TOKEN;
+		_evType = TYPE::TOKEN;
 		tree_level = -1;
+		line = 0;
+		position = 1;
 	}
 
 	Token::Token(Token &&b)
@@ -113,6 +114,16 @@ namespace PR
 	void Token::set_class(const TOKEN_CLASS &typeArg)
 	{ 
 		_class = typeArg;
+	}
+
+	int Token::getLine() const
+	{
+		return line;
+	}
+
+	void Token::setLine(int newLine)
+	{
+		line = newLine;
 	}
 
 	int Token::getPosition()const

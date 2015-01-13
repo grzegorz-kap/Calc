@@ -313,13 +313,26 @@ namespace PR
 	template <>
 	string ComplexNumber<hdouble>::toString() const
 	{
-		return ((ComplexNumber<double>)*this).toString();
+		std::ostringstream ss;
+		ss << re;
+		if (im > 0)
+			ss << "+";
+		if (im != 0)
+			ss << im << "i";
+		return ss.str();
 	}
 
 	template <>
 	string ComplexNumber<hdouble>::toStringCommpact() const
 	{
-		return ((ComplexNumber<double>)*this).toStringCommpact();
+		std::ostringstream ss;
+		if (re != 0 || im == 0)
+			ss << re;
+		if (im > 0 && re)
+			ss << "+";
+		if (im != 0)
+			ss << im << "i";
+		return ss.str();
 	}
 
 	template <>

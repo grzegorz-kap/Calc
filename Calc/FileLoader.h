@@ -22,6 +22,7 @@ namespace PR
 		string getLine();
 		string loadAll();
 		bool eof() const;
+		string getFileName() const{ return name; }
 	
 		static void changeWorkingDirectory(const string &directory);
 		static string getWorkingDirectory() { return working_directory; }

@@ -34,19 +34,19 @@ namespace PR
 
 	void CodeGenerator::setInput(const string &name)
 	{
-		parser.setInput(LexicalAnalyzer(name));
+		parser.setInput(LexicalAnalyzer(name),"");
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(string &&in)
 	{
-		parser.setInput(LexicalAnalyzer(in));
+		parser.setInput(LexicalAnalyzer(in),"");
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(FileLoader &in)
 	{
-		parser.setInput(LexicalAnalyzer(in.loadAll()));
+		parser.setInput(LexicalAnalyzer(in.loadAll()),in.getFileName());
 		loadAndSetIp();
 	}
 
