@@ -7,13 +7,11 @@ namespace PR
 {
 	Parser::Parser()
 	{
-
 	}
 
 	Parser::Parser(LexicalAnalyzer &lex)
 	{
-		tokens = lex.getTokens();
-		iter = tokens.begin();
+		setInput(lex,"");
 	}
 
 	Parser::~Parser()
@@ -21,10 +19,22 @@ namespace PR
 		
 	}
 
-	void Parser::setInput(LexicalAnalyzer &lex)
+	void Parser::setInput(LexicalAnalyzer &lex,string fileInfo)
 	{
-		tokens = lex.getTokens();
+		try{
+			tokens = lex.getTokens();
+		}
+		catch (const CalcException &ex)
+		{
+			throw CalcException(ex.getMessage(), fileInfo, ex.getPosition(), ex.getLine());
+		}
 		iter = tokens.begin();
+		_file = fileInfo;
+	}
+
+	void Parser::setFileInfo(const string &name)
+	{
+		_file = name;
 	}
 
 	bool Parser::parse()
@@ -101,14 +111,10 @@ namespace PR
 			case TOKEN_CLASS::BREAK_KEYWORD:
 			case TOKEN_CLASS::RETURN_KEYWORD:
 			case TOKEN_CLASS::END_FOR:
-				if (onp.size() == 0 && stack.size() == 0)
-					onp.push_back(make_unique<Token>(*i));
-				else
-					throw CalcException("Parser. Unexpected keyword:" + i->getLexemeR(), i->getPosition());
-				stop = true;
+				onKeywords();
 				break;
 			default:
-				throw CalcException("Parser. Unexpected symbol: '" + i->getLexemeR() + "'.", i->getPosition());
+				onDefault();
 				break;
 			}
 		}
@@ -117,6 +123,25 @@ namespace PR
 		changeIfAssignment();
 		computeShortCircuitJumps(onp);
 		return iter != tokens.end();
+	}
+
+	void Parser::throwException(const string &message)
+	{
+		throw CalcException(message, _file.size()?_file:"", i->getPosition(), i->getLine());
+	}
+
+	void Parser::onDefault()
+	{
+		throwException("Parser. Unexpected symbol: '" + i->getLexemeR() + "'.");
+	}
+
+	void Parser::onKeywords()
+	{
+		if (onp.size() == 0 && stack.size() == 0)
+			onp.push_back(make_unique<Token>(*i));
+		else
+			throwException("Parser. Unexpected keyword:" + i->getLexemeR());
+		stop = true;
 	}
 
 	void Parser::onComma()
@@ -140,9 +165,13 @@ namespace PR
 				stackToOnp();
 		}
 		if (!flag)
-			throw CalcException("Unbalanced parenthesis!");
+			throwException("Unbalanced parenthesis!");
 		if (i->getMode() == PARSE_MODE::FUNCTION)
+		{
+			if (_function_args.size()==0)
+				throwException("Expression is incorrect.");
 			_function_args.back()++;
+		}
 	}
 
 	void Parser::onFunction()
@@ -172,7 +201,7 @@ namespace PR
 			find<string>({ "clear", "load", "save" }, i->getLexemeR()))
 		{
 			if (stack.size() || onp.size())
-				throw CalcException("Unexpected command: " + i->getLexemeR(), i->getPosition());
+				throwException("Unexpected command: " + i->getLexemeR());
 			string name = i->getLexemeR();
 			onp.push_back(make_shared<Token>(FUNCTON_ARGS_END));
 			stop = false;
@@ -194,7 +223,7 @@ namespace PR
 					stop = true;
 					break;
 				default:
-					throw CalcException("Unallowed token: " + (*iter)->getLexemeR(),i->getPosition());
+					throwException("Unallowed token: " + (*iter)->getLexemeR());
 				}
 			}
 			onp.push_back(make_shared<Token>(name, TOKEN_CLASS::VARIABLES_MANAGEMENT));
@@ -244,7 +273,7 @@ namespace PR
 				stackToOnp();
 		}
 		if (flag)
-			throw CalcException("Unbalanced or unexpected parenthesis or bracket.");
+			throwException("Unbalanced or unexpected parenthesis or bracket.");
 	}
 
 	void Parser::onOpenParenthesis()
@@ -357,6 +386,8 @@ namespace PR
 			case TOKEN_CLASS::ID:
 			case TOKEN_CLASS::NUMBER:
 			case TOKEN_CLASS::STRING:
+			case TOKEN_CLASS::LAST_INDEX_OF:
+			case TOKEN_CLASS::MATRIX_ALL:
 				balance = 1; break;
 			case TOKEN_CLASS::FUNCTON_ARGS_END:
 				funs.push_back(0); break;
@@ -371,7 +402,8 @@ namespace PR
 			}
 			main += balance;
 			if (main <= 0 && t->getClass()==TOKEN_CLASS::OPERATOR || main<0)
-				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), t->getPosition());
+				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), _file,
+									t->getPosition(),t->getLine());
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);
@@ -389,7 +421,7 @@ namespace PR
 	void Parser::onMatrixAll()
 	{
 		if (_function_names.size() == 0||_function_args.size()==0)
-			throw CalcException("Unexpected end keyword or : operator",i->getPosition());
+			throwException("Unexpected end keyword or : operator");
 		onp.push_back(make_shared<Token>(*i));
 		onp.back()->setLexeme(_function_names.back());
 		onp.back()->setParam(_function_args.back());
@@ -448,7 +480,8 @@ namespace PR
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
 			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
-				throw CalcException("Unexpected symbol! "+stack[i]->getLexemeR(), stack[i]->getPosition());
+				throw CalcException("Unexpected symbol! "+stack[i]->getLexemeR(),"",
+								stack[i]->getPosition(),stack[i]->getLine());
 			onp.push_back(std::move(stack[i]));
 		}
 		stack.clear();
@@ -506,22 +539,22 @@ namespace PR
 	void Parser::onKeywordFOR()
 	{
 		if (stack.size() || onp.size())
-			throw CalcException("Parser. Unexpected keyword: for", i->getPosition());
+			throwException("Parser. Unexpected keyword: for");
 
 		unique_ptr<InstructionFor> _for = make_unique<InstructionFor>(*i);
 		iter++;
 
 		if (iter == tokens.end())
-			throw CalcException("Unexpected end of code", i->getPosition());
+			throwException("Unexpected end of code");
 
 		parse();
 
 		if (onp.size() < 3)
-			throw CalcException("Error parsing 'for' keyword", i->getPosition());
+			throwException("Error parsing 'for' keyword");
 
 		AssignmentSingle * assignment = dynamic_cast<AssignmentSingle *>(onp.front().get());
 		if (assignment == nullptr)
-			throw CalcException("Error in for instruction,single assignment not found!");
+			throwException("Error in for instruction,single assignment not found!");
 		_for->setName(assignment->getLexeme());
 		onp.erase(onp.begin());
 
@@ -531,7 +564,7 @@ namespace PR
 			onp.pop_back();
 
 		if (onp.size() == 0)
-			throw CalcException("Error parsing 'for' keyword", i->getPosition());
+			throwException("Error parsing 'for' keyword");
 
 		_for->setOnp(std::move(onp));
 		onp.push_back(std::move(_for));

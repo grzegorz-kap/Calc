@@ -20,11 +20,11 @@ namespace PR
 		@start_p - Starting position in input string
 		Returns number or readed characters.
 		*/
-		static unsigned int read(const string &input, string &output, int start_p = 0);
+		static string read(const string &input, int start_p = 0);
 
 	private:
-
-		NumberReader(const string &refIn, string &refOut, int start_p);
+		string out;
+		NumberReader(const string &refIn, int start_p);
 		~NumberReader();
 
 		void readDigits();
@@ -33,7 +33,6 @@ namespace PR
 		void readI();
 
 		const string &in;
-		string &out;
 		int position;
 		int N;
 		bool exp;

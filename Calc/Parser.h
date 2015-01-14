@@ -39,14 +39,16 @@ namespace PR
 		vector<string> _function_names;
 		vector<int> _function_args;
 		vector<vector<int>> _function_onp_addr;
+		string _file;
 	public:
 		
 		Parser();
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
 		virtual bool parse();
-		void setInput(LexicalAnalyzer &lex);
+		void setInput(LexicalAnalyzer &lex, string fileInfo);
 		vector<shared_ptr<Token>> & getInstruction();
+		void setFileInfo(const string &name);
 	
 	private:	
 		TOKEN_CLASS stackBack() const;
@@ -57,6 +59,8 @@ namespace PR
 		TOKEN_CLASS whatNext();
 		
 		void onKeywordFOR();
+		void onKeywords();
+		void onDefault();
 		void onID();
 		void onNumber();
 		void onOpenParenthesis();
@@ -74,8 +78,9 @@ namespace PR
 		void onShortCircuitOperator();
 		void computeTreeLevels();
 		void stackToOnpUntilToken(TOKEN_CLASS type, bool remove = true);
-
 		static void computeShortCircuitJumps(vector<shared_ptr<Token>> &onp);
+
+		void throwException(const string &message);
 
 	};
 }

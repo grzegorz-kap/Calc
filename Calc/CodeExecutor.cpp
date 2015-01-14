@@ -16,6 +16,7 @@ namespace PR
 	{
 		_single_run = false;
 		eval_flag = false;
+		_file = "";
 	}
 
 	CodeExecutor::CodeExecutor(Variables &ref)
@@ -24,6 +25,7 @@ namespace PR
 	{
 		_single_run = false;
 		eval_flag = false;
+		_file = "";
 	}
 
 	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
@@ -36,6 +38,7 @@ namespace PR
 		_single_run = false;
 		eval_flag = false;
 		int N = input.size();
+		_file = fun.getName();
 		for (const shared_ptr<Data> &data : args)
 		{
 			if (i >= N)
@@ -59,6 +62,7 @@ namespace PR
 
 	void CodeExecutor::setInput(FileLoader &in)
 	{
+		_file = in.getFileName();
 		code.setInput(in);
 	}
 
@@ -90,7 +94,16 @@ namespace PR
 				continue;
 			if (checkFor())
 				continue;
-			run();
+			try{
+				run(false);
+			}
+			catch (const CalcException &ex)
+			{
+				if (ex.getLine() == 0)
+					throwError(ex.getMessage());
+				else
+					throw ex;
+			}
 			code.inc();
 		}
 	}
@@ -102,7 +115,7 @@ namespace PR
 		exec.start();
 	}
 
-	shared_ptr<Data> CodeExecutor::run()
+	shared_ptr<Data> CodeExecutor::run(bool multi)
 	{
 		stack.clear();
 		assignment.clear();
@@ -117,9 +130,8 @@ namespace PR
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
 				break;
-			case TOKEN_CLASS::SHORT_CIRCUIT_END:
-			case TOKEN_CLASS::SHORT_CIRCUIT_OR:
-				onShortCircuitJumper();
+			case TOKEN_CLASS::ID:
+				onID();
 				break;
 			case TOKEN_CLASS::MATRIX_START:
 				stack.push_back(make_shared<Token>(MATRIX_START));
@@ -146,8 +158,9 @@ namespace PR
 			case TOKEN_CLASS::ASSIGNMENT:
 				onAssignment();
 				break;
-			case TOKEN_CLASS::ID:
-				onID();
+			case TOKEN_CLASS::SHORT_CIRCUIT_END:
+			case TOKEN_CLASS::SHORT_CIRCUIT_OR:
+				onShortCircuitJumper();
 				break;
 			case TOKEN_CLASS::OUTPUT_OFF:
 				output_off_flag = true;
@@ -159,12 +172,14 @@ namespace PR
 				onVariablesManagement();
 				break;
 			default:
-				throw CalcException("Cannot execute this: '"+(*i)->getLexemeR()+"'",(*i)->getPosition());
+				throwError("Cannot execute this: '"+(*i)->getLexemeR()+"'");
 			}
 		}
 
-		if (assignment_flag == false && stack.size())
+		if (assignment_flag == false && !_single_id_flag && stack.size()==1)
 			defaultAssignment();
+		if (!_single_run && (stack.size() > 1 || !multi&&!_single_id_flag&&stack.size() == 1))
+			throwError("Expression is incorrect.");
 		if (!output_off_flag)
 		{
 			for (const auto & i : assignment)
@@ -172,12 +187,9 @@ namespace PR
 				SignalEmitter::get()->call(i.first->first, i.first->second);
 			}
 		}
-
-		if (!_single_run &&stack.size() > 1)
-			throw CalcException("Expression is incorrect.");
-
 		output_off_flag = false;
 		assignment_flag = false;
+		_single_id_flag = false;
 		if (stack.size())
 			return stack.back();
 		else
@@ -209,10 +221,7 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throw CalcException(
-				"Error evaulating 'end' or ':' matrix index"
-					+ ex.getMessageR(), 
-				(*i)->getPosition());
+			throwError("Error evaulating 'end' or ':' matrix index - "+ ex.getMessageR());
 		}
 
 		int idx = (*i)->getParam();  // numer argumentu indeksowanie
@@ -242,10 +251,16 @@ namespace PR
 
 	void CodeExecutor::onOperator()
 	{
-		auto p = dynamic_pointer_cast<Operator>(*i);
-		p->setArguments(stack);
- 		stack.push_back(p->evaluate());
-		p->clearArguments();
+		try{
+			auto p = dynamic_pointer_cast<Operator>(*i);
+			p->setArguments(stack);
+			stack.push_back(p->evaluate());
+			p->clearArguments();
+		}
+		catch (const CalcException &ex)
+		{
+			throwError(ex.getMessage());
+		}
 	}
 
 	void CodeExecutor::onVariablesManagement()
@@ -258,18 +273,26 @@ namespace PR
 		for (const auto &i : args)
 		{
 			if (i->_type != TYPE::STRING)
-				throw CalcException("Argument of 'save' command must be string");
+				throwError("Arguments of 'save' command must be string");
 		}
 		if (name == "load")
+		{
 			loadFromFile(args);
-		else
+			return;
+		}
+		try{
 			vars_ref.menage(name, FileLoader::getWorkingDirectory(), args);
+		}
+		catch (const CalcException &ex)
+		{
+			throwError(ex.getMessage(), args.size() ? args.front()->toString() : "");
+		}
 	}
 
 	void CodeExecutor::loadFromFile(vector<shared_ptr<Data>> &args)
 	{
 		if (args.size() == 0)
-			throw CalcException("Too few arguments for 'load' command.");
+			throwError("Too few arguments for 'load' command.");
 		FileLoader file(args.front()->toString()+".klab");
 		if (args.size() == 1)
 		{
@@ -298,11 +321,10 @@ namespace PR
 	void CodeExecutor::onShortCircuitJumper()
 	{
 		if (stack.size() == 0)
-			throw CalcException("Expression or statement is incomplete or incorrect.", (*i)->getPosition());
+			throwError("Expression or statement is incomplete or incorrect.");
 		
 		if (!stack.back()->isScalar())
-			throw CalcException("Operands to the || and && operators must be convertible to logical scalar values",
-									(*i)->getPosition());
+			throwError("Operands to the || and && operators must be convertible to logical scalar values");
 
 		bool leftArgument = *stack.back() == true;
 		TOKEN_CLASS _class = (*i)->getClass();
@@ -327,7 +349,7 @@ namespace PR
 		}
 
 		if (ex)
-			throw CalcException("Expected token not found!");
+			throwError("Expected token not found!");
 		else
 			return stack.end();
 	}
@@ -360,12 +382,18 @@ namespace PR
 	void CodeExecutor::onAssignment()
 	{
 		if (stack.size() < 2)
-			throw CalcException("Too few arguments in data stack during assignment");
+			throwError("Too few arguments in data stack during assignment");
 		if (eval_flag)
-			throw CalcException("Assignemnt unallowed here.");
+			throwError("Assignemnt unallowed here.");
 
 		IAssignment * iassignment = stack.front()->cast_token()->castToAssignment();
-		iassignment->doAssignment(vars_ref, std::next(stack.begin()), stack.end(), assignment);
+		try{
+			iassignment->doAssignment(vars_ref, std::next(stack.begin()), stack.end(), assignment);
+		}
+		catch (const CalcException &ex)
+		{
+			throwError(ex.getMessage());
+		}
 		stack.erase(stack.begin(), stack.begin() + 2);
 		assignment_flag = true;
 	}
@@ -409,7 +437,7 @@ namespace PR
 	void CodeExecutor::onForEndKeyword()
 	{
 		if (for_iterators.size() == 0)
-			throw CalcException("END-FOR found , but there is no for-iterators in memory!");
+			throwError("END-FOR found , but there is no for-iterators in memory!");
 		ForIterator & _iterator = for_iterators.back();
 		/* Je¿eli przeiterowano ca³y zestaw wartoœci */
 		if (_iterator.end())
@@ -481,7 +509,7 @@ namespace PR
 			onVariableFunction(args, vars_ref.get(name));
 			return;
 		}
-		catch (const string &ex)
+		catch (const CalcException &ex)
 		{
 		}
 
@@ -495,9 +523,15 @@ namespace PR
 		if (function != nullptr)
 		{
 			function->set(args, num > 0 ? num : 1);
-			shared_ptr<Data> out = function->run();
-			if (out->_type!=TYPE::OUTPUT || out->cast_output()->getArgumentsNumber()>0)
-				stack.push_back(out);
+			try{
+				shared_ptr<Data> out = function->run();
+				if (out->_type != TYPE::OUTPUT || out->cast_output()->getArgumentsNumber()>0)
+					stack.push_back(out);
+			}
+			catch (const CalcException &ex)
+			{
+				throwError(ex.getMessage());
+			}
 		}
 		else
 			onExternalFunction(args, name);
@@ -507,10 +541,10 @@ namespace PR
 	void CodeExecutor::onEval(vector<shared_ptr<Data>> &args)
 	{
 		if (args.size() != 1)
-			throw CalcException("Wrong arguments number in 'eval' function");
+			throwError("Wrong arguments number in 'eval' function");
 		String *ptr = dynamic_cast<String*>(args[0].get());
 		if (ptr == nullptr)
-			throw CalcException("String data type expected in 'eval' function");
+			throwError("String data type expected in 'eval' function");
 		CodeExecutor exec(vars_ref);
 		exec.eval_flag = true;
 		exec.assignment_flag = true;
@@ -518,7 +552,7 @@ namespace PR
 		exec.setInput(ptr->toString());
 		exec.start();
 		if (exec.stack.size() == 0)
-			throw CalcException("eval function must return value");
+			throwError("eval function must return value");
 		stack.push_back(exec.stack.back());
 	}
 
@@ -526,37 +560,47 @@ namespace PR
 	{
 		int size = args.size();
 		if (size > 2)
-			throw CalcException("Too many arguments while accessing variables cells");
+			throwError("Too many arguments while accessing variables cells");
 
 		TYPE convertToType = var->_type == TYPE::STRING ? TYPE::M_DOUBLE : var->_type;
 
-		for (int i = args.size() - 1; i >= 0; i--)
-		{
-			shared_ptr<Data> &ref = args[i];
-			if (ref->_type != convertToType && !ref->isToken(TOKEN_CLASS::MATRIX_ALL) && !ref->isToken(TOKEN_CLASS::LAST_INDEX_OF))
-				TypePromotor::convertTo(convertToType, ref, ref);
+		try{
+			for (int i = args.size() - 1; i >= 0; i--)
+			{
+				shared_ptr<Data> &ref = args[i];
+				if (ref->_type != convertToType && !ref->isToken(TOKEN_CLASS::MATRIX_ALL) && !ref->isToken(TOKEN_CLASS::LAST_INDEX_OF))
+					TypePromotor::convertTo(convertToType, ref, ref);
+			}
+			if (size == 2)
+				stack.push_back(var->getAt(args[0], args[1]));
+			else if (size == 1)
+				stack.push_back(var->getAt(args[0]));
+			else
+				stack.push_back(var->getAt());
 		}
-
-		if (size == 2)
-			stack.push_back(var->getAt(args[0], args[1]));
-		else if (size == 1)
-			stack.push_back(var->getAt(args[0]));
-		else
-			stack.push_back(var->getAt());
+		catch (const CalcException &ex)
+		{
+			throwError(ex.getMessage());
+		}
 	}
 
 	void CodeExecutor::onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name)
 	{
 		if (++recursions > recursion_limit)
-			throw CalcException("Error in '" + name + "'. Maximum recursion limit of " +
-			std::to_string(recursion_limit) + " reached.", (*i)->getPosition());
+			throw string("Error in '" + name + "'. Maximum recursion limit of " +
+			std::to_string(recursion_limit) + " reached.");
 
-		auto function = FunctionFactory::load_external(name);
+		ExternalFunction function;
+		try{
+			function = FunctionFactory::load_external(name);
+		}
+		catch (const CalcException &ex)
+		{
+			throwError("Cannot load external function \""+name+"\"");
+		}
 		CodeExecutor exec(function, args);
 		exec.start();
-
 		recursions--;
-
 		const vector<string>& output = function.getOutput();
 		shared_ptr<Output> results = make_shared<Output>();
 		results->_extern = true;
@@ -576,15 +620,15 @@ namespace PR
 			if (ip->size() == 1)
 			{
 				assignment.push_back({ vars_ref.getIterator((*i)->getLexemeR()), false });
-				assignment_flag = true;
+				_single_id_flag = true;
 			}
 			stack.push_back(vars_ref.get((*i)->getLexemeR()));
 		}
-		catch (const string &ex)
+		catch (const CalcException &ex)
 		{
 			if (!onScript())
 				if ((*i)->getLexemeR() != "clc")
-					throw CalcException("Undefined variable or script '" + (*i)->getLexemeR() + "'.", (*i)->getPosition());
+					throwError("Undefined variable or script '" + (*i)->getLexemeR() + "'.");
 				else
 					SignalEmitter::get()->call_sig_clear_screen();
 		}
@@ -690,16 +734,23 @@ namespace PR
 		max_type = max_type >= TYPE::DOUBLE ? IMatrixBuilder::TYPES.at(max_type) : TYPE::M_DOUBLE;
 
 		if (ii < stack.begin())
-			throw CalcException("Matrix start not found");
+			throwError("Matrix start not found");
 
-		auto builder = MatrixBuilderFactory::get(max_type);
-		for (auto k = std::next(ii); k != stack.end(); k++)
-		{
-			builder->add(*k);
+		try{
+			auto builder = MatrixBuilderFactory::get(max_type);
+			for (auto k = std::next(ii); k != stack.end(); k++)
+			{
+				builder->add(*k);
+			}
+			builder->setAndCheckSize();
+			stack.erase(ii, stack.end());
+			stack.push_back(builder->getPtr());
 		}
-		builder->setAndCheckSize();
-		stack.erase(ii, stack.end());
-		stack.push_back(builder->getPtr());
+		catch (const CalcException &ex)
+		{
+			throwError(ex.getMessage());
+		}
+		
 	}
 
 	bool CodeExecutor::checkWhile()
@@ -758,6 +809,16 @@ namespace PR
 	{ 
 		code.dec();	
 		ip = code.get(); 
+	}
+
+	void CodeExecutor::throwError(const string &name,string src)
+	{
+		string tt = _file != "" ? _file + src : src;
+		if (i != ip->end())
+			throw CalcException(name, tt ,(*i)->getPosition(), (*i)->getLine());
+		if (ip->size())
+			throw CalcException(name, tt, ip->front()->getPosition(), ip->front()->getLine());
+		throw CalcException(name);
 	}
 
 	decltype(AssignmentSubscripted::executor) AssignmentSubscripted::executor = CodeExecutor::run_single;

@@ -51,8 +51,10 @@ namespace PR
 	{
 		auto result = OTHERS.find(command[i]);
 		if (result == OTHERS.end())
-			throw CalcException("Unrecognized symbol", i);
-		tokens.push_back(make_unique<Token>( result->second,i++));
+			throwMessage("Unrecognized symbol");
+		tokens.push_back(make_unique<Token>( result->second));
+		setLine();
+		inc();
 	}
 
 	bool Tokenizer::readOperator()
@@ -67,9 +69,9 @@ namespace PR
 		auto result = OperatorsFactory::get(command, i,length);
 		if (result != nullptr)
 		{
-			result->setPosition(i);
-			i += length;
 			tokens.push_back(std::move(result));
+			setLine();
+			inc(length);
 			return true;
 		}
 		return false;
@@ -77,18 +79,21 @@ namespace PR
 
 	void Tokenizer::readNumber()
 	{
-		string out;
-		NumberReader::read(command, out, i);
-		int m = out.size();
-		tokens.push_back(make_unique<SNumber>(Token(std::move(out), TOKEN_CLASS::NUMBER, i)));
-		i += m;
+		try{
+			tokens.push_back(make_unique<SNumber>(Token(NumberReader::read(command, i), TOKEN_CLASS::NUMBER)));
+			setLine();
+			inc(tokens.back()->getLexemeR().size());
+		}
+		catch (const CalcException &ex)
+		{
+			throwMessage(ex.getMessageR());
+		}
 	}
 
 	void Tokenizer::readWord()
 	{
-		int start = i;
+		
 		string lexame="";
-
 		/* Wczytanie identyfikatora*/
 		while (i < N && 
 				(  TokenizerHelper::isLetter(command[i]) || 
@@ -103,16 +108,16 @@ namespace PR
 
 		/* Dodanie do tablicy rozpoznanych symboli leksykalnych. */
 		tokens.push_back(make_unique<Token>(std::move(lexame),
-						TokenizerHelper::keyWordOrId(lexame), 
-						start)
-			);
+						TokenizerHelper::keyWordOrId(lexame)));
+		setLine();
+		_position += tokens.back()->getLexemeR().size();
 	}
 
 	void Tokenizer::readString()
 	{
-		int start = i++;
 		string lexame = "";
 		bool found = false;
+		i++;
 		while (i < N && command[i]!='\n')
 		{
 			if (command[i] == '\'')
@@ -129,13 +134,11 @@ namespace PR
 			}
 			lexame += command[i++];
 		}
-
 		if (!found)
-			throw CalcException(" A KapiLab string constant is not terminated properly.", start);
-
-		unique_ptr<String> token = make_unique<String>(std::move(lexame));
-		token->setPosition(start);
-		tokens.push_back(std::move(token));
+			throwMessage("A KapiLab string constant is not terminated properly.");
+		tokens.push_back(make_unique<String>(std::move(lexame)));
+		setLine();
+		_position += tokens.back()->getLexemeR().size();
 	}
 
 	void Tokenizer::readWhiteSpace()
@@ -143,14 +146,20 @@ namespace PR
 		switch (command[i])
 		{
 		case '\n':
-			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE, i++));
+			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE));
+			setLine();
+			i++;
+			onNewLine();
 			break;
 		case '\t':
 		case ' ':
 		case '\r':
-			if (tokens.size()!=0 && !find(FOR_SPACE_DELETE, tokens.back()->getClass()))
-				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE, i));
-			i++;
+			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getClass()))
+			{
+				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE));
+				setLine();
+			}
+			inc();
 			break;
 		}
 	}
@@ -158,22 +167,21 @@ namespace PR
 	void Tokenizer::skipBlockComment()
 	{
 		while (i < N - 1)
+		{
 			if (command[i] == '%'&&command[i + 1] == '}')
 				break;
-			else
-				i++;
-		i += 2;
+			else if (command[i] == '\n')
+				onNewLine();
+			inc();
+		}
+		inc(2);
 	}
 
 	void Tokenizer::skipLineComment()
 	{
-		while (i < N)
-		if (command[i++] == '\n')
-		{
-			i--;
-			break;
-		}
-
+		while (i < N &&command[i++] != '\n')
+			_position++;
+		i--;
 	}
 
 	void Tokenizer::deleteUneccessary()
@@ -193,6 +201,7 @@ namespace PR
 			}
 			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE  || prev() == TOKEN_CLASS::SEMICOLON)) ||(i < N - 1 && z == '\n'&&z == ';'))
 			{
+				onNewLine();
 				i++;
 				deleteUneccessary();
 			}
@@ -223,10 +232,11 @@ namespace PR
 	{
 		if (i < N - 2 && command[i] == '.'&& command[i + 1] == '.' && command[i + 2] == '.')
 		{
-			i += 3;
-			while (i < N && command[i]!='\n')
-				i++;
+			inc(3);
+			while (i < N && command[i] != '\n')
+				inc();
 			i++;
+			onNewLine();
 		}
 		else
 			return false;
@@ -236,7 +246,14 @@ namespace PR
 	void Tokenizer::whiteSpacesBegin()
 	{
 		while (i < N&&TokenizerHelper::isWhiteSpace(command[i]))
+		{
 			i++;
+			if (command[i] == '\n')
+				onNewLine();
+			else
+				_position++;
+		}
+				
 	}
 
 	void Tokenizer::whiteSpacesEnd()
@@ -261,8 +278,11 @@ namespace PR
 	{
 		N = command.size();
 		i = 0;
+		_line = 1;
+		_position = 1;
 		whiteSpacesEnd();
 		whiteSpacesBegin();
+		
 	}
 
 	char Tokenizer::prevChar()
@@ -270,5 +290,32 @@ namespace PR
 		if (i == 0)
 			return 0;
 		return command[i - 1];
+	}
+
+	void Tokenizer::throwMessage(const string &message)
+	{
+		throw CalcException(message, "", _position, _line);
+	}
+
+	void Tokenizer::inc(int val)
+	{
+		i += val;
+		_position += val;
+	}
+
+	void Tokenizer::onNewLine()
+	{
+		_position = 1;
+		_line++;
+	}
+
+	void Tokenizer::setLine()
+	{
+		if (tokens.size())
+		{
+			tokens.back()->setLine(_line);
+			tokens.back()->setPosition(_position);
+		}
+			
 	}
 }

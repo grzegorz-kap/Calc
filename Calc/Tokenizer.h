@@ -44,6 +44,8 @@ namespace PR
 		string command;
 		int i;
 		int N;
+		int _line;
+		int _position;
 
 		void readNumber();
 		void readWord();
@@ -60,6 +62,10 @@ namespace PR
 		TOKEN_CLASS prev();
 		char prevChar();
 		void init();
+		void onNewLine();
+		void throwMessage(const string &message);
+		void inc(int val=1);
+		void setLine();
 	};
 
 }

@@ -3,17 +3,17 @@
 
 namespace PR
 {
-	unsigned int NumberReader::read(const string &input, string &output, int start_p)
+	string NumberReader::read(const string &input, int start_p)
 	{
-		NumberReader numberReader(input, output, start_p);
+		NumberReader numberReader(input, start_p);
 		numberReader.readDigits();
 		numberReader.fractionalPart();
 		numberReader.ePart();
 		numberReader.readI();
-		return output.size();
+		return numberReader.out;
 	}
 
-	NumberReader::NumberReader(const string &in, string &out, int position)
+	NumberReader::NumberReader(const string &in, int position)
 		:in(in), out(out), position(position)
 	{
 		out = "";

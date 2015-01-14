@@ -25,6 +25,7 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 		onKeyUpOrDown(e->key());
 		return;
 	}
+	historyFlag = false;
 
 	if (e->key() == Qt::Key_C && e->modifiers()&Qt::ControlModifier)
 	{

@@ -2,6 +2,7 @@
 
 #include "NumericException.h"
 #include "Matrix.h"
+#include "MatrixBuilder.h"
 
 
 #include <boost\math\constants\constants.hpp>

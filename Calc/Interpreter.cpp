@@ -33,6 +33,10 @@ namespace PR
 		{
 			SignalEmitter::get()->call(ex);
 		}
+		catch (const string &ex)
+		{
+			SignalEmitter::get()->call(CalcException(ex));
+		}
 		SignalEmitter::get()->call_execution_complate();
 		sendUpdatedVariablesInformations();
 	}
