@@ -54,12 +54,13 @@ namespace PR
 		CodeGenerator code;					/* Code storage class */
 		bool output_off_flag;				/* Indicates if display data to screen */
 		bool assignment_flag;				/* Indicates if assignment occurred, if not default assignment */
+		bool _single_run;					/* Single expression computation flag */
+		bool _single_id_flag;					/* Should only display variable without assignment */
 		AssignmentsData assignment;			/* Storage information of occurred assignments*/
 		Variables internal_vars;			/* Should not be used directly! Local variables in extern function execution */
 		Variables &vars_ref;				/* Reference to variables */
 		static Variables globals;			/* Global variables */
-		bool _single_run;
-		string _file;
+		string _file;						/* File name in casue of script or external function computation */
 
 		/* Constructor for external function execution */
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);

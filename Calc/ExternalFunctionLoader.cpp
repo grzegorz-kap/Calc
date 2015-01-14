@@ -151,6 +151,6 @@ namespace PR
 	void ExternalFunctionLoader::throwSize(int n)
 	{
 		if (ip->size() != n)
-			throw CalcException("Unexpected type of instruction!");
+			throw CalcException("Unexpected type of instruction in function script +!'"+name+"'");
 	}
 }

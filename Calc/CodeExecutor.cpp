@@ -130,9 +130,8 @@ namespace PR
 			case TOKEN_CLASS::OPERATOR:
 				onOperator();
 				break;
-			case TOKEN_CLASS::SHORT_CIRCUIT_END:
-			case TOKEN_CLASS::SHORT_CIRCUIT_OR:
-				onShortCircuitJumper();
+			case TOKEN_CLASS::ID:
+				onID();
 				break;
 			case TOKEN_CLASS::MATRIX_START:
 				stack.push_back(make_shared<Token>(MATRIX_START));
@@ -159,8 +158,9 @@ namespace PR
 			case TOKEN_CLASS::ASSIGNMENT:
 				onAssignment();
 				break;
-			case TOKEN_CLASS::ID:
-				onID();
+			case TOKEN_CLASS::SHORT_CIRCUIT_END:
+			case TOKEN_CLASS::SHORT_CIRCUIT_OR:
+				onShortCircuitJumper();
 				break;
 			case TOKEN_CLASS::OUTPUT_OFF:
 				output_off_flag = true;
@@ -176,9 +176,9 @@ namespace PR
 			}
 		}
 
-		if (assignment_flag == false && stack.size()==1)
+		if (assignment_flag == false && !_single_id_flag && stack.size()==1)
 			defaultAssignment();
-		if (!_single_run && (stack.size() > 1 || !multi&&stack.size() == 1))
+		if (!_single_run && (stack.size() > 1 || !multi&&!_single_id_flag&&stack.size() == 1))
 			throwError("Expression is incorrect.");
 		if (!output_off_flag)
 		{
@@ -189,6 +189,7 @@ namespace PR
 		}
 		output_off_flag = false;
 		assignment_flag = false;
+		_single_id_flag = false;
 		if (stack.size())
 			return stack.back();
 		else
@@ -508,7 +509,7 @@ namespace PR
 			onVariableFunction(args, vars_ref.get(name));
 			return;
 		}
-		catch (const string &ex)
+		catch (const CalcException &ex)
 		{
 		}
 
@@ -586,15 +587,20 @@ namespace PR
 	void CodeExecutor::onExternalFunction(const vector<shared_ptr<Data>> &args, const string &name)
 	{
 		if (++recursions > recursion_limit)
-			throwError("Error in '" + name + "'. Maximum recursion limit of " +
+			throw string("Error in '" + name + "'. Maximum recursion limit of " +
 			std::to_string(recursion_limit) + " reached.");
 
-		auto function = FunctionFactory::load_external(name);
+		ExternalFunction function;
+		try{
+			function = FunctionFactory::load_external(name);
+		}
+		catch (const CalcException &ex)
+		{
+			throwError("Cannot load external function \""+name+"\"");
+		}
 		CodeExecutor exec(function, args);
 		exec.start();
-
 		recursions--;
-
 		const vector<string>& output = function.getOutput();
 		shared_ptr<Output> results = make_shared<Output>();
 		results->_extern = true;
@@ -614,11 +620,11 @@ namespace PR
 			if (ip->size() == 1)
 			{
 				assignment.push_back({ vars_ref.getIterator((*i)->getLexemeR()), false });
-				assignment_flag = true;
+				_single_id_flag = true;
 			}
 			stack.push_back(vars_ref.get((*i)->getLexemeR()));
 		}
-		catch (const string &ex)
+		catch (const CalcException &ex)
 		{
 			if (!onScript())
 				if ((*i)->getLexemeR() != "clc")

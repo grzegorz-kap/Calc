@@ -51,9 +51,9 @@ namespace PR
 		try{
 			var = vars.get(variable->getLexemeR());
 		}
-		catch (const string &ex)
+		catch (const CalcException &ex)
 		{
-			throw CalcException("Error in subscripted assignment."+ex);
+			throw CalcException("Error in subscripted assignment."+ex.getMessage());
 		}
 
 		if (var->isComplexNumber())

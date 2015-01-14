@@ -21,7 +21,7 @@ namespace PR
 		{
 			if (!ex)
 				return nullptr;
-			throw string("Variable '" + name + "' not found!");
+			throw CalcException("Variable '" + name + "' not found!");
 		}
 		return result->second;
 	}
@@ -45,7 +45,7 @@ namespace PR
 	{
 		auto result = mem.find(name);
 		if (result == mem.end() &&ex)
-			throw string("Variable '" + name + "' not found!");
+			throw CalcException("Variable '" + name + "' not found!");
 		return result;
 	}
 

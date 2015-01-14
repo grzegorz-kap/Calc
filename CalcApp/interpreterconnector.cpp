@@ -28,7 +28,8 @@ void InterpreterConnector::executionComplate(void)
 void InterpreterConnector::commandToInterpreter(QString command)
 {
 	emit executionStarted();
-	interpreter.work(command.toStdString());	
+	interpreter.work(command.toStdString());
+	executionComplate();
 }
 
 void InterpreterConnector::workingDirectoryChanged(QString command)
@@ -57,4 +58,5 @@ void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data
 void InterpreterConnector::errors_receiver(const char *str, int position)
 {
 	emit interpreterError(errorHtml + str + endFontHtml);
+	executionComplate();
 }
