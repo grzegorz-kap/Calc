@@ -6,7 +6,7 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-
+	ui.tabWidget->setTabsClosable(true);
 	ui.actionNew->setShortcut(QKeySequence::New);
 	ui.actionOtw_Rz->setShortcut(QKeySequence::Open);
 	ui.actionSave->setShortcut(QKeySequence::Save);
@@ -21,7 +21,7 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(onNewFileAction()));
 	connect(ui.actionOtw_Rz, SIGNAL(triggered()), this, SLOT(onOpenAction()));
 	connect(ui.actionRun, SIGNAL(triggered()), this, SLOT(onRunAction()));
-
+	connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 	setupToolbar();
 }
 
@@ -30,6 +30,77 @@ ScriptEditor::~ScriptEditor()
 
 }
 
+void ScriptEditor::closeTab(int idx)
+{
+	ScriptEditWidget *widget = static_cast<ScriptEditWidget*>(ui.tabWidget->widget(idx));
+	if (!widget->isUpdated())
+	{
+		removeTab(idx);
+		return;
+	}
+	prepereSaveDialog(widget);
+}
+
+void ScriptEditor::removeTab(int idx)
+{
+	ui.tabWidget->removeTab(idx);
+	if (ui.tabWidget->count() == 0)
+		hide();
+}
+
+void ScriptEditor::prepereSaveDialog(ScriptEditWidget *widget)
+{
+	QMessageBox msg;
+	msg.setText("The script has been modified.");
+	msg.setInformativeText("Do you want to save changes in \"" + ui.tabWidget->tabText(ui.tabWidget->indexOf(widget)) + "\"?");
+	msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	int ret = msg.exec();
+	switch (ret)
+	{
+	case QMessageBox::Save:
+		widget->saveToFile();
+		break;
+	case QMessageBox::Discard:
+		removeTab(ui.tabWidget->indexOf(widget));
+		break;
+	}
+}
+
+bool ScriptEditor::close()
+{
+	bool _save_all = false;
+	for (int i = 0; i < ui.tabWidget->count(); i++)
+	{
+		auto *widget = static_cast<ScriptEditWidget*>(ui.tabWidget->widget(i));
+		if (!widget->isUpdated())
+			continue;
+		if (!_save_all)
+		{
+			QMessageBox msg;
+			msg.setText("The script has been modified.");
+			msg.setInformativeText("Do you want to save changes in \"" + ui.tabWidget->tabText(ui.tabWidget->indexOf(widget)) + "\"?");
+			msg.setStandardButtons(QMessageBox::Yes | QMessageBox::YesAll | QMessageBox::No | QMessageBox::NoToAll | QMessageBox::Cancel);
+			int ret = msg.exec();
+			switch (ret)
+			{
+			case QMessageBox::Yes:
+				widget->saveToFile();
+				break;
+			case QMessageBox::YesAll:
+				_save_all = true;
+				widget->saveToFile();
+				break;
+			case QMessageBox::NoAll:
+				return true;
+			case QMessageBox::Cancel:
+				return false;
+			}
+		}
+		else
+			widget->saveToFile();
+	}
+	return QMainWindow::close();
+}
 
 void ScriptEditor::addTab(QString pathArg)
 {
@@ -57,7 +128,6 @@ void ScriptEditor::onTextChanged()
 	int idx = ui.tabWidget->indexOf(widget);
 	ui.tabWidget->setTabIcon(idx, QIcon(":/CalcApp/dot.png"));
 }
-
 
 void ScriptEditor::workingDirectoryChanged(QString newWorkingDirectory)
 {

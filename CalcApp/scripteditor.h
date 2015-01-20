@@ -5,6 +5,7 @@
 #include <qdir.h>
 #include <qlistwidget.h>
 #include <qpushbutton.h>
+#include <qmessagebox.h>
 #include "ui_scripteditor.h"
 #include "scripteditwidget.h"
 
@@ -29,6 +30,8 @@ public:
 	void onNewFileAction();
 	void onOpenAction();
 	void onRunAction();
+	void closeTab(int idx);
+	bool close();
 
 signals:
 	void runCommand(QString command);
@@ -38,6 +41,8 @@ private:
 	static int i;
 
 	void setupToolbar();
+	void prepereSaveDialog(ScriptEditWidget *widget);
+	void removeTab(int idx);
 };
 
 #endif // SCRIPTEDITOR_H

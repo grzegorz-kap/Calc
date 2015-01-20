@@ -113,8 +113,7 @@ void CalcApp::stopComputing()
 
 void CalcApp::closeEvent(QCloseEvent *ev)
 {
-	scriptEditor.close();
-	variablesEditor.close();
-	ev->accept();
+	if (scriptEditor.close() && variablesEditor.close())
+		ev->accept();
 }
 

@@ -38,6 +38,7 @@ public slots:
 	void receiveVariableInformation(PR::VariableInfo info);
 	void onCurrentTabChanged(int idx);
 	void computationComplate();
+	void tabClose(int idx);
 signals:
 	void variableInformationRequest(QString varName);
 };

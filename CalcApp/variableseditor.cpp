@@ -8,7 +8,9 @@ VariablesEditor::VariablesEditor(QWidget *parent)
 	setWindowFlags(Qt::Window);
 	setWindowTitle("Variables editor");
 	setWindowIcon(QIcon(":/CalcApp/Matrix-icon.png"));
+	ui.tabWidget->setTabsClosable(true);
 	connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
+	connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClose(int)));
 }
 
 VariablesEditor::~VariablesEditor()
@@ -43,7 +45,7 @@ void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 	}
 
 
-
+	hide();
 	idx = ui.tabWidget->indexOf(widget);
 	ui.tabWidget->blockSignals(true);
 	ui.tabWidget->setCurrentIndex(idx);
@@ -51,6 +53,13 @@ void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 	show();
 	
 	dynamic_cast<VariableEditWidget *>(widget)->loadWidget(info);
+}
+
+void VariablesEditor::tabClose(int idx)
+{
+	ui.tabWidget->removeTab(idx);
+	if (ui.tabWidget->count() == 0)
+		hide();
 }
 
 void VariablesEditor::receiveVarsUpdate(const PR::VariableInfo *data, int num)
@@ -85,7 +94,7 @@ void VariablesEditor::computationComplate()
 {
 	for (QWidget *widget : to_remove)
 	{
-		ui.tabWidget->removeTab(ui.tabWidget->indexOf(widget));
+		tabClose(ui.tabWidget->indexOf(widget));
 	}
 	to_remove.clear();
 }
