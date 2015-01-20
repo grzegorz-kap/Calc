@@ -11,6 +11,7 @@ using std::unique_ptr;
 
 namespace PR
 {
+	//! Klasa reprezentujaca literal liczbowy.
 	class SNumber :
 		public Token
 	{

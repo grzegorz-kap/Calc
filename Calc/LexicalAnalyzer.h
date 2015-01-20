@@ -17,19 +17,24 @@ using std::queue;
 
 namespace PR
 {
+	//! Klasa stanawiaca modul analizy leksykalnej.
 	class LexicalAnalyzer
 	{
 		vector<unique_ptr<Token>> tokens;
 		vector<unique_ptr<Token>>::iterator iter;
 	public:
 		LexicalAnalyzer();
+		//! \param tekst wejsciowy.
 		LexicalAnalyzer(const string &command);
 		~LexicalAnalyzer();
 
+		//! Ustawia wejscie analizatora.
+		//! \param commend tekst, ktory zostanie podzielony na tokeny.
 		void setInput(const string &command);
 		void setInput(string &&in);
 		void setInput(FileLoader &in);
 
+		//! Pobranie wodrebnionych symboli leksykalnych.
 		auto getTokens() -> decltype(tokens);
 	
 	private:	

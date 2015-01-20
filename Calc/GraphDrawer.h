@@ -8,21 +8,47 @@
 
 using namespace std;
 
+//! Struktura przechowuje wymiary macierzy.
 struct size
 {
+	//! Konstruktor ustawiaj¹cy pola struktury.
+	//! \param i to liczba wierszy.
+	//! \param j to liczba kolumn.
 	size(int i, int j) :m(i), n(j){}
-	int m;
-	int n;
+	int m; //!< Przechowuje liczbe wierszy.
+	int n; //!< Przechowuje liczbe kolumn.
 };
 
+//! Klasa rysujaca wykresy 2D i 3D.
 class  GraphDrawer
 {
 	
 public:
+	
+	//! Domyslny konstruktor
 	GraphDrawer();
 	~GraphDrawer();
+	
+	//! Metoda rysuje liniowy wykres dwuwymiarowy.
+	//! \param x  tablica wspolrzednych osi x.
+	//! \param y  tablica wspolrzednych osi y.
+	//! \param x_count  rozmiar tablicy x.
+	//! \param y_count  rozmiar tablicy y.
 	void plot(double *x,double *y,int x_count,int y_count);
+
+	//! Metoda rysuje liniowy wykres 3d.
+	//! \param x tablica wspolrzednych x.
+	//! \param y tablica wspolrzednych y.
+	//! \param z tablica wspolrzednych z.
+	//! \param x_n rozmiar tablicy x.
+	//! \param y_n rozmiar tablicy y.
+	//! \param z_n rozmiar tablicy z.
 	void plot3(double *x,double *y,double *z, int x_n,int y_n,int z_n);
+
+	//! Rysuje powierzchnie 3d.
+	//! \param x tablica wspolrzednych x.
+	//! \param y tablica wspolrzednych y.
+	//! \param z tablica wspolrzednych z.
 	void surface(double *x,double *y,double *z,size sx,size sy,size sz);
 private:
 

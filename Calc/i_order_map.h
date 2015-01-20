@@ -10,6 +10,7 @@
 
 namespace PR
 {
+	//! Mapa z istotna kolejnoscia wstawiania elementow.
 	template<class KEY,class VALUE>
 	class i_order_map
 	{

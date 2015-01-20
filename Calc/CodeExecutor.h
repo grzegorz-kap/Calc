@@ -22,44 +22,71 @@ using std::vector;
 
 namespace PR
 {
+	//! Klasa obslugujaca wykonywanie kodu przez interpreter.
 	class CodeExecutor
 	{
 		
 	public:
-		static int recursions;
+		//! Aktualna liczba zagniezdzonych wywolan funkcji zewnetrznych.
+		static int recursions; 
+
+		//! Limit zagniezdzonych wywolan funkcji zewnetrznych
 		static int recursion_limit;
 
+		//! \brief Konstruktor domyslny.
+		/*! Tworzy lokalna przestrzen robocza zmiennych. */
 		CodeExecutor();
+
+		//! \brief Konstruktor z ustawieniem referencji na przestrzen robocza zmiennych.
+		/*! Operacje beda wykonywane na ustawionej przestrzeni roboczej zmiennych.
+		*	@param ref referencja na obiekt zawierajacy przestrzen robocza zmiennych.
+		*/
 		CodeExecutor(Variables &ref);
 		~CodeExecutor();
 		
+		//! \brief Ustawienie danych wejsciowych
+		//! \param in Tekst zawierajacy instrukcje jezyka do wykonania.
 		void setInput(const string &in);
+
+		//! \brief Ustawienie danych wejsciowych
+		//! \param in plik zawierajacy instrukcje do przetworzenia
 		void setInput(FileLoader &in);
+
+		//! Rozpoczyna wykonywanie kodu
 		void start();
 		
+		//! Powoduje przerwanie obliczen
 		static void set_stop_computing();
+
+		//! Resetuje flage przerwania obliczen
 		static void off_stop_computing();
+
+		//! Oblicza wartosc pojedynczego wyrazenia
+		//! \param onp tablica zawierajaca wyrazenie postfiksowe
+		//! \param onp referencja na przestrzen robocza
 		static vector<shared_ptr<Data>> run_single(const vector<shared_ptr<Token>> &onp, Variables &vars);
+
+		//! Metoda sprawdzajaca czy token sluzy do indeksowania macierzy
+		//! Ustala czy token to ":" lub "end" uzywane do indeksowania macierzy.
+		//! \param t symbol leksykalny do sprawdzenia
 		static bool isMatrixEndOrColon(const shared_ptr<Token> &t);
 	private:
 		
-		static bool stop_computing;			/* Set to true if compution should be canceled*/
-		bool eval_flag;						/* eval function flag */
-		vector<shared_ptr<Data>> stack;		/* Data stack */
-		Instruction::const_iterator i;		/* Single instruction iterator */
-		vector<int> conditions;				/* Conditions addresses for while instruction */
-		vector<int> jumbs;					/* Jump addresses for while instruction */
-		vector<ForIterator> for_iterators;	/* For loop iterators */
-		Ip ip;								/* Iterator for code */
-		CodeGenerator code;					/* Code storage class */
-		bool output_off_flag;				/* Indicates if display data to screen */
-		bool assignment_flag;				/* Indicates if assignment occurred, if not default assignment */
-		bool _single_run;					/* Single expression computation flag */
-		bool _single_id_flag;					/* Should only display variable without assignment */
-		AssignmentsData assignment;			/* Storage information of occurred assignments*/
-		Variables internal_vars;			/* Should not be used directly! Local variables in extern function execution */
-		Variables &vars_ref;				/* Reference to variables */
-		static Variables globals;			/* Global variables */
+		static bool stop_computing;			//!< Flaga wskazuja czy nalezy przerwac obliczenia.
+		bool eval_flag;						//!< Flaga okreslajaca typ wykonywania.
+		vector<shared_ptr<Data>> stack;		//!< Stos uzywany w trakcie obliczania wartosci wyrazenia.
+		Instruction::const_iterator i;		//!< Iterator na elementy instrukcji.
+		vector<int> conditions;				//!< Adresy wyrazen warunkowych peti while.
+		vector<ForIterator> for_iterators;	//!< Stos iteratorow dla petli for.
+		Ip ip;								//!< Iterator na aktualnie wykonywana instrukcje.
+		CodeGenerator code;					//!< Obiekt zawierajacy wczytany kod.
+		bool output_off_flag;				//!< Flaga okreslajaca czy wyswietlic wynik wyrazenia.
+		bool assignment_flag;				//!< Flaga okreslajaca czy wystapilo przypisanie.
+		bool _single_run;					//!< Flaga okreslajaca tryb wykonywania.
+		bool _single_id_flag;			    //!< Flaga okreslajaca typ obliczanego wyrazenia.
+		AssignmentsData assignment;			//!< Zawiera informacje o zmiennych do wyswietlenia.
+		Variables internal_vars;			//!< Lokalna przestrzen robocza. Nie u¿ywana bezpoœrednio.
+		Variables &vars_ref;				//!< Referencja na przestrzen robocza zmiennych.
 		string _file;						/* File name in casue of script or external function computation */
 
 		/* Constructor for external function execution */

@@ -28,13 +28,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-	class CholeskyFunction : public Function
-	{
-	public:
-		CholeskyFunction();
-		~CholeskyFunction();
-		virtual shared_ptr<Data> run() override;
-	};
 
 	class LuFunction : public Function
 	{

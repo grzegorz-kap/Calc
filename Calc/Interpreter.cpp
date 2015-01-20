@@ -46,13 +46,6 @@ namespace PR
 		FunctionFactory::delete_external(file);
 	}
 
-	void Interpreter::workFromFile(const string &fileName)
-	{
-		CodeExecutor exec(Interpreter::main_vars);
-		exec.setInput(FileLoader(fileName));
-		exec.start();
-	}
-
 	void Interpreter::changeWorkingDirectory(const char *name)
 	{
 		FileLoader::changeWorkingDirectory(name);

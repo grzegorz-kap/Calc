@@ -50,21 +50,6 @@ namespace PR
 		return arguments[0]->inv();
 	}
 
-	CholeskyFunction::CholeskyFunction()
-	{
-		min_args_count = max_args_count = 1;
-		name = "chol";
-	}
-
-
-	CholeskyFunction::~CholeskyFunction()
-	{
-	}
-
-	shared_ptr<Data> CholeskyFunction::run()
-	{
-		return arguments[0]->cholesky();
-	}
 
 
 	LuFunction::LuFunction()

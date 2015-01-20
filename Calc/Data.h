@@ -43,6 +43,7 @@ namespace PR
 		RM_DOUBLE
 	};
 
+	//! Interfejs dla typow danych programu.
 	class   Data
 	{
 	protected:
@@ -50,16 +51,16 @@ namespace PR
 	public:
 		Data();
 		~Data();
-		TYPE _type;
-		bool _updated;
-		bool _added;
-		bool _temp;
+		TYPE _type; //!< Typ wartosci.
+		bool _updated; //!< Flaga modyfikacji.
+		bool _added; //!< Flaga dodania.
+		bool _temp; //!< Obiekt tymczasowy.
 		
-		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP;
-		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP;
+		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP; //!< mapa typow danych.
+		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP; //!< mapa nazw typow.
 
-		static TYPE find_type(const std::type_index &idx);
-		static const string & find_name(const TYPE &type);
+		static TYPE find_type(const std::type_index &idx); //!< Pobranie elementu z mapy typow danych.
+		static const string & find_name(const TYPE &type); //!< Pobranie nazwy typu.
 
 		virtual bool isMatrix() const{ return false; }
 		virtual bool isComplexNumber() const{ return false; }
@@ -145,6 +146,8 @@ namespace PR
 		virtual shared_ptr<Data> get_rows_index() const; /* For indexing */
 		virtual shared_ptr<Data> get_cols_index() const; /* For indexing */
 
+		//! Konwertuje typ wartosci na inny.
+		//! \param T typu do ktorego odbedzie sie konwersja.
 		template<class T>
 		shared_ptr<Numeric<T>>  convert_numeric()
 		{

@@ -855,7 +855,6 @@ namespace PR
 		END_FOR, END_WHILE
 	};
 
-	Variables CodeExecutor::globals = Variables();
 	bool CodeExecutor::stop_computing = false;
 
 	int CodeExecutor::recursions = 0;

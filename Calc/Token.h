@@ -16,6 +16,7 @@ namespace PR
 
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
 
+	//! Klasa reprezentujaca symbol leksykalny.
 	class Token :public Data
 	{
 	private:

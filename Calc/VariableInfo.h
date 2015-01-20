@@ -15,6 +15,7 @@ using std::weak_ptr;
 
 namespace PR
 {
+	//! Klasa z informacjami o zmiennej.
 	class CALC_API VariableInfo
 	{
 	private:

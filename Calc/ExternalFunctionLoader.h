@@ -5,6 +5,7 @@
 
 namespace PR
 {
+	//! Laduje funkcje z pliku.
 	class ExternalFunctionLoader
 	{
 	private:
@@ -15,8 +16,13 @@ namespace PR
 		const string &name;
 
 	public:
+
+		//! Konstruktor klasy.
+		//! \param name nazwa funkcji do wczytania
 		ExternalFunctionLoader(const string &name);
 		~ExternalFunctionLoader();
+
+		//! Zwraca obiekt wczytanej funkcji.
 		ExternalFunction get();
 
 	private:

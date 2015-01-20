@@ -20,20 +20,28 @@ using std::string;
 
 namespace PR
 {
+	//! Fabryka operatorow.
 	class OperatorsFactory
 	{	
-	private:
-		OperatorsFactory();
-		static OperatorsFactory * instance;
-		i_order_map<string, unique_ptr<Operator>(*)()>  operators;
-	
 	public:
 		OperatorsFactory & operator = (const OperatorsFactory &) = delete;
 		OperatorsFactory(const OperatorsFactory &) = delete;
 		~OperatorsFactory();
 
-		static unique_ptr<Operator> get(const string &name,int startIdx,int &length);
+		//! \brief  Wyodrabnia operator z tekstu wejsciowego.
+		//! \param name tekst wejsciowy.
+		//! \param startIdx indeks elementu w tekscie od ktorego rozpoczac wyszukiwanie.
+		//! \param length referencja na dlugosc identyfikatora znalezionego operatora.
+		static unique_ptr<Operator> get(const string &name, int startIdx, int &length);
+
+		//! \brief Zwraca operator o wskazanej nazwie.
+		//! \param name symbol operatora do pobrania.
 		static unique_ptr<Operator> simple_get(const string &name);
+	private:
+		OperatorsFactory();
+		static OperatorsFactory * instance; //<! Instancja fabryki
+		i_order_map<string, unique_ptr<Operator>(*)()>  operators; //<! Mapa operatorow
+	
 
 	private:
 		static void init();

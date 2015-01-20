@@ -23,6 +23,7 @@ using std::vector;
 
 namespace PR
 {
+	//! Klasa dzielaca tekst na symbole leksykalne.
 	class Tokenizer
 	{
 	public:	

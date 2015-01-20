@@ -12,6 +12,8 @@ using std::string;
 
 namespace PR
 {
+	//! \brief Zawiera informacje o instrukcji for.
+	//! Obiekty tej klasy sa tworzone na etapie parsowania instrukcji.
 	class InstructionFor :
 		public Token
 	{
@@ -22,7 +24,10 @@ namespace PR
 		InstructionFor(const Token &token);
 		~InstructionFor();
 
+		//! Ustawia nazwe zmiennej bedacej iteratorem petli.
 		void setName(const string &new_name);
+
+		//! Ustawia wyrazenie stanowiace zestaw iterowanych wartosci.
 		void setOnp(const vector<shared_ptr<Token>> &o);
 		void setOnp(vector<shared_ptr<Token>> &&o);
 		const vector<shared_ptr<Token>>& getOnp() const;

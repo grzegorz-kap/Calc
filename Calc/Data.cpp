@@ -415,7 +415,7 @@ namespace PR
 
 	string Data::prepareCastError()
 	{
-		return "Cannot cast '" + find_name(this->_type) + "' to numeric type";
+		return "Cannot convert '" + find_name(this->_type) + "' to numeric type";
 	}
 
 

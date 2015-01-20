@@ -14,9 +14,17 @@ using std::make_unique;
 
 namespace PR
 {
+	//! Fabryka operacji przypisania.
+	/*! 
+		Zwraca odpowiedni obiekt implementujacy interfejs operacji przypisania 
+	*/
 	class AssignmentFactory
 	{
 	public:
+		//! Zwraca odpowiedni typ przypisania.
+		/*!
+		* @param _class rodzaj symbolu leksykalnego, na podstawie ktorego zotanie zwrocona odpowiednia implementacja interfejsu przypisania
+		*/
 		static unique_ptr<IAssignment> get(TOKEN_CLASS _class);
 	};
 }

@@ -2,6 +2,7 @@
 #include "Function.h"
 namespace PR
 {
+	//! Klasa wywolujaca dzielenie modulo
 	class ModFunction :
 		public Function
 	{

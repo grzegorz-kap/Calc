@@ -17,6 +17,7 @@ namespace PR
 	class MatrixUtils;
 	template <class T> class MatrixBuilder;
 
+	//! Klasa reprezentujaca macierz.
 	template<class T> 
 	class  Matrix : public Numeric<Matrix<T>>
 	{

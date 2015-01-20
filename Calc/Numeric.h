@@ -11,6 +11,7 @@ using std::make_unique;
 
 namespace PR
 {
+	//! Intefejs dla typow numerycznych.
 	template <class T>
 	class Numeric : public Data
 	{

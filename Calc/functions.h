@@ -8,7 +8,13 @@ using std::vector;
 
 namespace PR
 {
-
+	//! Funkcja wyszukuje pierwsze wyst¹pienie wartosci z zestawu wartosci.
+	/*!
+	*	Funkcja sprawdza czy przynajmniej jeden element z zestawu wartosci znajduje sis w przeszukiwanej tablicy.
+	*	@param search to przeszukiwana tablica
+	*	@param match to zestaw wartoœci które nale¿y wyszukaæ
+	*	@return wynik wyszukiwania
+	*/
 	template <typename T>
 	bool find(const vector<T> &search, const vector<T> &match)
 	{
