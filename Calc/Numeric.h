@@ -120,6 +120,11 @@ namespace PR
 			return make_shared<T>(Mathematic::logarithm(*get_derived(), *b->cast_numeric<T>()->get_derived()));
 		}
 
+		virtual shared_ptr<Data> sqrt() const override
+		{
+			return make_shared<T>(Mathematic::sqrt_calc(*get_derived()));
+		}
+
 		virtual shared_ptr<Data> sin() const override
 		{
 			return make_shared<T>(Mathematic::sinus(*get_derived()));

@@ -94,6 +94,7 @@ namespace PR
 		virtual shared_ptr<Data> log(shared_ptr<Data> &) const;
 		virtual shared_ptr<Data> log2() const;
 		virtual shared_ptr<Data> log10() const;
+		virtual shared_ptr<Data> sqrt() const;
 		virtual void lu(shared_ptr<Data> &) const;
 		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &) const;
 		virtual void  lu(shared_ptr<Data> &, shared_ptr<Data> &, shared_ptr<Data> &) const;

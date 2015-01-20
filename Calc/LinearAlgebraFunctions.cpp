@@ -47,6 +47,8 @@ namespace PR
 
 	shared_ptr<Data> InvFunction::run()
 	{
+		if (arguments[0]->get_rows_int() != arguments[0]->get_cols_int())
+			throw NumericException(string("inv(A). A must be squere matrix."));
 		return arguments[0]->inv();
 	}
 

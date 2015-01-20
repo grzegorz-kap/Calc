@@ -54,4 +54,20 @@ namespace PR
 		else
 			return arguments[0]->log(arguments[1]);
 	}
+
+	SqrtFunction::SqrtFunction()
+	{
+		min_args_count = 1;
+		max_args_count = 1;
+		name = "sqrt";
+	}
+	SqrtFunction::~SqrtFunction()
+	{
+
+	}
+
+	shared_ptr<Data> SqrtFunction::run()
+	{
+		return arguments[0]->sqrt();
+	}
 }

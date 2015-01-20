@@ -268,4 +268,10 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="klab.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="klab.rc" />
+  </ItemGroup>
 </Project>

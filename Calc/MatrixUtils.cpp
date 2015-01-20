@@ -67,13 +67,10 @@ namespace PR
 			for (int i = k + 1; i < m; i++)
 			{
 				A.mx[i][k] /= ref;
-				for (int j = k+1; j < m; j++)
+				for (int j = k+1; j < n; j++)
 					A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];
 			}
 
-			/*for (int i = k + 1; i < m; i++)
-				for (int j = k + 1; j < n; j++)
-						A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];*/
 		}
 		Matrix<T> *n_u = nullptr;
 		if (u)
@@ -115,7 +112,7 @@ namespace PR
 	ComplexNumber<T> MatrixUtils::det(const Matrix<T> &a)
 	{
 		if (a.M != a.N)
-			throw NumericException("Cannot compute determinant from not squere matrix");
+			throw NumericException("det(A) - A must be squere matrix.");
 		if (a.M == 0)
 			return ComplexNumber<T>(1);
 
@@ -203,6 +200,9 @@ namespace PR
 	template <class T>
 	void MatrixUtils::url(const Matrix<T> &A, const Matrix<T> &b, int j_b, Matrix<T> &x, int j_x)
 	{
+		if (A.M != A.N || A.M != b.N || A.M != x.N)
+			throw NumericException("URL. Arguments dimensions must agree.");
+
 		x.mx[0][j_x] = b.mx[0][j_b];
 		for (int i = 1; i < A.M; i++)
 		{

@@ -27,4 +27,12 @@ namespace PR
 
 		virtual shared_ptr<Data> run() override;
 	};
+
+	class SqrtFunction : public Function
+	{
+	public:
+		SqrtFunction();
+		~SqrtFunction();
+		virtual shared_ptr<Data> run() override;
+	};
 }

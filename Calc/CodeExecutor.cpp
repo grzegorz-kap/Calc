@@ -505,12 +505,11 @@ namespace PR
 		int num = (*ii)->cast_token()->getParam();
 		stack.erase(ii, stack.end());
 
-		try{
-			onVariableFunction(args, vars_ref.get(name));
-			return;
-		}
-		catch (const CalcException &ex)
+		shared_ptr<Data> var = vars_ref.get(name, false);
+		if (var != nullptr)
 		{
+			onVariableFunction(args, var);
+			return;
 		}
 
 		if (name == "eval")

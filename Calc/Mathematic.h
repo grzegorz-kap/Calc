@@ -57,7 +57,8 @@ namespace PR
 		template <class T> static Matrix<T> cmod(const Matrix<T> &A, const Matrix<T> &B);
 		template <class T> static ComplexNumber<T> cround(const ComplexNumber<T> &a);
 		template <class T> static Matrix<T> cround(const Matrix<T> &A);
-
+		template <class T> static Matrix<T> sqrt_calc(const Matrix<T> &A){ return power(A, ComplexNumber<T>(0.5)); }
+		template <class T> static ComplexNumber<T> sqrt_calc(const ComplexNumber<T> &A){ return power(A, ComplexNumber<T>(0.5)); };
 	};
 }
 
