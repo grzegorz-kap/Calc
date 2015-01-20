@@ -23,6 +23,7 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 	connect(ui.actionRun, SIGNAL(triggered()), this, SLOT(onRunAction()));
 	connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 	setupToolbar();
+	statusBar()->showMessage("Ln: 1, Col: 1");
 }
 
 ScriptEditor::~ScriptEditor()
@@ -110,12 +111,19 @@ void ScriptEditor::addTab(QString pathArg)
 	widget->readFromFile();
 	connect(widget, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 	connect(widget, SIGNAL(fileSaved()), this, SLOT(onChangesSaved()));
-	
+	connect(widget, SIGNAL(cursorPositionChanged()), this, SLOT(cursorChanged()));
 	if (fileName == ".")
 		fileName = "Untitled" + (i++ ? QString::number(i) : "") ;
 
 	ui.tabWidget->addTab(widget, fileName);
 	ui.tabWidget->setCurrentWidget(widget);
+}
+
+void ScriptEditor::cursorChanged()
+{
+	auto *widget = static_cast<ScriptEditWidget*>(QObject::sender());
+	QTextCursor q = widget->textCursor();
+	statusBar()->showMessage("Ln: " + QString::number(q.blockNumber() + 1) + ", Col: " + QString::number(q.columnNumber() + 1));
 }
 
 void ScriptEditor::onTextChanged()

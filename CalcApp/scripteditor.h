@@ -32,6 +32,7 @@ public:
 	void onRunAction();
 	void closeTab(int idx);
 	bool close();
+	void cursorChanged();
 
 signals:
 	void runCommand(QString command);
