@@ -21,12 +21,17 @@ namespace PR
 		return std::find_first_of(search.begin(), search.end(), match.begin(), match.end()) != search.end()
 	}
 
+	//! Znajduje dana wartosc w zbiorze wartosci.
+	//! \param search tablica ze zbiorem wartosci.
+	//! \param value wartosc do wyszukania.
 	template <typename T>
 	bool find(const vector<T> &search, const T &value)
 	{
 		return std::find(search.begin(), search.end(), value) != search.end();
 	}
 
+	//! Zwalnia zasoby pamieci.
+	//! \param ptr adres wskaünika.
 	template <typename T>
 	void SafeRealase(T ** ptr)
 	{
@@ -36,16 +41,4 @@ namespace PR
 			*ptr = nullptr;
 		}
 	}
-
-	template <typename T>
-	string toString(const vector<T> &v)
-	{
-		string out = "";
-		for (vector<T>::const_iterator i = v.begin(); i != v.end(); i++)
-		{
-			out.append(i->toString() + "\n");
-		}
-		return out;
-	}
-
 }

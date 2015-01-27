@@ -43,6 +43,7 @@ namespace PR
 		insert<IsScalarFunction>("isscalar");
 		insert<IsVectorFunction>("isvector");
 		insert<SqrtFunction>("sqrt");
+		insert<ErrorFunction>("error");
 	}
 
 	FunctionFactory::~FunctionFactory()

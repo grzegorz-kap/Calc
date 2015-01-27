@@ -25,6 +25,7 @@ using std::function;
 #include "MatrixGenerationFunctions.h"
 #include "ModFunction.h"
 #include "RoundingFunctions.h"
+#include "MessagesFunction.h"
 
 namespace PR
 {

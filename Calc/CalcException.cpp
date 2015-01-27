@@ -23,4 +23,9 @@ namespace PR
 	{
 	}
 
+	string CalcException::getFullMessage() const
+	{
+		return "Ln: " + std::to_string(line) + ", Col: " + std::to_string(position) + "\n" + message;
+	}
+
 }

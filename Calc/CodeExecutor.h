@@ -87,18 +87,20 @@ namespace PR
 		AssignmentsData assignment;			//!< Zawiera informacje o zmiennych do wyswietlenia.
 		Variables internal_vars;			//!< Lokalna przestrzen robocza. Nie u¿ywana bezpoœrednio.
 		Variables &vars_ref;				//!< Referencja na przestrzen robocza zmiennych.
-		string _file;						/* File name in casue of script or external function computation */
+		string _file;						//!< File name in casue of script or external function computation.
 
-		/* Constructor for external function execution */
+		//! Constructor for external function execution.
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
 		
-		/* Find specific element in data stack */
+		//! Find specific element in data stack.
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class, bool ex = false);
 
-		/* Execute single instruction */
+		//! Execute single instruction.
 		shared_ptr<Data> run(bool multi=true);
+		
+		//! \brief Rozpoczecie wykonywania kodu.
+		//! \param in tekst z intstrukcja do wykonania.
 		void start(const string &in);
-
 		void onOperator();
 		void onShortCircuitJumper();
 		void onMatrixEnd();

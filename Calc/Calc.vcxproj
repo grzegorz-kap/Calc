@@ -128,6 +128,7 @@
     <ClInclude Include="LogicalOperators.h" />
     <ClInclude Include="MatrixUtils.h" />
     <ClInclude Include="Mathematic.h" />
+    <ClInclude Include="MessagesFunction.h" />
     <ClInclude Include="ModFunction.h" />
     <ClInclude Include="MpfFunction.h" />
     <ClInclude Include="NumericException.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="LogicalOperators.cpp" />
     <ClCompile Include="MatrixUtils.cpp" />
     <ClCompile Include="Mathematic.cpp" />
+    <ClCompile Include="MessagesFunction.cpp" />
     <ClCompile Include="ModFunction.cpp" />
     <ClCompile Include="MpfFunction.cpp" />
     <ClCompile Include="NumericException.cpp" />

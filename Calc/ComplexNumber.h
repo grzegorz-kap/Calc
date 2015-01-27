@@ -23,6 +23,10 @@ namespace PR
 		ComplexNumber(const double & reArg, const double & imArg = 0);
 		ComplexNumber(const hdouble & reArg, const hdouble & imArg = 0);
 		ComplexNumber(string &&val_str);
+		ComplexNumber(const ComplexNumber<T> &b);
+		ComplexNumber(ComplexNumber<T> &&b);
+		ComplexNumber<T>& operator = (const ComplexNumber<T> &b);
+		ComplexNumber<T>& operator = (ComplexNumber<T> &&b);
 		~ComplexNumber();
 		void operator += (const ComplexNumber<T> &b);
 		ComplexNumber<T> & operator = (const T &i);

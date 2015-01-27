@@ -23,6 +23,43 @@ namespace PR
 		setDataType();
 	}
 
+	template <class T> ComplexNumber<T>::ComplexNumber(const ComplexNumber<T> &b)
+		: re(b.re), im(b.im)
+	{
+		setDataType();
+	}
+
+	template <class T> ComplexNumber<T>::ComplexNumber(ComplexNumber<T> &&b)
+		:re(b.re), im(b.im)
+	{
+		b.re = 0; b.im = 0;
+		setDataType();
+	}
+
+	template <class T>
+	ComplexNumber<T>& ComplexNumber<T>::operator=(const ComplexNumber<T> &b)
+	{
+		if (&b!=this)
+		{ 
+			re = b.re;
+			im = b.im;
+		}
+		return *this;
+	}
+
+	template <class T>
+	ComplexNumber<T>& ComplexNumber<T>::operator=(ComplexNumber<T> &&b)
+	{
+		if (&b != this)
+		{
+			re = b.re;
+			im = b.im;
+			b.re = 0;
+			b.im = 0;
+		}
+		return *this;
+	}
+
 	template <> ComplexNumber<double>::ComplexNumber(string &&val)
 	{
 		if (val.size() && val.back() == 'i')

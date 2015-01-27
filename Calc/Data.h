@@ -53,8 +53,8 @@ namespace PR
 		~Data();
 		TYPE _type; //!< Typ wartosci.
 		bool _updated; //!< Flaga modyfikacji.
-		bool _added; //!< Flaga dodania.
-		bool _temp; //!< Obiekt tymczasowy.
+		bool _added;   //!< Flaga dodania.
+		bool _temp;    //!< Obiekt tymczasowy.
 		
 		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP; //!< mapa typow danych.
 		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP; //!< mapa nazw typow.

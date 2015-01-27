@@ -92,7 +92,7 @@ bool ScriptEditor::close()
 				widget->saveToFile();
 				break;
 			case QMessageBox::NoAll:
-				return true;
+				return QMainWindow::close();
 			case QMessageBox::Cancel:
 				return false;
 			}

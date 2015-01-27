@@ -15,7 +15,7 @@ namespace PR
 	//! Klasa reprezentujaca funkcje zewnetrzna.
 	class ExternalFunction
 	{
-		//! Nazwy parametrow wejsciowych.
+		//! Nazwy parametrow wyjsciowych.
 		vector<string> output;
 
 		//! Nazwy argumentow wejsciowych.

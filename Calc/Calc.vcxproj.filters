@@ -285,6 +285,9 @@
     <ClInclude Include="Operator.h">
       <Filter>Model\Operator</Filter>
     </ClInclude>
+    <ClInclude Include="MessagesFunction.h">
+      <Filter>Function\functions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -496,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="Operator.cpp">
       <Filter>Model\Operator</Filter>
+    </ClCompile>
+    <ClCompile Include="MessagesFunction.cpp">
+      <Filter>Function\functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

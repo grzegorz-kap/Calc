@@ -1,6 +1,6 @@
 #include "appdata.h"
 
-const QString AppData::app_name = "KapiLab";
+const QString AppData::app_name = "KLab";
 
 const QString AppData::calcFolder =
 	QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + AppData::app_name;
@@ -9,11 +9,13 @@ const QString AppData::dirHistory = AppData::calcFolder + "/dirHistory.m";
 
 const QString AppData::commandHistory = AppData::calcFolder + "/commandHistory.m";
 
+const QString AppData::docsAndSettings = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) +
+										  "/" + app_name;
 
 AppData::AppData(QObject *parent)
 	: QObject(parent)
 {
-
+	createCalcFolder();
 }
 
 AppData::~AppData()
@@ -25,6 +27,8 @@ void AppData::createCalcFolder()
 {
 	if (!QDir(calcFolder).exists())
 		QDir().mkdir(calcFolder);
+	if (!QDir(docsAndSettings).exists())
+		QDir().mkdir(docsAndSettings);
 }
 
 void AppData::appendToFile(const QString &fileName, const QString &data)

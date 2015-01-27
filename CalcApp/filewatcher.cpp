@@ -44,7 +44,11 @@ void FileWatcher::setNewDirectory( QString directory)
 	if (dir.path() == directory)
 		return;
 	mFilesWatcher.removePaths(dir.entryList());
-	dir.setPath(directory == "" ? QDir::currentPath() : directory);
-	changed(directory);
+	removePath(dir.path());
+	dir.setPath(directory == "" ? dir.path() : directory);
+	dir.refresh();
+	addPath(dir.path());
+	mFilesWatcher.addPaths(dir.entryList());
 	emit workingDirectoryChanged(dir.path());
+	emit sendFileList(dir.entryList());
 }

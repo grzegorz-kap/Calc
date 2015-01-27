@@ -5,7 +5,6 @@ namespace PR
 {
 	extern template class ComplexNumber < double > ;
 	extern template class ComplexNumber < hdouble > ;
-
 	extern template class Numeric < Matrix<double> > ;
 	extern template class Numeric < Matrix<hdouble> > ;
 	extern template class Numeric < ComplexNumber<double> > ;
@@ -92,7 +91,6 @@ namespace PR
 			N = other.N;
 			other.M = 0;
 			other.N = 0;
-
 		}
 		return *this;
 	}
@@ -105,7 +103,7 @@ namespace PR
 			return b.ldivide(mx[0][0]);
 
 		if (M != b.M || N != b.N)
-			throw NumericException("/ Matrix dimensions must agree");
+			throw NumericException("A./B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -140,7 +138,7 @@ namespace PR
 			return b * mx[0][0];
 
 		if (b.N != N || b.M != M)
-			throw CalcException("Incompatibile matrix m x n");
+			throw CalcException("A.*B: Matrix dimensions must agree.");
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -196,7 +194,7 @@ namespace PR
 			return B + mx[0][0];
 
 		if (M != B.M || N != B.N)
-			throw NumericException("+ Matrix dimensions must agree");
+			throw NumericException("A+B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -222,7 +220,7 @@ namespace PR
 			return B.sub(mx[0][0]);
 
 		if (M != B.M || N != B.N)
-			throw NumericException("- Matrix dimensions must agree");
+			throw NumericException("A-B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -289,8 +287,10 @@ namespace PR
 		else if (M == 1 && N == 1)
 			return B.ldivide(mx[0][0]);
 	
+		if (B.M != B.N)
+			throw NumericException("A/B: A*inv(B). B must be a squere matrix.");
 		if (N != B.M)
-			throw NumericException("A/B <==> A*inv(B) Matrix dimensions must agree");
+			throw NumericException("A/B: A*inv(B). Number of columns in A must be the same as number of rows in B.");
 
 		return Matrix<T>::matrix_divide(*this, B);
 	}
@@ -317,7 +317,7 @@ namespace PR
 			return *this == b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException("== Matrix dimensions must agree");
+			throw NumericException("A==B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -343,7 +343,7 @@ namespace PR
 			return *this != b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException("!= Matrix dimensions must agree");
+			throw NumericException("A~=B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -378,7 +378,7 @@ namespace PR
 			return *this < b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException("< Matrix dimensions must agree");
+			throw NumericException("A<B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -404,7 +404,7 @@ namespace PR
 			return *this > b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException("> Matrix dimensions must agree");
+			throw NumericException("A>B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -430,7 +430,7 @@ namespace PR
 			return *this <= b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException("<= Matrix dimensions must agree");
+			throw NumericException("A<=B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -456,7 +456,7 @@ namespace PR
 			return *this >= b.mx[0][0];
 
 		if (M != b.M || N != b.N)
-			throw NumericException(">= Matrix dimensions must agree");
+			throw NumericException("A>=B: Matrix dimensions must agree.");
 
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -477,7 +477,7 @@ namespace PR
 	template <class T> Matrix<T> Matrix<T>::operator | (const Matrix<T> &b) const
 	{
 		if (M != b.M || N != b.N)
-			throw NumericException("Error using | . Matrix sizes must agree");
+			throw NumericException("Error using A|B . Matrix sizes must agree");
 		Matrix<T> c(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -488,7 +488,7 @@ namespace PR
 	template <class T> Matrix<T> Matrix<T>::operator & (const Matrix<T> &b) const
 	{
 		if (M != b.M || N != b.N)
-			throw NumericException("Error using & . Matrix sizes must agree");
+			throw NumericException("Error using A&B . Matrix sizes must agree");
 		Matrix<T> c(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)

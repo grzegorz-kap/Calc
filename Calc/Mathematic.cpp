@@ -17,7 +17,7 @@ namespace PR
 			return Mathematic::power(a, b.mx[0][0]);
 
 		if (a.M != b.M || a.N != b.N)
-			throw NumericException("Error in .^: matrix dimensions must agree");
+			throw NumericException("Error in A.^B: matrix dimensions must agree.");
 
 		Matrix<T> C(a.M, a.N);
 		for (int i = 0; i < C.M; i++)
@@ -78,7 +78,7 @@ namespace PR
 			throw NumericException("A^B. Second argument must be non-negative integer.");
 
 		if (a.M != a.N)
-			throw NumericException("A^B. First argument must be scalar or squere matrix");
+			throw NumericException("A^B. First argument must be scalar or squere matrix.");
 
 		int bb = b.mx[0][0].toInteger();
 		if (bb == 0)

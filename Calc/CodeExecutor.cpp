@@ -595,7 +595,7 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throwError("Cannot load external function \""+name+"\"");
+			throwError("Cannot load external function \""+name+"\":"+"\n"+ex.getFullMessage());
 		}
 		CodeExecutor exec(function, args);
 		exec.start();

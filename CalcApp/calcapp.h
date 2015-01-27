@@ -14,6 +14,7 @@
 #include "variablesinfos.h"
 #include "variableseditor.h"
 #include "ScriptEditor.h"
+#include "about.h"
 
 
 class CalcApp : public QMainWindow
@@ -39,6 +40,7 @@ private:
 
 	public slots:
 	void stopComputing();
+	void onAboutAction();
 
 };
 

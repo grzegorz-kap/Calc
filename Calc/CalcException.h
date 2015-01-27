@@ -31,6 +31,7 @@ namespace PR
 		~CalcException();
 
 		string getMessage()const{ return message; } //!< Zwraca komunikat bledu
+		string getFullMessage() const;
 		const string& getMessageR()const{ return message; } //!< Zwraca komunikat bledu.
 		string getCommand()const{ return command; } //!< Zwraca dodatkowe informacje.
 		int getPosition()const{ return position; } //!< Zwraca numer wiersza.
