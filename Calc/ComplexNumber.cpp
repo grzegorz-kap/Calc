@@ -151,6 +151,8 @@ namespace PR
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::operator * (const ComplexNumber<T> &b) const
 	{
+		if (im == 0 && b.im == 0)
+			return ComplexNumber<T>(re*b.re);
 		ComplexNumber<T> c;
 		c.re = re*b.re - im*b.im;
 		c.im = re*b.im + im*b.re;

@@ -39,6 +39,7 @@ namespace PR
 		}
 		SignalEmitter::get()->call_execution_complate();
 		sendUpdatedVariablesInformations();
+		FunctionFactory::clear_externals();
 	}
 
 	void Interpreter::updateFile(const char *file)

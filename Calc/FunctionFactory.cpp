@@ -63,6 +63,9 @@ namespace PR
 	ExternalFunction& FunctionFactory::load_external(const string &name)
 	{
 		loadInstance();
+		auto result = instance->externals.find(name);
+		if (result != instance->externals.end())
+			return result->second;
 		instance->readExternal(name);
 		return instance->externals[name];
 	}

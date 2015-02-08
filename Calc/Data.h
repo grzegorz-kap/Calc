@@ -1,4 +1,7 @@
- #pragma once
+#ifndef DATA_H
+#define DATA_H
+
+#pragma once
 #include "export.h"
 
 #include <memory>
@@ -179,3 +182,5 @@ namespace PR
 	};
 
 };
+
+#endif 

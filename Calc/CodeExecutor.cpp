@@ -547,6 +547,7 @@ namespace PR
 		CodeExecutor exec(vars_ref);
 		exec.eval_flag = true;
 		exec.assignment_flag = true;
+		exec._single_run = true;
 		exec.output_off_flag = true;
 		exec.setInput(ptr->toString());
 		exec.start();

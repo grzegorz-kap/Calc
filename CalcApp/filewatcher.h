@@ -15,8 +15,6 @@ private:
 public:
 	FileWatcher(const QString &dir,QObject *parent=0);
 	~FileWatcher();
-
-	QFileSystemWatcher mFilesWatcher;
 signals:
 	void sendFileList(QStringList list);
 	void fileUpdated( QString );
@@ -25,7 +23,6 @@ signals:
 public slots:
 	void changed( QString  path);
 	void fileDialogButtonClicked();
-	void changedFile( QString path);
 	void setNewDirectory( QString path);
 	
 };

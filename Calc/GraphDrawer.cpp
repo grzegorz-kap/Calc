@@ -104,7 +104,10 @@ void GraphDrawer::setupXAxisParameters(double *x,int n)
 
 void GraphDrawer::setupYAxisParameters(double *y, int n)
 {
-	g.gaxpar(*std::min_element(y, y + n), *std::max_element(y, y + n),
+	double min = *std::min_element(y, y + n);
+	double max = *std::max_element(y, y + n);
+	if (abs(min) < 2e50&&abs(max) < 2e50)
+		g.gaxpar(min, max,
 		"EXTEND", "Y", &y_min_limit, &y_max_limit, &y_first_axis_label, &y_step_axis_label, &y_ndig);
 }
 

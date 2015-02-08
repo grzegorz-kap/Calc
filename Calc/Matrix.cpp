@@ -288,7 +288,7 @@ namespace PR
 			return B.ldivide(mx[0][0]);
 	
 		if (B.M != B.N)
-			throw NumericException("A/B: A*inv(B). B must be a squere matrix.");
+			throw NumericException("A/B: A*inv(B). B must be a square matrix.");
 		if (N != B.M)
 			throw NumericException("A/B: A*inv(B). Number of columns in A must be the same as number of rows in B.");
 

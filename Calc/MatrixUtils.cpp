@@ -102,7 +102,7 @@ namespace PR
 	template <class T>
 	int MatrixUtils::lu(const ComplexNumber<T> &src, ComplexNumber<T> **L, ComplexNumber<T> **U, ComplexNumber<T> **P)
 	{
-		*L = new ComplexNumber<T>(src);
+		*L = U ? new ComplexNumber<T>(1) : new ComplexNumber<T>(src);
 		if (U) *U = new ComplexNumber<T>(src);
 		if (P) *P = new ComplexNumber<T>(1);
 		return 0;
@@ -112,7 +112,7 @@ namespace PR
 	ComplexNumber<T> MatrixUtils::det(const Matrix<T> &a)
 	{
 		if (a.M != a.N)
-			throw NumericException("det(A) - A must be squere matrix.");
+			throw NumericException("det(A) - A must be square matrix.");
 		if (a.M == 0)
 			return ComplexNumber<T>(1);
 
@@ -154,7 +154,7 @@ namespace PR
 	Matrix<T> MatrixUtils::ldivide(const Matrix<T> &A, const Matrix<T> &B)
 	{
 		if (A.M!=A.N)
-			throw NumericException("A/B==x <==> A*x=B . A must by squere Matrix.");
+			throw NumericException("A/B==x <==> A*x=B . A must by square Matrix.");
 		if (A.M != B.M)
 			throw NumericException("A/B==x <==> A*x=B . Number of rows in A and B must be the same.");
 
@@ -251,7 +251,12 @@ namespace PR
 	{
 		if (step.getRe() == 0)
 			return Matrix<T>(1, 0);
-		int m = (int)Mathematic::fix((end - start) / step).getRe();
+		int multi = 1000;
+		int max_steps = 10;
+		while (--max_steps && abs(step.re)*multi < 1)
+			multi *= 10;
+		int m = (int)Mathematic::fix((end.re*multi - start.re*multi) / (step.re*multi));
+
 		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m<0)
 			return Matrix<T>(1, 0);
 

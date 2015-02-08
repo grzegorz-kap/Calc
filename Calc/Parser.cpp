@@ -305,6 +305,7 @@ namespace PR
 			}
 
 			_function_args.pop_back();
+			_function_onp_addr.pop_back();;
 			stackToOnp();
 		}
 	}

@@ -1,3 +1,6 @@
+#ifndef NUMERIC_H
+#define NUMERIC_H
+
 #pragma once
 
 #include <memory>
@@ -375,3 +378,5 @@ namespace PR
 	//	template <class U> friend class Numeric;
 	};
 };
+
+#endif

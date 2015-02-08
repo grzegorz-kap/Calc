@@ -3,7 +3,7 @@
 
 
 /*!
-\mainpage KLab - Interpreter wyrazen matematycznych.
+\mainpage KLab - Interpreter operacji matematycznych.
 \author Grzegorz Kapica
 \date 08.02.2015
 \version 1.0
