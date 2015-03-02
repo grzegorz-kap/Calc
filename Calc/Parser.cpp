@@ -397,9 +397,11 @@ namespace PR
 			case TOKEN_CLASS::OPERATOR:
 				balance = -t->castToOperator()->getArgumentsNum() + 1; break;
 			case TOKEN_CLASS::MATRIX_END:
-				balance = -mtrx.back() + 1; mtrx.pop_back(); break;
+				balance =  -mtrx.back() + 1;
+				mtrx.pop_back(); break;
 			case TOKEN_CLASS::FUNCTION:
-				balance = -funs.back() + 1; funs.pop_back(); break;
+				balance = funs.back() == 0 ? 0 : -funs.back() + 1;
+				funs.pop_back(); break;
 			}
 			main += balance;
 			if (main <= 0 && t->getClass()==TOKEN_CLASS::OPERATOR || main<0)

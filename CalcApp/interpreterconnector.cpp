@@ -1,6 +1,6 @@
 #include "interpreterconnector.h"
 
-const QString InterpreterConnector::errorHtml = "<font color=\"DeepPink\">";
+const QString InterpreterConnector::errorHtml = "<br><font color=\"DeepPink\">";
 const QString InterpreterConnector::endFontHtml = "</font><br>";
 
 InterpreterConnector::InterpreterConnector()

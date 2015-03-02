@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include "Data.h"
+#include "ComplexNumber.h"
 #include "VariableInfo.h"
 using std::string;
 using std::map;
@@ -73,6 +74,7 @@ namespace PR
 		void remove(vector<shared_ptr<Data>> &args);
 		void safe_to_file(const string &working_dir, vector<shared_ptr<Data>> &args);
 		void safe_to_file(std::ofstream &file, vector<shared_ptr<Data>> &args);
+		void init_consts();
 	};
 }
 #endif

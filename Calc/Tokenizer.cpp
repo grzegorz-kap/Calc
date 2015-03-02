@@ -179,9 +179,9 @@ namespace PR
 
 	void Tokenizer::skipLineComment()
 	{
-		while (i < N &&command[i++] != '\n')
-			_position++;
-		i--;
+		while (i < N &&command[i] != '\n')
+			inc();
+		//i--;
 	}
 
 	void Tokenizer::deleteUneccessary()

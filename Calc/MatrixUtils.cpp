@@ -200,7 +200,7 @@ namespace PR
 	template <class T>
 	void MatrixUtils::url(const Matrix<T> &A, const Matrix<T> &b, int j_b, Matrix<T> &x, int j_x)
 	{
-		if (A.M != A.N || A.M != b.N || A.M != x.N)
+		if (A.M != A.N || A.M != b.M || A.M != x.M)
 			throw NumericException("URL. Arguments dimensions must agree.");
 
 		x.mx[0][j_x] = b.mx[0][j_b];

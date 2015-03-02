@@ -8,6 +8,8 @@ namespace PR
 	Variables::Variables(bool main)
 		:main(main)
 	{
+		
+		init_consts();
 	};
 
 	Variables::~Variables()
@@ -26,10 +28,23 @@ namespace PR
 		return result->second;
 	}
 
+	void Variables::init_consts()
+	{
+		shared_ptr<ComplexNumber<double>> t;
+		t = make_shared<ComplexNumber<double>>(3.141592653589793238462643383279);
+		t->_temp = false;
+		mem["pi"] = t;
+
+		t = make_shared<ComplexNumber<double>>(2.71828182846);
+		t->_temp = false;
+		mem["e"] = t;
+	}
+
 	void Variables::clear(const string &name)
 	{
 		if (mem.erase(name) > 0)
 			removed.push_back(name);
+		
 	}
 
 	void Variables::clear()
@@ -39,6 +54,7 @@ namespace PR
 			removed.push_back(i->first);
 			i = mem.erase(i);
 		}
+		init_consts();
 	}
 
 	variables_map_iter Variables::getIterator(const string &name, bool ex)

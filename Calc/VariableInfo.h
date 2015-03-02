@@ -1,5 +1,3 @@
-#ifndef VARIABLES_INFO_H
-#define VARIABLES_INFO_H
 
 #pragma once
 
@@ -44,5 +42,3 @@ namespace PR
 }
 
 
-
-#endif
