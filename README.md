@@ -119,20 +119,24 @@ C=
 6   5
 ```
 # Matrix generating methods
-- rand(m)
-- rand(m,n)
-- eye(m,n)
-- ones(m,n)
-- zeros(m,n)
+```
+rand(m)
+rand(m,n)
+eye(m,n)
+ones(m,n)
+zeros(m,n)
+```
 
 # Matrix indexing
-- A(i,j)
-- A(i) (matrix A treated as column vector)
-- A(k:m,j)
-- A(:,j)
-- A(i,:)
-- A(end,i)
-- A(end+3,j)=10; (automatic matrx expansion)
+```
+ A(i,j)
+ A(i) (matrix A treated as column vector)
+ A(k:m,j)
+ A(:,j)
+ A(i,:)
+ A(end,i)
+ A(end+3,j)=10; (automatic matrx expansion)
+ ```
 
 To remove matrix entire rows or columns use fallowing command:
 ```
@@ -140,82 +144,93 @@ A(:,2:3) = [] %removing 2nd and 3rd column from A
 ```
 
 # Arithmetic operators
-- A+B
-- A.+B
-- +A
-- A-B
-- A.-B
-- -A
-- A*B
-- A.*B
-- A/B (compute A*inv(B))
-- A./B
-- A\B (solves A*x=B)
-- A.\B
-- A^B
-- A.^B
-- A'
-- A.'
-- 
-
+```
+ A+B
+ A.+B
+ +A
+ A-B
+ A.-B
+ -A
+ A*B
+ A.*B
+ A/B (compute A*inv(B))
+ A./B
+ A\B (solves A*x=B)
+ A.\B
+ A^B
+ A.^B
+ A'
+ A.'
+```
 # Relational operatos
-- A==B
-- A~=B
-- A<B
-- A<=B
-- A>B
-- A>=B
-
+```
+ A==B
+ A~=B
+ A<B
+ A<=B
+ A>B
+ A>=B
+```
 # Logical operators
-- expression1 | expression2
-- expression1 & expression2
-- expression1 || expression2 (short-circuit OR operator, applied only to scalar arguments)
-- expression2 && expression2 (short-circuit AND operator)
-- ~negation
-
+```
+ expression1 | expression2
+ expression1 & expression2
+ expression1 || expression2 %(short-circuit OR operator, applied only to scalar arguments)
+ expression2 && expression2 %(short-circuit AND operator)
+ ~negation
+```
 # Build in functions
-- a=sqrt(A)
-- a=log(b) or a=log(b,c)
-- a=log2(c)
-- a=log10(d)
-- sin(A), cos(A), tan(A), cot(A)
-- conj(3+2i) == 3-2i 
-- det(A)
-- inv(A) == A^-1
-- x=url(A,b)
-- [L,U,P]=lu(A)
-
+ ```
+ a=sqrt(A)
+ a=log(b) or a=log(b,c)
+ a=log2(c)
+ a=log10(d)
+ sin(A)
+ cos(A)
+ tan(A)
+ cot(A)
+ conj(3+2i) == 3-2i 
+ det(A)
+ inv(A) == A^-1
+ x=url(A,b)
+ [L,U,P]=lu(A)
+```
 # Matrix sizes
-- [m,n]=size(A)
-- a=length(C)
-- numel(A)
-- iscolumn(A)
-- isrow(A)
-- isempty(A)
-- isscalar(A)
-- isvector(A)
-- rows(A)
-- cols(A)
-
+```
+ [m,n]=size(A)
+ a=length(C)
+ numel(A)
+ iscolumn(A)
+ isrow(A)
+ isempty(A)
+ isscalar(A)
+ isvector(A)
+ rows(A)
+ cols(A)
+```
 # Data plots
 KLab can draw 2D and 3D plots using fallowing methods:
-- plot(x,y)
-- plot3(x,y,z)
-- mesh(x,y,z)
-
+```
+ plot(x,y)
+ plot3(x,y,z)
+ mesh(x,y,z)
+```
 # Workspace variables removing
+```
 clear % remove all variables
 clear var1, var2, var3
 clear ('var1','var2',...,'varN')
-
+```
 # Save variables to file
+```
 save file_name % save all variables
 save file_name var1 var2 ... varN
-
+```
 # Load variables from file
+```
 load file_name % load all variables from file
 load file_name var1 var2 ... varN
-
+```
 # Error generating
 ```
 % plik def_fun.m
@@ -225,7 +240,8 @@ function d = det_fun(A)
     end
     d=det(A);
 end
-
+```
+```
 % command line
 >> det_fun(rand(3,7))
 det_fun Col: 3, Line: 3 A must be squere matrix!
