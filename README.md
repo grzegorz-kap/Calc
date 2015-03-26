@@ -2,6 +2,9 @@
 Calc is small Matlab language interpreter. The applications supports only basic Matlab operations.
 I'm currently creating new interpeter from scratch with improved stability and performance.
 
+## Download
+Windows (32-bit): https://onedrive.live.com/redir?resid=E099E6685BF9AD4%21213167
+
 ## To compile requires:
 - Boost 1.57
 - Qt5
