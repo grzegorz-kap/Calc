@@ -39,9 +39,7 @@ A = [ 1 3 -3
 B = mpf_float(A);
 ```
 # Syntax
-
-## Language fundamentals
-### Command entering
+## Command entering
 Instructions can be separated by semicolon, comma or new line:
 ```
  a=3+2i , b=2; d= 2 + ... continuing instruction in new line
@@ -49,7 +47,7 @@ Instructions can be separated by semicolon, comma or new line:
 ```
 To prevent command result display use semicolon.
 
-### IF instruction
+## IF instruction
 
 ```
  if (a==1)
@@ -60,7 +58,7 @@ To prevent command result display use semicolon.
     2
  end
 ```
-### Loops
+## Loops
 ```
 A=[]; 
 for i=1:0.1:10
@@ -71,7 +69,10 @@ while i<10
   i=i-1;
 end
 ```
-### Functions
+
+Inside loops 'break' and 'continue' keywords might be used.
+
+## Functions
 Function must be declered in seperate ".m" file. The file name must be the same as a function name. File has to start with function declaration (see fallowing example).
 ```
  function [out1,out2] = methodName(in1,in2,in3) 
@@ -79,6 +80,18 @@ Function must be declered in seperate ".m" file. The file name must be the same 
     out2=in1+in3;
  end
 ```
+To exit function or script use 'return' keyword.
+
+## Comments
+```
+% Single line comment
+
+%{ Multiline
+    comment %}
+```
+
+
+
 # Fast vector genarating
 ```
 i = 1:10; % default step is always 1
@@ -126,8 +139,94 @@ To remove matrix entire rows or columns use fallowing command:
 A(:,2:3) = [] %removing 2nd and 3rd column from A
 ```
 
+# Arithmetic operators
+- A+B
+- A.+B
+- +A
+- A-B
+- A.-B
+- -A
+- A*B
+- A.*B
+- A/B (compute A*inv(B))
+- A./B
+- A\B (solves A*x=B)
+- A.\B
+- A^B
+- A.^B
+- A'
+- A.'
+- 
+
+# Relational operatos
+- A==B
+- A~=B
+- A<B
+- A<=B
+- A>B
+- A>=B
+
+# Logical operators
+- expression1 | expression2
+- expression1 & expression2
+- expression1 || expression2 (short-circuit OR operator, applied only to scalar arguments)
+- expression2 && expression2 (short-circuit AND operator)
+- ~negation
+
+# Build in functions
+- a=sqrt(A)
+- a=log(b) or a=log(b,c)
+- a=log2(c)
+- a=log10(d)
+- sin(A), cos(A), tan(A), cot(A)
+- conj(3+2i) == 3-2i 
+- det(A)
+- inv(A) == A^-1
+- x=url(A,b)
+- [L,U,P]=lu(A)
+
+# Matrix sizes
+- [m,n]=size(A)
+- a=length(C)
+- numel(A)
+- iscolumn(A)
+- isrow(A)
+- isempty(A)
+- isscalar(A)
+- isvector(A)
+- rows(A)
+- cols(A)
+
 # Data plots
 KLab can draw 2D and 3D plots using fallowing methods:
 - plot(x,y)
 - plot3(x,y,z)
 - mesh(x,y,z)
+
+# Workspace variables removing
+clear % remove all variables
+clear var1, var2, var3
+clear ('var1','var2',...,'varN')
+
+# Save variables to file
+save file_name % save all variables
+save file_name var1 var2 ... varN
+
+# Load variables from file
+load file_name % load all variables from file
+load file_name var1 var2 ... varN
+
+# Error generating
+```
+% plik def_fun.m
+function d = det_fun(A)
+    if rows(A)~=cols(A)
+        error('A must be squere matrix!');
+    end
+    d=det(A);
+end
+
+% command line
+>> det_fun(rand(3,7))
+det_fun Col: 3, Line: 3 A must be squere matrix!
+```
