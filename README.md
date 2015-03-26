@@ -13,16 +13,18 @@ I'm currently creating new interpeter from scratch with improved stability and p
 
 ## IF instructions
 
-if (a==1)
+```
+ if (a==1)
     c=2
-elseif (3)
+ elseif (3)
     d=2
-else
+ else
     2
-end
-
+ end
+```
 ## Loops
-A=[];
+```
+A=[]; 
 for i=1:0.1:10
   A(1,i)=i*i;
 end
@@ -30,11 +32,18 @@ end
 while i<10
   i=i-1;
 end
-
+```
 ## Functions
-Function must be declered in seperate ".m" file. The file name must be the same as a function name. File has to start with function declaration like in fallowing example:
-
- function [out1,out2] = method(in1,in2,in3) 
+Function must be declered in seperate ".m" file. The file name must be the same as a function name. File has to start with function declaration (see fallowing example).
+```
+ function [out1,out2] = methodName(in1,in2,in3) 
     out1=in1*in2;
     out2=in1+in3;
  end
+```
+
+# Data plots
+KLab can draw 2D and 3D plots using fallowing methods:
+- plot(x,y)
+- plot3(x,y,z)
+- mesh(x,y,z)
