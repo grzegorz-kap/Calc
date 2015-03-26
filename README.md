@@ -215,6 +215,23 @@ KLab can draw 2D and 3D plots using fallowing methods:
  plot3(x,y,z)
  mesh(x,y,z)
 ```
+## Example plot
+```
+eps=2.2204e-16;
+temp = -8:0.5:8;
+[m,n]=size(temp);
+x=[];
+y=[];
+for i=1:n
+	x(i,:) = temp;
+	y(i,:) = temp;
+end
+y=y';
+R = (x.^2 + y.^2).^0.5 + eps;
+Z = sin(R)./R;
+mesh(x,y,Z);
+```
+
 # Workspace variables removing
 ```
 clear % remove all variables
