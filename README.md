@@ -9,7 +9,45 @@ I'm currently creating new interpeter from scratch with improved stability and p
 - Qt Vs Addin
 - DISLIN
 
+# Data types
+## Scalar types
+double:
+``` 
+a=2+3i;
+```
+mpf_float (100 bit)
+```
+b=mpf_float(543e+45599999)
+```
+
+## String
+To create a string use two apostrophes:
+```
+string_variable = 'Hello world'
+```
+
+## Matrix
+To create a matrix use fallowing instruction:
+```
+A = [1 3 -3 ; 1+10 3*10 3 ; [3 3 2]]
+%or
+A = [ 1 3 -3
+    1+10 3*10 3
+    [3 3 2]]
+
+%mpf_float matrix
+B = mpf_float(A);
+```
 # Syntax
+
+## Language fundamentals
+### Command entering
+Instructions can be separated by semicolon, comma or new line:
+```
+ a=3+2i , b=2; d= 2 + ... continuing instruction in new line
+ 3*10;
+```
+To prevent command result display use semicolon.
 
 ## IF instructions
 
