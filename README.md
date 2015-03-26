@@ -49,7 +49,7 @@ Instructions can be separated by semicolon, comma or new line:
 ```
 To prevent command result display use semicolon.
 
-## IF instructions
+### IF instruction
 
 ```
  if (a==1)
@@ -60,7 +60,7 @@ To prevent command result display use semicolon.
     2
  end
 ```
-## Loops
+### Loops
 ```
 A=[]; 
 for i=1:0.1:10
@@ -71,13 +71,59 @@ while i<10
   i=i-1;
 end
 ```
-## Functions
+### Functions
 Function must be declered in seperate ".m" file. The file name must be the same as a function name. File has to start with function declaration (see fallowing example).
 ```
  function [out1,out2] = methodName(in1,in2,in3) 
     out1=in1*in2;
     out2=in1+in3;
  end
+```
+# Fast vector genarating
+```
+i = 1:10; % default step is always 1
+ii = 1:0.1:10;
+```
+
+# Matrix connection
+```
+>> A = [1 ; 2 ; 3];
+>> B = [ A [4 3; 5 4 ; 6 5] ]
+B=
+1  4   3
+2  5   4
+3  6   5
+
+>> C = [ A ; [4 3; 5 4 ; 6 5] ]
+Col: 28, Line: 1 Dimensions of matrices being concatenated are not consistent.
+>> C = [ [ A [10 ; 11 ; 12-3 ] ] ; [4 3; 5 4 ; 6 5] ]
+C=
+1   10
+2   11
+3   9
+4   3
+5   4
+6   5
+```
+# Matrix generating methods
+- rand(m)
+- rand(m,n)
+- eye(m,n)
+- ones(m,n)
+- zeros(m,n)
+
+# Matrix indexing
+- A(i,j)
+- A(i) (matrix A treated as column vector)
+- A(k:m,j)
+- A(:,j)
+- A(i,:)
+- A(end,i)
+- A(end+3,j)=10; (automatic matrx expansion)
+
+To remove matrix entire rows or columns use fallowing command:
+```
+A(:,2:3) = [] %removing 2nd and 3rd column from A
 ```
 
 # Data plots
