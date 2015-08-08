@@ -108,7 +108,6 @@
     <ClCompile Include="..\Calc\MessagesFunction.cpp" />
     <ClCompile Include="..\Calc\ModFunction.cpp" />
     <ClCompile Include="..\Calc\MpfFunction.cpp" />
-    <ClCompile Include="..\Calc\NumberReader.cpp" />
     <ClCompile Include="..\Calc\Numeric.cpp" />
     <ClCompile Include="..\Calc\NumericException.cpp" />
     <ClCompile Include="..\Calc\Operator.cpp" />
@@ -117,7 +116,6 @@
     <ClCompile Include="..\Calc\Output.cpp" />
     <ClCompile Include="..\Calc\Parser.cpp" />
     <ClCompile Include="..\Calc\PlotingFunctions.cpp" />
-    <ClCompile Include="..\Calc\RegexTokenizer.cpp" />
     <ClCompile Include="..\Calc\RelationalOperators.cpp" />
     <ClCompile Include="..\Calc\RoundingFunctions.cpp" />
     <ClCompile Include="..\Calc\ShortCircuitJumper.cpp" />
@@ -125,7 +123,6 @@
     <ClCompile Include="..\Calc\SizeFunction.cpp" />
     <ClCompile Include="..\Calc\SNumber.cpp" />
     <ClCompile Include="..\Calc\String.cpp" />
-    <ClCompile Include="..\Calc\TokenizerHelper.cpp" />
     <ClCompile Include="..\Calc\TranspositionOperator.cpp" />
     <ClCompile Include="..\Calc\TrigonometryFunctions.cpp" />
     <ClCompile Include="..\Calc\TypePromotor.cpp" />
@@ -178,7 +175,6 @@
     <ClInclude Include="..\Calc\MessagesFunction.h" />
     <ClInclude Include="..\Calc\ModFunction.h" />
     <ClInclude Include="..\Calc\MpfFunction.h" />
-    <ClInclude Include="..\Calc\NumberReader.h" />
     <ClInclude Include="..\Calc\Numeric.h" />
     <ClInclude Include="..\Calc\NumericException.h" />
     <ClInclude Include="..\Calc\Operator.h" />
@@ -187,7 +183,6 @@
     <ClInclude Include="..\Calc\Output.h" />
     <ClInclude Include="..\Calc\Parser.h" />
     <ClInclude Include="..\Calc\PlotingFunctions.h" />
-    <ClInclude Include="..\Calc\RegexTokenizer.h" />
     <ClInclude Include="..\Calc\RelationalOperators.h" />
     <ClInclude Include="..\Calc\RoundingFunctions.h" />
     <ClInclude Include="..\Calc\ShortCircuitJumper.h" />
@@ -195,7 +190,6 @@
     <ClInclude Include="..\Calc\SizeFunction.h" />
     <ClInclude Include="..\Calc\SNumber.h" />
     <ClInclude Include="..\Calc\String.h" />
-    <ClInclude Include="..\Calc\TokenizerHelper.h" />
     <ClInclude Include="..\Calc\TranspositionOperator.h" />
     <ClInclude Include="..\Calc\TrigonometryFunctions.h" />
     <ClInclude Include="..\Calc\TypePromotor.h" />

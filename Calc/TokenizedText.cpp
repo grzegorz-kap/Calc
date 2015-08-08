@@ -59,4 +59,8 @@ namespace KLab {
 	void TokenizedText::Length(unsigned int val) {
 		length = val;
 	}
+
+	const string& TokenizedText::getText() const {
+		return text;
+	}
 }

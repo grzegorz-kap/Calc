@@ -24,6 +24,7 @@ namespace KLab {
 		void Position(unsigned int val);
 		unsigned int Length() const;
 		void Length(unsigned int val);
+		const string& getText() const;
 
 	private:
 		void initAfterTextSet();

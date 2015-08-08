@@ -49,9 +49,6 @@
     <Filter Include="old_structure\Service\LexicalAnalyze">
       <UniqueIdentifier>{61866582-f201-40cb-b40a-abdac838b4c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="old_structure\Service\LexicalAnalyze\Helpers">
-      <UniqueIdentifier>{8991bbae-4d9b-4273-99cd-5b87758f9842}</UniqueIdentifier>
-    </Filter>
     <Filter Include="old_structure\Service\Math">
       <UniqueIdentifier>{9c6280c5-8926-4169-a476-ae327b1ef034}</UniqueIdentifier>
     </Filter>
@@ -177,12 +174,6 @@
     <ClCompile Include="..\Calc\LexicalBalanceHelper.cpp">
       <Filter>old_structure\Service\LexicalAnalyze</Filter>
     </ClCompile>
-    <ClCompile Include="..\Calc\NumberReader.cpp">
-      <Filter>old_structure\Service\LexicalAnalyze\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Calc\TokenizerHelper.cpp">
-      <Filter>old_structure\Service\LexicalAnalyze\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="..\Calc\MatrixUtils.cpp">
       <Filter>old_structure\Service\Math</Filter>
     </ClCompile>
@@ -278,9 +269,6 @@
     </ClCompile>
     <ClCompile Include="..\Calc\TrigonometryFunctions.cpp">
       <Filter>old_structure\Function\functions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Calc\RegexTokenizer.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -383,12 +371,6 @@
     <ClInclude Include="..\Calc\LexicalBalanceHelper.h">
       <Filter>old_structure\Service\LexicalAnalyze</Filter>
     </ClInclude>
-    <ClInclude Include="..\Calc\NumberReader.h">
-      <Filter>old_structure\Service\LexicalAnalyze\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Calc\TokenizerHelper.h">
-      <Filter>old_structure\Service\LexicalAnalyze\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="..\Calc\MatrixUtils.h">
       <Filter>old_structure\Service\Math</Filter>
     </ClInclude>
@@ -484,9 +466,6 @@
     </ClInclude>
     <ClInclude Include="..\Calc\TrigonometryFunctions.h">
       <Filter>old_structure\Function\functions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Calc\RegexTokenizer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

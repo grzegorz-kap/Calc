@@ -20,8 +20,11 @@ namespace KLab
 		TokenizerContext(string inputText);
 		~TokenizerContext();
 		int textPosition() const;
+		int textLength() const;
 		bool isCharacterToProccess();
 		void put(unique_ptr<Token> &&token);
+		void put(const string &lexame, TOKEN_CLASS tokenClass);
+		void put(string &&lexame, TOKEN_CLASS tokenClass);
 		bool isNumberStart();
 		bool isWordStart();
 		bool isSpaceStart();
@@ -30,8 +33,8 @@ namespace KLab
 		bool isMultiLineCommentStart();
 		char at(int offset = 0);
 		string at(int offset, int length);
-
 		shared_ptr<TokenList> Tokens() const;
+		const string& getText() const;
 
 	private:
 		void setupInitialState();

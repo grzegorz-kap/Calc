@@ -16,6 +16,12 @@
     <Filter Include="config">
       <UniqueIdentifier>{c201663b-85fc-4ce4-86c8-6ff64da7f2a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lexer\exception">
+      <UniqueIdentifier>{c1ceafc1-fd56-45ca-82cd-5bae55b8464f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lexer\helpers">
+      <UniqueIdentifier>{9929260b-3bd2-474b-bf1a-30d351c24b3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,13 +54,22 @@
     <ClInclude Include="TokenizerContext.h">
       <Filter>lexer\model</Filter>
     </ClInclude>
-    <ClInclude Include="CharHelper.h">
-      <Filter>lexer\model</Filter>
-    </ClInclude>
-    <ClInclude Include="TokenizeException.h">
-      <Filter>lexer</Filter>
-    </ClInclude>
     <ClInclude Include="commons.h" />
+    <ClInclude Include="TokenizeException.h">
+      <Filter>lexer\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="RegexTokenizer.h">
+      <Filter>lexer\service</Filter>
+    </ClInclude>
+    <ClInclude Include="CharHelper.h">
+      <Filter>lexer\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorTokenizeHelper.h">
+      <Filter>lexer\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolsTokenizeHelper.h">
+      <Filter>lexer\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TokenizerService.cpp">
@@ -79,7 +94,16 @@
       <Filter>lexer\model\cpp</Filter>
     </ClCompile>
     <ClCompile Include="TokenizeException.cpp">
-      <Filter>lexer</Filter>
+      <Filter>lexer\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="RegexTokenizer.cpp">
+      <Filter>lexer\service</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorTokenizeHelper.cpp">
+      <Filter>lexer\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolsTokenizeHelper.cpp">
+      <Filter>lexer\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

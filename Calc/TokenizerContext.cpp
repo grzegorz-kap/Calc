@@ -14,6 +14,10 @@ namespace KLab {
 		return text.Position();
 	}
 
+	int TokenizerContext::textLength() const {
+		return text.Length();
+	}
+
 	bool TokenizerContext::isCharacterToProccess() {
 		return text.isCharacterToProccess();
 	}
@@ -21,6 +25,14 @@ namespace KLab {
 	void TokenizerContext::put(unique_ptr<Token> &&token) {
 		proccessBeforePut(*token);
 		tokens->add(std::move(token));
+	}
+
+	void TokenizerContext::put(const string &lexame, TOKEN_CLASS tokenClass) {
+		put(unique_ptr<Token>(new Token(lexame, tokenClass)));
+	}
+
+	void TokenizerContext::put(string &&lexame, TOKEN_CLASS tokenClass) {
+		put(unique_ptr<Token>(new Token(std::move(lexame), tokenClass)));
 	}
 
 	string TokenizerContext::at(int offset, int length) {
@@ -33,6 +45,10 @@ namespace KLab {
 
 	shared_ptr<TokenList> TokenizerContext::Tokens() const {
 		return tokens;
+	}
+
+	const string& TokenizerContext::getText() const {
+		return text.getText();
 	}
 
 	void TokenizerContext::setupInitialState() {
