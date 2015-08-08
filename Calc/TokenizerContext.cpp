@@ -3,7 +3,11 @@
 
 namespace KLab {
 	TokenizerContext::TokenizerContext(string inputText) : text(inputText) {
+		tokens = shared_ptr<TokenList>(new TokenList());
 		setupInitialState();
+	}
+
+	TokenizerContext::~TokenizerContext() {
 	}
 
 	int TokenizerContext::textPosition() const {
@@ -16,7 +20,7 @@ namespace KLab {
 
 	void TokenizerContext::put(unique_ptr<Token> &&token) {
 		proccessBeforePut(*token);
-		tokens.add(std::move(token));
+		tokens->add(std::move(token));
 	}
 
 	string TokenizerContext::at(int offset, int length) {
@@ -25,6 +29,10 @@ namespace KLab {
 
 	char TokenizerContext::at(int offset /*= 0*/) {
 		return text.at(offset);
+	}
+
+	shared_ptr<TokenList> TokenizerContext::Tokens() const {
+		return tokens;
 	}
 
 	void TokenizerContext::setupInitialState() {

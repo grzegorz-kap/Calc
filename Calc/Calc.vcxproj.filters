@@ -51,6 +51,10 @@
     <ClInclude Include="CharHelper.h">
       <Filter>lexer\model</Filter>
     </ClInclude>
+    <ClInclude Include="TokenizeException.h">
+      <Filter>lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="commons.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TokenizerService.cpp">
@@ -72,7 +76,10 @@
       <Filter>lexer\model\cpp</Filter>
     </ClCompile>
     <ClCompile Include="TokenizerContext.cpp">
-      <Filter>lexer\model</Filter>
+      <Filter>lexer\model\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenizeException.cpp">
+      <Filter>lexer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

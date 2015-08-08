@@ -167,12 +167,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharHelper.h" />
+    <ClInclude Include="commons.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="TokenizedText.h" />
     <ClInclude Include="TokenClass.h" />
+    <ClInclude Include="TokenizeException.h" />
     <ClInclude Include="TokenizerContext.h" />
     <ClInclude Include="TokenizerService.h" />
     <ClInclude Include="TokenList.h" />
@@ -200,6 +202,7 @@
     </ClCompile>
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="TokenizedText.cpp" />
+    <ClCompile Include="TokenizeException.cpp" />
     <ClCompile Include="TokenizerContext.cpp" />
     <ClCompile Include="TokenizerService.cpp" />
     <ClCompile Include="TokenList.cpp" />

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-
-using std::string;
+#include "commons.h"
 
 namespace KLab {
 	class TokenizedText {

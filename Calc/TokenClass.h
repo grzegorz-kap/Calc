@@ -2,8 +2,7 @@
 
 namespace KLab
 {
-	enum TOKEN_CLASS
-	{
+	enum TOKEN_CLASS {
 		NUMBER,
 		ID,
 		OPEN_PARENTHESIS,
