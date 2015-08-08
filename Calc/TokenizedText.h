@@ -10,7 +10,6 @@ namespace KLab {
 		string text;
 		unsigned int position;
 		unsigned int length;
-
 	public:
 		TokenizedText(const string &text);
 		TokenizedText(string &&text);
@@ -22,6 +21,11 @@ namespace KLab {
 		bool at(int offset, int length, string compareTo);
 		bool isCharacterToProccess();
 		void incrementPosition(int value);
+
+		unsigned int Position() const;
+		void Position(unsigned int val);
+		unsigned int Length() const;
+		void Length(unsigned int val);
 
 	private:
 		void initAfterTextSet();

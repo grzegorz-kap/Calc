@@ -36,6 +36,10 @@ namespace KLab
 		return lexeme;
 	}
 
+	int Token::getLexemeLength() const {
+		return (int)lexeme.length();
+	}
+
 	void Token::setLexeme(const string &lexemeArg)
 	{
 		lexeme = lexemeArg;
@@ -59,6 +63,18 @@ namespace KLab
 	void Token::setLine(int newLine)
 	{
 		line = newLine;
+	}
+
+	string::const_iterator Token::cbegin() const {
+		return lexeme.cbegin();
+	}
+
+	string::const_iterator Token::cend() const {
+		return lexeme.cend();
+	}
+
+	int Token::lastIndexOf(char c) const {
+		return lexeme.find_last_of(c);
 	}
 
 	int Token::getColumn()const

@@ -17,6 +17,7 @@ namespace KLab
 		NEW_LINE,
 		SPACE,
 		COLON,
-		COMMA
+		COMMA,
+		MULTILINE_COMMENT
 	};
 }

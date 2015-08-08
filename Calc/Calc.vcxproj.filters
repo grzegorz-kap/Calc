@@ -45,6 +45,12 @@
     <ClInclude Include="export.h">
       <Filter>config</Filter>
     </ClInclude>
+    <ClInclude Include="TokenizerContext.h">
+      <Filter>lexer\model</Filter>
+    </ClInclude>
+    <ClInclude Include="CharHelper.h">
+      <Filter>lexer\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TokenizerService.cpp">
@@ -56,14 +62,17 @@
     <ClCompile Include="TokenizedText.cpp">
       <Filter>lexer\model\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="TokenList.cpp">
-      <Filter>lexer\model</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>config</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenList.cpp">
+      <Filter>lexer\model\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenizerContext.cpp">
+      <Filter>lexer\model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,8 +8,7 @@ using std::string;
 
 namespace KLab
 {
-	class Token
-	{
+	class Token {
 	private:
 		string lexeme;
 		TOKEN_CLASS tokenClass;
@@ -24,6 +23,7 @@ namespace KLab
 		bool operator == (const Token &second);
 
 		string getLexeme() const;
+		int getLexemeLength() const;
 		void setLexeme(const string &lexeme);
 		TOKEN_CLASS getTokenClass() const;
 		void setTokenClass(const TOKEN_CLASS &typeArg);
@@ -31,6 +31,9 @@ namespace KLab
 		void setColumn(int pos);
 		int getLine() const;
 		void setLine(int line);
+		string::const_iterator cbegin() const;
+		string::const_iterator cend() const;
+		int lastIndexOf(char c)const;
 
 	private:
 		void init(TOKEN_CLASS tokenClass, int line, int column);

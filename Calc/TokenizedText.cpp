@@ -43,4 +43,21 @@ namespace KLab {
 	void TokenizedText::incrementPosition(int value) {
 		position += value;
 	}
+
+	unsigned int TokenizedText::Position() const {
+		return position;
+	}
+
+	void TokenizedText::Position(unsigned int val) {
+		position = val;
+	}
+
+	unsigned int TokenizedText::Length() const {
+		return length;
+	}
+
+	void TokenizedText::Length(unsigned int val) {
+		length = val;
+	}
+
 }
