@@ -7,7 +7,7 @@ using std::vector;
 using std::queue;
 
 #include "Token.h"
-#include "Tokenizer.h"
+#include "RegexTokenizer.h"
 #include "functions.h"
 #include "CalcException.h"
 #include "LexicalBalanceHelper.h"
@@ -37,7 +37,7 @@ namespace KLab
 		auto getTokens() -> decltype(tokens);
 
 	private:
-		Tokenizer tokenizer;
+		RegexTokenizer tokenizer;
 		LexicalBalanceHelper balancer;
 		TOKEN_CLASS prev;
 		unsigned int prev_operator_args_num;

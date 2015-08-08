@@ -1,54 +1,47 @@
 #include "stdafx.h"
-#include "Tokenizer.h"
+#include "RegexTokenizer.h"
 
 namespace KLab
 {
-	const vector<TOKEN_CLASS> Tokenizer::FOR_SPACE_DELETE = {
+	/*const vector<TOKEN_CLASS> RegexTokenizer::FOR_SPACE_DELETE = {
 		TOKEN_CLASS::NEW_LINE, TOKEN_CLASS::OPEN_PARENTHESIS,
 		TOKEN_CLASS::CLOSE_PARENTHESIS, TOKEN_CLASS::SPACE, TOKEN_CLASS::COLON,
-		TOKEN_CLASS::SEMICOLON, TOKEN_CLASS::COMMA, TOKEN_CLASS::IF_KEYWORD, FOR_KEYWORD,
-		TOKEN_CLASS::WHILE_KEYWORD, TOKEN_CLASS::CONTINUE_KEYWORD, TOKEN_CLASS::BREAK_KEYWORD, TOKEN_CLASS::END_KEYWORD,
-		TOKEN_CLASS::FUNCTION_KEYWORD, TOKEN_CLASS::ELSEIF_KEYWORD, TOKEN_CLASS::RETURN_KEYWORD
-	};
+		TOKEN_CLASS::SEMICOLON, TOKEN_CLASS::COMMA
+		};
 
-	const vector<string> Tokenizer::END_SYNONIMS = {
+		const vector<string> RegexTokenizer::END_SYNONIMS = {
 		"endfor", "endif", "endwhile", "endfunction"
-	};
+		};
 
-	const unordered_map<char, TOKEN_CLASS> Tokenizer::OTHERS = {
-			{ '(', TOKEN_CLASS::OPEN_PARENTHESIS },
-			{ ')', TOKEN_CLASS::CLOSE_PARENTHESIS },
-			{ '[', TOKEN_CLASS::MATRIX_START },
-			{ ']', TOKEN_CLASS::MATRIX_END },
-			{ ':', TOKEN_CLASS::COLON },
-			{ ';', TOKEN_CLASS::SEMICOLON },
-			{ ',', TOKEN_CLASS::COMMA }
-	};
+		const unordered_map<char, TOKEN_CLASS> RegexTokenizer::OTHERS = {
+		{ '(', TOKEN_CLASS::OPEN_PARENTHESIS },
+		{ ')', TOKEN_CLASS::CLOSE_PARENTHESIS },
+		{ '[', TOKEN_CLASS::MATRIX_START },
+		{ ']', TOKEN_CLASS::MATRIX_END },
+		{ ':', TOKEN_CLASS::COLON },
+		{ ';', TOKEN_CLASS::SEMICOLON },
+		{ ',', TOKEN_CLASS::COMMA }
+		};*/
 
-	Tokenizer::Tokenizer()
-	{
+	RegexTokenizer::RegexTokenizer() {
 		N = 0;
 		i = 0;
 	}
 
-	Tokenizer::~Tokenizer()
-	{
+	RegexTokenizer::~RegexTokenizer() {
 	}
 
-	void Tokenizer::setInput(const string &in)
-	{
+	void RegexTokenizer::setInput(const string &in) {
 		command = in;
 		init();
 	}
 
-	void Tokenizer::setInput(string &&in)
-	{
+	void RegexTokenizer::setInput(string &&in) {
 		command = std::move(in);
 		init();
 	}
 
-	void Tokenizer::readOthers()
-	{
+	void RegexTokenizer::readOthers() {
 		auto result = OTHERS.find(command[i]);
 		if (result == OTHERS.end())
 			throwMessage("Unrecognized symbol");
@@ -57,18 +50,15 @@ namespace KLab
 		inc();
 	}
 
-	bool Tokenizer::readOperator()
-	{
-		if (command[i] == '\'' && prevChar() != '.' && !find(TokenizerHelper::NO_STRING_PRECURSORS, prev()))
-		{
+	bool RegexTokenizer::readOperator() {
+		if (command[i] == '\'' && prevChar() != '.' && !find(TokenizerHelper::NO_STRING_PRECURSORS, prev())) {
 			readString();
 			return true;
 		}
 
 		int length;
 		auto result = OperatorsFactory::get(command, i, length);
-		if (result != nullptr)
-		{
+		if (result != nullptr) {
 			tokens.push_back(std::move(result));
 			setLine();
 			inc(length);
@@ -77,21 +67,18 @@ namespace KLab
 		return false;
 	}
 
-	void Tokenizer::readNumber()
-	{
-		try{
+	void RegexTokenizer::readNumber() {
+		try {
 			tokens.push_back(make_unique<SNumber>(Token(NumberReader::read(command, i), TOKEN_CLASS::NUMBER)));
 			setLine();
 			inc(tokens.back()->getLexemeR().size());
 		}
-		catch (const CalcException &ex)
-		{
+		catch (const CalcException &ex) {
 			throwMessage(ex.getMessageR());
 		}
 	}
 
-	void Tokenizer::readWord()
-	{
+	void RegexTokenizer::readWord() {
 		string lexame = "";
 		/* Wczytanie identyfikatora*/
 		while (i < N &&
@@ -112,17 +99,13 @@ namespace KLab
 		_position += tokens.back()->getLexemeR().size();
 	}
 
-	void Tokenizer::readString()
-	{
+	void RegexTokenizer::readString() {
 		string lexame = "";
 		bool found = false;
 		i++;
-		while (i < N && command[i] != '\n')
-		{
-			if (command[i] == '\'')
-			{
-				if (i < N - 1 && command[i + 1] == '\'')
-				{
+		while (i < N && command[i] != '\n') {
+			if (command[i] == '\'') {
+				if (i < N - 1 && command[i + 1] == '\'') {
 					i += 2;
 					lexame += '\'';
 					continue;
@@ -140,10 +123,8 @@ namespace KLab
 		_position += tokens.back()->getLexemeR().size();
 	}
 
-	void Tokenizer::readWhiteSpace()
-	{
-		switch (command[i])
-		{
+	void RegexTokenizer::readWhiteSpace() {
+		switch (command[i]) {
 		case '\n':
 			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE));
 			setLine();
@@ -153,8 +134,7 @@ namespace KLab
 		case '\t':
 		case ' ':
 		case '\r':
-			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getTokenClass()))
-			{
+			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getTokenClass())) {
 				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE));
 				setLine();
 			}
@@ -163,10 +143,8 @@ namespace KLab
 		}
 	}
 
-	void Tokenizer::skipBlockComment()
-	{
-		while (i < N - 1)
-		{
+	void RegexTokenizer::skipBlockComment() {
+		while (i < N - 1) {
 			if (command[i] == '%'&&command[i + 1] == '}')
 				break;
 			else if (command[i] == '\n')
@@ -176,30 +154,24 @@ namespace KLab
 		inc(2);
 	}
 
-	void Tokenizer::skipLineComment()
-	{
+	void RegexTokenizer::skipLineComment() {
 		while (i < N &&command[i] != '\n')
 			inc();
 		//i--;
 	}
 
-	void Tokenizer::deleteUneccessary()
-	{
-		if (i < N)
-		{
+	void RegexTokenizer::deleteUneccessary() {
+		if (i < N) {
 			char z = command[i];
-			if (i < N - 1 && z == '%' && command[i + 1] == '{')
-			{
+			if (i < N - 1 && z == '%' && command[i + 1] == '{') {
 				skipBlockComment();
 				deleteUneccessary();
 			}
-			else if (z == '%' || (i < N - 1 && z == '/'&&command[i + 1] == '/'))
-			{
+			else if (z == '%' || (i < N - 1 && z == '/'&&command[i + 1] == '/')) {
 				skipLineComment();
 				deleteUneccessary();
 			}
-			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE || prev() == TOKEN_CLASS::SEMICOLON)) || (i < N - 1 && z == '\n'&&z == ';'))
-			{
+			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE || prev() == TOKEN_CLASS::SEMICOLON)) || (i < N - 1 && z == '\n'&&z == ';')) {
 				onNewLine();
 				i++;
 				deleteUneccessary();
@@ -207,11 +179,9 @@ namespace KLab
 		}
 	}
 
-	void Tokenizer::tokenize()
-	{
+	void RegexTokenizer::tokenize() {
 		deleteUneccessary();
-		while (i < N)
-		{
+		while (i < N) {
 			if (TokenizerHelper::isDigit(command[i]))
 				readNumber();
 			else if (TokenizerHelper::isLetter(command[i]))
@@ -227,10 +197,8 @@ namespace KLab
 		}
 	}
 
-	bool Tokenizer::onDot()
-	{
-		if (i < N - 2 && command[i] == '.'&& command[i + 1] == '.' && command[i + 2] == '.')
-		{
+	bool RegexTokenizer::onDot() {
+		if (i < N - 2 && command[i] == '.'&& command[i + 1] == '.' && command[i + 2] == '.') {
 			inc(3);
 			while (i < N && command[i] != '\n')
 				inc();
@@ -242,10 +210,8 @@ namespace KLab
 		return true;
 	}
 
-	void Tokenizer::whiteSpacesBegin()
-	{
-		while (i < N&&TokenizerHelper::isWhiteSpace(command[i]))
-		{
+	void RegexTokenizer::whiteSpacesBegin() {
+		while (i < N&&TokenizerHelper::isWhiteSpace(command[i])) {
 			i++;
 			if (command[i] == '\n')
 				onNewLine();
@@ -254,26 +220,22 @@ namespace KLab
 		}
 	}
 
-	void Tokenizer::whiteSpacesEnd()
-	{
+	void RegexTokenizer::whiteSpacesEnd() {
 		while (N > 0 && TokenizerHelper::isWhiteSpace(command[N - 1]))
 			N--;
 	}
 
-	vector<unique_ptr<Token>> Tokenizer::getTokens()
-	{
+	vector<unique_ptr<Token>> RegexTokenizer::getTokens() {
 		return std::move(tokens);
 	}
 
-	TOKEN_CLASS Tokenizer::prev()
-	{
+	TOKEN_CLASS RegexTokenizer::prev() {
 		if (tokens.size() == 0)
 			return TOKEN_CLASS::NONE;
 		return tokens.back()->getTokenClass();
 	}
 
-	void Tokenizer::init()
-	{
+	void RegexTokenizer::init() {
 		N = command.size();
 		i = 0;
 		_line = 1;
@@ -282,34 +244,28 @@ namespace KLab
 		whiteSpacesBegin();
 	}
 
-	char Tokenizer::prevChar()
-	{
+	char RegexTokenizer::prevChar() {
 		if (i == 0)
 			return 0;
 		return command[i - 1];
 	}
 
-	void Tokenizer::throwMessage(const string &message)
-	{
+	void RegexTokenizer::throwMessage(const string &message) {
 		throw CalcException(message, "", _position, _line);
 	}
 
-	void Tokenizer::inc(int val)
-	{
+	void RegexTokenizer::inc(int val) {
 		i += val;
 		_position += val;
 	}
 
-	void Tokenizer::onNewLine()
-	{
+	void RegexTokenizer::onNewLine() {
 		_position = 1;
 		_line++;
 	}
 
-	void Tokenizer::setLine()
-	{
-		if (tokens.size())
-		{
+	void RegexTokenizer::setLine() {
+		if (tokens.size()) {
 			tokens.back()->setLine(_line);
 			tokens.back()->setColumn(_position);
 		}

@@ -159,7 +159,7 @@ namespace KLab
 
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
 			token.setTokenClass(TOKEN_CLASS::COMMA);
-		else if (whatNext() == TOKEN_CLASS::OPERATOR || find(Tokenizer::FOR_SPACE_DELETE, whatNext()))
+		else if (whatNext() == TOKEN_CLASS::OPERATOR || find(RegexTokenizer::FOR_SPACE_DELETE, whatNext()))
 			for_delete = true;
 	}
 
