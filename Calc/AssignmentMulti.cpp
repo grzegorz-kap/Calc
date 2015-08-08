@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssignmentMulti.h"
 
-namespace PR
+namespace KLab
 {
 	AssignmentMulti::AssignmentMulti()
 		: IAssignment(ASSIGNMENT_TYPE::MULTI)

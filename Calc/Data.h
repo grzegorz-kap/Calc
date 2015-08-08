@@ -22,7 +22,7 @@ using std::vector;
 #include "CastException.h"
 #include "TokensTypes.h"
 
-namespace PR
+namespace KLab
 {
 	typedef cpp_bin_float_100 hdouble;
 

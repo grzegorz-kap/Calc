@@ -12,7 +12,7 @@ using std::make_unique;
 #include "Mathematic.h"
 #include "MatrixUtils.h"
 
-namespace PR
+namespace KLab
 {
 	//! Intefejs dla typow numerycznych.
 	template <class T>

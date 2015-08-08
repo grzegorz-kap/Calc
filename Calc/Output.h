@@ -8,7 +8,7 @@
 using std::vector;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Zawiera zestaw wartosci zwroconych przez funkcje.
 	class Output : public Data

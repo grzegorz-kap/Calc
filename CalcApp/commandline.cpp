@@ -28,7 +28,7 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 
 	if (e->key() == Qt::Key_C && e->modifiers()&Qt::ControlModifier)
 	{
-		PR::SignalEmitter::get()->call_stop();
+		KLab::SignalEmitter::get()->call_stop();
 	}
 
 	if ((e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) && !(e->modifiers()&Qt::ShiftModifier))

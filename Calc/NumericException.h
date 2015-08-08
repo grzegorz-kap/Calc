@@ -4,7 +4,7 @@
 
 #include <string>
 using std::string;
-namespace PR
+namespace KLab
 {
 	class NumericException
 		: public CalcException

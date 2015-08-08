@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Data.h"
 
-namespace PR
+namespace KLab
 {
 	decltype(Data::TYPE_MAP) Data::TYPE_MAP =
 	{

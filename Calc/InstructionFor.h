@@ -10,7 +10,7 @@ using std::string;
 
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	//! \brief Zawiera informacje o instrukcji for.
 	//! Obiekty tej klasy sa tworzone na etapie parsowania instrukcji.

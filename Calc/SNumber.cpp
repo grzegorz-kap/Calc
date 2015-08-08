@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SNumber.h"
 
-namespace PR
+namespace KLab
 {
 	SNumber::SNumber(Token &&token, TYPE type)
 		:_type(type), Token(std::move(token))

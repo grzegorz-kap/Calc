@@ -9,7 +9,7 @@
 using std::string;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	class Operator;
 	class IAssignment;

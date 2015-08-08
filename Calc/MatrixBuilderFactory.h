@@ -2,7 +2,7 @@
 
 #include "MatrixBuilder.h"
 
-namespace PR
+namespace KLab
 {
 	//! Fabryka implementacji budowania macierzy.
 	class MatrixBuilderFactory

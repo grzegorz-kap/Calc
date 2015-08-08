@@ -12,7 +12,7 @@ using std::unordered_map;
 #include "Token.h"
 #include "Operator.h"
 
-namespace PR
+namespace KLab
 {
 	class TokenizerHelper
 	{

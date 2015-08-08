@@ -2,7 +2,7 @@
 
 #include "CalcException.h"
 
-namespace PR
+namespace KLab
 {
 	class OperatorException :
 		public CalcException

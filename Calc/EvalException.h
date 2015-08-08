@@ -1,6 +1,6 @@
 #pragma once
 #include "CalcException.h"
-namespace PR
+namespace KLab
 {
 	class EvalException :
 		public CalcException

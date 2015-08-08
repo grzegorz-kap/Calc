@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CalcException.h"
 
-namespace PR
+namespace KLab
 {
 	CalcException::CalcException(const string &messageA, const string &commandA, int positionA, int line)
 		:message(messageA),

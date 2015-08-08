@@ -21,7 +21,7 @@ using std::vector;
 #include "OperatorsFactory.h"
 #include "NumberReader.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa dzielaca tekst na symbole leksykalne.
 	class Tokenizer

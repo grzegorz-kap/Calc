@@ -6,7 +6,7 @@
 
 using std::vector;
 
-namespace PR
+namespace KLab
 {
 	//! Funkcja wyszukuje pierwsze wyst¹pienie wartosci z zestawu wartosci.
 	/*!

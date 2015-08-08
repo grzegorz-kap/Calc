@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Variables.h"
 
-namespace PR
+namespace KLab
 {
 	Variables::Variables(bool main)
 		:main(main)

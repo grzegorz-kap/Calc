@@ -1,7 +1,7 @@
 #pragma once
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	class ShortCircuitJumper :
 		public Token

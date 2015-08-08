@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Tokenizer.h"
 
-namespace PR
+namespace KLab
 {
 	const vector<TOKEN_CLASS> Tokenizer::FOR_SPACE_DELETE = {
 		TOKEN_CLASS::NEW_LINE, TOKEN_CLASS::OPEN_PARENTHESIS,

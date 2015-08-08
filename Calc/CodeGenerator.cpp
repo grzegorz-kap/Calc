@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CodeGenerator.h"
 
-namespace PR
+namespace KLab
 {
 	CodeGenerator::CodeGenerator()
 	{

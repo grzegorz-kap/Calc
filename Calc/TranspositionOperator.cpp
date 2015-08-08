@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TranspositionOperator.h"
 
-namespace PR
+namespace KLab
 {
 	TranspositionOperator::TranspositionOperator()
 		:Operator(".'", 20, 1, EVAULATED::RIGHT)

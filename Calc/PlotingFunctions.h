@@ -1,7 +1,7 @@
 #include "Function.h"
 #include "GraphDrawer.h"
 
-namespace PR
+namespace KLab
 {
 	class PlotFunction : public Function
 	{

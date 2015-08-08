@@ -8,7 +8,7 @@
 
 using namespace boost::math::constants;
 
-namespace PR
+namespace KLab
 {
 	template <class X> class Matrix;
 	template <class X> class ComplexNumber;

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IAssignment.h"
 
-namespace PR
+namespace KLab
 {
 	IAssignment::IAssignment(const ASSIGNMENT_TYPE &_type)
 		:_assignment_type(_type)

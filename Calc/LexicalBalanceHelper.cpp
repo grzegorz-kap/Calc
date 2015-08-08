@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LexicalBalanceHelper.h"
 
-namespace PR
+namespace KLab
 {
 	LexicalBalanceHelper::LexicalBalanceHelper()
 	{

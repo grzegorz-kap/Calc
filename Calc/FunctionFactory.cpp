@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FunctionFactory.h"
 
-namespace PR
+namespace KLab
 {
 	FunctionFactory * FunctionFactory::instance = nullptr;
 

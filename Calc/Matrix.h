@@ -10,7 +10,7 @@
 using std::vector;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	//template <class T> class ComplexNumber;
 	class Mathematic;

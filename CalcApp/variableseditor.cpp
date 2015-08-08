@@ -18,8 +18,8 @@ VariablesEditor::~VariablesEditor()
 
 void VariablesEditor::connectToInterpretSingals()
 {
-	PR::SignalEmitter::get()->connect_updated_variables_slot(boost::bind(&VariablesEditor::receiveVarsUpdate, this, _1, _2));
-	PR::SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesEditor::receiveRemoved, this, _1));
+	KLab::SignalEmitter::get()->connect_updated_variables_slot(boost::bind(&VariablesEditor::receiveVarsUpdate, this, _1, _2));
+	KLab::SignalEmitter::get()->connect_removed_variables_slot(boost::bind(&VariablesEditor::receiveRemoved, this, _1));
 }
 
 void VariablesEditor::onVariableSelection(QTableWidgetItem *item)
@@ -29,7 +29,7 @@ void VariablesEditor::onVariableSelection(QTableWidgetItem *item)
 	emit variableInformationRequest(item->text());
 }
 
-void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
+void VariablesEditor::receiveVariableInformation(KLab::VariableInfo info)
 {
 	auto tabs = ui.tabWidget;
 
@@ -59,9 +59,9 @@ void VariablesEditor::tabClose(int idx)
 		hide();
 }
 
-void VariablesEditor::receiveVarsUpdate(const PR::VariableInfo *data, int num)
+void VariablesEditor::receiveVarsUpdate(const KLab::VariableInfo *data, int num)
 {
-	using PR::VariableInfo;
+	using KLab::VariableInfo;
 	for (int i = 0; i < num; i++)
 	{
 		const VariableInfo *variable = data + i;

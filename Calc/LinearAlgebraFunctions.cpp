@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LinearAlgebraFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	DetFunction::DetFunction()
 	{

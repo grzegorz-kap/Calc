@@ -13,7 +13,7 @@ public:
 	VariableEditWidget(QWidget *parent = 0);
 	~VariableEditWidget();
 
-	void loadWidget(const PR::VariableInfo &info, bool rememberSelection = false);
+	void loadWidget(const KLab::VariableInfo &info, bool rememberSelection = false);
 	void setUpdate(bool val){ updated = val; }
 	bool needUpdate()const{ return updated; }
 
@@ -29,7 +29,7 @@ private:
 	QString variableName;
 	bool updated;
 	bool scalar;
-	PR::VariableInfo info;
+	KLab::VariableInfo info;
 };
 
 #endif // VARIABLEEDITWIDGET_H

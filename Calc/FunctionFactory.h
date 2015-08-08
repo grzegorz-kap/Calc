@@ -27,7 +27,7 @@ using std::function;
 #include "RoundingFunctions.h"
 #include "MessagesFunction.h"
 
-namespace PR
+namespace KLab
 {
 	//! Fabryka funkcji.
 	class FunctionFactory

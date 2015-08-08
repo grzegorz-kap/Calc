@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Output.h"
 
-namespace PR
+namespace KLab
 {
 	Output::Output()
 	{

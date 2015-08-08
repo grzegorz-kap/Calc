@@ -12,7 +12,7 @@
 #include "CalcException.h"
 #include "VariableInfo.h"
 
-namespace PR
+namespace KLab
 {
 	class CALC_API SignalEmitter
 	{

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "i_order_map.h"
 
-namespace PR
+namespace KLab
 {
 	template<class T, class U>
 	i_order_map<T, U>::i_order_map() :i(0)

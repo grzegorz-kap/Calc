@@ -8,7 +8,7 @@ using std::vector;
 #include "Variables.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	//! Iterator petli for
 	class ForIterator

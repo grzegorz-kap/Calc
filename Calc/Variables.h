@@ -14,7 +14,7 @@ using std::string;
 using std::map;
 using std::vector;
 using std::shared_ptr;
-namespace PR
+namespace KLab
 {
 	typedef map<string, shared_ptr<Data>> variables_map;
 	typedef variables_map::iterator variables_map_iter;

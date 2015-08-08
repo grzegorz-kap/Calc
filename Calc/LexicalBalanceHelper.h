@@ -10,7 +10,7 @@ using std::string;
 #include "Token.h"
 #include "functions.h"
 
-namespace PR
+namespace KLab
 {
 	class LexicalBalanceHelper
 	{

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LogicalOperators.h"
 
-namespace PR
+namespace KLab
 {
 	AndOperator::AndOperator()
 		:Operator("&&", 100, 2, EVAULATED::RIGHT)

@@ -1,6 +1,6 @@
 #pragma once
 #include "Operator.h"
-namespace PR
+namespace KLab
 {
 	class TranspositionOperator : public Operator
 	{

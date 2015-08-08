@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CastException.h"
 
-namespace PR
+namespace KLab
 {
 	CastException::CastException(const string &message)
 		:CalcException(message)

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "String.h"
 
-namespace PR
+namespace KLab
 {
 	String::String(const string &str)
 		:data(str)

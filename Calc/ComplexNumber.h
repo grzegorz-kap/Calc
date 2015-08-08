@@ -8,7 +8,7 @@ using std::string;
 #include "Numeric.h"
 #include "NumericException.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca liczbe zespolona.
 	template<class T> class  ComplexNumber : public Numeric < ComplexNumber<T> >

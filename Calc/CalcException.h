@@ -6,7 +6,7 @@
 using std::exception;
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	//! Klasa przechowujaca informacje o bledzie.
 	class CalcException : public exception

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ComplexNumber.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class Numeric < ComplexNumber<double> > ;
 	extern template class Numeric < ComplexNumber<hdouble> > ;

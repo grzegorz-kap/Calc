@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SizeFunction.h"
 
-namespace PR
+namespace KLab
 {
 	SizeFunction::SizeFunction()
 	{

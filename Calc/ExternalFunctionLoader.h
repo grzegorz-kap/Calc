@@ -3,7 +3,7 @@
 #include "ExternalFunction.h"
 #include "CodeGenerator.h"
 
-namespace PR
+namespace KLab
 {
 	//! Laduje funkcje z pliku.
 	class ExternalFunctionLoader

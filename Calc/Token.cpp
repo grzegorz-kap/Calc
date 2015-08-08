@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	Token::Token()
 	{

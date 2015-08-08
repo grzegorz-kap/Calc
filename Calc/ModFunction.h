@@ -1,6 +1,6 @@
 #pragma once
 #include "Function.h"
-namespace PR
+namespace KLab
 {
 	//! Klasa wywolujaca dzielenie modulo
 	class ModFunction :

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssignmentFactory.h"
 
-namespace PR
+namespace KLab
 {
 	unique_ptr<IAssignment> AssignmentFactory::get(TOKEN_CLASS _class)
 	{

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ElementaryMathFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	Log2Function::Log2Function()
 	{

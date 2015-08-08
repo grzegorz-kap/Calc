@@ -9,7 +9,7 @@
 #include "Data.h"
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	template<class T>
 	class MatrixBuilder

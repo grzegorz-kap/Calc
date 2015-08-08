@@ -2,7 +2,7 @@
 #include "MpfFunction.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	MpfFunction::MpfFunction()
 	{

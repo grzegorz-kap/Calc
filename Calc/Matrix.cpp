@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Matrix.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class ComplexNumber < double > ;
 	extern template class ComplexNumber < hdouble > ;

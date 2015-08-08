@@ -14,7 +14,7 @@ class InterpreterConnector : public QObject
 
 private:
 
-	PR::Interpreter interpreter;
+	KLab::Interpreter interpreter;
 	static const QString errorHtml;
 	static const QString endFontHtml;
 
@@ -24,7 +24,7 @@ public:
 
 	void connectStopComputing(){ interpreter.connectStopComputing(); }
 	void connectToInterpreterSingals();
-	void signal_receiver(const char *, const PR::Data *);
+	void signal_receiver(const char *, const KLab::Data *);
 	void errors_receiver(const char *, int);
 	void executionComplate(void);
 	void clearScreen(){ emit clsScreen(); }
@@ -40,7 +40,7 @@ signals:
 	void interpreterRespondedHtml(QString);
 	void interpreterResponded();
 	void interpreterError(QString);
-	void sendVariableInformation(PR::VariableInfo);
+	void sendVariableInformation(KLab::VariableInfo);
 	void clsScreen();
 	void executionStarted();
 };

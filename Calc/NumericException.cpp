@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "NumericException.h"
 
-namespace PR
+namespace KLab
 {
 	NumericException::NumericException(std::string &&message)
 		:CalcException(message)

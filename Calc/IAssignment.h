@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Rodzaje operacji przypisania.
 	enum ASSIGNMENT_TYPE : char

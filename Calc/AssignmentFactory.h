@@ -12,7 +12,7 @@
 using std::unique_ptr;
 using std::make_unique;
 
-namespace PR
+namespace KLab
 {
 	//! Fabryka operacji przypisania.
 	/*!

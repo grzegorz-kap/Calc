@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ForIterator.h"
 
-namespace PR
+namespace KLab
 {
 	ForIterator::ForIterator(Variables &ref)
 		:vars(ref)

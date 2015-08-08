@@ -1,7 +1,7 @@
 #pragma once
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	class DetFunction : public Function
 	{

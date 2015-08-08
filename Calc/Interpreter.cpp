@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Interpreter.h"
 
-namespace PR
+namespace KLab
 {
 	Variables Interpreter::main_vars = Variables(true);
 

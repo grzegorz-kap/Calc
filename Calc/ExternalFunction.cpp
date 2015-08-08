@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ExternalFunction.h"
 
-namespace PR
+namespace KLab
 {
 	ExternalFunction::ExternalFunction()
 	{

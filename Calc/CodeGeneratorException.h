@@ -5,7 +5,7 @@
 
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	class CodeGeneratorException :
 		public CalcException

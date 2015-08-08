@@ -10,7 +10,7 @@
 using std::string;
 using std::weak_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Klasa z informacjami o zmiennej.
 	class CALC_API VariableInfo

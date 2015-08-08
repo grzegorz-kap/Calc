@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FileLoaderException.h"
 
-namespace PR
+namespace KLab
 {
 	FileLoaderException::FileLoaderException(const string &message, int position)
 		:CalcException(message, position)

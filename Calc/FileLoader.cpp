@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FileLoader.h"
 
-namespace PR
+namespace KLab
 {
 	string FileLoader::working_directory = "";
 

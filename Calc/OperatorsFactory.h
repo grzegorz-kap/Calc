@@ -17,7 +17,7 @@ using std::string;
 #include "Colon2Operator.h"
 #include "Colon3Operator.h"
 
-namespace PR
+namespace KLab
 {
 	//! Fabryka operatorow.
 	class OperatorsFactory

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	Function::Function()
 	{

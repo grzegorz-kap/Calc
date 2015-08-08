@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IMatrixBuilder.h"
 
-namespace PR
+namespace KLab
 {
 	decltype(IMatrixBuilder::TYPES) IMatrixBuilder::TYPES =
 	{

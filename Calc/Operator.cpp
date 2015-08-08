@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Operator.h"
 
-namespace PR
+namespace KLab
 {
 	Operator::Operator(const string &name, int priority, int arguments, EVAULATED ev)
 		:

@@ -10,7 +10,7 @@ using std::shared_ptr;
 
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca funkcje zewnetrzna.
 	class ExternalFunction

@@ -24,7 +24,7 @@ CalcApp::CalcApp(QWidget *parent)
 
 	qRegisterMetaType<QString>("QString");
 	qRegisterMetaType<std::string>("std::string");
-	qRegisterMetaType<PR::VariableInfo>("PR::VariableInfo");
+	qRegisterMetaType<KLab::VariableInfo>("PR::VariableInfo");
 
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), ui.console, SLOT(appendWithoutRealase(QString)));
@@ -56,7 +56,7 @@ CalcApp::CalcApp(QWidget *parent)
 	variablesEditor.connectToInterpretSingals();
 	connect(ui.variables, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), &variablesEditor, SLOT(onVariableSelection(QTableWidgetItem *)));
 	connect(&variablesEditor, SIGNAL(variableInformationRequest(QString)), interpreterConnector, SLOT(getInformation(QString)));
-	connect(interpreterConnector, SIGNAL(sendVariableInformation(PR::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(PR::VariableInfo)));
+	connect(interpreterConnector, SIGNAL(sendVariableInformation(KLab::VariableInfo)), &variablesEditor, SLOT(receiveVariableInformation(KLab::VariableInfo)));
 
 	setupFont();
 	setupToolbar();
@@ -114,7 +114,7 @@ void CalcApp::setupToolbar()
 
 void CalcApp::stopComputing()
 {
-	PR::SignalEmitter::get()->call_stop();
+	KLab::SignalEmitter::get()->call_stop();
 }
 
 void CalcApp::closeEvent(QCloseEvent *ev)

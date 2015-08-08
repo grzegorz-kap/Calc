@@ -13,7 +13,7 @@ using std::vector;
 #include "MatrixBuilder.h"
 #include "MatrixBuilderFactory.h"
 
-namespace PR
+namespace KLab
 {
 	class TypePromotor
 	{

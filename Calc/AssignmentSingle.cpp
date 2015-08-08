@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssignmentSingle.h"
 
-namespace PR
+namespace KLab
 {
 	AssignmentSingle::AssignmentSingle()
 		:IAssignment(ASSIGNMENT_TYPE::SINGLE)

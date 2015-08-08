@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Colon3Operator.h"
 
-namespace PR
+namespace KLab
 {
 	Colon3Operator::Colon3Operator()
 		:Operator("$:", 60, 3, EVAULATED::RIGHT)

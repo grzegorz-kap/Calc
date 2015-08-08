@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SignalEmitter.h"
 
-namespace PR
+namespace KLab
 {
 	SignalEmitter* SignalEmitter::instance = nullptr;
 

@@ -3,7 +3,7 @@
 #include "Function.h"
 #include "MatrixBuilder.h"
 
-namespace PR
+namespace KLab
 {
 	class SizeFunction : public Function
 	{

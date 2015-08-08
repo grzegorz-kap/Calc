@@ -7,7 +7,7 @@
 #include "Calc\VariableInfo.h"
 #include "Calc\SignalEmitter.h"
 
-using namespace PR;
+using namespace KLab;
 
 class VariablesInfos : public QTableWidget
 {

@@ -8,7 +8,7 @@
 #include "Data.h"
 #include "Operator.h"
 
-namespace PR
+namespace KLab
 {
 	//! Mapa z istotna kolejnoscia wstawiania elementow.
 	template<class KEY, class VALUE>

@@ -1,7 +1,7 @@
 #pragma once
 #include "CalcException.h"
 
-namespace PR
+namespace KLab
 {
 	class FileLoaderException :
 		public CalcException

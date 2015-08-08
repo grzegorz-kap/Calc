@@ -10,7 +10,7 @@
 using std::unique_ptr;
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	class FileLoader
 	{

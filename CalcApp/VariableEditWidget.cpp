@@ -13,7 +13,7 @@ VariableEditWidget::~VariableEditWidget()
 {
 }
 
-void VariableEditWidget::loadWidget(const PR::VariableInfo &info, bool rembemberSelection)
+void VariableEditWidget::loadWidget(const KLab::VariableInfo &info, bool rembemberSelection)
 {
 	if (updated == false)
 		return;

@@ -2,7 +2,7 @@
 
 #include <regex>
 
-namespace PR
+namespace KLab
 {
 	enum TOKEN_CLASS
 	{

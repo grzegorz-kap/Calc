@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LexicalAnalyzer.h"
 
-namespace PR
+namespace KLab
 {
 	const vector<TOKEN_CLASS> LexicalAnalyzer::UNARY_OP_PRECURSORS =
 	{

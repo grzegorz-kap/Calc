@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ArithmeticOperators.h"
 
-namespace PR
+namespace KLab
 {
 	AdditionOperator::AdditionOperator()
 		:Operator("+", 50, 2, EVAULATED::RIGHT)

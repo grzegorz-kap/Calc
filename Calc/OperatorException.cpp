@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "OperatorException.h"
 
-namespace PR
+namespace KLab
 {
 	OperatorException::OperatorException(const string &message, int position)
 		:CalcException(message, position)

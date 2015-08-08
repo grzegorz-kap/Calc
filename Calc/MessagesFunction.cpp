@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MessagesFunction.h"
 
-namespace PR
+namespace KLab
 {
 	ErrorFunction::ErrorFunction()
 	{

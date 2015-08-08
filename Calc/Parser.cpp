@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Parser.h"
 
-namespace PR
+namespace KLab
 {
 	Parser::Parser()
 	{

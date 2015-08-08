@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssignmentOperator.h"
 
-namespace PR
+namespace KLab
 {
 	AssignmentOperator::AssignmentOperator()
 		:Operator("=", 200, 2, EVAULATED::LEFT)

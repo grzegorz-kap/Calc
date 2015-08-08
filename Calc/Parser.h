@@ -23,7 +23,7 @@ using std::dynamic_pointer_cast;
 #include "LexicalAnalyzer.h"
 #include "InstructionFor.h"
 
-namespace PR
+namespace KLab
 {
 	class Parser
 	{

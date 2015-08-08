@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TokenizerHelper.h"
 
-namespace PR
+namespace KLab
 {
 	const unordered_map<string, TOKEN_CLASS> TokenizerHelper::KEYWORDS =
 	{

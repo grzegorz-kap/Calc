@@ -11,7 +11,7 @@ using std::shared_ptr;
 #include "CalcException.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa stanowiaca interfejs dla funkcji wbudowanych.
 	class Function

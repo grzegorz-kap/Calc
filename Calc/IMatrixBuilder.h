@@ -9,7 +9,7 @@ using std::unique_ptr;
 
 #include "Data.h"
 
-namespace PR
+namespace KLab
 {
 	template <class X>
 	class MatrixBuilder;

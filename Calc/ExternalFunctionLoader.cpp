@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ExternalFunctionLoader.h"
 
-namespace PR
+namespace KLab
 {
 	ExternalFunctionLoader::ExternalFunctionLoader(const string &name)
 		:code(FileLoader(name + ".m")),

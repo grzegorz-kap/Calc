@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ModFunction.h"
 
-namespace PR
+namespace KLab
 {
 	ModFunction::ModFunction()
 	{

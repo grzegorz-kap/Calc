@@ -11,7 +11,7 @@ using std::cout;
 
 #include "CodeExecutor.h"
 
-namespace PR
+namespace KLab
 {
 	//! \brief Glowna klasa interpretera.
 	class CALC_API Interpreter

@@ -15,7 +15,7 @@ using std::shared_ptr;
 #include "FileLoader.h"
 #include "CodeGeneratorException.h"
 
-namespace PR
+namespace KLab
 {
 	typedef vector<vector<shared_ptr<Token>>> Code;
 	typedef vector<shared_ptr<Token>> Instruction;

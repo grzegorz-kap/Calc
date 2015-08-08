@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssignmentSubscripted.h"
 
-namespace PR
+namespace KLab
 {
 	AssignmentSubscripted::AssignmentSubscripted()
 		:IAssignment(ASSIGNMENT_TYPE::SUBSCRIPTED)

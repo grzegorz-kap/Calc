@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RoundingFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	CeilFunction::CeilFunction()
 	{

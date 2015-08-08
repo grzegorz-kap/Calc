@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "InstructionFor.h"
 
-namespace PR
+namespace KLab
 {
 	InstructionFor::InstructionFor()
 	{

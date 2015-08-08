@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RelationalOperators.h"
 
-namespace PR
+namespace KLab
 {
 	EqOperator::EqOperator()
 		:Operator("==", 70, 2, EVAULATED::RIGHT)

@@ -14,7 +14,7 @@ using std::queue;
 #include "functions.h"
 #include "FileLoader.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa stanawiaca modul analizy leksykalnej.
 	class LexicalAnalyzer

@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace PR
+namespace KLab
 {
 	class MatrixUtils
 	{

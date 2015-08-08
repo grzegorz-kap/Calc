@@ -20,7 +20,7 @@ using std::vector;
 #include "Variables.h"
 #include "ForIterator.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa obslugujaca wykonywanie kodu przez interpreter.
 	class CodeExecutor

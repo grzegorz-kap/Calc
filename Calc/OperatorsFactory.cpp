@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "OperatorsFactory.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class i_order_map < string, unique_ptr<Operator>(*)(void) > ;
 

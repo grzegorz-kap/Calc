@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MatrixGenerationFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class Matrix < double > ;
 	extern template class Matrix < hdouble > ;

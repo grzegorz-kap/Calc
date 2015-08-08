@@ -2,7 +2,7 @@
 #include "Data.h"
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca lanuch tekstowy
 	class String : public Token
