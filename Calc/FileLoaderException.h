@@ -7,8 +7,7 @@ namespace PR
 		public CalcException
 	{
 	public:
-		FileLoaderException(const string &message,int position = 0);
+		FileLoaderException(const string &message, int position = 0);
 		~FileLoaderException();
 	};
-
 }

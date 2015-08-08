@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "NumericException.h"
 
-
 namespace PR
 {
 	NumericException::NumericException(std::string &&message)
 		:CalcException(message)
 	{
 	}
-
 
 	NumericException::~NumericException()
 	{

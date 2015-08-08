@@ -13,4 +13,3 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 }
-

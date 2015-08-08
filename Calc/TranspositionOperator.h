@@ -10,7 +10,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class ConjugateTranspositionOperator : public Operator
 	{
 	public:
@@ -18,6 +17,4 @@ namespace PR
 		~ConjugateTranspositionOperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 }
-

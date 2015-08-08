@@ -3,9 +3,8 @@
 
 namespace PR
 {
-
 	LexicalBalanceHelper::LexicalBalanceHelper()
-	{ 
+	{
 		reset();
 	}
 
@@ -22,11 +21,11 @@ namespace PR
 	}
 
 	PARSE_MODE LexicalBalanceHelper::getMode()const
-	{ 
+	{
 		return mode.back();
 	}
 
-	void LexicalBalanceHelper::changeMode(PARSE_MODE modeA,bool start)
+	void LexicalBalanceHelper::changeMode(PARSE_MODE modeA, bool start)
 	{
 		if (start)
 		{
@@ -40,9 +39,9 @@ namespace PR
 		}
 		else
 		{
-			if (mode.back() != modeA||balance.back()==0)
+			if (mode.back() != modeA || balance.back() == 0)
 			{
-				throw CalcException("Expression or statement is incorrect--possibly unbalanced (, {,or[ or at least one END is missing!","",pos,line);
+				throw CalcException("Expression or statement is incorrect--possibly unbalanced (, {,or[ or at least one END is missing!", "", pos, line);
 			}
 			else
 			{
@@ -99,7 +98,7 @@ namespace PR
 	void LexicalBalanceHelper::onElseIf(Token &token)
 	{
 		if (key_word_balance == 0 || key_word_mode.back() != TOKEN_CLASS::IF_KEYWORD)
-			throw CalcException("Unexpected 'elseif' outside 'if'","",pos,line);
+			throw CalcException("Unexpected 'elseif' outside 'if'", "", pos, line);
 		token.setKeywordBalance(key_word_balance);
 	}
 
@@ -112,9 +111,9 @@ namespace PR
 	void LexicalBalanceHelper::onEndKeyword(Token &token)
 	{
 		if (key_word_balance == 0)
-			throw CalcException("Unexpected end keyword!","",pos,line);
+			throw CalcException("Unexpected end keyword!", "", pos, line);
 		token.setKeywordBalance(key_word_balance--);
-		
+
 		switch (key_word_mode.back())
 		{
 		case TOKEN_CLASS::FOR_KEYWORD:
@@ -142,6 +141,6 @@ namespace PR
 	void LexicalBalanceHelper::throwOnUnbalancedEnd()
 	{
 		if (key_word_balance || balance.size() > 1 || balance.back() != 0)
-			throw CalcException("This statement is incomplete.","",pos,line);
+			throw CalcException("This statement is incomplete.", "", pos, line);
 	}
 }

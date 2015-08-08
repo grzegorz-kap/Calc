@@ -8,12 +8,12 @@ Highlighter::Highlighter(QTextDocument *parent)
 	keywordFormat.setForeground(Qt::darkBlue);
 	keywordFormat.setFontWeight(QFont::Bold);
 	QStringList keywordPatterns;
-	
+
 	keywordPatterns << "\\bwhile\\b" << "\\bfor\\b" << "\\bend\\b" << "\\bif\\b" << "\\belse\\b" << "\\bfunction\\b"
 		<< "\\bendfor\\b" << "\\bendwhile\\b" << "\\bendif\\b" << "\\bendfunction\\b" << "\\belseif\\b" << "\\breturn\\b"
 		<< "\\bcontinue\\b" << "\\bbreak\\b";
-	
-	foreach(const QString &pattern, keywordPatterns) 
+
+	foreach(const QString &pattern, keywordPatterns)
 	{
 		rule.pattern = QRegExp(pattern);
 		rule.format = keywordFormat;
@@ -25,8 +25,6 @@ Highlighter::Highlighter(QTextDocument *parent)
 	rule.format = singleLineCommentFormat;
 	highlightingRules.append(rule);
 
-
-
 	multiLineCommentFormat.setForeground(Qt::darkGreen);
 	commentStartExpression = QRegExp("%\\{");
 	commentEndExpression = QRegExp("%\\}");
@@ -34,16 +32,15 @@ Highlighter::Highlighter(QTextDocument *parent)
 
 Highlighter::~Highlighter()
 {
-	
 }
 
 void Highlighter::highlightBlock(const QString &text)
 {
-	foreach(const HighlightingRule &rule, highlightingRules) 
+	foreach(const HighlightingRule &rule, highlightingRules)
 	{
 		QRegExp expression(rule.pattern);
 		int index = expression.indexIn(text);
-		while (index >= 0) 
+		while (index >= 0)
 		{
 			int length = expression.matchedLength();
 			setFormat(index, length, rule.format);

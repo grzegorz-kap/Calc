@@ -11,7 +11,6 @@ CommandLine::CommandLine(QWidget *parent)
 
 CommandLine::~CommandLine()
 {
-
 }
 
 void CommandLine::setCursorPosition(int n)
@@ -31,7 +30,6 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 	{
 		PR::SignalEmitter::get()->call_stop();
 	}
-	
 
 	if ((e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) && !(e->modifiers()&Qt::ShiftModifier))
 	{
@@ -41,7 +39,7 @@ void CommandLine::keyPressEvent(QKeyEvent *e)
 		clear();
 		return;
 	}
-	commandIdx = commandHistory.size()-1;
+	commandIdx = commandHistory.size() - 1;
 	historyFlag = false;
 
 	QPlainTextEdit::keyPressEvent(e);
@@ -53,7 +51,7 @@ void CommandLine::onKeyUpOrDown(int key)
 	{
 		if (key == Qt::Key_Up && commandIdx > 0)
 			commandIdx--;
-		if (key == Qt::Key_Down&& commandIdx < commandHistory.size() )
+		if (key == Qt::Key_Down&& commandIdx < commandHistory.size())
 			commandIdx++;
 	}
 	historyFlag = true;
@@ -62,10 +60,8 @@ void CommandLine::onKeyUpOrDown(int key)
 	if (commandIdx == commandHistory.size())
 		return;
 
-
 	if (commandHistory.size())
 		appendPlainText(commandHistory[commandIdx]);
-	
 }
 
 void CommandLine::addToHistory()
@@ -77,10 +73,9 @@ void CommandLine::addToHistory()
 
 	if (commandHistory.size() && commandHistory.last() == temp)
 		return;
-	
+
 	commandHistory.push_back(temp);
 }
-
 
 void CommandLine::interpreterRespond()
 {

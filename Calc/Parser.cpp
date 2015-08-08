@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Parser.h"
 
-
-
 namespace PR
 {
 	Parser::Parser()
@@ -11,15 +9,14 @@ namespace PR
 
 	Parser::Parser(LexicalAnalyzer &lex)
 	{
-		setInput(lex,"");
+		setInput(lex, "");
 	}
 
 	Parser::~Parser()
 	{
-		
 	}
 
-	void Parser::setInput(LexicalAnalyzer &lex,string fileInfo)
+	void Parser::setInput(LexicalAnalyzer &lex, string fileInfo)
 	{
 		try{
 			tokens = lex.getTokens();
@@ -127,7 +124,7 @@ namespace PR
 
 	void Parser::throwException(const string &message)
 	{
-		throw CalcException(message, _file.size()?_file:"", i->getPosition(), i->getLine());
+		throw CalcException(message, _file.size() ? _file : "", i->getPosition(), i->getLine());
 	}
 
 	void Parser::onDefault()
@@ -154,7 +151,7 @@ namespace PR
 
 		TOKEN_CLASS type = i->getMode() == PARSE_MODE::FUNCTION ? TOKEN_CLASS::OPEN_PARENTHESIS : TOKEN_CLASS::MATRIX_START;
 		bool flag = false;
-		for (int i = stack.size()-1; i >= 0; i--)
+		for (int i = stack.size() - 1; i >= 0; i--)
 		{
 			if (stack[i]->getClass() == type)
 			{
@@ -168,7 +165,7 @@ namespace PR
 			throwException("Unbalanced parenthesis!");
 		if (i->getMode() == PARSE_MODE::FUNCTION)
 		{
-			if (_function_args.size()==0)
+			if (_function_args.size() == 0)
 				throwException("Expression is incorrect.");
 			_function_args.back()++;
 		}
@@ -176,7 +173,7 @@ namespace PR
 
 	void Parser::onFunction()
 	{
-	    onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
+		onp.push_back(make_shared<Token>(TOKEN_CLASS::FUNCTON_ARGS_END));
 		stack.push_back(make_shared<Token>(*i));
 		_function_names.push_back(i->getLexemeR());
 		_function_args.push_back(1);
@@ -196,8 +193,8 @@ namespace PR
 	}
 
 	void Parser::onID()
-	{		
-		if (whatNext()!=TOKEN_CLASS::OPEN_PARENTHESIS &&
+	{
+		if (whatNext() != TOKEN_CLASS::OPEN_PARENTHESIS &&
 			find<string>({ "clear", "load", "save" }, i->getLexemeR()))
 		{
 			if (stack.size() || onp.size())
@@ -205,7 +202,7 @@ namespace PR
 			string name = i->getLexemeR();
 			onp.push_back(make_shared<Token>(FUNCTON_ARGS_END));
 			stop = false;
-			while (++iter != tokens.end()&&!stop)
+			while (++iter != tokens.end() && !stop)
 			{
 				switch ((*iter)->getClass())
 				{
@@ -257,7 +254,7 @@ namespace PR
 		onp.push_back(std::move(i));
 	}
 
-	void Parser::stackToOnpUntilToken(TOKEN_CLASS type,bool remove)
+	void Parser::stackToOnpUntilToken(TOKEN_CLASS type, bool remove)
 	{
 		bool flag = true;
 		for (int i = stack.size() - 1; i >= 0; i--)
@@ -293,7 +290,7 @@ namespace PR
 		}
 
 		stackToOnpUntilToken(TOKEN_CLASS::OPEN_PARENTHESIS);
-		if (stackBack() == TOKEN_CLASS::FUNCTION ||stackBack()==VARIABLES_MANAGEMENT)
+		if (stackBack() == TOKEN_CLASS::FUNCTION || stackBack() == VARIABLES_MANAGEMENT)
 		{
 			_function_names.pop_back();
 			stack.back()->argumentsNum(_function_args.back());
@@ -311,9 +308,9 @@ namespace PR
 	}
 
 	void Parser::onOperator()
-	{ 
+	{
 		Operator *o1 = i->castToOperator();
-		while (stackBack() == TOKEN_CLASS::OPERATOR )
+		while (stackBack() == TOKEN_CLASS::OPERATOR)
 		{
 			Operator *o2 = stack.back()->castToOperator();
 			if (o1->isColon2Operator() && o2->isColon2Operator())
@@ -338,11 +335,11 @@ namespace PR
 			onp.push_back(make_unique<ShortCircuitJumper>(SHORT_CIRCUIT_OR));
 	}
 
-	/** Ustalenie indeksów elementów instrukcji do których nale¿y 
+	/** Ustalenie indeksów elementów instrukcji do których nale¿y
 	   przejœæ, gdy:
-			-pierwszy operand operatora || jest ró¿ny od 0 
-			-pierwszy operand operatora && jest równy 0
-	*/
+	   -pierwszy operand operatora || jest ró¿ny od 0
+	   -pierwszy operand operatora && jest równy 0
+	   */
 	void Parser::computeShortCircuitJumps(vector<shared_ptr<Token>> &onp)
 	{
 		for (auto iter = onp.begin(); iter != onp.end(); ++iter)
@@ -356,8 +353,8 @@ namespace PR
 				/* Znalezienie operatora do którego nale¿y operand. */
 				auto result = std::find_if(iter + 1, onp.end(),
 					[&](const shared_ptr<Token> &token){
-						return _level == token->getTreeLevel() && 
-							token->getLexemeR()==_op;
+					return _level == token->getTreeLevel() &&
+						token->getLexemeR() == _op;
 				});
 
 				/* Indeks znalezionego operatora.*/
@@ -366,10 +363,10 @@ namespace PR
 				/* Ustawienie skoku na element po znalezionym operatorze*/
 				if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END)
 					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
-						->setJumpOnFalse(idx + 1);
+					->setJumpOnFalse(idx + 1);
 				else
 					dynamic_pointer_cast<ShortCircuitJumper>(*iter)
-						->setJumpOnTrue(idx + 1);
+					->setJumpOnTrue(idx + 1);
 			}
 		}
 	}
@@ -397,16 +394,16 @@ namespace PR
 			case TOKEN_CLASS::OPERATOR:
 				balance = -t->castToOperator()->getArgumentsNum() + 1; break;
 			case TOKEN_CLASS::MATRIX_END:
-				balance =  -mtrx.back() + 1;
+				balance = -mtrx.back() + 1;
 				mtrx.pop_back(); break;
 			case TOKEN_CLASS::FUNCTION:
 				balance = funs.back() == 0 ? 0 : -funs.back() + 1;
 				funs.pop_back(); break;
 			}
 			main += balance;
-			if (main <= 0 && t->getClass()==TOKEN_CLASS::OPERATOR || main<0)
+			if (main <= 0 && t->getClass() == TOKEN_CLASS::OPERATOR || main < 0)
 				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), _file,
-									t->getPosition(),t->getLine());
+				t->getPosition(), t->getLine());
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);
@@ -423,18 +420,18 @@ namespace PR
 
 	void Parser::onMatrixAll()
 	{
-		if (_function_names.size() == 0||_function_args.size()==0)
+		if (_function_names.size() == 0 || _function_args.size() == 0)
 			throwException("Unexpected end keyword or : operator");
 		onp.push_back(make_shared<Token>(*i));
 		onp.back()->setLexeme(_function_names.back());
 		onp.back()->setParam(_function_args.back());
-		_function_onp_addr.back().push_back(onp.size()-1);
+		_function_onp_addr.back().push_back(onp.size() - 1);
 	}
 
 	void Parser::onMatrixEnd()
 	{
 		stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START);
-		if (i->getMode()!=PARSE_MODE::MATRIX)
+		if (i->getMode() != PARSE_MODE::MATRIX)
 			onp.push_back(make_unique<Token>(TOKEN_CLASS::VERSE_END));
 		onp.push_back(make_unique<Token>(*i));
 	}
@@ -450,7 +447,7 @@ namespace PR
 		switch (i->getMode())
 		{
 		case PARSE_MODE::MATRIX:
-			stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START,false);
+			stackToOnpUntilToken(TOKEN_CLASS::MATRIX_START, false);
 			onp.push_back(make_unique<Token>(TOKEN_CLASS::VERSE_END));
 			break;
 		case PARSE_MODE::NORMAL:
@@ -483,13 +480,13 @@ namespace PR
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
 			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
-				throw CalcException("Unexpected symbol! "+stack[i]->getLexemeR(),"",
-								stack[i]->getPosition(),stack[i]->getLine());
+				throw CalcException("Unexpected symbol! " + stack[i]->getLexemeR(), "",
+				stack[i]->getPosition(), stack[i]->getLine());
 			onp.push_back(std::move(stack[i]));
 		}
 		stack.clear();
 	}
-	
+
 	void Parser::stackToOnp()
 	{
 		onp.push_back(std::move(stack.back()));
@@ -582,7 +579,7 @@ namespace PR
 	}
 
 	vector<shared_ptr<Token>> & Parser::getInstruction()
-	{ 
-		return onp; 
+	{
+		return onp;
 	}
 }

@@ -13,7 +13,7 @@ VariableEditWidget::~VariableEditWidget()
 {
 }
 
-void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberSelection)
+void VariableEditWidget::loadWidget(const PR::VariableInfo &info, bool rembemberSelection)
 {
 	if (updated == false)
 		return;
@@ -44,7 +44,7 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 
 			QTableWidgetItem *item = table->item(i, j);
 
-			if (item==nullptr)
+			if (item == nullptr)
 				table->setItem(i, j, new QTableWidgetItem(QString(info.get_cell(i, j).c_str())));
 			else
 				table->item(i, j)->setText(QString(info.get_cell(i, j).c_str()));
@@ -63,7 +63,6 @@ void VariableEditWidget::loadWidget(const PR::VariableInfo &info,bool rembemberS
 	{
 		table->setCurrentCell(current_row, current_col);
 	}
-	
 
 	table->blockSignals(false);
 	updated = false;
@@ -78,8 +77,8 @@ void VariableEditWidget::onItemChanged(QTableWidgetItem *item)
 
 	if (scalar && (item->column() > 0 || item->row() > 0))
 		command += variableName + "=[" + variableName + "];";
-	
-	command += variableName + "(" + QString::number(item->row()+1) + "," + QString::number(item->column()+1) + ")";
+
+	command += variableName + "(" + QString::number(item->row() + 1) + "," + QString::number(item->column() + 1) + ")";
 	command += "=" + item->text() + ";";
 	emit notifyVariableUpdate(command);
 }

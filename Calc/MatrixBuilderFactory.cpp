@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "MatrixBuilderFactory.h"
 
-
 namespace PR
 {
 	extern template class MatrixBuilder < double > ;

@@ -11,14 +11,14 @@
 namespace PR
 {
 	//! Mapa z istotna kolejnoscia wstawiania elementow.
-	template<class KEY,class VALUE>
+	template<class KEY, class VALUE>
 	class i_order_map
 	{
-		std::unordered_map<KEY,VALUE> map;
+		std::unordered_map<KEY, VALUE> map;
 		std::vector<KEY> vec;
 		int i;
 	public:
-		
+
 		i_order_map();
 		~i_order_map();
 
@@ -26,7 +26,5 @@ namespace PR
 		int length() const;
 		const std::vector<KEY> & getVec() const;
 		VALUE & operator[](const KEY &b);
-
 	};
-
 }

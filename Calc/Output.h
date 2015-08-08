@@ -35,7 +35,5 @@ namespace PR
 
 		//! Okresa czy zwrocone wartosci sa numeryczne.
 		virtual bool isNumeric() const override;
-
 	};
 }
-

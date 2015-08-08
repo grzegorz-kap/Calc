@@ -8,8 +8,8 @@ namespace PR
 	class MatrixBuilderFactory
 	{
 	public:
-		MatrixBuilderFactory()=delete;
-		~MatrixBuilderFactory()=delete;
+		MatrixBuilderFactory() = delete;
+		~MatrixBuilderFactory() = delete;
 
 		//! Pobranie implementacji budowania macierzy.
 		/*!
@@ -17,5 +17,4 @@ namespace PR
 		*/
 		static unique_ptr<IMatrixBuilder> get(TYPE _type);
 	};
-
 }

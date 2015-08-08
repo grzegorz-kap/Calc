@@ -26,11 +26,11 @@ namespace PR
 	//! Klasa dzielaca tekst na symbole leksykalne.
 	class Tokenizer
 	{
-	public:	
+	public:
 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
-		
+
 		Tokenizer();
-		~Tokenizer();	
+		~Tokenizer();
 		void setInput(const string &command);
 		void setInput(string &&command);
 		Tokenizer & operator = (Tokenizer &&b);
@@ -65,8 +65,7 @@ namespace PR
 		void init();
 		void onNewLine();
 		void throwMessage(const string &message);
-		void inc(int val=1);
+		void inc(int val = 1);
 		void setLine();
 	};
-
 }

@@ -11,14 +11,13 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-	class OROperator :	public Operator
+	class OROperator : public Operator
 	{
 	public:
 		OROperator();
 		~OROperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 
 	class ElementWiseAnd : public Operator
 	{
@@ -28,7 +27,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class ElementWiseOr : public Operator
 	{
 	public:
@@ -37,8 +35,7 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
-	class LogicalNotOperator :	public Operator
+	class LogicalNotOperator : public Operator
 	{
 	public:
 		LogicalNotOperator();

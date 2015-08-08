@@ -13,7 +13,6 @@ public:
 	~About();
 	void showAbout();
 
-
 private:
 	Ui::About ui;
 };

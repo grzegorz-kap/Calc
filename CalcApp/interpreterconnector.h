@@ -6,7 +6,6 @@
 #include "Calc\Interpreter.h"
 #include "Calc\SignalEmitter.h"
 
-
 #include "Sync.h"
 
 class InterpreterConnector : public QObject
@@ -14,12 +13,11 @@ class InterpreterConnector : public QObject
 	Q_OBJECT
 
 private:
-	
+
 	PR::Interpreter interpreter;
 	static const QString errorHtml;
 	static const QString endFontHtml;
 
-	
 public:
 	InterpreterConnector();
 	~InterpreterConnector();
@@ -30,13 +28,13 @@ public:
 	void errors_receiver(const char *, int);
 	void executionComplate(void);
 	void clearScreen(){ emit clsScreen(); }
-public slots:
+	public slots:
 	void workingDirectoryChanged(QString dir);
 
-private slots:
+	private slots:
 	void commandToInterpreter(QString command);
 	void updateFile(QString);
-	void getInformation( QString variableName);
+	void getInformation(QString variableName);
 signals:
 	void interpreterResponded(QString);
 	void interpreterRespondedHtml(QString);

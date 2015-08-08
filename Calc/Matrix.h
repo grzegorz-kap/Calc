@@ -18,24 +18,23 @@ namespace PR
 	template <class T> class MatrixBuilder;
 
 	//! Klasa reprezentujaca macierz.
-	template<class T> 
-	class  Matrix : public Numeric<Matrix<T>>
+	template<class T>
+	class  Matrix : public Numeric < Matrix<T> >
 	{
-
 		friend class MatrixTransposer;
 		friend class Mathematic;
 		friend class MatrixUtils;
 		template<class T> friend class MatrixBuilder;
 		template<class U> friend class Matrix;
-		
+
 		static Matrix<T>(*matrix_divide)(const Matrix<T> &a, const Matrix<T> &b);
 
 	protected:
 		vector< vector< ComplexNumber<T> >> mx;
 		int M;
-		int N;		
+		int N;
 	public:
-		
+
 		Matrix();
 		Matrix(const ComplexNumber<T> &b);
 		Matrix(Matrix<T> &&other);
@@ -90,7 +89,7 @@ namespace PR
 		Matrix<T> operator & (const Matrix<T> &b) const;
 		Matrix<T> logical_not() const;
 		vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector();
-		int * getM_P();	
+		int * getM_P();
 		int * getN_P();
 		bool virtual isScalar() const override;
 		bool virtual isInteger() const override;
@@ -137,10 +136,8 @@ namespace PR
 		Matrix<T> getLastIndexOfCol() const;
 		Matrix<T> getLastIndexOfRow() const;
 
-		private:
-			bool checkIfTrue() const;
-			bool checkIfFalse() const;
+	private:
+		bool checkIfTrue() const;
+		bool checkIfFalse() const;
 	};
-
-
 };

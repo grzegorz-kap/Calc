@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "ForIterator.h"
 
-
 namespace PR
 {
 	ForIterator::ForIterator(Variables &ref)
 		:vars(ref)
 	{
 	}
-
 
 	ForIterator::~ForIterator()
 	{

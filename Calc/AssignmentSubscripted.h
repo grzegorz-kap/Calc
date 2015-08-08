@@ -11,8 +11,8 @@ namespace PR
 	{
 		vector<shared_ptr<Token>> onp;
 		shared_ptr<Token> variable;
-		
-		static vector<shared_ptr<Data>>(*executor)(const vector<shared_ptr<Token>>&,Variables &);
+
+		static vector<shared_ptr<Data>>(*executor)(const vector<shared_ptr<Token>>&, Variables &);
 	public:
 
 		AssignmentSubscripted();
@@ -27,4 +27,3 @@ namespace PR
 }
 
 #endif
-

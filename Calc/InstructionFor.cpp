@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "InstructionFor.h"
 
-
 namespace PR
 {
 	InstructionFor::InstructionFor()
@@ -12,36 +11,34 @@ namespace PR
 	InstructionFor::InstructionFor(const Token &token)
 		:Token(token)
 	{
-
 	}
-
 
 	InstructionFor::~InstructionFor()
 	{
 	}
 
 	void InstructionFor::setName(const string &new_name)
-	{ 
+	{
 		name = new_name;
 	}
 
 	void InstructionFor::setOnp(const vector<shared_ptr<Token>> &o)
-	{ 
-		onp = o; 
+	{
+		onp = o;
 	}
 
 	void InstructionFor::setOnp(vector<shared_ptr<Token>> &&o)
-	{ 
+	{
 		onp = std::move(o);
 	}
 
-	const vector<shared_ptr<Token>>& InstructionFor::getOnp() const 
-	{ 
+	const vector<shared_ptr<Token>>& InstructionFor::getOnp() const
+	{
 		return onp;
 	}
 
-	string InstructionFor::getLexeme() const 
-	{ 
-		return name; 
+	string InstructionFor::getLexeme() const
+	{
+		return name;
 	}
 }

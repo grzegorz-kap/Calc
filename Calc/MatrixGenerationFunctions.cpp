@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "MatrixGenerationFunctions.h"
 
-
 namespace PR
 {
 	extern template class Matrix < double > ;
@@ -24,7 +23,7 @@ namespace PR
 	shared_ptr<Data> RandFunction::run()
 	{
 		init_rand_generator();
-		
+
 		if (!arguments[0]->isInteger() || arguments.size() > 1 && !arguments[1]->isInteger())
 			throw CalcException("Error using 'rand'. Size input is not integer.");
 
@@ -42,7 +41,6 @@ namespace PR
 		}
 	}
 
-
 	OnesFunction::OnesFunction()
 	{
 		min_args_count = 1;
@@ -52,7 +50,6 @@ namespace PR
 
 	OnesFunction::~OnesFunction()
 	{
-
 	}
 
 	shared_ptr<Data> OnesFunction::run()
@@ -64,7 +61,6 @@ namespace PR
 		return make_shared<Matrix<double>>(m, n, ComplexNumber<double>(1));
 	}
 
-
 	EyeFunction::EyeFunction()
 	{
 		min_args_count = 1;
@@ -73,7 +69,6 @@ namespace PR
 	}
 	EyeFunction::~EyeFunction()
 	{
-
 	}
 	shared_ptr<Data> EyeFunction::run()
 	{
@@ -84,7 +79,6 @@ namespace PR
 		return make_shared<Matrix<double>>(MatrixBuilder<double>::buildEye(m, n));
 	}
 
-
 	ZerosFunction::ZerosFunction()
 	{
 		min_args_count = 1;
@@ -93,7 +87,6 @@ namespace PR
 	}
 	ZerosFunction::~ZerosFunction()
 	{
-
 	}
 	shared_ptr<Data> ZerosFunction::run()
 	{
@@ -101,6 +94,6 @@ namespace PR
 			throw CalcException("Error using 'zeros'. Size input is not integer.");
 		int m = arguments[0]->toInteger();
 		int n = arguments.size() > 1 ? arguments[1]->toInteger() : m;
-		return make_shared<Matrix<double>>(m,n,ComplexNumber<double>(0));
+		return make_shared<Matrix<double>>(m, n, ComplexNumber<double>(0));
 	}
 }

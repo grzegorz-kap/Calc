@@ -41,7 +41,7 @@ namespace PR
 		vector<vector<int>> _function_onp_addr;
 		string _file;
 	public:
-		
+
 		Parser();
 		Parser(LexicalAnalyzer &lex);
 		~Parser();
@@ -49,15 +49,15 @@ namespace PR
 		void setInput(LexicalAnalyzer &lex, string fileInfo);
 		vector<shared_ptr<Token>> & getInstruction();
 		void setFileInfo(const string &name);
-	
-	private:	
+
+	private:
 		TOKEN_CLASS stackBack() const;
 		TOKEN_CLASS onpBack() const;
 		void stackToOnp();
 		void stackToOnpAll();
 		void iterBack();
 		TOKEN_CLASS whatNext();
-		
+
 		void onKeywordFOR();
 		void onKeywords();
 		void onDefault();
@@ -81,10 +81,7 @@ namespace PR
 		static void computeShortCircuitJumps(vector<shared_ptr<Token>> &onp);
 
 		void throwException(const string &message);
-
 	};
 }
-
-
 
 #endif

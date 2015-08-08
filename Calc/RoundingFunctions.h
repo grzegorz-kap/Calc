@@ -11,7 +11,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class FixFunction : public Function
 	{
 	public:

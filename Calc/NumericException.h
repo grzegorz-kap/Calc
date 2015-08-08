@@ -10,7 +10,7 @@ namespace PR
 		: public CalcException
 	{
 		//std::string message;
-		
+
 	public:
 		NumericException(std::string &&message);
 		~NumericException();
@@ -23,5 +23,4 @@ namespace PR
 		static void throwIndexMustBeReal();
 		static void throwIndexOutOfRange();
 	};
-
 }

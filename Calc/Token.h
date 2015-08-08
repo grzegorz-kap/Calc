@@ -14,7 +14,7 @@ namespace PR
 	class Operator;
 	class IAssignment;
 
-	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX,KEYWORD };
+	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX, KEYWORD };
 
 	//! Klasa reprezentujaca symbol leksykalny.
 	class Token :public Data
@@ -29,15 +29,15 @@ namespace PR
 		int keyword_balance;
 		int tree_level;
 		int _arguments_num;
-	
+
 	protected:
 		TYPE _evType;
-	
+
 	public:
 		Token();
-		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = -1, int param = 0,PARSE_MODE mode=PARSE_MODE::NORMAL);
+		Token(const string &lexemeArg, TOKEN_CLASS typeArg, int position = -1, int param = 0, PARSE_MODE mode = PARSE_MODE::NORMAL);
 		Token(string &&lexemeArg, TOKEN_CLASS typeArg, int position = -1, int param = 0, PARSE_MODE mode = PARSE_MODE::NORMAL);
-		Token(TOKEN_CLASS arg,int position=-1);
+		Token(TOKEN_CLASS arg, int position = -1);
 		Token(TOKEN_CLASS arg, int position, int paramA) :Token(arg, position) { param = paramA; }
 		Token(Token &&);
 		~Token();

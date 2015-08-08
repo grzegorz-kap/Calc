@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Numeric.h"
 
-
 namespace PR
 {
 	template class Numeric < Matrix<double> > ;

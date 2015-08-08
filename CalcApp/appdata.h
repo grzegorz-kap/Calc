@@ -32,9 +32,8 @@ public:
 	static void appendToCommandHistory(const QString &command);
 	static void loadCommandHistory(QTreeWidget *ptr);
 private:
-	
-	static void appendToFile(const QString &fileName, const QString &data);
 
+	static void appendToFile(const QString &fileName, const QString &data);
 };
 
 #endif // APPDATA_H

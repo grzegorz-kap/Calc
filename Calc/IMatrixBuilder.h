@@ -27,5 +27,4 @@ namespace PR
 		static const std::unordered_map<TYPE, TYPE> TYPES;
 		static TYPE getAssociatedType(const TYPE &_type);
 	};
-
 }

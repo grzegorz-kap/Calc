@@ -3,14 +3,14 @@
 const QString AppData::app_name = "KLab";
 
 const QString AppData::calcFolder =
-	QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + AppData::app_name;
+QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + AppData::app_name;
 
 const QString AppData::dirHistory = AppData::calcFolder + "/dirHistory.m";
 
 const QString AppData::commandHistory = AppData::calcFolder + "/commandHistory.m";
 
 const QString AppData::docsAndSettings = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) +
-										  "/" + app_name;
+"/" + app_name;
 
 AppData::AppData(QObject *parent)
 	: QObject(parent)
@@ -20,7 +20,6 @@ AppData::AppData(QObject *parent)
 
 AppData::~AppData()
 {
-
 }
 
 void AppData::createCalcFolder()
@@ -60,7 +59,7 @@ void AppData::writeDirHistory(QComboBox *dir)
 	int N = dir->count();
 	for (int i = 0; i < N; i++)
 	{
-		s << dir->itemText(i) << "\n" ;
+		s << dir->itemText(i) << "\n";
 	}
 	file.close();
 }
@@ -102,7 +101,6 @@ void AppData::loadCommandHistory(QTreeWidget *widget)
 
 		if (line.size() == 0)
 			continue;
-		
 
 		if (line[0] == '%')
 		{
@@ -116,4 +114,3 @@ void AppData::loadCommandHistory(QTreeWidget *widget)
 	}
 	file.close();
 }
-

@@ -1,7 +1,7 @@
 #include "filewatcher.h"
 
-FileWatcher::FileWatcher(const QString &path,QObject *parent)
-	: 
+FileWatcher::FileWatcher(const QString &path, QObject *parent)
+	:
 	dir(path)
 {
 	QStringList filters;
@@ -11,9 +11,7 @@ FileWatcher::FileWatcher(const QString &path,QObject *parent)
 
 FileWatcher::~FileWatcher()
 {
-
 }
-
 
 void FileWatcher::changed(QString path)
 {
@@ -23,13 +21,13 @@ void FileWatcher::changed(QString path)
 
 void FileWatcher::fileDialogButtonClicked()
 {
-	QString new_dir =  QFileDialog::getExistingDirectory();
+	QString new_dir = QFileDialog::getExistingDirectory();
 	if (new_dir == "")
 		return;
-	setNewDirectory(new_dir);	
+	setNewDirectory(new_dir);
 }
 
-void FileWatcher::setNewDirectory( QString directory)
+void FileWatcher::setNewDirectory(QString directory)
 {
 	if (dir.path() == directory)
 		return;

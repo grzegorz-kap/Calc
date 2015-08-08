@@ -26,7 +26,7 @@ namespace PR
 		ExternalFunction get();
 
 	private:
-		
+
 		void start();
 		TOKEN_CLASS loadSymbol();
 		void loadOutput();
@@ -41,4 +41,3 @@ namespace PR
 		void next(); /* Load next from code generator */
 	};
 }
-

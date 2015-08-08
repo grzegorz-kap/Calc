@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "export.h"
@@ -40,5 +39,3 @@ namespace PR
 		string get_cell(int i, int j) const;
 	};
 }
-
-

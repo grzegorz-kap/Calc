@@ -8,11 +8,9 @@ About::About(QWidget *parent)
 
 About::~About()
 {
-
 }
 
 void About::showAbout()
 {
 	ui.setupUi(this);
-	
 }

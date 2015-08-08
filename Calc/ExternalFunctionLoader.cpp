@@ -1,18 +1,16 @@
 #include "stdafx.h"
 #include "ExternalFunctionLoader.h"
 
-
 namespace PR
 {
 	ExternalFunctionLoader::ExternalFunctionLoader(const string &name)
-		:code(FileLoader(name+".m")),
+		:code(FileLoader(name + ".m")),
 		name(name)
 	{
 		throwEof();
 		ip = code.get();
 		start();
 	}
-
 
 	ExternalFunctionLoader::~ExternalFunctionLoader()
 	{
@@ -35,14 +33,14 @@ namespace PR
 		if (loadSymbol() != TOKEN_CLASS::FUNCTION_KEYWORD)
 			throw CalcException("Wrong start of function declaration!");
 		next();
-		
+
 		i = ip->begin();
 		loadOutput();
 		checkIfInputArgs();
 		loadInput();
 		loadName();
 		checkFunctionDeclEnd();
-		
+
 		code.inc();
 		loadBody();
 	}
@@ -54,7 +52,7 @@ namespace PR
 			ip = code.get();
 			if (ip->size() == 1 && ip->at(0)->getClass() == TOKEN_CLASS::END_FUNCTION)
 				break;
-			
+
 			fun.addInstruction(std::move(*ip));
 
 			code.inc();
@@ -151,6 +149,6 @@ namespace PR
 	void ExternalFunctionLoader::throwSize(int n)
 	{
 		if (ip->size() != n)
-			throw CalcException("Unexpected type of instruction in function script +!'"+name+"'");
+			throw CalcException("Unexpected type of instruction in function script +!'" + name + "'");
 	}
 }

@@ -3,10 +3,10 @@
 
 namespace PR
 {
-	extern template class Matrix < double >;
-	extern template class Matrix < hdouble >;
-	extern template class ComplexNumber < double >;
-	extern template class ComplexNumber < hdouble >;
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
 
 	decltype(Matrix<double>::matrix_divide) Matrix<double>::matrix_divide = MatrixUtils::divide < double > ;
 	decltype(Matrix<hdouble>::matrix_divide) Matrix<hdouble>::matrix_divide = MatrixUtils::divide < hdouble > ;
@@ -42,7 +42,7 @@ namespace PR
 			for (int i = k; i < m; i++)
 			{
 				T module = Mathematic::module(A.mx[i][k]);
-				if (module>max)
+				if (module > max)
 				{
 					max = module;
 					idx = i;
@@ -67,10 +67,9 @@ namespace PR
 			for (int i = k + 1; i < m; i++)
 			{
 				A.mx[i][k] /= ref;
-				for (int j = k+1; j < n; j++)
+				for (int j = k + 1; j < n; j++)
 					A.mx[i][j] -= A.mx[i][k] * A.mx[k][j];
 			}
-
 		}
 		Matrix<T> *n_u = nullptr;
 		if (u)
@@ -79,9 +78,9 @@ namespace PR
 			for (int i = 0; i < m; i++)
 				for (int j = 0; j < n; j++)
 				{
-					if (i == j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(1); }
-					else if (i < j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(0); }
-					else { n_u->mx[i][j] = ComplexNumber<T>(0); }
+				if (i == j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(1); }
+				else if (i < j){ n_u->mx[i][j] = std::move(A.mx[i][j]); A.mx[i][j] = ComplexNumber<T>(0); }
+				else { n_u->mx[i][j] = ComplexNumber<T>(0); }
 				}
 		}
 
@@ -153,7 +152,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::ldivide(const Matrix<T> &A, const Matrix<T> &B)
 	{
-		if (A.M!=A.N)
+		if (A.M != A.N)
 			throw NumericException("A/B==x <==> A*x=B . A must by square Matrix.");
 		if (A.M != B.M)
 			throw NumericException("A/B==x <==> A*x=B . Number of rows in A and B must be the same.");
@@ -190,7 +189,6 @@ namespace PR
 		return AA * inv(BB);
 	}
 
-
 	template <class T>
 	ComplexNumber<T> MatrixUtils::ldivide(const ComplexNumber<T> &A, const ComplexNumber<T> &B)
 	{
@@ -226,7 +224,7 @@ namespace PR
 	template <class T>
 	Matrix<T> MatrixUtils::createVector(const Matrix<T> &start, const Matrix<T> &end)
 	{
-		if (start.M==0||start.N==0||end.M==0||end.N==0)
+		if (start.M == 0 || start.N == 0 || end.M == 0 || end.N == 0)
 			return Matrix<T>(1, 0);
 
 		return createVector(start.mx[0][0], end.mx[0][0]);
@@ -257,12 +255,12 @@ namespace PR
 			multi *= 10;
 		int m = (int)Mathematic::fix((end.re*multi - start.re*multi) / (step.re*multi));
 
-		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m<0)
+		if (start.getIm() != 0 || step.getIm() != 0 || end.getIm() != 0 || m < 0)
 			return Matrix<T>(1, 0);
 
-		if (m==0 && step.getRe()>0 && start.getRe()>end.getRe() )
+		if (m == 0 && step.getRe() > 0 && start.getRe() > end.getRe())
 			return Matrix<T>(1, 0);
-		if (m==0 && step.getRe()<0 && start.getRe()<end.getRe())
+		if (m == 0 && step.getRe() < 0 && start.getRe() < end.getRe())
 			return Matrix<T>(1, 0);
 
 		const T &j = start.getRe();
@@ -330,18 +328,3 @@ namespace PR
 	template void MatrixUtils::url(const Matrix<double>&, const Matrix<double>&, int, Matrix<double>&, int);
 	template void MatrixUtils::url(const Matrix<hdouble>&, const Matrix<hdouble>&, int, Matrix<hdouble>&, int);
 }
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-
-	
-
-	

@@ -1,14 +1,14 @@
- #include "stdafx.h"
+#include "stdafx.h"
 #include "Tokenizer.h"
 
 namespace PR
 {
 	const vector<TOKEN_CLASS> Tokenizer::FOR_SPACE_DELETE = {
-		TOKEN_CLASS::NEW_LINE,  TOKEN_CLASS::OPEN_PARENTHESIS,
+		TOKEN_CLASS::NEW_LINE, TOKEN_CLASS::OPEN_PARENTHESIS,
 		TOKEN_CLASS::CLOSE_PARENTHESIS, TOKEN_CLASS::SPACE, TOKEN_CLASS::COLON,
 		TOKEN_CLASS::SEMICOLON, TOKEN_CLASS::COMMA, TOKEN_CLASS::IF_KEYWORD, FOR_KEYWORD,
 		TOKEN_CLASS::WHILE_KEYWORD, TOKEN_CLASS::CONTINUE_KEYWORD, TOKEN_CLASS::BREAK_KEYWORD, TOKEN_CLASS::END_KEYWORD,
-		TOKEN_CLASS::FUNCTION_KEYWORD,TOKEN_CLASS::ELSEIF_KEYWORD,TOKEN_CLASS::RETURN_KEYWORD
+		TOKEN_CLASS::FUNCTION_KEYWORD, TOKEN_CLASS::ELSEIF_KEYWORD, TOKEN_CLASS::RETURN_KEYWORD
 	};
 
 	const vector<string> Tokenizer::END_SYNONIMS = {
@@ -16,13 +16,13 @@ namespace PR
 	};
 
 	const unordered_map<char, TOKEN_CLASS> Tokenizer::OTHERS = {
-		{ '(',TOKEN_CLASS::OPEN_PARENTHESIS},
-		{ ')',TOKEN_CLASS::CLOSE_PARENTHESIS },
-		{ '[',TOKEN_CLASS::MATRIX_START },
-		{ ']',TOKEN_CLASS::MATRIX_END },
-		{ ':',TOKEN_CLASS::COLON },
-		{ ';',TOKEN_CLASS::SEMICOLON },
-		{ ',',TOKEN_CLASS::COMMA }
+			{ '(', TOKEN_CLASS::OPEN_PARENTHESIS },
+			{ ')', TOKEN_CLASS::CLOSE_PARENTHESIS },
+			{ '[', TOKEN_CLASS::MATRIX_START },
+			{ ']', TOKEN_CLASS::MATRIX_END },
+			{ ':', TOKEN_CLASS::COLON },
+			{ ';', TOKEN_CLASS::SEMICOLON },
+			{ ',', TOKEN_CLASS::COMMA }
 	};
 
 	Tokenizer::Tokenizer()
@@ -31,7 +31,7 @@ namespace PR
 		i = 0;
 	}
 
-    Tokenizer::~Tokenizer()
+	Tokenizer::~Tokenizer()
 	{
 	}
 
@@ -52,7 +52,7 @@ namespace PR
 		auto result = OTHERS.find(command[i]);
 		if (result == OTHERS.end())
 			throwMessage("Unrecognized symbol");
-		tokens.push_back(make_unique<Token>( result->second));
+		tokens.push_back(make_unique<Token>(result->second));
 		setLine();
 		inc();
 	}
@@ -66,7 +66,7 @@ namespace PR
 		}
 
 		int length;
-		auto result = OperatorsFactory::get(command, i,length);
+		auto result = OperatorsFactory::get(command, i, length);
 		if (result != nullptr)
 		{
 			tokens.push_back(std::move(result));
@@ -92,23 +92,22 @@ namespace PR
 
 	void Tokenizer::readWord()
 	{
-		
-		string lexame="";
+		string lexame = "";
 		/* Wczytanie identyfikatora*/
-		while (i < N && 
-				(  TokenizerHelper::isLetter(command[i]) || 
-				   TokenizerHelper::isDigit(command[i])  ) 
-				)
+		while (i < N &&
+			(TokenizerHelper::isLetter(command[i]) ||
+			TokenizerHelper::isDigit(command[i]))
+			)
 			lexame += command[i++];
 
 		/* Zamiana endfor, endif, endwhile, endfunction na end. */
-		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame) 
+		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame)
 			!= END_SYNONIMS.end())
 			lexame = "end";
 
 		/* Dodanie do tablicy rozpoznanych symboli leksykalnych. */
 		tokens.push_back(make_unique<Token>(std::move(lexame),
-						TokenizerHelper::keyWordOrId(lexame)));
+			TokenizerHelper::keyWordOrId(lexame)));
 		setLine();
 		_position += tokens.back()->getLexemeR().size();
 	}
@@ -118,7 +117,7 @@ namespace PR
 		string lexame = "";
 		bool found = false;
 		i++;
-		while (i < N && command[i]!='\n')
+		while (i < N && command[i] != '\n')
 		{
 			if (command[i] == '\'')
 			{
@@ -199,7 +198,7 @@ namespace PR
 				skipLineComment();
 				deleteUneccessary();
 			}
-			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE  || prev() == TOKEN_CLASS::SEMICOLON)) ||(i < N - 1 && z == '\n'&&z == ';'))
+			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE || prev() == TOKEN_CLASS::SEMICOLON)) || (i < N - 1 && z == '\n'&&z == ';'))
 			{
 				onNewLine();
 				i++;
@@ -209,7 +208,7 @@ namespace PR
 	}
 
 	void Tokenizer::tokenize()
-	{	
+	{
 		deleteUneccessary();
 		while (i < N)
 		{
@@ -253,7 +252,6 @@ namespace PR
 			else
 				_position++;
 		}
-				
 	}
 
 	void Tokenizer::whiteSpacesEnd()
@@ -282,7 +280,6 @@ namespace PR
 		_position = 1;
 		whiteSpacesEnd();
 		whiteSpacesBegin();
-		
 	}
 
 	char Tokenizer::prevChar()
@@ -316,6 +313,5 @@ namespace PR
 			tokens.back()->setLine(_line);
 			tokens.back()->setPosition(_position);
 		}
-			
 	}
 }

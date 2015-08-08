@@ -13,18 +13,17 @@ class FileWatcher : public QFileSystemWatcher
 private:
 	QDir dir;
 public:
-	FileWatcher(const QString &dir,QObject *parent=0);
+	FileWatcher(const QString &dir, QObject *parent = 0);
 	~FileWatcher();
 signals:
 	void sendFileList(QStringList list);
-	void fileUpdated( QString );
-	void workingDirectoryChanged( QString );
+	void fileUpdated(QString);
+	void workingDirectoryChanged(QString);
 
-public slots:
-	void changed( QString  path);
+	public slots:
+	void changed(QString  path);
 	void fileDialogButtonClicked();
-	void setNewDirectory( QString path);
-	
+	void setNewDirectory(QString path);
 };
 
 #endif // FILEWATCHER_H

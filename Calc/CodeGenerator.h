@@ -11,11 +11,9 @@ using std::vector;
 using std::string;
 using std::shared_ptr;
 
-
 #include "Parser.h"
 #include "FileLoader.h"
 #include "CodeGeneratorException.h"
-
 
 namespace PR
 {
@@ -25,7 +23,6 @@ namespace PR
 
 	class CodeGenerator
 	{
-
 	private:
 		Code code;
 		Ip ip;

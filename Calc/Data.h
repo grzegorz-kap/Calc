@@ -22,7 +22,6 @@ using std::vector;
 #include "CastException.h"
 #include "TokensTypes.h"
 
-
 namespace PR
 {
 	typedef cpp_bin_float_100 hdouble;
@@ -50,7 +49,7 @@ namespace PR
 	class   Data
 	{
 	protected:
-		
+
 	public:
 		Data();
 		~Data();
@@ -58,7 +57,7 @@ namespace PR
 		bool _updated; //!< Flaga modyfikacji.
 		bool _added;   //!< Flaga dodania.
 		bool _temp;    //!< Obiekt tymczasowy.
-		
+
 		const static std::unordered_map<std::type_index, TYPE> TYPE_MAP; //!< mapa typow danych.
 		const static std::unordered_map < TYPE, string > TYPE_NAME_MAP; //!< mapa nazw typow.
 
@@ -176,11 +175,9 @@ namespace PR
 			return dynamic_cast<Numeric<T> *> (this);
 		}
 
-		private:
-			string prepareCastError();
-		
+	private:
+		string prepareCastError();
 	};
-
 };
 
-#endif 
+#endif

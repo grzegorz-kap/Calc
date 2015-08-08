@@ -4,12 +4,9 @@
 #include "Matrix.h"
 #include "MatrixBuilder.h"
 
-
 #include <boost\math\constants\constants.hpp>
 
 using namespace boost::math::constants;
-
-
 
 namespace PR
 {
@@ -61,4 +58,3 @@ namespace PR
 		template <class T> static ComplexNumber<T> sqrt_calc(const ComplexNumber<T> &A){ return power(A, ComplexNumber<T>(0.5)); };
 	};
 }
-

@@ -8,20 +8,20 @@ namespace PR
 		init();
 	}
 
-	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position ,int param,PARSE_MODE mode)
+	Token::Token(const string &tokenArg, TOKEN_CLASS typeArg, int position, int param, PARSE_MODE mode)
 		:lexeme(tokenArg), _class(typeArg), position(position), param(param), mode(mode)
 	{
 		init();
 	}
 
 	Token::Token(string &&tokenArg, TOKEN_CLASS typeArg, int position, int param, PARSE_MODE mode)
-		:lexeme(std::move(tokenArg)), _class(typeArg), position(position), param(param), mode(mode)
+		: lexeme(std::move(tokenArg)), _class(typeArg), position(position), param(param), mode(mode)
 	{
 		init();
 	}
 
-	Token::Token(TOKEN_CLASS arg,int position)
-		:_class(arg),
+	Token::Token(TOKEN_CLASS arg, int position)
+		: _class(arg),
 		position(position)
 	{
 		init();
@@ -58,7 +58,6 @@ namespace PR
 	{
 	}
 
-
 	bool Token::operator==(const Token &b) const
 	{
 		if (lexeme != b.lexeme)
@@ -91,28 +90,28 @@ namespace PR
 		return out;
 	}
 
-	string Token::getLexeme() const 
-	{ 
-		return lexeme; 
+	string Token::getLexeme() const
+	{
+		return lexeme;
 	}
 
 	const string & Token::getLexemeR() const
-	{ 
-		return lexeme; 
+	{
+		return lexeme;
 	}
 
 	void Token::setLexeme(const string &lexemeArg)
-	{ 
-		lexeme = lexemeArg; 
+	{
+		lexeme = lexemeArg;
 	}
 
-	TOKEN_CLASS Token::getClass() const 
-	{ 
-		return _class; 
+	TOKEN_CLASS Token::getClass() const
+	{
+		return _class;
 	}
 
 	void Token::set_class(const TOKEN_CLASS &typeArg)
-	{ 
+	{
 		_class = typeArg;
 	}
 
@@ -127,28 +126,28 @@ namespace PR
 	}
 
 	int Token::getPosition()const
-	{ 
-		return position; 
+	{
+		return position;
 	}
 
 	void Token::setPosition(int pos)
-	{ 
-		position = pos; 
+	{
+		position = pos;
 	}
 
-	int Token::getParam() const 
-	{ 
-		return param; 
+	int Token::getParam() const
+	{
+		return param;
 	}
 
 	void Token::setParam(int p)
-	{ 
+	{
 		param = p;
 	}
 
-	PARSE_MODE Token::getMode()const 
-	{ 
-		return mode; 
+	PARSE_MODE Token::getMode()const
+	{
+		return mode;
 	}
 
 	void Token::argumentsNum(int n)
@@ -162,38 +161,38 @@ namespace PR
 	}
 
 	void Token::setMode(PARSE_MODE mode)
-	{ 
-		this->mode = mode; 
+	{
+		this->mode = mode;
 	}
 
 	void Token::setKeywordBalance(int b)
-	{ 
-		keyword_balance = b; 
+	{
+		keyword_balance = b;
 	}
 
-	int Token::getKeywordBalance() const 
-	{ 
-		return keyword_balance; 
+	int Token::getKeywordBalance() const
+	{
+		return keyword_balance;
 	}
 
 	TYPE Token::getEvType()const
-	{ 
-		return _evType; 
+	{
+		return _evType;
 	}
 
 	void Token::setEvType(TYPE type)
-	{ 
-		_evType = type; 
+	{
+		_evType = type;
 	}
 
 	int Token::getTreeLevel() const
-	{ 
-		return tree_level; 
+	{
+		return tree_level;
 	}
 
 	void Token::setTreeLevel(int arg)
-	{ 
-		tree_level = arg; 
+	{
+		tree_level = arg;
 	}
 
 	bool Token::isToken(TOKEN_CLASS token_class) const
@@ -220,5 +219,4 @@ namespace PR
 	{
 		return dynamic_cast<Token *>(this);
 	}
-
 }

@@ -3,21 +3,17 @@
 
 namespace PR
 {
-
-
-	template<class T,class U> 
-	i_order_map<T,U>::i_order_map() :i(0)
+	template<class T, class U>
+	i_order_map<T, U>::i_order_map() :i(0)
 	{
-
 	}
-	
-	template<class T, class U> 
+
+	template<class T, class U>
 	i_order_map<T, U>::~i_order_map()
 	{
-
 	}
 
-	template<class T, class U> 
+	template<class T, class U>
 	void i_order_map<T, U>::insert(const T &key, const U &value)
 	{
 		map[key] = value;
@@ -30,13 +26,13 @@ namespace PR
 		return vec.size();
 	}
 
-	template<class T, class U> 
+	template<class T, class U>
 	const std::vector<T> & i_order_map<T, U>::getVec() const
 	{
 		return vec;
 	}
 
-	template<class T, class U> 
+	template<class T, class U>
 	U& i_order_map<T, U>::operator[](const T &b)
 	{
 		return map[b];

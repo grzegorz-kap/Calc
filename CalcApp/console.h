@@ -13,10 +13,10 @@ public:
 	Console(QWidget *parent);
 	~Console();
 
-public slots:
-	void append(QString );
+	public slots:
+	void append(QString);
 	void appendWithoutRealase(QString);
-	void insertHtml(QString );
+	void insertHtml(QString);
 	void clear();
 private:
 	void cursorToEnd();

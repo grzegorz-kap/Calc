@@ -23,4 +23,3 @@ namespace PR
 		virtual bool isColon2Operator() const override{ return true; }
 	};
 }
-

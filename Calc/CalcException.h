@@ -37,5 +37,4 @@ namespace PR
 		int getPosition()const{ return position; } //!< Zwraca numer wiersza.
 		int getLine()const{ return line; }	//!< Zwraca numer kolummy.
 	};
-
 }

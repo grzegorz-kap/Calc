@@ -9,7 +9,6 @@ namespace PR
 		name = "log2";
 	}
 
-
 	Log2Function::~Log2Function()
 	{
 	}
@@ -24,7 +23,6 @@ namespace PR
 		min_args_count = max_args_count = 1;
 		name = "log10";
 	}
-
 
 	Log10Function::~Log10Function()
 	{
@@ -41,7 +39,6 @@ namespace PR
 		max_args_count = 2;
 		name = "log";
 	}
-
 
 	LogFunction::~LogFunction()
 	{
@@ -63,7 +60,6 @@ namespace PR
 	}
 	SqrtFunction::~SqrtFunction()
 	{
-
 	}
 
 	shared_ptr<Data> SqrtFunction::run()

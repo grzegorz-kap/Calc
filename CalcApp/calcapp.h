@@ -16,7 +16,6 @@
 #include "ScriptEditor.h"
 #include "about.h"
 
-
 class CalcApp : public QMainWindow
 {
 	Q_OBJECT
@@ -41,7 +40,6 @@ private:
 	public slots:
 	void stopComputing();
 	void onAboutAction();
-
 };
 
 #endif // CALCAPP_H

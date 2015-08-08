@@ -50,5 +50,4 @@ namespace PR
 		//! Laduje nastepna wartosc z zestawu do iteratora petli.
 		void loadNext();
 	};
-
 }

@@ -33,7 +33,7 @@ namespace PR
 
 	void NumberReader::fractionalPart()
 	{
-		if (position<N-1&&in[position] == '.'&&TokenizerHelper::isDigit(in[position+1]))
+		if (position < N - 1 && in[position] == '.'&&TokenizerHelper::isDigit(in[position + 1]))
 		{
 			position++;
 			out.append(".");

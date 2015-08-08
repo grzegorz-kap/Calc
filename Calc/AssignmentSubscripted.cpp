@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "AssignmentSubscripted.h"
 
-
 namespace PR
 {
 	AssignmentSubscripted::AssignmentSubscripted()
@@ -28,7 +27,7 @@ namespace PR
 
 			if (token->getClass() == TOKEN_CLASS::FUNCTION)
 				balance--;
-			
+
 			if (token->getClass() == TOKEN_CLASS::FUNCTON_ARGS_END)
 				balance++;
 			return false;
@@ -46,19 +45,19 @@ namespace PR
 	{
 		if (first == last)
 			throw CalcException("Too few arguments on right side of assignment!");
-		
+
 		shared_ptr<Data> var = nullptr;
 		try{
 			var = vars.get(variable->getLexemeR());
 		}
 		catch (const CalcException &ex)
 		{
-			throw CalcException("Error in subscripted assignment."+ex.getMessage());
+			throw CalcException("Error in subscripted assignment." + ex.getMessage());
 		}
 
 		if (var->isComplexNumber())
 		{
-			TypePromotor::promote(var,IMatrixBuilder::getAssociatedType(var->_type));
+			TypePromotor::promote(var, IMatrixBuilder::getAssociatedType(var->_type));
 		}
 
 		auto address = executor(onp, vars);
@@ -81,8 +80,8 @@ namespace PR
 	}
 
 	vector<shared_ptr<Token>>& AssignmentSubscripted::getOnpRef()
-	{ 
-		return onp; 
+	{
+		return onp;
 	}
 
 	IAssignment* AssignmentSubscripted::castToAssignment()

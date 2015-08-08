@@ -10,5 +10,4 @@ namespace PR
 		UnimplementedException(const string &message);
 		~UnimplementedException();
 	};
-
 }

@@ -11,7 +11,6 @@ namespace PR
 
 	ErrorFunction::~ErrorFunction()
 	{
-
 	}
 
 	shared_ptr<Data> ErrorFunction::run()

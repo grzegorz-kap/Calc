@@ -10,7 +10,6 @@ namespace PR
 		name = "mpf_float";
 	}
 
-
 	MpfFunction::~MpfFunction()
 	{
 	}

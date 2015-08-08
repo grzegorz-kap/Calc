@@ -1,4 +1,4 @@
-  #pragma once
+#pragma once
 #include "export.h"
 #include <string>
 #include <chrono>
@@ -19,7 +19,7 @@ namespace PR
 		static Variables main_vars; //!< Przechowuje glowna przestrzen robocza.
 	public:
 		//! Domyslny konstruktor
-		Interpreter(); 
+		Interpreter();
 		~Interpreter();
 
 		//! \brief Wykonuje instrukcje jezyka.
@@ -36,7 +36,7 @@ namespace PR
 		//! \brief Zmienia aktualny katalog roboczy
 		//! \param dir sciezka do nowego katalogu roboczego
 		void changeWorkingDirectory(const char *dir);
-		
+
 		//! \brief Udostepnia informacje o zmiennej.
 		//! Udostepnie informacje o zmiennej, potrzebne do wyswietlenia w interfejsie graficznym.
 		//! \param name nazwa zmiennej.
@@ -48,4 +48,3 @@ namespace PR
 		void sendUpdatedVariablesInformations();
 	};
 }
-

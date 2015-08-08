@@ -8,7 +8,6 @@ Console::Console(QWidget *parent)
 
 Console::~Console()
 {
-
 }
 
 void Console::append(QString s)
@@ -20,7 +19,7 @@ void Console::append(QString s)
 
 void Console::appendWithoutRealase(QString s)
 {
-	QTextBrowser::append(">> "+s + "\n");
+	QTextBrowser::append(">> " + s + "\n");
 	cursorToEnd();
 }
 

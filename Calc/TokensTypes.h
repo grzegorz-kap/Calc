@@ -4,7 +4,6 @@
 
 namespace PR
 {
-
 	enum TOKEN_CLASS
 	{
 		NUMBER,

@@ -19,7 +19,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class InvFunction : public Function
 	{
 	public:
@@ -27,7 +26,6 @@ namespace PR
 		~InvFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class LuFunction : public Function
 	{
@@ -44,5 +42,4 @@ namespace PR
 		~ConjFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 }

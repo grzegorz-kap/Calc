@@ -3,7 +3,6 @@
 VariablesEditor::VariablesEditor(QWidget *parent)
 	: QWidget(parent)
 {
-
 	ui.setupUi(this);
 	setWindowFlags(Qt::Window);
 	setWindowTitle("Variables editor");
@@ -15,7 +14,6 @@ VariablesEditor::VariablesEditor(QWidget *parent)
 
 VariablesEditor::~VariablesEditor()
 {
-
 }
 
 void VariablesEditor::connectToInterpretSingals()
@@ -34,7 +32,7 @@ void VariablesEditor::onVariableSelection(QTableWidgetItem *item)
 void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 {
 	auto tabs = ui.tabWidget;
-	
+
 	QWidget *widget = findTab(info.getName().c_str());
 	int idx;
 	if (widget == nullptr)
@@ -44,14 +42,13 @@ void VariablesEditor::receiveVariableInformation(PR::VariableInfo info)
 		connect(widget, SIGNAL(notifyVariableUpdate(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	}
 
-
 	hide();
 	idx = ui.tabWidget->indexOf(widget);
 	ui.tabWidget->blockSignals(true);
 	ui.tabWidget->setCurrentIndex(idx);
 	ui.tabWidget->blockSignals(false);
 	show();
-	
+
 	dynamic_cast<VariableEditWidget *>(widget)->loadWidget(info);
 }
 
@@ -75,7 +72,7 @@ void VariablesEditor::receiveVarsUpdate(const PR::VariableInfo *data, int num)
 
 		edit->setUpdate(true);
 		if (edit->isVisibleTo(this))
-			edit->loadWidget(*variable,true);
+			edit->loadWidget(*variable, true);
 	}
 }
 
@@ -102,7 +99,7 @@ void VariablesEditor::computationComplate()
 QWidget* VariablesEditor::findTab(const QString &name)
 {
 	int tabs_number = ui.tabWidget->count();
-	for (int i=0; i < tabs_number; i++)
+	for (int i = 0; i < tabs_number; i++)
 	{
 		if (ui.tabWidget->tabText(i) == name)
 			return ui.tabWidget->widget(i);

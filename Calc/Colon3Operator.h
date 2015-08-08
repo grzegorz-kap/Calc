@@ -12,7 +12,7 @@ namespace PR
 
 		virtual shared_ptr<Data> evaluate() override
 		{
-			return arguments[0]->createVector(arguments[1],arguments[2]);
+			return arguments[0]->createVector(arguments[1], arguments[2]);
 		}
 
 		virtual void promoteArguments() override
@@ -20,5 +20,4 @@ namespace PR
 			promoteToMatrix();
 		}
 	};
-
 }

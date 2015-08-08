@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "String.h"
 
-
 namespace PR
 {
 	String::String(const string &str)
@@ -17,7 +16,6 @@ namespace PR
 		_type = TYPE::STRING;
 		set_class(TOKEN_CLASS::STRING);
 	}
-
 
 	String::~String()
 	{

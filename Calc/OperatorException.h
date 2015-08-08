@@ -11,5 +11,4 @@ namespace PR
 		OperatorException(const string &message, int position = 0);
 		~OperatorException();
 	};
-
 }

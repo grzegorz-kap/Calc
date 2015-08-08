@@ -17,12 +17,11 @@ using std::string;
 #include "Colon2Operator.h"
 #include "Colon3Operator.h"
 
-
 namespace PR
 {
 	//! Fabryka operatorow.
 	class OperatorsFactory
-	{	
+	{
 	public:
 		OperatorsFactory & operator = (const OperatorsFactory &) = delete;
 		OperatorsFactory(const OperatorsFactory &) = delete;
@@ -41,10 +40,8 @@ namespace PR
 		OperatorsFactory();
 		static OperatorsFactory * instance; //<! Instancja fabryki
 		i_order_map<string, unique_ptr<Operator>(*)()>  operators; //<! Mapa operatorow
-	
 
 	private:
 		static void init();
 	};
-
 }

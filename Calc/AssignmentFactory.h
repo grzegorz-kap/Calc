@@ -15,9 +15,9 @@ using std::make_unique;
 namespace PR
 {
 	//! Fabryka operacji przypisania.
-	/*! 
-		Zwraca odpowiedni obiekt implementujacy interfejs operacji przypisania 
-	*/
+	/*!
+		Zwraca odpowiedni obiekt implementujacy interfejs operacji przypisania
+		*/
 	class AssignmentFactory
 	{
 	public:
@@ -30,4 +30,3 @@ namespace PR
 }
 
 #endif
-

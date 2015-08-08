@@ -11,7 +11,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class UPlusOperator : public Operator
 	{
 	public:
@@ -27,7 +26,6 @@ namespace PR
 		~SubtractionOperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 
 	class USubtractionOperator : public Operator
 	{
@@ -92,7 +90,6 @@ namespace PR
 		~ExponentiationOperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 
 	class MatrixExponentiationOperator : public Operator
 	{

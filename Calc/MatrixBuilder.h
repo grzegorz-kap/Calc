@@ -46,7 +46,5 @@ namespace PR
 		void addMatrix();
 		void prepareRows();
 		void changeIdxToEnd();
-		
 	};
 }
-

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "IAssignment.h"
 
-
 namespace PR
 {
 	IAssignment::IAssignment(const ASSIGNMENT_TYPE &_type)
@@ -9,7 +8,6 @@ namespace PR
 	{
 		set_class(TOKEN_CLASS::ASSIGNMENT_TARGET);
 	}
-
 
 	IAssignment::~IAssignment()
 	{
@@ -25,7 +23,7 @@ namespace PR
 		throw CalcException("Unimplemented assignment");
 	};
 
-	variables_map_pair IAssignment::assign(Variables &vars,const string &key,const shared_ptr<Data> &data)
+	variables_map_pair IAssignment::assign(Variables &vars, const string &key, const shared_ptr<Data> &data)
 	{
 		return vars.set(key, data);
 	}

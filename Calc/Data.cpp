@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Data.h"
 
-
 namespace PR
 {
 	decltype(Data::TYPE_MAP) Data::TYPE_MAP =
@@ -10,7 +9,7 @@ namespace PR
 		{ typeid(ComplexNumber<double>), TYPE::DOUBLE },
 		{ typeid(ComplexNumber<hdouble>), TYPE::R_DOUBLE },
 		{ typeid(Matrix<hdouble>), TYPE::RM_DOUBLE },
-		{ typeid(String),TYPE::STRING }
+		{ typeid(String), TYPE::STRING }
 	};
 
 	decltype(Data::TYPE_NAME_MAP) Data::TYPE_NAME_MAP =
@@ -81,7 +80,7 @@ namespace PR
 		throw UnimplementedException("Can not do division on this type!");
 	}
 
-	shared_ptr<Data> Data::url (shared_ptr<Data> &b) const
+	shared_ptr<Data> Data::url(shared_ptr<Data> &b) const
 	{
 		throw UnimplementedException("Cannot solve URL on this type!");
 	}
@@ -226,7 +225,6 @@ namespace PR
 		throw UnimplementedException("Cannot do 'lu' on this type");
 	}
 
-
 	shared_ptr<Data> Data::cholesky() const
 	{
 		throw UnimplementedException("Cannot do 'chol' on this type");
@@ -296,12 +294,12 @@ namespace PR
 	{
 		throw UnimplementedException("Cannot do subscripted assignment eq on this type");
 	}
-	
+
 	shared_ptr<Data> Data::createVector(shared_ptr<Data> &end) const
 	{
 		throw UnimplementedException("Wrong first operand for colon operator!");
 	}
-	
+
 	shared_ptr<Data> Data::createVector(shared_ptr<Data> &step, shared_ptr<Data> &end) const
 	{
 		throw UnimplementedException("Wrong first operand for colon operator!");
@@ -341,7 +339,6 @@ namespace PR
 	{
 		throw UnimplementedException("Cannot indexing this type");
 	}
-
 
 	string Data::minValueString() const
 	{
@@ -422,6 +419,4 @@ namespace PR
 	{
 		return "Cannot convert '" + find_name(this->_type) + "' to numeric type";
 	}
-
-
 }

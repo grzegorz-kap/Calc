@@ -12,7 +12,6 @@
 #include "VariableEditWidget.h"
 #include "interpreterconnector.h"
 
-
 class VariablesEditor : public QWidget
 {
 	Q_OBJECT
@@ -33,7 +32,7 @@ private:
 	void receiveRemoved(vector<string> removed);
 	void receiveVarsUpdate(const PR::VariableInfo *data, int num);
 
-public slots:
+	public slots:
 	void onVariableSelection(QTableWidgetItem *item);
 	void receiveVariableInformation(PR::VariableInfo info);
 	void onCurrentTabChanged(int idx);

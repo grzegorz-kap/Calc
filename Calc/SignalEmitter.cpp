@@ -1,31 +1,30 @@
 #include "stdafx.h"
 #include "SignalEmitter.h"
 
-
 namespace PR
 {
 	SignalEmitter* SignalEmitter::instance = nullptr;
 
 	SignalEmitter::SignalEmitter()
 	{
-		sig_data_value			= new DataValueSender();
-		sig_exception			= new ExceptionSender();
-		sig_stop_computing		= new StopComputingSender();
-		sig_added_variables		= new AddedVariablesSender();
-		sig_updated_variables	= new AddedVariablesSender();
-		sig_removed_variables	= new StringSender();
-		sig_execution_complate  = new VoidSender();
+		sig_data_value = new DataValueSender();
+		sig_exception = new ExceptionSender();
+		sig_stop_computing = new StopComputingSender();
+		sig_added_variables = new AddedVariablesSender();
+		sig_updated_variables = new AddedVariablesSender();
+		sig_removed_variables = new StringSender();
+		sig_execution_complate = new VoidSender();
 		sig_clean_screen = new VoidSender();
 	}
 
 	SignalEmitter::~SignalEmitter()
 	{
-		delete	sig_data_value		   ;
-		delete	sig_exception		   ;
-		delete	sig_stop_computing	   ;
-		delete	sig_added_variables	   ;
-		delete	sig_updated_variables  ;
-		delete	sig_removed_variables  ;
+		delete	sig_data_value;
+		delete	sig_exception;
+		delete	sig_stop_computing;
+		delete	sig_added_variables;
+		delete	sig_updated_variables;
+		delete	sig_removed_variables;
 		delete sig_execution_complate;
 		delete sig_clean_screen;
 	}
@@ -79,7 +78,7 @@ namespace PR
 
 	void SignalEmitter::call(const CalcException &exception)
 	{
-		string message = exception.getCommand().size() ? exception.getCommand()+"<br>"  : "";
+		string message = exception.getCommand().size() ? exception.getCommand() + "<br>" : "";
 		message += "Col: " + std::to_string(exception.getPosition()) + ", ";
 		message += "Line: " + std::to_string(exception.getLine()) + "<br>";
 		message += exception.getMessage();

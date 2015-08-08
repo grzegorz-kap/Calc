@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SizeFunction.h"
 
-
 namespace PR
 {
 	SizeFunction::SizeFunction()
@@ -10,7 +9,6 @@ namespace PR
 		name = "size";
 	}
 
-
 	SizeFunction::~SizeFunction()
 	{
 	}
@@ -18,7 +16,7 @@ namespace PR
 	shared_ptr<Data> SizeFunction::run()
 	{
 		shared_ptr<Output> output = std::make_shared<Output>();
-		
+
 		output->add(arguments[0]->get_rows());
 		output->add(arguments[0]->get_cols());
 
@@ -53,7 +51,6 @@ namespace PR
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_rows_int()*arguments[0]->get_cols_int());
 	}
 
-
 	IsColumnFunction::IsColumnFunction()
 	{
 		max_args_count = min_args_count = 1;
@@ -66,7 +63,6 @@ namespace PR
 	{
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int() == 1);
 	}
-
 
 	IsEmptyFunction::IsEmptyFunction()
 	{
@@ -81,7 +77,6 @@ namespace PR
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int() == 0 || arguments[0]->get_rows_int() == 0);
 	}
 
-
 	IsRowFunction::IsRowFunction()
 	{
 		max_args_count = min_args_count = 1;
@@ -92,9 +87,8 @@ namespace PR
 	}
 	shared_ptr<Data> IsRowFunction::run()
 	{
-		return make_shared<ComplexNumber<double>>( arguments[0]->get_rows_int() == 1);
+		return make_shared<ComplexNumber<double>>(arguments[0]->get_rows_int() == 1);
 	}
-
 
 	IsScalarFunction::IsScalarFunction()
 	{
@@ -109,7 +103,6 @@ namespace PR
 		return make_shared<ComplexNumber<double>>(arguments[0]->isScalar());
 	}
 
-
 	IsVectorFunction::IsVectorFunction()
 	{
 		max_args_count = min_args_count = 1;
@@ -123,7 +116,6 @@ namespace PR
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int() == 1 || arguments[0]->get_rows_int() == 1);
 	}
 
-
 	ColsFunction::ColsFunction()
 	{
 		max_args_count = min_args_count = 1;
@@ -136,7 +128,6 @@ namespace PR
 	{
 		return make_shared<ComplexNumber<double>>(arguments[0]->get_cols_int());
 	}
-
 
 	RowsFunction::RowsFunction()
 	{

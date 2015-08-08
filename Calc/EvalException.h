@@ -6,8 +6,7 @@ namespace PR
 		public CalcException
 	{
 	public:
-		EvalException(const string &message,int pos=-1);
+		EvalException(const string &message, int pos = -1);
 		~EvalException();
 	};
-
 }

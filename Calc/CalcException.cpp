@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "CalcException.h"
 
-
 namespace PR
 {
-	CalcException::CalcException(const string &messageA,const string &commandA, int positionA,int line)
+	CalcException::CalcException(const string &messageA, const string &commandA, int positionA, int line)
 		:message(messageA),
 		command(commandA),
 		position(positionA),
@@ -18,7 +17,6 @@ namespace PR
 		line = 0;
 	}
 
-
 	CalcException::~CalcException()
 	{
 	}
@@ -27,5 +25,4 @@ namespace PR
 	{
 		return "Ln: " + std::to_string(line) + ", Col: " + std::to_string(position) + "\n" + message;
 	}
-
 }

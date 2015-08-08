@@ -1,14 +1,11 @@
 #include "stdafx.h"
 #include "Variables.h"
 
-
 namespace PR
 {
-
 	Variables::Variables(bool main)
 		:main(main)
 	{
-		
 		init_consts();
 	};
 
@@ -44,7 +41,6 @@ namespace PR
 	{
 		if (mem.erase(name) > 0)
 			removed.push_back(name);
-		
 	}
 
 	void Variables::clear()
@@ -60,13 +56,13 @@ namespace PR
 	variables_map_iter Variables::getIterator(const string &name, bool ex)
 	{
 		auto result = mem.find(name);
-		if (result == mem.end() &&ex)
+		if (result == mem.end() && ex)
 			throw CalcException("Variable '" + name + "' not found!");
 		return result;
 	}
 
 	variables_map_pair Variables::set(const string &name,
-									  const shared_ptr<Data> &data)
+		const shared_ptr<Data> &data)
 	{
 		/* Je¿eli obiekt nie jest tymczasowy,
 		   skopiowanie jego wartoœci */
@@ -74,7 +70,7 @@ namespace PR
 
 		/* Zapis do aktualnej przestrzeni roboczej */
 		auto result = mem.insert({ name, temp });
-		
+
 		/* Je¿eli zmienna ju¿ istnieje*/
 		if (result.second == false)
 		{
@@ -144,7 +140,7 @@ namespace PR
 
 	void Variables::safe_to_file(const string &working_dir, vector<shared_ptr<Data>> &args)
 	{
-		if (args.size() == 0 )
+		if (args.size() == 0)
 			throw CalcException("Too few arguments for 'save' command!");
 
 		int idx = 0;
@@ -155,8 +151,8 @@ namespace PR
 		}
 
 		std::ofstream file;
-		file.open(working_dir + args[0]->toString()+".klab");
-		
+		file.open(working_dir + args[0]->toString() + ".klab");
+
 		if (args.size() == 1)
 		{
 			for (auto i = mem.begin(); i != mem.end(); i++)
@@ -169,7 +165,7 @@ namespace PR
 
 	void Variables::safe_to_file(std::ofstream &file, vector<shared_ptr<Data>> &args)
 	{
-		for (auto i = args.begin()+1 ; i != args.end(); i++)
+		for (auto i = args.begin() + 1; i != args.end(); i++)
 		{
 			/* Checked before if variable exists */
 			auto result = mem.find((*i)->toString());

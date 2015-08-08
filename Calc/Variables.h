@@ -36,7 +36,7 @@ namespace PR
 		//! \param name nazwa zmiennej do pobrania.
 		//! \param ex wyjatek, gdy nie znaleziono zmiennej.
 		shared_ptr<Data> get(const string &name, bool ex = true);
-		
+
 		//! Usuwa wszystkie zmienne z pamieci.
 		void clear();
 
@@ -52,7 +52,7 @@ namespace PR
 		//! Dokonuje zapisu nowej wartosci do pamieci.
 		//! \param name nazwa zmiennej.
 		//! \param data wartosc ktora nalezy zapisac.
-		variables_map_pair set(const string &name, const shared_ptr<Data> &data);	
+		variables_map_pair set(const string &name, const shared_ptr<Data> &data);
 
 		//! Czyszczenie lub zapis do pliku zmiennych.
 		//! \param operation typ operacji (clear lub save).

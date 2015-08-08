@@ -2,7 +2,6 @@
 
 QFont CalcApp::font = QFont();
 
-
 CalcApp::CalcApp(QWidget *parent)
 	: QMainWindow(parent),
 	interpreterConnector(new InterpreterConnector()),
@@ -17,17 +16,16 @@ CalcApp::CalcApp(QWidget *parent)
 	interpreterConnector = new InterpreterConnector();
 	interpreterConnector->connectStopComputing();
 	variablesEditor.setInterpreter(interpreterConnector);
-	
+
 	QThread *t = new QThread();
 	t->start();
 	interpreterConnector->moveToThread(t);
 	interpreterConnector->connectToInterpreterSingals();
 
-
 	qRegisterMetaType<QString>("QString");
 	qRegisterMetaType<std::string>("std::string");
 	qRegisterMetaType<PR::VariableInfo>("PR::VariableInfo");
-	
+
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), ui.console, SLOT(appendWithoutRealase(QString)));
 	connect(ui.commandLine, SIGNAL(commandEntered(QString)), ui.commandHistory, SLOT(insertCommand(QString)));
@@ -48,7 +46,7 @@ CalcApp::CalcApp(QWidget *parent)
 	connect(&fileWatcher, SIGNAL(workingDirectoryChanged(QString)), &scriptEditor, SLOT(workingDirectoryChanged(QString)));
 	connect(ui.dirComboBox, SIGNAL(currentIndexChanged(QString)), &fileWatcher, SLOT(setNewDirectory(QString)));
 	connect(ui.filesList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), &scriptEditor, SLOT(onScriptDblClicked(QListWidgetItem*)));
-	connect(interpreterConnector, SIGNAL(clsScreen()), ui.console,SLOT(clear()));
+	connect(interpreterConnector, SIGNAL(clsScreen()), ui.console, SLOT(clear()));
 	fileWatcher.changed(AppData::docsAndSettings);
 
 	connect(&scriptEditor, SIGNAL(runCommand(QString)), interpreterConnector, SLOT(commandToInterpreter(QString)));
@@ -77,7 +75,6 @@ CalcApp::CalcApp(QWidget *parent)
 
 CalcApp::~CalcApp()
 {
-
 }
 
 void CalcApp::onAboutAction()
@@ -126,6 +123,4 @@ void CalcApp::closeEvent(QCloseEvent *ev)
 		ev->accept();
 	else
 		ev->ignore();
-	
 }
-

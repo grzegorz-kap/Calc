@@ -14,5 +14,4 @@ namespace PR
 		CodeGeneratorException(const string &description);
 		~CodeGeneratorException();
 	};
-
 }

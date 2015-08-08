@@ -15,7 +15,6 @@ namespace PR
 		void init_rand_generator();
 	};
 
-
 	class OnesFunction : public Function
 	{
 	public:
@@ -23,7 +22,6 @@ namespace PR
 		~OnesFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class EyeFunction : public Function
 	{

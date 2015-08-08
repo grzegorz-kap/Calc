@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "ShortCircuitJumper.h"
 
-
 namespace PR
 {
 	ShortCircuitJumper::ShortCircuitJumper(TOKEN_CLASS _class)
 		:Token(_class)
 	{
 	}
-
 
 	ShortCircuitJumper::~ShortCircuitJumper()
 	{

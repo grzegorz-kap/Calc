@@ -1,29 +1,27 @@
 #include "stdafx.h"
 #include "GraphDrawer.h"
 
-
 GraphDrawer::GraphDrawer()
-{	
+{
 }
-
 
 GraphDrawer::~GraphDrawer()
 {
 }
 
-void GraphDrawer::plot(double *x , double *y, int x_count,int y_count)
+void GraphDrawer::plot(double *x, double *y, int x_count, int y_count)
 {
 	int ic;
 	g.erase();
-	
+
 	if (x_count != y_count)
 		throw 'c';
-	
+
 	g.window(100, 100, 800, 640);
 	g.metafl("cons");
 	g.scrmod("revers");
 	g.disini();
-	
+
 	g.name("X-axis", "x");
 	g.name("Y-axis", "y");
 
@@ -33,31 +31,30 @@ void GraphDrawer::plot(double *x , double *y, int x_count,int y_count)
 
 	ic = g.intrgb(0.95, 0.95, 0.95);
 	g.axsbgd(ic);
-	
+
 	setupXAxisParameters(x, x_count);
 	setupYAxisParameters(y, y_count);
 
-	g.graf(x_min_limit,x_max_limit,x_first_axis_label,x_step_axis_label,
-		y_min_limit,y_max_limit,y_first_axis_label,y_step_axis_label);
-	
+	g.graf(x_min_limit, x_max_limit, x_first_axis_label, x_step_axis_label,
+		y_min_limit, y_max_limit, y_first_axis_label, y_step_axis_label);
+
 	g.setrgb(0.7, 0.7, 0.7);
 	g.grid(1, 1);
 
 	g.color("fore");
 	g.height(50);
 	g.title();
-	
+
 	g.color("red");
 	g.curve(x, y, x_count);
 	g.disfin();
-
 }
 
 void GraphDrawer::plot3(double *x, double *y, double *z, int x_n, int y_n, int z_n)
 {
 	int ic;
 	g.erase();
-	
+
 	g.window(100, 100, 800, 640);
 	g.metafl("cons");
 	g.scrmod("revers");
@@ -85,7 +82,7 @@ void GraphDrawer::plot3(double *x, double *y, double *z, int x_n, int y_n, int z
 
 	g.graf3d(x_min_limit, x_max_limit, x_first_axis_label, x_step_axis_label,
 		y_min_limit, y_max_limit, y_first_axis_label, y_step_axis_label,
-		z_min_limit,z_max_limit,z_first_axis_label,z_step_axis_label);
+		z_min_limit, z_max_limit, z_first_axis_label, z_step_axis_label);
 
 	g.height(50);
 	g.setrgb(0.7, 0.7, 0.7);
@@ -96,7 +93,7 @@ void GraphDrawer::plot3(double *x, double *y, double *z, int x_n, int y_n, int z
 	g.disfin();
 }
 
-void GraphDrawer::setupXAxisParameters(double *x,int n)
+void GraphDrawer::setupXAxisParameters(double *x, int n)
 {
 	g.gaxpar(*std::min_element(x, x + n), *std::max_element(x, x + n),
 		"EXTEND", "X", &x_min_limit, &x_max_limit, &x_first_axis_label, &x_step_axis_label, &x_ndig);
@@ -113,7 +110,7 @@ void GraphDrawer::setupYAxisParameters(double *y, int n)
 
 void GraphDrawer::setupZAxisParameters(double *z, int n)
 {
-	g.gaxpar(*std::min_element(z, z + n), *std::max_element(z, z  + n),
+	g.gaxpar(*std::min_element(z, z + n), *std::max_element(z, z + n),
 		"EXTEND", "Z", &z_min_limit, &z_max_limit, &z_first_axis_label, &z_step_axis_label, &z_ndig);
 }
 

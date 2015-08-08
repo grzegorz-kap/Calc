@@ -10,5 +10,4 @@ namespace PR
 		CastException(const string &message);
 		~CastException();
 	};
-
 }

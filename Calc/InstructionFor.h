@@ -18,7 +18,7 @@ namespace PR
 		public Token
 	{
 		vector<shared_ptr<Token>> onp;
-		string name ;
+		string name;
 	public:
 		InstructionFor();
 		InstructionFor(const Token &token);
@@ -34,4 +34,3 @@ namespace PR
 		virtual string getLexeme() const override;
 	};
 }
-

@@ -33,13 +33,11 @@ namespace PR
 		return arguments[0]->url(arguments[1]);
 	}
 
-
 	InvFunction::InvFunction()
 	{
 		min_args_count = max_args_count = 1;
 		name = "inv";
 	}
-
 
 	InvFunction::~InvFunction()
 	{
@@ -52,14 +50,11 @@ namespace PR
 		return arguments[0]->inv();
 	}
 
-
-
 	LuFunction::LuFunction()
 	{
 		min_args_count = max_args_count = 1;
 		name = "lu";
 	}
-
 
 	LuFunction::~LuFunction()
 	{
@@ -93,5 +88,4 @@ namespace PR
 	{
 		return arguments[0]->conj();
 	}
-
 }
