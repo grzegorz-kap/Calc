@@ -46,7 +46,7 @@ namespace KLab
 		for (; !stop && iter != tokens.end(); ++iter)
 		{
 			i = std::move(*iter);
-			switch (i->getClass())
+			switch (i->getTokenClass())
 			{
 			case TOKEN_CLASS::NUMBER:
 				onNumber();
@@ -124,7 +124,7 @@ namespace KLab
 
 	void Parser::throwException(const string &message)
 	{
-		throw CalcException(message, _file.size() ? _file : "", i->getPosition(), i->getLine());
+		throw CalcException(message, _file.size() ? _file : "", i->getColumn(), i->getLine());
 	}
 
 	void Parser::onDefault()
@@ -153,7 +153,7 @@ namespace KLab
 		bool flag = false;
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getClass() == type)
+			if (stack[i]->getTokenClass() == type)
 			{
 				flag = true;
 				break;
@@ -189,7 +189,7 @@ namespace KLab
 			_ev_type_mode.push_back(TYPE::DOUBLE);
 		}
 		else if (find<string>({ "load", "save", "clear" }, i->getLexemeR()))
-			stack.back()->set_class(VARIABLES_MANAGEMENT);
+			stack.back()->setTokenClass(VARIABLES_MANAGEMENT);
 	}
 
 	void Parser::onID()
@@ -204,7 +204,7 @@ namespace KLab
 			stop = false;
 			while (++iter != tokens.end() && !stop)
 			{
-				switch ((*iter)->getClass())
+				switch ((*iter)->getTokenClass())
 				{
 				case TOKEN_CLASS::STRING:
 					onp.push_back(std::move(*iter));
@@ -231,7 +231,7 @@ namespace KLab
 
 		if (whatNext() == OPEN_PARENTHESIS)
 		{
-			i->set_class(FUNCTION);
+			i->setTokenClass(FUNCTION);
 			onFunction();
 			return;
 		}
@@ -259,7 +259,7 @@ namespace KLab
 		bool flag = true;
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getClass() == type)
+			if (stack[i]->getTokenClass() == type)
 			{
 				flag = false;
 				if (remove)
@@ -344,7 +344,7 @@ namespace KLab
 	{
 		for (auto iter = onp.begin(); iter != onp.end(); ++iter)
 		{
-			TOKEN_CLASS _class = (*iter)->getClass();
+			TOKEN_CLASS _class = (*iter)->getTokenClass();
 			if (_class == TOKEN_CLASS::SHORT_CIRCUIT_END ||
 				_class == TOKEN_CLASS::SHORT_CIRCUIT_OR)
 			{
@@ -379,7 +379,7 @@ namespace KLab
 		for (const auto &t : onp)
 		{
 			int balance = 0;
-			switch (t->getClass())
+			switch (t->getTokenClass())
 			{
 			case TOKEN_CLASS::ID:
 			case TOKEN_CLASS::NUMBER:
@@ -401,9 +401,9 @@ namespace KLab
 				funs.pop_back(); break;
 			}
 			main += balance;
-			if (main <= 0 && t->getClass() == TOKEN_CLASS::OPERATOR || main < 0)
+			if (main <= 0 && t->getTokenClass() == TOKEN_CLASS::OPERATOR || main < 0)
 				throw CalcException("Parser: Too few arguments for " + t->getLexemeR(), _file,
-				t->getPosition(), t->getLine());
+				t->getColumn(), t->getLine());
 			if (funs.size()) funs.back() += balance;
 			if (mtrx.size()) mtrx.back() += balance;
 			t->setTreeLevel(main);
@@ -462,7 +462,7 @@ namespace KLab
 	TOKEN_CLASS Parser::stackBack() const
 	{
 		if (stack.size() != 0)
-			return stack.back()->getClass();
+			return stack.back()->getTokenClass();
 		else
 			return TOKEN_CLASS::NONE;
 	}
@@ -470,7 +470,7 @@ namespace KLab
 	TOKEN_CLASS Parser::onpBack() const
 	{
 		if (onp.size() != 0)
-			return onp.back()->getClass();
+			return onp.back()->getTokenClass();
 		else
 			return TOKEN_CLASS::NONE;
 	}
@@ -479,9 +479,9 @@ namespace KLab
 	{
 		for (int i = stack.size() - 1; i >= 0; i--)
 		{
-			if (stack[i]->getClass() != TOKEN_CLASS::OPERATOR)
+			if (stack[i]->getTokenClass() != TOKEN_CLASS::OPERATOR)
 				throw CalcException("Unexpected symbol! " + stack[i]->getLexemeR(), "",
-				stack[i]->getPosition(), stack[i]->getLine());
+				stack[i]->getColumn(), stack[i]->getLine());
 			onp.push_back(std::move(stack[i]));
 		}
 		stack.clear();
@@ -510,19 +510,19 @@ namespace KLab
 		if (onp.back()->getLexemeR() == "=")
 		{
 			find = true;
-			onp.back()->set_class(TOKEN_CLASS::ASSIGNMENT);
+			onp.back()->setTokenClass(TOKEN_CLASS::ASSIGNMENT);
 		}
 
-		if (!find && onp.back()->getClass() == TOKEN_CLASS::OUTPUT_OFF && onp.rbegin()[1]->getLexemeR() == "=")
+		if (!find && onp.back()->getTokenClass() == TOKEN_CLASS::OUTPUT_OFF && onp.rbegin()[1]->getLexemeR() == "=")
 		{
 			find = true;
-			onp.rbegin()[1]->set_class(TOKEN_CLASS::ASSIGNMENT);
+			onp.rbegin()[1]->setTokenClass(TOKEN_CLASS::ASSIGNMENT);
 		}
 
 		if (!find)
 			return;
 
-		unique_ptr<IAssignment> iAssignment = AssignmentFactory::get(onp.front()->getClass());
+		unique_ptr<IAssignment> iAssignment = AssignmentFactory::get(onp.front()->getTokenClass());
 
 		auto start = onp.begin();
 		auto end = onp.end();
@@ -558,9 +558,9 @@ namespace KLab
 		_for->setName(assignment->getLexeme());
 		onp.erase(onp.begin());
 
-		if (onp.back()->getClass() == TOKEN_CLASS::OUTPUT_OFF)
+		if (onp.back()->getTokenClass() == TOKEN_CLASS::OUTPUT_OFF)
 			onp.pop_back();
-		if (onp.back()->getClass() == TOKEN_CLASS::ASSIGNMENT)
+		if (onp.back()->getTokenClass() == TOKEN_CLASS::ASSIGNMENT)
 			onp.pop_back();
 
 		if (onp.size() == 0)

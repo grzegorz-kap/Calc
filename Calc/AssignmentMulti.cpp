@@ -14,19 +14,19 @@ namespace KLab
 
 	void AssignmentMulti::loadTarget(instr_iter &start, instr_iter &end)
 	{
-		if ((*start)->getClass() != TOKEN_CLASS::MATRIX_START)
+		if ((*start)->getTokenClass() != TOKEN_CLASS::MATRIX_START)
 			throw CalcException("Wrong start of multiassignment!");
 		for (start = std::next(start); start != end;)
 		{
-			if ((*start)->getClass() == TOKEN_CLASS::VERSE_END)
+			if ((*start)->getTokenClass() == TOKEN_CLASS::VERSE_END)
 			{
 				start++;
-				if ((*start)->getClass() != TOKEN_CLASS::MATRIX_END)
-					throw CalcException("Wrong assignment", (*start)->getPosition());
+				if ((*start)->getTokenClass() != TOKEN_CLASS::MATRIX_END)
+					throw CalcException("Wrong assignment", (*start)->getColumn());
 				break;
 			}
 
-			unique_ptr<IAssignment> assignment(AssignmentFactory::get((*start)->getClass()));
+			unique_ptr<IAssignment> assignment(AssignmentFactory::get((*start)->getTokenClass()));
 			if (assignment->_assignment_type == ASSIGNMENT_TYPE::MULTI)
 				throw CalcException("Nasted multi assignment!");
 

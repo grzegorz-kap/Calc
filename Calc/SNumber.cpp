@@ -39,7 +39,7 @@ namespace KLab
 				cache = make_shared<Matrix<hdouble>>(getLexeme());
 				break;
 			default:
-				throw EvalException("Cannot evaluate numeric expression! Unrecognized type", getPosition());
+				throw EvalException("Cannot evaluate numeric expression! Unrecognized type", getColumn());
 		}
 		return cache;
 	}

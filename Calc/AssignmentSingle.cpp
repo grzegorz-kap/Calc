@@ -19,8 +19,8 @@ namespace KLab
 
 		target = std::move(*start);
 
-		if (target->getClass() != TOKEN_CLASS::ID)
-			throw CalcException("Unexpected symbol in assignment target", target->getPosition());
+		if (target->getTokenClass() != TOKEN_CLASS::ID)
+			throw CalcException("Unexpected symbol in assignment target", target->getColumn());
 
 		start++;
 	}

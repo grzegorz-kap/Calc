@@ -20,7 +20,7 @@ using std::vector;
 
 #include "UnimplementedException.h"
 #include "CastException.h"
-#include "TokensTypes.h"
+#include "TokenClass.h"
 
 namespace KLab
 {

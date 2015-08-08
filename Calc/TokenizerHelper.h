@@ -8,7 +8,7 @@ using std::string;
 using std::vector;
 using std::unordered_map;
 
-#include "TokensTypes.h"
+#include "TokenClass.h"
 #include "Token.h"
 #include "Operator.h"
 

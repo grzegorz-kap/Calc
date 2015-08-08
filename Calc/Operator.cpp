@@ -10,7 +10,7 @@ namespace KLab
 		ev(ev)
 	{
 		setLexeme(name);
-		set_class(TOKEN_CLASS::OPERATOR);
+		setTokenClass(TOKEN_CLASS::OPERATOR);
 	}
 
 	Operator::~Operator()

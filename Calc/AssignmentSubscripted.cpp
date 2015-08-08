@@ -17,18 +17,18 @@ namespace KLab
 		if (start == end)
 			throw CalcException("Error in subscripted assignment");
 
-		if ((*start)->getClass() != TOKEN_CLASS::FUNCTON_ARGS_END)
-			throw CalcException("Unexpected token during subscripted assignment!", (*start)->getPosition());
+		if ((*start)->getTokenClass() != TOKEN_CLASS::FUNCTON_ARGS_END)
+			throw CalcException("Unexpected token during subscripted assignment!", (*start)->getColumn());
 
 		int balance = 0;
 		auto result = std::find_if(++start, end, [&balance](const shared_ptr<Token> &token) -> bool{
-			if (token->getClass() == TOKEN_CLASS::FUNCTION && balance == 0)
+			if (token->getTokenClass() == TOKEN_CLASS::FUNCTION && balance == 0)
 				return true;
 
-			if (token->getClass() == TOKEN_CLASS::FUNCTION)
+			if (token->getTokenClass() == TOKEN_CLASS::FUNCTION)
 				balance--;
 
-			if (token->getClass() == TOKEN_CLASS::FUNCTON_ARGS_END)
+			if (token->getTokenClass() == TOKEN_CLASS::FUNCTON_ARGS_END)
 				balance++;
 			return false;
 		});

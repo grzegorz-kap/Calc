@@ -56,9 +56,9 @@ namespace KLab
 
 	void LexicalBalanceHelper::setMode(Token &token)
 	{
-		pos = token.getPosition();
+		pos = token.getColumn();
 		line = token.getLine();
-		switch (token.getClass())
+		switch (token.getTokenClass())
 		{
 		case TOKEN_CLASS::OPEN_PARENTHESIS:
 			changeMode(PARSE_MODE::FUNCTION, 1);
@@ -105,7 +105,7 @@ namespace KLab
 	void LexicalBalanceHelper::onInstructionKeyWord(Token &token)
 	{
 		token.setKeywordBalance(++key_word_balance);
-		key_word_mode.push_back(token.getClass());
+		key_word_mode.push_back(token.getTokenClass());
 	}
 
 	void LexicalBalanceHelper::onEndKeyword(Token &token)
@@ -117,16 +117,16 @@ namespace KLab
 		switch (key_word_mode.back())
 		{
 		case TOKEN_CLASS::FOR_KEYWORD:
-			token.set_class(TOKEN_CLASS::END_FOR);
+			token.setTokenClass(TOKEN_CLASS::END_FOR);
 			break;
 		case TOKEN_CLASS::IF_KEYWORD:
-			token.set_class(END_IF);
+			token.setTokenClass(END_IF);
 			break;
 		case TOKEN_CLASS::WHILE_KEYWORD:
-			token.set_class(END_WHILE);
+			token.setTokenClass(END_WHILE);
 			break;
 		case TOKEN_CLASS::FUNCTION_KEYWORD:
-			token.set_class(TOKEN_CLASS::END_FUNCTION);
+			token.setTokenClass(TOKEN_CLASS::END_FUNCTION);
 			break;
 		}
 		key_word_mode.pop_back();

@@ -153,7 +153,7 @@ namespace KLab
 		case '\t':
 		case ' ':
 		case '\r':
-			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getClass()))
+			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getTokenClass()))
 			{
 				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE));
 				setLine();
@@ -269,7 +269,7 @@ namespace KLab
 	{
 		if (tokens.size() == 0)
 			return TOKEN_CLASS::NONE;
-		return tokens.back()->getClass();
+		return tokens.back()->getTokenClass();
 	}
 
 	void Tokenizer::init()
@@ -311,7 +311,7 @@ namespace KLab
 		if (tokens.size())
 		{
 			tokens.back()->setLine(_line);
-			tokens.back()->setPosition(_position);
+			tokens.back()->setColumn(_position);
 		}
 	}
 }

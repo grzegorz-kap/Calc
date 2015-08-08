@@ -76,7 +76,7 @@ namespace KLab
 		{
 			addMatrix();
 		}
-		else if (type == TYPE::TOKEN && data->cast_token()->getClass() == TOKEN_CLASS::VERSE_END)
+		else if (type == TYPE::TOKEN && data->cast_token()->getTokenClass() == TOKEN_CLASS::VERSE_END)
 		{
 			setAndCheckSize();
 			changeIdxToEnd();

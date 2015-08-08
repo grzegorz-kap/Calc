@@ -1,0 +1,22 @@
+#pragma once
+
+namespace KLab
+{
+	enum TOKEN_CLASS
+	{
+		NUMBER,
+		ID,
+		OPEN_PARENTHESIS,
+		CLOSE_PARENTHESIS,
+		OPERATOR,
+		SEMICOLON,
+		OPEN_BRACKET,
+		CLOSE_BRACKET,
+		APOSTROPHE,
+		STRING,
+		NEW_LINE,
+		SPACE,
+		COLON,
+		COMMA
+	};
+}

@@ -5,7 +5,7 @@ namespace KLab
 {
 	InstructionFor::InstructionFor()
 	{
-		set_class(TOKEN_CLASS::FOR_KEYWORD);
+		setTokenClass(TOKEN_CLASS::FOR_KEYWORD);
 	}
 
 	InstructionFor::InstructionFor(const Token &token)

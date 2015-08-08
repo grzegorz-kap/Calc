@@ -7,14 +7,14 @@ namespace KLab
 		:data(str)
 	{
 		_type = TYPE::STRING;
-		set_class(TOKEN_CLASS::STRING);
+		setTokenClass(TOKEN_CLASS::STRING);
 	}
 
 	String::String(string &&str)
 		: data(std::move(str))
 	{
 		_type = TYPE::STRING;
-		set_class(TOKEN_CLASS::STRING);
+		setTokenClass(TOKEN_CLASS::STRING);
 	}
 
 	String::~String()

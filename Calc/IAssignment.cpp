@@ -6,7 +6,7 @@ namespace KLab
 	IAssignment::IAssignment(const ASSIGNMENT_TYPE &_type)
 		:_assignment_type(_type)
 	{
-		set_class(TOKEN_CLASS::ASSIGNMENT_TARGET);
+		setTokenClass(TOKEN_CLASS::ASSIGNMENT_TARGET);
 	}
 
 	IAssignment::~IAssignment()

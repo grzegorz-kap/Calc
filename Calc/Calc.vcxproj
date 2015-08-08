@@ -232,7 +232,7 @@
     <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TokenizerHelper.h" />
-    <ClInclude Include="TokensTypes.h" />
+    <ClInclude Include="TokenClass.h" />
     <ClInclude Include="TranspositionOperator.h" />
     <ClInclude Include="TrigonometryFunctions.h" />
     <ClInclude Include="TypePromotor.h" />

@@ -96,9 +96,6 @@
     <ClInclude Include="Tokenizer.h">
       <Filter>Service\LexicalAnalyze</Filter>
     </ClInclude>
-    <ClInclude Include="TokensTypes.h">
-      <Filter>Service\LexicalAnalyze</Filter>
-    </ClInclude>
     <ClInclude Include="TokenizerHelper.h">
       <Filter>Service\LexicalAnalyze\Helpers</Filter>
     </ClInclude>
@@ -292,6 +289,9 @@
       <Filter>Function\functions</Filter>
     </ClInclude>
     <ClInclude Include="Token.h">
+      <Filter>lexer\model</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenClass.h">
       <Filter>lexer\model</Filter>
     </ClInclude>
   </ItemGroup>

@@ -50,7 +50,7 @@ namespace KLab
 		while (!code.eof())
 		{
 			ip = code.get();
-			if (ip->size() == 1 && ip->at(0)->getClass() == TOKEN_CLASS::END_FUNCTION)
+			if (ip->size() == 1 && ip->at(0)->getTokenClass() == TOKEN_CLASS::END_FUNCTION)
 				break;
 
 			fun.addInstruction(std::move(*ip));
@@ -65,7 +65,7 @@ namespace KLab
 	void ExternalFunctionLoader::checkFunctionDeclEnd()
 	{
 		throwEofInstruction();
-		if ((*i)->getClass() != TOKEN_CLASS::ASSIGNMENT)
+		if ((*i)->getTokenClass() != TOKEN_CLASS::ASSIGNMENT)
 			throw CalcException("Invalid funtion declaration! = not found!");
 		i++;
 		if (i != ip->end())
@@ -99,18 +99,18 @@ namespace KLab
 	void ExternalFunctionLoader::checkIfInputArgs()
 	{
 		throwEofInstruction();
-		if ((*i)->getClass() != TOKEN_CLASS::FUNCTON_ARGS_END)
+		if ((*i)->getTokenClass() != TOKEN_CLASS::FUNCTON_ARGS_END)
 			throw CalcException("Input arguments declaration not found!");
 		i++;
 	}
 
 	void ExternalFunctionLoader::loadInput()
 	{
-		for (; (*i)->getClass() != TOKEN_CLASS::FUNCTION; i++)
+		for (; (*i)->getTokenClass() != TOKEN_CLASS::FUNCTION; i++)
 		{
 			if (i == ip->end())
 				throw CalcException("Function name not found!");
-			if ((*i)->getClass() != TOKEN_CLASS::ID)
+			if ((*i)->getTokenClass() != TOKEN_CLASS::ID)
 				throw CalcException("Invalid input arguments declaration");
 			fun.addInput((*i)->getLexeme());
 		}
@@ -119,7 +119,7 @@ namespace KLab
 	void ExternalFunctionLoader::loadName()
 	{
 		throwEofInstruction();
-		if ((*i)->getClass() != TOKEN_CLASS::FUNCTION)
+		if ((*i)->getTokenClass() != TOKEN_CLASS::FUNCTION)
 			throw CalcException("Function name not found!");
 		if ((*i)->getLexemeR() != name)
 			throw CalcException("Function name does not match file name!");
@@ -131,7 +131,7 @@ namespace KLab
 	{
 		throwEof();
 		throwSize();
-		return ip->at(0)->getClass();
+		return ip->at(0)->getTokenClass();
 	}
 
 	void ExternalFunctionLoader::throwEof()

@@ -121,7 +121,7 @@ namespace KLab
 
 		for (i = ip->begin(); i != ip->end(); i++)
 		{
-			switch ((*i)->getClass())
+			switch ((*i)->getTokenClass())
 			{
 			case TOKEN_CLASS::NUMBER:
 				stack.push_back(shared_ptr<Data>((*i)->evaluate()));
@@ -226,7 +226,7 @@ namespace KLab
 		int idx = (*i)->getParam();  // numer argumentu indeksowanie
 		int num = (*i)->argumentsNum(); // rodzaj indeksowania
 
-		if ((*i)->getClass() == MATRIX_ALL)
+		if ((*i)->getTokenClass() == MATRIX_ALL)
 		{
 			if (idx == 1 && num == 1)
 				stack.push_back(variable->get_single_index());
@@ -237,7 +237,7 @@ namespace KLab
 			return;
 		}
 
-		if ((*i)->getClass() == LAST_INDEX_OF)
+		if ((*i)->getTokenClass() == LAST_INDEX_OF)
 		{
 			if (idx == 1 && num == 1)
 				stack.push_back(*variable->get_rows() * variable->get_cols());
@@ -325,7 +325,7 @@ namespace KLab
 			throwError("Operands to the || and && operators must be convertible to logical scalar values");
 
 		bool leftArgument = *stack.back() == true;
-		TOKEN_CLASS _class = (*i)->getClass();
+		TOKEN_CLASS _class = (*i)->getTokenClass();
 		if (leftArgument&&_class == SHORT_CIRCUIT_OR ||
 			!leftArgument&&_class == SHORT_CIRCUIT_END)
 			i = ip->begin() +
@@ -335,14 +335,14 @@ namespace KLab
 
 	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)
 	{
-		return ip->size() == 1 && ip->at(0)->getClass() == _class;
+		return ip->size() == 1 && ip->at(0)->getTokenClass() == _class;
 	}
 
 	vector<shared_ptr<Data>>::iterator CodeExecutor::find(TOKEN_CLASS _class, bool ex)
 	{
 		for (auto ii = stack.end() - 1; ii >= stack.begin(); ii--)
 		{
-			if ((*ii)->_type == TYPE::TOKEN && dynamic_cast<Token *>(ii->get())->getClass() == _class)
+			if ((*ii)->_type == TYPE::TOKEN && dynamic_cast<Token *>(ii->get())->getTokenClass() == _class)
 				return ii;
 		}
 
@@ -359,7 +359,7 @@ namespace KLab
 		while (1)
 		{
 			if (ip->size() == 1 && (balance == -2 || balance == ip->at(0)->getKeywordBalance()) &&
-				std::find(set.begin(), set.end(), ip->at(0)->getClass()) != set.end())
+				std::find(set.begin(), set.end(), ip->at(0)->getTokenClass()) != set.end())
 				return;
 			next();
 		}
@@ -718,7 +718,7 @@ namespace KLab
 			if ((*ii)->_type == TYPE::TOKEN)
 			{
 				Token *ptr = (*ii)->cast_token();
-				if (ptr->getClass() == TOKEN_CLASS::MATRIX_START)
+				if (ptr->getTokenClass() == TOKEN_CLASS::MATRIX_START)
 				{
 					if (ptr->getEvType() > TYPE::TOKEN)
 						max_type = ptr->getEvType();
@@ -810,9 +810,9 @@ namespace KLab
 	{
 		string tt = _file != "" ? _file + src : src;
 		if (i != ip->end())
-			throw CalcException(name, tt, (*i)->getPosition(), (*i)->getLine());
+			throw CalcException(name, tt, (*i)->getColumn(), (*i)->getLine());
 		if (ip->size())
-			throw CalcException(name, tt, ip->front()->getPosition(), ip->front()->getLine());
+			throw CalcException(name, tt, ip->front()->getColumn(), ip->front()->getLine());
 		throw CalcException(name);
 	}
 
