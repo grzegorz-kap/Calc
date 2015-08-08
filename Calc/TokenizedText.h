@@ -8,8 +8,8 @@ namespace KLab {
 	class TokenizedText {
 	private:
 		string text;
-		int position;
-		int length;
+		unsigned int position;
+		unsigned int length;
 
 	public:
 		TokenizedText(const string &text);

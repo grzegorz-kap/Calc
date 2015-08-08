@@ -166,172 +166,40 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArithmeticOperators.h" />
-    <ClInclude Include="AssignmentFactory.h" />
-    <ClInclude Include="AssignmentMulti.h" />
-    <ClInclude Include="AssignmentOperator.h" />
-    <ClInclude Include="AssignmentSingle.h" />
-    <ClInclude Include="AssignmentSubscripted.h" />
-    <ClInclude Include="CalcException.h" />
-    <ClInclude Include="CastException.h" />
-    <ClInclude Include="CodeExecutor.h" />
-    <ClInclude Include="CodeGenerator.h" />
-    <ClInclude Include="CodeGeneratorException.h" />
-    <ClInclude Include="Colon2Operator.h" />
-    <ClInclude Include="Colon3Operator.h" />
-    <ClInclude Include="ComplexNumber.h" />
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="ElementaryMathFunctions.h" />
-    <ClInclude Include="EvalException.h" />
     <ClInclude Include="export.h" />
-    <ClInclude Include="ExternalFunction.h" />
-    <ClInclude Include="ExternalFunctionLoader.h" />
-    <ClInclude Include="FileLoader.h" />
-    <ClInclude Include="FileLoaderException.h" />
-    <ClInclude Include="ForIterator.h" />
-    <ClInclude Include="Function.h" />
-    <ClInclude Include="FunctionFactory.h" />
-    <ClInclude Include="functions.h" />
-    <ClInclude Include="GraphDrawer.h" />
-    <ClInclude Include="IAssignment.h" />
-    <ClInclude Include="IMatrixBuilder.h" />
-    <ClInclude Include="InstructionFor.h" />
-    <ClInclude Include="Interpreter.h" />
-    <ClInclude Include="i_order_map.h" />
-    <ClInclude Include="LexicalAnalyzer.h" />
-    <ClInclude Include="LexicalBalanceHelper.h" />
-    <ClInclude Include="LinearAlgebraFunctions.h" />
-    <ClInclude Include="LogicalOperators.h" />
-    <ClInclude Include="MatrixUtils.h" />
-    <ClInclude Include="Mathematic.h" />
-    <ClInclude Include="MessagesFunction.h" />
-    <ClInclude Include="ModFunction.h" />
-    <ClInclude Include="MpfFunction.h" />
-    <ClInclude Include="NumericException.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixBuilder.h" />
-    <ClInclude Include="MatrixBuilderFactory.h" />
-    <ClInclude Include="NumberReader.h" />
-    <ClInclude Include="Numeric.h" />
-    <ClInclude Include="Operator.h" />
-    <ClInclude Include="OperatorException.h" />
-    <ClInclude Include="OperatorsFactory.h" />
-    <ClInclude Include="Output.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="PlotingFunctions.h" />
-    <ClInclude Include="MatrixGenerationFunctions.h" />
-    <ClInclude Include="RelationalOperators.h" />
-    <ClInclude Include="RoundingFunctions.h" />
-    <ClInclude Include="ShortCircuitJumper.h" />
-    <ClInclude Include="SignalEmitter.h" />
-    <ClInclude Include="SizeFunction.h" />
-    <ClInclude Include="SNumber.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="String.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
-    <ClInclude Include="RegexTokenizer.h" />
-    <ClInclude Include="TokenizerHelper.h" />
+    <ClInclude Include="TokenizedText.h" />
     <ClInclude Include="TokenClass.h" />
     <ClInclude Include="TokenizerService.h" />
-    <ClInclude Include="TranspositionOperator.h" />
-    <ClInclude Include="TrigonometryFunctions.h" />
-    <ClInclude Include="TypePromotor.h" />
-    <ClInclude Include="UnimplementedException.h" />
-    <ClInclude Include="VariableInfo.h" />
-    <ClInclude Include="Variables.h" />
+    <ClInclude Include="TokenList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArithmeticOperators.cpp" />
-    <ClCompile Include="AssignmentFactory.cpp" />
-    <ClCompile Include="AssignmentMulti.cpp" />
-    <ClCompile Include="AssignmentOperator.cpp" />
-    <ClCompile Include="AssignmentSingle.cpp" />
-    <ClCompile Include="AssignmentSubscripted.cpp" />
-    <ClCompile Include="Calc.cpp" />
-    <ClCompile Include="CalcException.cpp" />
-    <ClCompile Include="CastException.cpp" />
-    <ClCompile Include="CodeExecutor.cpp" />
-    <ClCompile Include="CodeGenerator.cpp" />
-    <ClCompile Include="CodeGeneratorException.cpp" />
-    <ClCompile Include="Colon2Operator.cpp" />
-    <ClCompile Include="Colon3Operator.cpp" />
-    <ClCompile Include="ComplexNumber.cpp" />
-    <ClCompile Include="Data.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </PrecompiledHeader>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ElementaryMathFunctions.cpp" />
-    <ClCompile Include="EvalException.cpp" />
-    <ClCompile Include="ExternalFunction.cpp" />
-    <ClCompile Include="ExternalFunctionLoader.cpp" />
-    <ClCompile Include="FileLoader.cpp" />
-    <ClCompile Include="FileLoaderException.cpp" />
-    <ClCompile Include="ForIterator.cpp" />
-    <ClCompile Include="Function.cpp" />
-    <ClCompile Include="FunctionFactory.cpp" />
-    <ClCompile Include="GraphDrawer.cpp" />
-    <ClCompile Include="IAssignment.cpp" />
-    <ClCompile Include="IMatrixBuilder.cpp" />
-    <ClCompile Include="InstructionFor.cpp" />
-    <ClCompile Include="Interpreter.cpp" />
-    <ClCompile Include="i_order_map.cpp" />
-    <ClCompile Include="LexicalAnalyzer.cpp" />
-    <ClCompile Include="LexicalBalanceHelper.cpp" />
-    <ClCompile Include="LinearAlgebraFunctions.cpp" />
-    <ClCompile Include="LogicalOperators.cpp" />
-    <ClCompile Include="MatrixUtils.cpp" />
-    <ClCompile Include="Mathematic.cpp" />
-    <ClCompile Include="MessagesFunction.cpp" />
-    <ClCompile Include="ModFunction.cpp" />
-    <ClCompile Include="MpfFunction.cpp" />
-    <ClCompile Include="NumericException.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="MatrixBuilder.cpp" />
-    <ClCompile Include="MatrixBuilderFactory.cpp" />
-    <ClCompile Include="NumberReader.cpp" />
-    <ClCompile Include="Numeric.cpp" />
-    <ClCompile Include="Operator.cpp" />
-    <ClCompile Include="OperatorException.cpp" />
-    <ClCompile Include="OperatorsFactory.cpp" />
-    <ClCompile Include="Output.cpp" />
-    <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="PlotingFunctions.cpp" />
-    <ClCompile Include="MatrixGenerationFunctions.cpp" />
-    <ClCompile Include="RelationalOperators.cpp" />
-    <ClCompile Include="RoundingFunctions.cpp" />
-    <ClCompile Include="ShortCircuitJumper.cpp" />
-    <ClCompile Include="SignalEmitter.cpp" />
-    <ClCompile Include="SizeFunction.cpp" />
-    <ClCompile Include="SNumber.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="String.cpp" />
     <ClCompile Include="Token.cpp" />
-    <ClCompile Include="RegexTokenizer.cpp" />
-    <ClCompile Include="TokenizerHelper.cpp" />
+    <ClCompile Include="TokenizedText.cpp" />
     <ClCompile Include="TokenizerService.cpp" />
-    <ClCompile Include="TranspositionOperator.cpp" />
-    <ClCompile Include="TrigonometryFunctions.cpp" />
-    <ClCompile Include="TypePromotor.cpp" />
-    <ClCompile Include="UnimplementedException.cpp" />
-    <ClCompile Include="VariableInfo.cpp" />
-    <ClCompile Include="Variables.cpp" />
+    <ClCompile Include="TokenList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

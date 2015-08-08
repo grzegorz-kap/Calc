@@ -33,7 +33,7 @@ namespace KLab {
 
 	void TokenizedText::initAfterTextSet() {
 		position = 0;
-		length = text.size();
+		length = static_cast<int>(text.length());
 	}
 
 	bool TokenizedText::isCharacterToProccess() {

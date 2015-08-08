@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{23539647-F8E9-4AAB-9C42-B56FC1E805EC}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Calc\ArithmeticOperators.cpp" />
+    <ClCompile Include="..\Calc\AssignmentFactory.cpp" />
+    <ClCompile Include="..\Calc\AssignmentMulti.cpp" />
+    <ClCompile Include="..\Calc\AssignmentOperator.cpp" />
+    <ClCompile Include="..\Calc\AssignmentSingle.cpp" />
+    <ClCompile Include="..\Calc\AssignmentSubscripted.cpp" />
+    <ClCompile Include="..\Calc\Calc.cpp" />
+    <ClCompile Include="..\Calc\CalcException.cpp" />
+    <ClCompile Include="..\Calc\CastException.cpp" />
+    <ClCompile Include="..\Calc\CodeExecutor.cpp" />
+    <ClCompile Include="..\Calc\CodeGenerator.cpp" />
+    <ClCompile Include="..\Calc\CodeGeneratorException.cpp" />
+    <ClCompile Include="..\Calc\Colon2Operator.cpp" />
+    <ClCompile Include="..\Calc\Colon3Operator.cpp" />
+    <ClCompile Include="..\Calc\ComplexNumber.cpp" />
+    <ClCompile Include="..\Calc\Data.cpp" />
+    <ClCompile Include="..\Calc\ElementaryMathFunctions.cpp" />
+    <ClCompile Include="..\Calc\EvalException.cpp" />
+    <ClCompile Include="..\Calc\ExternalFunction.cpp" />
+    <ClCompile Include="..\Calc\ExternalFunctionLoader.cpp" />
+    <ClCompile Include="..\Calc\FileLoader.cpp" />
+    <ClCompile Include="..\Calc\FileLoaderException.cpp" />
+    <ClCompile Include="..\Calc\ForIterator.cpp" />
+    <ClCompile Include="..\Calc\Function.cpp" />
+    <ClCompile Include="..\Calc\FunctionFactory.cpp" />
+    <ClCompile Include="..\Calc\GraphDrawer.cpp" />
+    <ClCompile Include="..\Calc\IAssignment.cpp" />
+    <ClCompile Include="..\Calc\IMatrixBuilder.cpp" />
+    <ClCompile Include="..\Calc\InstructionFor.cpp" />
+    <ClCompile Include="..\Calc\Interpreter.cpp" />
+    <ClCompile Include="..\Calc\i_order_map.cpp" />
+    <ClCompile Include="..\Calc\LexicalAnalyzer.cpp" />
+    <ClCompile Include="..\Calc\LexicalBalanceHelper.cpp" />
+    <ClCompile Include="..\Calc\LinearAlgebraFunctions.cpp" />
+    <ClCompile Include="..\Calc\LogicalOperators.cpp" />
+    <ClCompile Include="..\Calc\Mathematic.cpp" />
+    <ClCompile Include="..\Calc\Matrix.cpp" />
+    <ClCompile Include="..\Calc\MatrixBuilder.cpp" />
+    <ClCompile Include="..\Calc\MatrixBuilderFactory.cpp" />
+    <ClCompile Include="..\Calc\MatrixGenerationFunctions.cpp" />
+    <ClCompile Include="..\Calc\MatrixUtils.cpp" />
+    <ClCompile Include="..\Calc\MessagesFunction.cpp" />
+    <ClCompile Include="..\Calc\ModFunction.cpp" />
+    <ClCompile Include="..\Calc\MpfFunction.cpp" />
+    <ClCompile Include="..\Calc\NumberReader.cpp" />
+    <ClCompile Include="..\Calc\Numeric.cpp" />
+    <ClCompile Include="..\Calc\NumericException.cpp" />
+    <ClCompile Include="..\Calc\Operator.cpp" />
+    <ClCompile Include="..\Calc\OperatorException.cpp" />
+    <ClCompile Include="..\Calc\OperatorsFactory.cpp" />
+    <ClCompile Include="..\Calc\Output.cpp" />
+    <ClCompile Include="..\Calc\Parser.cpp" />
+    <ClCompile Include="..\Calc\PlotingFunctions.cpp" />
+    <ClCompile Include="..\Calc\RegexTokenizer.cpp" />
+    <ClCompile Include="..\Calc\RelationalOperators.cpp" />
+    <ClCompile Include="..\Calc\RoundingFunctions.cpp" />
+    <ClCompile Include="..\Calc\ShortCircuitJumper.cpp" />
+    <ClCompile Include="..\Calc\SignalEmitter.cpp" />
+    <ClCompile Include="..\Calc\SizeFunction.cpp" />
+    <ClCompile Include="..\Calc\SNumber.cpp" />
+    <ClCompile Include="..\Calc\String.cpp" />
+    <ClCompile Include="..\Calc\TokenizerHelper.cpp" />
+    <ClCompile Include="..\Calc\TranspositionOperator.cpp" />
+    <ClCompile Include="..\Calc\TrigonometryFunctions.cpp" />
+    <ClCompile Include="..\Calc\TypePromotor.cpp" />
+    <ClCompile Include="..\Calc\UnimplementedException.cpp" />
+    <ClCompile Include="..\Calc\VariableInfo.cpp" />
+    <ClCompile Include="..\Calc\Variables.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Calc\ArithmeticOperators.h" />
+    <ClInclude Include="..\Calc\AssignmentFactory.h" />
+    <ClInclude Include="..\Calc\AssignmentMulti.h" />
+    <ClInclude Include="..\Calc\AssignmentOperator.h" />
+    <ClInclude Include="..\Calc\AssignmentSingle.h" />
+    <ClInclude Include="..\Calc\AssignmentSubscripted.h" />
+    <ClInclude Include="..\Calc\CalcException.h" />
+    <ClInclude Include="..\Calc\CastException.h" />
+    <ClInclude Include="..\Calc\CodeExecutor.h" />
+    <ClInclude Include="..\Calc\CodeGenerator.h" />
+    <ClInclude Include="..\Calc\CodeGeneratorException.h" />
+    <ClInclude Include="..\Calc\Colon2Operator.h" />
+    <ClInclude Include="..\Calc\Colon3Operator.h" />
+    <ClInclude Include="..\Calc\ComplexNumber.h" />
+    <ClInclude Include="..\Calc\Data.h" />
+    <ClInclude Include="..\Calc\ElementaryMathFunctions.h" />
+    <ClInclude Include="..\Calc\EvalException.h" />
+    <ClInclude Include="..\Calc\ExternalFunction.h" />
+    <ClInclude Include="..\Calc\ExternalFunctionLoader.h" />
+    <ClInclude Include="..\Calc\FileLoader.h" />
+    <ClInclude Include="..\Calc\FileLoaderException.h" />
+    <ClInclude Include="..\Calc\ForIterator.h" />
+    <ClInclude Include="..\Calc\Function.h" />
+    <ClInclude Include="..\Calc\FunctionFactory.h" />
+    <ClInclude Include="..\Calc\functions.h" />
+    <ClInclude Include="..\Calc\GraphDrawer.h" />
+    <ClInclude Include="..\Calc\IAssignment.h" />
+    <ClInclude Include="..\Calc\IMatrixBuilder.h" />
+    <ClInclude Include="..\Calc\InstructionFor.h" />
+    <ClInclude Include="..\Calc\Interpreter.h" />
+    <ClInclude Include="..\Calc\i_order_map.h" />
+    <ClInclude Include="..\Calc\LexicalAnalyzer.h" />
+    <ClInclude Include="..\Calc\LexicalBalanceHelper.h" />
+    <ClInclude Include="..\Calc\LinearAlgebraFunctions.h" />
+    <ClInclude Include="..\Calc\LogicalOperators.h" />
+    <ClInclude Include="..\Calc\Mathematic.h" />
+    <ClInclude Include="..\Calc\Matrix.h" />
+    <ClInclude Include="..\Calc\MatrixBuilder.h" />
+    <ClInclude Include="..\Calc\MatrixBuilderFactory.h" />
+    <ClInclude Include="..\Calc\MatrixGenerationFunctions.h" />
+    <ClInclude Include="..\Calc\MatrixUtils.h" />
+    <ClInclude Include="..\Calc\MessagesFunction.h" />
+    <ClInclude Include="..\Calc\ModFunction.h" />
+    <ClInclude Include="..\Calc\MpfFunction.h" />
+    <ClInclude Include="..\Calc\NumberReader.h" />
+    <ClInclude Include="..\Calc\Numeric.h" />
+    <ClInclude Include="..\Calc\NumericException.h" />
+    <ClInclude Include="..\Calc\Operator.h" />
+    <ClInclude Include="..\Calc\OperatorException.h" />
+    <ClInclude Include="..\Calc\OperatorsFactory.h" />
+    <ClInclude Include="..\Calc\Output.h" />
+    <ClInclude Include="..\Calc\Parser.h" />
+    <ClInclude Include="..\Calc\PlotingFunctions.h" />
+    <ClInclude Include="..\Calc\RegexTokenizer.h" />
+    <ClInclude Include="..\Calc\RelationalOperators.h" />
+    <ClInclude Include="..\Calc\RoundingFunctions.h" />
+    <ClInclude Include="..\Calc\ShortCircuitJumper.h" />
+    <ClInclude Include="..\Calc\SignalEmitter.h" />
+    <ClInclude Include="..\Calc\SizeFunction.h" />
+    <ClInclude Include="..\Calc\SNumber.h" />
+    <ClInclude Include="..\Calc\String.h" />
+    <ClInclude Include="..\Calc\TokenizerHelper.h" />
+    <ClInclude Include="..\Calc\TranspositionOperator.h" />
+    <ClInclude Include="..\Calc\TrigonometryFunctions.h" />
+    <ClInclude Include="..\Calc\TypePromotor.h" />
+    <ClInclude Include="..\Calc\UnimplementedException.h" />
+    <ClInclude Include="..\Calc\VariableInfo.h" />
+    <ClInclude Include="..\Calc\Variables.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

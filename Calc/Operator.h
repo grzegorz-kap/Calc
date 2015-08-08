@@ -41,10 +41,6 @@ namespace KLab
 		void setPriority(int pr){ priority = pr; }
 		EVAULATED getEv() const { return ev; }
 
-		virtual Operator * castToOperator()  override
-		{
-			return dynamic_cast<Operator *>(this);
-		}
 
 		void setArguments(vector<shared_ptr<Data>> &stack);
 		void clearArguments();
@@ -52,5 +48,6 @@ namespace KLab
 		void promoteToMatrix();
 
 		virtual bool isColon2Operator() const { return false; }
+		virtual shared_ptr<Data> evaluate() = 0;
 	};
 }
