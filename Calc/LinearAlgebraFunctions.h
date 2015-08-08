@@ -1,7 +1,7 @@
 #pragma once
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	class DetFunction : public Function
 	{
@@ -19,7 +19,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class InvFunction : public Function
 	{
 	public:
@@ -27,7 +26,6 @@ namespace PR
 		~InvFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class LuFunction : public Function
 	{
@@ -44,5 +42,4 @@ namespace PR
 		~ConjFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 }

@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "Function.h"
 
-
-namespace PR
+namespace KLab
 {
 	Function::Function()
 	{
 	}
-
 
 	Function::~Function()
 	{
@@ -18,7 +16,7 @@ namespace PR
 		throw CalcException("Unimplemented function behaviour!");
 	}
 
-	void Function::set(const vector<shared_ptr<Data>> &args,int output_nr)
+	void Function::set(const vector<shared_ptr<Data>> &args, int output_nr)
 	{
 		checkArgsCount(args.size());
 		arguments = args;
@@ -32,7 +30,6 @@ namespace PR
 			return;
 
 		if (i<min_args_count || i>max_args_count)
-			throw CalcException("Wrong number of parameters in function call '"+name+"'.");
+			throw CalcException("Wrong number of parameters in function call '" + name + "'.");
 	}
-
 }

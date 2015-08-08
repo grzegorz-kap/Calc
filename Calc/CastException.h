@@ -1,7 +1,7 @@
 #pragma once
 #include "CalcException.h"
 
-namespace PR
+namespace KLab
 {
 	class CastException :
 		public CalcException
@@ -10,5 +10,4 @@ namespace PR
 		CastException(const string &message);
 		~CastException();
 	};
-
 }

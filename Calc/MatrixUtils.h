@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace PR
+namespace KLab
 {
 	class MatrixUtils
 	{
@@ -38,5 +38,4 @@ namespace PR
 		template <class T> static Matrix<T> createVector(const Matrix<T> &start, const Matrix<T> &step, const Matrix<T> &end);
 		template <class T> static Matrix<T> createVector(const ComplexNumber<T> &start, const ComplexNumber<T> &step, const ComplexNumber<T> &end);
 	};
-
 }

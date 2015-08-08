@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Rodzaje operacji przypisania.
 	enum ASSIGNMENT_TYPE : char
@@ -34,7 +34,7 @@ namespace PR
 		//<! Konstruktor ustawiajacy rodzaj przypisania.
 		//! \param _type rodzaj operacji przypisania.
 		IAssignment(const ASSIGNMENT_TYPE &_type);
-		~IAssignment();	
+		~IAssignment();
 
 		//! Wczytuje cel przypisania z instrukcji.
 		//! \param start iterator na poczatek instrukcji.
@@ -50,7 +50,7 @@ namespace PR
 
 		//! Zwraca liczbe elementow, bedacych celem przypisania.
 		virtual int getTargetSize() const;
-		
+
 		//! Dokonuje zapisu do wskazanej przestrzeni roboczej.
 		//! \param vars referencja na przestrzen robocza.
 		//! \param key nazwa pod ktora zostanie zapisana wartosc.
@@ -58,4 +58,3 @@ namespace PR
 		static variables_map_pair assign(Variables &vars, const string &key, const shared_ptr<Data> &data);
 	};
 }
-

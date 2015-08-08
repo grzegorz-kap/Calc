@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "PlotingFunctions.h"
 
-namespace PR
+namespace KLab
 {
-	extern template class Matrix < double >;
-	extern template class Matrix < hdouble >;
-	extern template class ComplexNumber < double >;
-	extern template class ComplexNumber < hdouble >;
-	extern template class Numeric < Matrix<double> >;
-	extern template class Numeric < Matrix<hdouble> >;
-	extern template class Numeric < ComplexNumber<double> >;
-	extern template class Numeric < ComplexNumber<hdouble> >;
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
+	extern template class Numeric < Matrix<double> > ;
+	extern template class Numeric < Matrix<hdouble> > ;
+	extern template class Numeric < ComplexNumber<double> > ;
+	extern template class Numeric < ComplexNumber<hdouble> > ;
 
 	PlotFunction::PlotFunction()
 	{
@@ -18,7 +18,6 @@ namespace PR
 		max_args_count = 2;
 		name = "plot";
 	}
-
 
 	PlotFunction::~PlotFunction()
 	{
@@ -34,16 +33,12 @@ namespace PR
 		return make_shared<Output>();
 	}
 
-
-
-
 	Plot3Function::Plot3Function()
 	{
 		min_args_count = 3;
 		max_args_count = 3;
 		name = "plot3";
 	}
-
 
 	Plot3Function::~Plot3Function()
 	{
@@ -73,7 +68,6 @@ namespace PR
 		max_args_count = 3;
 		name = "surface";
 	}
-
 
 	SurfaceFunction::~SurfaceFunction()
 	{

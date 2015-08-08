@@ -12,7 +12,7 @@
 #include "CalcException.h"
 #include "VariableInfo.h"
 
-namespace PR
+namespace KLab
 {
 	class CALC_API SignalEmitter
 	{
@@ -22,7 +22,7 @@ namespace PR
 		typedef boost::signals2::signal < void(const VariableInfo *, int)> AddedVariablesSender;
 		typedef boost::signals2::signal < void(vector<string>)> StringSender;
 		typedef boost::signals2::signal < void(void)> VoidSender;
-		
+
 		typedef DataValueSender::slot_type DataPointerSenderSlot;
 		typedef ExceptionSender::slot_type ExceptionSenderSlot;
 		typedef StopComputingSender::slot_type StopComputingSlot;
@@ -42,13 +42,13 @@ namespace PR
 		static SignalEmitter * instance;
 		SignalEmitter();
 		~SignalEmitter();
-		
+
 		SignalEmitter & operator=(const SignalEmitter &) = delete;
 		SignalEmitter(const SignalEmitter&) = delete;
-	
+
 	public:
 		static SignalEmitter* get();
-		
+
 		void connect_execution_complate(const VoidSenderSlot &slot);
 		void connect_output(const DataPointerSenderSlot &slot);
 		void connect_errors(const ExceptionSenderSlot &slot);
@@ -67,5 +67,4 @@ namespace PR
 		void call_sig_removed_variables(vector<string> &removed);
 		void call_sig_clear_screen();
 	};
-
 }

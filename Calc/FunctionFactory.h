@@ -27,7 +27,7 @@ using std::function;
 #include "RoundingFunctions.h"
 #include "MessagesFunction.h"
 
-namespace PR
+namespace KLab
 {
 	//! Fabryka funkcji.
 	class FunctionFactory
@@ -58,7 +58,7 @@ namespace PR
 		//! \brief Pobranie wskaznika na obiekt klasy.
 		/*!
 			Ewentualnie alokauje nowey obiekt klasy w pamieci.
-		*/
+			*/
 		static void loadInstance();
 
 		unordered_map<string, function<unique_ptr<Function>(void)>> builded_in; //!< Mapa funkcji wbudowanych.
@@ -66,7 +66,7 @@ namespace PR
 
 		//! \brief Pobranie funkcji zewnetrznej z pliku.
 		//! \param name nazwa funkcji.
-		bool readExternal(const string &name); 
+		bool readExternal(const string &name);
 
 		FunctionFactory & operator = (const FunctionFactory &b) = delete;
 		FunctionFactory(const FunctionFactory &b) = delete;
@@ -81,4 +81,3 @@ namespace PR
 		}
 	};
 }
-

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "MatrixBuilderFactory.h"
 
-
-namespace PR
+namespace KLab
 {
 	extern template class MatrixBuilder < double > ;
 	extern template class MatrixBuilder < hdouble > ;

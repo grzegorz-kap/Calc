@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "UnimplementedException.h"
 
-
-namespace PR
+namespace KLab
 {
 	UnimplementedException::UnimplementedException(const string &message)
 		:CalcException(message)
 	{
 	}
-
 
 	UnimplementedException::~UnimplementedException()
 	{

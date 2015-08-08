@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "MatrixBuilder.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class Matrix < double > ;
 	extern template class Matrix < hdouble > ;
-	extern template class ComplexNumber<double>;
-	extern template class ComplexNumber<hdouble>;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
 
 	template <class T>
 	MatrixBuilder<T>::MatrixBuilder()
@@ -24,7 +24,6 @@ namespace PR
 	template <class T>
 	MatrixBuilder<T>::~MatrixBuilder()
 	{
-
 	}
 
 	template <class T>
@@ -97,9 +96,9 @@ namespace PR
 	Matrix<T> MatrixBuilder<T>::buildOnes(int m, int n)
 	{
 		Matrix<T> out(m, n, 1);
-		for (int i = 0; i < m ; i++)
-			for (int j = 0; j < n;j++)
-			out.mx[i][j] = ComplexNumber<T>(1);
+		for (int i = 0; i < m; i++)
+			for (int j = 0; j < n; j++)
+				out.mx[i][j] = ComplexNumber<T>(1);
 		return out;
 	}
 
@@ -161,7 +160,6 @@ namespace PR
 		}
 	}
 
-
-	template class MatrixBuilder < double >;
-	template class MatrixBuilder < hdouble >;
+	template class MatrixBuilder < double > ;
+	template class MatrixBuilder < hdouble > ;
 }

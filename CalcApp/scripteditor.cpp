@@ -28,7 +28,6 @@ ScriptEditor::ScriptEditor(QWidget *parent)
 
 ScriptEditor::~ScriptEditor()
 {
-
 }
 
 void ScriptEditor::closeTab(int idx)
@@ -113,7 +112,7 @@ void ScriptEditor::addTab(QString pathArg)
 	connect(widget, SIGNAL(fileSaved()), this, SLOT(onChangesSaved()));
 	connect(widget, SIGNAL(cursorPositionChanged()), this, SLOT(cursorChanged()));
 	if (fileName == ".")
-		fileName = "Untitled" + (i++ ? QString::number(i) : "") ;
+		fileName = "Untitled" + (i++ ? QString::number(i) : "");
 
 	ui.tabWidget->addTab(widget, fileName);
 	ui.tabWidget->setCurrentWidget(widget);
@@ -201,7 +200,6 @@ void ScriptEditor::onNewFileAction()
 	show();
 }
 
-
 void ScriptEditor::onOpenAction()
 {
 	QStringList files = QFileDialog::getOpenFileNames(this, tr("Select scripts"),
@@ -253,7 +251,6 @@ void ScriptEditor::setupToolbar()
 	button->setToolTip("Save");
 	ui.mainToolBar->addWidget(button);
 	connect(button, SIGNAL(clicked()), this, SLOT(onSaveAction()));
-
 
 	button = new QPushButton(this);
 	button->setIcon(QIcon(":/CalcApp/run.png"));

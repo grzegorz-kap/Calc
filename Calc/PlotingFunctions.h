@@ -1,7 +1,7 @@
 #include "Function.h"
 #include "GraphDrawer.h"
 
-namespace PR
+namespace KLab
 {
 	class PlotFunction : public Function
 	{
@@ -11,7 +11,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class Plot3Function : public Function
 	{
 	public:
@@ -20,7 +19,6 @@ namespace PR
 
 		shared_ptr<Data> run() override;
 	};
-
 
 	class SurfaceFunction : public Function
 	{

@@ -9,7 +9,7 @@
 
 using std::unique_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca literal liczbowy.
 	class SNumber :

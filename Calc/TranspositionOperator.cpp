@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "TranspositionOperator.h"
 
-
-namespace PR
+namespace KLab
 {
 	TranspositionOperator::TranspositionOperator()
-		:Operator(".'",20,1,EVAULATED::RIGHT)
+		:Operator(".'", 20, 1, EVAULATED::RIGHT)
 	{
 	}
-
 
 	TranspositionOperator::~TranspositionOperator()
 	{
@@ -19,9 +17,8 @@ namespace PR
 		return arguments[0]->transposition();
 	}
 
-
 	ConjugateTranspositionOperator::ConjugateTranspositionOperator()
-		:Operator("'",20,1,EVAULATED::RIGHT)
+		:Operator("'", 20, 1, EVAULATED::RIGHT)
 	{
 	}
 

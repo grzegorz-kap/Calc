@@ -20,15 +20,14 @@ using std::vector;
 #include "Variables.h"
 #include "ForIterator.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa obslugujaca wykonywanie kodu przez interpreter.
 	class CodeExecutor
 	{
-		
 	public:
 		//! Aktualna liczba zagniezdzonych wywolan funkcji zewnetrznych.
-		static int recursions; 
+		static int recursions;
 
 		//! Limit zagniezdzonych wywolan funkcji zewnetrznych
 		static int recursion_limit;
@@ -43,7 +42,7 @@ namespace PR
 		*/
 		CodeExecutor(Variables &ref);
 		~CodeExecutor();
-		
+
 		//! \brief Ustawienie danych wejsciowych
 		//! \param in Tekst zawierajacy instrukcje jezyka do wykonania.
 		void setInput(const string &in);
@@ -54,7 +53,7 @@ namespace PR
 
 		//! Rozpoczyna wykonywanie kodu
 		void start();
-		
+
 		//! Powoduje przerwanie obliczen
 		static void set_stop_computing();
 
@@ -71,7 +70,7 @@ namespace PR
 		//! \param t symbol leksykalny do sprawdzenia
 		static bool isMatrixEndOrColon(const shared_ptr<Token> &t);
 	private:
-		
+
 		static bool stop_computing;			//!< Flaga wskazuja czy nalezy przerwac obliczenia.
 		bool eval_flag;						//!< Flaga okreslajaca typ wykonywania.
 		vector<shared_ptr<Data>> stack;		//!< Stos uzywany w trakcie obliczania wartosci wyrazenia.
@@ -91,13 +90,13 @@ namespace PR
 
 		//! Constructor for external function execution.
 		CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args);
-		
+
 		//! Find specific element in data stack.
 		vector<shared_ptr<Data>>::iterator find(TOKEN_CLASS _class, bool ex = false);
 
 		//! Execute single instruction.
-		shared_ptr<Data> run(bool multi=true);
-		
+		shared_ptr<Data> run(bool multi = true);
+
 		//! \brief Rozpoczecie wykonywania kodu.
 		//! \param in tekst z intstrukcja do wykonania.
 		void start(const string &in);
@@ -134,7 +133,7 @@ namespace PR
 		void setIPTo(const vector<TOKEN_CLASS> &set, int balance);
 		void next();
 		void prev();
-		void throwError(const string &name,string src="");
+		void throwError(const string &name, string src = "");
 		static const vector<TOKEN_CLASS> IF_FIND;
 		static const vector<TOKEN_CLASS> ELSE_FIND;
 		static const vector<TOKEN_CLASS> WHILE_FIND;
@@ -143,6 +142,5 @@ namespace PR
 		static const vector<TOKEN_CLASS> BRK_CONT_FIND;
 	};
 }
-
 
 #endif

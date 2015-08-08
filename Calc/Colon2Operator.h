@@ -1,7 +1,7 @@
 #pragma once
 #include "Operator.h"
 
-namespace PR
+namespace KLab
 {
 	class Colon2Operator :
 		public Operator
@@ -23,4 +23,3 @@ namespace PR
 		virtual bool isColon2Operator() const override{ return true; }
 	};
 }
-

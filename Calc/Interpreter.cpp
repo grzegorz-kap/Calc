@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Interpreter.h"
 
-namespace PR
+namespace KLab
 {
 	Variables Interpreter::main_vars = Variables(true);
 
 	Interpreter::Interpreter()
-	{		
+	{
 	}
 
 	Interpreter::~Interpreter()
@@ -27,7 +27,6 @@ namespace PR
 			exec.setInput(command);
 			CodeExecutor::off_stop_computing();
 			exec.start();
-			
 		}
 		catch (const CalcException &ex)
 		{
@@ -74,11 +73,7 @@ namespace PR
 			SignalEmitter::get()->call_sig_updated_variables(&updated[0], updated.size());
 		if (added.size())
 			SignalEmitter::get()->call_sig_added_variables(&added[0], added.size());
-		
+
 		main_vars.clearRemoved();
 	}
-
-
-
-	
 }

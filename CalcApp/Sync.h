@@ -13,4 +13,3 @@ public:
 	static Sync* get();
 	QSemaphore console_sem;
 };
-

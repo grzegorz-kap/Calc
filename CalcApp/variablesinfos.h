@@ -7,7 +7,7 @@
 #include "Calc\VariableInfo.h"
 #include "Calc\SignalEmitter.h"
 
-using namespace PR;
+using namespace KLab;
 
 class VariablesInfos : public QTableWidget
 {
@@ -22,7 +22,6 @@ public:
 	void updateVariables(const VariableInfo *data, int num);
 	void removeVariables(vector<string> variables);
 
-	
 private:
 	static QTableWidgetItem* createCell(const QString &str) { return new QTableWidgetItem(str); }
 	void addCell(const VariableInfo *data);

@@ -15,11 +15,11 @@ public:
 
 	void insertCurrentDate();
 	void insertTopLevel(const QString &string);
-	
-public slots:
+
+	public slots:
 	void onItemDoubleClicked(QTreeWidgetItem *item, int);
 	void insertCommand(QString command);
-	
+
 private:
 	QTreeWidgetItem *prevItem;
 	QTreeWidgetItem *prevCommandItem;

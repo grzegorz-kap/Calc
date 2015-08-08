@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LogicalOperators.h"
 
-namespace PR
+namespace KLab
 {
 	AndOperator::AndOperator()
 		:Operator("&&", 100, 2, EVAULATED::RIGHT)
@@ -18,7 +18,6 @@ namespace PR
 		return make_shared<ComplexNumber<double>>(*arguments[0] == true && *arguments[1] == true);
 	}
 
-
 	OROperator::OROperator()
 		:Operator("||", 110, 2, EVAULATED::RIGHT)
 	{
@@ -33,7 +32,6 @@ namespace PR
 		});
 		return make_shared<ComplexNumber<double>>(*arguments[0] == true || *arguments[1] == true);
 	}
-
 
 	ElementWiseAnd::ElementWiseAnd()
 		:Operator("&", 80, 2, EVAULATED::RIGHT)
@@ -50,8 +48,6 @@ namespace PR
 		return *arguments[0] & arguments[1];
 	}
 
-
-
 	ElementWiseOr::ElementWiseOr()
 		:Operator("|", 90, 2, EVAULATED::RIGHT)
 	{
@@ -67,7 +63,6 @@ namespace PR
 
 		return *arguments[0] | arguments[1];
 	}
-
 
 	LogicalNotOperator::LogicalNotOperator()
 		:Operator("~", 20, 1, EVAULATED::LEFT)

@@ -2,7 +2,7 @@
 #include "Data.h"
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca lanuch tekstowy
 	class String : public Token
@@ -13,7 +13,7 @@ namespace PR
 		//! \param str tekst lancucha tekstowego.
 		String(const string &str);
 
-		//! "Move" konstruktor 
+		//! "Move" konstruktor
 		//! \param str r-referencja na tekst lanucha tekstowego.
 		String(string &&str);
 		~String();
@@ -39,10 +39,9 @@ namespace PR
 		//! Zwraca wskaznik na nowa kopie obiektu.
 		//! String dziedziczy posrednio z klasy Data.
 		virtual shared_ptr<Data> copy() const override;
-		
+
 		//! Laczy dwa lanuchy tekstowe.
 		// \param b wskaznik na drugi lancuch tekstowy
 		virtual shared_ptr<Data> operator + (shared_ptr<Data> &b) const override;
 	};
 }
-

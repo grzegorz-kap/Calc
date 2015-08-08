@@ -1,7 +1,7 @@
 #pragma once
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	class CeilFunction : public Function
 	{
@@ -10,7 +10,6 @@ namespace PR
 		~CeilFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class FixFunction : public Function
 	{

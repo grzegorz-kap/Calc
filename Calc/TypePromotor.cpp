@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class Matrix < double > ;
 	extern template class Matrix < hdouble > ;
 	extern template class ComplexNumber < double > ;
 	extern template class ComplexNumber < hdouble > ;
 
-	decltype(TypePromotor::ptr_max_lambda) TypePromotor::ptr_max_lambda = 
+	decltype(TypePromotor::ptr_max_lambda) TypePromotor::ptr_max_lambda =
 		[](const shared_ptr<Data> &a, const shared_ptr<Data> &b)->bool
 	{
 		return a->max_type() < b->max_type();
@@ -62,7 +62,7 @@ namespace PR
 			convertTo(b_m, a, a);
 		else if (a_m>b_m)
 			convertTo(a_m, b, b);
-		
+
 		if (a->_type == TYPE::OUTPUT)
 		{
 			convertTo(a_m, a, a);
@@ -71,12 +71,11 @@ namespace PR
 		{
 			convertTo(b_m, b, b);
 		}
-			
 	}
 
 	void TypePromotor::promote(vector<shared_ptr<Data>> &vec)
 	{
-		auto max = std::max_element(vec.begin(), vec.end(),ptr_max_lambda)->get()->max_type();
+		auto max = std::max_element(vec.begin(), vec.end(), ptr_max_lambda)->get()->max_type();
 
 		for (auto iter = vec.begin(); iter != vec.end(); iter++)
 		{
@@ -85,7 +84,7 @@ namespace PR
 		}
 	}
 
-	void TypePromotor::promote(vector<shared_ptr<Data>> &vec,TYPE _type, bool(*cond)(shared_ptr<Data> &b))
+	void TypePromotor::promote(vector<shared_ptr<Data>> &vec, TYPE _type, bool(*cond)(shared_ptr<Data> &b))
 	{
 		for (auto &ref : vec)
 		{
@@ -100,7 +99,7 @@ namespace PR
 			convertTo(type, a, a);
 	}
 
-	void TypePromotor::convertTo(TYPE type,const shared_ptr<Data> &a , shared_ptr<Data> &dest)
+	void TypePromotor::convertTo(TYPE type, const shared_ptr<Data> &a, shared_ptr<Data> &dest)
 	{
 		if (a->isOutput())
 		{
@@ -126,7 +125,7 @@ namespace PR
 		}
 	}
 
-	void TypePromotor::convertOutputTo(TYPE type,const shared_ptr<Data> &a, shared_ptr<Data> &dest)
+	void TypePromotor::convertOutputTo(TYPE type, const shared_ptr<Data> &a, shared_ptr<Data> &dest)
 	{
 		shared_ptr<Output> output = std::dynamic_pointer_cast<Output>(a);
 
@@ -139,7 +138,7 @@ namespace PR
 			return;
 		}
 
-		auto builder =  MatrixBuilderFactory::get(type);
+		auto builder = MatrixBuilderFactory::get(type);
 		if (builder == nullptr)
 			builder = MatrixBuilderFactory::get(TYPE::DOUBLE);
 

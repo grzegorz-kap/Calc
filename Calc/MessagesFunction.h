@@ -1,6 +1,6 @@
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	class ErrorFunction : public Function
 	{

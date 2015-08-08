@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "Mathematic.h"
 
-
-
-namespace PR
+namespace KLab
 {
 	extern template class Matrix < double > ;
 	extern template class Matrix < hdouble > ;
@@ -83,7 +81,7 @@ namespace PR
 		if (a.isScalar() && b.isScalar())
 			return Mathematic::power(a.mx[0][0], b.mx[0][0]);
 
-		if (a.isMatrix() && (!b.isScalar() || !b.isInteger() || b.mx[0][0].re < 0 ||b.mx[0][0].im!=0))
+		if (a.isMatrix() && (!b.isScalar() || !b.isInteger() || b.mx[0][0].re < 0 || b.mx[0][0].im != 0))
 			throw NumericException("A^B. Second argument must be non-negative integer.");
 
 		if (a.M != a.N)
@@ -95,7 +93,7 @@ namespace PR
 
 		Matrix<T> out(a);
 		for (int i = 2; i <= bb; i++)
-			out=out*a;
+			out = out*a;
 		return out;
 	}
 
@@ -300,7 +298,7 @@ namespace PR
 	static Matrix<T> Mathematic::fix(const Matrix<T> &matrix)
 	{
 		Matrix<T> out(matrix.M, matrix.N);
-		for (int i = 0; i<out.M; i++)
+		for (int i = 0; i < out.M; i++)
 		{
 			auto &o = out.mx[i];
 			const auto &m = matrix.mx[i];
@@ -385,24 +383,23 @@ namespace PR
 				out.mx[i][j] = cround(A.mx[i][j]);
 		return out;
 	}
-	
+
 	template Matrix<double> Mathematic::cround(const Matrix<double> &);
 	template Matrix<hdouble> Mathematic::cround(const Matrix<hdouble> &);
 	template ComplexNumber<double> Mathematic::cround(const ComplexNumber<double> &);
 	template ComplexNumber<hdouble> Mathematic::cround(const ComplexNumber<hdouble> &);
-	
-	template Matrix<double> Mathematic::cmod(const Matrix<double> &,const Matrix<double> &);
-	template Matrix<hdouble> Mathematic::cmod(const Matrix<hdouble> &,const Matrix<hdouble> &);
+
+	template Matrix<double> Mathematic::cmod(const Matrix<double> &, const Matrix<double> &);
+	template Matrix<hdouble> Mathematic::cmod(const Matrix<hdouble> &, const Matrix<hdouble> &);
 	template Matrix<double> Mathematic::cmod(const Matrix<double> &, const ComplexNumber<double> &);
-	template Matrix<hdouble> Mathematic::cmod(const Matrix<hdouble> &,const ComplexNumber<hdouble> &);
-	template ComplexNumber<double> Mathematic::cmod(const ComplexNumber<double> &,const ComplexNumber<double> &);
-	template ComplexNumber<hdouble> Mathematic::cmod(const ComplexNumber<hdouble> &,const ComplexNumber<hdouble> &);
+	template Matrix<hdouble> Mathematic::cmod(const Matrix<hdouble> &, const ComplexNumber<hdouble> &);
+	template ComplexNumber<double> Mathematic::cmod(const ComplexNumber<double> &, const ComplexNumber<double> &);
+	template ComplexNumber<hdouble> Mathematic::cmod(const ComplexNumber<hdouble> &, const ComplexNumber<hdouble> &);
 
 	template ComplexNumber<double> Mathematic::cceil(const ComplexNumber<double> &);
 	template ComplexNumber<hdouble> Mathematic::cceil(const ComplexNumber<hdouble> &);
 	template Matrix<double> Mathematic::cceil(const Matrix<double> &);
 	template Matrix<hdouble> Mathematic::cceil(const Matrix<hdouble> &);
-
 
 	template ComplexNumber<double> Mathematic::cfloor(const ComplexNumber<double> &);
 	template ComplexNumber<hdouble> Mathematic::cfloor(const ComplexNumber<hdouble> &);

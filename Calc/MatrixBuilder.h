@@ -9,7 +9,7 @@
 #include "Data.h"
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	template<class T>
 	class MatrixBuilder
@@ -46,7 +46,5 @@ namespace PR
 		void addMatrix();
 		void prepareRows();
 		void changeIdxToEnd();
-		
 	};
 }
-

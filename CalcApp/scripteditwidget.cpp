@@ -9,15 +9,13 @@ ScriptEditWidget::ScriptEditWidget(QWidget *parent)
 	updated = false;
 	setFont(defaultFont);
 	setTabStopWidth(30);
-	filePath= "";
+	filePath = "";
 	highlighter = new Highlighter(document());
 }
 
 ScriptEditWidget::~ScriptEditWidget()
 {
-
 }
-
 
 bool ScriptEditWidget::isUpdated() const
 {
@@ -51,7 +49,7 @@ bool ScriptEditWidget::readFromFile()
 
 	if (!file.atEnd())
 		setText(file.readAll());
-	
+
 	file.close();
 
 	return true;
@@ -61,12 +59,11 @@ void ScriptEditWidget::keyPressEvent(QKeyEvent *ev)
 {
 	/*if (ev->key() == Qt::Key_S && (ev->modifiers()&Qt::ControlModifier))
 	{
-		saveToFile();
+	saveToFile();
 	}
 	else*/
-		QTextEdit::keyPressEvent(ev);
+	QTextEdit::keyPressEvent(ev);
 }
-
 
 bool ScriptEditWidget::saveToFile()
 {
@@ -88,7 +85,6 @@ bool ScriptEditWidget::saveToFile()
 	file.write(toPlainText().toStdString().c_str());
 	file.close();
 
-
 	updated = false;
 	emit fileSaved();
 	return true;
@@ -99,7 +95,7 @@ QString ScriptEditWidget::askForPathToSave()
 	return QFileDialog::getSaveFileName(
 		this,
 		"Save script",
-		workingDirectory+"/"+QDir(filePath).dirName(),
+		workingDirectory + "/" + QDir(filePath).dirName(),
 		tr("Scripts (*.m)")
 		);
 }

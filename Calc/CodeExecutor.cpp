@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "CodeExecutor.h"
 
-
-namespace PR
+namespace KLab
 {
-	extern template class Matrix < double >;
-	extern template class Matrix < hdouble >;
-	extern template class ComplexNumber<double>;
-	extern template class ComplexNumber<hdouble>;
+	extern template class Matrix < double > ;
+	extern template class Matrix < hdouble > ;
+	extern template class ComplexNumber < double > ;
+	extern template class ComplexNumber < hdouble > ;
 	extern template class MatrixBuilder < double > ;
 	extern template class MatrixBuilder < hdouble > ;
 
@@ -28,7 +27,7 @@ namespace PR
 		_file = "";
 	}
 
-	CodeExecutor::CodeExecutor(const ExternalFunction &fun,const vector<shared_ptr<Data>> &args)
+	CodeExecutor::CodeExecutor(const ExternalFunction &fun, const vector<shared_ptr<Data>> &args)
 		:
 		vars_ref(internal_vars),
 		code(fun.getCode())
@@ -43,11 +42,11 @@ namespace PR
 		{
 			if (i >= N)
 				throw CalcException("Too many input parameters in function call (" + fun.getName() + ")");
-			
-			shared_ptr<Data> temp = data->_temp? data : data->copy();
+
+			shared_ptr<Data> temp = data->_temp ? data : data->copy();
 			if (data->isOutput())
 				TypePromotor::promote(temp, temp->max_type());
-			vars_ref.set(input[i++],data);
+			vars_ref.set(input[i++], data);
 		}
 	}
 
@@ -66,13 +65,13 @@ namespace PR
 		code.setInput(in);
 	}
 
-	void CodeExecutor::set_stop_computing() 
-	{ 
-		stop_computing = true; 
+	void CodeExecutor::set_stop_computing()
+	{
+		stop_computing = true;
 	}
 
 	void CodeExecutor::off_stop_computing()
-	{ 
+	{
 		stop_computing = false;
 	}
 
@@ -172,11 +171,11 @@ namespace PR
 				onVariablesManagement();
 				break;
 			default:
-				throwError("Cannot execute this: '"+(*i)->getLexemeR()+"'");
+				throwError("Cannot execute this: '" + (*i)->getLexemeR() + "'");
 			}
 		}
 
-		if (assignment_flag == false && !_single_id_flag && stack.size()==1)
+		if (assignment_flag == false && !_single_id_flag && stack.size() == 1)
 			defaultAssignment();
 		if (!_single_run && (stack.size() > 1 || !multi&&!_single_id_flag&&stack.size() == 1))
 			throwError("Expression is incorrect.");
@@ -195,8 +194,8 @@ namespace PR
 		else
 			return make_shared<Data>();
 	}
-	
-	vector<shared_ptr<Data>> CodeExecutor::run_single(const vector<shared_ptr<Token>> &onp,Variables &vars)
+
+	vector<shared_ptr<Data>> CodeExecutor::run_single(const vector<shared_ptr<Token>> &onp, Variables &vars)
 	{
 		CodeExecutor exec(vars);
 		exec._single_run = true;
@@ -221,7 +220,7 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throwError("Error evaulating 'end' or ':' matrix index - "+ ex.getMessageR());
+			throwError("Error evaulating 'end' or ':' matrix index - " + ex.getMessageR());
 		}
 
 		int idx = (*i)->getParam();  // numer argumentu indeksowanie
@@ -293,7 +292,7 @@ namespace PR
 	{
 		if (args.size() == 0)
 			throwError("Too few arguments for 'load' command.");
-		FileLoader file(args.front()->toString()+".klab");
+		FileLoader file(args.front()->toString() + ".klab");
 		if (args.size() == 1)
 		{
 			CodeExecutor exec(vars_ref);
@@ -315,14 +314,13 @@ namespace PR
 				args.erase(result);
 			}
 		}
-
 	}
 
 	void CodeExecutor::onShortCircuitJumper()
 	{
 		if (stack.size() == 0)
 			throwError("Expression or statement is incomplete or incorrect.");
-		
+
 		if (!stack.back()->isScalar())
 			throwError("Operands to the || and && operators must be convertible to logical scalar values");
 
@@ -330,9 +328,9 @@ namespace PR
 		TOKEN_CLASS _class = (*i)->getClass();
 		if (leftArgument&&_class == SHORT_CIRCUIT_OR ||
 			!leftArgument&&_class == SHORT_CIRCUIT_END)
-			i = ip->begin() + 
-				dynamic_pointer_cast<ShortCircuitJumper>(*i)
-						->getJumpOn(_class) - 1;
+			i = ip->begin() +
+			dynamic_pointer_cast<ShortCircuitJumper>(*i)
+			->getJumpOn(_class) - 1;
 	}
 
 	bool CodeExecutor::isKeyword(TOKEN_CLASS _class)
@@ -360,7 +358,7 @@ namespace PR
 			return;
 		while (1)
 		{
-			if (ip->size() == 1 && (balance==-2||balance == ip->at(0)->getKeywordBalance()) &&
+			if (ip->size() == 1 && (balance == -2 || balance == ip->at(0)->getKeywordBalance()) &&
 				std::find(set.begin(), set.end(), ip->at(0)->getClass()) != set.end())
 				return;
 			next();
@@ -419,14 +417,14 @@ namespace PR
 		/* Utworzenie nowego interatora */
 		for_iterators.push_back(ForIterator(vars_ref));
 		ForIterator & _iterator = for_iterators.back();
-		
-		/* Ustawienie informacji o nazwie zmiennej bêd¹cej 
+
+		/* Ustawienie informacji o nazwie zmiennej bêd¹cej
 		   iteratorem oraz ustawienie zbioru wartoœci */
 		auto _for = dynamic_pointer_cast<InstructionFor>(ip->front());
 		_iterator.setName(_for->getLexeme());
 		_iterator.setData(run_single(_for->getOnp(), vars_ref));
 
-		/* Ustawienie adresu pocz¹tku cia³a pêtli oraz 
+		/* Ustawienie adresu pocz¹tku cia³a pêtli oraz
 		   przejœcie na koniec pêtli */
 		int balance = _for->getKeywordBalance();
 		next();
@@ -524,7 +522,7 @@ namespace PR
 			function->set(args, num > 0 ? num : 1);
 			try{
 				shared_ptr<Data> out = function->run();
-				if (out->_type != TYPE::OUTPUT || out->cast_output()->getArgumentsNumber()>0)
+				if (out->_type != TYPE::OUTPUT || out->cast_output()->getArgumentsNumber() > 0)
 					stack.push_back(out);
 			}
 			catch (const CalcException &ex)
@@ -534,7 +532,6 @@ namespace PR
 		}
 		else
 			onExternalFunction(args, name);
-
 	}
 
 	void CodeExecutor::onEval(vector<shared_ptr<Data>> &args)
@@ -596,7 +593,7 @@ namespace PR
 		}
 		catch (const CalcException &ex)
 		{
-			throwError("Cannot load external function \""+name+"\":"+"\n"+ex.getFullMessage());
+			throwError("Cannot load external function \"" + name + "\":" + "\n" + ex.getFullMessage());
 		}
 		CodeExecutor exec(function, args);
 		exec.start();
@@ -712,7 +709,6 @@ namespace PR
 		vector<shared_ptr<Data>>::iterator ii;
 		TYPE max_type = TYPE::TOKEN;
 
-
 		for (ii = stack.end() - 1; ii >= stack.begin(); ii--)
 		{
 			auto _type = (*ii)->max_type();
@@ -750,7 +746,6 @@ namespace PR
 		{
 			throwError(ex.getMessage());
 		}
-		
 	}
 
 	bool CodeExecutor::checkWhile()
@@ -802,20 +797,20 @@ namespace PR
 	void CodeExecutor::next()
 	{
 		code.inc();
-		ip = code.get(); 
+		ip = code.get();
 	}
 
 	void CodeExecutor::prev()
-	{ 
-		code.dec();	
-		ip = code.get(); 
+	{
+		code.dec();
+		ip = code.get();
 	}
 
-	void CodeExecutor::throwError(const string &name,string src)
+	void CodeExecutor::throwError(const string &name, string src)
 	{
 		string tt = _file != "" ? _file + src : src;
 		if (i != ip->end())
-			throw CalcException(name, tt ,(*i)->getPosition(), (*i)->getLine());
+			throw CalcException(name, tt, (*i)->getPosition(), (*i)->getLine());
 		if (ip->size())
 			throw CalcException(name, tt, ip->front()->getPosition(), ip->front()->getLine());
 		throw CalcException(name);

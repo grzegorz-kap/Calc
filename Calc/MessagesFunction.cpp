@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MessagesFunction.h"
 
-namespace PR
+namespace KLab
 {
 	ErrorFunction::ErrorFunction()
 	{
@@ -11,7 +11,6 @@ namespace PR
 
 	ErrorFunction::~ErrorFunction()
 	{
-
 	}
 
 	shared_ptr<Data> ErrorFunction::run()

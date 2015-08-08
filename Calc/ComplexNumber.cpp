@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "ComplexNumber.h"
 
-namespace PR
+namespace KLab
 {
-	extern template class Numeric < ComplexNumber<double> >;
-	extern template class Numeric < ComplexNumber<hdouble> >;
+	extern template class Numeric < ComplexNumber<double> > ;
+	extern template class Numeric < ComplexNumber<hdouble> > ;
 
 	template <class T> ComplexNumber<T>::ComplexNumber()
 	{
@@ -18,7 +18,7 @@ namespace PR
 	}
 
 	template <class T> ComplexNumber<T>::ComplexNumber(const hdouble & reArg, const hdouble & imArg = 0)
-		:re(reArg), im(imArg)
+		: re(reArg), im(imArg)
 	{
 		setDataType();
 	}
@@ -30,7 +30,7 @@ namespace PR
 	}
 
 	template <class T> ComplexNumber<T>::ComplexNumber(ComplexNumber<T> &&b)
-		:re(b.re), im(b.im)
+		: re(b.re), im(b.im)
 	{
 		b.re = 0; b.im = 0;
 		setDataType();
@@ -39,8 +39,8 @@ namespace PR
 	template <class T>
 	ComplexNumber<T>& ComplexNumber<T>::operator=(const ComplexNumber<T> &b)
 	{
-		if (&b!=this)
-		{ 
+		if (&b != this)
+		{
 			re = b.re;
 			im = b.im;
 		}
@@ -136,7 +136,7 @@ namespace PR
 		im = imA;
 	}
 
-	template <class T> 
+	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::operator + (const ComplexNumber<T> &b) const
 	{
 		return ComplexNumber<T>(re + b.re, im + b.im);
@@ -207,7 +207,7 @@ namespace PR
 	}
 
 	template <class T>
-	void ComplexNumber<T>::operator -= (const ComplexNumber<T> &b) 
+	void ComplexNumber<T>::operator -= (const ComplexNumber<T> &b)
 	{
 		re -= b.re;
 		im -= b.im;
@@ -215,11 +215,11 @@ namespace PR
 
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::times(const ComplexNumber<T> &b) const
-	{ 
+	{
 		return *this * b;
 	}
 
-	template <class T> 
+	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::rdivide(const ComplexNumber<T> &b) const
 	{
 		return *this / b;
@@ -244,14 +244,14 @@ namespace PR
 	{
 		return ComplexNumber<T>(-re, -im);
 	}
-	
+
 	template <class T>
 	bool ComplexNumber<T>::operator == (const bool &b) const
 	{
 		return (re || im) == b;
 	}
 
-	template <class T> 
+	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::operator == (const ComplexNumber<T> &b) const
 	{
 		return ComplexNumber<T>(re == b.re && im == b.im);
@@ -287,7 +287,6 @@ namespace PR
 		return ComplexNumber<T>(re >= b.re);
 	}
 
-
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::operator | (const ComplexNumber<T> &b) const
 	{
@@ -299,7 +298,6 @@ namespace PR
 	{
 		return ComplexNumber<T>(re &&b.re);
 	}
-
 
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::logical_not() const
@@ -378,9 +376,9 @@ namespace PR
 	string ComplexNumber<double>::toStringCommpact() const
 	{
 		std::ostringstream ss;
-		if (re!=0||im==0)
+		if (re != 0 || im == 0)
 			ss << re;
-		if (im > 0&&re)
+		if (im > 0 && re)
 			ss << "+";
 		if (im != 0)
 			ss << im << "i";
@@ -483,14 +481,14 @@ namespace PR
 
 	template <class T>
 	int ComplexNumber<T>::get_cols_int() const
-	{ 
-		return 1; 
+	{
+		return 1;
 	}
 
 	template <class T>
 	int ComplexNumber<T>::get_rows_int() const
-	{ 
-		return 1; 
+	{
+		return 1;
 	}
 
 	template <class T>
@@ -502,23 +500,23 @@ namespace PR
 	}
 
 	template <class T>
- 	ComplexNumber<T> ComplexNumber<T>::getRowIndex() const
+	ComplexNumber<T> ComplexNumber<T>::getRowIndex() const
 	{
 		return ComplexNumber<T>(1);
 	}
-	
+
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::getColIndex() const
 	{
 		return ComplexNumber<T>(1);
 	}
-	
+
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::getIndexAll() const
 	{
 		return ComplexNumber<T>(1);
 	}
-	
+
 	template <class T>
 	ComplexNumber<T> ComplexNumber<T>::getIndex(int num) const
 	{
@@ -538,13 +536,13 @@ namespace PR
 	}
 
 	template <class T>
-	bool ComplexNumber<T>::isInteger() const 
+	bool ComplexNumber<T>::isInteger() const
 	{
 		return im == 0.0 && floor(re) == re;
 	}
 
 	template <class T>
-	bool ComplexNumber<T>::isReal() const 
+	bool ComplexNumber<T>::isReal() const
 	{
 		return im == 0;
 	}
@@ -556,18 +554,18 @@ namespace PR
 	}
 
 	template <class T> string ComplexNumber<T>::getValueInfoString() const
-	{ 
-		return toString(); 
+	{
+		return toString();
 	}
 
-	template <class T> string ComplexNumber<T>::minValueString() const 
-	{ 
-		return toString(); 
+	template <class T> string ComplexNumber<T>::minValueString() const
+	{
+		return toString();
 	}
 
-	template <class T> string ComplexNumber<T>::maxValueString() const 
-	{ 
-		return toString(); 
+	template <class T> string ComplexNumber<T>::maxValueString() const
+	{
+		return toString();
 	}
 
 	template <class T> vector<double> ComplexNumber<T>::toDoubleVector() const
@@ -600,10 +598,9 @@ namespace PR
 		return re.convert_to<int>();
 	}
 
+	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfRow() const{ return ComplexNumber<T>(1); }
+	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfCol() const{ return ComplexNumber<T>(1); }
 
-	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfRow() const{return ComplexNumber<T>(1);}
-	template <class T> ComplexNumber<T> ComplexNumber<T>::getLastIndexOfCol() const{return ComplexNumber<T>(1);}
-
-	template class ComplexNumber < double >;
-	template class ComplexNumber < hdouble >;
+	template class ComplexNumber < double > ;
+	template class ComplexNumber < hdouble > ;
 }

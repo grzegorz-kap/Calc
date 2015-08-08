@@ -37,11 +37,9 @@ private:
 	QString filePath;
 	static QString workingDirectory;
 	Highlighter *highlighter;
-	
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *ev);
-	
-	
 };
 
 #endif // SCRIPTEDITWIDGET_H

@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "AssignmentSingle.h"
 
-
-namespace PR
+namespace KLab
 {
 	AssignmentSingle::AssignmentSingle()
 		:IAssignment(ASSIGNMENT_TYPE::SINGLE)
 	{
 	}
-
 
 	AssignmentSingle::~AssignmentSingle()
 	{
@@ -37,9 +35,9 @@ namespace PR
 		return 1;
 	}
 
-	string AssignmentSingle::getLexeme() const  
-	{ 
-		return target->getLexeme(); 
+	string AssignmentSingle::getLexeme() const
+	{
+		return target->getLexeme();
 	}
 
 	void AssignmentSingle::doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment)
@@ -60,9 +58,9 @@ namespace PR
 
 	void AssignmentSingle::setTargetName(string &&name)
 	{
-		if (target!=nullptr)
+		if (target != nullptr)
 			target->setLexeme(std::move(name));
 		else
-			target = make_shared<Token>(std::move(name),TOKEN_CLASS::ID);
+			target = make_shared<Token>(std::move(name), TOKEN_CLASS::ID);
 	}
 }

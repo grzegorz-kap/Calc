@@ -12,7 +12,7 @@ using std::make_unique;
 #include "Mathematic.h"
 #include "MatrixUtils.h"
 
-namespace PR
+namespace KLab
 {
 	//! Intefejs dla typow numerycznych.
 	template <class T>
@@ -156,15 +156,15 @@ namespace PR
 		virtual void lu(shared_ptr<Data> &dest) const override
 		{
 			T * ptr = nullptr;
-			MatrixUtils::lu(*get_derived(),&ptr);
+			MatrixUtils::lu(*get_derived(), &ptr);
 			dest = shared_ptr<Data>(ptr);
 		}
 
-		virtual void lu(shared_ptr<Data> &l,shared_ptr<Data> &u) const override
+		virtual void lu(shared_ptr<Data> &l, shared_ptr<Data> &u) const override
 		{
 			T * ptr2 = nullptr;
 			T * ptr1 = nullptr;
-			MatrixUtils::lu(*get_derived(), &ptr1,&ptr2);
+			MatrixUtils::lu(*get_derived(), &ptr1, &ptr2);
 			l = shared_ptr<Data>(ptr1);
 			u = shared_ptr<Data>(ptr2);
 		}
@@ -174,7 +174,7 @@ namespace PR
 			T *ptr3 = nullptr;
 			T * ptr2 = nullptr;
 			T * ptr1 = nullptr;
-			MatrixUtils::lu(*get_derived(), &ptr1, &ptr2,&ptr3);
+			MatrixUtils::lu(*get_derived(), &ptr1, &ptr2, &ptr3);
 			l = shared_ptr<Data>(ptr1);
 			u = shared_ptr<Data>(ptr2);
 			p = shared_ptr<Data>(ptr3);
@@ -280,7 +280,7 @@ namespace PR
 			return make_shared<T>(get_derived()->at(
 				*first->cast_numeric<T>()->get_derived(),
 				*second->cast_numeric<T>()->get_derived()
-			));
+				));
 		}
 
 		virtual void assignAt(shared_ptr<Data>& data)  override
@@ -289,8 +289,8 @@ namespace PR
 		}
 
 		virtual void assignAt(shared_ptr<Data>& cells, shared_ptr<Data>& data) override
-		{ 
-			get_derived_non_const()->assign(*cells->cast_numeric<T>()->get_derived(),*data->cast_numeric<T>()->get_derived());
+		{
+			get_derived_non_const()->assign(*cells->cast_numeric<T>()->get_derived(), *data->cast_numeric<T>()->get_derived());
 		}
 
 		virtual void assignAt(shared_ptr<Data>& rows, shared_ptr<Data>& cols, shared_ptr<Data>& data) override
@@ -299,10 +299,10 @@ namespace PR
 			{
 				if (rows->get_rows_int() == 1 && rows->get_cols_int() == -1)
 					rows = getVectorForAssignment(data->cast_numeric<T>()->getRowsCountForEmptyMatrixAssignment());
-				if (cols->get_rows_int() == 1 && cols->get_cols_int()==-1)
+				if (cols->get_rows_int() == 1 && cols->get_cols_int() == -1)
 					cols = getVectorForAssignment(data->cast_numeric<T>()->getColsCountForEmptyMatrixAssignment());
 			}
-			
+
 			get_derived_non_const()->assign(
 				*rows->cast_numeric<T>()->get_derived(),
 				*cols->cast_numeric<T>()->get_derived(),
@@ -331,16 +331,16 @@ namespace PR
 		{
 			return make_shared<T>(get_derived()->getColIndex());
 		}
-		
+
 		virtual shared_ptr<Data> get_single_index() const override
 		{
 			return make_shared<T>(get_derived()->getIndexAll());
 		}
-		
+
 		virtual shared_ptr<Data> createVector(shared_ptr<Data> &end) const override
 		{
 			return make_shared<T>(MatrixUtils::createVector(
-				*get_derived(), 
+				*get_derived(),
 				*end->cast_numeric<T>()->get_derived()
 				));
 		}
@@ -358,7 +358,7 @@ namespace PR
 		{
 			return make_shared<T>(get_derived()->conjugate());
 		}
-	//private:
+		//private:
 
 		shared_ptr<Data> getVectorForAssignment(const int &stop) const
 		{
@@ -375,7 +375,7 @@ namespace PR
 			return dynamic_cast<T *>(this);
 		}
 
-	//	template <class U> friend class Numeric;
+		//	template <class U> friend class Numeric;
 	};
 };
 

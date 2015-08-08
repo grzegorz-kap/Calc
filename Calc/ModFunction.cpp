@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "ModFunction.h"
 
-
-namespace PR
+namespace KLab
 {
 	ModFunction::ModFunction()
 	{
@@ -10,7 +9,6 @@ namespace PR
 		max_args_count = 2;
 		name = "mod";
 	}
-
 
 	ModFunction::~ModFunction()
 	{

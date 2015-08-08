@@ -3,7 +3,7 @@
 #include "Function.h"
 #include "MatrixBuilder.h"
 
-namespace PR
+namespace KLab
 {
 	class SizeFunction : public Function
 	{
@@ -14,7 +14,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class LengthFunction : public Function
 	{
 	public:
@@ -22,7 +21,6 @@ namespace PR
 		~LengthFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class NumelFunction : public Function
 	{
@@ -40,7 +38,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class IsEmptyFunction : public Function
 	{
 	public:
@@ -48,7 +45,6 @@ namespace PR
 		~IsEmptyFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class IsRowFunction : public Function
 	{
@@ -58,7 +54,6 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 
-
 	class IsScalarFunction : public Function
 	{
 	public:
@@ -66,7 +61,6 @@ namespace PR
 		~IsScalarFunction();
 		virtual shared_ptr<Data> run() override;
 	};
-
 
 	class IsVectorFunction : public Function
 	{
@@ -92,4 +86,3 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 }
-

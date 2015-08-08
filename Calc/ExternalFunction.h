@@ -10,7 +10,7 @@ using std::shared_ptr;
 
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca funkcje zewnetrzna.
 	class ExternalFunction
@@ -19,7 +19,7 @@ namespace PR
 		vector<string> output;
 
 		//! Nazwy argumentow wejsciowych.
-		vector<string> input;		
+		vector<string> input;
 
 		//! Nazwa funkcji.
 		string name;
@@ -29,16 +29,16 @@ namespace PR
 		vector<vector<shared_ptr<Token>>> body;
 
 		//! Okresla czy plik zawierajacy funkcje, zostal zaktualizowany.
-		bool updated;							
-	
+		bool updated;
+
 	public:
 		ExternalFunction();
 		~ExternalFunction();
-		
+
 		void set_updated(); //!< Ustawienie informacji, ze plik z funkcja zostal zaktualizowany.
 		void reset_updated(); //!< Zresetowanie informacji o aktualizacji pliku  funkcyjnego.
 		bool getUpdated(); //!< Pobranie informacji o aktulizacji pliku z funkcja.
-		
+
 		//! Dodanie parametru wyjsciowego.
 		//! \param name nazwa parametru do dodania.
 		void addOutput(string &&name);
@@ -77,4 +77,3 @@ namespace PR
 		void addInstruction(vector<shared_ptr<Token>> &&in);
 	};
 }
-

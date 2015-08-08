@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Matrix.h"
 
-namespace PR
+namespace KLab
 {
 	extern template class ComplexNumber < double > ;
 	extern template class ComplexNumber < hdouble > ;
@@ -15,7 +15,6 @@ namespace PR
 	{
 		setDataType();
 	};
-
 
 	template <class T> Matrix<T>::Matrix(const ComplexNumber<T> &b)
 		:Matrix(1, 1, b)
@@ -37,13 +36,13 @@ namespace PR
 	}
 
 	template <class T> Matrix<T>::Matrix(string &&scalar)
-		: Matrix(1,1)
+		: Matrix(1, 1)
 	{
 		mx[0][0] = ComplexNumber<T>(std::move(scalar));
 	}
 
 	template <class T> Matrix<T>::Matrix(int m, int n)
-		: M(m>0?m:0), N(n)
+		: M(m > 0 ? m : 0), N(n)
 	{
 		setDataType();
 		mx.assign(M, vector<ComplexNumber<T>>(n));
@@ -58,7 +57,6 @@ namespace PR
 
 	template <class T> Matrix<T>::~Matrix()
 	{
-
 	}
 
 	template <> void Matrix<double>::setDataType()
@@ -130,7 +128,7 @@ namespace PR
 		return C;
 	}
 
-	template <class T> Matrix<T> Matrix<T>::times(const Matrix<T> &b) const 
+	template <class T> Matrix<T> Matrix<T>::times(const Matrix<T> &b) const
 	{
 		if (b.M == 1 && b.N == 1)
 			return *this * b.mx[0][0];
@@ -280,13 +278,13 @@ namespace PR
 		return C;
 	}
 
-	template <class T> Matrix<T> Matrix<T>::operator / (const Matrix<T> &B) const 
+	template <class T> Matrix<T> Matrix<T>::operator / (const Matrix<T> &B) const
 	{
 		if (B.M == 1 && B.N == 1)
 			return *this / B.mx[0][0];
 		else if (M == 1 && N == 1)
 			return B.ldivide(mx[0][0]);
-	
+
 		if (B.M != B.N)
 			throw NumericException("A/B: A*inv(B). B must be a square matrix.");
 		if (N != B.M)
@@ -361,7 +359,7 @@ namespace PR
 		return C;
 	}
 
-	template <class T> Matrix<T> Matrix<T>::operator != (const T &b) const 
+	template <class T> Matrix<T> Matrix<T>::operator != (const T &b) const
 	{
 		Matrix<T> C(M, N);
 		for (int i = 0; i < M; i++)
@@ -516,7 +514,7 @@ namespace PR
 				c.mx[i][j] = mx[i][j].logical_not();
 		return c;
 	}
-	
+
 	template <class T>
 	ComplexNumber<T> Matrix<T>::maxValue() const
 	{
@@ -530,7 +528,7 @@ namespace PR
 				[](const ComplexNumber<T> &a, const ComplexNumber<T> &b){
 				return a.getRe() < b.getRe();
 			});
-			if ((*row_max > max_value)==true)
+			if ((*row_max > max_value) == true)
 				max_value = *row_max;
 		}
 		return max_value;
@@ -549,7 +547,7 @@ namespace PR
 				[](const ComplexNumber<T> &a, const ComplexNumber<T> &b){
 				return a.getRe() > b.getRe();
 			});
-			if ((*row_min < min_value)==true)
+			if ((*row_min < min_value) == true)
 				min_value = *row_min;
 		}
 		return min_value;
@@ -567,16 +565,16 @@ namespace PR
 		return minValue().toString();
 	}
 
-	template <class T> 
+	template <class T>
 	vector<vector<ComplexNumber<T>>>* Matrix<T>::getVector()
 	{
-		return &mx; 
+		return &mx;
 	}
 
 	template <class T> string Matrix<T>::toString() const
 	{
 		if (M == 0 || N == 0)
-			return "[ ] "+std::to_string(M)+"x"+std::to_string(N);
+			return "[ ] " + std::to_string(M) + "x" + std::to_string(N);
 
 		string temp = "";
 		for (int i = 0; i < M; i++)
@@ -595,7 +593,7 @@ namespace PR
 		{
 			for (int j = 0; j < N; j++)
 			{
-				if (j<N-1)
+				if (j < N - 1)
 					temp.append(mx[i][j].toStringCommpact() + ",");
 				else
 					temp.append(mx[i][j].toStringCommpact());
@@ -719,7 +717,7 @@ namespace PR
 				const ComplexNumber<T> &fcell = first.mx[i][j];
 				if (!fcell.checkForPositiveInteger())
 					NumericException::throwIndexMustBeReal();
-				int row_idx = fcell.getReInt()-1;
+				int row_idx = fcell.getReInt() - 1;
 				int col = 0;
 				if (row_idx >= M)
 					NumericException::throwIndexOutOfRange();
@@ -731,7 +729,7 @@ namespace PR
 						const ComplexNumber<T> &scell = second.mx[ii][jj];
 						if (!scell.checkForPositiveInteger())
 							NumericException::throwIndexMustBeReal();
-						int col_idx = scell.getReInt()-1;
+						int col_idx = scell.getReInt() - 1;
 						if (col_idx >= N)
 							NumericException::throwIndexOutOfRange();
 
@@ -772,7 +770,7 @@ namespace PR
 	void Matrix<T>::assign(const Matrix<T> &cells, const ComplexNumber<T> &data)
 	{
 		int idx_max = M*N;
-		for (int j = 0; j<cells.N; j++)
+		for (int j = 0; j < cells.N; j++)
 		{
 			for (int i = 0; i < cells.M; i++)
 			{
@@ -791,7 +789,6 @@ namespace PR
 	template <class T>
 	void Matrix<T>::assign(const Matrix<T> &cells, const Matrix<T> &data)
 	{
-
 		if (data.isScalar())
 		{
 			assign(cells, data.mx[0][0]);
@@ -804,7 +801,7 @@ namespace PR
 		int idx_max = M*N;
 		int i_data = 0;
 		int j_data = 0;
-		for (int j = 0; j<cells.N; j++)
+		for (int j = 0; j < cells.N; j++)
 		{
 			for (int i = 0; i < cells.M; i++)
 			{
@@ -826,13 +823,12 @@ namespace PR
 		}
 	}
 
-	
 	template <class T>
 	void Matrix<T>::assign(const Matrix<T> &row, const Matrix<T> &col, const Matrix<T> &data)
 	{
 		/*
-		a(I,J) = b assigns the values of b into the elements of the rectangular 
-		submatrix of a specified by the subscript vectors I and J. 
+		a(I,J) = b assigns the values of b into the elements of the rectangular
+		submatrix of a specified by the subscript vectors I and J.
 		b must have LENGTH(I) rows and LENGTH(J) columns.
 		*/
 		if (data.isEmpty())
@@ -849,7 +845,7 @@ namespace PR
 
 		int length_row = row.M*row.N;
 		int length_col = col.M*col.N;
-		
+
 		if (length_row != data.M || length_col != data.N)
 		{
 			if (length_col == 1 == data.M && length_row == data.N ||
@@ -863,14 +859,13 @@ namespace PR
 
 		row.checkForPositiveInteger();
 		col.checkForPositiveInteger();
-		
 
 		int i_data = 0;
 		int j_data = 0;
 
 		for (int j_row = 0; j_row < row.N; j_row++)
 		{
-			for (int i_row = 0; i_row < row.M; i_row++ , j_data=0,i_data++)
+			for (int i_row = 0; i_row < row.M; i_row++, j_data = 0, i_data++)
 			{
 				int row_idx = row.mx[i_row][j_row].getReInt() - 1;
 				if (row_idx >= M)
@@ -897,10 +892,10 @@ namespace PR
 			return;
 		if (rowsA.M>1 && rowsA.N > 1 || colsA.M > 1 && colsA.N > 1)
 			throw CalcException("Wrong data to matrix elements erase");
-		if (rowsA.M!=M && rowsA.N!=M && colsA.M!=N && colsA.N!=N)
+		if (rowsA.M != M && rowsA.N != M && colsA.M != N && colsA.N != N)
 			throw CalcException("Wrong data to matrix elements erase");
 		rowsA.checkForPositiveInteger();
-		colsA.checkForPositiveInteger();	
+		colsA.checkForPositiveInteger();
 		Matrix<T> rows = rowsA.M > 1 ? rowsA.transpose() : rowsA;
 		Matrix<T> cols = colsA.M > 1 ? colsA.transpose() : colsA;
 
@@ -927,14 +922,14 @@ namespace PR
 		});
 		if (iter != cols.mx[0].end())
 			throw CalcException("Wrong data to matrix elements erase");
-		
+
 		if (rows.N == M)
 		{
 			int i = 1;
 			for (; i < M; i++)
 				if (rows.mx[0][i].re != i + 1)
 					break;
-			if (i>=M)
+			if (i >= M)
 			{
 				for (int j = cols.N - 1; j >= 0; j--)
 				{
@@ -954,7 +949,7 @@ namespace PR
 			for (; i < N; i++)
 				if (cols.mx[0][i].re != i + 1)
 					break;
-			if (i>=N)
+			if (i >= N)
 			{
 				for (int i = rows.N - 1; i >= 0; i--)
 				{
@@ -1001,7 +996,7 @@ namespace PR
 	{
 		Matrix<T> out(1, num);
 
-		if (num==0)
+		if (num == 0)
 		{
 			out.N = -1;
 			return out;
@@ -1029,7 +1024,7 @@ namespace PR
 	{
 		Matrix<T> out(M*N, 1);
 		int ii = 1;
-		for (int i = 0;i< out.M; i++)
+		for (int i = 0; i < out.M; i++)
 			out.mx[i][0] = ComplexNumber<T>(ii++);
 		return out;
 	}
@@ -1046,7 +1041,7 @@ namespace PR
 	template <class T>
 	int Matrix<T>::getColsCountForEmptyMatrixAssignment() const
 	{
-		if (N == 1 && M>1)
+		if (N == 1 && M > 1)
 			return M;
 		else
 			return N;
@@ -1094,28 +1089,28 @@ namespace PR
 	{
 		if (isScalar())
 			return mx[0][0].toString();
-		
+
 		return "Size: " + std::to_string(M) + "x" + std::to_string(N);
 	}
 
 	template <class T> void Matrix<T>::rows(int arg)
 	{
-		M = arg; 
+		M = arg;
 	}
 
 	template <class T> void Matrix<T>::cols(int arg)
-	{ 
-		N = arg; 
+	{
+		N = arg;
 	}
 
-	template <class T> int Matrix<T>::get_cols_int() const  
-	{ 
+	template <class T> int Matrix<T>::get_cols_int() const
+	{
 		return N;
 	}
 
-	template <class T> int Matrix<T>::get_rows_int() const  
-	{ 
-		return M; 
+	template <class T> int Matrix<T>::get_rows_int() const
+	{
+		return M;
 	}
 
 	template <class T> int * Matrix<T>::getM_P()
@@ -1147,14 +1142,14 @@ namespace PR
 		return true;
 	}
 
-	template <class T> bool Matrix<T>::isMatrix() const 
-	{ 
-		return true; 
+	template <class T> bool Matrix<T>::isMatrix() const
+	{
+		return true;
 	}
 
-	template <class T> bool Matrix<T>::isEmpty() const 
-	{ 
-		return M <= 0 && N <= 0; 
+	template <class T> bool Matrix<T>::isEmpty() const
+	{
+		return M <= 0 && N <= 0;
 	}
 
 	template <class T> int Matrix<T>::toInteger() const
@@ -1162,17 +1157,15 @@ namespace PR
 		return mx[0][0].toInteger();
 	}
 
-	template<class T> Matrix<T> Matrix<T>::getRowIndex() const 
-	{ 
+	template<class T> Matrix<T> Matrix<T>::getRowIndex() const
+	{
 		return getIndex(M);
 	}
 
-	template<class T> Matrix<T> Matrix<T>::getColIndex() const 
-	{ 
-		return getIndex(N); 
+	template<class T> Matrix<T> Matrix<T>::getColIndex() const
+	{
+		return getIndex(N);
 	}
-
-	
 
 	template <class T> shared_ptr<Data> Matrix<T>::copy() const
 	{
@@ -1217,7 +1210,6 @@ namespace PR
 		else
 			throw CalcException("Cannot convert empty matrix to scalar value.");
 	}
-
 
 	template class Matrix < double > ;
 	template class Matrix < hdouble > ;
