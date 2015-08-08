@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RoundingFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	CeilFunction::CeilFunction()
 	{
@@ -26,7 +26,6 @@ namespace PR
 		name = "fix";
 	}
 
-
 	FixFunction::~FixFunction()
 	{
 	}
@@ -43,7 +42,6 @@ namespace PR
 		name = "floor";
 	}
 
-
 	FloorFunction::~FloorFunction()
 	{
 	}
@@ -59,7 +57,6 @@ namespace PR
 		max_args_count = 1;
 		name = "round";
 	}
-
 
 	RoundFunction::~RoundFunction()
 	{

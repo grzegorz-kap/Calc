@@ -8,7 +8,7 @@ using std::vector;
 #include "Variables.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	//! Iterator petli for
 	class ForIterator
@@ -50,5 +50,4 @@ namespace PR
 		//! Laduje nastepna wartosc z zestawu do iteratora petli.
 		void loadNext();
 	};
-
 }

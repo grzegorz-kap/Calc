@@ -10,13 +10,10 @@ using std::string;
 #include "Token.h"
 #include "functions.h"
 
-namespace PR
+namespace KLab
 {
-
-
 	class LexicalBalanceHelper
 	{
-		
 	public:
 		LexicalBalanceHelper();
 		~LexicalBalanceHelper();
@@ -27,7 +24,7 @@ namespace PR
 
 		void throwOnUnbalancedEnd();
 	private:
-		
+
 		vector<int> balance;
 		vector<PARSE_MODE> mode;
 		int pos;
@@ -44,5 +41,4 @@ namespace PR
 		void onFunction();
 		void onFunctionEnd();
 	};
-
 }

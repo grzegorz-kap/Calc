@@ -10,7 +10,7 @@
 using std::unique_ptr;
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	class FileLoader
 	{
@@ -23,7 +23,7 @@ namespace PR
 		string loadAll();
 		bool eof() const;
 		string getFileName() const{ return name; }
-	
+
 		static void changeWorkingDirectory(const string &directory);
 		static string getWorkingDirectory() { return working_directory; }
 	private:
@@ -34,4 +34,3 @@ namespace PR
 		void onReadAttempt();
 	};
 }
-

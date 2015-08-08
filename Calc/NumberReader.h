@@ -7,11 +7,10 @@
 
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	class NumberReader
 	{
-
 	public:
 		/**
 		Function reads complex number from string
@@ -37,5 +36,4 @@ namespace PR
 		int N;
 		bool exp;
 	};
-
 }

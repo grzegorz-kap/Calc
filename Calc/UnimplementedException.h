@@ -1,7 +1,7 @@
 #pragma once
 #include "CalcException.h"
 
-namespace PR
+namespace KLab
 {
 	class UnimplementedException :
 		public CalcException
@@ -10,5 +10,4 @@ namespace PR
 		UnimplementedException(const string &message);
 		~UnimplementedException();
 	};
-
 }

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "FunctionFactory.h"
 
-
-namespace PR
+namespace KLab
 {
 	FunctionFactory * FunctionFactory::instance = nullptr;
 
@@ -84,9 +83,9 @@ namespace PR
 
 	bool FunctionFactory::readExternal(const string &name)
 	{
-			ExternalFunctionLoader fun(name);
-			instance->externals[name] = fun.get();
-			return false;
+		ExternalFunctionLoader fun(name);
+		instance->externals[name] = fun.get();
+		return false;
 	}
 
 	void FunctionFactory::loadInstance()

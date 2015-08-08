@@ -1,7 +1,7 @@
 #pragma once
 #include "Operator.h"
 
-namespace PR
+namespace KLab
 {
 	class EqOperator : public Operator
 	{
@@ -11,7 +11,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class GeOperator : public Operator
 	{
 	public:
@@ -19,7 +18,6 @@ namespace PR
 		~GeOperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 
 	class GtOperator : public Operator
 	{
@@ -29,7 +27,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class LeOperator : public Operator
 	{
 	public:
@@ -38,7 +35,6 @@ namespace PR
 		virtual shared_ptr<Data> evaluate() override;
 	};
 
-
 	class LTOperator : public Operator
 	{
 	public:
@@ -46,7 +42,6 @@ namespace PR
 		~LTOperator();
 		virtual shared_ptr<Data> evaluate() override;
 	};
-
 
 	class NeOperator : public Operator
 	{

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "CodeGenerator.h"
 
-
-namespace PR
+namespace KLab
 {
 	CodeGenerator::CodeGenerator()
 	{
@@ -34,19 +33,19 @@ namespace PR
 
 	void CodeGenerator::setInput(const string &name)
 	{
-		parser.setInput(LexicalAnalyzer(name),"");
+		parser.setInput(LexicalAnalyzer(name), "");
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(string &&in)
 	{
-		parser.setInput(LexicalAnalyzer(in),"");
+		parser.setInput(LexicalAnalyzer(in), "");
 		loadAndSetIp();
 	}
 
 	void CodeGenerator::setInput(FileLoader &in)
 	{
-		parser.setInput(LexicalAnalyzer(in.loadAll()),in.getFileName());
+		parser.setInput(LexicalAnalyzer(in.loadAll()), in.getFileName());
 		loadAndSetIp();
 	}
 
@@ -63,7 +62,6 @@ namespace PR
 			throw CodeGeneratorException("No instrunction to load");
 		return code.begin() + a;
 	}
-
 
 	void CodeGenerator::dec()
 	{
@@ -83,7 +81,7 @@ namespace PR
 
 	bool CodeGenerator::eof()
 	{
-		if (end && ip==code.end())
+		if (end && ip == code.end())
 			return true;
 
 		if (ip == code.end())
@@ -100,20 +98,20 @@ namespace PR
 	}
 
 	int CodeGenerator::getLP()
-	{ 
-		return lp; 
+	{
+		return lp;
 	}
 
 	void CodeGenerator::setIp(int lpA)
-	{ 
+	{
 		ip = code.begin() + lpA;
-		lp = lpA; 
+		lp = lpA;
 	}
 
 	void CodeGenerator::loadAndSetIp()
-	{ 
-		lp = 0; 
-		load(); 
-		ip = code.begin(); 
+	{
+		lp = 0;
+		load();
+		ip = code.begin();
 	}
 }

@@ -12,7 +12,6 @@
 #include "VariableEditWidget.h"
 #include "interpreterconnector.h"
 
-
 class VariablesEditor : public QWidget
 {
 	Q_OBJECT
@@ -31,11 +30,11 @@ private:
 	QWidget* findTab(const QString &name);
 
 	void receiveRemoved(vector<string> removed);
-	void receiveVarsUpdate(const PR::VariableInfo *data, int num);
+	void receiveVarsUpdate(const KLab::VariableInfo *data, int num);
 
-public slots:
+	public slots:
 	void onVariableSelection(QTableWidgetItem *item);
-	void receiveVariableInformation(PR::VariableInfo info);
+	void receiveVariableInformation(KLab::VariableInfo info);
 	void onCurrentTabChanged(int idx);
 	void computationComplate();
 	void tabClose(int idx);

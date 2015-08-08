@@ -2,14 +2,13 @@
 #include "MpfFunction.h"
 #include "TypePromotor.h"
 
-namespace PR
+namespace KLab
 {
 	MpfFunction::MpfFunction()
 	{
 		max_args_count = min_args_count = 1;
 		name = "mpf_float";
 	}
-
 
 	MpfFunction::~MpfFunction()
 	{

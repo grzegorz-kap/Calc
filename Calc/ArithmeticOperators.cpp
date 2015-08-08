@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ArithmeticOperators.h"
 
-namespace PR
+namespace KLab
 {
 	AdditionOperator::AdditionOperator()
 		:Operator("+", 50, 2, EVAULATED::RIGHT)
@@ -15,7 +15,6 @@ namespace PR
 		return *arguments[0] + arguments[1];
 	}
 
-
 	UPlusOperator::UPlusOperator()
 		:Operator("$+", 30, 1, EVAULATED::LEFT)
 	{
@@ -27,7 +26,6 @@ namespace PR
 	{
 		return std::move(arguments[0]);
 	}
-
 
 	SubtractionOperator::SubtractionOperator()
 		:Operator("-", 50, 2, EVAULATED::RIGHT)
@@ -41,8 +39,6 @@ namespace PR
 		return *arguments[0] - arguments[1];
 	}
 
-
-
 	USubtractionOperator::USubtractionOperator()
 		:Operator("$-", 30, 1, EVAULATED::LEFT)
 	{
@@ -54,7 +50,6 @@ namespace PR
 	{
 		return -*arguments[0];
 	}
-
 
 	DivisionOperator::DivisionOperator()
 		:Operator("/", 40, 2, EVAULATED::RIGHT)
@@ -83,8 +78,6 @@ namespace PR
 			return arguments[0]->url(arguments[1]);
 	}
 
-
-
 	LeftArrayDivision::LeftArrayDivision()
 		:Operator(".\\", 40, 2, EVAULATED::RIGHT)
 	{
@@ -96,7 +89,6 @@ namespace PR
 	{
 		return arguments[1]->rdivide(arguments[0]);
 	}
-
 
 	RightArrayDivision::RightArrayDivision()
 		:Operator("./", 40, 2, EVAULATED::RIGHT)
@@ -111,7 +103,6 @@ namespace PR
 		return arguments[0]->rdivide(arguments[1]);
 	}
 
-
 	MultiplicationOperator::MultiplicationOperator()
 		:Operator("*", 40, 2, EVAULATED::RIGHT)
 	{
@@ -123,7 +114,6 @@ namespace PR
 	{
 		return *arguments[0] * arguments[1];
 	}
-
 
 	ElementWiseMultiplication::ElementWiseMultiplication()
 		:Operator(".*", 40, 2, EVAULATED::RIGHT)
@@ -137,7 +127,6 @@ namespace PR
 		return arguments[0]->times(arguments[1]);
 	}
 
-
 	ExponentiationOperator::ExponentiationOperator()
 		:Operator(".^", 20, 2, EVAULATED::RIGHT)
 	{
@@ -149,7 +138,6 @@ namespace PR
 	{
 		return arguments[0]->exponentiation(arguments[1]);
 	}
-
 
 	MatrixExponentiationOperator::MatrixExponentiationOperator()
 		:Operator("^", 20, 2, EVAULATED::RIGHT)

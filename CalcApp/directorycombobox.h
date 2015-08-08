@@ -16,10 +16,9 @@ public:
 
 private:
 
-public slots :
-	void workingDirectoryChanged(QString directory);
+	public slots :
+		void workingDirectoryChanged(QString directory);
 	void sort();
-	
 };
 
 #endif // DIRECTORYCOMBOBOX_H

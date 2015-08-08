@@ -2,6 +2,3 @@
 //
 
 #include "stdafx.h"
-
-
-

@@ -5,7 +5,6 @@ const QString InterpreterConnector::endFontHtml = "</font><br>";
 
 InterpreterConnector::InterpreterConnector()
 {
-	
 }
 
 InterpreterConnector::~InterpreterConnector()
@@ -14,10 +13,10 @@ InterpreterConnector::~InterpreterConnector()
 
 void InterpreterConnector::connectToInterpreterSingals()
 {
-	PR::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, this, _1, _2));
-	PR::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, this, _1, _2));
-	PR::SignalEmitter::get()->connect_execution_complate(boost::bind(&InterpreterConnector::executionComplate,this));
-	PR::SignalEmitter::get()->connect_clear_screen(boost::bind(&InterpreterConnector::clearScreen, this));
+	KLab::SignalEmitter::get()->connect_output(boost::bind(&InterpreterConnector::signal_receiver, this, _1, _2));
+	KLab::SignalEmitter::get()->connect_errors(boost::bind(&InterpreterConnector::errors_receiver, this, _1, _2));
+	KLab::SignalEmitter::get()->connect_execution_complate(boost::bind(&InterpreterConnector::executionComplate, this));
+	KLab::SignalEmitter::get()->connect_clear_screen(boost::bind(&InterpreterConnector::clearScreen, this));
 }
 
 void InterpreterConnector::executionComplate(void)
@@ -48,10 +47,10 @@ void InterpreterConnector::getInformation(QString variableName)
 }
 
 /* Boost signals2 */
-void InterpreterConnector::signal_receiver(const char *str, const PR::Data *data) 
+void InterpreterConnector::signal_receiver(const char *str, const KLab::Data *data)
 {
 	Sync::get()->console_sem.acquire();
-	emit interpreterRespondedHtml("<br>"+QString(+str) + "=<br>" + data->toHtml().c_str()+"<br>");
+	emit interpreterRespondedHtml("<br>" + QString(+str) + "=<br>" + data->toHtml().c_str() + "<br>");
 	//emit interpreterResponded(data->toString().c_str());
 }
 

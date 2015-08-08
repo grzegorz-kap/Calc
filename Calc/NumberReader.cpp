@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "NumberReader.h"
 
-namespace PR
+namespace KLab
 {
 	string NumberReader::read(const string &input, int start_p)
 	{
@@ -33,13 +33,13 @@ namespace PR
 
 	void NumberReader::fractionalPart()
 	{
-		if (position<N-1&&in[position] == '.'&&TokenizerHelper::isDigit(in[position+1]))
+		if (position < N - 1 && in[position] == '.'&&TokenizerHelper::isDigit(in[position + 1]))
 		{
 			position++;
 			out.append(".");
 			readDigits();
 			if (out.back() == '.')
-				throw PR::CalcException("Number read error!", position - 1);
+				throw KLab::CalcException("Number read error!", position - 1);
 		}
 	}
 
@@ -56,7 +56,7 @@ namespace PR
 			readDigits();
 
 			if (!TokenizerHelper::isDigit(out.back()) || error)
-				throw PR::CalcException("Number read error!", position - 1);
+				throw KLab::CalcException("Number read error!", position - 1);
 
 			exp = true;
 		}

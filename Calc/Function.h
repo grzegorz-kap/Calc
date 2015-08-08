@@ -11,13 +11,11 @@ using std::shared_ptr;
 #include "CalcException.h"
 #include "TypePromotor.h"
 
-
-namespace PR
+namespace KLab
 {
 	//! Klasa stanowiaca interfejs dla funkcji wbudowanych.
 	class Function
 	{
-	
 	protected:
 		string name; //!< Nazwa funkcji
 		int max_args_count; //!< Minimalna liczba agumentow.
@@ -38,7 +36,7 @@ namespace PR
 		//! Ustawienie argumentow funkcji.
 		//! \param args lista argumentow wejsciowych.
 		//! \param output liczba oczekiwanych parametrow wyjsciowych.
-		virtual void set(const vector<shared_ptr<Data>> &args,int output=1);
+		virtual void set(const vector<shared_ptr<Data>> &args, int output = 1);
 
 	protected:
 		//! sprawdzenie czy liczba argumentow jest poprawna.

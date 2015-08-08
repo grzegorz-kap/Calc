@@ -6,7 +6,7 @@
 using std::exception;
 using std::string;
 
-namespace PR
+namespace KLab
 {
 	//! Klasa przechowujaca informacje o bledzie.
 	class CalcException : public exception
@@ -37,5 +37,4 @@ namespace PR
 		int getPosition()const{ return position; } //!< Zwraca numer wiersza.
 		int getLine()const{ return line; }	//!< Zwraca numer kolummy.
 	};
-
 }

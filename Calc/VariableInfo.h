@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "export.h"
@@ -11,7 +10,7 @@
 using std::string;
 using std::weak_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Klasa z informacjami o zmiennej.
 	class CALC_API VariableInfo
@@ -40,5 +39,3 @@ namespace PR
 		string get_cell(int i, int j) const;
 	};
 }
-
-

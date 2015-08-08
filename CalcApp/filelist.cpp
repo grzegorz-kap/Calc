@@ -3,12 +3,10 @@
 FileList::FileList(QWidget *parent)
 	: QListWidget(parent)
 {
-
 }
 
 FileList::~FileList()
 {
-
 }
 void FileList::set(QStringList list)
 {

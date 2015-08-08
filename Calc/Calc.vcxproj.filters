@@ -64,6 +64,12 @@
     <Filter Include="Model\Operator\cpp">
       <UniqueIdentifier>{88fb4947-db04-42ab-b0bc-2586bc5d7471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lexer">
+      <UniqueIdentifier>{08624aa8-8478-455c-a161-a42472995667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lexer\model">
+      <UniqueIdentifier>{f99c5b63-b2b9-4fda-8444-370b59b30d38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -137,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="EvalException.h">
       <Filter>Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="UnimplementedException.h">
       <Filter>Exceptions</Filter>
@@ -288,6 +291,9 @@
     <ClInclude Include="MessagesFunction.h">
       <Filter>Function\functions</Filter>
     </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>lexer\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -352,9 +358,6 @@
     </ClCompile>
     <ClCompile Include="EvalException.cpp">
       <Filter>Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="Token.cpp">
-      <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="UnimplementedException.cpp">
       <Filter>Exceptions</Filter>
@@ -503,8 +506,8 @@
     <ClCompile Include="MessagesFunction.cpp">
       <Filter>Function\functions</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="Token.cpp">
+      <Filter>lexer\model</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

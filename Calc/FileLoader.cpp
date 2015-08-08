@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "FileLoader.h"
 
-
-namespace PR
+namespace KLab
 {
 	string FileLoader::working_directory = "";
 
@@ -39,14 +38,14 @@ namespace PR
 			working_directory += "/";
 	}
 
-	bool FileLoader::is_open() const 
-	{ 
-		return file.is_open(); 
+	bool FileLoader::is_open() const
+	{
+		return file.is_open();
 	}
 
-	bool FileLoader::eof() const 
-	{ 
-		return file.eof(); 
+	bool FileLoader::eof() const
+	{
+		return file.eof();
 	}
 
 	void FileLoader::onReadAttempt()

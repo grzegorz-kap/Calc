@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Numeric.h"
 
-
-namespace PR
+namespace KLab
 {
 	template class Numeric < Matrix<double> > ;
 	template class Numeric < Matrix<hdouble> > ;

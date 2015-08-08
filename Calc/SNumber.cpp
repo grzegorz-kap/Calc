@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "SNumber.h"
 
-
-namespace PR
+namespace KLab
 {
 	SNumber::SNumber(Token &&token, TYPE type)
 		:_type(type), Token(std::move(token))
@@ -18,16 +17,15 @@ namespace PR
 		cache = nullptr;
 	}
 
-
 	SNumber::~SNumber()
 	{
 	}
 
 	shared_ptr<Data> SNumber::evaluate()
 	{
-		if (cache==nullptr)
+		if (cache == nullptr)
 			switch (getEvType())
-			{
+		{
 			case TYPE::DOUBLE:
 				cache = make_shared<ComplexNumber<double>>(getLexeme());
 				break;
@@ -41,8 +39,8 @@ namespace PR
 				cache = make_shared<Matrix<hdouble>>(getLexeme());
 				break;
 			default:
-				throw EvalException("Cannot evaluate numeric expression! Unrecognized type",getPosition());
-			}
+				throw EvalException("Cannot evaluate numeric expression! Unrecognized type", getPosition());
+		}
 		return cache;
 	}
 }

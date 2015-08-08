@@ -9,7 +9,6 @@ DirectoryComboBox::DirectoryComboBox(QWidget *parent)
 
 DirectoryComboBox::~DirectoryComboBox()
 {
-
 }
 
 void DirectoryComboBox::workingDirectoryChanged(QString dir)
@@ -35,5 +34,5 @@ void DirectoryComboBox::sort()
 	model()->setParent(proxy);                                 // <--
 	setModel(proxy);                                           // <--
 	// sort
-	model()->sort(0); 
+	model()->sort(0);
 }

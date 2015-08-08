@@ -11,18 +11,17 @@
 #include <vector>
 #include <algorithm>
 
-
 using std::string;
 using std::vector;
 
-namespace PR
+namespace KLab
 {
 	enum class EVAULATED :char  {
 		LEFT,
 		RIGHT
 	};
 
-	class  Operator 
+	class  Operator
 		: public Token
 	{
 	protected:
@@ -30,11 +29,11 @@ namespace PR
 		int argumentsNum;
 		EVAULATED ev;
 		vector<shared_ptr<Data>> arguments;
-		
-		void throwIfNot(const string &message,bool(*fun)(const shared_ptr<Data> &)) const;
+
+		void throwIfNot(const string &message, bool(*fun)(const shared_ptr<Data> &)) const;
 
 	public:
-		Operator(const string &name, int priority, int arguments,EVAULATED ev);
+		Operator(const string &name, int priority, int arguments, EVAULATED ev);
 		~Operator();
 		bool operator < (const Operator &b) const;
 		int getPriority() const { return priority; }
@@ -54,7 +53,4 @@ namespace PR
 
 		virtual bool isColon2Operator() const { return false; }
 	};
-
 }
-
-

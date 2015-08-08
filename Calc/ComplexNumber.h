@@ -1,4 +1,3 @@
-
 #pragma once
 #include <string>
 #include <utility>
@@ -9,7 +8,7 @@ using std::string;
 #include "Numeric.h"
 #include "NumericException.h"
 
-namespace PR
+namespace KLab
 {
 	//! Klasa reprezentujaca liczbe zespolona.
 	template<class T> class  ComplexNumber : public Numeric < ComplexNumber<T> >
@@ -18,7 +17,6 @@ namespace PR
 	public:
 		T re; //!< Czesc rzeczywista.
 		T im; //!< Czesc urujona.
-		
 
 		ComplexNumber();
 		ComplexNumber(const double & reArg, const double & imArg = 0);
@@ -36,16 +34,16 @@ namespace PR
 		void setRe(const T &re);
 		void setIm(const T &im);
 		int getReInt() const;
-		ComplexNumber<T> operator + (const ComplexNumber<T> &b) const ;	
-		ComplexNumber<T> operator - (const ComplexNumber<T> &b) const ;
-		ComplexNumber<T> operator * (const ComplexNumber<T> &b) const ;
-		ComplexNumber<T> operator / (const ComplexNumber<T> &b) const ;
+		ComplexNumber<T> operator + (const ComplexNumber<T> &b) const;
+		ComplexNumber<T> operator - (const ComplexNumber<T> &b) const;
+		ComplexNumber<T> operator * (const ComplexNumber<T> &b) const;
+		ComplexNumber<T> operator / (const ComplexNumber<T> &b) const;
 		void operator /= (const ComplexNumber<T> &b);
 		void operator -= (const ComplexNumber<T> &b);
 		void operator *= (const ComplexNumber<T> &b);
-		ComplexNumber<T> times  (const ComplexNumber<T> &b) const; 
-		ComplexNumber<T> rdivide(const ComplexNumber<T> &b) const; 
-		ComplexNumber<T> ldivide(const ComplexNumber<T> &b) const; 
+		ComplexNumber<T> times(const ComplexNumber<T> &b) const;
+		ComplexNumber<T> rdivide(const ComplexNumber<T> &b) const;
+		ComplexNumber<T> ldivide(const ComplexNumber<T> &b) const;
 		ComplexNumber<T> neg() const;
 		ComplexNumber<T> conjugate() const;
 		ComplexNumber<T> operator == (const ComplexNumber<T> &b) const;
@@ -88,8 +86,8 @@ namespace PR
 		virtual bool isReal() const override;
 		virtual shared_ptr<Data> copy() const	override;
 		virtual string getValueInfoString() const;
-		virtual string minValueString() const ;
-		virtual string maxValueString() const ;
+		virtual string minValueString() const;
+		virtual string maxValueString() const;
 		virtual vector<double> toDoubleVector() const override;
 		virtual vector<double> toDoubleVectorAll() const override;
 		double toDouble() const;
@@ -97,5 +95,4 @@ namespace PR
 		ComplexNumber<T> getLastIndexOfRow() const;
 		ComplexNumber<T> getLastIndexOfCol() const;
 	};
-
 }

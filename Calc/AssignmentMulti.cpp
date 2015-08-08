@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "AssignmentMulti.h"
 
-
-namespace PR
+namespace KLab
 {
 	AssignmentMulti::AssignmentMulti()
 		: IAssignment(ASSIGNMENT_TYPE::MULTI)
 	{
-
 	}
 
 	AssignmentMulti::~AssignmentMulti()
@@ -18,7 +16,7 @@ namespace PR
 	{
 		if ((*start)->getClass() != TOKEN_CLASS::MATRIX_START)
 			throw CalcException("Wrong start of multiassignment!");
-		for (start = std::next(start); start != end; )
+		for (start = std::next(start); start != end;)
 		{
 			if ((*start)->getClass() == TOKEN_CLASS::VERSE_END)
 			{
@@ -40,16 +38,16 @@ namespace PR
 
 	void AssignmentMulti::doAssignment(Variables &vars, stack_iterator &first, stack_iterator &last, AssignmentsData &assignment)
 	{
-		if (first==last)
+		if (first == last)
 			throw CalcException("Too many output arguments!");
-		
+
 		int size = 0;
 		vector<shared_ptr<Data>>::iterator begin;
 		vector<shared_ptr<Data>>::iterator end;
 
-		prepareIterators(first, begin, end,size);
+		prepareIterators(first, begin, end, size);
 
-		if (size<target.size())
+		if (size < target.size())
 			throw CalcException("Too many output arguments!");
 
 		for (const unique_ptr<IAssignment> &unit : target)
@@ -57,7 +55,6 @@ namespace PR
 			unit->doAssignment(vars, begin++, end, assignment);
 		}
 	}
-
 
 	void AssignmentMulti::prepareIterators(stack_iterator &data, stack_iterator &start, stack_iterator &end, int &size)
 	{

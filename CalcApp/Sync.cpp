@@ -7,7 +7,6 @@ Sync::Sync()
 {
 }
 
-
 Sync::~Sync()
 {
 }

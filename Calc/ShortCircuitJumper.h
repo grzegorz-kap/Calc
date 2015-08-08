@@ -1,7 +1,7 @@
 #pragma once
 #include "Token.h"
 
-namespace PR
+namespace KLab
 {
 	class ShortCircuitJumper :
 		public Token
@@ -14,7 +14,7 @@ namespace PR
 		int getJumpOnTrue() const;
 		int getJumpOn(bool val) const;
 		int getJumpOn(TOKEN_CLASS _class) const;
-				
+
 		void setJumpOnFalse(int val);
 		void setJumpOnTrue(int val);
 
@@ -22,5 +22,4 @@ namespace PR
 		int jump_on_false;
 		int jump_on_true;
 	};
-
 }

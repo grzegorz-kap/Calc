@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "VariableInfo.h"
 
-
-namespace PR
+namespace KLab
 {
 	const string VariableInfo::expired = "expired";
 
@@ -11,7 +10,6 @@ namespace PR
 		data(ptr)
 	{
 	}
-
 
 	VariableInfo::~VariableInfo()
 	{

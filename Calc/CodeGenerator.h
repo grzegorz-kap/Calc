@@ -11,13 +11,11 @@ using std::vector;
 using std::string;
 using std::shared_ptr;
 
-
 #include "Parser.h"
 #include "FileLoader.h"
 #include "CodeGeneratorException.h"
 
-
-namespace PR
+namespace KLab
 {
 	typedef vector<vector<shared_ptr<Token>>> Code;
 	typedef vector<shared_ptr<Token>> Instruction;
@@ -25,7 +23,6 @@ namespace PR
 
 	class CodeGenerator
 	{
-
 	private:
 		Code code;
 		Ip ip;

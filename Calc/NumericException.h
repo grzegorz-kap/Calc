@@ -4,13 +4,13 @@
 
 #include <string>
 using std::string;
-namespace PR
+namespace KLab
 {
 	class NumericException
 		: public CalcException
 	{
 		//std::string message;
-		
+
 	public:
 		NumericException(std::string &&message);
 		~NumericException();
@@ -23,5 +23,4 @@ namespace PR
 		static void throwIndexMustBeReal();
 		static void throwIndexOutOfRange();
 	};
-
 }

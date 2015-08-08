@@ -9,7 +9,7 @@ using std::unique_ptr;
 
 #include "Data.h"
 
-namespace PR
+namespace KLab
 {
 	template <class X>
 	class MatrixBuilder;
@@ -27,5 +27,4 @@ namespace PR
 		static const std::unordered_map<TYPE, TYPE> TYPES;
 		static TYPE getAssociatedType(const TYPE &_type);
 	};
-
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "Function.h"
 
-namespace PR
+namespace KLab
 {
 	class MpfFunction :
 		public Function
@@ -13,4 +13,3 @@ namespace PR
 		virtual shared_ptr<Data> run() override;
 	};
 }
-

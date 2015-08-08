@@ -8,7 +8,7 @@
 using std::vector;
 using std::shared_ptr;
 
-namespace PR
+namespace KLab
 {
 	//! Zawiera zestaw wartosci zwroconych przez funkcje.
 	class Output : public Data
@@ -35,7 +35,5 @@ namespace PR
 
 		//! Okresa czy zwrocone wartosci sa numeryczne.
 		virtual bool isNumeric() const override;
-
 	};
 }
-

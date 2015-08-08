@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Operator.h"
 
-
-namespace PR
+namespace KLab
 {
 	Operator::Operator(const string &name, int priority, int arguments, EVAULATED ev)
 		:
@@ -13,7 +12,6 @@ namespace PR
 		setLexeme(name);
 		set_class(TOKEN_CLASS::OPERATOR);
 	}
-
 
 	Operator::~Operator()
 	{
@@ -39,7 +37,7 @@ namespace PR
 		}
 
 		promoteArguments();
-		
+
 		stack.erase(stack.begin() + stack.size() - argumentsNum, stack.end());
 	}
 
@@ -67,7 +65,7 @@ namespace PR
 			TypePromotor::promoteToMatrix(arguments);
 	}
 
-	void Operator::throwIfNot( const string &message,bool(*fun)(const shared_ptr<Data>&)) const
+	void Operator::throwIfNot(const string &message, bool(*fun)(const shared_ptr<Data>&)) const
 	{
 		for_each(arguments.begin(), arguments.end(), [&](const shared_ptr<Data> &data){
 			if (!fun(data))
@@ -80,4 +78,3 @@ namespace PR
 		arguments.clear();
 	}
 }
-

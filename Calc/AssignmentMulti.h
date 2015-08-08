@@ -3,7 +3,7 @@
 #include "AssignmentFactory.h"
 #include <memory>
 using std::unique_ptr;
-namespace PR
+namespace KLab
 {
 	class AssignmentMulti : public IAssignment
 	{

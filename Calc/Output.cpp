@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Output.h"
 
-
-namespace PR
+namespace KLab
 {
 	Output::Output()
 	{
@@ -10,11 +9,9 @@ namespace PR
 		_extern = false;
 	}
 
-
 	Output::~Output()
 	{
 	}
-
 
 	void Output::add(const shared_ptr<Data> &item)
 	{

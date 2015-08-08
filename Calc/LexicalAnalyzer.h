@@ -14,8 +14,7 @@ using std::queue;
 #include "functions.h"
 #include "FileLoader.h"
 
-
-namespace PR
+namespace KLab
 {
 	//! Klasa stanawiaca modul analizy leksykalnej.
 	class LexicalAnalyzer
@@ -36,9 +35,9 @@ namespace PR
 
 		//! Pobranie wodrebnionych symboli leksykalnych.
 		auto getTokens() -> decltype(tokens);
-	
-	private:	
-		Tokenizer tokenizer;	
+
+	private:
+		Tokenizer tokenizer;
 		LexicalBalanceHelper balancer;
 		TOKEN_CLASS prev;
 		unsigned int prev_operator_args_num;
@@ -57,8 +56,7 @@ namespace PR
 
 		/*
 			Recognize what means (last index of or if/for/while end)
-		*/
+			*/
 		void onEndKeyword(Token &token);
 	};
 }
-

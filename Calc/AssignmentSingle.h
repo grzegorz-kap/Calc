@@ -2,7 +2,7 @@
 #include "IAssignment.h"
 #include "Output.h"
 
-namespace PR
+namespace KLab
 {
 	class AssignmentSingle :
 		public IAssignment
@@ -20,4 +20,3 @@ namespace PR
 		virtual string getLexeme() const override;
 	};
 }
-

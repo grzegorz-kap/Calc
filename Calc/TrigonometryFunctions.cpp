@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TrigonometryFunctions.h"
 
-namespace PR
+namespace KLab
 {
 	CosFun::CosFun()
 	{

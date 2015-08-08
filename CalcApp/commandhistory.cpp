@@ -14,7 +14,6 @@ CommandHistory::CommandHistory(QWidget *parent)
 
 CommandHistory::~CommandHistory()
 {
-
 }
 
 void CommandHistory::insertCurrentDate()
@@ -26,7 +25,7 @@ void CommandHistory::insertTopLevel(const QString &str)
 {
 	prevItem = new QTreeWidgetItem(QStringList(QString(str)));
 	addTopLevelItem(prevItem);
-//	AppData::appendToCommandHistory(str);
+	//	AppData::appendToCommandHistory(str);
 }
 
 void CommandHistory::insertCommand(QString str)
