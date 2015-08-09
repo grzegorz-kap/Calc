@@ -2,7 +2,6 @@
 #include "TokenizerService.h"
 
 namespace KLab {
-	
 	TokenizerService::TokenizerService() {
 	}
 
@@ -16,7 +15,7 @@ namespace KLab {
 	shared_ptr<TokenList> TokenizerService::readTokens(const shared_ptr<TokenizerContext> &tokenizerContext) {
 		context = tokenizerContext;
 		process();
-		return context->Tokens();
+		return context->getTokens();
 	}
 
 	void TokenizerService::process() {

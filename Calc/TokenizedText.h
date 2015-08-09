@@ -13,11 +13,11 @@ namespace KLab {
 		TokenizedText(string &&text);
 		~TokenizedText();
 
-		char at(int offset = 0);
-		string at(int offset, int length);
-		bool at(int offset, char compareTo);
-		bool at(int offset, int length, string compareTo);
-		bool isCharacterToProccess();
+		char at(int offset = 0) const;
+		string at(int offset, int length) const;
+		bool at(int offset, char compareTo) const;
+		bool at(int offset, int length, const string &compareTo) const;
+		bool isCharacterToProccess() const;
 		void incrementPosition(int value);
 
 		unsigned int Position() const;

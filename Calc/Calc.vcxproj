@@ -181,6 +181,7 @@
     <ClInclude Include="TokenizerContext.h" />
     <ClInclude Include="TokenizerService.h" />
     <ClInclude Include="TokenList.h" />
+    <ClInclude Include="TokenMatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -212,6 +213,7 @@
     <ClCompile Include="TokenizerContext.cpp" />
     <ClCompile Include="TokenizerService.cpp" />
     <ClCompile Include="TokenList.cpp" />
+    <ClCompile Include="TokenMatcher.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

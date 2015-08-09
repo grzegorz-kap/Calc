@@ -4,9 +4,6 @@
 
 #include "TokenList.h"
 #include "TokenizedText.h"
-#include "CharHelper.h"
-
-using std::shared_ptr;
 
 namespace KLab
 {
@@ -25,15 +22,12 @@ namespace KLab
 		void put(unique_ptr<Token> &&token);
 		void put(const string &lexame, TOKEN_CLASS tokenClass);
 		void put(string &&lexame, TOKEN_CLASS tokenClass);
-		bool isNumberStart();
-		bool isWordStart();
-		bool isSpaceStart();
-		bool isNewLineStart();
-		bool isSingleLineCommentStart();
-		bool isMultiLineCommentStart();
-		char at(int offset = 0);
-		string at(int offset, int length);
-		shared_ptr<TokenList> Tokens() const;
+
+		char at(int offset = 0) const;
+		string at(int offset, int length) const;
+		bool at(int offset, char character) const;
+		bool at(int offset, int length, const string &compare) const;
+		shared_ptr<TokenList> getTokens() const;
 		const string& getText() const;
 
 	private:

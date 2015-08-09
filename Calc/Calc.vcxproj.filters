@@ -70,6 +70,9 @@
     <ClInclude Include="RegexTokenizerService.h">
       <Filter>lexer\service</Filter>
     </ClInclude>
+    <ClInclude Include="TokenMatcher.h">
+      <Filter>lexer\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TokenizerService.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="RegexTokenizerService.cpp">
       <Filter>lexer\service</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenMatcher.cpp">
+      <Filter>lexer\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

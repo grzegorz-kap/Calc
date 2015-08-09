@@ -15,19 +15,19 @@ namespace KLab {
 	TokenizedText::~TokenizedText() {
 	}
 
-	char TokenizedText::at(int offset /*= 0*/) {
+	char TokenizedText::at(int offset /*= 0*/) const {
 		return offset + position < length && offset + position >= 0 ? text[position + offset] : '\0';
 	}
 
-	string TokenizedText::at(int offset, int length) {
+	string TokenizedText::at(int offset, int length) const {
 		return (position + offset + length > this->length) ? ("") : text.substr(position + offset, length);
 	}
 
-	bool TokenizedText::at(int offset, char compareTo) {
+	bool TokenizedText::at(int offset, char compareTo) const {
 		return at(offset) == compareTo;
 	}
 
-	bool TokenizedText::at(int offset, int length, string compareTo) {
+	bool TokenizedText::at(int offset, int length, const string &compareTo) const {
 		return at(offset, length) == compareTo;
 	}
 
@@ -36,7 +36,7 @@ namespace KLab {
 		length = static_cast<int>(text.length());
 	}
 
-	bool TokenizedText::isCharacterToProccess() {
+	bool TokenizedText::isCharacterToProccess() const {
 		return position < length;
 	}
 

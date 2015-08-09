@@ -35,15 +35,23 @@ namespace KLab {
 		put(unique_ptr<Token>(new Token(std::move(lexame), tokenClass)));
 	}
 
-	string TokenizerContext::at(int offset, int length) {
+	string TokenizerContext::at(int offset, int length) const {
 		return text.at(offset, length);
 	}
 
-	char TokenizerContext::at(int offset /*= 0*/) {
+	char TokenizerContext::at(int offset /*= 0*/) const {
 		return text.at(offset);
 	}
 
-	shared_ptr<TokenList> TokenizerContext::Tokens() const {
+	bool TokenizerContext::at(int offset, char character) const {
+		return text.at(offset, character);
+	}
+
+	bool TokenizerContext::at(int offset, int length, const string &compare) const {
+		return text.at(offset, length, compare);
+	}
+
+	shared_ptr<TokenList> TokenizerContext::getTokens() const {
 		return tokens;
 	}
 
@@ -90,29 +98,5 @@ namespace KLab {
 		}
 		else
 			column += token.getLexemeLength();
-	}
-
-	bool TokenizerContext::isMultiLineCommentStart() {
-		return text.at(0, 2, "%{");
-	}
-
-	bool TokenizerContext::isSingleLineCommentStart() {
-		return text.at(0, '%') && !text.at(1, '{') || text.at(0, 2, "//");
-	}
-
-	bool TokenizerContext::isNewLineStart() {
-		return text.at(0, '\n');
-	}
-
-	bool TokenizerContext::isSpaceStart() {
-		return text.at(0, ' ') || text.at(0, '\t');
-	}
-
-	bool TokenizerContext::isWordStart() {
-		return CharHelper::isLetter(text.at()) || text.at(0, '_');
-	}
-
-	bool TokenizerContext::isNumberStart() {
-		return CharHelper::isDigit(text.at()) || text.at(0, '.') && CharHelper::isDigit(text.at(1));
 	}
 }
