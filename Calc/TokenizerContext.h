@@ -1,13 +1,13 @@
 #pragma once
 
+#include "export.h"
 #include "commons.h"
-
 #include "TokenList.h"
 #include "TokenizedText.h"
 
 namespace KLab
 {
-	class TokenizerContext {
+	class CALC_TEST_API TokenizerContext {
 		shared_ptr<TokenList> tokens;
 		TokenizedText text;
 		int line;

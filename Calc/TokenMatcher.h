@@ -1,12 +1,13 @@
 #pragma once
 
+#include "export.h"
 #include "TokenizerContext.h"
 #include "CharHelper.h"
 #include "OperatorTokenizeHelper.h"
 #include "SymbolsTokenizeHelper.h"
 
 namespace KLab {
-	class TokenMatcher {
+	class CALC_TEST_API TokenMatcher {
 		const TokenizerContext &context;
 
 	public:
