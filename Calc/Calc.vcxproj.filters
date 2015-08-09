@@ -58,9 +58,6 @@
     <ClInclude Include="TokenizeException.h">
       <Filter>lexer\exception</Filter>
     </ClInclude>
-    <ClInclude Include="RegexTokenizer.h">
-      <Filter>lexer\service</Filter>
-    </ClInclude>
     <ClInclude Include="CharHelper.h">
       <Filter>lexer\helpers</Filter>
     </ClInclude>
@@ -69,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="SymbolsTokenizeHelper.h">
       <Filter>lexer\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="RegexTokenizerService.h">
+      <Filter>lexer\service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,14 +96,14 @@
     <ClCompile Include="TokenizeException.cpp">
       <Filter>lexer\exception</Filter>
     </ClCompile>
-    <ClCompile Include="RegexTokenizer.cpp">
-      <Filter>lexer\service</Filter>
-    </ClCompile>
     <ClCompile Include="OperatorTokenizeHelper.cpp">
       <Filter>lexer\helpers</Filter>
     </ClCompile>
     <ClCompile Include="SymbolsTokenizeHelper.cpp">
       <Filter>lexer\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="RegexTokenizerService.cpp">
+      <Filter>lexer\service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

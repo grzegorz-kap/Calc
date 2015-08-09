@@ -6,7 +6,7 @@
 
 namespace KLab
 {
-	class RegexTokenizer : public TokenizerService {
+	class RegexTokenizerService : public TokenizerService {
 	public:
 		const static string NUMBER_PATTERN;
 		const static string WORD_PATTERN;
@@ -25,8 +25,8 @@ namespace KLab
 
 	public:
 
-		RegexTokenizer();
-		~RegexTokenizer();
+		RegexTokenizerService();
+		~RegexTokenizerService();
 
 	private:
 		virtual void onNumber() override;

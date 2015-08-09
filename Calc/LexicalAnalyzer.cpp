@@ -15,65 +15,53 @@ namespace KLab
 		TOKEN_CLASS::NEW_LINE
 	};
 
-	LexicalAnalyzer::LexicalAnalyzer()
-	{
+	LexicalAnalyzer::LexicalAnalyzer() {
 		reset();
 	}
 
 	LexicalAnalyzer::LexicalAnalyzer(const string &command)
-		:LexicalAnalyzer()
-	{
+		:LexicalAnalyzer() {
 		setInput(command);
 	}
 
-	LexicalAnalyzer::~LexicalAnalyzer()
-	{
+	LexicalAnalyzer::~LexicalAnalyzer() {
 	}
 
-	void LexicalAnalyzer::setInput(const string &name)
-	{
+	void LexicalAnalyzer::setInput(const string &name) {
 		tokenizer.setInput(name);
 	}
 
-	void LexicalAnalyzer::setInput(string &&name)
-	{
+	void LexicalAnalyzer::setInput(string &&name) {
 		tokenizer.setInput(std::move(name));
 	}
 
-	void LexicalAnalyzer::setInput(FileLoader &file)
-	{
+	void LexicalAnalyzer::setInput(FileLoader &file) {
 		tokenizer.setInput(file.loadAll());
 	}
 
-	void LexicalAnalyzer::reset()
-	{
+	void LexicalAnalyzer::reset() {
 		prev = TOKEN_CLASS::NONE;
 	}
 
 	auto LexicalAnalyzer::getTokens()
-		-> decltype(tokens)
-	{
+		-> decltype(tokens) {
 		tokenizer.tokenize();
 		tokens = tokenizer.getTokens();
 
-		for (int i = tokens.size() - 1; i >= 0; i--)
-		{
+		for (int i = tokens.size() - 1; i >= 0; i--) {
 			if (tokens[i]->getTokenClass() != TOKEN_CLASS::SPACE)
 				break;
 			tokens.pop_back();
 		}
 
 		prev = TOKEN_CLASS::NONE;
-		for (iter = tokens.begin(); iter != tokens.end();)
-		{
-			if ((*iter)->getTokenClass() == TOKEN_CLASS::FOR_DELETE)
-			{
+		for (iter = tokens.begin(); iter != tokens.end();) {
+			if ((*iter)->getTokenClass() == TOKEN_CLASS::FOR_DELETE) {
 				iter = tokens.erase(iter);
 				continue;
 			}
 			process(*iter);
-			if (for_delete)
-			{
+			if (for_delete) {
 				iter = tokens.erase(iter);
 				continue;
 			}
@@ -84,23 +72,20 @@ namespace KLab
 		return std::move(tokens);
 	}
 
-	void LexicalAnalyzer::onEndKeyword(Token &token)
-	{
+	void LexicalAnalyzer::onEndKeyword(Token &token) {
 		if (balancer.getMode() != PARSE_MODE::FUNCTION)
 			return;
 		token.setTokenClass(LAST_INDEX_OF);
 	}
 
-	void LexicalAnalyzer::process(unique_ptr<Token> & token)
-	{
+	void LexicalAnalyzer::process(unique_ptr<Token> & token) {
 		for_delete = false;
 
 		if (token->getTokenClass() == END_KEYWORD)
 			onEndKeyword(*token);
 
 		balancer.setMode(*token);
-		switch (token->getTokenClass())
-		{
+		switch (token->getTokenClass()) {
 		case TOKEN_CLASS::ID:
 			onID(*token);
 			break;
@@ -119,35 +104,28 @@ namespace KLab
 			prev = token->getTokenClass();
 	}
 
-	void LexicalAnalyzer::onID(Token &token)
-	{
+	void LexicalAnalyzer::onID(Token &token) {
 		if (whatNext() == TOKEN_CLASS::OPEN_PARENTHESIS)
 			token.setTokenClass(TOKEN_CLASS::FUNCTION);
 	}
 
-	void LexicalAnalyzer::onColon(Token &token)
-	{
-		if (token.getMode() == PARSE_MODE::FUNCTION)
-		{
+	void LexicalAnalyzer::onColon(Token &token) {
+		if (token.getMode() == PARSE_MODE::FUNCTION) {
 			if (prev == TOKEN_CLASS::OPEN_PARENTHESIS || prev == TOKEN_CLASS::COMMA ||
 				whatNext() == TOKEN_CLASS::CLOSE_PARENTHESIS || whatNext() == TOKEN_CLASS::COMMA)
 				token.setTokenClass(TOKEN_CLASS::MATRIX_ALL);
 		}
 	}
 
-	void LexicalAnalyzer::onComma(Token &token)
-	{
+	void LexicalAnalyzer::onComma(Token &token) {
 	}
 
-	void LexicalAnalyzer::onSpace(Token &token)
-	{
+	void LexicalAnalyzer::onSpace(Token &token) {
 		/******** Fix: A=[1 - 3] interpreted as A=[1 -3] (should be A=[1-3]) *************/
-		if (whatNext() == TOKEN_CLASS::OPERATOR&&balancer.getMode() == PARSE_MODE::MATRIX)
-		{
+		if (whatNext() == TOKEN_CLASS::OPERATOR&&balancer.getMode() == PARSE_MODE::MATRIX) {
 			int idx = std::distance(tokens.begin(), iter);
 			if (idx < tokens.size() - 2 && tokens[idx + 2]->getTokenClass() == TOKEN_CLASS::SPACE &&
-				find<string>({ "-", "+" }, tokens[idx + 1]->getLexemeR()))
-			{
+				find<string>({ "-", "+" }, tokens[idx + 1]->getLexemeR())) {
 				tokens[idx]->setTokenClass(FOR_DELETE);
 				tokens[idx + 2]->setTokenClass(FOR_DELETE);
 				for_delete = true;
@@ -159,26 +137,22 @@ namespace KLab
 
 		if (balancer.getMode() == PARSE_MODE::MATRIX)
 			token.setTokenClass(TOKEN_CLASS::COMMA);
-		else if (whatNext() == TOKEN_CLASS::OPERATOR || find(RegexTokenizer::FOR_SPACE_DELETE, whatNext()))
+		else if (whatNext() == TOKEN_CLASS::OPERATOR || find(RegexTokenizerService::FOR_SPACE_DELETE, whatNext()))
 			for_delete = true;
 	}
 
-	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token)
-	{
+	void LexicalAnalyzer::onOperator(unique_ptr<Token> &token) {
 		string name = token->getLexemeR();
-		if (name == "+" || name == "-")
-		{
+		if (name == "+" || name == "-") {
 			if ((prev == TOKEN_CLASS::OPERATOR && (prev_operator_args_num > 1 || ev_op_prev == EVAULATED::LEFT)) ||
 				find(LexicalAnalyzer::UNARY_OP_PRECURSORS, prev)
-				)
-			{
+				) {
 				name = "$" + name;
 				token = OperatorsFactory::simple_get(name);
 			}
 		}
 
-		if (prev == TOKEN_CLASS::OPERATOR && find<string>({ "$-", "$+", "~" }, name))
-		{
+		if (prev == TOKEN_CLASS::OPERATOR && find<string>({ "$-", "$+", "~" }, name)) {
 			const string &prevlexeme = (iter - 1)->get()->getLexemeR();
 			if (prevlexeme == "^" || prevlexeme == ".^")
 				token->castToOperator()->setPriority(19);
@@ -188,8 +162,7 @@ namespace KLab
 		ev_op_prev = token->castToOperator()->getEv();
 	}
 
-	TOKEN_CLASS LexicalAnalyzer::whatNext()
-	{
+	TOKEN_CLASS LexicalAnalyzer::whatNext() {
 		if (iter + 1 == tokens.end())
 			return TOKEN_CLASS::NONE;
 		return (*(iter + 1))->getClass();

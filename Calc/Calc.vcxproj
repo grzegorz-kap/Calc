@@ -170,7 +170,7 @@
     <ClInclude Include="commons.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="OperatorTokenizeHelper.h" />
-    <ClInclude Include="RegexTokenizer.h" />
+    <ClInclude Include="RegexTokenizerService.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SymbolsTokenizeHelper.h" />
     <ClInclude Include="targetver.h" />
@@ -198,7 +198,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="OperatorTokenizeHelper.cpp" />
-    <ClCompile Include="RegexTokenizer.cpp" />
+    <ClCompile Include="RegexTokenizerService.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
