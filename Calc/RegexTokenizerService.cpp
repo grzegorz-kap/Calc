@@ -24,33 +24,33 @@ namespace KLab
 	}
 
 	void RegexTokenizerService::onNumber() {
-		readToken(NUMBER_REGEX, TOKEN_CLASS::NUMBER);
+		contextService->addTokenToContext(NUMBER_REGEX, TOKEN_CLASS::NUMBER);
 	}
 
 	void RegexTokenizerService::onWord() {
-		readToken(WORD_REGEX, TOKEN_CLASS::WORD);
+		contextService->addTokenToContext(WORD_REGEX, TOKEN_CLASS::WORD);
 	}
 
 	void RegexTokenizerService::onSpace() {
-		readToken(SPACE_REGEX, TOKEN_CLASS::SPACE);
+		contextService->addTokenToContext(SPACE_REGEX, TOKEN_CLASS::SPACE);
 	}
 
 	void RegexTokenizerService::onNewLine() {
-		readToken(NEW_LINE_REGEX, TOKEN_CLASS::NEW_LINE);
+		contextService->addTokenToContext(NEW_LINE_REGEX, TOKEN_CLASS::NEW_LINE);
 	}
 
 	void RegexTokenizerService::onSingleLineComment() {
-		readToken(SINGLELINE_COMMENT_REGEX, TOKEN_CLASS::SINGLELINE_COMMENT);
+		contextService->addTokenToContext(SINGLELINE_COMMENT_REGEX, TOKEN_CLASS::SINGLELINE_COMMENT);
 	}
 
 	void RegexTokenizerService::onMultiLineCommentStart() {
-		readToken(MULTILINE_COMMENT_REGEX, TOKEN_CLASS::MULTILINE_COMMENT);
+		contextService->addTokenToContext(MULTILINE_COMMENT_REGEX, TOKEN_CLASS::MULTILINE_COMMENT);
 	}
 
 	bool RegexTokenizerService::checkForOperatorAndReact() {
 		string op = "";
-		if (OperatorTokenizeHelper::findOperator(op, *context)) {
-			context->put(op, TOKEN_CLASS::OPERATOR);
+		if (tokenMatcher->matchOperator(op)) {
+			contextService->addTokenToContext(op, TOKEN_CLASS::OPERATOR);
 			return true;
 		}
 		return false;
@@ -58,17 +58,11 @@ namespace KLab
 
 	bool RegexTokenizerService::checkForOtherSymbolsAndReact() {
 		TOKEN_CLASS tokenClass;
-		if (SymbolsTokenizeHelper::find(tokenClass, context->at(0))) {
-			context->put(string(context->at(0), 1), tokenClass);
+		char character;
+		if (tokenMatcher->matchOtherSymbol(tokenClass, character)) {
+			contextService->addTokenToContext(string(character, 1), tokenClass);
 			return true;
 		}
 		return false;
-	}
-
-	void RegexTokenizerService::readToken(const regex &reg, TOKEN_CLASS tokenClass) {
-		const string& text = context->getText();
-		std::smatch match;
-		bool result = std::regex_search(text.cbegin() + context->textPosition(), text.cend(), match, reg);
-		context->put(match[0], tokenClass);
 	}
 }

@@ -179,6 +179,7 @@
     <ClInclude Include="TokenClass.h" />
     <ClInclude Include="TokenizeException.h" />
     <ClInclude Include="TokenizerContext.h" />
+    <ClInclude Include="TokenizerContextService.h" />
     <ClInclude Include="TokenizerService.h" />
     <ClInclude Include="TokenList.h" />
     <ClInclude Include="TokenMatcher.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="TokenizedText.cpp" />
     <ClCompile Include="TokenizeException.cpp" />
     <ClCompile Include="TokenizerContext.cpp" />
+    <ClCompile Include="TokenizerContextService.cpp" />
     <ClCompile Include="TokenizerService.cpp" />
     <ClCompile Include="TokenList.cpp" />
     <ClCompile Include="TokenMatcher.cpp" />

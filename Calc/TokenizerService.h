@@ -1,18 +1,25 @@
 #pragma once
 
+#include <boost/scoped_ptr.hpp>
+
 #include "TokenizerContext.h"
 #include "TokenizeException.h"
+#include "TokenizerContextService.h"
+#include "TokenMatcher.h"
 
 namespace KLab {
 	class TokenizerService {
 	protected:
-		shared_ptr<TokenizerContext> context;
+		boost::scoped_ptr<TokenizerContextService> contextService;
+		boost::scoped_ptr<TokenMatcher> tokenMatcher;
+
+	private:
+		shared_ptr<TokenizerContext> tokenizerContext;
 
 	public:
 		TokenizerService();
 		~TokenizerService();
 		shared_ptr<TokenList> readTokens(string inputText);
-		shared_ptr<TokenList> readTokens(const shared_ptr<TokenizerContext> &tokenizerContext);
 
 	protected:
 

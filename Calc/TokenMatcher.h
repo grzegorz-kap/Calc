@@ -2,6 +2,8 @@
 
 #include "TokenizerContext.h"
 #include "CharHelper.h"
+#include "OperatorTokenizeHelper.h"
+#include "SymbolsTokenizeHelper.h"
 
 namespace KLab {
 	class TokenMatcher {
@@ -11,11 +13,13 @@ namespace KLab {
 		TokenMatcher(const TokenizerContext &context);
 		~TokenMatcher();
 
-		bool isNumberStart();
-		bool isWordStart();
-		bool isSpaceStart();
-		bool isNewLineStart();
-		bool isSingleLineCommentStart();
-		bool isMultiLineCommentStart();
+		bool isNumberStart() const;
+		bool isWordStart() const;
+		bool isSpaceStart() const;
+		bool isNewLineStart() const;
+		bool isSingleLineCommentStart() const;
+		bool isMultiLineCommentStart() const;
+		bool matchOperator(string &result) const;
+		bool matchOtherSymbol(TOKEN_CLASS &result, char &character) const;
 	};
 }

@@ -73,6 +73,9 @@
     <ClInclude Include="TokenMatcher.h">
       <Filter>lexer\helpers</Filter>
     </ClInclude>
+    <ClInclude Include="TokenizerContextService.h">
+      <Filter>lexer\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TokenizerService.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="TokenMatcher.cpp">
       <Filter>lexer\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenizerContextService.cpp">
+      <Filter>lexer\service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

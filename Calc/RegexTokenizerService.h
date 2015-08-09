@@ -1,8 +1,6 @@
 #pragma once
 
 #include "TokenizerService.h"
-#include "OperatorTokenizeHelper.h"
-#include "SymbolsTokenizeHelper.h"
 
 namespace KLab
 {
@@ -24,7 +22,6 @@ namespace KLab
 		const static regex MULTILINE_COMMENT_REGEX;
 
 	public:
-
 		RegexTokenizerService();
 		~RegexTokenizerService();
 
@@ -37,7 +34,5 @@ namespace KLab
 		virtual void onMultiLineCommentStart() override;
 		virtual bool checkForOperatorAndReact() override;
 		virtual bool checkForOtherSymbolsAndReact() override;
-
-		void readToken(const regex &reg, TOKEN_CLASS tokenClass);
 	};
 }

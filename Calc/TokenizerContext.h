@@ -19,22 +19,20 @@ namespace KLab
 		int textPosition() const;
 		int textLength() const;
 		bool isCharacterToProccess();
-		void put(unique_ptr<Token> &&token);
-		void put(const string &lexame, TOKEN_CLASS tokenClass);
-		void put(string &&lexame, TOKEN_CLASS tokenClass);
-
-		char at(int offset = 0) const;
 		string at(int offset, int length) const;
 		bool at(int offset, char character) const;
 		bool at(int offset, int length, const string &compare) const;
-		shared_ptr<TokenList> getTokens() const;
+		char at(int offset = 0) const;
 		const string& getText() const;
+		shared_ptr<TokenList> getTokens() const;
+		void addToken(unique_ptr<Token> &&token);;
+		void incrementPosition(int value);
+		void setLine(int value);
+		int getLine() const;
+		void setColumn(int value);
+		int getColumn() const;
 
 	private:
 		void setupInitialState();
-		void proccessBeforePut(Token &token);
-		void updateColumnAndLine(const Token &token);
-		void onNewLine(int tokenLength);
-		void onMultilineComment(const Token &token);
 	};
 }

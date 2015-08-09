@@ -9,35 +9,33 @@ namespace KLab {
 	}
 
 	shared_ptr<TokenList> TokenizerService::readTokens(string inputText) {
-		return readTokens(shared_ptr<TokenizerContext>(new TokenizerContext(inputText)));
-	}
-
-	shared_ptr<TokenList> TokenizerService::readTokens(const shared_ptr<TokenizerContext> &tokenizerContext) {
-		context = tokenizerContext;
+		tokenizerContext = std::make_shared<TokenizerContext>(inputText);
+		tokenMatcher.reset(new TokenMatcher(*tokenizerContext));
+		contextService.reset(new TokenizerContextService(tokenizerContext.get()));
 		process();
-		return context->getTokens();
+		return tokenizerContext->getTokens();
 	}
 
 	void TokenizerService::process() {
-		while (context->isCharacterToProccess()) {
-			if (context->isNumberStart())
+		while (contextService->isCharacterToProccess()) {
+			if (tokenMatcher->isNumberStart())
 				onNumber();
-			else if (context->isWordStart())
+			else if (tokenMatcher->isWordStart())
 				onWord();
-			else if (context->isSpaceStart())
+			else if (tokenMatcher->isSpaceStart())
 				onSpace();
-			else if (context->isNewLineStart())
+			else if (tokenMatcher->isNewLineStart())
 				onNewLine();
-			else if (context->isSingleLineCommentStart())
+			else if (tokenMatcher->isSingleLineCommentStart())
 				onSingleLineComment();
-			else if (context->isMultiLineCommentStart())
+			else if (tokenMatcher->isMultiLineCommentStart())
 				onMultiLineCommentStart();
 			else if (checkForOperatorAndReact())
 				continue;
 			else if (checkForOtherSymbolsAndReact())
 				continue;
 			else
-				throw TokenizeException("Symbol unknown.", context);
+				throw TokenizeException("Symbol unknown.", tokenizerContext);
 		}
 	}
 }

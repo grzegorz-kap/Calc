@@ -22,19 +22,6 @@ namespace KLab {
 		return text.isCharacterToProccess();
 	}
 
-	void TokenizerContext::put(unique_ptr<Token> &&token) {
-		proccessBeforePut(*token);
-		tokens->add(std::move(token));
-	}
-
-	void TokenizerContext::put(const string &lexame, TOKEN_CLASS tokenClass) {
-		put(unique_ptr<Token>(new Token(lexame, tokenClass)));
-	}
-
-	void TokenizerContext::put(string &&lexame, TOKEN_CLASS tokenClass) {
-		put(unique_ptr<Token>(new Token(std::move(lexame), tokenClass)));
-	}
-
 	string TokenizerContext::at(int offset, int length) const {
 		return text.at(offset, length);
 	}
@@ -55,6 +42,10 @@ namespace KLab {
 		return tokens;
 	}
 
+	void TokenizerContext::addToken(unique_ptr<Token> &&token) {
+		tokens->add(std::move(token));
+	}
+
 	const string& TokenizerContext::getText() const {
 		return text.getText();
 	}
@@ -64,39 +55,23 @@ namespace KLab {
 		column = 1;
 	}
 
-	void TokenizerContext::proccessBeforePut(Token &token) {
-		text.incrementPosition(token.getLexemeLength());
-		token.setLine(line);
-		token.setColumn(column);
-		updateColumnAndLine(token);
+	void TokenizerContext::incrementPosition(int value) {
+		text.incrementPosition(value);
 	}
 
-	void TokenizerContext::updateColumnAndLine(const Token &token) {
-		switch (token.getTokenClass()) {
-		case TOKEN_CLASS::NEW_LINE:
-			onNewLine(token.getLexemeLength());
-			break;
-		case TOKEN_CLASS::MULTILINE_COMMENT:
-			onMultilineComment(token);
-			break;
-		default:
-			column += token.getLexemeLength();
-			break;
-		}
+	void TokenizerContext::setLine(int value) {
+		line = value;
 	}
 
-	void TokenizerContext::onNewLine(int tokenLength) {
-		line += tokenLength;
-		column = 1;
+	int TokenizerContext::getLine() const {
+		return line;
 	}
 
-	void TokenizerContext::onMultilineComment(const Token &token) {
-		auto newLinesCount = std::count_if(token.cbegin(), token.cend(), [](char c){return c == '\n'; });
-		if (newLinesCount > 0) {
-			line += (int)newLinesCount;
-			column = token.getLexemeLength() - token.lastIndexOf('\n');
-		}
-		else
-			column += token.getLexemeLength();
+	void TokenizerContext::setColumn(int value) {
+		column = value;
+	}
+
+	int TokenizerContext::getColumn() const {
+		return column;
 	}
 }
