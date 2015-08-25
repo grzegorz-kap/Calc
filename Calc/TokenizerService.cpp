@@ -25,26 +25,19 @@ namespace KLab
 		{ ',', TOKEN_CLASS::COMMA }
 	};
 
-	TokenizerService::TokenizerService() {
-		N = 0;
-		i = 0;
+	TokenizerService::TokenizerService(const string &input) : tokenizerContext(input) {
+		init();
+	}
+
+	TokenizerService::TokenizerService(string &&input) : tokenizerContext(std::move(input)) {
+		init();
 	}
 
 	TokenizerService::~TokenizerService() {
 	}
 
-	void TokenizerService::setInput(const string &in) {
-		command = in;
-		init();
-	}
-
-	void TokenizerService::setInput(string &&in) {
-		command = std::move(in);
-		init();
-	}
-
 	void TokenizerService::readOthers() {
-		auto result = OTHERS.find(command[i]);
+		auto result = OTHERS.find(at(0));
 		if (result == OTHERS.end())
 			throwMessage("Unrecognized symbol");
 		tokens.push_back(make_unique<Token>(result->second));
@@ -53,13 +46,13 @@ namespace KLab
 	}
 
 	bool TokenizerService::readOperator() {
-		if (command[i] == '\'' && prevChar() != '.' && !find(TokenizerHelper::NO_STRING_PRECURSORS, prev())) {
+		if (at(0) == '\'' && prevChar() != '.' && !find(TokenizerHelper::NO_STRING_PRECURSORS, prev())) {
 			readString();
 			return true;
 		}
 
 		int length;
-		auto result = OperatorsFactory::get(command, i, length);
+		auto result = OperatorsFactory::get(tokenizerContext.getTextRef(), tokenizerContext.getIndex(), length);
 		if (result != nullptr) {
 			tokens.push_back(std::move(result));
 			setLine();
@@ -71,7 +64,7 @@ namespace KLab
 
 	void TokenizerService::readNumber() {
 		try {
-			tokens.push_back(make_unique<SNumber>(Token(NumberReader::read(command, i), TOKEN_CLASS::NUMBER)));
+			tokens.push_back(make_unique<SNumber>(Token(NumberReader::read(tokenizerContext.getTextRef(), tokenizerContext.getIndex()), TOKEN_CLASS::NUMBER)));
 			setLine();
 			inc(tokens.back()->getLexemeR().size());
 		}
@@ -82,19 +75,15 @@ namespace KLab
 
 	void TokenizerService::readWord() {
 		string lexame = "";
-		/* Wczytanie identyfikatora*/
-		while (i < N &&
-			(TokenizerHelper::isLetter(command[i]) ||
-			TokenizerHelper::isDigit(command[i]))
-			)
-			lexame += command[i++];
+		while (!EoI() && (TokenizerHelper::isLetter(at(0)) || TokenizerHelper::isDigit(at(0)))) {
+			lexame += at(0);
+			tokenizerContext.increment(1);
+		}
 
-		/* Zamiana endfor, endif, endwhile, endfunction na end. */
 		if (std::find(END_SYNONIMS.cbegin(), END_SYNONIMS.cend(), lexame)
 			!= END_SYNONIMS.end())
 			lexame = "end";
 
-		/* Dodanie do tablicy rozpoznanych symboli leksykalnych. */
 		tokens.push_back(make_unique<Token>(std::move(lexame),
 			TokenizerHelper::keyWordOrId(lexame)));
 		setLine();
@@ -104,19 +93,19 @@ namespace KLab
 	void TokenizerService::readString() {
 		string lexame = "";
 		bool found = false;
-		i++;
-		while (i < N && command[i] != '\n') {
-			if (command[i] == '\'') {
-				if (i < N - 1 && command[i + 1] == '\'') {
-					i += 2;
+		while (!EoI() && at(0) != '\n') {
+			if (at(0) == '\'') {
+				if (at(1) == '\'') {
+					tokenizerContext.increment(2);
 					lexame += '\'';
 					continue;
 				}
 				found = true;
-				i++;
+				tokenizerContext.increment(1);
 				break;
 			}
-			lexame += command[i++];
+			lexame += at(0);
+			tokenizerContext.increment(1);
 		}
 		if (!found)
 			throwMessage("A KapiLab string constant is not terminated properly.");
@@ -126,11 +115,11 @@ namespace KLab
 	}
 
 	void TokenizerService::readWhiteSpace() {
-		switch (command[i]) {
+		switch (at(0)) {
 		case '\n':
 			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE));
 			setLine();
-			i++;
+			tokenizerContext.increment(1);
 			onNewLine();
 			break;
 		case '\t':
@@ -146,10 +135,10 @@ namespace KLab
 	}
 
 	void TokenizerService::skipBlockComment() {
-		while (i < N - 1) {
-			if (command[i] == '%'&&command[i + 1] == '}')
+		while (tokenizerContext.getIndex() < tokenizerContext.getLength() - 1) {
+			if (at(0) == '%'&&at(1) == '}')
 				break;
-			else if (command[i] == '\n')
+			else if (at(0) == '\n')
 				onNewLine();
 			inc();
 		}
@@ -157,25 +146,25 @@ namespace KLab
 	}
 
 	void TokenizerService::skipLineComment() {
-		while (i < N &&command[i] != '\n')
+		while (!EoI() && at(0) != '\n')
 			inc();
 		//i--;
 	}
 
 	void TokenizerService::deleteUneccessary() {
-		if (i < N) {
-			char z = command[i];
-			if (i < N - 1 && z == '%' && command[i + 1] == '{') {
+		if (!EoI()) {
+			char z = at(0);
+			if (z == '%' && at(1) == '{') {
 				skipBlockComment();
 				deleteUneccessary();
 			}
-			else if (z == '%' || (i < N - 1 && z == '/'&&command[i + 1] == '/')) {
+			else if (z == '%' || (z == '/'&&at(1) == '/')) {
 				skipLineComment();
 				deleteUneccessary();
 			}
-			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE || prev() == TOKEN_CLASS::SEMICOLON)) || (i < N - 1 && z == '\n'&&z == ';')) {
+			else if ((z == '\n' && (prev() == TOKEN_CLASS::NEW_LINE || prev() == TOKEN_CLASS::SEMICOLON))) {
 				onNewLine();
-				i++;
+				tokenizerContext.increment(1);
 				deleteUneccessary();
 			}
 		}
@@ -183,12 +172,12 @@ namespace KLab
 
 	void TokenizerService::tokenize() {
 		deleteUneccessary();
-		while (i < N) {
-			if (TokenizerHelper::isDigit(command[i]))
+		while (!EoI()) {
+			if (TokenizerHelper::isDigit(at(0)))
 				readNumber();
-			else if (TokenizerHelper::isLetter(command[i]))
+			else if (TokenizerHelper::isLetter(at(0)))
 				readWord();
-			else if (TokenizerHelper::isWhiteSpace(command[i]))
+			else if (TokenizerHelper::isWhiteSpace(at(0)))
 				readWhiteSpace();
 			else if (onDot())
 				continue;
@@ -200,11 +189,11 @@ namespace KLab
 	}
 
 	bool TokenizerService::onDot() {
-		if (i < N - 2 && command[i] == '.'&& command[i + 1] == '.' && command[i + 2] == '.') {
+		if (at(0) == '.'&& at(1) == '.' && at(3) == '.') {
 			inc(3);
-			while (i < N && command[i] != '\n')
+			while (!EoI() && at(0) != '\n')
 				inc();
-			i++;
+			tokenizerContext.increment(1);
 			onNewLine();
 		}
 		else
@@ -213,9 +202,9 @@ namespace KLab
 	}
 
 	void TokenizerService::whiteSpacesBegin() {
-		while (i < N&&TokenizerHelper::isWhiteSpace(command[i])) {
-			i++;
-			if (command[i] == '\n')
+		while (!EoI() && TokenizerHelper::isWhiteSpace(at(0))) {
+			tokenizerContext.increment(0);
+			if (at(0) == '\n')
 				onNewLine();
 			else
 				_position++;
@@ -223,12 +212,20 @@ namespace KLab
 	}
 
 	void TokenizerService::whiteSpacesEnd() {
-		while (N > 0 && TokenizerHelper::isWhiteSpace(command[N - 1]))
-			N--;
+		while (!EoI() && TokenizerHelper::isWhiteSpace(tokenizerContext.last()))
+			tokenizerContext.decrementLength(1);
 	}
 
 	vector<unique_ptr<Token>> TokenizerService::getTokens() {
 		return std::move(tokens);
+	}
+
+	char TokenizerService::at(int index) {
+		return tokenizerContext.at(index);
+	}
+
+	bool TokenizerService::EoI() const {
+		return tokenizerContext.EoI();
 	}
 
 	TOKEN_CLASS TokenizerService::prev() {
@@ -238,8 +235,6 @@ namespace KLab
 	}
 
 	void TokenizerService::init() {
-		N = command.size();
-		i = 0;
 		_line = 1;
 		_position = 1;
 		whiteSpacesEnd();
@@ -247,9 +242,7 @@ namespace KLab
 	}
 
 	char TokenizerService::prevChar() {
-		if (i == 0)
-			return 0;
-		return command[i - 1];
+		return at(-1);
 	}
 
 	void TokenizerService::throwMessage(const string &message) {
@@ -257,7 +250,7 @@ namespace KLab
 	}
 
 	void TokenizerService::inc(int val) {
-		i += val;
+		tokenizerContext.increment(val);
 		_position += val;
 	}
 

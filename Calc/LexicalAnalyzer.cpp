@@ -28,15 +28,15 @@ namespace KLab
 	}
 
 	void LexicalAnalyzer::setInput(const string &name) {
-		tokenizer.setInput(name);
+		tokenizer.reset(new TokenizerService(name));
 	}
 
 	void LexicalAnalyzer::setInput(string &&name) {
-		tokenizer.setInput(std::move(name));
+		tokenizer.reset(new TokenizerService(std::move(name)));
 	}
 
 	void LexicalAnalyzer::setInput(FileLoader &file) {
-		tokenizer.setInput(file.loadAll());
+		tokenizer.reset(new TokenizerService(file.loadAll()));
 	}
 
 	void LexicalAnalyzer::reset() {
@@ -45,8 +45,8 @@ namespace KLab
 
 	auto LexicalAnalyzer::getTokens()
 		-> decltype(tokens) {
-		tokenizer.tokenize();
-		tokens = tokenizer.getTokens();
+		tokenizer->tokenize();
+		tokens = tokenizer->getTokens();
 
 		for (int i = tokens.size() - 1; i >= 0; i--) {
 			if (tokens[i]->getClass() != TOKEN_CLASS::SPACE)

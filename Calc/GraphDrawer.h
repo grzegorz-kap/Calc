@@ -9,19 +9,17 @@
 using namespace std;
 
 //! Struktura przechowuje wymiary macierzy.
-struct size
-{
+struct size {
 	//! Konstruktor ustawiaj¹cy pola struktury.
 	//! \param i to liczba wierszy.
 	//! \param j to liczba kolumn.
-	size(int i, int j) :m(i), n(j){}
+	size(int i, int j) :m(i), n(j) {}
 	int m; //!< Przechowuje liczbe wierszy.
 	int n; //!< Przechowuje liczbe kolumn.
 };
 
 //! Klasa rysujaca wykresy 2D i 3D.
-class  GraphDrawer
-{
+class  GraphDrawer {
 public:
 
 	//! Domyslny konstruktor
