@@ -25,11 +25,13 @@ namespace KLab
 		{ ',', TOKEN_CLASS::COMMA }
 	};
 
-	TokenizerService::TokenizerService(const string &input) : tokenizerContext(input) {
+	TokenizerService::TokenizerService(const string &input)
+		: tokenizerContext(input), tokenizerContextService(tokenizerContext) {
 		init();
 	}
 
-	TokenizerService::TokenizerService(string &&input) : tokenizerContext(std::move(input)) {
+	TokenizerService::TokenizerService(string &&input)
+		: tokenizerContext(std::move(input)), tokenizerContextService(tokenizerContext) {
 		init();
 	}
 
@@ -40,7 +42,7 @@ namespace KLab
 		auto result = OTHERS.find(at(0));
 		if (result == OTHERS.end())
 			throwMessage("Unrecognized symbol");
-		tokens.push_back(make_unique<Token>(result->second));
+		tokenizerContext.pushToken(make_unique<Token>(result->second));
 		setLine();
 		inc();
 	}
@@ -54,23 +56,12 @@ namespace KLab
 		int length;
 		auto result = OperatorsFactory::get(tokenizerContext.getTextRef(), tokenizerContext.getIndex(), length);
 		if (result != nullptr) {
-			tokens.push_back(std::move(result));
+			tokenizerContext.pushToken(std::move(result));
 			setLine();
 			inc(length);
 			return true;
 		}
 		return false;
-	}
-
-	void TokenizerService::readNumber() {
-		try {
-			tokens.push_back(make_unique<SNumber>(Token(NumberReader::read(tokenizerContext.getTextRef(), tokenizerContext.getIndex()), TOKEN_CLASS::NUMBER)));
-			setLine();
-			inc(tokens.back()->getLexemeR().size());
-		}
-		catch (const CalcException &ex) {
-			throwMessage(ex.getMessageR());
-		}
 	}
 
 	void TokenizerService::readWord() {
@@ -84,10 +75,10 @@ namespace KLab
 			!= END_SYNONIMS.end())
 			lexame = "end";
 
-		tokens.push_back(make_unique<Token>(std::move(lexame),
+		tokenizerContext.pushToken(make_unique<Token>(std::move(lexame),
 			TokenizerHelper::keyWordOrId(lexame)));
 		setLine();
-		_position += tokens.back()->getLexemeR().size();
+		_position += tokenizerContext.tokensBack().getLexemeR().size();
 	}
 
 	void TokenizerService::readString() {
@@ -109,15 +100,15 @@ namespace KLab
 		}
 		if (!found)
 			throwMessage("A KapiLab string constant is not terminated properly.");
-		tokens.push_back(make_unique<String>(std::move(lexame)));
+		tokenizerContext.pushToken(make_unique<String>(std::move(lexame)));
 		setLine();
-		_position += tokens.back()->getLexemeR().size();
+		_position += tokenizerContext.tokensBack().getLexemeR().size();
 	}
 
 	void TokenizerService::readWhiteSpace() {
 		switch (at(0)) {
 		case '\n':
-			tokens.push_back(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE));
+			tokenizerContext.pushToken(make_unique<Token>("\n", TOKEN_CLASS::NEW_LINE));
 			setLine();
 			tokenizerContext.increment(1);
 			onNewLine();
@@ -125,8 +116,8 @@ namespace KLab
 		case '\t':
 		case ' ':
 		case '\r':
-			if (tokens.size() != 0 && !find(FOR_SPACE_DELETE, tokens.back()->getClass())) {
-				tokens.push_back(make_unique<Token>(TOKEN_CLASS::SPACE));
+			if (tokenizerContext.tokensCount() != 0 && !find(FOR_SPACE_DELETE, tokenizerContext.tokensBack().getClass())) {
+				tokenizerContext.pushToken(make_unique<Token>(TOKEN_CLASS::SPACE));
 				setLine();
 			}
 			inc();
@@ -174,7 +165,7 @@ namespace KLab
 		deleteUneccessary();
 		while (!EoI()) {
 			if (TokenizerHelper::isDigit(at(0)))
-				readNumber();
+				onNumber();
 			else if (TokenizerHelper::isLetter(at(0)))
 				readWord();
 			else if (TokenizerHelper::isWhiteSpace(at(0)))
@@ -217,7 +208,7 @@ namespace KLab
 	}
 
 	vector<unique_ptr<Token>> TokenizerService::getTokens() {
-		return std::move(tokens);
+		return std::move(tokenizerContext.getTokens()->getTokens());
 	}
 
 	char TokenizerService::at(int index) {
@@ -229,9 +220,9 @@ namespace KLab
 	}
 
 	TOKEN_CLASS TokenizerService::prev() {
-		if (tokens.size() == 0)
+		if (tokenizerContext.tokensCount() == 0)
 			return TOKEN_CLASS::NONE;
-		return tokens.back()->getClass();
+		return tokenizerContext.tokensBack().getClass();
 	}
 
 	void TokenizerService::init() {
@@ -260,9 +251,9 @@ namespace KLab
 	}
 
 	void TokenizerService::setLine() {
-		if (tokens.size()) {
-			tokens.back()->setLine(_line);
-			tokens.back()->setPosition(_position);
+		if (tokenizerContext.tokensCount()) {
+			tokenizerContext.tokensBack().setLine(_line);
+			tokenizerContext.tokensBack().setPosition(_position);
 		}
 	}
 }

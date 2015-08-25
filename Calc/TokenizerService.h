@@ -20,7 +20,7 @@ using std::vector;
 #include "Operator.h"
 #include "OperatorsFactory.h"
 #include "NumberReader.h"
-#include "TokenizerContext.h"
+#include "TokenizerContextService.h"
 
 namespace KLab
 {
@@ -28,15 +28,16 @@ namespace KLab
 	public:
 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
 
+	protected:
+		TokenizerContext tokenizerContext;
+		TokenizerContextService tokenizerContextService;
+
 	private:
 		static const unordered_map<string, TOKEN_CLASS> KEYWORDS;
 		static const unordered_map<char, TOKEN_CLASS> OTHERS;
 		static const vector<string> END_SYNONIMS;
-		vector<unique_ptr<Token>> tokens;
 		int _line;
 		int _position;
-
-		TokenizerContext tokenizerContext;
 
 	public:
 		TokenizerService(const string &input);
@@ -49,10 +50,12 @@ namespace KLab
 	protected:
 		char at(int index);
 		bool EoI() const;
+		void setLine();
+		void inc(int val = 1);
+
+		virtual void onNumber() = 0;
 
 	private:
-
-		void readNumber();
 		void readWord();
 		void readWhiteSpace();
 		void readOthers();
@@ -69,7 +72,5 @@ namespace KLab
 		void init();
 		void onNewLine();
 		void throwMessage(const string &message);
-		void inc(int val = 1);
-		void setLine();
 	};
 }

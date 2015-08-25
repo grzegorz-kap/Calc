@@ -15,7 +15,24 @@ namespace KLab {
 	TokenizerContext::~TokenizerContext() {
 	}
 
+	void TokenizerContext::pushToken(unique_ptr<Token> &&token) {
+		tokenList->push(std::move(token));
+	}
+
+	int TokenizerContext::tokensCount() const {
+		return tokenList->size();
+	}
+
+	Token& TokenizerContext::tokensBack() {
+		return tokenList->back();
+	}
+
+	shared_ptr<TokenList> TokenizerContext::getTokens() {
+		return tokenList;
+	}
+
 	void TokenizerContext::init() {
+		tokenList = std::make_shared<TokenList>();
 		index = 0;
 		length = text.size();
 	}
