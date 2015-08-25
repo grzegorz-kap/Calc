@@ -230,7 +230,7 @@
     <ClInclude Include="String.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
-    <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="TokenizerService.h" />
     <ClInclude Include="TokenizerHelper.h" />
     <ClInclude Include="TokensTypes.h" />
     <ClInclude Include="TranspositionOperator.h" />
@@ -322,7 +322,7 @@
     </ClCompile>
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Token.cpp" />
-    <ClCompile Include="Tokenizer.cpp" />
+    <ClCompile Include="TokenizerService.cpp" />
     <ClCompile Include="TokenizerHelper.cpp" />
     <ClCompile Include="TranspositionOperator.cpp" />
     <ClCompile Include="TrigonometryFunctions.cpp" />

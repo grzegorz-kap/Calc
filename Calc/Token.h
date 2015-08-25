@@ -16,9 +16,7 @@ namespace KLab
 
 	enum class PARSE_MODE :char { NORMAL, FUNCTION, MATRIX, KEYWORD };
 
-	//! Klasa reprezentujaca symbol leksykalny.
-	class Token :public Data
-	{
+	class Token :public Data {
 	private:
 		string lexeme;
 		TOKEN_CLASS _class;

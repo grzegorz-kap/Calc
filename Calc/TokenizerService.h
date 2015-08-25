@@ -23,17 +23,15 @@ using std::vector;
 
 namespace KLab
 {
-	//! Klasa dzielaca tekst na symbole leksykalne.
-	class Tokenizer
-	{
+	class TokenizerService {
 	public:
 		const static vector<TOKEN_CLASS> FOR_SPACE_DELETE;
 
-		Tokenizer();
-		~Tokenizer();
+		TokenizerService();
+		~TokenizerService();
 		void setInput(const string &command);
 		void setInput(string &&command);
-		Tokenizer & operator = (Tokenizer &&b);
+		TokenizerService & operator = (TokenizerService &&b);
 		void tokenize();
 		vector<unique_ptr<Token>> getTokens();
 
