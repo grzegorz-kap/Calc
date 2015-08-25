@@ -2,12 +2,13 @@
 
 #include <queue>
 #include <vector>
+#include <boost/scoped_ptr.hpp>
 
 using std::vector;
 using std::queue;
 
 #include "Token.h"
-#include "Tokenizer.h"
+#include "TokenizerService.h"
 #include "functions.h"
 #include "CalcException.h"
 #include "LexicalBalanceHelper.h"
@@ -16,28 +17,21 @@ using std::queue;
 
 namespace KLab
 {
-	//! Klasa stanawiaca modul analizy leksykalnej.
-	class LexicalAnalyzer
-	{
+	class LexicalAnalyzer {
 		vector<unique_ptr<Token>> tokens;
 		vector<unique_ptr<Token>>::iterator iter;
 	public:
 		LexicalAnalyzer();
-		//! \param tekst wejsciowy.
 		LexicalAnalyzer(const string &command);
 		~LexicalAnalyzer();
 
-		//! Ustawia wejscie analizatora.
-		//! \param commend tekst, ktory zostanie podzielony na tokeny.
 		void setInput(const string &command);
 		void setInput(string &&in);
 		void setInput(FileLoader &in);
-
-		//! Pobranie wodrebnionych symboli leksykalnych.
 		auto getTokens() -> decltype(tokens);
 
 	private:
-		Tokenizer tokenizer;
+		boost::scoped_ptr<TokenizerService> tokenizer;
 		LexicalBalanceHelper balancer;
 		TOKEN_CLASS prev;
 		unsigned int prev_operator_args_num;
@@ -53,10 +47,6 @@ namespace KLab
 		void onSpace(Token &token);
 		void onColon(Token &token);
 		void onID(Token &token);
-
-		/*
-			Recognize what means (last index of or if/for/while end)
-			*/
 		void onEndKeyword(Token &token);
 	};
 }
